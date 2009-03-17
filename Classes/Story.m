@@ -11,8 +11,8 @@
 
 @implementation Story
 
-@synthesize modelId;
 @synthesize title;
+@synthesize commentCount;
 
 + (NSString *)path {
   return @"/stories";
@@ -22,6 +22,7 @@
   [super initWithDictionary:dictionary];
   
   self.title = [dictionary objectForKey:@"name"];
+  commentCount = [[dictionary objectForKey:@"comment_count"] intValue];
   
   return self;
 }

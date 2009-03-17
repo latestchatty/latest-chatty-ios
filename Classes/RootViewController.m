@@ -158,7 +158,8 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+  self.stories = nil;
+  [super dealloc];
 }
 
 

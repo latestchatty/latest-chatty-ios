@@ -53,10 +53,10 @@ static id<ModelLoadingDelegate> loadingDelegate;
 
 + (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   NSString *modelDataString = [[NSString alloc] initWithData:downloadedData encoding:NSUTF8StringEncoding];
-  NSArray *modelDataArray = [modelDataString JSONValue];
+  NSArray  *modelDataArray  = [modelDataString JSONValue];
   [modelDataString release];
-  [downloadedData release];
-  downloadedData = nil;
+  [downloadedData  release];
+  downloadedData   = nil;
   
   NSMutableArray *models = [NSMutableArray arrayWithCapacity:[modelDataArray count]];
   for (NSDictionary *dictionary in modelDataArray) {
@@ -71,7 +71,6 @@ static id<ModelLoadingDelegate> loadingDelegate;
 - (id)initWithDictionary:(NSDictionary *)dictionary {
   [super init];
   
-  // Find the record ID
   modelId = [[dictionary objectForKey:@"id"] intValue];
   
   return self;

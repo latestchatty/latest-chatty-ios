@@ -19,7 +19,7 @@
 
 + (NSString *)host;
 + (NSURL *)url;
-+ (NSString *)path;
++ (NSString *)path; // Override this method
 
 + (void)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
 

@@ -278,8 +278,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>10</integer>
-									<integer>8</integer>
+									<integer>6</integer>
+									<integer>4</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -320,7 +320,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>FA5FCD1F0F6F63BC00878F27</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Model.h</string>
+								<string>RootViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -328,22 +328,22 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>FA5FCD200F6F63BC00878F27</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Model.h</string>
+										<string>RootViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>FA5FCE5B0F6F77B400878F27</string>
+										<string>FA5FCE800F6F78FF00878F27</string>
 										<key>history</key>
 										<array>
 											<string>FA5FCE230F6F758300878F27</string>
 											<string>FA5FCE240F6F758300878F27</string>
-											<string>FA5FCE250F6F758300878F27</string>
-											<string>FA5FCE450F6F77A000878F27</string>
 											<string>FA5FCE460F6F77A000878F27</string>
-											<string>FA5FCE470F6F77A000878F27</string>
-											<string>FA5FCE480F6F77A000878F27</string>
-											<string>FA5FCE490F6F77A000878F27</string>
-											<string>FA5FCE4A0F6F77A000878F27</string>
+											<string>FA5FCE680F6F78C500878F27</string>
+											<string>FA5FCE690F6F78C500878F27</string>
+											<string>FA5FCE6A0F6F78C500878F27</string>
+											<string>FA5FCE780F6F78FF00878F27</string>
+											<string>FA5FCE790F6F78FF00878F27</string>
+											<string>FA5FCE7A0F6F78FF00878F27</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -486,6 +486,24 @@
 											<string>FA5FCE560F6F77A000878F27</string>
 											<string>FA5FCE570F6F77A000878F27</string>
 											<string>FA5FCE580F6F77A000878F27</string>
+											<string>FA5FCE600F6F786200878F27</string>
+											<string>FA5FCE610F6F786200878F27</string>
+											<string>FA5FCE620F6F786200878F27</string>
+											<string>FA5FCE630F6F786200878F27</string>
+											<string>FA5FCE640F6F786200878F27</string>
+											<string>FA5FCE650F6F786200878F27</string>
+											<string>FA5FCE660F6F786200878F27</string>
+											<string>FA5FCE6C0F6F78C500878F27</string>
+											<string>FA5FCE6D0F6F78C500878F27</string>
+											<string>FA5FCE6E0F6F78C500878F27</string>
+											<string>FA5FCE6F0F6F78C500878F27</string>
+											<string>FA5FCE700F6F78C500878F27</string>
+											<string>FA5FCE710F6F78C500878F27</string>
+											<string>FA5FCE7B0F6F78FF00878F27</string>
+											<string>FA5FCE7C0F6F78FF00878F27</string>
+											<string>FA5FCE7D0F6F78FF00878F27</string>
+											<string>FA5FCE7E0F6F78FF00878F27</string>
+											<string>FA5FCE7F0F6F78FF00878F27</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -499,18 +517,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1165, 529}}</string>
+								<string>{{0, 0}, {1165, 773}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1440 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>529pt</string>
+							<string>773pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>244pt</string>
+							<string>0pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -578,7 +596,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1165, 217}}</string>
+										<string>{{10, 27}, {1165, -27}}</string>
 										<key>RubberWindowFrame</key>
 										<string>0 59 1440 819 0 0 1440 878 </string>
 									</dict>
@@ -794,6 +812,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>FA5FCE810F6F78FF00878F27</string>
 		<string>FA5FCD380F6F63BC00878F27</string>
 		<string>FA5FCD390F6F63BC00878F27</string>
 		<string>/Users/alex/Projects/Cocoa/LatestChatty2/LatestChatty2.xcodeproj</string>

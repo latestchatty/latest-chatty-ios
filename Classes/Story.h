@@ -11,8 +11,10 @@
 
 @interface Story : Model {
   NSString *title;
+  NSUInteger commentCount;
 }
 
 @property (copy) NSString *title;
+@property (readonly) NSUInteger commentCount;
 
 @end
