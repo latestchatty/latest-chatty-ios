@@ -1,0 +1,5 @@
+.DS_Store
+build/*
+LatestChatty2.xcodeproj/*.pbxuser
+LatestChatty2.xcodeproj/*.perspectivev3
+
