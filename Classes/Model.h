@@ -17,6 +17,7 @@
 
 @property (readonly) NSUInteger modelId;
 
++ (NSString *)formatDate:(NSDate *)date;
 + (NSString *)host;
 + (NSURL *)url;
 + (NSString *)path; // Override this method

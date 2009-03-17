@@ -21,6 +21,7 @@
 		FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */; };
 		FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE920F6F7CA600878F27 /* StoryCell.m */; };
 		FA5FCE950F6F7CB600878F27 /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5FCE940F6F7CB600878F27 /* StoryCell.xib */; };
+		FA5FD0560F7014BD00878F27 /* CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5FD0550F7014BD00878F27 /* CellBackground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		FA5FCE910F6F7CA600878F27 /* StoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryCell.h; sourceTree = "<group>"; };
 		FA5FCE920F6F7CA600878F27 /* StoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryCell.m; sourceTree = "<group>"; };
 		FA5FCE940F6F7CB600878F27 /* StoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryCell.xib; sourceTree = "<group>"; };
+		FA5FD0550F7014BD00878F27 /* CellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellBackground.png; path = Assets/CellBackground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA5FD0480F70149500878F27 /* Assets */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
@@ -158,6 +161,14 @@
 				FA5FCE940F6F7CB600878F27 /* StoryCell.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FA5FD0480F70149500878F27 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				FA5FD0550F7014BD00878F27 /* CellBackground.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +223,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
 				FA5FCE950F6F7CB600878F27 /* StoryCell.xib in Resources */,
+				FA5FD0560F7014BD00878F27 /* CellBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

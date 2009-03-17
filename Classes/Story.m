@@ -12,6 +12,8 @@
 @implementation Story
 
 @synthesize title;
+@synthesize preview;
+@synthesize date;
 @synthesize commentCount;
 
 + (NSString *)path {
@@ -21,7 +23,11 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
   [super initWithDictionary:dictionary];
   
-  self.title = [dictionary objectForKey:@"name"];
+  self.title   = [dictionary objectForKey:@"name"];
+  self.preview = [dictionary objectForKey:@"preview"];
+  //TODO: ADD story dates to API
+  //self.date    = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
+  self.date    = [NSDate dateWithNaturalLanguageString:@"now"];
   commentCount = [[dictionary objectForKey:@"comment_count"] intValue];
   
   return self;

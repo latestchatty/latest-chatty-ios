@@ -14,7 +14,8 @@
   Story *story;
   
   IBOutlet UILabel *title;
-  IBOutlet UILabel *modelId;
+  IBOutlet UILabel *preview;
+  IBOutlet UILabel *timestamp;
   IBOutlet UILabel *commentCount;
 }
 

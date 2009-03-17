@@ -16,7 +16,11 @@ static id<ModelLoadingDelegate> loadingDelegate;
 
 @synthesize modelId;
 
-#pragma mark Class Accessors
+#pragma mark Class Helpers
+
++ (NSString *)formatDate:(NSDate *)date; {
+  return [date descriptionWithCalendarFormat:@"%b %d, %Y %I:%M %p" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
+}
 
 + (NSString *)host {
   return @"shackchatty.com";

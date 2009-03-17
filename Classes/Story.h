@@ -11,10 +11,14 @@
 
 @interface Story : Model {
   NSString *title;
+  NSString *preview;
+  NSDate   *date;
   NSUInteger commentCount;
 }
 
 @property (copy) NSString *title;
+@property (copy) NSString *preview;
+@property (copy) NSDate   *date;
 @property (readonly) NSUInteger commentCount;
 
 @end

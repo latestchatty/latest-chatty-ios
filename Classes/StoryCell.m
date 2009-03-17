@@ -14,7 +14,7 @@
 @synthesize story;
 
 + (CGFloat)cellHeight {
-  return 80.0;
+  return 120.0;
 }
 
 - (id)init {
@@ -25,8 +25,9 @@
 - (void)layoutSubviews {
   [super layoutSubviews];
   title.text        = story.title;
-  modelId.text      = [NSString stringWithFormat:@"%i", story.modelId];
-  commentCount.text = [NSString stringWithFormat:@"%i", story.commentCount];
+  preview.text      = story.preview;
+  timestamp.text    = [Story formatDate:story.date];
+  commentCount.text = [NSString stringWithFormat:@"%i Comments", story.commentCount];
 }
 
 - (void)dealloc {

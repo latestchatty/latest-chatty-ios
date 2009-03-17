@@ -18,8 +18,10 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	// Configure and show the window
+  window.backgroundColor = [UIColor blackColor];
 	[window addSubview:[navigationController view]];
 	[window makeKeyAndVisible];
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
 }
 
 
