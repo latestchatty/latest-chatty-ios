@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ModelLoadingDelegate.h"
 #import "Story.h"
+#import "StoryCell.h"
 
 @interface RootViewController : UITableViewController <ModelLoadingDelegate> {
   NSArray *stories;

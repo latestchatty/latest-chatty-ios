@@ -18,6 +18,9 @@
 		FA5FCD160F6F61A600878F27 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCD150F6F61A600878F27 /* Model.m */; };
 		FA5FCD180F6F62EF00878F27 /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5FCD170F6F62EF00878F27 /* JSON.framework */; };
 		FA5FCDAC0F6F6FDF00878F27 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCDAB0F6F6FDF00878F27 /* Story.m */; };
+		FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */; };
+		FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE920F6F7CA600878F27 /* StoryCell.m */; };
+		FA5FCE950F6F7CB600878F27 /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5FCE940F6F7CB600878F27 /* StoryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,11 @@
 		FA5FCD1C0F6F63AC00878F27 /* ModelLoadingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoadingDelegate.h; sourceTree = "<group>"; };
 		FA5FCDAA0F6F6FDF00878F27 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Story.h; sourceTree = "<group>"; };
 		FA5FCDAB0F6F6FDF00878F27 /* Story.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Story.m; sourceTree = "<group>"; };
+		FA5FCE8B0F6F7B6A00878F27 /* TableCellFromNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCellFromNib.h; sourceTree = "<group>"; };
+		FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCellFromNib.m; sourceTree = "<group>"; };
+		FA5FCE910F6F7CA600878F27 /* StoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryCell.h; sourceTree = "<group>"; };
+		FA5FCE920F6F7CA600878F27 /* StoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryCell.m; sourceTree = "<group>"; };
+		FA5FCE940F6F7CB600878F27 /* StoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,7 @@
 				1D3623250D0F684500981E51 /* LatestChatty2AppDelegate.m */,
 				FA5FCD110F6F607200878F27 /* Controllers */,
 				FA5FCD130F6F60E800878F27 /* Models */,
+				FA5FCE8A0F6F7B3D00878F27 /* Views */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -139,6 +148,18 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		FA5FCE8A0F6F7B3D00878F27 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA5FCE8B0F6F7B6A00878F27 /* TableCellFromNib.h */,
+				FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */,
+				FA5FCE910F6F7CA600878F27 /* StoryCell.h */,
+				FA5FCE920F6F7CA600878F27 /* StoryCell.m */,
+				FA5FCE940F6F7CB600878F27 /* StoryCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,6 +211,7 @@
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
+				FA5FCE950F6F7CB600878F27 /* StoryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +227,8 @@
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				FA5FCD160F6F61A600878F27 /* Model.m in Sources */,
 				FA5FCDAC0F6F6FDF00878F27 /* Story.m in Sources */,
+				FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */,
+				FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

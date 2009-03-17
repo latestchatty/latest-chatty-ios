@@ -75,19 +75,14 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+  return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NSInteger count;
-  
-  if (self.stories)
-    count = [self.stories count];
-  else
-    count = 0;
-  
+  NSInteger count = 0;
+  if (self.stories) count = [self.stories count];
   return count;
 }
 
@@ -96,16 +91,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"StoryCell";
   
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  StoryCell *cell = (StoryCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+    cell = [[[StoryCell alloc] init] autorelease];
   }
   
-  // Find the story
-  Story *story = [stories objectAtIndex:indexPath.row];
-  cell.text = story.title;
+  // Set the story
+  cell.story = [stories objectAtIndex:indexPath.row];
 
-  return cell;
+  return (UITableViewCell *)cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return [StoryCell cellHeight];
 }
 
 
