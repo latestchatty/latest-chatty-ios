@@ -13,11 +13,17 @@
 
 @synthesize title;
 @synthesize preview;
+@synthesize body;
 @synthesize date;
 @synthesize commentCount;
 
-+ (NSString *)path {
-  return @"/stories";
++ (NSString *)formatDate:(NSDate *)date; {
+  return [date descriptionWithCalendarFormat:@"%b %d, %I:%M %p" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
+}
+
+
++ (void)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate {
+  [self findAllWithUrlString:[self urlStringWithPath:@"/stories"] delegate:delegate];
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
@@ -25,6 +31,7 @@
   
   self.title   = [dictionary objectForKey:@"name"];
   self.preview = [dictionary objectForKey:@"preview"];
+  self.body    = [dictionary objectForKey:@"body"];
   //TODO: ADD story dates to API
   //self.date    = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
   self.date    = [NSDate dateWithNaturalLanguageString:@"now"];

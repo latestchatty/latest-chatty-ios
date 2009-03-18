@@ -12,9 +12,10 @@
 @implementation StoryCell
 
 @synthesize story;
+@synthesize chattyButton;
 
 + (CGFloat)cellHeight {
-  return 120.0;
+  return 110.0;
 }
 
 - (id)init {
@@ -27,7 +28,7 @@
   title.text        = story.title;
   preview.text      = story.preview;
   timestamp.text    = [Story formatDate:story.date];
-  commentCount.text = [NSString stringWithFormat:@"%i Comments", story.commentCount];
+  commentCount.text = [NSString stringWithFormat:@"%i", story.commentCount];
 }
 
 - (void)dealloc {

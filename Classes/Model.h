@@ -18,11 +18,12 @@
 @property (readonly) NSUInteger modelId;
 
 + (NSString *)formatDate:(NSDate *)date;
-+ (NSString *)host;
-+ (NSURL *)url;
-+ (NSString *)path; // Override this method
 
-+ (void)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
++ (NSString *)host;
++ (NSString *)urlStringWithPath:(NSString *)path;
++ (NSString *)keyPathToDataArray;
+
++ (void)findAllWithUrlString:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

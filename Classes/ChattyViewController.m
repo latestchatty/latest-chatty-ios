@@ -1,33 +1,35 @@
 //
-//  RootViewController.m
+//  ChattyViewController.m
 //  LatestChatty2
 //
-//  Created by Alex Wayne on 3/16/09.
-//  Copyright __MyCompanyName__ 2009. All rights reserved.
+//  Created by Alex Wayne on 3/17/09.
+//  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "RootViewController.h"
-#import "LatestChatty2AppDelegate.h"
+#import "ChattyViewController.h"
 
 
-@implementation RootViewController
+@implementation ChattyViewController
 
-@synthesize stories;
+@synthesize story;
+@synthesize threads;
 
-- (id)initWithCoder:(NSCoder *)coder {
-  [super initWithCoder:coder];
+- (id)initWithStory:(Story *)aStory {
+  [self initWithNibName:@"ChattyViewController" bundle:nil];
   
-  self.title = @"Stories";
+  self.story = aStory;
+  self.title = aStory.title;
+  [Post findAllWithStoryId:story.modelId delegate:self];
   
   return self;
-};
+}
 
 /*
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 */
 
@@ -36,13 +38,11 @@
     [super viewWillAppear:animated];
 }
 */
-
+/*
 - (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  
-  [Story findAllWithDelegate:self];
+    [super viewDidAppear:animated];
 }
-
+*/
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
@@ -62,15 +62,25 @@
 }
 */
 
+
+
+- (void)didReceiveMemoryWarning {
+	// Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+	
+	// Release any cached data, images, etc that aren't in use.
+}
+
+- (void)viewDidUnload {
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
+}
+
 - (void)didFinishLoadingModels:(NSArray *)models {
-  self.stories = models;
+  self.threads = models;
   [self.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-  // Release anything that's not essential, such as cached data
-}
 
 #pragma mark Table view methods
 
@@ -81,29 +91,24 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NSInteger count = 0;
-  if (self.stories) count = [self.stories count];
-  return count;
+  return [threads count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *CellIdentifier = @"StoryCell";
+  static NSString *CellIdentifier = @"ThreadCell";
   
-  StoryCell *cell = (StoryCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  ThreadCell *cell = (ThreadCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[StoryCell alloc] init] autorelease];
+    cell = [[[ThreadCell alloc] init] autorelease];
   }
   
-  // Set the story
-  cell.story = [stories objectAtIndex:indexPath.row];
+  // Set up the cell...
+  cell.story = story;
+  cell.rootPost = [threads objectAtIndex:indexPath.row];
 
-  return (UITableViewCell *)cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return [StoryCell cellHeight];
+  return cell;
 }
 
 
@@ -156,7 +161,8 @@
 
 
 - (void)dealloc {
-  self.stories = nil;
+  [story release];
+  [threads release];
   [super dealloc];
 }
 

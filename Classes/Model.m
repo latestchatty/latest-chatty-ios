@@ -19,30 +19,32 @@ static id<ModelLoadingDelegate> loadingDelegate;
 #pragma mark Class Helpers
 
 + (NSString *)formatDate:(NSDate *)date; {
-  return [date descriptionWithCalendarFormat:@"%b %d, %Y %I:%M %p" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
+  return [date descriptionWithCalendarFormat:@"%b %d, %Y, %I:%M %p" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
 }
 
 + (NSString *)host {
   return @"shackchatty.com";
 }
 
-+ (NSURL *)url {
-  NSString *urlString = [NSString stringWithFormat:@"http://%@%@.json", [self host], [self path]];
-  return [NSURL URLWithString:urlString];
++ (NSString *)urlStringWithPath:(NSString *)path {
+  return [NSString stringWithFormat:@"http://%@%@.json", [self host], path];
 }
 
-// Override this
-+ (NSString *)path {
-  [NSException raise:@"MethodMustBeOverridden" format:@"called 'path' class method on Model superclass.  You need to override this method"];
++ (NSString *)keyPathToDataArray {
   return nil;
 }
 
 #pragma mark Class Methods
 
-+ (void)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate {
+// Designated finder
++ (void)findAllWithUrlString:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
   loadingDelegate = delegate;
-  [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:[self url]] delegate:self startImmediately:YES];
-  downloadedData = [[NSMutableData alloc] init];
+  
+  NSURL        *url     = [NSURL URLWithString:urlString];
+  NSURLRequest *request = [NSURLRequest requestWithURL:url];
+  [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+  
+  downloadedData = [[NSMutableData alloc] init];  
 }
 
 + (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -57,7 +59,14 @@ static id<ModelLoadingDelegate> loadingDelegate;
 
 + (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   NSString *modelDataString = [[NSString alloc] initWithData:downloadedData encoding:NSUTF8StringEncoding];
-  NSArray  *modelDataArray  = [modelDataString JSONValue];
+  
+  id modelData = [modelDataString JSONValue];
+  NSArray *modelDataArray;
+  if ([modelData isKindOfClass:[NSArray class]])
+    modelDataArray = modelData;
+  else
+    modelDataArray = [modelData objectForKey:[self keyPathToDataArray]];
+  
   [modelDataString release];
   [downloadedData  release];
   downloadedData   = nil;

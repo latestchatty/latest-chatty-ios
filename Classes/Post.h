@@ -1,0 +1,28 @@
+//
+//  Thread.h
+//  LatestChatty2
+//
+//  Created by Alex Wayne on 3/17/09.
+//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "Model.h"
+
+@interface Post : Model {
+  NSString *author;
+  NSString *preview;
+  NSString *body;
+  NSDate   *date;
+  NSUInteger replyCount;
+}
+
+@property (copy) NSString *author;
+@property (copy) NSString *preview;
+@property (copy) NSString *body;
+@property (copy) NSDate *date;
+@property (readonly) NSUInteger replyCount;
+
++ (void)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate;
+
+@end

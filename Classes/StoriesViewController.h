@@ -8,13 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "ModelLoadingDelegate.h"
+
 #import "Story.h"
+#import "Post.h"
+
 #import "StoryCell.h"
 
-@interface RootViewController : UITableViewController <ModelLoadingDelegate> {
+#import "ChattyViewController.h"
+#import "StoryViewController.h"
+
+@interface StoriesViewController : UITableViewController <ModelLoadingDelegate> {
   NSArray *stories;
 }
 
 @property (retain) NSArray *stories;
+
+- (IBAction)tappedChattyButton:(id)sender;
 
 @end

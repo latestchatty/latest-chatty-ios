@@ -12,13 +12,17 @@
 @interface Story : Model {
   NSString *title;
   NSString *preview;
+  NSString *body;
   NSDate   *date;
   NSUInteger commentCount;
 }
 
 @property (copy) NSString *title;
 @property (copy) NSString *preview;
+@property (copy) NSString *body;
 @property (copy) NSDate   *date;
 @property (readonly) NSUInteger commentCount;
+
++ (void)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
 
 @end
