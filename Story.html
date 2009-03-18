@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Shacknews Story</title>
+    <style>
+      <%= stylesheet %>
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="date">
+        <a href="http://shacknews.com/onearticle.x/<%= storyId %>">
+          <%= date %>
+        </a>
+      </div>
+      
+      <h1 class="story-title">
+        <%= storyTitle %>
+      </h1>
+      
+      <div class="story-content">
+        <%= content %>
+      </div>
+      
+    </div>
+  </body>
+</html>

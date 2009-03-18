@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Story.h"
 #import "ChattyViewController.h"
+#import "StringTemplate.h"
 
 @interface StoryViewController : UIViewController {
   Story *story;

@@ -8,7 +8,6 @@
 
 #import "Post.h"
 
-
 @implementation Post
 
 @synthesize author;
@@ -17,8 +16,25 @@
 @synthesize date;
 @synthesize replyCount;
 
+@synthesize storyId;
+@synthesize parentPostId;
+
 + (NSString *)keyPathToDataArray {
   return @"comments";
+}
+
++ (NSArray *)parseDataDictionaries:(id)rawData {
+  NSArray *originalDictionaries = [super parseDataDictionaries:rawData];
+  NSMutableArray *dictionaries = [[NSMutableArray alloc] initWithCapacity:[originalDictionaries count]];
+  
+  for (NSDictionary *originalDictionary in originalDictionaries) {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:originalDictionary];
+    NSNumber *storyId = [(NSDictionary *)rawData objectForKey:@"story_id"];
+    [dictionary setObject:storyId forKey:@"story_id"];
+    [dictionaries addObject:dictionary];
+  }
+  
+  return dictionaries;
 }
 
 + (void)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate {
@@ -26,13 +42,18 @@
   [self findAllWithUrlString:[self urlStringWithPath:urlString] delegate:delegate];
 }
 
++ (void)findAllInLatestChattyWithDelegate:(id<ModelLoadingDelegate>)delegate {
+  [self findAllWithUrlString:[self urlStringWithPath:@"/index"] delegate:delegate];
+}
+
 - (id)initWithDictionary:(NSDictionary *)dictionary {
   [super initWithDictionary:dictionary];
   
-  self.author  = [dictionary objectForKey:@"author"];
-  self.preview = [dictionary objectForKey:@"preview"];
+  self.author  = [[dictionary objectForKey:@"author"] stringByUnescapingHTML];
+  self.preview = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
   self.body    = [dictionary objectForKey:@"body"];
   self.date    = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
+  storyId    = [[dictionary objectForKey:@"story_id"] intValue];
   replyCount = [[dictionary objectForKey:@"reply_count"] intValue];
   
   return self;

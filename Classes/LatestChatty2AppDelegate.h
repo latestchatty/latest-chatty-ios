@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StringAdditions.h"
 
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate> {
   UIWindow *window;

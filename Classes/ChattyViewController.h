@@ -20,6 +20,7 @@
 @property (retain) Story *story;
 @property (retain) NSArray *threads;
 
+- (id)initWithLatestChatty;
 - (id)initWithStory:(Story *)aStory;
 
 @end

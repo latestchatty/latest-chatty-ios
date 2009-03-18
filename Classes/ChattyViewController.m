@@ -14,6 +14,15 @@
 @synthesize story;
 @synthesize threads;
 
+- (id)initWithLatestChatty {
+  [self initWithNibName:@"ChattyViewController" bundle:nil];
+  
+  self.title = @"Latest Chatty";
+  [Post findAllInLatestChattyWithDelegate:self];
+  
+  return self;
+}
+
 - (id)initWithStory:(Story *)aStory {
   [self initWithNibName:@"ChattyViewController" bundle:nil];
   
@@ -79,6 +88,11 @@
 - (void)didFinishLoadingModels:(NSArray *)models {
   self.threads = models;
   [self.tableView reloadData];
+  
+  for (UITableViewCell *cell in [self.tableView visibleCells]) cell.alpha = 0.0;
+  [UIView beginAnimations:@"FadeInThreadsTable" context:nil];
+  for (UITableViewCell *cell in [self.tableView visibleCells]) cell.alpha = 1.0;
+  [UIView commitAnimations];
 }
 
 

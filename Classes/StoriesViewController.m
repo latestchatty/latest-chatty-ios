@@ -17,19 +17,25 @@
 - (id)initWithCoder:(NSCoder *)coder {
   [super initWithCoder:coder];
   
-  self.title = @"Stories";
+  self.title = @"Shacknews Stories";
   
   return self;
 };
 
-/*
-- (void)viewDidLoad {
-    [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  
+  UIBarButtonItem *latestChattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
+                                                                         style:UIBarButtonItemStyleDone
+                                                                        target:self
+                                                                        action:@selector(tappedLatestChattyButton:)];
+  self.navigationItem.rightBarButtonItem = latestChattyButton;
+  [latestChattyButton release];
+  
+  [Story findAllWithDelegate:self];
 }
-*/
+
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -37,10 +43,11 @@
 }
 */
 
+/*
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [Story findAllWithDelegate:self];
 }
+*/
 
 /*
 - (void)viewWillDisappear:(BOOL)animated {
@@ -64,6 +71,11 @@
 - (void)didFinishLoadingModels:(NSArray *)models {
   self.stories = models;
   [self.tableView reloadData];
+  
+  for (UITableViewCell *cell in [self.tableView visibleCells]) cell.alpha = 0.0;
+  [UIView beginAnimations:@"FadeInStoriesTable" context:nil];
+  for (UITableViewCell *cell in [self.tableView visibleCells]) cell.alpha = 1.0;
+  [UIView commitAnimations];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,6 +135,12 @@
   
   Story *story = [stories objectAtIndex:indexPath.row];
   ChattyViewController *viewController = [[ChattyViewController alloc] initWithStory:story];
+  [self.navigationController pushViewController:viewController animated:YES];
+  [viewController release];
+}
+
+- (IBAction)tappedLatestChattyButton:(id)sender {
+  ChattyViewController *viewController = [[ChattyViewController alloc] initWithLatestChatty];
   [self.navigationController pushViewController:viewController animated:YES];
   [viewController release];
 }

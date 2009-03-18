@@ -1,0 +1,100 @@
+body {
+  -webkit-user-select: none;
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  background: rgb(34,34,34);
+  font-family: Helvetica;
+  font-size: 11pt;
+  color: white;
+}
+
+div.wrapper {
+  padding: 10px;
+}
+div.author a {
+  font-size: 10pt;
+  color: rgb(255,186,0);
+  float: left;
+  text-decoration: none;
+}
+div.date a {
+  font-size: 8pt;
+  color: rgb(100,100,100);
+  float: right;
+  text-decoration: none;
+}
+div.body {
+  color: white;
+  padding: 10px 0;
+  clear: both;
+}
+div.body a {
+  color: #AEAE9B;
+}
+
+/*
+   Comment formatting styles
+*/
+
+span.jt_red    { color: #FF0000; }
+span.jt_green  { color: #8DC63F; }
+span.jt_blue   { color: #44AEDF; }
+span.jt_yellow { color: #FFDE00; }
+span.jt_olive  { color: olive;   }
+span.jt_lime   { color: #C0FFC0; }
+span.jt_orange { color: #F7941C; }
+span.jt_pink   { color: #F49AC1; }
+
+span.jt_spoiler {
+  background-color: #383838;
+  color: #383838;
+}
+
+span.jt_strike {
+  text-decoration: line-through;
+}
+
+span.jt_sample {
+  font-size: 80%;
+}
+
+span.jt_quote {
+  font-family: serif;
+  font-size: 110%;
+}
+
+pre.jt_code {
+  border-left: 1px solid #666666;
+  display: block;
+  font-family: monospace;
+  margin: 5px 0pt 5px 10px;
+  padding: 3px 0pt 3px 10px;
+}
+
+/*
+   Stories
+*/
+
+h1.story-title {
+  font-size: 150%;
+  text-shadow: black 1px 5px 7px;
+}
+
+div.focalbox {
+  background: #444;
+  padding: 10px;
+  text-align: center;
+  -webkit-border-radius: 20px;
+  margin: 10px 0;
+}
+
+div.focalbox img {
+  margin: 10px;
+  border: 2px solid #888;
+}
+
+div.story-content a {
+  color: #CF262D;
+  font-weight: bold;
+}

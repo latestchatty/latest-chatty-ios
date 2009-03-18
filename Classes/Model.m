@@ -34,11 +34,20 @@ static id<ModelLoadingDelegate> loadingDelegate;
   return nil;
 }
 
++ (NSArray *)parseDataDictionaries:(id)rawData {
+  if ([rawData isKindOfClass:[NSArray class]])
+    return (NSArray *)rawData;
+  else
+    return [(NSDictionary *)rawData objectForKey:[self keyPathToDataArray]];
+}
+
 #pragma mark Class Methods
 
 // Designated finder
 + (void)findAllWithUrlString:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
   loadingDelegate = delegate;
+  
+  NSLog(@"Loading URL: %@", urlString);
   
   NSURL        *url     = [NSURL URLWithString:urlString];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -58,14 +67,12 @@ static id<ModelLoadingDelegate> loadingDelegate;
 }
 
 + (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+  NSLog(@"Done Loading form URL");
+  
   NSString *modelDataString = [[NSString alloc] initWithData:downloadedData encoding:NSUTF8StringEncoding];
   
   id modelData = [modelDataString JSONValue];
-  NSArray *modelDataArray;
-  if ([modelData isKindOfClass:[NSArray class]])
-    modelDataArray = modelData;
-  else
-    modelDataArray = [modelData objectForKey:[self keyPathToDataArray]];
+  NSArray *modelDataArray = [self parseDataDictionaries:modelData];
   
   [modelDataString release];
   [downloadedData  release];

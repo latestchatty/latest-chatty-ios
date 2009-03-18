@@ -31,6 +31,12 @@
 		FA6EDE430F70EA6700AAF4E4 /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDE420F70EA6700AAF4E4 /* StoryViewController.xib */; };
 		FA6EDE480F70EB4900AAF4E4 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6EDE470F70EB4900AAF4E4 /* StoryViewController.m */; };
 		FA6EDE670F70EE1500AAF4E4 /* ChatIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */; };
+		FABA5D430F717A28008EEE3A /* StringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5D420F717A28008EEE3A /* StringAdditions.m */; };
+		FABA5D470F717B60008EEE3A /* HTMLEscaper.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5D460F717B60008EEE3A /* HTMLEscaper.m */; };
+		FABA5DBD0F71802E008EEE3A /* Post.html in Resources */ = {isa = PBXBuildFile; fileRef = FABA5DBC0F71802E008EEE3A /* Post.html */; };
+		FABA5DBF0F718042008EEE3A /* Stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = FABA5DBE0F718042008EEE3A /* Stylesheet.css */; };
+		FABA5DC20F718086008EEE3A /* StringTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5DC10F718086008EEE3A /* StringTemplate.m */; };
+		FABA5E210F7185CC008EEE3A /* Story.html in Resources */ = {isa = PBXBuildFile; fileRef = FABA5E200F7185CC008EEE3A /* Story.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +78,15 @@
 		FA6EDE460F70EB4900AAF4E4 /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
 		FA6EDE470F70EB4900AAF4E4 /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
 		FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ChatIcon.24.png; path = Assets/ChatIcon.24.png; sourceTree = "<group>"; };
+		FABA5D410F717A28008EEE3A /* StringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringAdditions.h; sourceTree = "<group>"; };
+		FABA5D420F717A28008EEE3A /* StringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringAdditions.m; sourceTree = "<group>"; };
+		FABA5D450F717B60008EEE3A /* HTMLEscaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLEscaper.h; sourceTree = "<group>"; };
+		FABA5D460F717B60008EEE3A /* HTMLEscaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLEscaper.m; sourceTree = "<group>"; };
+		FABA5DBC0F71802E008EEE3A /* Post.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Post.html; sourceTree = "<group>"; };
+		FABA5DBE0F718042008EEE3A /* Stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Stylesheet.css; sourceTree = "<group>"; };
+		FABA5DC00F718086008EEE3A /* StringTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringTemplate.h; sourceTree = "<group>"; };
+		FABA5DC10F718086008EEE3A /* StringTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringTemplate.m; sourceTree = "<group>"; };
+		FABA5E200F7185CC008EEE3A /* Story.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Story.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +141,10 @@
 			children = (
 				28A0AAE50D9B0CCF005BE974 /* LatestChatty2_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				FABA5D410F717A28008EEE3A /* StringAdditions.h */,
+				FABA5D420F717A28008EEE3A /* StringAdditions.m */,
+				FABA5D450F717B60008EEE3A /* HTMLEscaper.h */,
+				FABA5D460F717B60008EEE3A /* HTMLEscaper.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -133,6 +152,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FABA5D340F7178A0008EEE3A /* Templates */,
 				FA5FD0480F70149500878F27 /* Assets */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -184,6 +204,8 @@
 		FA5FCE8A0F6F7B3D00878F27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FABA5DC00F718086008EEE3A /* StringTemplate.h */,
+				FABA5DC10F718086008EEE3A /* StringTemplate.m */,
 				FA5FCE8B0F6F7B6A00878F27 /* TableCellFromNib.h */,
 				FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */,
 				FA5FCE910F6F7CA600878F27 /* StoryCell.h */,
@@ -204,6 +226,16 @@
 				FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		FABA5D340F7178A0008EEE3A /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				FABA5DBE0F718042008EEE3A /* Stylesheet.css */,
+				FABA5DBC0F71802E008EEE3A /* Post.html */,
+				FABA5E200F7185CC008EEE3A /* Story.html */,
+			);
+			name = Templates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +296,9 @@
 				FA6EDDDD0F70E0B400AAF4E4 /* ChatIcon.48.png in Resources */,
 				FA6EDE430F70EA6700AAF4E4 /* StoryViewController.xib in Resources */,
 				FA6EDE670F70EE1500AAF4E4 /* ChatIcon.24.png in Resources */,
+				FABA5DBD0F71802E008EEE3A /* Post.html in Resources */,
+				FABA5DBF0F718042008EEE3A /* Stylesheet.css in Resources */,
+				FABA5E210F7185CC008EEE3A /* Story.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +320,9 @@
 				FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */,
 				FA6EDD6F0F70DA0400AAF4E4 /* ThreadCell.m in Sources */,
 				FA6EDE480F70EB4900AAF4E4 /* StoryViewController.m in Sources */,
+				FABA5D430F717A28008EEE3A /* StringAdditions.m in Sources */,
+				FABA5D470F717B60008EEE3A /* HTMLEscaper.m in Sources */,
+				FABA5DC20F718086008EEE3A /* StringTemplate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,10 +17,10 @@
   [self initWithNibName:@"StoryViewController" bundle:nil];
   
   self.story = aStory;
-  self.title = aStory.title;
+  self.title = @"Story";
   
   UIBarButtonItem *chattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
-                                                                   style:UIBarButtonItemStyleBordered
+                                                                   style:UIBarButtonItemStylePlain
                                                                   target:self
                                                                   action:@selector(loadChatty)];
 	self.navigationItem.rightBarButtonItem = chattyButton;
@@ -49,7 +49,19 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
-  [content loadHTMLString:story.body baseURL:[NSURL URLWithString:baseUrlString]];
+  
+  StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
+  
+  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
+  [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
+  [htmlTemplate setString:[Story formatDate:story.date] forKey:@"date"];
+  [htmlTemplate setString:[NSString stringWithFormat:@"%i", story.modelId] forKey:@"storyId"];
+  [htmlTemplate setString:story.body forKey:@"content"];
+  [htmlTemplate setString:story.title forKey:@"storyTitle"];
+  
+  
+  [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
+  [htmlTemplate release];
 }
 
 /*

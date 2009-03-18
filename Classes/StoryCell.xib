@@ -60,6 +60,14 @@
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
+								<object class="NSColor" key="IBUIShadowColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwLjc1AA</bytes>
+									<object class="NSColorSpace" key="NSCustomColorSpace" id="241762854">
+										<int key="NSID">2</int>
+									</object>
+								</object>
+								<string key="IBUIShadowOffset">{0, 1}</string>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">1.400000e+01</float>
@@ -107,15 +115,13 @@
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MSAwLjUAA</bytes>
-									<object class="NSColorSpace" key="NSCustomColorSpace" id="241762854">
-										<int key="NSID">2</int>
-									</object>
+									<reference key="NSCustomColorSpace" ref="241762854"/>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 								<int key="IBUINumberOfLines">2</int>
-								<int key="IBUITextAlignment">2</int>
+								<int key="IBUITextAlignment">1</int>
 							</object>
 							<object class="IBUIButton" id="881179706">
 								<reference key="NSNextResponder" ref="447161640"/>

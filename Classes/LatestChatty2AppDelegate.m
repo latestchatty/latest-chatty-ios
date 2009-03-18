@@ -7,8 +7,8 @@
 //
 
 #import "LatestChatty2AppDelegate.h"
-#import "RootViewController.h"
 
+#import "StringTemplate.h"
 
 @implementation LatestChatty2AppDelegate
 

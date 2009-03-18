@@ -18,7 +18,7 @@
 @synthesize commentCount;
 
 + (NSString *)formatDate:(NSDate *)date; {
-  return [date descriptionWithCalendarFormat:@"%b %d, %I:%M %p" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
+  return [date descriptionWithCalendarFormat:@"%b %d %I:%M %p" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
 }
 
 
@@ -29,12 +29,10 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
   [super initWithDictionary:dictionary];
   
-  self.title   = [dictionary objectForKey:@"name"];
-  self.preview = [dictionary objectForKey:@"preview"];
+  self.title   = [[dictionary objectForKey:@"name"] stringByUnescapingHTML];
+  self.preview = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
   self.body    = [dictionary objectForKey:@"body"];
-  //TODO: ADD story dates to API
-  //self.date    = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
-  self.date    = [NSDate dateWithNaturalLanguageString:@"now"];
+  self.date    = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
   commentCount = [[dictionary objectForKey:@"comment_count"] intValue];
   
   return self;
