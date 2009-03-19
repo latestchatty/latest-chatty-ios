@@ -17,8 +17,8 @@
 		28C286E10D94DF7D0034E888 /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* StoriesViewController.m */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
+		FA5DA7770F7284CB00F05ED9 /* ModelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */; };
 		FA5FCD160F6F61A600878F27 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCD150F6F61A600878F27 /* Model.m */; };
-		FA5FCD180F6F62EF00878F27 /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5FCD170F6F62EF00878F27 /* JSON.framework */; };
 		FA5FCDAC0F6F6FDF00878F27 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCDAB0F6F6FDF00878F27 /* Story.m */; };
 		FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */; };
 		FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE920F6F7CA600878F27 /* StoryCell.m */; };
@@ -57,9 +57,10 @@
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
 		FA0481210F70D10300F752A6 /* ChattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyViewController.m; sourceTree = "<group>"; };
+		FA5DA7750F7284CB00F05ED9 /* ModelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelListViewController.h; sourceTree = "<group>"; };
+		FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelListViewController.m; sourceTree = "<group>"; };
 		FA5FCD140F6F61A600878F27 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		FA5FCD150F6F61A600878F27 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
-		FA5FCD170F6F62EF00878F27 /* JSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSON.framework; path = ../../../Library/Frameworks/JSON.framework; sourceTree = SOURCE_ROOT; };
 		FA5FCD1C0F6F63AC00878F27 /* ModelLoadingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoadingDelegate.h; sourceTree = "<group>"; };
 		FA5FCDAA0F6F6FDF00878F27 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Story.h; sourceTree = "<group>"; };
 		FA5FCDAB0F6F6FDF00878F27 /* Story.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Story.m; sourceTree = "<group>"; };
@@ -97,7 +98,6 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
-				FA5FCD180F6F62EF00878F27 /* JSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +163,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FA5FCD170F6F62EF00878F27 /* JSON.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -174,6 +173,8 @@
 		FA5FCD110F6F607200878F27 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA5DA7750F7284CB00F05ED9 /* ModelListViewController.h */,
+				FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */,
 				28C286DF0D94DF7D0034E888 /* StoriesViewController.h */,
 				28C286E00D94DF7D0034E888 /* StoriesViewController.m */,
 				2899E55F0DE3E45000AC0155 /* StoriesViewController.xib */,
@@ -323,6 +324,7 @@
 				FABA5D430F717A28008EEE3A /* StringAdditions.m in Sources */,
 				FABA5D470F717B60008EEE3A /* HTMLEscaper.m in Sources */,
 				FABA5DC20F718086008EEE3A /* StringTemplate.m in Sources */,
+				FA5DA7770F7284CB00F05ED9 /* ModelListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +334,10 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Wayne";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -343,14 +348,22 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+				);
 				PRODUCT_NAME = LatestChatty2;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6558EC5F-3459-434A-AD98-5E0DAE28C4DF";
 			};
 			name = Debug;
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Wayne";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -359,7 +372,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+				);
 				PRODUCT_NAME = LatestChatty2;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6558EC5F-3459-434A-AD98-5E0DAE28C4DF";
 			};
 			name = Release;
 		};

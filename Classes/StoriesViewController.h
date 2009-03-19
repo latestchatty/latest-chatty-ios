@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ModelListViewController.h"
 #import "ModelLoadingDelegate.h"
 
 #import "Story.h"
@@ -17,7 +18,7 @@
 #import "ChattyViewController.h"
 #import "StoryViewController.h"
 
-@interface StoriesViewController : UITableViewController <ModelLoadingDelegate> {
+@interface StoriesViewController : ModelListViewController {
   NSArray *stories;
 }
 
@@ -25,5 +26,7 @@
 
 - (IBAction)tappedChattyButton:(id)sender;
 - (IBAction)tappedLatestChattyButton:(id)sender;
+
+- (IBAction)refresh:(id)sender;
 
 @end

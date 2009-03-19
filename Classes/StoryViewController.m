@@ -59,18 +59,16 @@
   [htmlTemplate setString:story.body forKey:@"content"];
   [htmlTemplate setString:story.title forKey:@"storyTitle"];
   
-  
   [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
   [htmlTemplate release];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  // Return YES for supported orientations
+  return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
-*/
+
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.

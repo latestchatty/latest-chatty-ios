@@ -9,8 +9,9 @@
 #import "Model.h"
 #import "ModelLoadingDelegate.h"
 
-static NSMutableData *downloadedData;
-static id<ModelLoadingDelegate> loadingDelegate;
+static NSURLConnection *connection              = nil;
+static NSMutableData *downloadedData            = nil;
+static id<ModelLoadingDelegate> loadingDelegate = nil;
 
 @implementation Model
 
@@ -45,38 +46,51 @@ static id<ModelLoadingDelegate> loadingDelegate;
 
 // Designated finder
 + (void)findAllWithUrlString:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
-  loadingDelegate = delegate;
-  
-  NSLog(@"Loading URL: %@", urlString);
-  
-  NSURL        *url     = [NSURL URLWithString:urlString];
-  NSURLRequest *request = [NSURLRequest requestWithURL:url];
-  [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
-  
-  downloadedData = [[NSMutableData alloc] init];  
+  if (downloadedData) {
+    NSLog(@"Error, previous load not finished");
+  } else {
+    loadingDelegate = [delegate retain];
+    
+    NSLog(@"Loading URL: %@", urlString);
+    
+    NSURL        *url     = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    
+    downloadedData = [[NSMutableData alloc] init];    
+  }  
 }
 
-+ (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
++ (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)data {
   [downloadedData appendData:data];
 }
 
-+ (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
++ (void)connection:(NSURLConnection *)theConnection didFailWithError:(NSError *)error {
   NSLog(@"Model loading failed!");
+  
+  [connection release];
+  connection = nil;
+  
   [downloadedData release];
   downloadedData = nil;
+  
+  [loadingDelegate release];
+  loadingDelegate = nil;
 }
 
 + (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   NSLog(@"Done Loading form URL");
   
-  NSString *modelDataString = [[NSString alloc] initWithData:downloadedData encoding:NSUTF8StringEncoding];
+  [connection release];
+  connection = nil;
   
+  NSString *modelDataString = [[NSString alloc] initWithData:downloadedData encoding:NSUTF8StringEncoding];
   id modelData = [modelDataString JSONValue];
   NSArray *modelDataArray = [self parseDataDictionaries:modelData];
-  
   [modelDataString release];
-  [downloadedData  release];
-  downloadedData   = nil;
+  
+  [downloadedData release];
+  downloadedData = nil;
   
   NSMutableArray *models = [NSMutableArray arrayWithCapacity:[modelDataArray count]];
   for (NSDictionary *dictionary in modelDataArray) {
@@ -86,6 +100,9 @@ static id<ModelLoadingDelegate> loadingDelegate;
   }
   
   [loadingDelegate didFinishLoadingModels:models];
+  
+  [loadingDelegate release];
+  loadingDelegate = nil;
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {

@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ModelLoadingDelegate.h"
+#import "ModelListViewController.h"
 #import "Story.h"
 #import "Post.h"
 #import "ThreadCell.h"
 
-@interface ChattyViewController : UITableViewController <ModelLoadingDelegate> {
+@interface ChattyViewController : ModelListViewController {
   Story *story;
   NSArray *threads;
 }

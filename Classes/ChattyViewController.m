@@ -17,8 +17,7 @@
 - (id)initWithLatestChatty {
   [self initWithNibName:@"ChattyViewController" bundle:nil];
   
-  self.title = @"Latest Chatty";
-  [Post findAllInLatestChattyWithDelegate:self];
+  self.title = @"(Latest Chatty)";
   
   return self;
 }
@@ -28,7 +27,6 @@
   
   self.story = aStory;
   self.title = aStory.title;
-  [Post findAllWithStoryId:story.modelId delegate:self];
   
   return self;
 }
@@ -41,6 +39,14 @@
   // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 */
+
+- (IBAction)refresh:(id)sender {
+  [super refresh:self];
+  if (story)
+    [Post findAllWithStoryId:self.story.modelId delegate:self];
+  else
+    [Post findAllInLatestChattyWithDelegate:self];
+}
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,13 +69,10 @@
 }
 */
 
-/*
-// Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  // Return YES for supported orientations
+  return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
-*/
 
 
 
@@ -88,11 +91,7 @@
 - (void)didFinishLoadingModels:(NSArray *)models {
   self.threads = models;
   [self.tableView reloadData];
-  
-  for (UITableViewCell *cell in [self.tableView visibleCells]) cell.alpha = 0.0;
-  [UIView beginAnimations:@"FadeInThreadsTable" context:nil];
-  for (UITableViewCell *cell in [self.tableView visibleCells]) cell.alpha = 1.0;
-  [UIView commitAnimations];
+  [super didFinishLoadingModels:models];
 }
 
 
@@ -110,10 +109,10 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"ThreadCell";
   
-  ThreadCell *cell = (ThreadCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
     cell = [[[ThreadCell alloc] init] autorelease];
   }
@@ -175,6 +174,7 @@
 
 
 - (void)dealloc {
+  NSLog(@"Dealloc ChattyViewController");
   [story release];
   [threads release];
   [super dealloc];

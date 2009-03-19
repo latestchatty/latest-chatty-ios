@@ -1,6 +1,6 @@
 // Protocol for loading notifications 
 
-@protocol ModelLoadingDelegate
+@protocol ModelLoadingDelegate <NSObject>
 
 - (void)didFinishLoadingModels:(NSArray *)models;
 
