@@ -18,6 +18,7 @@
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA5DA7770F7284CB00F05ED9 /* ModelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */; };
+		FA5DA8AA0F72A3EA00F05ED9 /* SettingsIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */; };
 		FA5FCD160F6F61A600878F27 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCD150F6F61A600878F27 /* Model.m */; };
 		FA5FCDAC0F6F6FDF00878F27 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCDAB0F6F6FDF00878F27 /* Story.m */; };
 		FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */; };
@@ -59,6 +60,7 @@
 		FA0481210F70D10300F752A6 /* ChattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyViewController.m; sourceTree = "<group>"; };
 		FA5DA7750F7284CB00F05ED9 /* ModelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelListViewController.h; sourceTree = "<group>"; };
 		FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelListViewController.m; sourceTree = "<group>"; };
+		FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SettingsIcon.24.png; path = Assets/SettingsIcon.24.png; sourceTree = "<group>"; };
 		FA5FCD140F6F61A600878F27 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		FA5FCD150F6F61A600878F27 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		FA5FCD1C0F6F63AC00878F27 /* ModelLoadingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoadingDelegate.h; sourceTree = "<group>"; };
@@ -223,8 +225,9 @@
 			isa = PBXGroup;
 			children = (
 				FA5FD0550F7014BD00878F27 /* CellBackground.png */,
-				FA6EDDDC0F70E0B400AAF4E4 /* ChatIcon.48.png */,
 				FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */,
+				FA6EDDDC0F70E0B400AAF4E4 /* ChatIcon.48.png */,
+				FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				FABA5DBD0F71802E008EEE3A /* Post.html in Resources */,
 				FABA5DBF0F718042008EEE3A /* Stylesheet.css in Resources */,
 				FABA5E210F7185CC008EEE3A /* Story.html in Resources */,
+				FA5DA8AA0F72A3EA00F05ED9 /* SettingsIcon.24.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

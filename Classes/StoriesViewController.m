@@ -32,6 +32,13 @@
                                                                         action:@selector(tappedLatestChattyButton:)];
   self.navigationItem.rightBarButtonItem = latestChattyButton;
   [latestChattyButton release];
+  
+  UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsIcon.24.png"]
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(tappedLatestChattyButton:)];
+  self.navigationItem.leftBarButtonItem = settingsButton;
+  [settingsButton release];
 }
 
 - (IBAction)refresh:(id)sender {
