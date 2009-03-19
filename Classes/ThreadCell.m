@@ -11,11 +11,11 @@
 
 @implementation ThreadCell
 
-@synthesize story;
+@synthesize storyId;
 @synthesize rootPost;
 
 + (CGFloat)cellHeight {
-  return 65;
+  return 65.0;
 }
 
 - (id)init {
@@ -32,7 +32,7 @@
 }
 
 - (void)dealloc {
-  [story release];
+  self.rootPost = nil;
   [super dealloc];
 }
 

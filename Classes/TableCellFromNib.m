@@ -11,6 +11,11 @@
 
 @implementation TableCellFromNib
 
+
++ (CGFloat)cellHeight {
+  return 44.0;
+}
+
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundleOrNil {
   UIViewController *cellFactory = [[UIViewController alloc] initWithNibName:nibName bundle:nibBundleOrNil];
   self = (TableCellFromNib *)cellFactory.view;

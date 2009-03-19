@@ -17,7 +17,7 @@
 - (id)initWithCoder:(NSCoder *)coder {
   [super initWithCoder:coder];
   
-  self.title = @"Shacknews Stories";
+  self.title = @"Stories";
   
   return self;
 };

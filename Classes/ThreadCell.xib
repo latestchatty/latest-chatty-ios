@@ -44,7 +44,7 @@
 							<object class="IBUILabel" id="140065254">
 								<reference key="NSNextResponder" ref="417762082"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{7, 18}, {293, 45}}</string>
+								<string key="NSFrame">{{7, 17}, {293, 45}}</string>
 								<reference key="NSSuperview" ref="417762082"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -70,15 +70,15 @@
 							<object class="IBUILabel" id="178198528">
 								<reference key="NSNextResponder" ref="417762082"/>
 								<int key="NSvFlags">289</int>
-								<string key="NSFrame">{{130, 0}, {137, 21}}</string>
+								<string key="NSFrame">{{168, 1}, {112, 21}}</string>
 								<reference key="NSSuperview" ref="417762082"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">Mar 3, 2009 10:15AM</string>
-								<object class="NSFont" key="IBUIFont" id="450028486">
+								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">1.200000e+01</double>
+									<double key="NSSize">1.000000e+01</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">
@@ -101,7 +101,11 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">SqueegyTBS</string>
-								<reference key="IBUIFont" ref="450028486"/>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">1.200000e+01</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAwLjcyNTQ5MDIxIDAAA</bytes>
@@ -135,7 +139,7 @@
 								<int key="IBUITextAlignment">2</int>
 							</object>
 						</object>
-						<string key="NSFrameSize">{300, 70}</string>
+						<string key="NSFrameSize">{300, 65}</string>
 						<reference key="NSSuperview" ref="44666435"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -147,7 +151,7 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 70}</string>
+				<string key="NSFrameSize">{320, 65}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -251,9 +255,9 @@
 						<reference key="object" ref="44666435"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="140065254"/>
 							<reference ref="848766296"/>
 							<reference ref="593056368"/>
+							<reference ref="140065254"/>
 							<reference ref="178198528"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
@@ -306,7 +310,7 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>ThreadCell</string>
-					<string>{{690, 453}, {320, 70}}</string>
+					<string>{{666, 411}, {320, 65}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

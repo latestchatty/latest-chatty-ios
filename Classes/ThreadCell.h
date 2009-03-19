@@ -12,7 +12,7 @@
 #import "Post.h"
 
 @interface ThreadCell : TableCellFromNib {
-  Story *story;
+  NSUInteger storyId;
   Post  *rootPost;
   
   IBOutlet UILabel *author;
@@ -21,7 +21,7 @@
   IBOutlet UILabel *replyCount;
 }
 
-@property (retain) Story *story;
+@property (assign) NSUInteger storyId;
 @property (retain) Post *rootPost;
 
 @end

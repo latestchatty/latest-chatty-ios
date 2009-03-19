@@ -11,7 +11,7 @@
 
 @implementation ChattyViewController
 
-@synthesize story;
+@synthesize storyId;
 @synthesize threads;
 
 - (id)initWithLatestChatty {
@@ -22,11 +22,11 @@
   return self;
 }
 
-- (id)initWithStory:(Story *)aStory {
+- (id)initWithStory:(Story *)story {
   [self initWithNibName:@"ChattyViewController" bundle:nil];
   
-  self.story = aStory;
-  self.title = aStory.title;
+  self.storyId = story.modelId;
+  self.title = story.title;
   
   return self;
 }
@@ -42,8 +42,8 @@
 
 - (IBAction)refresh:(id)sender {
   [super refresh:self];
-  if (story)
-    [Post findAllWithStoryId:self.story.modelId delegate:self];
+  if (storyId)
+    [Post findAllWithStoryId:self.storyId delegate:self];
   else
     [Post findAllInLatestChattyWithDelegate:self];
 }
@@ -118,12 +118,15 @@
   }
   
   // Set up the cell...
-  cell.story = story;
+  cell.storyId = storyId;
   cell.rootPost = [threads objectAtIndex:indexPath.row];
 
   return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return [ThreadCell cellHeight];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
@@ -175,7 +178,6 @@
 
 - (void)dealloc {
   NSLog(@"Dealloc ChattyViewController");
-  [story release];
   [threads release];
   [super dealloc];
 }

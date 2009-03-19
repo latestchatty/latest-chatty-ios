@@ -13,11 +13,11 @@
 #import "ThreadCell.h"
 
 @interface ChattyViewController : ModelListViewController {
-  Story *story;
+  NSUInteger storyId;
   NSArray *threads;
 }
 
-@property (retain) Story *story;
+@property (assign) NSUInteger storyId;
 @property (retain) NSArray *threads;
 
 - (id)initWithLatestChatty;
