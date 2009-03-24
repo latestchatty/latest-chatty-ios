@@ -33,6 +33,21 @@
   loader = nil;
   
   [super didFinishLoadingAllModels:nil];
+  
+  // Find the target post in the thread.
+  Post *firstPost;
+  if (rootPost.modelId == threadId) {
+    firstPost = rootPost;
+  } else {
+    for (Post *reply in [rootPost repliesArray]) {
+      if (reply.modelId == threadId) firstPost = reply;
+    }
+  }
+  
+  // Select and display the targeted post
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];
+  [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+  [self tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
 /*

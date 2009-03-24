@@ -24,7 +24,7 @@
   UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
   [spinner startAnimating];
   spinner.contentMode = UIViewContentModeCenter;
-  spinner.frame = loadingView.frame;
+  spinner.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 2.0/3.0);
   [loadingView addSubview:spinner];
   [spinner release];
   
