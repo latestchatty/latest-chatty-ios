@@ -20,6 +20,7 @@
 @synthesize parentPostId;
 
 @synthesize replies;
+@synthesize depth;
 
 + (NSString *)keyPathToDataArray {
   return @"comments";
@@ -70,11 +71,17 @@
   self.preview = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
   self.body    = [dictionary objectForKey:@"body"];
   self.date    = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
+  self.depth   = [[dictionary objectForKey:@"depth"] intValue];
   storyId    = [[dictionary objectForKey:@"story_id"] intValue];
   replyCount = [[dictionary objectForKey:@"reply_count"] intValue];
   
+  NSLog(@"DEPTH: %i", self.depth);
+  
   self.replies = [[NSMutableArray alloc] init];
-  for (NSDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
+  for (NSMutableDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
+    NSInteger newDepth = [[dictionary objectForKey:@"depth"] intValue];
+    [replyDictionary setObject:[NSNumber numberWithInt:newDepth + 1] forKey:@"depth"];
+    
     Post *reply = [[Post alloc] initWithDictionary:replyDictionary];
     [replies addObject:reply];
     [reply release];
@@ -83,12 +90,30 @@
   return self;
 }
 
+- (NSArray *)repliesArray {
+  if (flatReplies) return flatReplies;
+
+  flatReplies = [[NSMutableArray alloc] init];
+  [self repliesArray:flatReplies];
+  
+  return flatReplies;
+}
+- (NSArray *)repliesArray:(NSMutableArray *)parentArray {
+  [parentArray addObject:self];
+  for (Post *reply in self.replies) {
+    [reply repliesArray:parentArray];
+  }
+  return parentArray;
+}
+
+
 - (void)dealloc {
   self.author   = nil;
   self.preview  = nil;
   self.body     = nil;
   self.date     = nil;
   self.replies  = nil;
+  [flatReplies release];
   [super dealloc];
 }
 

@@ -14,7 +14,7 @@
 @synthesize rootPost;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
-  [self init];
+  [super init];
   
   threadId = aThreadId;
   
@@ -22,6 +22,7 @@
 }
 
 - (IBAction)refresh:(id)sender {
+  [super refresh:sender];
   loader = [[Post findThreadWithId:threadId delegate:self] retain];
 }
 
@@ -94,7 +95,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
-  return rootPost.replyCount;
+  return [[rootPost repliesArray] count];
 }
 
 
@@ -107,7 +108,16 @@
     cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
   }
   
-  cell.text = [[rootPost.replies objectAtIndex:indexPath.row] preview];
+  Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
+  
+  NSMutableString *label = [[NSMutableString alloc] initWithString:@""];
+  for (int i = 0; i < post.depth; i++) {
+    [label appendString:@"--"];
+  }
+  [label appendString:[post preview]];
+  
+  cell.text = label;
+  [label release];
 
   return cell;
 }

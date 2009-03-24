@@ -22,6 +22,8 @@
   NSUInteger parentPostId;
   
   NSMutableArray *replies;
+  NSMutableArray *flatReplies;
+  NSInteger       depth;
 }
 
 @property (copy) NSString *author;
@@ -34,9 +36,13 @@
 @property (readonly) NSUInteger parentPostId;
 
 @property (retain) NSMutableArray *replies;
+@property (assign) NSInteger depth;
 
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate;
 + (ModelLoader *)findAllInLatestChattyWithDelegate:(id<ModelLoadingDelegate>)delegate;
 + (ModelLoader *)findThreadWithId:(NSUInteger)threadId delegate:(id<ModelLoadingDelegate>)delegate;
+
+- (NSArray *)repliesArray;
+- (NSArray *)repliesArray:(NSMutableArray *)parentArray;
 
 @end
