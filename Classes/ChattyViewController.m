@@ -88,12 +88,12 @@
 	// e.g. self.myOutlet = nil;
 }
 
-- (void)didFinishLoadingModels:(NSArray *)models {
+- (void)didFinishLoadingAllModels:(NSArray *)models {
   self.threads = models;
   [self.tableView reloadData];
   [loader release];
   loader = nil;
-  [super didFinishLoadingModels:models];
+  [super didFinishLoadingAllModels:models];
 }
 
 

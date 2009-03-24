@@ -103,7 +103,7 @@
 
 
 // Fade in table cells
-- (void)didFinishLoadingModels:(NSArray *)models {
+- (void)didFinishLoadingAllModels:(NSArray *)models {
   loadingView.alpha = 1.0;
   [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
   loadingView.alpha = 0.0;

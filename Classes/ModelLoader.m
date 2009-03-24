@@ -11,11 +11,15 @@
 
 @implementation ModelLoader
 
-- (id)initWithURL:(NSString *)aUrlString
-     dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
-    modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate {
+@synthesize plural;
+
+- (id)initWithObjectAtURL:(NSString *)aUrlString
+             dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
+            modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate {
   
   [super init];
+  
+  plural = NO;
   
   dataDelegate  = [aDataDelegate retain];
   modelDelegate = [aModelDelegate retain];
@@ -31,6 +35,15 @@
   return self;
 }
 
+- (id)initWithAllObjectsAtURL:(NSString *)aUrlString
+                 dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
+                modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate {
+  
+  [self initWithObjectAtURL:aUrlString dataDelegate:aDataDelegate modelDelegate:aModelDelegate];
+  self.plural = YES;
+  return self;
+}
+
 - (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)data {
   [downloadedData appendData:data];
 }
@@ -43,11 +56,21 @@
   id dataObject = [dataString JSONValue];
   [dataString release];
   
-  // Process the data object with the data delegate's processor callback method
-  id processedResponse = [dataDelegate didFinishLoadingData:dataObject];
-  
-  // Send the final objects to the object that requested the initial load
-  [modelDelegate didFinishLoadingModels:processedResponse];
+  if (plural) {
+    // Process the data object with the data delegate's processor callback method
+    id processedResponse = [dataDelegate didFinishLoadingPluralData:dataObject];
+    
+    // Send the final objects to the object that requested the initial load
+    [modelDelegate didFinishLoadingAllModels:processedResponse];
+    
+  } else {
+    // Process the data object with the data delegate's processor callback method
+    id processedResponse = [dataDelegate didFinishLoadingData:dataObject];
+    
+    // Send the final objects to the object that requested the initial load
+    [modelDelegate didFinishLoadingModel:processedResponse];
+    
+  }
 }
 
 - (void)dealloc {

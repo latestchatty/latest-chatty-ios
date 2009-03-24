@@ -16,10 +16,18 @@
   NSMutableData *downloadedData;
   id<DataLoadingDelegate> dataDelegate;
   id<ModelLoadingDelegate> modelDelegate;
+  
+  BOOL plural;
 }
 
-- (id)initWithURL:(NSString *)aUrlString
-     dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
-    modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate;
+@property (assign) BOOL plural;
+
+- (id)initWithObjectAtURL:(NSString *)aUrlString
+             dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
+            modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate;
+
+- (id)initWithAllObjectsAtURL:(NSString *)aUrlString
+                 dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
+                modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate;
 
 @end

@@ -40,12 +40,32 @@
 
 #pragma mark Class Methods
 
-// Designated finder
-+ (ModelLoader *)findAllWithUrlString:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
-  ModelLoader *loader =  [[ModelLoader alloc] initWithURL:urlString
-                                             dataDelegate:self
-                                            modelDelegate:delegate];
++ (ModelLoader *)loadAllFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
+  ModelLoader *loader =  [[ModelLoader alloc] initWithAllObjectsAtURL:urlString
+                                                     dataDelegate:self
+                                                    modelDelegate:delegate];
   return [loader autorelease];
+}
+
++ (ModelLoader *)loadUrlString:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
+  ModelLoader *loader =  [[ModelLoader alloc] initWithObjectAtURL:urlString
+                                                     dataDelegate:self
+                                                    modelDelegate:delegate];
+  return [loader autorelease];
+}
+
+
+#pragma mark Completion Callbacks
+
++ (id)didFinishLoadingPluralData:(id)dataObject {
+  NSArray *modelDataArray = dataObject;
+  NSMutableArray *models = [NSMutableArray arrayWithCapacity:[modelDataArray count]];
+  for (NSDictionary *dictionary in modelDataArray) {
+    Model *model = [[self alloc] initWithDictionary:dictionary];
+    [models addObject:model];
+    [model release];
+  }
+  return models;
 }
 
 + (id)didFinishLoadingData:(id)dataObject {
@@ -58,6 +78,8 @@
   }
   return models;
 }
+
+#pragma mark Model Initializer
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
   [super init];

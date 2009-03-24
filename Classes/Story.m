@@ -21,9 +21,8 @@
   return [date descriptionWithCalendarFormat:@"%b %d %I:%M %p" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
 }
 
-
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate {
-  return [self findAllWithUrlString:[self urlStringWithPath:@"/stories"] delegate:delegate];
+  return [self loadAllFromUrl:[self urlStringWithPath:@"/stories"] delegate:delegate];
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {

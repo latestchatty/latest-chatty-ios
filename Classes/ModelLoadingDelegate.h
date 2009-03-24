@@ -1,9 +1,12 @@
 // Protocols for loading notifications 
 
-@protocol ModelLoadingDelegate <NSObject>
-- (void)didFinishLoadingModels:(NSArray *)models;
+@protocol DataLoadingDelegate <NSObject>
+- (id)didFinishLoadingPluralData:(id)dataObject;
+- (id)didFinishLoadingData:(id)dataObject;
 @end
 
-@protocol DataLoadingDelegate <NSObject>
-- (id)didFinishLoadingData:(id)dataObject;
+
+@protocol ModelLoadingDelegate <NSObject>
+- (void)didFinishLoadingAllModels:(NSArray *)models;
+- (void)didFinishLoadingModel:(id)model;
 @end
