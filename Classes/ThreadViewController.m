@@ -118,6 +118,16 @@
 }
 
 
+- (UIView *)tableView:(UITableView *)aTableView viewForHeaderInSection:(NSInteger)section {
+  UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DropShadow.png"]];
+  background.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 16);
+  return [background autorelease];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+  return 16.0;
+}
+
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];

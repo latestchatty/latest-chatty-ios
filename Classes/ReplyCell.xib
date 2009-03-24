@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="3"/>
+			<integer value="11"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -44,7 +44,7 @@
 							<object class="IBUILabel" id="673771474">
 								<reference key="NSNextResponder" ref="516869169"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{320, 21}</string>
+								<string key="NSFrameSize">{310, 24}</string>
 								<reference key="NSSuperview" ref="516869169"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -52,7 +52,7 @@
 								<string key="IBUIText">This is a post preview...</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">1.200000e+01</double>
+									<double key="NSSize">1.400000e+01</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">
@@ -68,7 +68,7 @@
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 20}</string>
+						<string key="NSFrameSize">{320, 24}</string>
 						<reference key="NSSuperview" ref="994827299"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -80,7 +80,7 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 20}</string>
+				<string key="NSFrameSize">{320, 24}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -167,7 +167,7 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>ReplyCell</string>
-					<string>{{424, 390}, {320, 20}}</string>
+					<string>{{424, 386}, {320, 24}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>

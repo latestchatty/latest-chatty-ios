@@ -43,6 +43,9 @@
 		FABA5DBF0F718042008EEE3A /* Stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = FABA5DBE0F718042008EEE3A /* Stylesheet.css */; };
 		FABA5DC20F718086008EEE3A /* StringTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5DC10F718086008EEE3A /* StringTemplate.m */; };
 		FABA5E210F7185CC008EEE3A /* Story.html in Resources */ = {isa = PBXBuildFile; fileRef = FABA5E200F7185CC008EEE3A /* Story.html */; };
+		FAD29A540F79621C006E14A2 /* GrippyBar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A520F79621C006E14A2 /* GrippyBar.png */; };
+		FAD29A550F79621C006E14A2 /* GrippyBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */; };
+		FAD29A610F796452006E14A2 /* DropShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A600F796452006E14A2 /* DropShadow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +106,9 @@
 		FABA5DC00F718086008EEE3A /* StringTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringTemplate.h; sourceTree = "<group>"; };
 		FABA5DC10F718086008EEE3A /* StringTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringTemplate.m; sourceTree = "<group>"; };
 		FABA5E200F7185CC008EEE3A /* Story.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Story.html; sourceTree = "<group>"; };
+		FAD29A520F79621C006E14A2 /* GrippyBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrippyBar.png; path = Assets/GrippyBar.png; sourceTree = "<group>"; };
+		FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrippyBarBackground.png; path = Assets/GrippyBarBackground.png; sourceTree = "<group>"; };
+		FAD29A600F796452006E14A2 /* DropShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DropShadow.png; path = Assets/DropShadow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,10 +251,13 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FAD29A600F796452006E14A2 /* DropShadow.png */,
 				FA5FD0550F7014BD00878F27 /* CellBackground.png */,
 				FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */,
 				FA6EDDDC0F70E0B400AAF4E4 /* ChatIcon.48.png */,
 				FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */,
+				FAD29A520F79621C006E14A2 /* GrippyBar.png */,
+				FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -327,6 +336,9 @@
 				FA5DA8AA0F72A3EA00F05ED9 /* SettingsIcon.24.png in Resources */,
 				FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */,
 				FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */,
+				FAD29A540F79621C006E14A2 /* GrippyBar.png in Resources */,
+				FAD29A550F79621C006E14A2 /* GrippyBarBackground.png in Resources */,
+				FAD29A610F796452006E14A2 /* DropShadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
