@@ -70,6 +70,7 @@
   self.author  = [[dictionary objectForKey:@"author"] stringByUnescapingHTML];
   self.preview = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
   self.body    = [dictionary objectForKey:@"body"];
+  self.body    = [self.body stringByReplacingOccurrencesOfRegex:@" target=\"_blank\"" withString:@""];
   self.date    = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
   self.depth   = [[dictionary objectForKey:@"depth"] intValue];
   storyId    = [[dictionary objectForKey:@"story_id"] intValue];

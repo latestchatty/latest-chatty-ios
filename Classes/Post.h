@@ -10,6 +10,7 @@
 #import "Model.h"
 #import "StringAdditions.h"
 #import "ModelLoader.h"
+#import "RegexKitLite.h"
 
 @interface Post : Model {
   NSString *author;
