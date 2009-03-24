@@ -46,6 +46,7 @@
 		FAD29A540F79621C006E14A2 /* GrippyBar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A520F79621C006E14A2 /* GrippyBar.png */; };
 		FAD29A550F79621C006E14A2 /* GrippyBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */; };
 		FAD29A610F796452006E14A2 /* DropShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A600F796452006E14A2 /* DropShadow.png */; };
+		FAD29AD50F796A22006E14A2 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD29AD40F796A22006E14A2 /* RegexKitLite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,8 @@
 		FAD29A520F79621C006E14A2 /* GrippyBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrippyBar.png; path = Assets/GrippyBar.png; sourceTree = "<group>"; };
 		FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrippyBarBackground.png; path = Assets/GrippyBarBackground.png; sourceTree = "<group>"; };
 		FAD29A600F796452006E14A2 /* DropShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DropShadow.png; path = Assets/DropShadow.png; sourceTree = "<group>"; };
+		FAD29AD30F796A22006E14A2 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		FAD29AD40F796A22006E14A2 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +169,8 @@
 				FABA5D420F717A28008EEE3A /* StringAdditions.m */,
 				FABA5D450F717B60008EEE3A /* HTMLEscaper.h */,
 				FABA5D460F717B60008EEE3A /* HTMLEscaper.m */,
+				FAD29AD30F796A22006E14A2 /* RegexKitLite.h */,
+				FAD29AD40F796A22006E14A2 /* RegexKitLite.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */,
 				FAA849980F78C29900026446 /* ThreadViewController.m in Sources */,
 				FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */,
+				FAD29AD50F796A22006E14A2 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +397,7 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = (
+					"-licucore",
 					"-ObjC",
 					"-ljson",
 				);

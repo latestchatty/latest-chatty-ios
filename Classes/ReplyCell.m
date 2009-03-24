@@ -15,7 +15,7 @@
 @synthesize post;
 
 + (CGFloat)cellHeight {
-  return 20.0;
+  return 24.0;
 }
 
 - (id)init {

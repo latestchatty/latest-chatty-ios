@@ -121,6 +121,7 @@
 - (UIView *)tableView:(UITableView *)aTableView viewForHeaderInSection:(NSInteger)section {
   UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DropShadow.png"]];
   background.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 16);
+  background.alpha = 0.75;
   return [background autorelease];
 }
 
@@ -129,10 +130,43 @@
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+  Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
+  
+  StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
+  
+  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
+  [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
+  [htmlTemplate setString:[Post formatDate:post.date] forKey:@"date"];
+  [htmlTemplate setString:post.author forKey:@"author"];
+  [htmlTemplate setString:post.body forKey:@"body"];
+  
+  [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://shacknews.com/laryn.x?id=%i", rootPost.modelId]]];
+  [htmlTemplate release];
+}
+
+- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+  NSString *url = [[request URL] absoluteString];
+  if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+    if ([url isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?id=\\d+"]) {
+      NSUInteger targetThreadId = [[url stringByMatching:@"shacknews\\.com/laryn\\.x\\?id=(\\d+)" capture:1] intValue];
+      
+      ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
+      [self.navigationController pushViewController:viewController animated:YES];
+      [viewController release];
+      
+    } else {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not implemented"
+                                                      message:@"Web broswing is not yet implemented"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dang it!"
+                                            otherButtonTitles:nil];
+      [alert show];
+      [alert release];
+    }
+    return NO;
+  }
+  
+  return YES;
 }
 
 

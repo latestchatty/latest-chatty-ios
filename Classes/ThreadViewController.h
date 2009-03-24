@@ -10,10 +10,14 @@
 #import "ModelListViewController.h"
 #import "Post.h"
 #import "ReplyCell.h"
+#import "StringTemplate.h"
+#import "RegexKitLite.h"
 
-@interface ThreadViewController : ModelListViewController {
+@interface ThreadViewController : ModelListViewController <UIWebViewDelegate> {
   NSUInteger threadId;
   Post *rootPost;
+  
+  IBOutlet UIWebView *postView;
 }
 
 @property (retain) Post *rootPost;
