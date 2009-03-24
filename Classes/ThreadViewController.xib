@@ -73,39 +73,9 @@
 						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 					</object>
-					<object class="IBUIView" id="482307461">
+					<object class="IBUIView" id="903573083">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
-						<object class="NSMutableArray" key="NSSubviews">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIImageView" id="518940959">
-								<reference key="NSNextResponder" ref="482307461"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{320, 24}</string>
-								<reference key="NSSuperview" ref="482307461"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">GrippyBarBackground.png</string>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="575918251">
-								<reference key="NSNextResponder" ref="482307461"/>
-								<int key="NSvFlags">296</int>
-								<string key="NSFrame">{{145, 0}, {30, 24}}</string>
-								<reference key="NSSuperview" ref="482307461"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<int key="IBUIContentMode">4</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">GrippyBar.png</string>
-								</object>
-							</object>
-						</object>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 196}, {320, 24}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -203,7 +173,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="214994013"/>
 							<reference ref="169343361"/>
-							<reference ref="482307461"/>
+							<reference ref="903573083"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -224,28 +194,13 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">14</int>
-						<reference key="object" ref="482307461"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="575918251"/>
-							<reference ref="518940959"/>
-						</object>
+						<int key="objectID">9</int>
+						<reference key="object" ref="214994013"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">16</int>
-						<reference key="object" ref="575918251"/>
-						<reference key="parent" ref="482307461"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">15</int>
-						<reference key="object" ref="518940959"/>
-						<reference key="parent" ref="482307461"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="214994013"/>
+						<int key="objectID">27</int>
+						<reference key="object" ref="903573083"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -258,10 +213,9 @@
 					<string>-2.CustomClassName</string>
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
-					<string>14.IBPluginDependency</string>
-					<string>15.IBPluginDependency</string>
-					<string>16.IBPluginDependency</string>
 					<string>21.IBPluginDependency</string>
+					<string>27.CustomClassName</string>
+					<string>27.IBPluginDependency</string>
 					<string>9.IBEditorWindowLastContentRect</string>
 					<string>9.IBPluginDependency</string>
 				</object>
@@ -272,8 +226,7 @@
 					<string>{{482, 424}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>GrippyBar</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{565, 438}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -299,11 +252,19 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">26</int>
+			<int key="maxID">27</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">GrippyBar</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/GrippyBar.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">ModelListViewController</string>
 					<string key="superclassName">UIViewController</string>

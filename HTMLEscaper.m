@@ -32,7 +32,7 @@
   [xmlParse setDelegate:self];
   [xmlParse parse];
   
-  return [NSString stringWithFormat:resultString];
+  return resultString;
 }
 
 - (void)dealloc {
