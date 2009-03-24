@@ -10,6 +10,7 @@
 #import "ModelListViewController.h"
 #import "ModelLoadingDelegate.h"
 
+#import "ModelLoader.h"
 #import "Story.h"
 #import "Post.h"
 

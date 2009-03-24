@@ -43,9 +43,9 @@
 - (IBAction)refresh:(id)sender {
   [super refresh:self];
   if (storyId)
-    [Post findAllWithStoryId:self.storyId delegate:self];
+    loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];
   else
-    [Post findAllInLatestChattyWithDelegate:self];
+    loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
 }
 
 /*
@@ -91,6 +91,8 @@
 - (void)didFinishLoadingModels:(NSArray *)models {
   self.threads = models;
   [self.tableView reloadData];
+  [loader release];
+  loader = nil;
   [super didFinishLoadingModels:models];
 }
 

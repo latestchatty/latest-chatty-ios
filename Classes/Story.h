@@ -24,6 +24,6 @@
 @property (copy) NSDate   *date;
 @property (readonly) NSUInteger commentCount;
 
-+ (void)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
++ (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
 
 @end

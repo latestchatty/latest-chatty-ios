@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Model.h"
 #import "StringAdditions.h"
+#import "ModelLoader.h"
 
 @interface Post : Model {
   NSString *author;
@@ -19,6 +20,8 @@
   
   NSUInteger storyId;
   NSUInteger parentPostId;
+  
+  NSMutableArray *replies;
 }
 
 @property (copy) NSString *author;
@@ -30,7 +33,9 @@
 @property (readonly) NSUInteger storyId;
 @property (readonly) NSUInteger parentPostId;
 
-+ (void)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate;
-+ (void)findAllInLatestChattyWithDelegate:(id<ModelLoadingDelegate>)delegate;
+@property (retain) NSMutableArray *replies;
+
++ (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate;
++ (ModelLoader *)findAllInLatestChattyWithDelegate:(id<ModelLoadingDelegate>)delegate;
 
 @end

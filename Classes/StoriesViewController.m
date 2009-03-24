@@ -43,7 +43,7 @@
 
 - (IBAction)refresh:(id)sender {
   [super refresh:sender];
-  [Story findAllWithDelegate:self];
+  loader = [[Story findAllWithDelegate:self] retain];
 }
 
 
@@ -73,6 +73,8 @@
 
 - (void)didFinishLoadingModels:(NSArray *)models {
   self.stories = models;
+  [loader release];
+  loader = nil;
   [super didFinishLoadingModels:models];
 }
 

@@ -126,6 +126,7 @@
 
 
 - (void)dealloc {
+  [loader release];
   [loadingView release];
   [super dealloc];
 }

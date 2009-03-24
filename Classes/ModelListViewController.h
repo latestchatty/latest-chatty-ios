@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ModelLoadingDelegate.h"
-
+#import "ModelLoader.h"
 
 @interface ModelListViewController : UIViewController <ModelLoadingDelegate> {
+  ModelLoader *loader;
   UIView *loadingView;
   IBOutlet UITableView *tableView;
 }

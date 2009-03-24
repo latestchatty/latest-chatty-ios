@@ -19,6 +19,8 @@
 @synthesize storyId;
 @synthesize parentPostId;
 
+@synthesize replies;
+
 + (NSString *)keyPathToDataArray {
   return @"comments";
 }
@@ -37,13 +39,18 @@
   return dictionaries;
 }
 
-+ (void)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate {
++ (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate {
   NSString *urlString = [NSString stringWithFormat:@"/%i", storyId];
-  [self findAllWithUrlString:[self urlStringWithPath:urlString] delegate:delegate];
+  return [self findAllWithUrlString:[self urlStringWithPath:urlString] delegate:delegate];
 }
 
-+ (void)findAllInLatestChattyWithDelegate:(id<ModelLoadingDelegate>)delegate {
-  [self findAllWithUrlString:[self urlStringWithPath:@"/index"] delegate:delegate];
++ (ModelLoader *)findAllInLatestChattyWithDelegate:(id<ModelLoadingDelegate>)delegate {
+  return [self findAllWithUrlString:[self urlStringWithPath:@"/index"] delegate:delegate];
+}
+
++ (id)didFinishLoadingData:(id)dataObject {
+  NSArray *modelArray = [dataObject objectForKey:@"comments"];
+  return [super didFinishLoadingData:modelArray];
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
@@ -56,7 +63,23 @@
   storyId    = [[dictionary objectForKey:@"story_id"] intValue];
   replyCount = [[dictionary objectForKey:@"reply_count"] intValue];
   
+  self.replies = [[NSMutableArray alloc] init];
+  for (NSDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
+    Post *reply = [[Post alloc] initWithDictionary:replyDictionary];
+    [replies addObject:reply];
+    [reply release];
+  }
+  
   return self;
+}
+
+- (void)dealloc {
+  self.author   = nil;
+  self.preview  = nil;
+  self.body     = nil;
+  self.date     = nil;
+  self.replies  = nil;
+  [super dealloc];
 }
 
 @end

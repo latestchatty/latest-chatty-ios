@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <JSON/JSON.h>
 #import "ModelLoadingDelegate.h"
+#import "ModelLoader.h"
 
 
 @interface Model : NSObject {
@@ -24,7 +25,9 @@
 + (NSString *)keyPathToDataArray;
 + (NSArray *)parseDataDictionaries:(id)rawData;
 
-+ (void)findAllWithUrlString:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate;
++ (ModelLoader *)findAllWithUrlString:(NSString *)urlString
+                             delegate:(id<ModelLoadingDelegate>)delegate;
++ (id)didFinishLoadingData:(id)dataObject;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
