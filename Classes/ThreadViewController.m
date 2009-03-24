@@ -14,9 +14,10 @@
 @synthesize rootPost;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
-  [super init];
+  [super initWithNibName:@"ThreadViewController" bundle:nil];
   
   threadId = aThreadId;
+  self.title = @"Thread";
   
   return self;
 }
@@ -27,11 +28,11 @@
 }
 
 - (void)didFinishLoadingModel:(id)model {
-  self.rootPost = (Post *)[model retain];
-  [self.tableView reloadData];
+  self.rootPost = (Post *)model;
   [loader release];
   loader = nil;
-  [super didFinishLoadingModel:model];
+  
+  [super didFinishLoadingAllModels:nil];
 }
 
 /*
@@ -88,10 +89,12 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
-  // FIXME
   return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return [ReplyCell cellHeight];
+}
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
@@ -101,23 +104,15 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
-  static NSString *CellIdentifier = @"PostCell";
+  static NSString *CellIdentifier = @"ReplyCell";
   
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  ReplyCell *cell = (ReplyCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+    cell = [[[ReplyCell alloc] init] autorelease];
   }
   
-  Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
-  
-  NSMutableString *label = [[NSMutableString alloc] initWithString:@""];
-  for (int i = 0; i < post.depth; i++) {
-    [label appendString:@"--"];
-  }
-  [label appendString:[post preview]];
-  
-  cell.text = label;
-  [label release];
+  cell.post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
+  NSLog(@"post id:%i", cell.post.modelId);
 
   return cell;
 }

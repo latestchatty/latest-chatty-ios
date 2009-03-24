@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ModelListViewController.h"
 #import "Post.h"
+#import "ReplyCell.h"
 
 @interface ThreadViewController : ModelListViewController {
   NSUInteger threadId;

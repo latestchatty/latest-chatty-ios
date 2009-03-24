@@ -35,6 +35,8 @@
 		FA6EDE670F70EE1500AAF4E4 /* ChatIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */; };
 		FAA849980F78C29900026446 /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA849970F78C29900026446 /* ThreadViewController.m */; };
 		FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA849990F78C2B000026446 /* ThreadViewController.xib */; };
+		FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
+		FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA84AFE0F78DD9F00026446 /* ReplyCell.m */; };
 		FABA5D430F717A28008EEE3A /* StringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5D420F717A28008EEE3A /* StringAdditions.m */; };
 		FABA5D470F717B60008EEE3A /* HTMLEscaper.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5D460F717B60008EEE3A /* HTMLEscaper.m */; };
 		FABA5DBD0F71802E008EEE3A /* Post.html in Resources */ = {isa = PBXBuildFile; fileRef = FABA5DBC0F71802E008EEE3A /* Post.html */; };
@@ -89,6 +91,9 @@
 		FAA849960F78C29900026446 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
 		FAA849970F78C29900026446 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
 		FAA849990F78C2B000026446 /* ThreadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadViewController.xib; sourceTree = "<group>"; };
+		FAA84AF90F78DCB300026446 /* ReplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReplyCell.xib; sourceTree = "<group>"; };
+		FAA84AFD0F78DD9F00026446 /* ReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCell.h; sourceTree = "<group>"; };
+		FAA84AFE0F78DD9F00026446 /* ReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyCell.m; sourceTree = "<group>"; };
 		FABA5D410F717A28008EEE3A /* StringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringAdditions.h; sourceTree = "<group>"; };
 		FABA5D420F717A28008EEE3A /* StringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringAdditions.m; sourceTree = "<group>"; };
 		FABA5D450F717B60008EEE3A /* HTMLEscaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLEscaper.h; sourceTree = "<group>"; };
@@ -230,6 +235,9 @@
 				FA6EDD6D0F70DA0400AAF4E4 /* ThreadCell.h */,
 				FA6EDD6E0F70DA0400AAF4E4 /* ThreadCell.m */,
 				FA6EDD690F70D95A00AAF4E4 /* ThreadCell.xib */,
+				FAA84AFD0F78DD9F00026446 /* ReplyCell.h */,
+				FAA84AFE0F78DD9F00026446 /* ReplyCell.m */,
+				FAA84AF90F78DCB300026446 /* ReplyCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -318,6 +326,7 @@
 				FABA5E210F7185CC008EEE3A /* Story.html in Resources */,
 				FA5DA8AA0F72A3EA00F05ED9 /* SettingsIcon.24.png in Resources */,
 				FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */,
+				FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +354,7 @@
 				FA5DA7770F7284CB00F05ED9 /* ModelListViewController.m in Sources */,
 				FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */,
 				FAA849980F78C29900026446 /* ThreadViewController.m in Sources */,
+				FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

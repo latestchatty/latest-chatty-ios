@@ -75,8 +75,6 @@
   storyId    = [[dictionary objectForKey:@"story_id"] intValue];
   replyCount = [[dictionary objectForKey:@"reply_count"] intValue];
   
-  NSLog(@"DEPTH: %i", self.depth);
-  
   self.replies = [[NSMutableArray alloc] init];
   for (NSMutableDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
     NSInteger newDepth = [[dictionary objectForKey:@"depth"] intValue];
