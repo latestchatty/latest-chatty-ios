@@ -22,7 +22,7 @@
 }
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate {
-  return [self loadAllFromUrl:[self urlStringWithPath:@"/stories"] delegate:delegate];
+  return [self loadAllFromUrl:@"/stories" delegate:delegate];
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {

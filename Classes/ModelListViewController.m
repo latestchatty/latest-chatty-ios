@@ -124,6 +124,10 @@
   }
 }
 
+- (void)didFinishLoadingModel:(id)aModel {
+  [self didFinishLoadingAllModels:nil];
+}
+
 
 - (void)dealloc {
   [loader release];

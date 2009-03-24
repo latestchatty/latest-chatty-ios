@@ -28,7 +28,7 @@
 + (ModelLoader *)loadAllFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate;
 + (id)didFinishLoadingPluralData:(id)dataObject;
 
-+ (ModelLoader *)loadUrlString:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate;
++ (ModelLoader *)loadObjectFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate;
 + (id)didFinishLoadingData:(id)dataObject;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

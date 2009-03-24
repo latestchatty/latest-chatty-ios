@@ -1,52 +1,46 @@
 //
-//  ChattyViewController.m
+//  ThreadViewController.m
 //  LatestChatty2
 //
-//  Created by Alex Wayne on 3/17/09.
+//  Created by Alex Wayne on 3/24/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "ChattyViewController.h"
+#import "ThreadViewController.h"
 
 
-@implementation ChattyViewController
+@implementation ThreadViewController
 
-@synthesize storyId;
-@synthesize threads;
+@synthesize rootPost;
 
-- (id)initWithLatestChatty {
-  [self initWithNibName:@"ChattyViewController" bundle:nil];
+- (id)initWithThreadId:(NSUInteger)aThreadId {
+  [self init];
   
-  self.title = @"(Latest Chatty)";
+  threadId = aThreadId;
   
   return self;
 }
 
-- (id)initWithStory:(Story *)story {
-  [self initWithNibName:@"ChattyViewController" bundle:nil];
-  
-  self.storyId = story.modelId;
-  self.title = story.title;
-  
-  return self;
+- (IBAction)refresh:(id)sender {
+  loader = [[Post findThreadWithId:threadId delegate:self] retain];
+}
+
+- (void)didFinishLoadingModel:(id)model {
+  self.rootPost = (Post *)[model retain];
+  [self.tableView reloadData];
+  [loader release];
+  loader = nil;
+  [super didFinishLoadingModel:model];
 }
 
 /*
 - (void)viewDidLoad {
-  [super viewDidLoad];
+    [super viewDidLoad];
 
-  // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 */
-
-- (IBAction)refresh:(id)sender {
-  [super refresh:self];
-  if (storyId)
-    loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];
-  else
-    loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
-}
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,12 +63,13 @@
 }
 */
 
+/*
+// Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  // Return YES for supported orientations
-  return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-
+*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -88,53 +83,41 @@
 	// e.g. self.myOutlet = nil;
 }
 
-- (void)didFinishLoadingAllModels:(NSArray *)models {
-  self.threads = models;
-  [self.tableView reloadData];
-  [loader release];
-  loader = nil;
-  [super didFinishLoadingAllModels:models];
-}
-
 
 #pragma mark Table view methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
+  // FIXME
   return 1;
 }
 
 
 // Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [threads count];
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
+  return rootPost.replyCount;
 }
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *CellIdentifier = @"ThreadCell";
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
+  static NSString *CellIdentifier = @"PostCell";
   
-  ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[ThreadCell alloc] init] autorelease];
+    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
   }
   
-  // Set up the cell...
-  cell.storyId = storyId;
-  cell.rootPost = [threads objectAtIndex:indexPath.row];
+  cell.text = [[rootPost.replies objectAtIndex:indexPath.row] preview];
 
   return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return [ThreadCell cellHeight];
-}
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  Post *thread = [threads objectAtIndex:indexPath.row];
-  ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:thread.modelId];
-  [self.navigationController pushViewController:viewController animated:YES];
-  [viewController release];
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here. Create and push another view controller.
+	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
+	// [self.navigationController pushViewController:anotherViewController];
+	// [anotherViewController release];
 }
 
 
@@ -179,8 +162,7 @@
 
 
 - (void)dealloc {
-  NSLog(@"Dealloc ChattyViewController");
-  [threads release];
+  [rootPost release];
   [super dealloc];
 }
 

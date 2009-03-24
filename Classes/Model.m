@@ -41,14 +41,14 @@
 #pragma mark Class Methods
 
 + (ModelLoader *)loadAllFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
-  ModelLoader *loader =  [[ModelLoader alloc] initWithAllObjectsAtURL:urlString
+  ModelLoader *loader =  [[ModelLoader alloc] initWithAllObjectsAtURL:[self urlStringWithPath:urlString]
                                                      dataDelegate:self
                                                     modelDelegate:delegate];
   return [loader autorelease];
 }
 
-+ (ModelLoader *)loadUrlString:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
-  ModelLoader *loader =  [[ModelLoader alloc] initWithObjectAtURL:urlString
++ (ModelLoader *)loadObjectFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
+  ModelLoader *loader =  [[ModelLoader alloc] initWithObjectAtURL:[self urlStringWithPath:urlString]
                                                      dataDelegate:self
                                                     modelDelegate:delegate];
   return [loader autorelease];
@@ -69,14 +69,7 @@
 }
 
 + (id)didFinishLoadingData:(id)dataObject {
-  NSArray *modelDataArray = dataObject;
-  NSMutableArray *models = [NSMutableArray arrayWithCapacity:[modelDataArray count]];
-  for (NSDictionary *dictionary in modelDataArray) {
-    Model *model = [[self alloc] initWithDictionary:dictionary];
-    [models addObject:model];
-    [model release];
-  }
-  return models;
+  return [[[self alloc] initWithDictionary:dataObject] autorelease];
 }
 
 #pragma mark Model Initializer

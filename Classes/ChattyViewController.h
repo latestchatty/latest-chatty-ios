@@ -12,6 +12,7 @@
 #import "Post.h"
 #import "ThreadCell.h"
 #import "ModelLoader.h"
+#import "ThreadViewController.h"
 
 @interface ChattyViewController : ModelListViewController {
   NSUInteger storyId;

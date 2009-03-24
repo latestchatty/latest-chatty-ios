@@ -41,16 +41,26 @@
 
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate {
   NSString *urlString = [NSString stringWithFormat:@"/%i", storyId];
-  return [self loadAllFromUrl:[self urlStringWithPath:urlString] delegate:delegate];
+  return [self loadAllFromUrl:urlString delegate:delegate];
 }
 
 + (ModelLoader *)findAllInLatestChattyWithDelegate:(id<ModelLoadingDelegate>)delegate {
-  return [self loadAllFromUrl:[self urlStringWithPath:@"/index"] delegate:delegate];
+  return [self loadAllFromUrl:@"/index" delegate:delegate];
+}
+
++ (ModelLoader *)findThreadWithId:(NSUInteger)threadId delegate:(id<ModelLoadingDelegate>)delegate {
+  NSString *urlString = [NSString stringWithFormat:@"/thread/%i", threadId];
+  return [self loadObjectFromUrl:urlString delegate:delegate];
 }
 
 + (id)didFinishLoadingPluralData:(id)dataObject {
   NSArray *modelArray = [dataObject objectForKey:@"comments"];
   return [super didFinishLoadingPluralData:modelArray];
+}
+
++ (id)didFinishLoadingData:(id)dataObject {
+  NSArray *modelData = [[dataObject objectForKey:@"comments"] objectAtIndex:0];
+  return [super didFinishLoadingData:modelData];
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
