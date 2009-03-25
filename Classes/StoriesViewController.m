@@ -36,7 +36,7 @@
   UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsIcon.24.png"]
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
-                                                                    action:@selector(tappedLatestChattyButton:)];
+                                                                    action:@selector(tappedSettingsButton:)];
   self.navigationItem.leftBarButtonItem = settingsButton;
   [settingsButton release];
 }
@@ -81,6 +81,12 @@
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
   // Release anything that's not essential, such as cached data
+}
+
+- (IBAction)tappedSettingsButton:(id)sender {
+  SettingsViewController *viewController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+  [self.navigationController presentModalViewController:viewController animated:YES];
+  [viewController release];
 }
 
 #pragma mark Shake Handler

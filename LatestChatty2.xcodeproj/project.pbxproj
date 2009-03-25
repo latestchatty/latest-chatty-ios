@@ -33,6 +33,8 @@
 		FA6EDE430F70EA6700AAF4E4 /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDE420F70EA6700AAF4E4 /* StoryViewController.xib */; };
 		FA6EDE480F70EB4900AAF4E4 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6EDE470F70EB4900AAF4E4 /* StoryViewController.m */; };
 		FA6EDE670F70EE1500AAF4E4 /* ChatIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */; };
+		FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BD670F7AE96B0044898C /* SettingsViewController.m */; };
+		FA87BD6B0F7AE97F0044898C /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */; };
 		FAA849980F78C29900026446 /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA849970F78C29900026446 /* ThreadViewController.m */; };
 		FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA849990F78C2B000026446 /* ThreadViewController.xib */; };
 		FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
@@ -93,6 +95,9 @@
 		FA6EDE460F70EB4900AAF4E4 /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
 		FA6EDE470F70EB4900AAF4E4 /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
 		FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ChatIcon.24.png; path = Assets/ChatIcon.24.png; sourceTree = "<group>"; };
+		FA87BD660F7AE96B0044898C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		FA87BD670F7AE96B0044898C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		FAA849960F78C29900026446 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
 		FAA849970F78C29900026446 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
 		FAA849990F78C2B000026446 /* ThreadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadViewController.xib; sourceTree = "<group>"; };
@@ -202,6 +207,9 @@
 		FA5FCD110F6F607200878F27 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA87BD660F7AE96B0044898C /* SettingsViewController.h */,
+				FA87BD670F7AE96B0044898C /* SettingsViewController.m */,
+				FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */,
 				FA5DA7750F7284CB00F05ED9 /* ModelListViewController.h */,
 				FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */,
 				28C286DF0D94DF7D0034E888 /* StoriesViewController.h */,
@@ -349,6 +357,7 @@
 				FAD29A540F79621C006E14A2 /* GrippyBar.png in Resources */,
 				FAD29A550F79621C006E14A2 /* GrippyBarBackground.png in Resources */,
 				FAD29A610F796452006E14A2 /* DropShadow.png in Resources */,
+				FA87BD6B0F7AE97F0044898C /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +388,7 @@
 				FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */,
 				FAD29AD50F796A22006E14A2 /* RegexKitLite.m in Sources */,
 				FAB2F8700F7985FB000E4DC9 /* GrippyBar.m in Sources */,
+				FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

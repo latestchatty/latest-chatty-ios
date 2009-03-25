@@ -18,6 +18,7 @@
 
 #import "ChattyViewController.h"
 #import "StoryViewController.h"
+#import "SettingsViewController.h"
 
 @interface StoriesViewController : ModelListViewController {
   NSArray *stories;
@@ -27,7 +28,6 @@
 
 - (IBAction)tappedChattyButton:(id)sender;
 - (IBAction)tappedLatestChattyButton:(id)sender;
-
-- (IBAction)refresh:(id)sender;
+- (IBAction)tappedSettingsButton:(id)sender;
 
 @end
