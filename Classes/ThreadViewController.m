@@ -186,45 +186,55 @@
   return YES;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)grippyBarDidSwipeUp {
+  [UIView beginAnimations:@"ShrinkPostView" context:nil];
+  CGFloat usableHeight = self.view.frame.size.height - 24.0;
+  
+  // Expand post view
+  postView.frame = CGRectMake(postView.frame.origin.x,
+                              postView.frame.origin.y,
+                              postView.frame.size.width,
+                              floor(usableHeight / 2));
+  
+  // move grippy bar
+  grippyBar.frame = CGRectMake(grippyBar.frame.origin.x,
+                               floor(usableHeight / 2),
+                               grippyBar.frame.size.width,
+                               grippyBar.frame.size.height);
+  
+  // Shrink thread table
+  tableView.frame = CGRectMake(tableView.frame.origin.x,
+                               floor(usableHeight / 2) + 24,
+                               tableView.frame.size.width,
+                               floor(usableHeight / 2));
+  
+  [UIView commitAnimations];
 }
-*/
 
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)grippyBarDidSwipeDown {
+  [UIView beginAnimations:@"ExpandPostView" context:nil];
+  CGFloat usableHeight = self.view.frame.size.height - 24.0;
+  
+  // Expand post view
+  postView.frame = CGRectMake(postView.frame.origin.x,
+                              postView.frame.origin.y,
+                              postView.frame.size.width,
+                              floor(usableHeight * 4.0/5.0));
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+  // move grippy bar
+  grippyBar.frame = CGRectMake(grippyBar.frame.origin.x,
+                               floor(usableHeight * 4.0/5.0),
+                               grippyBar.frame.size.width,
+                               grippyBar.frame.size.height);
+  
+  // Shrink thread table
+  tableView.frame = CGRectMake(tableView.frame.origin.x,
+                               floor(usableHeight * 4.0/5.0) + 24,
+                               tableView.frame.size.width,
+                               floor(usableHeight * 1.0/5.0));
+  
+  [UIView commitAnimations];
 }
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 - (void)dealloc {

@@ -11,7 +11,6 @@
 
 @implementation GrippyBar
 
-
 - (id)initWithCoder:(NSCoder *)coder {
   if (self = [super initWithCoder:coder]) {
     
@@ -34,7 +33,6 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   isDragging = YES;
   initialTouchPoint = [[touches anyObject] locationInView:self.superview];
-  NSLog(@"touch began");
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -42,18 +40,18 @@
     CGPoint currentPoint = [[touches anyObject] locationInView:self.superview];
     
     if (currentPoint.y > initialTouchPoint.y) {
-      NSLog(@"move it down!");
+      [delegate grippyBarDidSwipeDown];
       isDragging = NO;
     } else if (currentPoint.y < initialTouchPoint.y) {
-      NSLog(@"move it up!");
+      [delegate grippyBarDidSwipeUp];
       isDragging = NO;
     }    
   }
 }
 
-//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//  NSLog(@"touch ended");
-//}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  isDragging = NO;
+}
 
 
 - (void)dealloc {

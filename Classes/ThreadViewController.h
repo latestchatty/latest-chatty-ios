@@ -12,12 +12,14 @@
 #import "ReplyCell.h"
 #import "StringTemplate.h"
 #import "RegexKitLite.h"
+#import "GrippyBar.h"
 
-@interface ThreadViewController : ModelListViewController <UIWebViewDelegate> {
+@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate> {
   NSUInteger threadId;
   Post *rootPost;
   
   IBOutlet UIWebView *postView;
+  IBOutlet GrippyBar *grippyBar;
 }
 
 @property (retain) Post *rootPost;

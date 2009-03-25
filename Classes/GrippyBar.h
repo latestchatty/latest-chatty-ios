@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GrippyBarDelegate <NSObject>
+
+- (void)grippyBarDidSwipeUp;
+- (void)grippyBarDidSwipeDown;
+
+@end
+
 
 @interface GrippyBar : UIView {
   
   BOOL isDragging;
   CGPoint initialTouchPoint;
+  IBOutlet id<GrippyBarDelegate> delegate;
   
 }
 
