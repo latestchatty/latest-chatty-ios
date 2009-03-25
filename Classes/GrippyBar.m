@@ -38,14 +38,26 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   if (isDragging) {
     CGPoint currentPoint = [[touches anyObject] locationInView:self.superview];
+    CGPoint distance = CGPointMake(currentPoint.x - initialTouchPoint.x, currentPoint.y - initialTouchPoint.y);
+    BOOL vertical = (abs(distance.y) > abs(distance.x));
     
-    if (currentPoint.y > initialTouchPoint.y) {
-      [delegate grippyBarDidSwipeDown];
-      isDragging = NO;
-    } else if (currentPoint.y < initialTouchPoint.y) {
-      [delegate grippyBarDidSwipeUp];
-      isDragging = NO;
-    }    
+    if (vertical) {
+      if (distance.y > 0) {
+        [delegate grippyBarDidSwipeDown];
+        isDragging = NO;
+      } else if (distance.y < 0) {
+        [delegate grippyBarDidSwipeUp];
+        isDragging = NO;
+      }
+    } else {
+      if (distance.x > 0) {
+        [delegate grippyBarDidSwipeRight];
+        isDragging = NO;
+      } else if (distance.x < 0) {
+        [delegate grippyBarDidSwipeLeft];
+        isDragging = NO;
+      }
+    }
   }
 }
 

@@ -46,6 +46,7 @@
   
   // Select and display the targeted post
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];
+  if (indexPath == nil) indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
   [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
   [self tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
@@ -236,6 +237,28 @@
   [UIView commitAnimations];
 }
 
+- (void)grippyBarDidSwipeRight {
+  NSIndexPath *oldIndexPath = [tableView indexPathForSelectedRow];
+  
+  NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
+  if (oldIndexPath.row == [[rootPost repliesArray] count] - 1) newIndexPath = oldIndexPath;
+  
+  [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+  [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
+}
+
+- (void)grippyBarDidSwipeLeft {
+  NSIndexPath *oldIndexPath = [tableView indexPathForSelectedRow];
+  
+  NSIndexPath *newIndexPath;
+  if (oldIndexPath.row == 0)
+    newIndexPath = oldIndexPath;
+  else
+    newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
+  
+  [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+  [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];  
+}
 
 - (void)dealloc {
   [rootPost release];

@@ -20,7 +20,8 @@
 }
 
 + (NSString *)host {
-  return @"localhost:3000";
+  //return @"localhost:3000";
+  return @"shackchatty.com";
 }
 
 + (NSString *)urlStringWithPath:(NSString *)path {

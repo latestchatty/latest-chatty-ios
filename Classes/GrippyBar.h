@@ -12,6 +12,9 @@
 
 - (void)grippyBarDidSwipeUp;
 - (void)grippyBarDidSwipeDown;
+- (void)grippyBarDidSwipeLeft;
+- (void)grippyBarDidSwipeRight;
+
 
 @end
 
