@@ -20,8 +20,7 @@
 }
 
 + (NSString *)host {
-  //return @"localhost:3000";
-  return @"shackchatty.com";
+  return [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
 }
 
 + (NSString *)urlStringWithPath:(NSString *)path {

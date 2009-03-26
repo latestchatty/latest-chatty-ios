@@ -13,6 +13,7 @@
 #import "StringTemplate.h"
 #import "RegexKitLite.h"
 #import "GrippyBar.h"
+#import "ComposeViewController.h"
 
 @interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate> {
   NSUInteger threadId;
@@ -25,5 +26,6 @@
 @property (retain) Post *rootPost;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
+- (IBAction)tappedReplyButton;
 
 @end

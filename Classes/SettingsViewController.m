@@ -7,7 +7,7 @@
 //
 
 #import "SettingsViewController.h"
-
+#import "RegexKitLite.h"
 
 @implementation SettingsViewController
 
@@ -20,6 +20,7 @@
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   [defaults setObject:usernameField.text forKey:@"username"];
   [defaults setObject:passwordField.text forKey:@"password"];
+  [defaults setObject:serverField.text   forKey:@"server"];
   
   [self.navigationController dismissModalViewControllerAnimated:YES];
 }
@@ -29,13 +30,16 @@
   
   usernameField.text = [defaults stringForKey:@"username"];
   passwordField.text = [defaults stringForKey:@"password"];
+  serverField.text   = [[defaults stringForKey:@"server"] stringByReplacingOccurrencesOfRegex:@"http://" withString:@""];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   if (textField == usernameField) {
     [passwordField becomeFirstResponder];
+  } else if (textField == passwordField) {
+    [serverField becomeFirstResponder];
   } else {
-    [passwordField resignFirstResponder];
+    [serverField resignFirstResponder];
   }
   return NO;
 }

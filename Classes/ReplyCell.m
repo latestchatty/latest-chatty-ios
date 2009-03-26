@@ -8,7 +8,7 @@
 
 #import "ReplyCell.h"
 
-#define INDENDATION 12.0
+#define INDENDATION 15.0
 
 @implementation ReplyCell
 
@@ -25,7 +25,7 @@
 
 - (void)layoutSubviews {
   preview.text = post.preview;
-  CGFloat indentation = (post.depth + 1) * INDENDATION;
+  CGFloat indentation = 10 + post.depth * INDENDATION;
   preview.frame = CGRectMake(indentation, 0, self.contentView.frame.size.width - indentation, [ReplyCell cellHeight]);
   
   [super layoutSubviews];

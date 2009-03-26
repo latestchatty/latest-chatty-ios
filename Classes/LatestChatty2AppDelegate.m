@@ -22,6 +22,10 @@
 	[window addSubview:[navigationController view]];
 	[window makeKeyAndVisible];
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+  
+  // Settings defaults
+  NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:@"ws.shackchatty.com", @"server", nil];
+  [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
 
