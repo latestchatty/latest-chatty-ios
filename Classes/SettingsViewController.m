@@ -27,12 +27,22 @@
 - (void)viewDidLoad {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   
-  NSLog([defaults stringForKey:@"username"]);
-  
   usernameField.text = [defaults stringForKey:@"username"];
   passwordField.text = [defaults stringForKey:@"password"];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  if (textField == usernameField) {
+    [passwordField becomeFirstResponder];
+  } else {
+    [passwordField resignFirstResponder];
+  }
+  return NO;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+  return NO;
+}
 
 - (void)dealloc {
   [super dealloc];
