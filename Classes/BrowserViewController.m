@@ -31,12 +31,15 @@
   [safariButton release];
   
   [webView loadRequest:initialRequest];
-  [initialRequest release];
-  initialRequest = nil;
+}
+
+- (IBAction)dragonDrop {
+	[initialRequest setValue:@"" forHTTPHeaderField:@"Referer"];
+	[webView loadRequest:initialRequest];
 }
 
 - (IBAction)openInSafari {
-  NSLog(@"Open in safari");
+  [[UIApplication sharedApplication] openURL:[webView.request URL]];
 }
 
 - (void)dealloc {
