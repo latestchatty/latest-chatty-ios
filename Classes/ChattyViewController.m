@@ -17,7 +17,7 @@
 - (id)initWithLatestChatty {
   [self initWithNibName:@"ChattyViewController" bundle:nil];
   
-  self.title = @"(Latest Chatty)";
+  self.title = @"";
   
   return self;
 }
@@ -55,12 +55,18 @@
     loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
 }
 
-- (void)didFinishLoadingAllModels:(NSArray *)models {
+- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
+  self.storyId = [[models objectAtIndex:0] storyId];
   self.threads = models;
   [self.tableView reloadData];
   [loader release];
   loader = nil;
-  [super didFinishLoadingAllModels:models];
+  
+  NSDictionary *dataDictionary = (NSDictionary *)otherData;
+  self.storyId = [[dataDictionary objectForKey:@"storyId"] intValue];
+  self.title   = [dataDictionary objectForKey:@"storyName"];
+  
+  [super didFinishLoadingAllModels:models otherData:otherData];
 }
 
 

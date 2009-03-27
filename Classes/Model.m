@@ -27,17 +27,6 @@
   return [NSString stringWithFormat:@"http://%@%@.json", [self host], path];
 }
 
-+ (NSString *)keyPathToDataArray {
-  return nil;
-}
-
-+ (NSArray *)parseDataDictionaries:(id)rawData {
-  if ([rawData isKindOfClass:[NSArray class]])
-    return (NSArray *)rawData;
-  else
-    return [(NSDictionary *)rawData objectForKey:[self keyPathToDataArray]];
-}
-
 #pragma mark Class Methods
 
 + (ModelLoader *)loadAllFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
@@ -56,6 +45,10 @@
 
 
 #pragma mark Completion Callbacks
+
++ (id)otherDataForResponseData:(id)responseData {
+  return nil;
+}
 
 + (id)didFinishLoadingPluralData:(id)dataObject {
   NSArray *modelDataArray = dataObject;

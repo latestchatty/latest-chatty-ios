@@ -33,8 +33,6 @@
   
   UIImageView *background = (UIImageView *)self.backgroundView;
   
-  NSLog(@"%@ == %@", rootPost.author, [[NSUserDefaults standardUserDefaults] objectForKey:@"username"]);
-  
   if ([rootPost.author isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]]) {
     author.font = [UIFont boldSystemFontOfSize:12.0];
     background.image = [UIImage imageNamed:@"CellBackgroundLight.png"];

@@ -71,11 +71,11 @@
 */
 
 
-- (void)didFinishLoadingAllModels:(NSArray *)models {
+- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
   self.stories = models;
   [loader release];
   loader = nil;
-  [super didFinishLoadingAllModels:models];
+  [super didFinishLoadingAllModels:models otherData:otherData];
 }
 
 - (void)didReceiveMemoryWarning {

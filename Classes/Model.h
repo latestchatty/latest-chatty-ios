@@ -22,8 +22,6 @@
 
 + (NSString *)host;
 + (NSString *)urlStringWithPath:(NSString *)path;
-+ (NSString *)keyPathToDataArray;
-+ (NSArray *)parseDataDictionaries:(id)rawData;
 
 + (ModelLoader *)loadAllFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate;
 + (id)didFinishLoadingPluralData:(id)dataObject;

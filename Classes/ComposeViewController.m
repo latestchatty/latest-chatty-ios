@@ -57,7 +57,14 @@
 }
 
 - (IBAction)sendPost {
-  [self.navigationController dismissModalViewControllerAnimated:YES];
+  NSUInteger parentId = 0;
+  if (post) parentId = post.modelId;
+  
+  if ([Post createWithBody:postContent.text parentId:post.modelId storyId:storyId]) {
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+  } else {
+    NSLog(@"Failure!");
+  }
 }
 
 

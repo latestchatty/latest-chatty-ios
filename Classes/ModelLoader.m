@@ -19,7 +19,7 @@
   
   [super init];
   
-  plural = NO;
+  self.plural = NO;
   
   dataDelegate  = [aDataDelegate retain];
   modelDelegate = [aModelDelegate retain];
@@ -56,19 +56,21 @@
   id dataObject = [dataString JSONValue];
   [dataString release];
   
+  id otherData = [dataDelegate otherDataForResponseData:dataObject];
+  
   if (plural) {
     // Process the data object with the data delegate's processor callback method
     id processedResponse = [dataDelegate didFinishLoadingPluralData:dataObject];
     
     // Send the final objects to the object that requested the initial load
-    [modelDelegate didFinishLoadingAllModels:processedResponse];
+    [modelDelegate didFinishLoadingAllModels:processedResponse otherData:otherData];
     
   } else {
     // Process the data object with the data delegate's processor callback method
     id processedResponse = [dataDelegate didFinishLoadingData:dataObject];
     
     // Send the final objects to the object that requested the initial load
-    [modelDelegate didFinishLoadingModel:processedResponse];
+    [modelDelegate didFinishLoadingModel:processedResponse otherData:otherData];
     
   }
 }

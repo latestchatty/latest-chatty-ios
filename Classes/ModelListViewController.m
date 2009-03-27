@@ -24,7 +24,7 @@
   UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
   [spinner startAnimating];
   spinner.contentMode = UIViewContentModeCenter;
-  spinner.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 2.0/3.0);
+  spinner.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height / 2.0);
   [loadingView addSubview:spinner];
   [spinner release];
   
@@ -104,7 +104,7 @@
 
 
 // Fade in table cells
-- (void)didFinishLoadingAllModels:(NSArray *)models {
+- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
   loadingView.alpha = 1.0;
   [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
   loadingView.alpha = 0.0;
@@ -125,8 +125,8 @@
   }
 }
 
-- (void)didFinishLoadingModel:(id)aModel {
-  [self didFinishLoadingAllModels:nil];
+- (void)didFinishLoadingModel:(id)aModel otherData:(id)otherData {
+  [self didFinishLoadingAllModels:nil otherData:otherData];
 }
 
 

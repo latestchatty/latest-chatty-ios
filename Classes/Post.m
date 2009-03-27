@@ -22,24 +22,6 @@
 @synthesize replies;
 @synthesize depth;
 
-+ (NSString *)keyPathToDataArray {
-  return @"comments";
-}
-
-+ (NSArray *)parseDataDictionaries:(id)rawData {
-  NSArray *originalDictionaries = [super parseDataDictionaries:rawData];
-  NSMutableArray *dictionaries = [[NSMutableArray alloc] initWithCapacity:[originalDictionaries count]];
-  
-  for (NSDictionary *originalDictionary in originalDictionaries) {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:originalDictionary];
-    NSNumber *storyId = [(NSDictionary *)rawData objectForKey:@"story_id"];
-    [dictionary setObject:storyId forKey:@"story_id"];
-    [dictionaries addObject:dictionary];
-  }
-  
-  return dictionaries;
-}
-
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate {
   NSString *urlString = [NSString stringWithFormat:@"/%i", storyId];
   return [self loadAllFromUrl:urlString delegate:delegate];
@@ -62,6 +44,18 @@
 + (id)didFinishLoadingData:(id)dataObject {
   NSArray *modelData = [[dataObject objectForKey:@"comments"] objectAtIndex:0];
   return [super didFinishLoadingData:modelData];
+}
+
++ (id)otherDataForResponseData:(id)responseData {
+  NSDictionary *dictionary = (NSDictionary *)responseData;
+  return [NSDictionary dictionaryWithObjectsAndKeys:[dictionary objectForKey:@"story_id"], @"storyId",
+                                                    [dictionary objectForKey:@"story_name"], @"storyName",
+                                                    nil];
+}
+
++ (BOOL)createWithBody:(NSString *)body parentId:(NSUInteger)parentId storyId:(NSUInteger)storyId {
+  NSLog(@"STUB: Created post with parentId:%i, storyId:%i, body: %@", parentId, storyId, body);
+  return YES;
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {

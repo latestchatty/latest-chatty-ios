@@ -16,6 +16,7 @@
 #import "ComposeViewController.h"
 
 @interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate> {
+  NSUInteger storyId;
   NSUInteger threadId;
   Post *rootPost;
   

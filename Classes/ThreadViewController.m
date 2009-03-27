@@ -27,12 +27,16 @@
   loader = [[Post findThreadWithId:threadId delegate:self] retain];
 }
 
-- (void)didFinishLoadingModel:(id)model {
+- (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
   self.rootPost = (Post *)model;
   [loader release];
   loader = nil;
+  [super didFinishLoadingAllModels:nil otherData:otherData];
   
-  [super didFinishLoadingAllModels:nil];
+  // Set story data
+  NSDictionary *dataDictionary = (NSDictionary *)otherData;
+  storyId = [[dataDictionary objectForKey:@"storyId"] intValue];
+  self.title   = [dataDictionary objectForKey:@"storyName"];
   
   // Find the target post in the thread.
   Post *firstPost;
@@ -61,11 +65,15 @@
   [replyButton release];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  // prevent superclass behavious of cell deselection
+}
+
 - (IBAction)tappedReplyButton {
   NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
   Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
   
-  ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:0 post:post];
+  ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:post];
   [self.navigationController presentModalViewController:viewController animated:YES];
   [viewController release];
 }
@@ -96,7 +104,6 @@
   }
   
   cell.post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
-  NSLog(@"post id:%i", cell.post.modelId);
 
   return cell;
 }
