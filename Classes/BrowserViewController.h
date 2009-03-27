@@ -10,7 +10,7 @@
 
 
 @interface BrowserViewController : UIViewController {
-  NSURLRequest *initialRequest;
+  NSMutableURLRequest *initialRequest;
   IBOutlet UIWebView *webView;
 }
 

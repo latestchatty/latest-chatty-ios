@@ -17,16 +17,17 @@
 - (id)initWithLatestChatty {
   [self initWithNibName:@"ChattyViewController" bundle:nil];
   
-  self.title = @"";
+  self.storyId = 0;
+  self.title = @"Loading...";
   
   return self;
 }
 
-- (id)initWithStory:(Story *)story {
+- (id)initWithStoryId:(NSUInteger)aStoryId {
   [self initWithNibName:@"ChattyViewController" bundle:nil];
   
-  self.storyId = story.modelId;
-  self.title = story.title;
+  self.storyId = aStoryId;
+  self.title = @"Loading...";
   
   return self;
 }
@@ -36,12 +37,12 @@
   
   UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                                                  target:self
-                                                                                 action:@selector(tappedComposeButton:)];
+                                                                                 action:@selector(tappedComposeButton)];
   self.navigationItem.rightBarButtonItem = composeButton;
   [composeButton release];
 }
 
-- (IBAction)tappedComposeButton:(id)sender {
+- (IBAction)tappedComposeButton {
   ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:nil];
   [self.navigationController presentModalViewController:viewController animated:YES];
   [viewController release];
@@ -49,7 +50,7 @@
 
 - (IBAction)refresh:(id)sender {
   [super refresh:self];
-  if (storyId)
+  if (storyId > 0)
     loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];
   else
     loader = [[Post findAllInLatestChattyWithDelegate:self] retain];

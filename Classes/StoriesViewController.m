@@ -29,14 +29,14 @@
   UIBarButtonItem *latestChattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
                                                                          style:UIBarButtonItemStyleDone
                                                                         target:self
-                                                                        action:@selector(tappedLatestChattyButton:)];
+                                                                        action:@selector(tappedLatestChattyButton)];
   self.navigationItem.rightBarButtonItem = latestChattyButton;
   [latestChattyButton release];
   
   UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsIcon.24.png"]
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
-                                                                    action:@selector(tappedSettingsButton:)];
+                                                                    action:@selector(tappedSettingsButton)];
   self.navigationItem.leftBarButtonItem = settingsButton;
   [settingsButton release];
 }
@@ -57,12 +57,6 @@
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
   // Release anything that's not essential, such as cached data
-}
-
-- (IBAction)tappedSettingsButton:(id)sender {
-  SettingsViewController *viewController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-  [self.navigationController presentModalViewController:viewController animated:YES];
-  [viewController release];
 }
 
 #pragma mark Shake Handler
@@ -104,6 +98,8 @@
 }
 
 
+#pragma mark Actions
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   Story *story = [stories objectAtIndex:indexPath.row];
   StoryViewController *viewController = [[StoryViewController alloc] initWithStory:story];
@@ -119,16 +115,23 @@
   }
   
   Story *story = [stories objectAtIndex:indexPath.row];
-  ChattyViewController *viewController = [[ChattyViewController alloc] initWithStory:story];
+  ChattyViewController *viewController = [[ChattyViewController alloc] initWithStoryId:story.modelId];
   [self.navigationController pushViewController:viewController animated:YES];
   [viewController release];
 }
 
-- (IBAction)tappedLatestChattyButton:(id)sender {
+- (IBAction)tappedLatestChattyButton {
   ChattyViewController *viewController = [[ChattyViewController alloc] initWithLatestChatty];
   [self.navigationController pushViewController:viewController animated:YES];
   [viewController release];
 }
+
+- (IBAction)tappedSettingsButton {
+  SettingsViewController *viewController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+  [self.navigationController presentModalViewController:viewController animated:YES];
+  [viewController release];
+}
+
 
 - (void)dealloc {
   self.stories = nil;

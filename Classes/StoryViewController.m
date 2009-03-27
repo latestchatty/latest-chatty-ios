@@ -18,6 +18,12 @@
   
   self.story = aStory;
   self.title = @"Story";
+    
+  return self;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
   
   UIBarButtonItem *chattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
                                                                    style:UIBarButtonItemStylePlain
@@ -26,28 +32,8 @@
 	self.navigationItem.rightBarButtonItem = chattyButton;
   [chattyButton release];
   
-  return self;
-}
-
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
   
+  // Load up web view content
   NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
   
   StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
@@ -66,26 +52,26 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   // Return YES for supported orientations
-  return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
-
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)loadChatty {
-  ChattyViewController *viewController = [[ChattyViewController alloc] initWithStory:story];
+  ChattyViewController *viewController = [[ChattyViewController alloc] initWithStoryId:story.modelId];
   [self.navigationController pushViewController:viewController animated:YES];
   [viewController release];
+}
+
+
+
+- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+  if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+    BrowserViewController *viewController = [[BrowserViewController alloc] initWithRequest:request];
+    [self.navigationController pushViewController:viewController animated:YES];
+    [viewController release];
+    return NO;
+  }
+  
+  return YES;
 }
 
 - (void)dealloc {

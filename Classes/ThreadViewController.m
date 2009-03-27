@@ -137,7 +137,6 @@
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-  NSLog(@"loading...");
   NSString *url = [[request URL] absoluteString];
   if (navigationType == UIWebViewNavigationTypeLinkClicked) {
     if ([url isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?id=\\d+"]) {

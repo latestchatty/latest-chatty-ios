@@ -10,8 +10,9 @@
 #import "Story.h"
 #import "ChattyViewController.h"
 #import "StringTemplate.h"
+#import "BrowserViewController.h"
 
-@interface StoryViewController : UIViewController {
+@interface StoryViewController : UIViewController <UIWebViewDelegate> {
   Story *story;
   
   IBOutlet UIWebView *content;

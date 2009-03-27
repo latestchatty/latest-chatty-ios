@@ -24,8 +24,8 @@
 @property (retain) NSArray *threads;
 
 - (id)initWithLatestChatty;
-- (id)initWithStory:(Story *)aStory;
+- (id)initWithStoryId:(NSUInteger)aStoryId;
 
-- (IBAction)tappedComposeButton:(id)sender;
+- (IBAction)tappedComposeButton;
 
 @end

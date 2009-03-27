@@ -13,7 +13,7 @@
 
 - (id)initWithRequest:(NSURLRequest *)request {
   if (self = [super initWithNibName:@"BrowserViewController" bundle:nil]) {
-    initialRequest = [request retain];
+    initialRequest = (NSMutableURLRequest *)[request retain];
     
     self.title = @"Browser";
   }
@@ -41,6 +41,7 @@
 - (IBAction)openInSafari {
   [[UIApplication sharedApplication] openURL:[webView.request URL]];
 }
+
 
 - (void)dealloc {
   [initialRequest release];

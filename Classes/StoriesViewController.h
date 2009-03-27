@@ -27,7 +27,7 @@
 @property (retain) NSArray *stories;
 
 - (IBAction)tappedChattyButton:(id)sender;
-- (IBAction)tappedLatestChattyButton:(id)sender;
-- (IBAction)tappedSettingsButton:(id)sender;
+- (IBAction)tappedLatestChattyButton;
+- (IBAction)tappedSettingsButton;
 
 @end
