@@ -13,6 +13,9 @@
 @interface ReplyCell : TableCellFromNib {
   Post *post;
   IBOutlet UILabel *preview;
+  
+  IBOutlet UIImageView *blueBullet;
+  IBOutlet UIImageView *grayBullet;
 }
 
 @property (retain) Post *post;

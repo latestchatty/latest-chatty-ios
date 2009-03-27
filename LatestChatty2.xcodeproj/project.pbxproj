@@ -19,6 +19,8 @@
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
 		FA2B43280F7D4BBE0074064A /* UIImage-NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */; };
+		FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B458E0F7D95710074064A /* BlueBullet.png */; };
+		FA2B45910F7D96060074064A /* GrayBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B45900F7D96060074064A /* GrayBullet.png */; };
 		FA5DA7770F7284CB00F05ED9 /* ModelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */; };
 		FA5DA8AA0F72A3EA00F05ED9 /* SettingsIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */; };
 		FA5FCD160F6F61A600878F27 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCD150F6F61A600878F27 /* Model.m */; };
@@ -91,6 +93,8 @@
 		FA1E7D660F787FEF00BAA55B /* ModelLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelLoader.m; sourceTree = "<group>"; };
 		FA2B43260F7D4BBE0074064A /* UIImage-NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-NSCoding.h"; sourceTree = "<group>"; };
 		FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-NSCoding.m"; sourceTree = "<group>"; };
+		FA2B458E0F7D95710074064A /* BlueBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueBullet.png; path = Assets/BlueBullet.png; sourceTree = "<group>"; };
+		FA2B45900F7D96060074064A /* GrayBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrayBullet.png; path = Assets/GrayBullet.png; sourceTree = "<group>"; };
 		FA5DA7750F7284CB00F05ED9 /* ModelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelListViewController.h; sourceTree = "<group>"; };
 		FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelListViewController.m; sourceTree = "<group>"; };
 		FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SettingsIcon.24.png; path = Assets/SettingsIcon.24.png; sourceTree = "<group>"; };
@@ -314,6 +318,8 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FA2B45900F7D96060074064A /* GrayBullet.png */,
+				FA2B458E0F7D95710074064A /* BlueBullet.png */,
 				FAD29A600F796452006E14A2 /* DropShadow.png */,
 				FA5FD0550F7014BD00878F27 /* CellBackground.png */,
 				FA87BE1B0F7B0A9E0044898C /* CellBackgroundLight.png */,
@@ -429,6 +435,8 @@
 				FAB765EE0F7C9DEB00CE0E38 /* DragonDrop.png in Resources */,
 				FAB765F10F7C9E2800CE0E38 /* left.png in Resources */,
 				FAB765F20F7C9E2800CE0E38 /* right.png in Resources */,
+				FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */,
+				FA2B45910F7D96060074064A /* GrayBullet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

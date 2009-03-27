@@ -26,16 +26,30 @@
 - (void)layoutSubviews {
   [super layoutSubviews];
   
+  // Set the cell text
   preview.text = post.preview;
+  
+  // Set the indentation depth
   CGFloat indentation = 10 + post.depth * INDENDATION;
   preview.frame = CGRectMake(indentation, 0, self.contentView.frame.size.width - indentation, [ReplyCell cellHeight]);
-  
   
   // Choose a text color based on time level of the post
   if (post.timeLevel > 10) {
     preview.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
   } else {
     preview.textColor = [UIColor colorWithWhite:1.0 alpha:(1 - (CGFloat)post.timeLevel / 10.0) * 0.5 + 0.5];
+  }
+  
+  // Only show blue bullet if this is my post.
+  CGRect bulletFrame = CGRectMake(indentation - 15, 7, 10, 10);
+  blueBullet.frame = bulletFrame;
+  grayBullet.frame = bulletFrame;
+  if ([post.author isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]]) {
+    blueBullet.hidden = (post.depth == 0);
+    grayBullet.hidden = YES;
+  } else {
+    blueBullet.hidden = YES;
+    grayBullet.hidden = (post.depth == 0);
   }
 }
 
