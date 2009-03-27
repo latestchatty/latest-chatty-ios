@@ -15,8 +15,6 @@
 @synthesize window;
 @synthesize navigationController;
 
-#define PREV_STATE_FILENAME @"PreviousNavigationController.archive"
-
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
   if (![self reloadSavedState]) {
     // Add the stories view controller

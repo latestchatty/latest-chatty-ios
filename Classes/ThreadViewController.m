@@ -240,7 +240,7 @@
   [UIView commitAnimations];
 }
 
-- (void)grippyBarDidSwipeRight {
+- (IBAction)nextPost {
   NSIndexPath *oldIndexPath = selectedIndexPath;
   
   NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
@@ -250,7 +250,7 @@
   [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
 }
 
-- (void)grippyBarDidSwipeLeft {
+- (IBAction)previousPost {
   NSIndexPath *oldIndexPath = selectedIndexPath;
   
   NSIndexPath *newIndexPath;

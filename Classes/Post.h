@@ -26,6 +26,8 @@
   NSMutableArray *replies;
   NSMutableArray *flatReplies;
   NSInteger       depth;
+  
+  NSUInteger      timeLevel;
 }
 
 @property (copy) NSString *author;
@@ -40,6 +42,8 @@
 @property (retain) NSMutableArray *replies;
 @property (assign) NSInteger depth;
 
+@property (assign) NSUInteger timeLevel;
+
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate;
 + (ModelLoader *)findAllInLatestChattyWithDelegate:(id<ModelLoadingDelegate>)delegate;
 + (ModelLoader *)findThreadWithId:(NSUInteger)threadId delegate:(id<ModelLoadingDelegate>)delegate;
@@ -47,5 +51,7 @@
 
 - (NSArray *)repliesArray;
 - (NSArray *)repliesArray:(NSMutableArray *)parentArray;
+
+- (NSInteger)compareById:(Post *)otherPost;
 
 @end

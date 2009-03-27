@@ -22,6 +22,8 @@
 @synthesize replies;
 @synthesize depth;
 
+@synthesize timeLevel;
+
 
 - (id)initWithCoder:(NSCoder *)coder {
   [super initWithCoder:coder];
@@ -37,6 +39,8 @@
   
   self.replies      = [coder decodeObjectForKey:@"replies"];
   self.depth        = [coder decodeIntForKey:@"depth"];
+  
+  self.timeLevel    = [coder decodeIntForKey:@"timeLevel"];
   
   return self;
 }
@@ -55,6 +59,8 @@
   
   [encoder encodeObject:replies forKey:@"replies"];
   [encoder encodeInt:depth forKey:@"depth"];
+  
+  [encoder encodeInt:timeLevel forKey:@"timeLevel"];
 }
 
 
@@ -162,14 +168,28 @@
   flatReplies = [[NSMutableArray alloc] init];
   [self repliesArray:flatReplies];
   
+  NSMutableArray *timeSortedReplies = [NSMutableArray arrayWithArray:flatReplies];
+  [timeSortedReplies sortUsingSelector:@selector(compareById:)];
+  for (int i = 0; i < [timeSortedReplies count]; i++) {
+    Post *post = [timeSortedReplies objectAtIndex:i];
+    post.timeLevel = i;
+  }
+  
   return flatReplies;
 }
+
 - (NSArray *)repliesArray:(NSMutableArray *)parentArray {
   [parentArray addObject:self];
   for (Post *reply in self.replies) {
     [reply repliesArray:parentArray];
   }
   return parentArray;
+}
+
+- (NSInteger)compareById:(Post *)otherPost {
+  if (modelId > otherPost.modelId)  return NSOrderedAscending;
+  if (modelId < otherPost.modelId)  return NSOrderedDescending;
+  return NSOrderedSame;
 }
 
 
