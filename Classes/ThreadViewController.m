@@ -146,15 +146,12 @@
       ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
       [self.navigationController pushViewController:viewController animated:YES];
       [viewController release];
-      
+    
     } else {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not implemented"
-                                                      message:@"Web broswing is not yet implemented"
-                                                     delegate:nil
-                                            cancelButtonTitle:@"Dang it!"
-                                            otherButtonTitles:nil];
-      [alert show];
-      [alert release];
+      BrowserViewController *viewController = [[BrowserViewController alloc] initWithRequest:request];
+      [self.navigationController pushViewController:viewController animated:YES];
+      [viewController release];
+      
     }
     return NO;
   }

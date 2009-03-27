@@ -51,6 +51,11 @@
 		FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
 		FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA84AFE0F78DD9F00026446 /* ReplyCell.m */; };
 		FAB2F8700F7985FB000E4DC9 /* GrippyBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB2F86F0F7985FB000E4DC9 /* GrippyBar.m */; };
+		FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */; };
+		FAB765EE0F7C9DEB00CE0E38 /* DragonDrop.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */; };
+		FAB765F10F7C9E2800CE0E38 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB765EF0F7C9E2800CE0E38 /* left.png */; };
+		FAB765F20F7C9E2800CE0E38 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB765F00F7C9E2800CE0E38 /* right.png */; };
+		FAB765F60F7C9E5B00CE0E38 /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB765F50F7C9E5B00CE0E38 /* BrowserViewController.m */; };
 		FABA5D430F717A28008EEE3A /* StringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5D420F717A28008EEE3A /* StringAdditions.m */; };
 		FABA5D470F717B60008EEE3A /* HTMLEscaper.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5D460F717B60008EEE3A /* HTMLEscaper.m */; };
 		FABA5DBD0F71802E008EEE3A /* Post.html in Resources */ = {isa = PBXBuildFile; fileRef = FABA5DBC0F71802E008EEE3A /* Post.html */; };
@@ -129,6 +134,12 @@
 		FAA84AFE0F78DD9F00026446 /* ReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyCell.m; sourceTree = "<group>"; };
 		FAB2F86E0F7985FB000E4DC9 /* GrippyBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrippyBar.h; sourceTree = "<group>"; };
 		FAB2F86F0F7985FB000E4DC9 /* GrippyBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrippyBar.m; sourceTree = "<group>"; };
+		FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserViewController.xib; sourceTree = "<group>"; };
+		FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DragonDrop.png; path = Assets/DragonDrop.png; sourceTree = "<group>"; };
+		FAB765EF0F7C9E2800CE0E38 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = ../LatestChatty/Assets/left.png; sourceTree = SOURCE_ROOT; };
+		FAB765F00F7C9E2800CE0E38 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = ../LatestChatty/Assets/right.png; sourceTree = SOURCE_ROOT; };
+		FAB765F40F7C9E5B00CE0E38 /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
+		FAB765F50F7C9E5B00CE0E38 /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
 		FABA5D410F717A28008EEE3A /* StringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringAdditions.h; sourceTree = "<group>"; };
 		FABA5D420F717A28008EEE3A /* StringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringAdditions.m; sourceTree = "<group>"; };
 		FABA5D450F717B60008EEE3A /* HTMLEscaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLEscaper.h; sourceTree = "<group>"; };
@@ -250,6 +261,9 @@
 				FA87BE8C0F7B1B9D0044898C /* ComposeViewController.h */,
 				FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */,
 				FA87BE500F7B174C0044898C /* ComposeViewController.xib */,
+				FAB765F40F7C9E5B00CE0E38 /* BrowserViewController.h */,
+				FAB765F50F7C9E5B00CE0E38 /* BrowserViewController.m */,
+				FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -311,6 +325,9 @@
 				FA87BE800F7B182D0044898C /* ButtonStrike.png */,
 				FA87BE810F7B182D0044898C /* ButtonUnderline.png */,
 				FA87BE890F7B18C60044898C /* NavButtonTags.png */,
+				FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */,
+				FAB765EF0F7C9E2800CE0E38 /* left.png */,
+				FAB765F00F7C9E2800CE0E38 /* right.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -403,6 +420,10 @@
 				FA87BE870F7B182D0044898C /* ButtonStrike.png in Resources */,
 				FA87BE880F7B182D0044898C /* ButtonUnderline.png in Resources */,
 				FA87BE8A0F7B18C60044898C /* NavButtonTags.png in Resources */,
+				FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */,
+				FAB765EE0F7C9DEB00CE0E38 /* DragonDrop.png in Resources */,
+				FAB765F10F7C9E2800CE0E38 /* left.png in Resources */,
+				FAB765F20F7C9E2800CE0E38 /* right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +456,7 @@
 				FAB2F8700F7985FB000E4DC9 /* GrippyBar.m in Sources */,
 				FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */,
 				FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */,
+				FAB765F60F7C9E5B00CE0E38 /* BrowserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

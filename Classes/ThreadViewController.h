@@ -14,6 +14,7 @@
 #import "RegexKitLite.h"
 #import "GrippyBar.h"
 #import "ComposeViewController.h"
+#import "BrowserViewController.h"
 
 @interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate> {
   NSUInteger storyId;
