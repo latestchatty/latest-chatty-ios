@@ -18,4 +18,12 @@
   return unescapedString;
 }
 
+- (NSString *)stringByUrlEscape {
+  return (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                             (CFStringRef)[self copy],
+                                                             NULL,
+                                                             (CFStringRef)@";/?:@&=+$,",
+                                                             kCFStringEncodingUTF8);
+}
+
 @end

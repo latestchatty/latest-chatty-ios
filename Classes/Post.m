@@ -54,8 +54,45 @@
 }
 
 + (BOOL)createWithBody:(NSString *)body parentId:(NSUInteger)parentId storyId:(NSUInteger)storyId {
-  NSLog(@"STUB: Created post with parentId:%i, storyId:%i, body: %@", parentId, storyId, body);
-  return YES;
+  NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+  [request setURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/post_laryn_iphone.x"]];
+  
+  // Set request body and HTTP method
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  NSString *usernameString = [[defaults stringForKey:@"username"] stringByUrlEscape];
+  NSString *passwordString = [[defaults stringForKey:@"password"] stringByUrlEscape];
+  NSString *parentIdString = parentId == 0 ? @"" : [NSString stringWithFormat:@"%i", parentId];
+  NSString *bodyString     = [body stringByUrlEscape];
+  
+  NSString *requestBody = [NSString stringWithFormat:@"iuser=%@&ipass=%@&parent=%@&group=%i&body=%@", usernameString, passwordString, parentIdString, storyId, bodyString];
+  [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
+  [request setHTTPMethod:@"POST"];
+
+  // Send the request
+  NSHTTPURLResponse *response;
+  NSString *responseBody = [[NSString alloc] initWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]
+                                                 encoding:NSASCIIStringEncoding];
+  [responseBody autorelease];
+  
+  NSLog(requestBody);
+  
+  if ([responseBody rangeOfString:@"navigate_page_no_history"].location != NSNotFound) {
+    // This means success
+    return YES;
+    
+  } else {
+    NSString *errorString = [responseBody stringByMatching:@"alert\\(.*\"(.+?)\".*\\)" capture:1];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                    message:errorString
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Dang"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    return NO;
+  }
+  
+  
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
