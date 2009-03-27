@@ -22,6 +22,42 @@
 @synthesize replies;
 @synthesize depth;
 
+
+- (id)initWithCoder:(NSCoder *)coder {
+  [super initWithCoder:coder];
+  
+  self.author       = [coder decodeObjectForKey:@"author"];
+  self.preview      = [coder decodeObjectForKey:@"preview"];
+  self.body         = [coder decodeObjectForKey:@"body"];
+  self.date         = [coder decodeObjectForKey:@"date"];
+  replyCount        = [coder decodeIntForKey:@"replyCount"];
+  
+  storyId           = [coder decodeIntForKey:@"storyId"];
+  parentPostId      = [coder decodeIntForKey:@"parentPostId"];
+  
+  self.replies      = [coder decodeObjectForKey:@"replies"];
+  self.depth        = [coder decodeIntForKey:@"depth"];
+  
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+  [super encodeWithCoder:encoder];
+  
+  [encoder encodeObject:author  forKey:@"author"];
+  [encoder encodeObject:preview forKey:@"preview"];
+  [encoder encodeObject:body    forKey:@"body"];
+  [encoder encodeObject:date    forKey:@"date"];
+  [encoder encodeInt:replyCount forKey:@"replyCount"];
+  
+  [encoder encodeInt:storyId forKey:@"storyId"];
+  [encoder encodeInt:parentPostId forKey:@"parentPostId"];
+  
+  [encoder encodeObject:replies forKey:@"replies"];
+  [encoder encodeInt:depth forKey:@"depth"];
+}
+
+
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate {
   NSString *urlString = [NSString stringWithFormat:@"/%i", storyId];
   return [self loadAllFromUrl:urlString delegate:delegate];

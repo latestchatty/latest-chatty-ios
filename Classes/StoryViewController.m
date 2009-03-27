@@ -17,9 +17,18 @@
   [self initWithNibName:@"StoryViewController" bundle:nil];
   
   self.story = aStory;
-  self.title = @"Story";
+  self.title = self.story.title;
     
   return self;
+}
+
+- (id)initWithStateDictionary:(NSDictionary *)dictionary {
+  return [self initWithStory:[dictionary objectForKey:@"story"]];
+}
+
+- (NSDictionary *)stateDictionary {
+  return [NSDictionary dictionaryWithObjectsAndKeys:@"Story", @"type",
+                                                    story,    @"story", nil];
 }
 
 - (void)viewDidLoad {

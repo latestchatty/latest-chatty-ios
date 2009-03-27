@@ -21,11 +21,14 @@
   NSUInteger threadId;
   Post *rootPost;
   
+  NSIndexPath *selectedIndexPath;
+  
   IBOutlet UIWebView *postView;
   IBOutlet GrippyBar *grippyBar;
 }
 
 @property (retain) Post *rootPost;
+@property (retain) NSIndexPath *selectedIndexPath;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
 - (IBAction)tappedReplyButton;

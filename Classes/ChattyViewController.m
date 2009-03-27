@@ -32,9 +32,30 @@
   return self;
 }
 
+
+
+- (id)initWithStateDictionary:(NSDictionary *)dictionary {
+  [self initWithStoryId:[[dictionary objectForKey:@"storyId"] intValue]];
+  
+  self.threads = [dictionary objectForKey:@"threads"];
+  self.title =   [dictionary objectForKey:@"title"];
+  
+  return self;
+}
+
+- (NSDictionary *)stateDictionary {
+  return [NSDictionary dictionaryWithObjectsAndKeys:@"Chatty", @"type",
+                                                      threads, @"threads",
+                                                      self.title, @"title", nil];
+}
+
+
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  if (threads == nil) [self refresh:self];
+    
   UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                                                  target:self
                                                                                  action:@selector(tappedComposeButton)];

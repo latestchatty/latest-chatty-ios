@@ -16,6 +16,14 @@
   return [super initWithNibName:@"SettingsViewController" bundle:nil];
 }
 
+- (id)initWithStateDictionary:(NSDictionary *)dictionary {
+  return [self init];
+}
+
+- (NSDictionary *)stateDictionary {
+  return [NSDictionary dictionaryWithObject:@"Settings" forKey:@"type"];
+}
+
 - (IBAction)dismiss:(id)sender {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   [defaults setObject:usernameField.text forKey:@"username"];

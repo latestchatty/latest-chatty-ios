@@ -17,6 +17,27 @@
 @synthesize date;
 @synthesize commentCount;
 
+- (id)initWithCoder:(NSCoder *)coder {
+  [super initWithCoder:coder];
+  
+  self.title    = [coder decodeObjectForKey:@"title"];
+  self.preview  = [coder decodeObjectForKey:@"preview"];
+  self.body     = [coder decodeObjectForKey:@"body"];
+  self.date     = [coder decodeObjectForKey:@"date"];
+  commentCount  = [coder decodeIntForKey:@"commentCount"];
+  
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+  [super encodeWithCoder:encoder];
+  [encoder encodeObject:title     forKey:@"title"];
+  [encoder encodeObject:preview   forKey:@"preview"];
+  [encoder encodeObject:body      forKey:@"body"];
+  [encoder encodeObject:date      forKey:@"date"];
+  [encoder encodeInt:commentCount forKey:@"commentCount"];
+}
+
 + (NSString *)formatDate:(NSDate *)date; {
   return [date descriptionWithCalendarFormat:@"%b %d %I:%M %p" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
 }

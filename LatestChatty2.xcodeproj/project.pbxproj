@@ -18,6 +18,7 @@
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
+		FA2B43280F7D4BBE0074064A /* UIImage-NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */; };
 		FA5DA7770F7284CB00F05ED9 /* ModelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */; };
 		FA5DA8AA0F72A3EA00F05ED9 /* SettingsIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */; };
 		FA5FCD160F6F61A600878F27 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCD150F6F61A600878F27 /* Model.m */; };
@@ -88,6 +89,8 @@
 		FA0481210F70D10300F752A6 /* ChattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyViewController.m; sourceTree = "<group>"; };
 		FA1E7D650F787FEF00BAA55B /* ModelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader.h; sourceTree = "<group>"; };
 		FA1E7D660F787FEF00BAA55B /* ModelLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelLoader.m; sourceTree = "<group>"; };
+		FA2B43260F7D4BBE0074064A /* UIImage-NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-NSCoding.h"; sourceTree = "<group>"; };
+		FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-NSCoding.m"; sourceTree = "<group>"; };
 		FA5DA7750F7284CB00F05ED9 /* ModelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelListViewController.h; sourceTree = "<group>"; };
 		FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelListViewController.m; sourceTree = "<group>"; };
 		FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SettingsIcon.24.png; path = Assets/SettingsIcon.24.png; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				FABA5D460F717B60008EEE3A /* HTMLEscaper.m */,
 				FAD29AD30F796A22006E14A2 /* RegexKitLite.h */,
 				FAD29AD40F796A22006E14A2 /* RegexKitLite.m */,
+				FA2B43260F7D4BBE0074064A /* UIImage-NSCoding.h */,
+				FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 				FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */,
 				FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */,
 				FAB765F60F7C9E5B00CE0E38 /* BrowserViewController.m in Sources */,
+				FA2B43280F7D4BBE0074064A /* UIImage-NSCoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

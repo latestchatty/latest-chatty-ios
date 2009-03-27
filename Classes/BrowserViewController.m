@@ -20,6 +20,19 @@
   return self;
 }
 
+
+
+- (id)initWithStateDictionary:(NSDictionary *)dictionary {
+  return [self initWithRequest:[dictionary objectForKey:@"initialRequest"]];
+}
+
+- (NSDictionary *)stateDictionary {
+  return [NSDictionary dictionaryWithObjectsAndKeys:@"Browser",     @"type",
+                                                    initialRequest, @"initialRequest", nil];
+}
+
+
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   

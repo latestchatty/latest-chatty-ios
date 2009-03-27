@@ -14,17 +14,28 @@
 
 @synthesize stories;
 
-- (id)initWithCoder:(NSCoder *)coder {
-  [super initWithCoder:coder];
-  
+- (id)init {
+  [super initWithNibName:@"StoriesViewController" bundle:nil];
   self.title = @"Stories";
-  
   return self;
-};
+}
+
+- (id)initWithStateDictionary:(NSDictionary *)dictionary {
+  [self init];
+  self.stories = [dictionary objectForKey:@"stories"];
+  return self;
+}
+
+- (NSDictionary *)stateDictionary {
+  return [NSDictionary dictionaryWithObjectsAndKeys:@"Stories", @"type",
+                                                    stories, @"stories", nil];
+}
 
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  if (stories == nil) [self refresh:self];
   
   UIBarButtonItem *latestChattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
                                                                          style:UIBarButtonItemStyleDone

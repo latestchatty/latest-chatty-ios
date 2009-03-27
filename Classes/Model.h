@@ -12,7 +12,7 @@
 #import "ModelLoader.h"
 
 
-@interface Model : NSObject {
+@interface Model : NSObject <NSCoding> {
   NSUInteger modelId;
 }
 

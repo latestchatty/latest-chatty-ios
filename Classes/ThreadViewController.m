@@ -12,6 +12,7 @@
 @implementation ThreadViewController
 
 @synthesize rootPost;
+@synthesize selectedIndexPath;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
   [super initWithNibName:@"ThreadViewController" bundle:nil];
@@ -21,6 +22,26 @@
   
   return self;
 }
+
+- (id)initWithStateDictionary:(NSDictionary *)dictionary {
+  [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]];
+  
+  self.rootPost = [dictionary objectForKey:@"rootPost"];
+  storyId = [[dictionary objectForKey:@"storyId"] intValue];
+  threadId = [[dictionary objectForKey:@"threadId"] intValue];
+  selectedIndexPath = [dictionary objectForKey:@"selectedIndexPath"];
+  
+  return self;
+}
+
+- (NSDictionary *)stateDictionary {
+  return [NSDictionary dictionaryWithObjectsAndKeys:@"Thread", @"type",
+                                                    rootPost,  @"rootPost",
+                                                    [NSNumber numberWithInt:storyId],  @"storyId",
+                                                    [NSNumber numberWithInt:threadId], @"threadId",
+                                                    selectedIndexPath, @"selectedIndexPath", nil];
+}
+
 
 - (IBAction)refresh:(id)sender {
   [super refresh:sender];
@@ -58,6 +79,16 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  if (rootPost) {
+    [self.tableView reloadData];
+    NSIndexPath *indexPath = selectedIndexPath;
+    if (indexPath == nil) [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    [self tableView:tableView didSelectRowAtIndexPath:indexPath];    
+  } else {
+    [self refresh:self];
+  }
+  
   UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
                                                                                target:self
                                                                                action:@selector(tappedReplyButton)];
@@ -70,8 +101,7 @@
 }
 
 - (IBAction)tappedReplyButton {
-  NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
-  Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
+  Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
   
   ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:post];
   [self.navigationController presentModalViewController:viewController animated:YES];
@@ -121,6 +151,8 @@
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  self.selectedIndexPath = indexPath;
+  
   Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
   
   StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
@@ -209,7 +241,7 @@
 }
 
 - (void)grippyBarDidSwipeRight {
-  NSIndexPath *oldIndexPath = [tableView indexPathForSelectedRow];
+  NSIndexPath *oldIndexPath = selectedIndexPath;
   
   NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
   if (oldIndexPath.row == [[rootPost repliesArray] count] - 1) newIndexPath = oldIndexPath;
@@ -219,7 +251,7 @@
 }
 
 - (void)grippyBarDidSwipeLeft {
-  NSIndexPath *oldIndexPath = [tableView indexPathForSelectedRow];
+  NSIndexPath *oldIndexPath = selectedIndexPath;
   
   NSIndexPath *newIndexPath;
   if (oldIndexPath.row == 0)

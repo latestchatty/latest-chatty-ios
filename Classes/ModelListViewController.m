@@ -13,6 +13,8 @@
 
 @synthesize tableView;
 
+# pragma mark View Notifications
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   
@@ -29,8 +31,6 @@
   [spinner release];
   
   [self.view addSubview:loadingView];
-  
-  [self refresh:self];
 }
 
 
@@ -62,18 +62,7 @@
   return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-  [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
+# pragma mark Actions
 
 - (IBAction)refresh:(id)sender {
   loadingView.alpha = 0.0;
@@ -103,6 +92,8 @@
 }
 
 
+#pragma mark Data Loading Callbacks
+
 // Fade in table cells
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
   loadingView.alpha = 1.0;
@@ -129,6 +120,8 @@
   [self didFinishLoadingAllModels:nil otherData:otherData];
 }
 
+
+#pragma mark Cleanup
 
 - (void)dealloc {
   [loader release];

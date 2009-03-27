@@ -13,6 +13,20 @@
 
 @synthesize modelId;
 
+#pragma mark Encoding
+
+- (id)initWithCoder:(NSCoder *)coder {
+  [super init];
+  
+  modelId = [coder decodeIntForKey:@"modelId"];
+  
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+  [encoder encodeInt:modelId forKey:@"modelId"];
+}
+
 #pragma mark Class Helpers
 
 + (NSString *)formatDate:(NSDate *)date; {
