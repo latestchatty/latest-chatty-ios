@@ -19,6 +19,7 @@
   
   self.storyId = aStoryId;
   self.post = aPost;
+  self.title = @"Compose";
   
   tagLookup = [[NSDictionary alloc] initWithObjectsAndKeys:
                 @"r{}r", @"Red",
@@ -56,16 +57,58 @@
   [postContent resignFirstResponder];
 }
 
+
+#pragma mark Image Handling
 - (IBAction)showImagePicker {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Implemented"
-                                                  message:@"Stay tuned"
-                                                 delegate:nil
-                                        cancelButtonTitle:@"OK"
-                                        otherButtonTitles:nil];
-  [alert show];
-  [alert release];
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Insert Image"
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                               otherButtonTitles:@"Camera", @"Library", nil];
+    dialog.actionSheetStyle = UIBarStyleBlackOpaque;
+    dialog.destructiveButtonIndex = -1;
+    [dialog showInView:self.view];
+    [dialog release];
+  } else {
+    [self actionSheet:nil clickedButtonAtIndex:0];
+  }
 }
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex != 2) {
+    UIImagePickerControllerSourceType sourceType;
+    if (buttonIndex == 0) sourceType = UIImagePickerControllerSourceTypeCamera;
+    if (buttonIndex == 1) sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.sourceType = sourceType;
+    [self presentModalViewController:imagePicker animated:YES];
+    [imagePicker release];
+  }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)anImage editingInfo:(NSDictionary *)editingInfo {
+  [self.navigationController dismissModalViewControllerAnimated:YES];
+  Image *image = [[Image alloc] initWithImage:anImage];
+  NSString *imageURL = [image uploadAndReturnImageUrl];
+  [image release];
+  
+  if (imageURL) {
+    postContent.text = [postContent.text stringByAppendingString:imageURL];
+  } else {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Failed"
+                                                    message:@"Sorry but there was an error uploading your photo"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Oopsie"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+  }
+}
+
+#pragma mark Tagging
 - (IBAction)tag:(id)sender {
   NSString *tag = [tagLookup objectForKey:[(UIButton *)sender currentTitle]];
   postContent.text = [postContent.text stringByAppendingString:tag];
@@ -75,6 +118,8 @@
   [postContent becomeFirstResponder];
   [postContent setSelectedRange:NSMakeRange(textLength - tagLength/2, 0)];
 }
+
+#pragma mark Actions
 
 - (IBAction)sendPost {
   NSUInteger parentId = 0;

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import "Image.h"
 
-@interface ComposeViewController : UIViewController {
+@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate> {
   NSInteger storyId;
   Post *post;
   
@@ -28,7 +29,6 @@
 - (IBAction)showImagePicker;
 - (IBAction)tag:(id)sender;
 
-- (IBAction)dismiss;
 - (IBAction)sendPost;
 
 @end

@@ -247,7 +247,7 @@
 					<object class="IBUIButton" id="310236438">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">305</int>
-						<string key="NSFrame">{{239, 4}, {77, 51}}</string>
+						<string key="NSFrame">{{237, 4}, {77, 51}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="231603938">
 							<int key="NSColorSpace">1</int>
@@ -281,7 +281,7 @@
 					<object class="IBUIButton" id="453044448">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">305</int>
-						<string key="NSFrame">{{162, 4}, {77, 51}}</string>
+						<string key="NSFrame">{{160, 4}, {77, 51}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="IBUIBackgroundColor" ref="231603938"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -289,14 +289,21 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="550435465"/>
-						<string key="IBUIHighlightedTitle">Image</string>
-						<string key="IBUIDisabledTitle">Image</string>
-						<string key="IBUISelectedTitle">Image</string>
-						<string key="IBUINormalTitle">Image</string>
+						<string key="IBUIHighlightedTitle"/>
+						<string key="IBUIDisabledTitle"/>
+						<string key="IBUISelectedTitle"/>
+						<string key="IBUINormalTitle"/>
 						<reference key="IBUIHighlightedTitleColor" ref="22205846"/>
 						<reference key="IBUIDisabledTitleColor" ref="22205846"/>
 						<reference key="IBUISelectedTitleColor" ref="22205846"/>
 						<reference key="IBUINormalTitleColor" ref="22205846"/>
+						<object class="NSCustomResource" key="IBUIHighlightedImage" id="662096943">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">Camera.png</string>
+						</object>
+						<reference key="IBUIDisabledImage" ref="662096943"/>
+						<reference key="IBUISelectedImage" ref="662096943"/>
+						<reference key="IBUINormalImage" ref="662096943"/>
 						<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
 						<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
 						<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
@@ -872,8 +879,6 @@
 							<reference ref="1029042873"/>
 							<reference ref="636749255"/>
 							<reference ref="698237717"/>
-							<reference ref="310236438"/>
-							<reference ref="453044448"/>
 							<reference ref="321117684"/>
 							<reference ref="360626197"/>
 							<reference ref="984086044"/>
@@ -886,6 +891,8 @@
 							<reference ref="653405184"/>
 							<reference ref="87703394"/>
 							<reference ref="1048333169"/>
+							<reference ref="310236438"/>
+							<reference ref="453044448"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -1086,7 +1093,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">140</int>
+			<int key="maxID">142</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1098,7 +1105,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>dismiss</string>
 							<string>sendPost</string>
 							<string>showImagePicker</string>
 							<string>showTagButtons</string>
@@ -1106,7 +1112,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
