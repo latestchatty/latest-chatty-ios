@@ -25,6 +25,7 @@
   
   IBOutlet UIWebView *postView;
   IBOutlet GrippyBar *grippyBar;
+  NSUInteger grippyBarPosition;
 }
 
 @property (retain) Post *rootPost;
@@ -32,5 +33,7 @@
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
 - (IBAction)tappedReplyButton;
+
+- (void)resetLayout;
 
 @end

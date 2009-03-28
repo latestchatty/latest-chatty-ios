@@ -49,6 +49,7 @@
     refreshButton.alpha = 0.4;
     [self addSubview:refreshButton];
     [refreshButton release];
+    
   }
   return self;
 }

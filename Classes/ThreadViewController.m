@@ -18,6 +18,7 @@
   [super initWithNibName:@"ThreadViewController" bundle:nil];
   
   threadId = aThreadId;
+  grippyBarPosition = 1;
   self.title = @"Thread";
   
   return self;
@@ -190,55 +191,55 @@
   return YES;
 }
 
-- (void)grippyBarDidSwipeUp {
-  [UIView beginAnimations:@"ShrinkPostView" context:nil];
+- (void)resetLayout {
+  [UIView beginAnimations:@"ResizePostView" context:nil];
   CGFloat usableHeight = self.view.frame.size.height - 24.0;
+  CGFloat dividerLocation;
   
-  // Expand post view
+  switch (grippyBarPosition) {
+    case 0:
+      dividerLocation = 0.25;
+      break;
+      
+    case 1:
+      dividerLocation = 0.5;
+      break;
+      
+    case 2:
+      dividerLocation = 0.8;
+      break;
+  }
+
+  
   postView.frame = CGRectMake(postView.frame.origin.x,
                               postView.frame.origin.y,
                               postView.frame.size.width,
-                              floor(usableHeight / 2));
+                              floor(usableHeight * dividerLocation));
   
-  // move grippy bar
   grippyBar.frame = CGRectMake(grippyBar.frame.origin.x,
-                               floor(usableHeight / 2),
+                               floor(usableHeight * dividerLocation),
                                grippyBar.frame.size.width,
                                grippyBar.frame.size.height);
   
-  // Shrink thread table
   tableView.frame = CGRectMake(tableView.frame.origin.x,
-                               floor(usableHeight / 2) + 24,
+                               floor(usableHeight * dividerLocation) + 24,
                                tableView.frame.size.width,
-                               floor(usableHeight / 2));
-  
+                               floor(usableHeight * (1.0 - dividerLocation)));
   [UIView commitAnimations];
 }
 
-- (void)grippyBarDidSwipeDown {
-  [UIView beginAnimations:@"ExpandPostView" context:nil];
-  CGFloat usableHeight = self.view.frame.size.height - 24.0;
-  
-  // Expand post view
-  postView.frame = CGRectMake(postView.frame.origin.x,
-                              postView.frame.origin.y,
-                              postView.frame.size.width,
-                              floor(usableHeight * 4.0/5.0));
-    
-  // move grippy bar
-  grippyBar.frame = CGRectMake(grippyBar.frame.origin.x,
-                               floor(usableHeight * 4.0/5.0),
-                               grippyBar.frame.size.width,
-                               grippyBar.frame.size.height);
-  
-  // Shrink thread table
-  tableView.frame = CGRectMake(tableView.frame.origin.x,
-                               floor(usableHeight * 4.0/5.0) + 24,
-                               tableView.frame.size.width,
-                               floor(usableHeight * 1.0/5.0));
-  
-  [UIView commitAnimations];
+- (void)grippyBarDidSwipeUp {
+  grippyBarPosition--;
+  if (grippyBarPosition < 0) grippyBarPosition = 0;
+  [self resetLayout];
 }
+
+- (void)grippyBarDidSwipeDown {
+  grippyBarPosition++;
+  if (grippyBarPosition > 2) grippyBarPosition = 2;
+  [self resetLayout];
+}
+
 
 - (void)grippyBarDidTapRightButton; {
   NSIndexPath *oldIndexPath = selectedIndexPath;
