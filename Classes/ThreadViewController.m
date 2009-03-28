@@ -105,7 +105,7 @@
   Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
   
   ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:post];
-  [self.navigationController presentModalViewController:viewController animated:YES];
+  [self.navigationController pushViewController:viewController animated:YES];
   [viewController release];
 }
 

@@ -77,7 +77,7 @@
 
 - (IBAction)tappedComposeButton {
   ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:nil];
-  [self.navigationController presentModalViewController:viewController animated:YES];
+  [self.navigationController pushViewController:viewController animated:YES];
   [viewController release];
 }
 

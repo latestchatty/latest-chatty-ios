@@ -43,6 +43,11 @@
 }
 
 - (void)viewDidLoad {
+  UIBarButtonItem *submitPostButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit Post" style:UIBarButtonItemStyleDone target:self action:@selector(sendPost)];
+  self.navigationItem.rightBarButtonItem = submitPostButton;
+  [submitPostButton release];
+  
+  
   if (post) parentPostPreview.text = post.preview;
   [postContent becomeFirstResponder];
 }
@@ -69,10 +74,6 @@
   NSUInteger tagLength  = [tag length];
   [postContent becomeFirstResponder];
   [postContent setSelectedRange:NSMakeRange(textLength - tagLength/2, 0)];
-}
-
-- (IBAction)dismiss {
-  [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)sendPost {
