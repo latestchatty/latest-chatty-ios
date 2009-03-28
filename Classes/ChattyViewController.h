@@ -18,6 +18,8 @@
 @interface ChattyViewController : ModelListViewController {
   NSUInteger storyId;
   NSArray *threads;
+  
+  NSIndexPath *indexPathToSelect;
 }
 
 @property (assign) NSUInteger storyId;

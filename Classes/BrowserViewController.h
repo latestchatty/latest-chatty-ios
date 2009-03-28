@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface BrowserViewController : UIViewController {
+@interface BrowserViewController : UIViewController <UIWebViewDelegate> {
   NSMutableURLRequest *initialRequest;
   IBOutlet UIWebView *webView;
 }

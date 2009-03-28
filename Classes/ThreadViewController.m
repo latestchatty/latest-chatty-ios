@@ -192,7 +192,6 @@
 }
 
 - (void)resetLayout {
-  [UIView beginAnimations:@"ResizePostView" context:nil];
   CGFloat usableHeight = self.view.frame.size.height - 24.0;
   CGFloat dividerLocation;
   
@@ -209,8 +208,8 @@
       dividerLocation = 0.8;
       break;
   }
-
   
+  [UIView beginAnimations:@"ResizePostView" context:nil];
   postView.frame = CGRectMake(postView.frame.origin.x,
                               postView.frame.origin.y,
                               postView.frame.size.width,

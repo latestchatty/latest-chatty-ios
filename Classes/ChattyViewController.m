@@ -40,13 +40,20 @@
   self.threads = [dictionary objectForKey:@"threads"];
   self.title =   [dictionary objectForKey:@"title"];
   
+  indexPathToSelect = [[dictionary objectForKey:@"selectedIndexPath"] retain];
+  
   return self;
 }
 
 - (NSDictionary *)stateDictionary {
-  return [NSDictionary dictionaryWithObjectsAndKeys:@"Chatty", @"type",
-                                                      threads, @"threads",
-                                                      self.title, @"title", nil];
+  NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"Chatty", @"type",
+                                                                                      threads, @"threads",
+                                                                                      self.title, @"title", nil];
+  
+  NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+  if (selectedIndexPath) [dictionary setObject:selectedIndexPath forKey:@"selectedIndexPath"];
+  
+  return dictionary;
 }
 
 
@@ -54,8 +61,13 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  if (threads == nil) [self refresh:self];
-    
+  if (threads == nil) {
+    [self refresh:self];
+  } else {
+    [self.tableView reloadData];
+    if (indexPathToSelect) [self.tableView selectRowAtIndexPath:indexPathToSelect animated:NO scrollPosition:UITableViewScrollPositionTop];
+  }
+  
   UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                                                  target:self
                                                                                  action:@selector(tappedComposeButton)];

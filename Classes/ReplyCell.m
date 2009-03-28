@@ -30,7 +30,7 @@
   preview.text = post.preview;
   
   // Set the indentation depth
-  CGFloat indentation = 10 + post.depth * INDENDATION;
+  CGFloat indentation = 3 + post.depth * INDENDATION;
   preview.frame = CGRectMake(indentation, 0, self.contentView.frame.size.width - indentation, [ReplyCell cellHeight]);
   
   // Choose a text color based on time level of the post

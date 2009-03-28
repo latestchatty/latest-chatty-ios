@@ -46,6 +46,10 @@
   [webView loadRequest:initialRequest];
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+  
+}
+
 - (IBAction)dragonDrop {
 	[initialRequest setValue:@"" forHTTPHeaderField:@"Referer"];
 	[webView loadRequest:initialRequest];
