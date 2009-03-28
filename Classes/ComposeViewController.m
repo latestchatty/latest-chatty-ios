@@ -15,16 +15,35 @@
 @synthesize post;
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost {
-  if (self = [super initWithNibName:@"ComposeViewController" bundle:nil]) {
-    self.storyId = aStoryId;
-    self.post = aPost;
-  }
+  [super initWithNibName:@"ComposeViewController" bundle:nil];
+  
+  self.storyId = aStoryId;
+  self.post = aPost;
+  
+  tagLookup = [[NSDictionary alloc] initWithObjectsAndKeys:
+                @"r{}r", @"Red",
+                @"g{}g", @"Green",
+                @"b{}b", @"Blue",
+                @"y{}y", @"Yellow",
+                @"e[]e", @"Olive",
+                @"l[]l", @"Lime",
+                @"n[]n", @"Orange",
+                @"p[]p", @"Pink",
+                @"/[]/", @"Italic",
+                @"b[]b", @"Bold",
+                @"q[]q", @"Quote",
+                @"s[]s", @"Small",
+                @"_[]_", @"Underline",
+                @"-[]-", @"Strike",
+                @"o[]o", @"Spoiler",
+                @"/{{}}/", @"Code",
+                nil];
+  
   return self;
 }
 
 - (void)viewDidLoad {
   if (post) parentPostPreview.text = post.preview;
-  
   [postContent becomeFirstResponder];
 }
 
@@ -43,13 +62,13 @@
 }
 
 - (IBAction)tag:(id)sender {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Implemented"
-                                                  message:@"Stay tuned"
-                                                 delegate:nil
-                                        cancelButtonTitle:@"OK"
-                                        otherButtonTitles:nil];
-  [alert show];
-  [alert release];
+  NSString *tag = [tagLookup objectForKey:[(UIButton *)sender currentTitle]];
+  postContent.text = [postContent.text stringByAppendingString:tag];
+  
+  NSUInteger textLength = [[postContent text] length];
+  NSUInteger tagLength  = [tag length];
+  [postContent becomeFirstResponder];
+  [postContent setSelectedRange:NSMakeRange(textLength - tagLength/2, 0)];
 }
 
 - (IBAction)dismiss {
@@ -69,6 +88,7 @@
 
 
 - (void)dealloc {
+  [tagLookup release];
   self.post = nil;
   [super dealloc];
 }

@@ -13,6 +13,8 @@
   NSInteger storyId;
   Post *post;
   
+  NSDictionary *tagLookup;
+  
   IBOutlet UILabel *parentPostPreview;
   IBOutlet UITextView *postContent;
 }
