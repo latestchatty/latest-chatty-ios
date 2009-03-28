@@ -69,6 +69,8 @@
 		FABA5DBF0F718042008EEE3A /* Stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = FABA5DBE0F718042008EEE3A /* Stylesheet.css */; };
 		FABA5DC20F718086008EEE3A /* StringTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5DC10F718086008EEE3A /* StringTemplate.m */; };
 		FABA5E210F7185CC008EEE3A /* Story.html in Resources */ = {isa = PBXBuildFile; fileRef = FABA5E200F7185CC008EEE3A /* Story.html */; };
+		FAD26D8B0F7EDFE0001A76F6 /* RefreshIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD26D8A0F7EDFE0001A76F6 /* RefreshIcon.png */; };
+		FAD26D910F7EE0A5001A76F6 /* TagIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD26D900F7EE0A5001A76F6 /* TagIcon.png */; };
 		FAD29A540F79621C006E14A2 /* GrippyBar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A520F79621C006E14A2 /* GrippyBar.png */; };
 		FAD29A550F79621C006E14A2 /* GrippyBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */; };
 		FAD29A610F796452006E14A2 /* DropShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A600F796452006E14A2 /* DropShadow.png */; };
@@ -79,7 +81,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* LatestChatty2AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatestChatty2AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* LatestChatty2AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatestChatty2AppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* LatestChatty2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChatty2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* LatestChatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E55F0DE3E45000AC0155 /* StoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = StoriesViewController.xib; path = ../StoriesViewController.xib; sourceTree = "<group>"; };
@@ -167,6 +169,8 @@
 		FABA5DC00F718086008EEE3A /* StringTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringTemplate.h; sourceTree = "<group>"; };
 		FABA5DC10F718086008EEE3A /* StringTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringTemplate.m; sourceTree = "<group>"; };
 		FABA5E200F7185CC008EEE3A /* Story.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Story.html; sourceTree = "<group>"; };
+		FAD26D8A0F7EDFE0001A76F6 /* RefreshIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RefreshIcon.png; path = Assets/RefreshIcon.png; sourceTree = "<group>"; };
+		FAD26D900F7EE0A5001A76F6 /* TagIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TagIcon.png; path = Assets/TagIcon.png; sourceTree = "<group>"; };
 		FAD29A520F79621C006E14A2 /* GrippyBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrippyBar.png; path = Assets/GrippyBar.png; sourceTree = "<group>"; };
 		FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrippyBarBackground.png; path = Assets/GrippyBarBackground.png; sourceTree = "<group>"; };
 		FAD29A600F796452006E14A2 /* DropShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DropShadow.png; path = Assets/DropShadow.png; sourceTree = "<group>"; };
@@ -203,7 +207,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* LatestChatty2.app */,
+				1D6058910D05DD3D006BFB54 /* LatestChatty.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -343,6 +347,8 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FAD26D900F7EE0A5001A76F6 /* TagIcon.png */,
+				FAD26D8A0F7EDFE0001A76F6 /* RefreshIcon.png */,
 				FA2B47C10F7E2E790074064A /* Camera.png */,
 				FA2B45900F7D96060074064A /* GrayBullet.png */,
 				FA2B458E0F7D95710074064A /* BlueBullet.png */,
@@ -396,7 +402,7 @@
 			);
 			name = LatestChatty2;
 			productName = LatestChatty2;
-			productReference = 1D6058910D05DD3D006BFB54 /* LatestChatty2.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* LatestChatty.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -464,6 +470,8 @@
 				FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */,
 				FA2B45910F7D96060074064A /* GrayBullet.png in Resources */,
 				FA2B47C20F7E2E790074064A /* Camera.png in Resources */,
+				FAD26D8B0F7EDFE0001A76F6 /* RefreshIcon.png in Resources */,
+				FAD26D910F7EE0A5001A76F6 /* TagIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +537,7 @@
 					"-ObjC",
 					"-ljson",
 				);
-				PRODUCT_NAME = LatestChatty2;
+				PRODUCT_NAME = LatestChatty;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6558EC5F-3459-434A-AD98-5E0DAE28C4DF";
 			};
 			name = Debug;

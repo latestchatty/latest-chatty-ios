@@ -169,6 +169,12 @@
   [htmlTemplate release];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+  if (scrollView == tableView) {
+    [tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+  }
+}
+
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
   NSString *url = [[request URL] absoluteString];
   if (navigationType == UIWebViewNavigationTypeLinkClicked) {
@@ -265,6 +271,12 @@
 
 - (void)grippyBarDidTapRefreshButton {
   [self refresh:nil];
+}
+
+- (void)grippyBarDidTapTagButton {
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Implemented" message:@"tagging isn't done yet." delegate:nil cancelButtonTitle:@"Fiddlesticks" otherButtonTitles:nil];
+  [alert show];
+  [alert release];
 }
 
 - (void)dealloc {
