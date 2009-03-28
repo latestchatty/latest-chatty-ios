@@ -12,6 +12,9 @@
 
 - (void)grippyBarDidSwipeUp;
 - (void)grippyBarDidSwipeDown;
+- (void)grippyBarDidTapLeftButton;
+- (void)grippyBarDidTapRightButton;
+- (void)grippyBarDidTapRefreshButton;
 
 @end
 
@@ -23,5 +26,9 @@
   IBOutlet id<GrippyBarDelegate> delegate;
   
 }
+
+- (void)tappedLeftButton;
+- (void)tappedRightButton;
+- (void)tappedRefreshButton;
 
 @end

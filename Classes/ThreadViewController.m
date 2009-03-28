@@ -240,7 +240,7 @@
   [UIView commitAnimations];
 }
 
-- (IBAction)nextPost {
+- (void)grippyBarDidTapRightButton; {
   NSIndexPath *oldIndexPath = selectedIndexPath;
   
   NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
@@ -250,7 +250,7 @@
   [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
 }
 
-- (IBAction)previousPost {
+- (void)grippyBarDidTapLeftButton {
   NSIndexPath *oldIndexPath = selectedIndexPath;
   
   NSIndexPath *newIndexPath;
@@ -261,6 +261,10 @@
   
   [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
   [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];  
+}
+
+- (void)grippyBarDidTapRefreshButton {
+  [self refresh:nil];
 }
 
 - (void)dealloc {

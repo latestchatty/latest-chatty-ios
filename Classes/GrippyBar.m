@@ -26,6 +26,29 @@
     [self addSubview:grippy];
     [grippy release];
     
+    UIButton *previousButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 24)];
+    [previousButton addTarget:self action:@selector(tappedLeftButton) forControlEvents:UIControlEventTouchUpInside];
+    [previousButton setImage:[UIImage imageNamed:@"left.png"] forState:UIControlStateNormal];
+    previousButton.showsTouchWhenHighlighted = YES;
+    previousButton.alpha = 0.4;
+    [self addSubview:previousButton];
+    [previousButton release];
+    
+    UIButton *nextButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 50, 0, 50, 24)];
+    [nextButton addTarget:self action:@selector(tappedRightButton) forControlEvents:UIControlEventTouchUpInside];
+    [nextButton setImage:[UIImage imageNamed:@"right.png"] forState:UIControlStateNormal];
+    nextButton.showsTouchWhenHighlighted = YES;
+    nextButton.alpha = 0.4;
+    [self addSubview:nextButton];
+    [nextButton release];
+    
+    UIButton *refreshButton = [[UIButton alloc] initWithFrame:CGRectMake(62, 0, 50, 24)];
+    [refreshButton addTarget:self action:@selector(tappedRefreshButton) forControlEvents:UIControlEventTouchUpInside];
+    [refreshButton setTitle:@"R" forState:UIControlStateNormal];
+    refreshButton.showsTouchWhenHighlighted = YES;
+    refreshButton.alpha = 0.4;
+    [self addSubview:refreshButton];
+    [refreshButton release];
   }
   return self;
 }
@@ -52,6 +75,18 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   isDragging = NO;
+}
+
+- (void)tappedLeftButton {
+  [delegate grippyBarDidTapLeftButton];
+}
+
+- (void)tappedRightButton {
+  [delegate grippyBarDidTapRightButton];
+}
+
+- (void)tappedRefreshButton {
+  [delegate grippyBarDidTapRefreshButton];
 }
 
 
