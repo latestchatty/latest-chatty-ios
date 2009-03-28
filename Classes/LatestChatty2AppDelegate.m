@@ -41,6 +41,7 @@
   // Find saved state
   NSData *savedState = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedState"];
   if (savedState) {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedState"];
     NSArray *controllerDictionaries = [NSKeyedUnarchiver unarchiveObjectWithData:savedState];
     
     // Create a dictionary to convert controller type strings to class objects

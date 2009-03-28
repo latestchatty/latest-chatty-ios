@@ -71,7 +71,7 @@
     [dialog showInView:self.view];
     [dialog release];
   } else {
-    [self actionSheet:nil clickedButtonAtIndex:0];
+    [self actionSheet:nil clickedButtonAtIndex:1];
   }
 }
 
@@ -126,7 +126,7 @@
   if (post) parentId = post.modelId;
   
   if ([Post createWithBody:postContent.text parentId:post.modelId storyId:storyId]) {
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
   } else {
     NSLog(@"Failure!");
   }
