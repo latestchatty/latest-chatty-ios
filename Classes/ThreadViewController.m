@@ -277,9 +277,23 @@
 }
 
 - (void)grippyBarDidTapTagButton {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Implemented" message:@"tagging isn't done yet." delegate:nil cancelButtonTitle:@"Fiddlesticks" otherButtonTitles:nil];
-  [alert show];
-  [alert release];
+  UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
+                                                     delegate:self
+                                            cancelButtonTitle:@"Cancel"
+                                       destructiveButtonTitle:nil
+                                            otherButtonTitles:@"LOL", @"INF", @"Mark", nil];
+  [sheet showInView:self.view];
+  [sheet release];
+}
+
+#pragma mark Action Sheet Delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  NSUInteger postId = [[[rootPost repliesArray] objectAtIndex:selectedIndexPath.row] modelId];
+  
+  if (buttonIndex == 0) [Tag tagPostId:postId tag:TagTypeLOL];
+  if (buttonIndex == 1) [Tag tagPostId:postId tag:TagTypeINF];
+  if (buttonIndex == 2) [Tag tagPostId:postId tag:TagTypeMark];
 }
 
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ModelListViewController.h"
 #import "Post.h"
+#import "Tag.h"
 #import "ReplyCell.h"
 #import "StringTemplate.h"
 #import "RegexKitLite.h"
@@ -16,7 +17,7 @@
 #import "ComposeViewController.h"
 #import "BrowserViewController.h"
 
-@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate> {
+@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate> {
   NSUInteger storyId;
   NSUInteger threadId;
   Post *rootPost;

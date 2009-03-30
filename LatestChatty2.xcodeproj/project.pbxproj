@@ -18,6 +18,7 @@
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
+		FA26AD080F80F85C00EB5FF0 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = FA26AD070F80F85C00EB5FF0 /* Tag.m */; };
 		FA2B43280F7D4BBE0074064A /* UIImage-NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */; };
 		FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B458E0F7D95710074064A /* BlueBullet.png */; };
 		FA2B45910F7D96060074064A /* GrayBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B45900F7D96060074064A /* GrayBullet.png */; };
@@ -97,6 +98,8 @@
 		FA0481210F70D10300F752A6 /* ChattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyViewController.m; sourceTree = "<group>"; };
 		FA1E7D650F787FEF00BAA55B /* ModelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader.h; sourceTree = "<group>"; };
 		FA1E7D660F787FEF00BAA55B /* ModelLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelLoader.m; sourceTree = "<group>"; };
+		FA26AD060F80F85B00EB5FF0 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		FA26AD070F80F85C00EB5FF0 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		FA2B43260F7D4BBE0074064A /* UIImage-NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-NSCoding.h"; sourceTree = "<group>"; };
 		FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-NSCoding.m"; sourceTree = "<group>"; };
 		FA2B458E0F7D95710074064A /* BlueBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueBullet.png; path = Assets/BlueBullet.png; sourceTree = "<group>"; };
@@ -318,6 +321,8 @@
 				FA04800C0F70BD0500F752A6 /* Post.m */,
 				FA2B475A0F7E1DDB0074064A /* Image.h */,
 				FA2B475B0F7E1DDB0074064A /* Image.m */,
+				FA26AD060F80F85B00EB5FF0 /* Tag.h */,
+				FA26AD070F80F85C00EB5FF0 /* Tag.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 				FA2B47550F7E1DA30074064A /* NSDataAdditions.m in Sources */,
 				FA2B47560F7E1DA30074064A /* NSStringAdditions.m in Sources */,
 				FA2B475C0F7E1DDB0074064A /* Image.m in Sources */,
+				FA26AD080F80F85C00EB5FF0 /* Tag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
