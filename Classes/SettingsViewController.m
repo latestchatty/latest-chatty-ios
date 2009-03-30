@@ -29,6 +29,7 @@
   [defaults setObject:usernameField.text forKey:@"username"];
   [defaults setObject:passwordField.text forKey:@"password"];
   [defaults setObject:serverField.text   forKey:@"server"];
+  [defaults setBool:landscapeSwitch.on   forKey:@"landscape"];
   
   [self.navigationController dismissModalViewControllerAnimated:YES];
 }
@@ -39,7 +40,14 @@
   usernameField.text = [defaults stringForKey:@"username"];
   passwordField.text = [defaults stringForKey:@"password"];
   serverField.text   = [[defaults stringForKey:@"server"] stringByReplacingOccurrencesOfRegex:@"http://" withString:@""];
+  landscapeSwitch.on = [defaults boolForKey:@"landscape"];
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   if (textField == usernameField) {

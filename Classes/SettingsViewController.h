@@ -13,6 +13,7 @@
   IBOutlet UITextField *usernameField;
   IBOutlet UITextField *passwordField;
   IBOutlet UITextField *serverField;
+  IBOutlet UISwitch    *landscapeSwitch;
 }
 
 - (IBAction)dismiss:(id)sender;

@@ -33,7 +33,10 @@
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
   
   // Settings defaults
-  NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:@"ws.shackchatty.com", @"server", nil];
+  NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"ws.shackchatty.com",         @"server",
+                            [NSNumber numberWithBool:YES], @"landscape",
+                            nil];
   [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
