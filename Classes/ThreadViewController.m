@@ -95,10 +95,12 @@
                                                                                action:@selector(tappedReplyButton)];
   self.navigationItem.rightBarButtonItem = replyButton;
   [replyButton release];
+  
+  [self resetLayout];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  // prevent superclass behavious of cell deselection
+  // prevent superclass behaviour of cell deselection
 }
 
 - (IBAction)tappedReplyButton {

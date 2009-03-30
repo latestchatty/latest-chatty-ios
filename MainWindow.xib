@@ -58,7 +58,7 @@
 					<bool key="IBUIMultipleTouchEnabled">YES</bool>
 					<int key="IBUIBarStyle">1</int>
 				</object>
-				<object class="NSArray" key="IBUIViewControllers">
+				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 				</object>
 			</object>

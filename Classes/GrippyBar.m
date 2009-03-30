@@ -17,12 +17,14 @@
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GrippyBarBackground.png"]];
     backgroundView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     backgroundView.contentMode = UIViewContentModeScaleToFill;
+    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self addSubview:backgroundView];
     [backgroundView release];
     
     UIImageView *grippy = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GrippyBar.png"]];
     grippy.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     grippy.contentMode = UIViewContentModeCenter;
+    grippy.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [self addSubview:grippy];
     [grippy release];
     
@@ -31,6 +33,7 @@
     [previousButton setImage:[UIImage imageNamed:@"left.png"] forState:UIControlStateNormal];
     previousButton.showsTouchWhenHighlighted = YES;
     previousButton.alpha = 0.4;
+    previousButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [self addSubview:previousButton];
     [previousButton release];
     
@@ -39,6 +42,7 @@
     [nextButton setImage:[UIImage imageNamed:@"right.png"] forState:UIControlStateNormal];
     nextButton.showsTouchWhenHighlighted = YES;
     nextButton.alpha = 0.4;
+    nextButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [self addSubview:nextButton];
     [nextButton release];
     
@@ -47,6 +51,7 @@
     [refreshButton setImage:[UIImage imageNamed:@"RefreshIcon.png"] forState:UIControlStateNormal];
     refreshButton.showsTouchWhenHighlighted = YES;
     refreshButton.alpha = 0.4;
+    refreshButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     [self addSubview:refreshButton];
     [refreshButton release];
     
@@ -55,6 +60,7 @@
     [tagButton setImage:[UIImage imageNamed:@"TagIcon.png"] forState:UIControlStateNormal];
     tagButton.showsTouchWhenHighlighted = YES;
     tagButton.alpha = 0.4;
+    tagButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     [self addSubview:tagButton];
     [tagButton release];
     

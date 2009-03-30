@@ -57,6 +57,10 @@
   [postContent resignFirstResponder];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
 
 #pragma mark Image Handling
 - (IBAction)showImagePicker {

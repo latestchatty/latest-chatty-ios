@@ -22,11 +22,13 @@
   loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
   loadingView.userInteractionEnabled = NO;
   loadingView.alpha = 0.0;
+  loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   
   UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
   [spinner startAnimating];
   spinner.contentMode = UIViewContentModeCenter;
   spinner.frame = CGRectMake(0, 0, self.view.frame.size.width -1, self.view.frame.size.height / 2.0 -1);
+  loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   [loadingView addSubview:spinner];
   [spinner release];
   
@@ -45,10 +47,8 @@
   [self.tableView flashScrollIndicators];
 }
 
-// Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  //return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-  return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 # pragma mark Actions

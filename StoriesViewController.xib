@@ -33,7 +33,7 @@
 			</object>
 			<object class="IBUIView" id="26899698">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUITableView" id="747164330">
@@ -268,9 +268,9 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>refresh:</string>
 							<string>tappedChattyButton:</string>
-							<string>tappedLatestChattyButton:</string>
+							<string>tappedLatestChattyButton</string>
+							<string>tappedSettingsButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
