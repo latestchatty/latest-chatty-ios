@@ -20,6 +20,8 @@
   NSArray *threads;
   
   NSIndexPath *indexPathToSelect;
+  NSUInteger currentPage;
+  NSUInteger lastPage;
 }
 
 @property (assign) NSUInteger storyId;

@@ -63,10 +63,13 @@
   [encoder encodeInt:timeLevel forKey:@"timeLevel"];
 }
 
++ (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId pageNumber:(NSUInteger)pageNumber delegate:(id<ModelLoadingDelegate>)delegate {
+  NSString *urlString = [NSString stringWithFormat:@"/%i.%i", storyId, pageNumber];
+  return [self loadAllFromUrl:urlString delegate:delegate];
+}
 
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate {
-  NSString *urlString = [NSString stringWithFormat:@"/%i", storyId];
-  return [self loadAllFromUrl:urlString delegate:delegate];
+  return [self findAllWithStoryId:storyId pageNumber:1 delegate:delegate];
 }
 
 + (ModelLoader *)findAllInLatestChattyWithDelegate:(id<ModelLoadingDelegate>)delegate {
@@ -92,6 +95,8 @@
   NSDictionary *dictionary = (NSDictionary *)responseData;
   return [NSDictionary dictionaryWithObjectsAndKeys:[dictionary objectForKey:@"story_id"], @"storyId",
                                                     [dictionary objectForKey:@"story_name"], @"storyName",
+                                                    [dictionary objectForKey:@"page"], @"page",
+                                                    [dictionary objectForKey:@"last_page"], @"lastPage",
                                                     nil];
 }
 

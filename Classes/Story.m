@@ -38,7 +38,7 @@
   [encoder encodeInt:commentCount forKey:@"commentCount"];
 }
 
-+ (NSString *)formatDate:(NSDate *)date; {
++ (NSString *)formatDate:(NSDate *)date {
   return [date descriptionWithCalendarFormat:@"%b %d %I:%M %p" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
 }
 

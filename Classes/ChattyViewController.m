@@ -39,6 +39,8 @@
   
   self.threads = [dictionary objectForKey:@"threads"];
   self.title =   [dictionary objectForKey:@"title"];
+  lastPage =     [[dictionary objectForKey:@"lastPage"] intValue];
+  currentPage =  [[dictionary objectForKey:@"currentPage"] intValue];
   
   indexPathToSelect = [[dictionary objectForKey:@"selectedIndexPath"] retain];
   
@@ -48,7 +50,9 @@
 - (NSDictionary *)stateDictionary {
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"Chatty", @"type",
                                                                                       threads, @"threads",
-                                                                                      self.title, @"title", nil];
+                                                                                      self.title, @"title",
+                                                                                      [NSNumber numberWithInt:lastPage], @"lastPage",
+                                                                                      [NSNumber numberWithInt:currentPage], @"currentPage", nil];
   
   NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
   if (selectedIndexPath) [dictionary setObject:selectedIndexPath forKey:@"selectedIndexPath"];
@@ -83,6 +87,8 @@
 
 - (IBAction)refresh:(id)sender {
   [super refresh:self];
+  currentPage = 1;
+  
   if (storyId > 0)
     loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];
   else
@@ -90,8 +96,20 @@
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
-  self.storyId = [[models objectAtIndex:0] storyId];
-  self.threads = models;
+  NSUInteger page = [[otherData objectForKey:@"page"] intValue];
+  
+  if (page <= 1) {
+    self.storyId = [[models objectAtIndex:0] storyId];
+    self.threads = models;
+  } else {
+    NSMutableArray *newThreadsArray = [NSMutableArray arrayWithArray:self.threads];
+    [newThreadsArray addObjectsFromArray:models];
+    self.threads = newThreadsArray;
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
+  }
+  
+  lastPage = [[otherData objectForKey:@"lastPage"] intValue];
+  
   [self.tableView reloadData];
   [loader release];
   loader = nil;
@@ -113,24 +131,33 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  if (currentPage < lastPage) return [threads count] + 1;
   return [threads count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *CellIdentifier = @"ThreadCell";
-  
-  ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (cell == nil) {
-    cell = [[[ThreadCell alloc] init] autorelease];
+  if (indexPath.row < [threads count]) {
+    ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:@"ThreadCell"];
+    if (cell == nil) {
+      cell = [[[ThreadCell alloc] init] autorelease];
+    }
+    
+    // Set up the cell...
+    cell.storyId = storyId;
+    cell.rootPost = [threads objectAtIndex:indexPath.row];    
+    
+    return cell;
+  } else {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
+    cell.text = @"Load More";
+    cell.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    cell.textAlignment = UITextAlignmentCenter;
+    return [cell autorelease];
   }
-  
-  // Set up the cell...
-  cell.storyId = storyId;
-  cell.rootPost = [threads objectAtIndex:indexPath.row];
 
-  return cell;
+  return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -138,10 +165,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  Post *thread = [threads objectAtIndex:indexPath.row];
-  ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:thread.modelId];
-  [self.navigationController pushViewController:viewController animated:YES];
-  [viewController release];
+  if (indexPath.row < [threads count]) {
+    Post *thread = [threads objectAtIndex:indexPath.row];
+    ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:thread.modelId];
+    [self.navigationController pushViewController:viewController animated:YES];
+    [viewController release];
+  } else {
+    [self showLoadingSpinner];
+    [loader cancel];
+    [loader release];
+    currentPage++;
+    loader = [[Post findAllWithStoryId:storyId pageNumber:currentPage delegate:self] retain];
+  }
 }
 
 
