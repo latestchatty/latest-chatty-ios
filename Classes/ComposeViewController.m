@@ -128,7 +128,7 @@
   if ([Post createWithBody:postContent.text parentId:post.modelId storyId:storyId]) {
     NSArray *controllers = [self.navigationController viewControllers];
     ModelListViewController *lastController = [controllers objectAtIndex:[controllers count] - 2];
-    [lastController refresh:nil];  
+    [lastController refresh:nil];
     [self.navigationController popViewControllerAnimated:YES];    
   } else {
     NSLog(@"Failure!");

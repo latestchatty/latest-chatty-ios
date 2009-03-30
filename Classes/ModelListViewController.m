@@ -45,17 +45,6 @@
   [self.tableView flashScrollIndicators];
 }
 
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
-
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   //return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
@@ -65,12 +54,23 @@
 # pragma mark Actions
 
 - (IBAction)refresh:(id)sender {
+  [self showLoadingSpinner];
+}
+
+#pragma mark Loading Spinner
+
+- (void)showLoadingSpinner {
   loadingView.alpha = 0.0;
   [UIView beginAnimations:@"LoadingViewFadeIn" context:nil];
   loadingView.alpha = 1.0;
   [UIView commitAnimations];
 }
 
+- (void)hideLoadingSpinner {
+  [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
+  loadingView.alpha = 0.0;
+  [UIView commitAnimations];
+}
 
 #pragma mark Table view methods
 
@@ -96,10 +96,7 @@
 
 // Fade in table cells
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
-  loadingView.alpha = 1.0;
-  [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
-  loadingView.alpha = 0.0;
-  [UIView commitAnimations];
+  [self hideLoadingSpinner];
   
   // Create cells
   [self.tableView reloadData];
@@ -118,6 +115,17 @@
 
 - (void)didFinishLoadingModel:(id)aModel otherData:(id)otherData {
   [self didFinishLoadingAllModels:nil otherData:otherData];
+}
+
+- (void)didFailToLoadModels {
+  [self hideLoadingSpinner];
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                  message:@"I could not connect to the server.  Check your internet connection or you server address in your settings."
+                                                 delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+  [alert show];
+  [alert release];
 }
 
 

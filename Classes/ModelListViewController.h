@@ -18,6 +18,9 @@
 
 @property (retain) UITableView *tableView;
 
+- (void)showLoadingSpinner;
+- (void)hideLoadingSpinner;
+
 - (IBAction)refresh:(id)sender;
 
 @end

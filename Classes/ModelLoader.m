@@ -75,6 +75,10 @@
   }
 }
 
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+  [modelDelegate didFailToLoadModels];
+}
+
 - (void)dealloc {
   [urlString release];
   [connection release];
