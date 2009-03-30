@@ -26,7 +26,7 @@
     [self addSubview:grippy];
     [grippy release];
     
-    UIButton *previousButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 24)];
+    UIButton *previousButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 100, 0, 50, 24)];
     [previousButton addTarget:self action:@selector(tappedLeftButton) forControlEvents:UIControlEventTouchUpInside];
     [previousButton setImage:[UIImage imageNamed:@"left.png"] forState:UIControlStateNormal];
     previousButton.showsTouchWhenHighlighted = YES;
@@ -34,7 +34,7 @@
     [self addSubview:previousButton];
     [previousButton release];
     
-    UIButton *nextButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 0, 50, 24)];
+    UIButton *nextButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 50, 0, 50, 24)];
     [nextButton addTarget:self action:@selector(tappedRightButton) forControlEvents:UIControlEventTouchUpInside];
     [nextButton setImage:[UIImage imageNamed:@"right.png"] forState:UIControlStateNormal];
     nextButton.showsTouchWhenHighlighted = YES;
@@ -42,7 +42,7 @@
     [self addSubview:nextButton];
     [nextButton release];
     
-    UIButton *refreshButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 50, 0, 50, 24)];
+    UIButton *refreshButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 24)];
     [refreshButton addTarget:self action:@selector(tappedRefreshButton) forControlEvents:UIControlEventTouchUpInside];
     [refreshButton setImage:[UIImage imageNamed:@"RefreshIcon.png"] forState:UIControlStateNormal];
     refreshButton.showsTouchWhenHighlighted = YES;
@@ -50,7 +50,7 @@
     [self addSubview:refreshButton];
     [refreshButton release];
     
-    UIButton *tagButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 100, 0, 50, 24)];
+    UIButton *tagButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 0, 50, 24)];
     [tagButton addTarget:self action:@selector(tappedTagButton) forControlEvents:UIControlEventTouchUpInside];
     [tagButton setImage:[UIImage imageNamed:@"TagIcon.png"] forState:UIControlStateNormal];
     tagButton.showsTouchWhenHighlighted = YES;
