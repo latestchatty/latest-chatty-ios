@@ -53,6 +53,41 @@
   [postContent becomeFirstResponder];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  
+  if ([[NSUserDefaults standardUserDefaults] boolForKey:@"hideOrientationWarning"] != YES) {
+    UIAlertView *alert;
+    
+    NSString *title = @"Important!";
+    NSString *message = @"This app is just one portal to a much larger community. If you are new here, tap \"Rules\" to read up on what to do and what not to do. Improper conduct may lead to unpleasant experiences and getting banned by community moderators.\n\n Lastly, use the text formatting tags sparingly. Please.";
+    
+    alert = [[UIAlertView alloc] initWithTitle:title
+                                       message:message
+                                      delegate:self
+                             cancelButtonTitle:([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait ? @"OK" : nil)
+                             otherButtonTitles:@"Rules", @"Hide", nil];    
+    [alert show];
+    [alert release];    
+  }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  // Adjust index for missing "OK" in landscape view.
+  if ([[UIApplication sharedApplication] statusBarOrientation] != UIInterfaceOrientationPortrait) buttonIndex++;
+  
+  // Noob help alert
+  if (buttonIndex == 1) {
+    NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
+    BrowserViewController *controller = [[BrowserViewController alloc] initWithRequest:rulesPageRequest];
+    [[self navigationController] pushViewController:controller animated:YES];
+    [controller release];
+  } else if (buttonIndex == 2) {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hideOrientationWarning"];
+  }
+}
+
+
 - (IBAction)showTagButtons {
   [postContent resignFirstResponder];
 }
