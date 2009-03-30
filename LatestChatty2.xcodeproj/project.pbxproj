@@ -572,10 +572,11 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = (
+					"-licucore",
 					"-ObjC",
 					"-ljson",
 				);
-				PRODUCT_NAME = LatestChatty2;
+				PRODUCT_NAME = LatestChatty;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6558EC5F-3459-434A-AD98-5E0DAE28C4DF";
 			};
 			name = Release;
@@ -625,7 +626,7 @@
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Wayne";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Alex Wayne";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -636,11 +637,12 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = (
+					"-licucore",
 					"-ObjC",
 					"-ljson",
 				);
-				PRODUCT_NAME = LatestChatty2;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6558EC5F-3459-434A-AD98-5E0DAE28C4DF";
+				PRODUCT_NAME = LatestChatty;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B8033E3F-DC24-4D75-ABF4-442BA3B57CDA";
 			};
 			name = Distribution;
 		};
