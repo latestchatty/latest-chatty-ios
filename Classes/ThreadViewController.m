@@ -197,6 +197,9 @@
   return YES;
 }
 
+
+#pragma mark Grippy Bar Methods
+
 - (void)resetLayout {
   CGFloat usableHeight = self.view.frame.size.height - 24.0;
   CGFloat dividerLocation;
@@ -279,8 +282,12 @@
   [alert release];
 }
 
+
+#pragma mark Cleanup
+
 - (void)dealloc {
   [rootPost release];
+  [selectedIndexPath release];
   [super dealloc];
 }
 

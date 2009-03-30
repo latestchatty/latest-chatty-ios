@@ -54,6 +54,8 @@
 # pragma mark Actions
 
 - (IBAction)refresh:(id)sender {
+  [loader cancel];
+  [loader release];
   [self showLoadingSpinner];
 }
 
@@ -118,6 +120,8 @@
 }
 
 - (void)didFailToLoadModels {
+  [loader release];
+  loader = nil;
   [self hideLoadingSpinner];
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                   message:@"I could not connect to the server.  Check your internet connection or you server address in your settings."

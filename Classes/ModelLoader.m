@@ -76,7 +76,13 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+  NSLog(@"Failed to load from URL: %@", urlString);
+  
   [modelDelegate didFailToLoadModels];
+}
+
+- (void)cancel {
+  [connection cancel];
 }
 
 - (void)dealloc {

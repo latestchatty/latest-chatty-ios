@@ -30,4 +30,6 @@
                  dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
                 modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate;
 
+- (void)cancel;
+
 @end
