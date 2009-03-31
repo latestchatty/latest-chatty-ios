@@ -138,6 +138,17 @@
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 								<int key="IBUITextAlignment">2</int>
 							</object>
+							<object class="IBUIView" id="534118400">
+								<reference key="NSNextResponder" ref="417762082"/>
+								<int key="NSvFlags">276</int>
+								<string key="NSFrameSize">{3, 65}</string>
+								<reference key="NSSuperview" ref="417762082"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MCAwLjc1Mjk0MTE5IDEAA</bytes>
+								</object>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+							</object>
 						</object>
 						<string key="NSFrameSize">{300, 65}</string>
 						<reference key="NSSuperview" ref="44666435"/>
@@ -227,6 +238,14 @@
 					</object>
 					<int key="connectionID">20</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">categoryStripe</string>
+						<reference key="source" ref="44666435"/>
+						<reference key="destination" ref="534118400"/>
+					</object>
+					<int key="connectionID">22</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -259,6 +278,7 @@
 							<reference ref="593056368"/>
 							<reference ref="140065254"/>
 							<reference ref="178198528"/>
+							<reference ref="534118400"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -287,6 +307,11 @@
 						<reference key="object" ref="848766296"/>
 						<reference key="parent" ref="44666435"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">21</int>
+						<reference key="object" ref="534118400"/>
+						<reference key="parent" ref="44666435"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -296,6 +321,7 @@
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
 					<string>18.IBPluginDependency</string>
+					<string>21.IBPluginDependency</string>
 					<string>5.CustomClassName</string>
 					<string>5.IBEditorWindowLastContentRect</string>
 					<string>5.IBPluginDependency</string>
@@ -308,6 +334,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIViewController</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>ThreadCell</string>
 					<string>{{666, 411}, {320, 65}}</string>
@@ -338,7 +365,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">20</int>
+			<int key="maxID">22</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -359,6 +386,7 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>author</string>
+							<string>categoryStripe</string>
 							<string>date</string>
 							<string>preview</string>
 							<string>replyCount</string>
@@ -366,6 +394,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UILabel</string>
+							<string>UIView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>

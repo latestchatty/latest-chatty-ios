@@ -15,6 +15,7 @@
 @synthesize body;
 @synthesize date;
 @synthesize replyCount;
+@synthesize category;
 
 @synthesize storyId;
 @synthesize parentPostId;
@@ -33,6 +34,7 @@
   self.body         = [coder decodeObjectForKey:@"body"];
   self.date         = [coder decodeObjectForKey:@"date"];
   replyCount        = [coder decodeIntForKey:@"replyCount"];
+  self.category     = [coder decodeObjectForKey:@"category"];
   
   storyId           = [coder decodeIntForKey:@"storyId"];
   parentPostId      = [coder decodeIntForKey:@"parentPostId"];
@@ -53,6 +55,7 @@
   [encoder encodeObject:body    forKey:@"body"];
   [encoder encodeObject:date    forKey:@"date"];
   [encoder encodeInt:replyCount forKey:@"replyCount"];
+  [encoder encodeObject:category forKey:@"category"];
   
   [encoder encodeInt:storyId forKey:@"storyId"];
   [encoder encodeInt:parentPostId forKey:@"parentPostId"];
@@ -153,6 +156,7 @@
   self.depth   = [[dictionary objectForKey:@"depth"] intValue];
   storyId    = [[dictionary objectForKey:@"story_id"] intValue];
   replyCount = [[dictionary objectForKey:@"reply_count"] intValue];
+  self.category = [dictionary objectForKey:@"category"];
   
   self.replies = [[NSMutableArray alloc] init];
   for (NSMutableDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {

@@ -53,8 +53,8 @@
   if (textField == usernameField) {
     [passwordField becomeFirstResponder];
   } else if (textField == passwordField) {
-    [serverField becomeFirstResponder];
-  } else {
+    [passwordField resignFirstResponder];
+  } else if (textField == serverField) {
     [serverField resignFirstResponder];
   }
   return NO;

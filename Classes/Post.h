@@ -19,6 +19,7 @@
   NSString *body;
   NSDate   *date;
   NSUInteger replyCount;
+  NSString *category;
   
   NSUInteger storyId;
   NSUInteger parentPostId;
@@ -35,6 +36,7 @@
 @property (copy) NSString *body;
 @property (copy) NSDate *date;
 @property (readonly) NSUInteger replyCount;
+@property (copy) NSString *category;
 
 @property (readonly) NSUInteger storyId;
 @property (readonly) NSUInteger parentPostId;

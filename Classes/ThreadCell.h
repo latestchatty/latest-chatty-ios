@@ -19,6 +19,7 @@
   IBOutlet UILabel *date;
   IBOutlet UILabel *preview;
   IBOutlet UILabel *replyCount;
+  IBOutlet UIView  *categoryStripe;
 }
 
 @property (assign) NSUInteger storyId;

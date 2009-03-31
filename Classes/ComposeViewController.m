@@ -66,9 +66,9 @@
                                        message:message
                                       delegate:self
                              cancelButtonTitle:([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait ? @"OK" : nil)
-                             otherButtonTitles:@"Rules", @"Hide", nil];    
+                             otherButtonTitles:@"Rules", @"Hide", nil];
     [alert show];
-    [alert release];    
+    [alert release];
   }
 }
 

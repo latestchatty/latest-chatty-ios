@@ -14,6 +14,12 @@
   IBOutlet UITextField *passwordField;
   IBOutlet UITextField *serverField;
   IBOutlet UISwitch    *landscapeSwitch;
+  
+  IBOutlet UISwitch    *interestingSwitch;
+  IBOutlet UISwitch    *offtopicSwitch;
+  IBOutlet UISwitch    *randomSwitch;
+  IBOutlet UISwitch    *politicsSwitch;
+  IBOutlet UISwitch    *nwsSwitch;
 }
 
 - (IBAction)dismiss:(id)sender;
