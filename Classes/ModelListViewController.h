@@ -17,6 +17,7 @@
 }
 
 @property (retain) UITableView *tableView;
+@property (readonly) BOOL loading;
 
 - (void)showLoadingSpinner;
 - (void)hideLoadingSpinner;

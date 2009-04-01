@@ -75,6 +75,10 @@
   [UIView commitAnimations];
 }
 
+- (BOOL)loading {
+  return loadingView.alpha > 0;
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

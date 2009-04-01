@@ -49,7 +49,7 @@
   loader = [[Post findThreadWithId:threadId delegate:self] retain];
 }
 
-- (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
+- (void)didFinishLoadingModel:(id)model otherData:(id)otherData {  
   self.rootPost = (Post *)model;
   [loader release];
   loader = nil;
@@ -69,6 +69,20 @@
       if (reply.modelId == threadId) firstPost = reply;
     }
   }
+  
+  // Check for invalid data
+  if (rootPost.date == nil) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                    message:@"Thread loading failed.  Could not parse the response properly."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Sad face"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    [self.navigationController popViewControllerAnimated:YES];
+    return;
+  }
+  
   
   // Select and display the targeted post
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];

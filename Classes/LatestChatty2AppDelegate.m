@@ -85,7 +85,12 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
   NSMutableArray *savedControllers = [NSMutableArray array];
   for (id viewController in [navigationController viewControllers]) {
-    [savedControllers addObject:[viewController stateDictionary]];
+    BOOL hasState = [viewController respondsToSelector:@selector(stateDictionary)];
+    BOOL hasLoading = [viewController respondsToSelector:@selector(loading)];
+    BOOL isDoneLoading = hasLoading && ![viewController loading];
+    
+    if (hasState && (isDoneLoading || !hasLoading))
+      [savedControllers addObject:[viewController stateDictionary]];
   }
   
   NSData *state = [NSKeyedArchiver archivedDataWithRootObject:savedControllers];
