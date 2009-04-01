@@ -16,6 +16,7 @@
 #import "GrippyBar.h"
 #import "ComposeViewController.h"
 #import "BrowserViewController.h"
+#import "ChattyViewController.h"
 
 @interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate> {
   NSUInteger storyId;

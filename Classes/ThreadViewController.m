@@ -187,6 +187,13 @@
       [self.navigationController pushViewController:viewController animated:YES];
       [viewController release];
     
+    } else if ([url isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?story=\\d+"]) {
+      NSUInteger targetStoryId = [[url stringByMatching:@"shacknews\\.com/laryn\\.x\\?story=(\\d+)" capture:1] intValue];
+      
+      ChattyViewController *viewController = [[ChattyViewController alloc] initWithStoryId:targetStoryId];
+      [self.navigationController pushViewController:viewController animated:YES];
+      [viewController release];
+      
     } else {
       BrowserViewController *viewController = [[BrowserViewController alloc] initWithRequest:request];
       [self.navigationController pushViewController:viewController animated:YES];
