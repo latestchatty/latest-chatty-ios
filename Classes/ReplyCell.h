@@ -16,6 +16,7 @@
   
   IBOutlet UIImageView *blueBullet;
   IBOutlet UIImageView *grayBullet;
+  IBOutlet UIView      *categoryStripe;
 }
 
 @property (retain) Post *post;

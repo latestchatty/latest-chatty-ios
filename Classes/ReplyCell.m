@@ -51,6 +51,10 @@
     blueBullet.hidden = YES;
     grayBullet.hidden = (post.depth == 0);
   }
+  
+  // Set category stripe
+  categoryStripe.backgroundColor = [post categoryColor];
+  categoryStripe.frame = CGRectMake(indentation - 3, categoryStripe.frame.origin.y, categoryStripe.frame.size.width, categoryStripe.frame.size.height);
 }
 
 - (void)dealloc {
