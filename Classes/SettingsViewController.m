@@ -31,6 +31,12 @@
   [defaults setObject:serverField.text   forKey:@"server"];
   [defaults setBool:landscapeSwitch.on   forKey:@"landscape"];
   
+  [defaults setBool:interestingSwitch.on forKey:@"postCategory.informative"];
+  [defaults setBool:offtopicSwitch.on    forKey:@"postCategory.offtopic"];
+  [defaults setBool:randomSwitch.on      forKey:@"postCategory.stupid"];
+  [defaults setBool:politicsSwitch.on    forKey:@"postCategory.political"];
+  [defaults setBool:nwsSwitch.on         forKey:@"postCategory.nws"];
+  
   [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
@@ -41,6 +47,20 @@
   passwordField.text = [defaults stringForKey:@"password"];
   serverField.text   = [[defaults stringForKey:@"server"] stringByReplacingOccurrencesOfRegex:@"http://" withString:@""];
   landscapeSwitch.on = [defaults boolForKey:@"landscape"];
+  
+  // Filter switches
+  interestingSwitch.on  = [defaults boolForKey:@"postCategory.informative"];
+  offtopicSwitch.on     = [defaults boolForKey:@"postCategory.offtopic"];
+  randomSwitch.on       = [defaults boolForKey:@"postCategory.stupid"];
+  politicsSwitch.on     = [defaults boolForKey:@"postCategory.political"];
+  nwsSwitch.on          = [defaults boolForKey:@"postCategory.nws"];
+  
+  // Set filter background colors
+  interestingBackground.backgroundColor = [Post colorForPostCategory:@"informative"];
+  offtopicBackground.backgroundColor    = [Post colorForPostCategory:@"offtopic"];
+  randomBackground.backgroundColor      = [Post colorForPostCategory:@"stupid"];
+  politicsBackground.backgroundColor    = [Post colorForPostCategory:@"political"];
+  nwsBackground.backgroundColor         = [Post colorForPostCategory:@"nws"];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

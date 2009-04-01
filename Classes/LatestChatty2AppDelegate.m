@@ -36,11 +36,11 @@
   NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
                             @"ws.shackchatty.com",         @"server",
                             [NSNumber numberWithBool:YES], @"landscape",
-                            [NSNumber numberWithBool:YES], @"postCategory.Interesting",
-                            [NSNumber numberWithBool:YES], @"postCategory.Offtopic",
-                            [NSNumber numberWithBool:YES], @"postCategory.Stupid",
-                            [NSNumber numberWithBool:YES], @"postCategory.Political",
-                            [NSNumber numberWithBool:NO],  @"postCategory.NWS",
+                            [NSNumber numberWithBool:YES], @"postCategory.informative",
+                            [NSNumber numberWithBool:YES], @"postCategory.offtopic",
+                            [NSNumber numberWithBool:YES], @"postCategory.stupid",
+                            [NSNumber numberWithBool:YES], @"postCategory.political",
+                            [NSNumber numberWithBool:NO],  @"postCategory.nws",
                             nil];
   [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }

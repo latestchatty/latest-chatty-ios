@@ -8,22 +8,10 @@
 
 #import "ThreadCell.h"
 
-static NSMutableDictionary *colorMapping;
-
 @implementation ThreadCell
 
 @synthesize storyId;
 @synthesize rootPost;
-
-+ (void)initialize {
-  colorMapping = [[NSMutableDictionary alloc] init];
-  [colorMapping setObject:[UIColor clearColor]                                       forKey:@"ontopic"];
-  [colorMapping setObject:[UIColor colorWithRed:0.02 green:0.65 blue:0.83 alpha:1.0] forKey:@"informative"];
-  [colorMapping setObject:[UIColor colorWithWhite:0.6 alpha:1.0]                     forKey:@"offtopic"];
-  [colorMapping setObject:[UIColor colorWithRed:0.29 green:0.52 blue:0.31 alpha:1.0] forKey:@"stupid"];
-  [colorMapping setObject:[UIColor colorWithRed:0.95 green:0.69 blue:0.0  alpha:1.0] forKey:@"political"];
-  [colorMapping setObject:[UIColor redColor]                                         forKey:@"nws"];
-}
 
 + (CGFloat)cellHeight {
   return 65.0;
@@ -54,8 +42,7 @@ static NSMutableDictionary *colorMapping;
   }
   
   // Set side color stripe for the post category
-  NSLog(rootPost.category);
-  categoryStripe.backgroundColor = [colorMapping objectForKey:rootPost.category];
+  categoryStripe.backgroundColor = rootPost.categoryColor;
 }
 
 - (void)dealloc {

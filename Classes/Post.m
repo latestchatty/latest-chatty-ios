@@ -8,6 +8,8 @@
 
 #import "Post.h"
 
+static NSMutableDictionary *colorMapping;
+
 @implementation Post
 
 @synthesize author;
@@ -25,6 +27,19 @@
 
 @synthesize timeLevel;
 
++ (void)initialize {
+  colorMapping = [[NSMutableDictionary alloc] init];
+  [colorMapping setObject:[UIColor clearColor]                                       forKey:@"ontopic"];
+  [colorMapping setObject:[UIColor colorWithRed:0.02 green:0.65 blue:0.83 alpha:1.0] forKey:@"informative"];
+  [colorMapping setObject:[UIColor colorWithWhite:0.6 alpha:1.0]                     forKey:@"offtopic"];
+  [colorMapping setObject:[UIColor colorWithRed:0.29 green:0.52 blue:0.31 alpha:1.0] forKey:@"stupid"];
+  [colorMapping setObject:[UIColor colorWithRed:0.95 green:0.69 blue:0.0  alpha:1.0] forKey:@"political"];
+  [colorMapping setObject:[UIColor redColor]                                         forKey:@"nws"];
+}
+
++ (UIColor *)colorForPostCategory:(NSString *)categoryName {
+  return [colorMapping objectForKey:categoryName];
+}
 
 - (id)initWithCoder:(NSCoder *)coder {
   [super initWithCoder:coder];
@@ -188,9 +203,14 @@
 }
 
 - (NSArray *)repliesArray:(NSMutableArray *)parentArray {
-  [parentArray addObject:self];
-  for (Post *reply in self.replies) {
-    [reply repliesArray:parentArray];
+  BOOL isOnTopic = [self.category isEqualToString:@"ontopic"];
+  BOOL isAllowed = [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"postCategory.%@", self.category]];
+  
+  if (isOnTopic || isAllowed) {
+    [parentArray addObject:self];
+    for (Post *reply in self.replies) {
+      [reply repliesArray:parentArray];
+    }    
   }
   return parentArray;
 }
@@ -201,6 +221,10 @@
   return NSOrderedSame;
 }
 
+- (UIColor *)categoryColor {
+  return [[self class] colorForPostCategory:self.category];
+}
+
 
 - (void)dealloc {
   self.author   = nil;
@@ -208,6 +232,7 @@
   self.body     = nil;
   self.date     = nil;
   self.replies  = nil;
+  self.category = nil;
   [flatReplies release];
   [super dealloc];
 }

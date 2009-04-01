@@ -110,6 +110,17 @@
   
   lastPage = [[otherData objectForKey:@"lastPage"] intValue];
   
+  // Filter Posts
+  NSMutableArray *filteredThreads = [NSMutableArray array];
+  for (Post *rootPost in self.threads) {
+    if ([rootPost.category isEqualToString:@"ontopic"]) {
+      [filteredThreads addObject:rootPost];
+    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"postCategory.%@", rootPost.category]]) {
+      [filteredThreads addObject:rootPost];
+    }
+  }
+  self.threads = filteredThreads;
+  
   [self.tableView reloadData];
   [loader release];
   loader = nil;

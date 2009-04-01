@@ -37,6 +37,7 @@
 @property (copy) NSDate *date;
 @property (readonly) NSUInteger replyCount;
 @property (copy) NSString *category;
+@property (readonly) UIColor *categoryColor;
 
 @property (readonly) NSUInteger storyId;
 @property (readonly) NSUInteger parentPostId;
@@ -45,6 +46,8 @@
 @property (assign) NSInteger depth;
 
 @property (assign) NSUInteger timeLevel;
+
++ (UIColor *)colorForPostCategory:(NSString *)categoryName;
 
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId pageNumber:(NSUInteger)pageNumber delegate:(id<ModelLoadingDelegate>)delegate;
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate;
