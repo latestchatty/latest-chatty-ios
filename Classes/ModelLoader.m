@@ -28,8 +28,9 @@
   NSLog(@"Loading URL: %@", urlString);
   
   NSURL        *url     = [NSURL URLWithString:urlString];
-  NSURLRequest *request = [NSURLRequest requestWithURL:url];
-  connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];  
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+  [request addValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+  connection = [[NSURLConnection alloc] initWithRequest:(NSURLRequest *)request delegate:self startImmediately:YES];  
   downloadedData = [[NSMutableData alloc] init];
   
   return self;
