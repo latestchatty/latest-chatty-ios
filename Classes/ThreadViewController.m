@@ -189,6 +189,7 @@
                                                                 <param name=\"wmode\" value=\"transparent\"></param>\
                                                                 <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"140\" height=\"105\"></embed>\
                                                               </object>\
+                                                              <a href=\"$1\">$1</a>\
                                                             </div>"];
   } else {
     body = post.body;
