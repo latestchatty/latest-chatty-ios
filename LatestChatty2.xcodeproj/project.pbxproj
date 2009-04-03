@@ -55,6 +55,8 @@
 		FA87BE8A0F7B18C60044898C /* NavButtonTags.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE890F7B18C60044898C /* NavButtonTags.png */; };
 		FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */; };
 		FA8D243E0F85848900AB23E2 /* Youtube.html in Resources */ = {isa = PBXBuildFile; fileRef = FA8D243D0F85848900AB23E2 /* Youtube.html */; };
+		FA8D24FD0F8661D200AB23E2 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8D24FB0F8661D200AB23E2 /* left.png */; };
+		FA8D24FE0F8661D200AB23E2 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8D24FC0F8661D200AB23E2 /* right.png */; };
 		FAA849980F78C29900026446 /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA849970F78C29900026446 /* ThreadViewController.m */; };
 		FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA849990F78C2B000026446 /* ThreadViewController.xib */; };
 		FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
@@ -62,8 +64,6 @@
 		FAB2F8700F7985FB000E4DC9 /* GrippyBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB2F86F0F7985FB000E4DC9 /* GrippyBar.m */; };
 		FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */; };
 		FAB765EE0F7C9DEB00CE0E38 /* DragonDrop.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */; };
-		FAB765F10F7C9E2800CE0E38 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB765EF0F7C9E2800CE0E38 /* left.png */; };
-		FAB765F20F7C9E2800CE0E38 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB765F00F7C9E2800CE0E38 /* right.png */; };
 		FAB765F60F7C9E5B00CE0E38 /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB765F50F7C9E5B00CE0E38 /* BrowserViewController.m */; };
 		FABA5D430F717A28008EEE3A /* StringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5D420F717A28008EEE3A /* StringAdditions.m */; };
 		FABA5D470F717B60008EEE3A /* HTMLEscaper.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5D460F717B60008EEE3A /* HTMLEscaper.m */; };
@@ -153,6 +153,8 @@
 		FA87BE8C0F7B1B9D0044898C /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		FA8D243D0F85848900AB23E2 /* Youtube.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Youtube.html; sourceTree = "<group>"; };
+		FA8D24FB0F8661D200AB23E2 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left.png; sourceTree = "<group>"; };
+		FA8D24FC0F8661D200AB23E2 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
 		FAA849960F78C29900026446 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
 		FAA849970F78C29900026446 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
 		FAA849990F78C2B000026446 /* ThreadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadViewController.xib; sourceTree = "<group>"; };
@@ -163,8 +165,6 @@
 		FAB2F86F0F7985FB000E4DC9 /* GrippyBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrippyBar.m; sourceTree = "<group>"; };
 		FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserViewController.xib; sourceTree = "<group>"; };
 		FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DragonDrop.png; path = Assets/DragonDrop.png; sourceTree = "<group>"; };
-		FAB765EF0F7C9E2800CE0E38 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = ../LatestChatty/Assets/left.png; sourceTree = SOURCE_ROOT; };
-		FAB765F00F7C9E2800CE0E38 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = ../LatestChatty/Assets/right.png; sourceTree = SOURCE_ROOT; };
 		FAB765F40F7C9E5B00CE0E38 /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
 		FAB765F50F7C9E5B00CE0E38 /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
 		FABA5D410F717A28008EEE3A /* StringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringAdditions.h; sourceTree = "<group>"; };
@@ -382,8 +382,8 @@
 				FA87BE810F7B182D0044898C /* ButtonUnderline.png */,
 				FA87BE890F7B18C60044898C /* NavButtonTags.png */,
 				FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */,
-				FAB765EF0F7C9E2800CE0E38 /* left.png */,
-				FAB765F00F7C9E2800CE0E38 /* right.png */,
+				FA8D24FB0F8661D200AB23E2 /* left.png */,
+				FA8D24FC0F8661D200AB23E2 /* right.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -479,8 +479,6 @@
 				FA87BE8A0F7B18C60044898C /* NavButtonTags.png in Resources */,
 				FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */,
 				FAB765EE0F7C9DEB00CE0E38 /* DragonDrop.png in Resources */,
-				FAB765F10F7C9E2800CE0E38 /* left.png in Resources */,
-				FAB765F20F7C9E2800CE0E38 /* right.png in Resources */,
 				FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */,
 				FA2B45910F7D96060074064A /* GrayBullet.png in Resources */,
 				FA2B47C20F7E2E790074064A /* Camera.png in Resources */,
@@ -489,6 +487,8 @@
 				FADDB5200F814B5200DF3650 /* Default.png in Resources */,
 				FADDB5210F814B5200DF3650 /* Icon.png in Resources */,
 				FA8D243E0F85848900AB23E2 /* Youtube.html in Resources */,
+				FA8D24FD0F8661D200AB23E2 /* left.png in Resources */,
+				FA8D24FE0F8661D200AB23E2 /* right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
