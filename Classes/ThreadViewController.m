@@ -169,17 +169,32 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   self.selectedIndexPath = indexPath;
-  
   Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
-  
+    
+  // Create HTML for the post
   StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
-  
+
   NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
   [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
   [htmlTemplate setString:[Post formatDate:post.date] forKey:@"date"];
   [htmlTemplate setString:post.author forKey:@"author"];
-  [htmlTemplate setString:post.body forKey:@"body"];
   
+  // Insert youtube widgets
+  NSString *body;
+  if ([post.body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube.com.*?)\">.*?</a>"]) {
+    body = [post.body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube.com.*?)\">.*?</a>"
+                                               withString:@"<div class=\"youtube-widget\">\
+                                                              <object width=\"140\" height=\"105\">\
+                                                                <param name=\"movie\" value=\"$1\"></param>\
+                                                                <param name=\"wmode\" value=\"transparent\"></param>\
+                                                                <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"140\" height=\"105\"></embed>\
+                                                              </object>\
+                                                            </div>"];
+  } else {
+    body = post.body;
+  }
+  
+  [htmlTemplate setString:body forKey:@"body"];
   [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://shacknews.com/laryn.x?id=%i", rootPost.modelId]]];
   
   [htmlTemplate release];
