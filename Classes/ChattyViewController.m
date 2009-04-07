@@ -68,8 +68,13 @@
   if (threads == nil) {
     [self refresh:self];
   } else {
-    [self.tableView reloadData];
-    if (indexPathToSelect) [self.tableView selectRowAtIndexPath:indexPathToSelect animated:NO scrollPosition:UITableViewScrollPositionTop];
+    @try {
+      [self.tableView reloadData];
+      if (indexPathToSelect) [self.tableView selectRowAtIndexPath:indexPathToSelect animated:NO scrollPosition:UITableViewScrollPositionTop];
+    }
+    @catch (NSException *e) {
+      [self.navigationController popToRootViewControllerAnimated:NO];
+    }
   }
   
   UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
