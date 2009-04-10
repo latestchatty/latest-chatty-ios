@@ -62,6 +62,7 @@
 		FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA849990F78C2B000026446 /* ThreadViewController.xib */; };
 		FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
 		FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA84AFE0F78DD9F00026446 /* ReplyCell.m */; };
+		FAB1B6420F8FBF390021896A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB1B6410F8FBF390021896A /* Message.m */; };
 		FAB2F8700F7985FB000E4DC9 /* GrippyBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB2F86F0F7985FB000E4DC9 /* GrippyBar.m */; };
 		FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */; };
 		FAB765EE0F7C9DEB00CE0E38 /* DragonDrop.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */; };
@@ -163,6 +164,8 @@
 		FAA84AF90F78DCB300026446 /* ReplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReplyCell.xib; sourceTree = "<group>"; };
 		FAA84AFD0F78DD9F00026446 /* ReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCell.h; sourceTree = "<group>"; };
 		FAA84AFE0F78DD9F00026446 /* ReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyCell.m; sourceTree = "<group>"; };
+		FAB1B6400F8FBF390021896A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		FAB1B6410F8FBF390021896A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		FAB2F86E0F7985FB000E4DC9 /* GrippyBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrippyBar.h; sourceTree = "<group>"; };
 		FAB2F86F0F7985FB000E4DC9 /* GrippyBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrippyBar.m; sourceTree = "<group>"; };
 		FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserViewController.xib; sourceTree = "<group>"; };
@@ -332,6 +335,8 @@
 				FA2B475B0F7E1DDB0074064A /* Image.m */,
 				FA26AD060F80F85B00EB5FF0 /* Tag.h */,
 				FA26AD070F80F85C00EB5FF0 /* Tag.m */,
+				FAB1B6400F8FBF390021896A /* Message.h */,
+				FAB1B6410F8FBF390021896A /* Message.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -531,6 +536,7 @@
 				FA2B47560F7E1DA30074064A /* NSStringAdditions.m in Sources */,
 				FA2B475C0F7E1DDB0074064A /* Image.m in Sources */,
 				FA26AD080F80F85C00EB5FF0 /* Tag.m in Sources */,
+				FAB1B6420F8FBF390021896A /* Message.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

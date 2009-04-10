@@ -45,6 +45,20 @@
   return self;
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  
+  if ([challenge previousFailureCount] == 0) {
+    NSURLCredential *credential = [NSURLCredential credentialWithUser:[defaults objectForKey:@"username"]
+                                                             password:[defaults objectForKey:@"password"]
+                                                          persistence:NSURLCredentialPersistenceNone];
+    [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+  } else {    
+    [[challenge sender] cancelAuthenticationChallenge:challenge];
+    [modelDelegate didFailToLoadModels];
+  }
+}
+
 - (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)data {
   [downloadedData appendData:data];
 }
