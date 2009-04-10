@@ -25,9 +25,9 @@
   
   if (![self reloadSavedState]) {
     // Add the stories view controller
-    StoriesViewController *viewController = [[StoriesViewController alloc] init];
+    RootViewController *viewController = [[RootViewController alloc] init];
     [navigationController pushViewController:viewController animated:NO];
-    [viewController release];    
+    [viewController release];
   }
   
   // Style the navigation bar
@@ -62,6 +62,7 @@
       
       // Create a dictionary to convert controller type strings to class objects
       NSMutableDictionary *controllerClassLookup = [NSMutableDictionary dictionary];
+      [controllerClassLookup setObject:[RootViewController class]    forKey:@"Root"];
       [controllerClassLookup setObject:[StoriesViewController class] forKey:@"Stories"];
       [controllerClassLookup setObject:[StoryViewController class]   forKey:@"Story"];
       [controllerClassLookup setObject:[ChattyViewController class]  forKey:@"Chatty"];

@@ -27,6 +27,17 @@
 		FA2B47560F7E1DA30074064A /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B47530F7E1DA30074064A /* NSStringAdditions.m */; };
 		FA2B475C0F7E1DDB0074064A /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B475B0F7E1DDB0074064A /* Image.m */; };
 		FA2B47C20F7E2E790074064A /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B47C10F7E2E790074064A /* Camera.png */; };
+		FA4122E80F8FDCFD002E1978 /* MessagesIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4122E50F8FDCFD002E1978 /* MessagesIcon.48.png */; };
+		FA4122E90F8FDCFD002E1978 /* SearchIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4122E60F8FDCFD002E1978 /* SearchIcon.48.png */; };
+		FA4122EA0F8FDCFD002E1978 /* StoriesIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4122E70F8FDCFD002E1978 /* StoriesIcon.48.png */; };
+		FA4122FE0F8FDDE9002E1978 /* RootCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4122FD0F8FDDE9002E1978 /* RootCell.xib */; };
+		FA4123020F8FDF06002E1978 /* RootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4123010F8FDF06002E1978 /* RootCell.m */; };
+		FA4123060F8FE08B002E1978 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4123050F8FE08B002E1978 /* RootViewController.m */; };
+		FA4123080F8FE09E002E1978 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4123070F8FE09E002E1978 /* RootViewController.xib */; };
+		FA4123A50F8FE584002E1978 /* AboutIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4123A40F8FE584002E1978 /* AboutIcon.48.png */; };
+		FA4124130F8FECED002E1978 /* SettingsIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4124120F8FECED002E1978 /* SettingsIcon.48.png */; };
+		FA4124540F8FEFF1002E1978 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4124530F8FEFF1002E1978 /* MessagesViewController.xib */; };
+		FA4124580F8FF059002E1978 /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4124570F8FF059002E1978 /* MessagesViewController.m */; };
 		FA5DA7770F7284CB00F05ED9 /* ModelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */; };
 		FA5DA8AA0F72A3EA00F05ED9 /* SettingsIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */; };
 		FA5FCD160F6F61A600878F27 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCD150F6F61A600878F27 /* Model.m */; };
@@ -117,6 +128,20 @@
 		FA2B475A0F7E1DDB0074064A /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		FA2B475B0F7E1DDB0074064A /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		FA2B47C10F7E2E790074064A /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camera.png; sourceTree = "<group>"; };
+		FA4122E50F8FDCFD002E1978 /* MessagesIcon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MessagesIcon.48.png; path = Assets/MessagesIcon.48.png; sourceTree = "<group>"; };
+		FA4122E60F8FDCFD002E1978 /* SearchIcon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SearchIcon.48.png; path = Assets/SearchIcon.48.png; sourceTree = "<group>"; };
+		FA4122E70F8FDCFD002E1978 /* StoriesIcon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StoriesIcon.48.png; path = Assets/StoriesIcon.48.png; sourceTree = "<group>"; };
+		FA4122FD0F8FDDE9002E1978 /* RootCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootCell.xib; sourceTree = "<group>"; };
+		FA4123000F8FDF06002E1978 /* RootCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootCell.h; sourceTree = "<group>"; };
+		FA4123010F8FDF06002E1978 /* RootCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootCell.m; sourceTree = "<group>"; };
+		FA4123040F8FE08B002E1978 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		FA4123050F8FE08B002E1978 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		FA4123070F8FE09E002E1978 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		FA4123A40F8FE584002E1978 /* AboutIcon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AboutIcon.48.png; path = Assets/AboutIcon.48.png; sourceTree = "<group>"; };
+		FA4124120F8FECED002E1978 /* SettingsIcon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SettingsIcon.48.png; path = Assets/SettingsIcon.48.png; sourceTree = "<group>"; };
+		FA4124530F8FEFF1002E1978 /* MessagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesViewController.xib; sourceTree = "<group>"; };
+		FA4124560F8FF059002E1978 /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
+		FA4124570F8FF059002E1978 /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
 		FA5DA7750F7284CB00F05ED9 /* ModelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelListViewController.h; sourceTree = "<group>"; };
 		FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelListViewController.m; sourceTree = "<group>"; };
 		FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SettingsIcon.24.png; path = Assets/SettingsIcon.24.png; sourceTree = "<group>"; };
@@ -292,6 +317,9 @@
 		FA5FCD110F6F607200878F27 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA4123040F8FE08B002E1978 /* RootViewController.h */,
+				FA4123050F8FE08B002E1978 /* RootViewController.m */,
+				FA4123070F8FE09E002E1978 /* RootViewController.xib */,
 				FA5DA7750F7284CB00F05ED9 /* ModelListViewController.h */,
 				FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */,
 				FA87BD660F7AE96B0044898C /* SettingsViewController.h */,
@@ -315,6 +343,9 @@
 				FAB765F40F7C9E5B00CE0E38 /* BrowserViewController.h */,
 				FAB765F50F7C9E5B00CE0E38 /* BrowserViewController.m */,
 				FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */,
+				FA4124560F8FF059002E1978 /* MessagesViewController.h */,
+				FA4124570F8FF059002E1978 /* MessagesViewController.m */,
+				FA4124530F8FEFF1002E1978 /* MessagesViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -359,6 +390,9 @@
 				FAA84AF90F78DCB300026446 /* ReplyCell.xib */,
 				FAB2F86E0F7985FB000E4DC9 /* GrippyBar.h */,
 				FAB2F86F0F7985FB000E4DC9 /* GrippyBar.m */,
+				FA4123000F8FDF06002E1978 /* RootCell.h */,
+				FA4123010F8FDF06002E1978 /* RootCell.m */,
+				FA4122FD0F8FDDE9002E1978 /* RootCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -376,9 +410,6 @@
 				FAD29A600F796452006E14A2 /* DropShadow.png */,
 				FA5FD0550F7014BD00878F27 /* CellBackground.png */,
 				FA87BE1B0F7B0A9E0044898C /* CellBackgroundLight.png */,
-				FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */,
-				FA6EDDDC0F70E0B400AAF4E4 /* ChatIcon.48.png */,
-				FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */,
 				FAD29A520F79621C006E14A2 /* GrippyBar.png */,
 				FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */,
 				FA87BE7B0F7B182D0044898C /* Button.png */,
@@ -392,6 +423,14 @@
 				FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */,
 				FA8D24FB0F8661D200AB23E2 /* left.png */,
 				FA8D24FC0F8661D200AB23E2 /* right.png */,
+				FA4123A40F8FE584002E1978 /* AboutIcon.48.png */,
+				FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */,
+				FA6EDDDC0F70E0B400AAF4E4 /* ChatIcon.48.png */,
+				FA4122E50F8FDCFD002E1978 /* MessagesIcon.48.png */,
+				FA4122E60F8FDCFD002E1978 /* SearchIcon.48.png */,
+				FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */,
+				FA4124120F8FECED002E1978 /* SettingsIcon.48.png */,
+				FA4122E70F8FDCFD002E1978 /* StoriesIcon.48.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -498,6 +537,14 @@
 				FA8D24FD0F8661D200AB23E2 /* left.png in Resources */,
 				FA8D24FE0F8661D200AB23E2 /* right.png in Resources */,
 				FA2260530F8EE251002F77DD /* Settings.bundle in Resources */,
+				FA4122E80F8FDCFD002E1978 /* MessagesIcon.48.png in Resources */,
+				FA4122E90F8FDCFD002E1978 /* SearchIcon.48.png in Resources */,
+				FA4122EA0F8FDCFD002E1978 /* StoriesIcon.48.png in Resources */,
+				FA4122FE0F8FDDE9002E1978 /* RootCell.xib in Resources */,
+				FA4123080F8FE09E002E1978 /* RootViewController.xib in Resources */,
+				FA4123A50F8FE584002E1978 /* AboutIcon.48.png in Resources */,
+				FA4124130F8FECED002E1978 /* SettingsIcon.48.png in Resources */,
+				FA4124540F8FEFF1002E1978 /* MessagesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +584,9 @@
 				FA2B475C0F7E1DDB0074064A /* Image.m in Sources */,
 				FA26AD080F80F85C00EB5FF0 /* Tag.m in Sources */,
 				FAB1B6420F8FBF390021896A /* Message.m in Sources */,
+				FA4123020F8FDF06002E1978 /* RootCell.m in Sources */,
+				FA4123060F8FE08B002E1978 /* RootViewController.m in Sources */,
+				FA4124580F8FF059002E1978 /* MessagesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

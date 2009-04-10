@@ -43,13 +43,6 @@
                                                                         action:@selector(tappedLatestChattyButton)];
   self.navigationItem.rightBarButtonItem = latestChattyButton;
   [latestChattyButton release];
-  
-  UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsIcon.24.png"]
-                                                                     style:UIBarButtonItemStylePlain
-                                                                    target:self
-                                                                    action:@selector(tappedSettingsButton)];
-  self.navigationItem.leftBarButtonItem = settingsButton;
-  [settingsButton release];
 }
 
 - (IBAction)refresh:(id)sender {
@@ -136,13 +129,6 @@
   [self.navigationController pushViewController:viewController animated:YES];
   [viewController release];
 }
-
-- (IBAction)tappedSettingsButton {
-  SettingsViewController *viewController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-  [self.navigationController presentModalViewController:viewController animated:YES];
-  [viewController release];
-}
-
 
 - (void)dealloc {
   self.stories = nil;

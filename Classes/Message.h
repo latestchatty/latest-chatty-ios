@@ -12,9 +12,11 @@
 
 @interface Message : Model {
   NSString *from;
+  NSString *body;
 }
 
 @property (copy) NSString *from;
+@property (copy) NSString *body;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
 

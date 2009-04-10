@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StringAdditions.h"
 
+#import "RootViewController.h"
 #import "StoriesViewController.h"
 #import "SettingsViewController.h"
 #import "ChattyViewController.h"

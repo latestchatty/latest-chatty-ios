@@ -12,6 +12,7 @@
 @implementation Message
 
 @synthesize from;
+@synthesize body;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate {
   return [self loadAllFromUrl:@"/messages" delegate:delegate];
@@ -25,7 +26,8 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
   [super initWithDictionary:dictionary];
   
-  self.from  = [[dictionary objectForKey:@"from"] stringByUnescapingHTML];
+  self.from = [[dictionary objectForKey:@"from"] stringByUnescapingHTML];
+  self.body = [dictionary objectForKey:@"body"];
   
   return self;
 }

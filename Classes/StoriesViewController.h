@@ -31,6 +31,5 @@
 
 - (IBAction)tappedChattyButton:(id)sender;
 - (IBAction)tappedLatestChattyButton;
-- (IBAction)tappedSettingsButton;
 
 @end
