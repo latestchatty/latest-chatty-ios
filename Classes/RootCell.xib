@@ -72,7 +72,7 @@
 							</object>
 							<object class="IBUIImageView" id="161928873">
 								<reference key="NSNextResponder" ref="760161990"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">300</int>
 								<string key="NSFrame">{{10, 10}, {48, 48}}</string>
 								<reference key="NSSuperview" ref="760161990"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -111,7 +111,7 @@
 			<object class="IBUIImageView" id="365926102">
 				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
-				<string key="NSFrame">{{116, 576}, {320, 144}}</string>
+				<string key="NSFrame">{{116, 576}, {320, 68}}</string>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -225,7 +225,7 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>RootCell</string>
-					<string>{{571, 437}, {320, 68}}</string>
+					<string>{{514, 509}, {320, 68}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

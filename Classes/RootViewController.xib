@@ -53,7 +53,7 @@
 				<bool key="IBUIBouncesZoom">NO</bool>
 				<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 				<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-				<float key="IBUIRowHeight">1.040000e+02</float>
+				<float key="IBUIRowHeight">6.800000e+01</float>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
