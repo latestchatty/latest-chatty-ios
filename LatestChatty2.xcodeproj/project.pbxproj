@@ -18,6 +18,7 @@
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
+		FA2260530F8EE251002F77DD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA2260520F8EE251002F77DD /* Settings.bundle */; };
 		FA26AD080F80F85C00EB5FF0 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = FA26AD070F80F85C00EB5FF0 /* Tag.m */; };
 		FA2B43280F7D4BBE0074064A /* UIImage-NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */; };
 		FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B458E0F7D95710074064A /* BlueBullet.png */; };
@@ -101,6 +102,7 @@
 		FA0481210F70D10300F752A6 /* ChattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyViewController.m; sourceTree = "<group>"; };
 		FA1E7D650F787FEF00BAA55B /* ModelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader.h; sourceTree = "<group>"; };
 		FA1E7D660F787FEF00BAA55B /* ModelLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelLoader.m; sourceTree = "<group>"; };
+		FA2260520F8EE251002F77DD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FA26AD060F80F85B00EB5FF0 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		FA26AD070F80F85C00EB5FF0 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		FA2B43260F7D4BBE0074064A /* UIImage-NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-NSCoding.h"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				FA5FD0480F70149500878F27 /* Assets */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				FA2260520F8EE251002F77DD /* Settings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				FA8D243E0F85848900AB23E2 /* Youtube.html in Resources */,
 				FA8D24FD0F8661D200AB23E2 /* left.png in Resources */,
 				FA8D24FE0F8661D200AB23E2 /* right.png in Resources */,
+				FA2260530F8EE251002F77DD /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

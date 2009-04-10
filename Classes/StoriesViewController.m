@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  if (stories == nil) [self refresh:self];
+  if (stories == nil || [stories count] == 0) [self refresh:self];
   
   UIBarButtonItem *latestChattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
                                                                          style:UIBarButtonItemStyleDone

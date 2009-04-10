@@ -95,16 +95,11 @@
   [super viewDidLoad];
   
   if (rootPost) {
-    @try {
-      [self.tableView reloadData];
-      NSIndexPath *indexPath = selectedIndexPath;
-      if (indexPath == nil) indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-      [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-      [self tableView:tableView didSelectRowAtIndexPath:indexPath];          
-    }
-    @catch (NSException *e) {
-      [self.navigationController popToRootViewControllerAnimated:NO];
-    }
+    [self.tableView reloadData];
+    NSIndexPath *indexPath = selectedIndexPath;
+    if (indexPath == nil) indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    [self tableView:tableView didSelectRowAtIndexPath:indexPath];          
   } else {
     [self refresh:self];
   }

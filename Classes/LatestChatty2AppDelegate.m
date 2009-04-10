@@ -16,6 +16,13 @@
 @synthesize navigationController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  
+  if ([defaults boolForKey:@"forgetHistory"]) {
+    [defaults removeObjectForKey:@"savedState"];
+    [defaults setBool:NO forKey:@"forgetHistory"];
+  }
+  
   if (![self reloadSavedState]) {
     // Add the stories view controller
     StoriesViewController *viewController = [[StoriesViewController alloc] init];
@@ -33,16 +40,16 @@
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
   
   // Settings defaults
-  NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                            @"ws.shackchatty.com",         @"server",
-                            [NSNumber numberWithBool:YES], @"landscape",
-                            [NSNumber numberWithBool:YES], @"postCategory.informative",
-                            [NSNumber numberWithBool:YES], @"postCategory.offtopic",
-                            [NSNumber numberWithBool:YES], @"postCategory.stupid",
-                            [NSNumber numberWithBool:YES], @"postCategory.political",
-                            [NSNumber numberWithBool:NO],  @"postCategory.nws",
-                            nil];
-  [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+  NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"ws.shackchatty.com",         @"server",
+                                   [NSNumber numberWithBool:YES], @"landscape",
+                                   [NSNumber numberWithBool:YES], @"postCategory.informative",
+                                   [NSNumber numberWithBool:YES], @"postCategory.offtopic",
+                                   [NSNumber numberWithBool:YES], @"postCategory.stupid",
+                                   [NSNumber numberWithBool:YES], @"postCategory.political",
+                                   [NSNumber numberWithBool:NO],  @"postCategory.nws",
+                                   nil];
+  [defaults registerDefaults:defaultSettings];
 }
 
 - (BOOL)reloadSavedState {
@@ -73,7 +80,7 @@
         } else {
           NSLog(@"No known view controller for the type: %@", controllerName);
           return NO;
-        }      
+        }
       }
     } else {
       return NO;
@@ -82,7 +89,8 @@
   }
   @catch (NSException *e) {
     // Something went wrong restoring state, so just start over.
-    [navigationController popToRootViewControllerAnimated:NO];
+    navigationController.viewControllers = nil;
+    return NO;
   }
   
   return YES;

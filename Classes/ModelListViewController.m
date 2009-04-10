@@ -129,7 +129,7 @@
   loader = nil;
   [self hideLoadingSpinner];
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                  message:@"I could not connect to the server.  Check your internet connection or you server address in your settings."
+                                                  message:@"I could not connect to the server. Check your internet connection or you server address in your settings. Or try again later."
                                                  delegate:nil
                                         cancelButtonTitle:@"OK"
                                         otherButtonTitles:nil];
