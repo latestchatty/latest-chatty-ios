@@ -12,11 +12,17 @@
 
 @interface Message : Model {
   NSString *from;
+  NSString *subject;
   NSString *body;
+  NSDate   *date;
+  BOOL unread;
 }
 
 @property (copy) NSString *from;
+@property (copy) NSString *subject;
 @property (copy) NSString *body;
+@property (retain) NSDate *date;
+@property (assign) BOOL unread;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
 

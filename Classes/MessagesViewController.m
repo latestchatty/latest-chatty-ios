@@ -65,13 +65,12 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
+  MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"MessageCell"] autorelease];
-    cell.textColor = [UIColor whiteColor];
+    cell = [[[MessageCell alloc] init] autorelease];
   }
   
-  cell.text = [[messages objectAtIndex:indexPath.row] body];
+  cell.message = [messages objectAtIndex:indexPath.row];
 
   return cell;
 }

@@ -12,7 +12,10 @@
 @implementation Message
 
 @synthesize from;
+@synthesize subject;
 @synthesize body;
+@synthesize date;
+@synthesize unread;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate {
   return [self loadAllFromUrl:@"/messages" delegate:delegate];
@@ -26,8 +29,11 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
   [super initWithDictionary:dictionary];
   
-  self.from = [[dictionary objectForKey:@"from"] stringByUnescapingHTML];
-  self.body = [dictionary objectForKey:@"body"];
+  self.from     = [[dictionary objectForKey:@"from"] stringByUnescapingHTML];
+  self.subject  = [[dictionary objectForKey:@"subject"] stringByUnescapingHTML];
+  self.body     = [dictionary objectForKey:@"body"];
+  self.date     = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
+  self.unread   = [[dictionary objectForKey:@"unread"] boolValue];
   
   return self;
 }

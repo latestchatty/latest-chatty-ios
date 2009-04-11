@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ModelListViewController.h"
+#import "MessageCell.h"
 #import "Message.h"
 
 @interface MessagesViewController : ModelListViewController {
