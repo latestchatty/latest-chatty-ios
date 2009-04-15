@@ -41,6 +41,8 @@
   
   // Settings defaults
   NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"",                           @"username",
+                                   @"",                           @"password",
                                    @"ws.shackchatty.com",         @"server",
                                    [NSNumber numberWithBool:YES], @"landscape",
                                    [NSNumber numberWithBool:YES], @"postCategory.informative",
