@@ -15,9 +15,7 @@
 
 - (id)init {
   self = [self initWithNibName:@"MessagesViewController" bundle:nil];
-  
   self.title = @"Messages";
-  
   return self;
 }
 
@@ -80,10 +78,9 @@
   Message *message = [messages objectAtIndex:indexPath.row];
   [message markRead];
   
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+  MessageViewController *viewController = [[MessageViewController alloc] initWithMesage:message];
+  [self.navigationController pushViewController:viewController animated:YES];
+  [viewController release];
 }
 
 - (void)dealloc {

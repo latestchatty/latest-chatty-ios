@@ -92,6 +92,8 @@
 		FAD29A550F79621C006E14A2 /* GrippyBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */; };
 		FAD29A610F796452006E14A2 /* DropShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A600F796452006E14A2 /* DropShadow.png */; };
 		FAD29AD50F796A22006E14A2 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD29AD40F796A22006E14A2 /* RegexKitLite.m */; };
+		FAD4EB510F96797900E74FED /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD4EB500F96797900E74FED /* MessageViewController.m */; };
+		FAD4EB540F96798800E74FED /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD4EB530F96798800E74FED /* MessageViewController.xib */; };
 		FADDB5200F814B5200DF3650 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FADDB51E0F814B5200DF3650 /* Default.png */; };
 		FADDB5210F814B5200DF3650 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FADDB51F0F814B5200DF3650 /* Icon.png */; };
 /* End PBXBuildFile section */
@@ -218,6 +220,9 @@
 		FAD29A600F796452006E14A2 /* DropShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DropShadow.png; path = Assets/DropShadow.png; sourceTree = "<group>"; };
 		FAD29AD30F796A22006E14A2 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		FAD29AD40F796A22006E14A2 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		FAD4EB4F0F96797900E74FED /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		FAD4EB500F96797900E74FED /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		FAD4EB530F96798800E74FED /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		FADDB51E0F814B5200DF3650 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Assets/Default.png; sourceTree = "<group>"; };
 		FADDB51F0F814B5200DF3650 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Assets/Icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -351,6 +356,9 @@
 				FA4124560F8FF059002E1978 /* MessagesViewController.h */,
 				FA4124570F8FF059002E1978 /* MessagesViewController.m */,
 				FA4124530F8FEFF1002E1978 /* MessagesViewController.xib */,
+				FAD4EB4F0F96797900E74FED /* MessageViewController.h */,
+				FAD4EB500F96797900E74FED /* MessageViewController.m */,
+				FAD4EB530F96798800E74FED /* MessageViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -554,6 +562,7 @@
 				FA4124130F8FECED002E1978 /* SettingsIcon.48.png in Resources */,
 				FA4124540F8FEFF1002E1978 /* MessagesViewController.xib in Resources */,
 				FA828B8C0F90901100B59FF8 /* MessageCell.xib in Resources */,
+				FAD4EB540F96798800E74FED /* MessageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +606,7 @@
 				FA4123060F8FE08B002E1978 /* RootViewController.m in Sources */,
 				FA4124580F8FF059002E1978 /* MessagesViewController.m in Sources */,
 				FA828B900F90906500B59FF8 /* MessageCell.m in Sources */,
+				FAD4EB510F96797900E74FED /* MessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

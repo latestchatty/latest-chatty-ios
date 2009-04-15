@@ -10,6 +10,7 @@
 #import "ModelListViewController.h"
 #import "MessageCell.h"
 #import "Message.h"
+#import "MessageViewController.h"
 
 @interface MessagesViewController : ModelListViewController {
   NSMutableArray *messages;
