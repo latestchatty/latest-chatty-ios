@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Model.h"
 #import "StringAdditions.h"
+#import "RegexKitLite.h"
 
 @interface Message : Model {
   NSString *from;
@@ -23,7 +24,10 @@
 @property (copy) NSString *body;
 @property (retain) NSDate *date;
 @property (assign) BOOL unread;
+@property (readonly) NSString *preview;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
+
+- (void)markRead;
 
 @end

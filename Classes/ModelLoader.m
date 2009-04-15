@@ -7,7 +7,7 @@
 //
 
 #import "ModelLoader.h"
-
+#include "LatestChatty2AppDelegate.h"
 
 @implementation ModelLoader
 
@@ -27,7 +27,7 @@
   
   NSLog(@"Loading URL: %@", urlString);
   
-  NSURL        *url     = [NSURL URLWithString:urlString];
+  NSURL               *url     = [NSURL URLWithString:urlString];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
   [request addValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
   connection = [[NSURLConnection alloc] initWithRequest:(NSURLRequest *)request delegate:self startImmediately:YES];  
@@ -46,13 +46,9 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  
   if ([challenge previousFailureCount] == 0) {
-    NSURLCredential *credential = [NSURLCredential credentialWithUser:[defaults objectForKey:@"username"]
-                                                             password:[defaults objectForKey:@"password"]
-                                                          persistence:NSURLCredentialPersistenceNone];
-    [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+    LatestChatty2AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [[challenge sender] useCredential:[appDelegate userCredential] forAuthenticationChallenge:challenge];
   } else {    
     [[challenge sender] cancelAuthenticationChallenge:challenge];
     [modelDelegate didFailToLoadModels];

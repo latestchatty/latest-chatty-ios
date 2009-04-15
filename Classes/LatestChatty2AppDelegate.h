@@ -26,5 +26,7 @@
 
 - (BOOL)reloadSavedState;
 
+- (NSURLCredential *)userCredential;
+
 @end
 

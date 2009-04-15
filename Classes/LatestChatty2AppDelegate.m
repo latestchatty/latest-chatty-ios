@@ -54,6 +54,14 @@
   [defaults registerDefaults:defaultSettings];
 }
 
+- (NSURLCredential *)userCredential {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];  
+  return [NSURLCredential credentialWithUser:[defaults objectForKey:@"username"]
+                                    password:[defaults objectForKey:@"password"]
+                                 persistence:NSURLCredentialPersistenceNone];
+}
+
+
 - (BOOL)reloadSavedState {
   @try {
     // Find saved state

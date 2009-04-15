@@ -77,6 +77,9 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  Message *message = [messages objectAtIndex:indexPath.row];
+  [message markRead];
+  
     // Navigation logic may go here. Create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
@@ -84,7 +87,7 @@
 }
 
 - (void)dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 

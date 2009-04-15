@@ -7,7 +7,7 @@
 //
 
 #import "Message.h"
-
+#include "LatestChatty2AppDelegate.h"
 
 @implementation Message
 
@@ -16,6 +16,7 @@
 @synthesize body;
 @synthesize date;
 @synthesize unread;
+@synthesize preview;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate {
   return [self loadAllFromUrl:@"/messages" delegate:delegate];
@@ -37,5 +38,27 @@
   
   return self;
 }
+
+- (NSString *)preview {
+  return [[self.body stringByUnescapingHTML] stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""];
+}
+
+- (void)markRead {
+  NSString *string = [Message urlStringWithPath:[NSString stringWithFormat:@"/messages/%i", self.modelId]];
+  NSURL *url = [NSURL URLWithString:string];
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+  [request setHTTPMethod:@"PUT"];
+  [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+  if ([challenge previousFailureCount] == 0) {
+    LatestChatty2AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [[challenge sender] useCredential:[appDelegate userCredential] forAuthenticationChallenge:challenge];
+  } else {    
+    [[challenge sender] cancelAuthenticationChallenge:challenge];
+  }
+}
+
 
 @end
