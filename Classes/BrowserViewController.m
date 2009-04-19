@@ -13,7 +13,7 @@
 
 - (id)initWithRequest:(NSURLRequest *)request {
   if (self = [super initWithNibName:@"BrowserViewController" bundle:nil]) {
-    initialRequest = (NSMutableURLRequest *)[request retain];
+    initialRequest = [request retain];
     
     self.title = @"Browser";
   }
