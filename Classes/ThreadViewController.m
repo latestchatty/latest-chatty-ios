@@ -264,7 +264,7 @@
                               floor(usableHeight * dividerLocation));
   
   grippyBar.frame = CGRectMake(grippyBar.frame.origin.x,
-                               floor(usableHeight * dividerLocation) -12,
+                               floor(usableHeight * dividerLocation) - 12,
                                grippyBar.frame.size.width,
                                grippyBar.frame.size.height);
   
