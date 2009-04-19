@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="3"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -54,8 +54,8 @@
 								<reference key="IBUIToolbar" ref="258983109"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="371936879">
-								<int key="IBUISystemItemIdentifier">5</int>
 								<reference key="IBUIToolbar" ref="258983109"/>
+								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="302459302">
 								<object class="NSCustomResource" key="IBUIImage">
@@ -65,31 +65,20 @@
 								<reference key="IBUIToolbar" ref="258983109"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="965027220">
-								<int key="IBUISystemItemIdentifier">5</int>
 								<reference key="IBUIToolbar" ref="258983109"/>
+								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="1055652307">
-								<int key="IBUISystemItemIdentifier">13</int>
 								<reference key="IBUIToolbar" ref="258983109"/>
+								<int key="IBUISystemItemIdentifier">13</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="580437863">
-								<int key="IBUISystemItemIdentifier">5</int>
 								<reference key="IBUIToolbar" ref="258983109"/>
+								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="428457949">
+								<reference key="IBUIToolbar" ref="258983109"/>
 								<int key="IBUISystemItemIdentifier">14</int>
-								<reference key="IBUIToolbar" ref="258983109"/>
-							</object>
-							<object class="IBUIBarButtonItem" id="195066045">
-								<int key="IBUISystemItemIdentifier">5</int>
-								<reference key="IBUIToolbar" ref="258983109"/>
-							</object>
-							<object class="IBUIBarButtonItem" id="507393314">
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">DragonDrop.png</string>
-								</object>
-								<reference key="IBUIToolbar" ref="258983109"/>
 							</object>
 						</object>
 					</object>
@@ -105,6 +94,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<bool key="IBUIScalesPageToFit">YES</bool>
+						<int key="IBUIDataDetectorTypes">1</int>
 						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 					</object>
 				</object>
@@ -177,14 +167,6 @@
 					</object>
 					<int key="connectionID">21</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">dragonDrop</string>
-						<reference key="source" ref="507393314"/>
-						<reference key="destination" ref="372490531"/>
-					</object>
-					<int key="connectionID">22</int>
-				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -223,14 +205,12 @@
 						<reference key="object" ref="258983109"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="507393314"/>
 							<reference ref="428457949"/>
 							<reference ref="580437863"/>
 							<reference ref="1055652307"/>
 							<reference ref="965027220"/>
 							<reference ref="371936879"/>
 							<reference ref="302459302"/>
-							<reference ref="195066045"/>
 							<reference ref="430610761"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
@@ -239,11 +219,6 @@
 						<int key="objectID">4</int>
 						<reference key="object" ref="875666048"/>
 						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="507393314"/>
-						<reference key="parent" ref="258983109"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
@@ -276,11 +251,6 @@
 						<reference key="parent" ref="258983109"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="195066045"/>
-						<reference key="parent" ref="258983109"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
 						<reference key="object" ref="430610761"/>
 						<reference key="parent" ref="258983109"/>
@@ -298,11 +268,9 @@
 					<string>10.IBPluginDependency</string>
 					<string>11.IBPluginDependency</string>
 					<string>12.IBPluginDependency</string>
-					<string>13.IBPluginDependency</string>
 					<string>15.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
-					<string>5.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
@@ -312,8 +280,6 @@
 					<string>BrowserViewController</string>
 					<string>UIResponder</string>
 					<string>{{780, 376}, {320, 480}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

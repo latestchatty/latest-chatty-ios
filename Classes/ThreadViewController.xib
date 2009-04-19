@@ -76,11 +76,11 @@
 					<object class="IBUIView" id="903573083">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">298</int>
-						<string key="NSFrame">{{0, 196}, {320, 24}}</string>
+						<string key="NSFrame">{{0, 184}, {320, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC41AA</bytes>
+							<bytes key="NSWhite">MC41IDAAA</bytes>
 							<object class="NSColorSpace" key="NSCustomColorSpace">
 								<int key="NSID">2</int>
 							</object>
