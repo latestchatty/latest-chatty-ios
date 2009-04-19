@@ -20,7 +20,7 @@
   threadId = aThreadId;
   grippyBarPosition = 1;
   self.title = @"Thread";
-  
+    
   return self;
 }
 

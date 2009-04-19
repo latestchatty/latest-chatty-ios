@@ -15,11 +15,13 @@
 @synthesize window;
 @synthesize navigationController;
 
+#define STATE_FILE_PATH @"savedState.data"
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   
   if ([defaults boolForKey:@"forgetHistory"]) {
-    [defaults removeObjectForKey:@"savedState"];
+    [[NSFileManager defaultManager] removeItemAtPath:STATE_FILE_PATH error:NULL];
     [defaults setBool:NO forKey:@"forgetHistory"];
   }
   
@@ -55,9 +57,10 @@
 - (BOOL)reloadSavedState {
   @try {
     // Find saved state
-    NSData *savedState = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedState"];
+    NSData *savedState = [NSData dataWithContentsOfFile:STATE_FILE_PATH];
+    
     if (savedState) {
-      [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedState"];
+      [[NSFileManager defaultManager] removeItemAtPath:STATE_FILE_PATH error:NULL];
       NSArray *controllerDictionaries = [NSKeyedUnarchiver unarchiveObjectWithData:savedState];
       
       // Create a dictionary to convert controller type strings to class objects
@@ -109,7 +112,7 @@
   }
   
   NSData *state = [NSKeyedArchiver archivedDataWithRootObject:savedControllers];
-  [[NSUserDefaults standardUserDefaults] setObject:state forKey:@"savedState"];
+  [state writeToFile:STATE_FILE_PATH atomically:YES];
 }
 
 
