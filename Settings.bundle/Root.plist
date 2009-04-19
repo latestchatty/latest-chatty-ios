@@ -10,7 +10,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Forget History</string>
+			<string>Don&apos;t Save History</string>
 			<key>Key</key>
 			<string>forgetHistory</string>
 			<key>DefaultValue</key>

@@ -20,9 +20,11 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   
-  if ([defaults boolForKey:@"forgetHistory"]) {
+  NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
+  
+  // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
+  if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
     [[NSFileManager defaultManager] removeItemAtPath:STATE_FILE_PATH error:NULL];
-    [defaults setBool:NO forKey:@"forgetHistory"];
   }
   
   if (![self reloadSavedState]) {
@@ -113,6 +115,8 @@
   
   NSData *state = [NSKeyedArchiver archivedDataWithRootObject:savedControllers];
   [state writeToFile:STATE_FILE_PATH atomically:YES];
+  
+  [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"savedStateDate"];
 }
 
 
