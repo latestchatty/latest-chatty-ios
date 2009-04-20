@@ -65,6 +65,23 @@
                                  persistence:NSURLCredentialPersistenceNone];
 }
 
+- (id)viewControllerForURL:(NSURL *)url {
+  NSString *uri = [url absoluteString];
+  id viewController = nil;
+  
+  if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?id=\\d+"]) {
+    NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?id=(\\d+)" capture:1] intValue];
+    viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
+    
+  } else if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?story=\\d+"]) {
+    NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?story=(\\d+)" capture:1] intValue];
+    viewController = [[ChattyViewController alloc] initWithStoryId:targetStoryId];
+    
+  }
+  
+  return [viewController autorelease];
+}
+
 
 - (BOOL)reloadSavedState {
   @try {

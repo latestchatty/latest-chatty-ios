@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Message.h"
 #import "StringTemplate.h"
+#import "BrowserViewController.h"
 
 @interface MessageViewController : UIViewController {
   Message *message;

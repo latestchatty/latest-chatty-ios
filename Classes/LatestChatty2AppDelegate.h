@@ -27,6 +27,7 @@
 - (BOOL)reloadSavedState;
 
 - (NSURLCredential *)userCredential;
+- (id)viewControllerForURL:(NSURL *)url;
 
 @end
 

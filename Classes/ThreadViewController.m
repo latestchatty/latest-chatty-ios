@@ -7,7 +7,7 @@
 //
 
 #import "ThreadViewController.h"
-
+#include "LatestChatty2AppDelegate.h"
 
 @implementation ThreadViewController
 
@@ -209,28 +209,12 @@
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-  NSString *url = [[request URL] absoluteString];
   if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-    if ([url isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?id=\\d+"]) {
-      NSUInteger targetThreadId = [[url stringByMatching:@"shacknews\\.com/laryn\\.x\\?id=(\\d+)" capture:1] intValue];
+    LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
+    id viewController = [appDelegate viewControllerForURL:[request URL]];
+    if (viewController == nil) viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
+    [self.navigationController pushViewController:viewController animated:YES];
       
-      ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
-      [self.navigationController pushViewController:viewController animated:YES];
-      [viewController release];
-    
-    } else if ([url isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?story=\\d+"]) {
-      NSUInteger targetStoryId = [[url stringByMatching:@"shacknews\\.com/laryn\\.x\\?story=(\\d+)" capture:1] intValue];
-      
-      ChattyViewController *viewController = [[ChattyViewController alloc] initWithStoryId:targetStoryId];
-      [self.navigationController pushViewController:viewController animated:YES];
-      [viewController release];
-      
-    } else {
-      BrowserViewController *viewController = [[BrowserViewController alloc] initWithRequest:request];
-      [self.navigationController pushViewController:viewController animated:YES];
-      [viewController release];
-      
-    }
     return NO;
   }
   
