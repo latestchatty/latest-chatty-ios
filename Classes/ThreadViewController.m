@@ -178,6 +178,7 @@
   [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
   [htmlTemplate setString:[Post formatDate:post.date] forKey:@"date"];
   [htmlTemplate setString:post.author forKey:@"author"];
+  [htmlTemplate setString:[NSString stringWithFormat:@"%i", post.modelId] forKey:@"postId"];
   
   // Insert youtube widgets
   NSString *body;
