@@ -58,7 +58,7 @@
 						<bool key="IBUIBouncesZoom">NO</bool>
 						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-						<float key="IBUIRowHeight">6.500000e+01</float>
+						<float key="IBUIRowHeight">8.500000e+01</float>
 						<float key="IBUISectionHeaderHeight">2.700000e+01</float>
 						<float key="IBUISectionFooterHeight">2.700000e+01</float>
 					</object>
@@ -170,7 +170,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>MessagesViewController</string>
 					<string>UIResponder</string>
-					<string>{{423, 412}, {320, 480}}</string>
+					<string>{{473, 412}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{565, 438}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

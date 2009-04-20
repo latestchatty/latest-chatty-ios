@@ -16,7 +16,8 @@
   
   IBOutlet UILabel *fromLabel;
   IBOutlet UILabel *dateLabel;
-  IBOutlet UILabel *bodyLabel;
+  IBOutlet UILabel *subjectLabel;
+  IBOutlet UILabel *previewLabel;
   IBOutlet UIView  *newStripe;
 }
 

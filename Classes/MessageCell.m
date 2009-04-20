@@ -21,7 +21,8 @@
 - (void)layoutSubviews {
   fromLabel.text = message.from;
   dateLabel.text = [Message formatDate:message.date];
-  bodyLabel.text = message.preview;
+  subjectLabel.text = message.subject;
+  previewLabel.text = message.preview;
   newStripe.hidden = !message.unread;
 }
 
