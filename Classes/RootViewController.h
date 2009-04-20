@@ -12,6 +12,7 @@
 #import "StoriesViewController.h"
 #import "ChattyViewController.h"
 #import "MessagesViewController.h"
+#import "SearchViewController.h"
 
 
 @interface RootViewController : UITableViewController {

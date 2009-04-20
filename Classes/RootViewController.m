@@ -102,8 +102,7 @@
       viewController = [[MessagesViewController alloc] init]; break;
       
     case 3:
-      // Not implemented
-      NSLog(@"Search"); break;
+      viewController = [[SearchViewController alloc] init]; break;
       
     case 4:
       modal = YES;
