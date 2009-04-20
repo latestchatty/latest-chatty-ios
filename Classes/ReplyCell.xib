@@ -106,6 +106,7 @@
 									<bytes key="NSRGB">MSAwIDAAA</bytes>
 								</object>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<float key="IBUIAlpha">5.000000e-01</float>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 24}</string>
