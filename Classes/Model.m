@@ -38,7 +38,12 @@
 }
 
 + (NSString *)urlStringWithPath:(NSString *)path {
-  return [NSString stringWithFormat:@"http://%@%@.json", [self host], path];
+  NSString *urlString = [NSString stringWithFormat:@"http://%@%@", [self host], path];
+  if ([urlString isMatchedByRegex:@"\\?"]) {
+    urlString = [urlString stringByReplacingOccurrencesOfRegex:@"\\?" withString:@".json?"];
+  } else {
+    urlString = [urlString stringByAppendingString:@".json"];
+  }
 }
 
 #pragma mark Class Methods

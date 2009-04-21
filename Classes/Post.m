@@ -99,6 +99,14 @@ static NSMutableDictionary *colorMapping;
   return [self loadObjectFromUrl:urlString delegate:delegate];
 }
 
++ (ModelLoader *)searchWithTerms:(NSString *)terms author:(NSString *)authorName parentAuthor:(NSString *)parentAuthor delegate:(id<ModelLoadingDelegate>)delegate {
+  NSString *urlString = [NSString stringWithFormat:@"/search?terms=%@&author=%@&parent_author=%@",
+                          [terms stringByUrlEscape],
+                          [authorName stringByUrlEscape],
+                          [parentAuthor stringByUrlEscape]];
+  return [self loadAllFromUrl:urlString delegate:delegate];
+}
+
 + (id)didFinishLoadingPluralData:(id)dataObject {
   NSArray *modelArray = [dataObject objectForKey:@"comments"];
   return [super didFinishLoadingPluralData:modelArray];
@@ -117,6 +125,7 @@ static NSMutableDictionary *colorMapping;
                                                     [dictionary objectForKey:@"last_page"], @"lastPage",
                                                     nil];
 }
+
 
 + (BOOL)createWithBody:(NSString *)body parentId:(NSUInteger)parentId storyId:(NSUInteger)storyId {
   NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];

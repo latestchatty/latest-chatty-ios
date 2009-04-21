@@ -10,7 +10,7 @@
 #import <JSON/JSON.h>
 #import "ModelLoadingDelegate.h"
 #import "ModelLoader.h"
-
+#import "RegexKitLite.h"
 
 @interface Model : NSObject <NSCoding> {
   NSUInteger modelId;
