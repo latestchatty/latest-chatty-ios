@@ -28,16 +28,19 @@
   termsField.borderStyle = UITextBorderStyleNone;
   termsField.returnKeyType = UIReturnKeySearch;
   termsField.clearButtonMode = UITextFieldViewModeAlways;
+  termsField.delegate = self;
   
   authorField = [[UITextField alloc] initWithFrame:CGRectMake(110, 7, inputTable.frame.size.width - 120, 21)];
   authorField.borderStyle = UITextBorderStyleNone;
   authorField.returnKeyType = UIReturnKeySearch;
   authorField.clearButtonMode = UITextFieldViewModeAlways;
+  authorField.delegate = self;
   
   parentAuthorField = [[UITextField alloc] initWithFrame:CGRectMake(110, 7, inputTable.frame.size.width - 120, 21)];
   parentAuthorField.borderStyle = UITextBorderStyleNone;
   parentAuthorField.returnKeyType = UIReturnKeySearch;
   parentAuthorField.clearButtonMode = UITextFieldViewModeAlways;
+  parentAuthorField.delegate = self;
   
   [inputTable reloadData];
   [self modeChanged];
@@ -84,6 +87,19 @@
     usernameField.clearButtonMode = UITextFieldViewModeNever;
     [(UITableViewCell *)usernameField.superview accessoryView].hidden = NO;
   }
+}
+
+- (IBAction)search {
+  SearchResultsViewController *viewController = [[SearchResultsViewController alloc] initWithTerms:termsField.text
+                                                                                            author:authorField.text
+                                                                                      parentAuthor:parentAuthorField.text];
+  [self.navigationController pushViewController:viewController animated:YES];
+  [viewController release];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  [self search];
+  return NO;
 }
 
 #pragma mark TableView Methods

@@ -93,6 +93,8 @@
 		FABA5DBF0F718042008EEE3A /* Stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = FABA5DBE0F718042008EEE3A /* Stylesheet.css */; };
 		FABA5DC20F718086008EEE3A /* StringTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5DC10F718086008EEE3A /* StringTemplate.m */; };
 		FABA5E210F7185CC008EEE3A /* Story.html in Resources */ = {isa = PBXBuildFile; fileRef = FABA5E200F7185CC008EEE3A /* Story.html */; };
+		FACD9A7C0F9E2F33009D9A15 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACD9A7B0F9E2F33009D9A15 /* SearchResultsViewController.m */; };
+		FACD9A7E0F9E2F49009D9A15 /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACD9A7D0F9E2F49009D9A15 /* SearchResultsViewController.xib */; };
 		FAD26D8B0F7EDFE0001A76F6 /* RefreshIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD26D8A0F7EDFE0001A76F6 /* RefreshIcon.png */; };
 		FAD26D910F7EE0A5001A76F6 /* TagIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD26D900F7EE0A5001A76F6 /* TagIcon.png */; };
 		FAD29A540F79621C006E14A2 /* GrippyBar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A520F79621C006E14A2 /* GrippyBar.png */; };
@@ -228,6 +230,9 @@
 		FABA5DC00F718086008EEE3A /* StringTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringTemplate.h; sourceTree = "<group>"; };
 		FABA5DC10F718086008EEE3A /* StringTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringTemplate.m; sourceTree = "<group>"; };
 		FABA5E200F7185CC008EEE3A /* Story.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Story.html; sourceTree = "<group>"; };
+		FACD9A7A0F9E2F33009D9A15 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
+		FACD9A7B0F9E2F33009D9A15 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
+		FACD9A7D0F9E2F49009D9A15 /* SearchResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
 		FAD26D8A0F7EDFE0001A76F6 /* RefreshIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RefreshIcon.png; path = Assets/RefreshIcon.png; sourceTree = "<group>"; };
 		FAD26D900F7EE0A5001A76F6 /* TagIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TagIcon.png; path = Assets/TagIcon.png; sourceTree = "<group>"; };
 		FAD29A520F79621C006E14A2 /* GrippyBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrippyBar.png; path = Assets/GrippyBar.png; sourceTree = "<group>"; };
@@ -377,6 +382,9 @@
 				FA9C3ED30F9CED010022A739 /* SearchViewController.h */,
 				FA9C3ED40F9CED010022A739 /* SearchViewController.m */,
 				FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */,
+				FACD9A7A0F9E2F33009D9A15 /* SearchResultsViewController.h */,
+				FACD9A7B0F9E2F33009D9A15 /* SearchResultsViewController.m */,
+				FACD9A7D0F9E2F49009D9A15 /* SearchResultsViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -592,6 +600,7 @@
 				FA9C3F220F9CFF0C0022A739 /* BlueButton.png in Resources */,
 				FA9C3F230F9CFF0C0022A739 /* BlueButtonPressed.png in Resources */,
 				FA2ECCC10F9D4FED00912BE4 /* Lock.16.png in Resources */,
+				FACD9A7E0F9E2F49009D9A15 /* SearchResultsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +646,7 @@
 				FA828B900F90906500B59FF8 /* MessageCell.m in Sources */,
 				FAD4EB510F96797900E74FED /* MessageViewController.m in Sources */,
 				FA9C3ED50F9CED010022A739 /* SearchViewController.m in Sources */,
+				FACD9A7C0F9E2F33009D9A15 /* SearchResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

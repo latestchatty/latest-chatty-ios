@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchResultsViewController.h"
 
-
-@interface SearchViewController : UIViewController {
+@interface SearchViewController : UIViewController <UITextFieldDelegate> {
   IBOutlet UITableView *inputTable;
   IBOutlet UISegmentedControl *segmentedBar;
   
@@ -19,5 +19,7 @@
 }
 
 - (IBAction)modeChanged;
+
+- (IBAction)search;
 
 @end
