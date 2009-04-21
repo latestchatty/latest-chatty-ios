@@ -10,9 +10,14 @@
 
 
 @interface SearchViewController : UIViewController {
-  IBOutlet UISearchBar *terms;
-  IBOutlet UISearchBar *author;
-  IBOutlet UISearchBar *parentAuthor;
+  IBOutlet UITableView *inputTable;
+  IBOutlet UISegmentedControl *segmentedBar;
+  
+  UITextField *termsField;
+  UITextField *authorField;
+  UITextField *parentAuthorField;
 }
+
+- (IBAction)modeChanged;
 
 @end

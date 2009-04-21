@@ -27,6 +27,7 @@
 		FA2B47560F7E1DA30074064A /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B47530F7E1DA30074064A /* NSStringAdditions.m */; };
 		FA2B475C0F7E1DDB0074064A /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B475B0F7E1DDB0074064A /* Image.m */; };
 		FA2B47C20F7E2E790074064A /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B47C10F7E2E790074064A /* Camera.png */; };
+		FA2ECCC10F9D4FED00912BE4 /* Lock.16.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2ECCC00F9D4FED00912BE4 /* Lock.16.png */; };
 		FA4122E80F8FDCFD002E1978 /* MessagesIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4122E50F8FDCFD002E1978 /* MessagesIcon.48.png */; };
 		FA4122E90F8FDCFD002E1978 /* SearchIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4122E60F8FDCFD002E1978 /* SearchIcon.48.png */; };
 		FA4122EA0F8FDCFD002E1978 /* StoriesIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4122E70F8FDCFD002E1978 /* StoriesIcon.48.png */; };
@@ -138,6 +139,7 @@
 		FA2B475A0F7E1DDB0074064A /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		FA2B475B0F7E1DDB0074064A /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		FA2B47C10F7E2E790074064A /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camera.png; sourceTree = "<group>"; };
+		FA2ECCC00F9D4FED00912BE4 /* Lock.16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Lock.16.png; path = Assets/Lock.16.png; sourceTree = "<group>"; };
 		FA4122E50F8FDCFD002E1978 /* MessagesIcon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MessagesIcon.48.png; path = Assets/MessagesIcon.48.png; sourceTree = "<group>"; };
 		FA4122E60F8FDCFD002E1978 /* SearchIcon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SearchIcon.48.png; path = Assets/SearchIcon.48.png; sourceTree = "<group>"; };
 		FA4122E70F8FDCFD002E1978 /* StoriesIcon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StoriesIcon.48.png; path = Assets/StoriesIcon.48.png; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				FA4123A40F8FE584002E1978 /* AboutIcon.48.png */,
 				FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */,
 				FA6EDDDC0F70E0B400AAF4E4 /* ChatIcon.48.png */,
+				FA2ECCC00F9D4FED00912BE4 /* Lock.16.png */,
 				FA4122E50F8FDCFD002E1978 /* MessagesIcon.48.png */,
 				FA4122E60F8FDCFD002E1978 /* SearchIcon.48.png */,
 				FA5DA8A90F72A3EA00F05ED9 /* SettingsIcon.24.png */,
@@ -588,6 +591,7 @@
 				FA9C3F190F9CFE130022A739 /* GrayButtonPressed.png in Resources */,
 				FA9C3F220F9CFF0C0022A739 /* BlueButton.png in Resources */,
 				FA9C3F230F9CFF0C0022A739 /* BlueButtonPressed.png in Resources */,
+				FA2ECCC10F9D4FED00912BE4 /* Lock.16.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
