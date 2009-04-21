@@ -28,8 +28,12 @@
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   [defaults setObject:usernameField.text forKey:@"username"];
   [defaults setObject:passwordField.text forKey:@"password"];
-  [defaults setObject:serverField.text   forKey:@"server"];
   [defaults setBool:landscapeSwitch.on   forKey:@"landscape"];
+  
+  NSString *serverAddress = serverField.text;
+  serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
+  serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"/$" withString:@""];
+  [defaults setObject:serverAddress forKey:@"server"];
   
   [defaults setBool:interestingSwitch.on forKey:@"postCategory.informative"];
   [defaults setBool:offtopicSwitch.on    forKey:@"postCategory.offtopic"];
@@ -45,8 +49,9 @@
   
   usernameField.text = [defaults stringForKey:@"username"];
   passwordField.text = [defaults stringForKey:@"password"];
-  serverField.text   = [[defaults stringForKey:@"server"] stringByReplacingOccurrencesOfRegex:@"http://" withString:@""];
   landscapeSwitch.on = [defaults boolForKey:@"landscape"];
+  serverField.text   = [defaults stringForKey:@"server"];
+
   
   // Filter switches
   interestingSwitch.on  = [defaults boolForKey:@"postCategory.informative"];
