@@ -99,7 +99,7 @@
     NSIndexPath *indexPath = selectedIndexPath;
     if (indexPath == nil) indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-    [self tableView:tableView didSelectRowAtIndexPath:indexPath];          
+    [self tableView:tableView didSelectRowAtIndexPath:indexPath];
   } else {
     [self refresh:self];
   }
@@ -109,6 +109,13 @@
                                                                                action:@selector(tappedReplyButton)];
   self.navigationItem.rightBarButtonItem = replyButton;
   [replyButton release];
+  
+  // Fill in emtpy web view
+  StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
+  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
+  [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
+  [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://shacknews.com/"]];
+  [htmlTemplate release];
   
   [self resetLayout];
 }
