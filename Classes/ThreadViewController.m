@@ -114,7 +114,7 @@
   StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
   NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
   [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
-  [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://shacknews.com/"]];
+  [postView loadHTMLString:htmlTemplate.result baseURL:nil];
   [htmlTemplate release];
   
   [self resetLayout];
@@ -188,19 +188,21 @@
   [htmlTemplate setString:[NSString stringWithFormat:@"%i", post.modelId] forKey:@"postId"];
   
   // Insert youtube widgets
-  NSString *body;
-  if ([post.body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube.com.*?)\">.*?</a>"]) {
-    body = [post.body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube.com.*?)\">.*?</a>"
-                                               withString:@"<div class=\"youtube-widget\">\
-                                                              <object width=\"140\" height=\"105\">\
-                                                                <param name=\"movie\" value=\"$1\"></param>\
-                                                                <param name=\"wmode\" value=\"transparent\"></param>\
-                                                                <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"140\" height=\"105\"></embed>\
-                                                              </object>\
-                                                              <a href=\"$1\">$1</a>\
-                                                            </div>"];
-  } else {
-    body = post.body;
+  NSString *body = post.body;
+  if ([post.body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"]) {
+    @try {
+      post.body = [post.body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
+                              withString:@"<div class=\"youtube-widget\">\
+                                <object width=\"140\" height=\"105\">\
+                                  <param name=\"movie\" value=\"$1\"></param>\
+                                  <param name=\"wmode\" value=\"transparent\"></param>\
+                                  <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"140\" height=\"105\"></embed>\
+                                </object>\
+                                <a href=\"$1\">$1</a>\
+                              </div>"];      
+    } @catch (NSException *exception) {
+      NSLog(@"Error inserting youtube widgets.");
+    }
   }
   
   [htmlTemplate setString:body forKey:@"body"];
