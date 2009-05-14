@@ -109,12 +109,9 @@
   [self.tableView reloadData];
   
   // Fade them in
-  for (NSInteger i = 0; i < [[self.tableView visibleCells] count]; i++) {
-    UITableViewCell *cell = [[self.tableView visibleCells] objectAtIndex:i];
-    
+  for (UITableViewCell *cell in [self.tableView visibleCells]) {
     cell.alpha = 0.0;
-    [UIView beginAnimations:[NSString stringWithFormat:@"FadeInStoriesTable_%i", i] context:nil];
-    [UIView setAnimationDelay:0.05 * i];
+    [UIView beginAnimations:[NSString stringWithFormat:@"FadeInStoriesTable_%@", [cell description]] context:nil];
     cell.alpha = 1.0;
     [UIView commitAnimations];
   }
