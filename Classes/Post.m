@@ -175,7 +175,7 @@ static NSMutableDictionary *colorMapping;
   self.author  = [[dictionary objectForKey:@"author"] stringByUnescapingHTML];
   self.preview = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
   self.body    = [dictionary objectForKey:@"body"];
-  if (self.body != [NSNull null]) self.body = [self.body stringByReplacingOccurrencesOfRegex:@" target=\"_blank\"" withString:@""];
+  if (self.body != (NSString *)[NSNull null]) self.body = [self.body stringByReplacingOccurrencesOfRegex:@" target=\"_blank\"" withString:@""];
   self.date    = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
   self.depth   = [[dictionary objectForKey:@"depth"] intValue];
   storyId    = [[dictionary objectForKey:@"story_id"] intValue];

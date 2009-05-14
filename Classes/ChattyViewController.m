@@ -98,8 +98,10 @@
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
   NSUInteger page = [[otherData objectForKey:@"page"] intValue];
   
+  BOOL hasPosts = [models count] > 0;
+  
   if (page <= 1) {
-    self.storyId = [[models objectAtIndex:0] storyId];
+    if (hasPosts) self.storyId = [[models objectAtIndex:0] storyId];
     self.threads = models;
   } else {
     NSMutableArray *newThreadsArray = [NSMutableArray arrayWithArray:self.threads];
