@@ -15,8 +15,6 @@
 @synthesize window;
 @synthesize navigationController;
 
-#define STATE_FILE_PATH @"savedState.data"
-
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   
@@ -24,7 +22,7 @@
   
   // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
   if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
-    [[NSFileManager defaultManager] removeItemAtPath:STATE_FILE_PATH error:NULL];
+    [defaults removeObjectForKey:@"savedState"];
   }
   
   if (![self reloadSavedState]) {
@@ -86,10 +84,10 @@
 - (BOOL)reloadSavedState {
   @try {
     // Find saved state
-    NSData *savedState = [NSData dataWithContentsOfFile:STATE_FILE_PATH];
+    NSData *savedState = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedState"];
     
     if (savedState) {
-      [[NSFileManager defaultManager] removeItemAtPath:STATE_FILE_PATH error:NULL];
+      [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedState"];
       NSArray *controllerDictionaries = [NSKeyedUnarchiver unarchiveObjectWithData:savedState];
       
       // Create a dictionary to convert controller type strings to class objects
@@ -142,9 +140,11 @@
   }
   
   NSData *state = [NSKeyedArchiver archivedDataWithRootObject:savedControllers];
-  [state writeToFile:STATE_FILE_PATH atomically:YES];
   
-  [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"savedStateDate"];
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  [defaults setObject:state forKey:@"savedState"];
+  [defaults setObject:[NSDate date] forKey:@"savedStateDate"];
+  [defaults synchronize];
 }
 
 
