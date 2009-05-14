@@ -131,7 +131,21 @@
   self.storyId = [[dataDictionary objectForKey:@"storyId"] intValue];
   self.title   = [dataDictionary objectForKey:@"storyName"];
   
-  [super didFinishLoadingAllModels:models otherData:otherData];
+  // Override super method so there is no fade if we are loading a second page.
+  if (page <= 1) {
+    [super didFinishLoadingAllModels:models otherData:otherData];
+  } else {
+    // Hide the loader
+    [self hideLoadingSpinner];
+    
+    // Refresh the table
+    [self.tableView reloadData];
+    
+    // Scroll the table so that the first thread from the next page is at the top of the screen
+    NSUInteger firstThreadIndex = [self.threads indexOfObject:[models objectAtIndex:0]];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:firstThreadIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+  }
+  
 }
 
 
