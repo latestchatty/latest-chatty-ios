@@ -8,9 +8,6 @@
 
 #import "RootViewController.h"
 
-#include "Model.h"
-@class Model;
-
 @implementation RootViewController
 
 - (id)init {
@@ -35,6 +32,21 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
+
+- (void)viewDidAppear:(BOOL)animated {
+  messageLoader = [[Message findAllWithDelegate:self] retain];
+}
+
+- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
+  messageCount = 0;
+  for (Message *message in models) {
+    if (message.unread) messageCount++;
+  }
+  
+  [self.tableView reloadData];
+  [messageLoader release];
+  messageLoader = nil;
+}
 
 #pragma mark Table view methods
 
@@ -65,7 +77,11 @@
       cell.title = @"Latest Chatty"; break;
       
     case 2:
-      cell.title = @"Messages"; break;
+      if (messageCount > 0)
+        cell.title = [NSString stringWithFormat:@"Messages (%i)", messageCount];
+      else
+        cell.title = @"Messages";
+      break;
       
     case 3:
       cell.title = @"Search"; break;
@@ -177,7 +193,8 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+  [messageLoader release];
+  [super dealloc];
 }
 
 

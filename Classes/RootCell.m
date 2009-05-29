@@ -28,6 +28,8 @@
   
   if ([self.title isEqualToString:@"Latest Chatty"])
     iconImage.image = [UIImage imageNamed:@"ChatIcon.48.png"];
+  else if ([self.title hasPrefix:@"Messages"])
+    iconImage.image = [UIImage imageNamed:@"MessagesIcon.48.png"];
   else
     iconImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@Icon.48.png", self.title]];
 }
