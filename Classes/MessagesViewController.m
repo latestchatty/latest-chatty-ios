@@ -47,6 +47,16 @@
   [super didFinishLoadingAllModels:models otherData:otherData];
 }
 
+- (void)didFailToLoadModels {
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                  message:@"Could not retrieve your messages.  Check you internet connection, or your username and password in Settings"
+                                                 delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+  [alert show];
+  [alert release];
+}
+
 
 #pragma mark Table view methods
 

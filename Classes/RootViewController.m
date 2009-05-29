@@ -48,6 +48,10 @@
   messageLoader = nil;
 }
 
+- (void)didFailToLoadModels {
+  NSLog(@"Failed to load messages");
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
