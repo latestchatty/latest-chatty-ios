@@ -15,6 +15,7 @@
 }
 
 - (id)initWithRequest:(NSURLRequest *)request;
+- (id)initWithUrlString:(NSString *)urlString;
 
 - (IBAction)dragonDrop;
 - (IBAction)openInSafari;

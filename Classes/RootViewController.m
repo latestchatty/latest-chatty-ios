@@ -8,6 +8,8 @@
 
 #import "RootViewController.h"
 
+#include "Model.h"
+@class Model;
 
 @implementation RootViewController
 
@@ -93,16 +95,20 @@
   
   switch (indexPath.row) {
     case 0:
-      viewController = [[StoriesViewController alloc] init]; break;
+      viewController = [[StoriesViewController alloc] init];
+      break;
       
     case 1:
-      viewController = [[ChattyViewController alloc] initWithLatestChatty]; break;
+      viewController = [[ChattyViewController alloc] initWithLatestChatty];
+      break;
       
     case 2:
-      viewController = [[MessagesViewController alloc] init]; break;
+      viewController = [[MessagesViewController alloc] init];
+      break;
       
     case 3:
-      viewController = [[SearchViewController alloc] init]; break;
+      viewController = [[SearchViewController alloc] init];
+      break;
       
     case 4:
       modal = YES;
@@ -110,11 +116,11 @@
       break;
       
     case 5:
-      // Not implemented
-      NSLog(@"About"); break;
+      viewController = [[BrowserViewController alloc] initWithUrlString:[NSString stringWithFormat:@"http://%@/about", [[Model class] host]]];      
+      break;
       
     default:
-      [NSException raise:@"too many rows" format:@"This table can only have 5 cells!"];
+      [NSException raise:@"too many rows" format:@"This table can only have 6 cells!"];
       break;
   }
   

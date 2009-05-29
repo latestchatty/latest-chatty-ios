@@ -26,6 +26,13 @@
   return [self initWithRequest:[dictionary objectForKey:@"initialRequest"]];
 }
 
+- (id)initWithUrlString:(NSString *)urlString {
+  NSLog(urlString);
+  NSURL *url = [NSURL URLWithString:urlString];
+  NSURLRequest *request = [NSURLRequest requestWithURL:url];
+  return [self initWithRequest:request];
+}
+
 - (NSDictionary *)stateDictionary {
   return [NSDictionary dictionaryWithObjectsAndKeys:@"Browser",     @"type",
                                                     initialRequest, @"initialRequest", nil];

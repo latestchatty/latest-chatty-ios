@@ -44,6 +44,7 @@
   } else {
     urlString = [urlString stringByAppendingString:@".json"];
   }
+  return urlString;
 }
 
 #pragma mark Class Methods
