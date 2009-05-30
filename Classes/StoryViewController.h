@@ -12,7 +12,9 @@
 #import "StringTemplate.h"
 #import "BrowserViewController.h"
 
-@interface StoryViewController : UIViewController <UIWebViewDelegate> {
+@interface StoryViewController : UIViewController <ModelLoadingDelegate, UIWebViewDelegate> {
+  NSUInteger storyId;
+  ModelLoader *storyLoader;
   Story *story;
   
   IBOutlet UIWebView *content;
@@ -20,7 +22,9 @@
 
 @property (retain) Story *story;
 
+- (id)initWithStoryId:(NSUInteger)aStoryId;
 - (id)initWithStory:(Story *)aStory;
 - (void)loadChatty;
+- (void)displayStory;
 
 @end

@@ -13,12 +13,17 @@
 
 @synthesize story;
 
+- (id)initWithStoryId:(NSUInteger)aStoryId {
+  [self initWithNibName:@"StoryViewController" bundle:nil];
+  storyId = aStoryId;
+  self.title = @"Loading...";
+  return self;
+}
+
 - (id)initWithStory:(Story *)aStory {
   [self initWithNibName:@"StoryViewController" bundle:nil];
-  
   self.story = aStory;
   self.title = self.story.title;
-    
   return self;
 }
 
@@ -31,6 +36,13 @@
                                                     story,    @"story", nil];
 }
 
+- (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
+  self.story = model;
+  [story release];
+  storyLoader = nil;
+  [self displayStory];
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   
@@ -41,6 +53,25 @@
 	self.navigationItem.rightBarButtonItem = chattyButton;
   [chattyButton release];
   
+  // Load story
+  storyLoader = [[Story findById:storyId delegate:self] retain];
+  
+  // Load blank page whiel we wait
+  NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
+  StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
+  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
+  [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
+  [htmlTemplate setString:@"" forKey:@"date"];
+  [htmlTemplate setString:@"" forKey:@"storyId"];
+  [htmlTemplate setString:@"" forKey:@"content"];
+  [htmlTemplate setString:@"" forKey:@"storyTitle"];
+  
+  [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
+  [htmlTemplate release];    
+}
+
+- (void)displayStory {
+  self.title = story.title;
   
   // Load up web view content
   NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
@@ -55,7 +86,7 @@
   [htmlTemplate setString:story.title forKey:@"storyTitle"];
   
   [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
-  [htmlTemplate release];
+  [htmlTemplate release];  
 }
 
 
@@ -85,6 +116,7 @@
 }
 
 - (void)dealloc {
+  [storyLoader release];
   [story release];
   [super dealloc];
 }

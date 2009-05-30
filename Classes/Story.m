@@ -46,6 +46,11 @@
   return [self loadAllFromUrl:@"/stories" delegate:delegate];
 }
 
++ (ModelLoader *)findById:(NSUInteger)aModelId delegate:(id<ModelLoadingDelegate>)delegate {
+  NSString *url = [NSString stringWithFormat:@"/stories/%i", aModelId];
+  return [self loadObjectFromUrl:url delegate:delegate];
+}
+
 - (id)initWithDictionary:(NSDictionary *)dictionary {
   [super initWithDictionary:dictionary];
   

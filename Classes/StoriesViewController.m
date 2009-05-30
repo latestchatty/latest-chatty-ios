@@ -106,7 +106,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   Story *story = [stories objectAtIndex:indexPath.row];
-  StoryViewController *viewController = [[StoryViewController alloc] initWithStory:story];
+  StoryViewController *viewController = [[StoryViewController alloc] initWithStoryId:story.modelId];
   [self.navigationController pushViewController:viewController animated:YES];
   [viewController release];
 }

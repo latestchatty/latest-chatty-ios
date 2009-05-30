@@ -25,5 +25,6 @@
 @property (readonly) NSUInteger commentCount;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
++ (ModelLoader *)findById:(NSUInteger)aModelId delegate:(id<ModelLoadingDelegate>)delegate;
 
 @end
