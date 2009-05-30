@@ -47,6 +47,7 @@
                                    @"",                           @"password",
                                    @"ws.shackchatty.com",         @"server",
                                    [NSNumber numberWithBool:YES], @"landscape",
+                                   [NSNumber numberWithBool:YES], @"embedYoutube",
                                    [NSNumber numberWithBool:YES], @"postCategory.informative",
                                    [NSNumber numberWithBool:YES], @"postCategory.offtopic",
                                    [NSNumber numberWithBool:YES], @"postCategory.stupid",

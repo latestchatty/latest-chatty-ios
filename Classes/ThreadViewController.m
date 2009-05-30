@@ -187,28 +187,35 @@
   [htmlTemplate setString:post.author forKey:@"author"];
   [htmlTemplate setString:[NSString stringWithFormat:@"%i", post.modelId] forKey:@"postId"];
   
-  // Insert youtube widgets
-  NSString *body = post.body;
-  if ([post.body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"]) {
-    @try {
-      post.body = [post.body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
-                              withString:@"<div class=\"youtube-widget\">\
-                                <object width=\"140\" height=\"105\">\
-                                  <param name=\"movie\" value=\"$1\"></param>\
-                                  <param name=\"wmode\" value=\"transparent\"></param>\
-                                  <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"140\" height=\"105\"></embed>\
-                                </object>\
-                                <a href=\"$1\">$1</a>\
-                              </div>"];      
-    } @catch (NSException *exception) {
-      NSLog(@"Error inserting youtube widgets.");
-    }
-  }
+  NSString *body = [self postBodyWithYoutubeWidgets:post.body];
   
   [htmlTemplate setString:body forKey:@"body"];
   [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://shacknews.com/laryn.x?id=%i", rootPost.modelId]]];
   
   [htmlTemplate release];
+}
+
+- (NSString *)postBodyWithYoutubeWidgets:(NSString *)body {
+  if (![[NSUserDefaults standardUserDefaults] boolForKey:@"embedYoutube"]) return body;
+  
+  // Insert youtube widgets
+  if ([body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"]) {
+    @try {
+      body = [body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
+                   withString:@"<div class=\"youtube-widget\">\
+                                  <object width=\"140\" height=\"105\">\
+                                    <param name=\"movie\" value=\"$1\"></param>\
+                                    <param name=\"wmode\" value=\"transparent\"></param>\
+                                    <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"140\" height=\"105\"></embed>\
+                                  </object>\
+                                  <a href=\"$1\">$1</a>\
+                                </div>"];
+    } @catch (NSException *exception) {
+      NSLog(@"Error inserting youtube widgets.");
+    }
+  }
+  
+  return body;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

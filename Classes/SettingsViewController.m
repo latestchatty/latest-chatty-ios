@@ -29,6 +29,7 @@
   [defaults setObject:usernameField.text forKey:@"username"];
   [defaults setObject:passwordField.text forKey:@"password"];
   [defaults setBool:landscapeSwitch.on   forKey:@"landscape"];
+  [defaults setBool:youtubeSwitch.on     forKey:@"embedYoutube"];
   
   NSString *serverAddress = serverField.text;
   serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
@@ -49,8 +50,10 @@
   
   usernameField.text = [defaults stringForKey:@"username"];
   passwordField.text = [defaults stringForKey:@"password"];
-  landscapeSwitch.on = [defaults boolForKey:@"landscape"];
   serverField.text   = [defaults stringForKey:@"server"];
+  
+  landscapeSwitch.on = [defaults boolForKey:@"landscape"];
+  youtubeSwitch.on   = [defaults boolForKey:@"embedYoutube"];
 
   
   // Filter switches

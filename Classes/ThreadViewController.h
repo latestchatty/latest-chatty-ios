@@ -35,6 +35,7 @@
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
 - (IBAction)tappedReplyButton;
+- (NSString *)postBodyWithYoutubeWidgets:(NSString *)body;
 
 - (void)resetLayout;
 
