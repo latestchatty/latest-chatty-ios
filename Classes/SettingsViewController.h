@@ -10,6 +10,8 @@
 #import "Post.h"
 
 @interface SettingsViewController : UIViewController <UITextFieldDelegate> {
+  IBOutlet UITableView *tableView;
+  
   IBOutlet UITextField *usernameField;
   IBOutlet UITextField *passwordField;
   IBOutlet UITextField *serverField;
@@ -18,19 +20,10 @@
   IBOutlet UISwitch    *youtubeSwitch;
   
   IBOutlet UISwitch    *interestingSwitch;
-  IBOutlet UIView      *interestingBackground;
-  
   IBOutlet UISwitch    *offtopicSwitch;
-  IBOutlet UIView      *offtopicBackground;
-  
   IBOutlet UISwitch    *randomSwitch;
-  IBOutlet UIView      *randomBackground;
-  
   IBOutlet UISwitch    *politicsSwitch;
-  IBOutlet UIView      *politicsBackground;
-  
   IBOutlet UISwitch    *nwsSwitch;
-  IBOutlet UIView      *nwsBackground;
 }
 
 - (IBAction)dismiss:(id)sender;
