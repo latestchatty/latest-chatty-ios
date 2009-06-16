@@ -37,6 +37,7 @@
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
   [self initWithStoryId:[[dictionary objectForKey:@"storyId"] intValue]];
   
+  self.storyId = [[dictionary objectForKey:@"storyId"] intValue];
   self.threads = [dictionary objectForKey:@"threads"];
   self.title =   [dictionary objectForKey:@"title"];
   lastPage =     [[dictionary objectForKey:@"lastPage"] intValue];
@@ -49,6 +50,7 @@
 
 - (NSDictionary *)stateDictionary {
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"Chatty", @"type",
+                                                                                      [NSNumber numberWithInt:self.storyId], @"storyId",
                                                                                       threads, @"threads",
                                                                                       self.title, @"title",
                                                                                       [NSNumber numberWithInt:lastPage], @"lastPage",
@@ -75,6 +77,7 @@
   UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                                                  target:self
                                                                                  action:@selector(tappedComposeButton)];
+  composeButton.enabled = (self.storyId > 0);
   self.navigationItem.rightBarButtonItem = composeButton;
   [composeButton release];
 }
@@ -97,6 +100,7 @@
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
   NSUInteger page = [[otherData objectForKey:@"page"] intValue];
+  self.navigationItem.rightBarButtonItem.enabled = YES;
   
   BOOL hasPosts = [models count] > 0;
   

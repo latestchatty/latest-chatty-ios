@@ -56,7 +56,7 @@
   // Load story
   storyLoader = [[Story findById:storyId delegate:self] retain];
   
-  // Load blank page whiel we wait
+  // Load blank page while we wait
   NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
   StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
   NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
