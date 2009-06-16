@@ -35,9 +35,10 @@
   
   // Choose a text color based on time level of the post
   if (post.timeLevel > 10) {
-    preview.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    preview.textColor = [UIColor whiteColor];
   } else {
-    preview.textColor = [UIColor colorWithWhite:1.0 alpha:(1 - (CGFloat)post.timeLevel / 10.0) * 0.5 + 0.5];
+    CGFloat whiteness = (CGFloat)(post.timeLevel / 10.0);
+    preview.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:whiteness * 0.7 + 0.3 alpha:1.0];
   }
   
   // Only show blue bullet if this is my post.

@@ -42,7 +42,7 @@
   [defaults setBool:politicsSwitch.on    forKey:@"postCategory.political"];
   [defaults setBool:nwsSwitch.on         forKey:@"postCategory.nws"];
   
-  [self.navigationController dismissModalViewControllerAnimated:YES];
+  [self.parentViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
