@@ -26,10 +26,16 @@
 
 - (IBAction)dismiss:(id)sender {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  [defaults setObject:usernameField.text forKey:@"username"];
-  [defaults setObject:passwordField.text forKey:@"password"];
-  [defaults setBool:landscapeSwitch.on   forKey:@"landscape"];
-  [defaults setBool:youtubeSwitch.on     forKey:@"embedYoutube"];
+  [defaults setObject:usernameField.text  forKey:@"username"];
+  [defaults setObject:passwordField.text  forKey:@"password"];
+  [defaults setBool:landscapeSwitch.on    forKey:@"landscape"];
+  [defaults setBool:youtubeSwitch.on      forKey:@"embedYoutube"];
+  [defaults setBool:pushMessagesSwitch.on forKey:@"push.messages"];
+  
+  if (pushMessagesSwitch.on)
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+  else
+    [[UIApplication sharedApplication] unregisterForRemoteNotifications];
   
   NSString *serverAddress = serverField.text;
   serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
@@ -105,7 +111,7 @@
       break;
       
     case 1:
-      return 2;
+      return 3;
       break;
     
     case 2:
@@ -224,6 +230,17 @@
         youtubeSwitch = toggle;
         cell.text = @"Embed Youtube:";
         break;
+      
+      case 2:
+        if (pushMessagesSwitch)
+          toggle = pushMessagesSwitch;
+        else
+          toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
+        
+        toggle.on = [defaults boolForKey:@"push.messages"];
+        pushMessagesSwitch = toggle;
+        cell.text = @"Push Messages:";
+        break;
     }
     cell.accessoryView = toggle;
   }
@@ -292,7 +309,7 @@
         else
           toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
         
-        toggle.on = [defaults boolForKey:@"postCategory.nwsSwitch"];
+        toggle.on = [defaults boolForKey:@"postCategory.nws"];
         nwsSwitch = toggle;
         cell.text = @"  NWS:";
         categoryColor.backgroundColor = [Post colorForPostCategory:@"nws"];

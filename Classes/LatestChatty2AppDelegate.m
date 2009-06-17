@@ -21,7 +21,9 @@
   NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
   
   // Register for Push
-  [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+  if ([defaults boolForKey:@"push.messages"]) {
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+  }
   
   // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
   if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
@@ -51,6 +53,7 @@
                                    @"ws.shackchatty.com",         @"server",
                                    [NSNumber numberWithBool:YES], @"landscape",
                                    [NSNumber numberWithBool:YES], @"embedYoutube",
+                                   [NSNumber numberWithBool:NO],  @"push.messages",
                                    [NSNumber numberWithBool:YES], @"postCategory.informative",
                                    [NSNumber numberWithBool:YES], @"postCategory.offtopic",
                                    [NSNumber numberWithBool:YES], @"postCategory.stupid",

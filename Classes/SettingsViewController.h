@@ -18,6 +18,7 @@
   
   IBOutlet UISwitch    *landscapeSwitch;
   IBOutlet UISwitch    *youtubeSwitch;
+  IBOutlet UISwitch    *pushMessagesSwitch;
   
   IBOutlet UISwitch    *interestingSwitch;
   IBOutlet UISwitch    *offtopicSwitch;
