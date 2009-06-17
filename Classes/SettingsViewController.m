@@ -155,6 +155,8 @@
         
         textField.returnKeyType = UIReturnKeyNext;
         textField.placeholder = @"Enter Username";
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
         textField.text = [defaults stringForKey:@"username"];
         usernameField = textField;
         cell.text = @"Username:";
@@ -169,6 +171,8 @@
         textField.returnKeyType = UIReturnKeyDone;
         textField.secureTextEntry = YES;
         textField.placeholder = @"Enter Password";
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
         textField.text = [defaults stringForKey:@"password"];
         passwordField = textField;
         cell.text = @"Password:";
@@ -182,6 +186,8 @@
         
         textField.placeholder = @"Enter: shackchatty.com";
         textField.returnKeyType = UIReturnKeyDone;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
         textField.text = [defaults stringForKey:@"server"];
         serverField = textField;
         cell.text = @"Server URL:";
@@ -275,7 +281,7 @@
         
         toggle.on = [defaults boolForKey:@"postCategory.political"];
         politicsSwitch = toggle;
-        cell.text = @"  Polotics / Religion:";
+        cell.text = @"  Politics / Religion:";
         categoryColor.backgroundColor = [Post colorForPostCategory:@"political"];
         break;
         
