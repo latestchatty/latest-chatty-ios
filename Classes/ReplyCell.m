@@ -34,11 +34,17 @@
   preview.frame = CGRectMake(indentation, 0, self.contentView.frame.size.width - indentation, [ReplyCell cellHeight]);
   
   // Choose a text color based on time level of the post
-  if (post.timeLevel > 10) {
-    preview.textColor = [UIColor whiteColor];
+  if (post.timeLevel >= 4) {
+    grayBullet.alpha = 0.2;
   } else {
-    CGFloat whiteness = (CGFloat)(post.timeLevel / 10.0);
-    preview.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:whiteness * 0.7 + 0.3 alpha:1.0];
+    grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+  }
+  
+  // Set latest to bold
+  if (post.timeLevel == 0) {
+    preview.font = [UIFont boldSystemFontOfSize:14];
+  } else {
+    preview.font = [UIFont systemFontOfSize:14];
   }
   
   // Only show blue bullet if this is my post.
