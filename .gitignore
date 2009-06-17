@@ -2,4 +2,4 @@
 build/*
 LatestChatty2.xcodeproj/*.pbxuser
 LatestChatty2.xcodeproj/*.perspectivev3
-
+ssl_certificates/*

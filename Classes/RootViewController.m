@@ -43,6 +43,7 @@
     if (message.unread) messageCount++;
   }
   
+  [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
   [self.tableView reloadData];
   [messageLoader release];
   messageLoader = nil;

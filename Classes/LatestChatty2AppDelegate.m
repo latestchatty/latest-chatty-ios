@@ -20,6 +20,9 @@
   
   NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
   
+  // Register for Push
+  [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+  
   // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
   if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
     [defaults removeObjectForKey:@"savedState"];
@@ -56,6 +59,27 @@
                                    nil];
   [defaults registerDefaults:defaultSettings];
 }
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+  [request setURL:[NSURL URLWithString:[[Model class] urlStringWithPath:@"/devices"]]];
+  
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  NSString *pushToken = [[deviceToken description] stringByReplacingOccurrencesOfRegex:@"<|>" withString:@""];
+  NSString *usernameString = [[defaults stringForKey:@"username"] stringByUrlEscape];
+  NSString *passwordString = [[defaults stringForKey:@"password"] stringByUrlEscape];
+  
+  NSString *requestBody = [NSString stringWithFormat:@"token=%@&username=%@&password=%@", pushToken, usernameString, passwordString];
+  [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
+  [request setHTTPMethod:@"POST"];
+  
+  [NSURLConnection connectionWithRequest:request delegate:nil];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  NSLog(@"Error in registration. Error: %@", error);
+}
+
 
 - (NSURLCredential *)userCredential {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];  
