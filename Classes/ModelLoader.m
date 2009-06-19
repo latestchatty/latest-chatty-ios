@@ -64,6 +64,8 @@
   
   // Parse the response string
   NSString *dataString = [[NSString alloc] initWithData:downloadedData encoding:NSUTF8StringEncoding];
+  if (!dataString) dataString = [[NSString alloc] initWithData:downloadedData encoding:NSASCIIStringEncoding];
+  
   id dataObject = [dataString JSONValue];
   [dataString release];
   
