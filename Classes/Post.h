@@ -24,6 +24,7 @@
   NSUInteger storyId;
   NSUInteger parentPostId;
   
+  NSMutableArray *participants;
   NSMutableArray *replies;
   NSMutableArray *flatReplies;
   NSInteger       depth;
@@ -42,6 +43,7 @@
 @property (readonly) NSUInteger storyId;
 @property (readonly) NSUInteger parentPostId;
 
+@property (retain) NSMutableArray *participants;
 @property (retain) NSMutableArray *replies;
 @property (assign) NSInteger depth;
 

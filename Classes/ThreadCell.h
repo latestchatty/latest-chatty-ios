@@ -20,6 +20,7 @@
   IBOutlet UILabel *preview;
   IBOutlet UILabel *replyCount;
   IBOutlet UIView  *categoryStripe;
+  IBOutlet UIImageView *participantIcon;
 }
 
 @property (assign) NSUInteger storyId;

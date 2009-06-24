@@ -22,6 +22,7 @@ static NSMutableDictionary *colorMapping;
 @synthesize storyId;
 @synthesize parentPostId;
 
+@synthesize participants;
 @synthesize replies;
 @synthesize depth;
 
@@ -183,6 +184,7 @@ static NSMutableDictionary *colorMapping;
   storyId    = [[dictionary objectForKey:@"story_id"] intValue];
   if ([dictionary objectForKey:@"reply_count"] != [NSNull null]) replyCount = [[dictionary objectForKey:@"reply_count"] intValue];
   self.category = [dictionary objectForKey:@"category"];
+  self.participants = [dictionary objectForKey:@"participants"];
   
   self.replies = [[NSMutableArray alloc] init];
   for (NSMutableDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
@@ -242,6 +244,7 @@ static NSMutableDictionary *colorMapping;
   self.preview  = nil;
   self.body     = nil;
   self.date     = nil;
+  self.participants = nil;
   self.replies  = nil;
   self.category = nil;
   [flatReplies release];

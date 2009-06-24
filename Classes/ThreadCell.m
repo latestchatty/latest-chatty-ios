@@ -43,6 +43,14 @@
   
   // Set side color stripe for the post category
   categoryStripe.backgroundColor = rootPost.categoryColor;
+  
+  // Show participant icon
+  participantIcon.hidden = YES;
+  for (NSDictionary *participant in rootPost.participants) {
+    NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
+    if (username && ![username isEqualToString:@""] && [[participant objectForKey:@"username"] isEqualToString:username])
+      participantIcon.hidden = NO;
+  }
 }
 
 - (BOOL)showCount {
