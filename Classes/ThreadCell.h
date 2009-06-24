@@ -24,5 +24,6 @@
 
 @property (assign) NSUInteger storyId;
 @property (retain) Post *rootPost;
+@property (assign) BOOL showCount;
 
 @end

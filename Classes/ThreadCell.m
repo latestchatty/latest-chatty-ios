@@ -45,6 +45,14 @@
   categoryStripe.backgroundColor = rootPost.categoryColor;
 }
 
+- (BOOL)showCount {
+  return !replyCount.hidden;
+}
+
+- (void)setShowCount:(BOOL)shouldShowCount {
+  replyCount.hidden = !shouldShowCount;
+}
+
 - (void)dealloc {
   self.rootPost = nil;
   [super dealloc];

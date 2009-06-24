@@ -19,11 +19,13 @@
 }
 
 - (NSString *)stringByUrlEscape {
-  return (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                             (CFStringRef)[self copy],
-                                                             NULL,
-                                                             (CFStringRef)@";/?:@&=+$,",
-                                                             kCFStringEncodingUTF8);
+  NSString *newString = [[[self copy] autorelease] stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+  newString = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                  (CFStringRef)newString,
+                                                                  NULL,
+                                                                  (CFStringRef)@";/?:@&=+$,",
+                                                                  kCFStringEncodingUTF8);
+  return newString;
 }
 
 @end

@@ -38,7 +38,8 @@ static NSMutableDictionary *colorMapping;
 }
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName {
-  return [colorMapping objectForKey:categoryName];
+  UIColor *color = [colorMapping objectForKey:categoryName];
+  return color ? color : [UIColor clearColor];
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
@@ -104,6 +105,7 @@ static NSMutableDictionary *colorMapping;
                           [terms stringByUrlEscape],
                           [authorName stringByUrlEscape],
                           [parentAuthor stringByUrlEscape]];
+  NSLog(urlString);
   return [self loadAllFromUrl:urlString delegate:delegate];
 }
 

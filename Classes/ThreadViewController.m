@@ -85,10 +85,26 @@
   
   
   // Select and display the targeted post
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];
-  if (indexPath == nil) indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-  [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-  [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];  
+  if (indexPath == nil || indexPath.row >= [[rootPost repliesArray] count])
+    indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+  
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  if ([rootPost.category isEqualToString:@"ontopic"] || [defaults boolForKey:[NSString stringWithFormat:@"postCategory.%@", rootPost.category]]) {
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+  } else {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Check your Filters"
+                                                    message:@"You current filters do not allow to view this thead.  Check the filters in your settings and try again."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+  }
 }
 
 - (void)viewDidLoad {

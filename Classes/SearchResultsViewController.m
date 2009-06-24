@@ -72,6 +72,7 @@
   Post *post = [posts objectAtIndex:indexPath.row];
   cell.storyId = post.storyId;
   cell.rootPost = post;
+  cell.showCount = NO;
   
   return cell;
 }
