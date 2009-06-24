@@ -29,4 +29,8 @@
 
 - (IBAction)dismiss:(id)sender;
 
+- (UITextField *)generateTextFieldWithKey:(NSString *)key;
+- (UISwitch *)generateSwitchWithKey:(NSString *)key;
+
+
 @end

@@ -13,7 +13,37 @@
 
 
 - (id)init {
-  return [super initWithNibName:@"SettingsViewController" bundle:nil];
+  [super initWithNibName:@"SettingsViewController" bundle:nil];
+  
+  usernameField = [[self generateTextFieldWithKey:@"username"] retain];
+  usernameField.placeholder = @"Enter Username";
+  usernameField.returnKeyType = UIReturnKeyNext;
+  usernameField.keyboardType = UIKeyboardTypeEmailAddress;
+  
+  passwordField = [[self generateTextFieldWithKey:@"password"] retain];
+  passwordField.placeholder = @"Enter Password";
+  passwordField.secureTextEntry = YES;
+  passwordField.returnKeyType = UIReturnKeyDone;
+  usernameField.keyboardType = UIKeyboardTypeEmailAddress;
+  
+  serverField = [[self generateTextFieldWithKey:@"server"] retain];
+  serverField.placeholder = @"shackchatty.com";
+  serverField.returnKeyType = UIReturnKeyDone;
+  serverField.keyboardType = UIKeyboardTypeURL;
+  
+  
+  landscapeSwitch     = [[self generateSwitchWithKey:@"landscape"]     retain];
+  youtubeSwitch       = [[self generateSwitchWithKey:@"youtubeSwitch"] retain];
+  pushMessagesSwitch  = [[self generateSwitchWithKey:@"push.messages"] retain];
+  
+  
+  interestingSwitch   = [[self generateSwitchWithKey:@"postCategory.informative"] retain];
+  offtopicSwitch      = [[self generateSwitchWithKey:@"postCategory.offtopic"] retain];
+  randomSwitch        = [[self generateSwitchWithKey:@"postCategory.stupid"] retain];
+  politicsSwitch      = [[self generateSwitchWithKey:@"postCategory.political"] retain];
+  nwsSwitch           = [[self generateSwitchWithKey:@"postCategory.nws"] retain];
+  
+  return self;
 }
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
@@ -22,6 +52,24 @@
 
 - (NSDictionary *)stateDictionary {
   return [NSDictionary dictionaryWithObject:@"Settings" forKey:@"type"];
+}
+
+- (UITextField *)generateTextFieldWithKey:(NSString *)key {
+  UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 20)];
+  
+  textField.returnKeyType = UIReturnKeyNext;
+  textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  textField.autocorrectionType = UITextAutocorrectionTypeNo;
+  textField.delegate = self;
+  textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:key];
+  
+  return [textField autorelease];
+}
+
+- (UISwitch *)generateSwitchWithKey:(NSString *)key {
+  UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
+  toggle.on = [[NSUserDefaults standardUserDefaults] boolForKey:key];
+  return [toggle autorelease];
 }
 
 - (IBAction)dismiss:(id)sender {
@@ -124,176 +172,85 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   
   // username/password/server text entry fields
   if (indexPath.section == 0) {
-    UITextField *textField;
-  
     switch (indexPath.row) {
       case 0:
-        if (usernameField)
-          textField = usernameField;
-        else
-          textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 20)];
-        
-        textField.returnKeyType = UIReturnKeyNext;
-        textField.placeholder = @"Enter Username";
-        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
-        textField.text = [defaults stringForKey:@"username"];
-        usernameField = textField;
+        cell.accessoryView = usernameField;
         cell.text = @"Username:";
         break;
         
       case 1:
-        if (passwordField)
-          textField = passwordField;
-        else
-          textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 20)];
-        
-        textField.returnKeyType = UIReturnKeyDone;
-        textField.secureTextEntry = YES;
-        textField.placeholder = @"Enter Password";
-        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
-        textField.text = [defaults stringForKey:@"password"];
-        passwordField = textField;
+        cell.accessoryView = passwordField;
         cell.text = @"Password:";
         break;
         
       case 2:
-        if (serverField)
-          textField = serverField;
-        else
-          textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 20)];
-        
-        textField.placeholder = @"Enter: shackchatty.com";
-        textField.returnKeyType = UIReturnKeyDone;
-        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
-        textField.text = [defaults stringForKey:@"server"];
-        serverField = textField;
+        cell.accessoryView = serverField;
         cell.text = @"Server URL:";
         break;
         
     }
-    textField.delegate = self;
-    cell.accessoryView = textField;
   }
   
   // Preference toggles
   if (indexPath.section == 1) {
-    UISwitch *toggle;
-    
     switch (indexPath.row) {
       case 0:
-        if (landscapeSwitch)
-          toggle = landscapeSwitch;
-        else
-          toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-        
-        toggle.on = [defaults boolForKey:@"landscape"];
-        landscapeSwitch = toggle;
+        cell.accessoryView = landscapeSwitch;
         cell.text = @"Allow Landscape:";
         break;
       
       case 1:
-        if (youtubeSwitch)
-          toggle = youtubeSwitch;
-        else
-          toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-        
-        toggle.on = [defaults boolForKey:@"embedYoutube"];
-        youtubeSwitch = toggle;
+        cell.accessoryView = youtubeSwitch;
         cell.text = @"Embed Youtube:";
         break;
       
       case 2:
-        if (pushMessagesSwitch)
-          toggle = pushMessagesSwitch;
-        else
-          toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-        
-        toggle.on = [defaults boolForKey:@"push.messages"];
-        pushMessagesSwitch = toggle;
+        cell.accessoryView = pushMessagesSwitch;
         cell.text = @"Push Messages:";
         break;
     }
-    cell.accessoryView = toggle;
   }
   
   // Post category toggles
   if (indexPath.section == 2) {
-    UISwitch *toggle;
     UIView *categoryColor = [[UIView alloc] initWithFrame:CGRectMake(18, 9, 6, 28)];
     [cell addSubview:categoryColor];
     
     switch (indexPath.row) {
       case 0:
-        if (interestingSwitch)
-          toggle = interestingSwitch;
-        else
-          toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-        
-        toggle.on = [defaults boolForKey:@"postCategory.informative"];
-        interestingSwitch = toggle;
+        cell.accessoryView = interestingSwitch;
         cell.text = @"  Interesting:";
         categoryColor.backgroundColor = [Post colorForPostCategory:@"informative"];
         break;
         
       case 1:
-        if (offtopicSwitch)
-          toggle = offtopicSwitch;
-        else
-          toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-        
-        toggle.on = [defaults boolForKey:@"postCategory.offtopic"];
-        offtopicSwitch = toggle;
+        cell.accessoryView = offtopicSwitch;
         cell.text = @"  Off Topic:";
         categoryColor.backgroundColor = [Post colorForPostCategory:@"offtopic"];
         break;
         
-        
       case 2:
-        if (randomSwitch)
-          toggle = randomSwitch;
-        else
-          toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-        
-        toggle.on = [defaults boolForKey:@"postCategory.stupid"];
-        randomSwitch = toggle;
+        cell.accessoryView = randomSwitch;
         cell.text = @"  Stupid:";
         categoryColor.backgroundColor = [Post colorForPostCategory:@"stupid"];
         break;
         
-        
       case 3:
-        if (politicsSwitch)
-          toggle = politicsSwitch;
-        else
-          toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-        
-        toggle.on = [defaults boolForKey:@"postCategory.political"];
-        politicsSwitch = toggle;
+        cell.accessoryView = politicsSwitch;
         cell.text = @"  Politics / Religion:";
         categoryColor.backgroundColor = [Post colorForPostCategory:@"political"];
         break;
         
         
       case 4:
-        if (nwsSwitch)
-          toggle = nwsSwitch;
-        else
-          toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-        
-        toggle.on = [defaults boolForKey:@"postCategory.nws"];
-        nwsSwitch = toggle;
+        cell.accessoryView = nwsSwitch;
         cell.text = @"  NWS:";
         categoryColor.backgroundColor = [Post colorForPostCategory:@"nws"];
         break;
     }
-    cell.accessoryView = toggle;
   }
   
   
@@ -305,6 +262,21 @@
 }
 
 - (void)dealloc {
+  [usernameField release];
+  [passwordField release];
+  [serverField release];
+  
+  [landscapeSwitch release];
+  [youtubeSwitch release];
+  [pushMessagesSwitch release];
+  
+  [interestingSwitch release];
+  [offtopicSwitch release];
+  [randomSwitch release];
+  [politicsSwitch release];
+  [nwsSwitch release];
+  
+  
   [super dealloc];
 }
 
