@@ -117,6 +117,8 @@
   [postView loadHTMLString:htmlTemplate.result baseURL:nil];
   [htmlTemplate release];
   
+  if (selectedIndexPath) [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
+  
   [self resetLayout];
 }
 

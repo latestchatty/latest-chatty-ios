@@ -52,29 +52,7 @@
 }
 
 - (void)viewDidLoad {
-//  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//  
-//  usernameField.text = [defaults stringForKey:@"username"];
-//  passwordField.text = [defaults stringForKey:@"password"];
-//  serverField.text   = [defaults stringForKey:@"server"];
-//  
-//  landscapeSwitch.on = [defaults boolForKey:@"landscape"];
-//  youtubeSwitch.on   = [defaults boolForKey:@"embedYoutube"];
-//
-//  
-//  // Filter switches
-//  interestingSwitch.on  = [defaults boolForKey:@"postCategory.informative"];
-//  offtopicSwitch.on     = [defaults boolForKey:@"postCategory.offtopic"];
-//  randomSwitch.on       = [defaults boolForKey:@"postCategory.stupid"];
-//  politicsSwitch.on     = [defaults boolForKey:@"postCategory.political"];
-//  nwsSwitch.on          = [defaults boolForKey:@"postCategory.nws"];
-//  
-//  // Set filter background colors
-//  interestingBackground.backgroundColor = [Post colorForPostCategory:@"informative"];
-//  offtopicBackground.backgroundColor    = [Post colorForPostCategory:@"offtopic"];
-//  randomBackground.backgroundColor      = [Post colorForPostCategory:@"stupid"];
-//  politicsBackground.backgroundColor    = [Post colorForPostCategory:@"political"];
-//  nwsBackground.backgroundColor         = [Post colorForPostCategory:@"nws"];
+  //...
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
