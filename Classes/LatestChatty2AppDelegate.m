@@ -59,6 +59,7 @@
                                    [NSNumber numberWithBool:YES], @"postCategory.stupid",
                                    [NSNumber numberWithBool:YES], @"postCategory.political",
                                    [NSNumber numberWithBool:YES], @"postCategory.nws",
+                                   [NSNumber numberWithInt:0],    @"lastRefresh",
                                    nil];
   [defaults registerDefaults:defaultSettings];
 }

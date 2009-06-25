@@ -78,6 +78,7 @@
 		FA9C3F190F9CFE130022A739 /* GrayButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3F180F9CFE130022A739 /* GrayButtonPressed.png */; };
 		FA9C3F220F9CFF0C0022A739 /* BlueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3F200F9CFF0C0022A739 /* BlueButton.png */; };
 		FA9C3F230F9CFF0C0022A739 /* BlueButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3F210F9CFF0C0022A739 /* BlueButtonPressed.png */; };
+		FAA1E01E0FF2F3CE002714B6 /* NewPostBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */; };
 		FAA849980F78C29900026446 /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA849970F78C29900026446 /* ThreadViewController.m */; };
 		FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA849990F78C2B000026446 /* ThreadViewController.xib */; };
 		FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
@@ -207,6 +208,7 @@
 		FA9C3F180F9CFE130022A739 /* GrayButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrayButtonPressed.png; path = Assets/GrayButtonPressed.png; sourceTree = "<group>"; };
 		FA9C3F200F9CFF0C0022A739 /* BlueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueButton.png; path = Assets/BlueButton.png; sourceTree = "<group>"; };
 		FA9C3F210F9CFF0C0022A739 /* BlueButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueButtonPressed.png; path = Assets/BlueButtonPressed.png; sourceTree = "<group>"; };
+		FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NewPostBullet.png; path = Assets/NewPostBullet.png; sourceTree = "<group>"; };
 		FAA849960F78C29900026446 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
 		FAA849970F78C29900026446 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
 		FAA849990F78C2B000026446 /* ThreadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadViewController.xib; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				FA2B47C10F7E2E790074064A /* Camera.png */,
 				FA2B45900F7D96060074064A /* GrayBullet.png */,
 				FA2B458E0F7D95710074064A /* BlueBullet.png */,
+				FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */,
 				FAD29A600F796452006E14A2 /* DropShadow.png */,
 				FA5FD0550F7014BD00878F27 /* CellBackground.png */,
 				FA87BE1B0F7B0A9E0044898C /* CellBackgroundLight.png */,
@@ -601,6 +604,7 @@
 				FA9C3F230F9CFF0C0022A739 /* BlueButtonPressed.png in Resources */,
 				FA2ECCC10F9D4FED00912BE4 /* Lock.16.png in Resources */,
 				FACD9A7E0F9E2F49009D9A15 /* SearchResultsViewController.xib in Resources */,
+				FAA1E01E0FF2F3CE002714B6 /* NewPostBullet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

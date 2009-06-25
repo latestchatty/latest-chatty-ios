@@ -23,6 +23,7 @@
   
   NSUInteger storyId;
   NSUInteger parentPostId;
+  NSUInteger lastReplyId;
   
   NSMutableArray *participants;
   NSMutableArray *replies;
@@ -30,6 +31,7 @@
   NSInteger       depth;
   
   NSUInteger      timeLevel;
+  BOOL newPost;
 }
 
 @property (copy) NSString *author;
@@ -42,12 +44,15 @@
 
 @property (readonly) NSUInteger storyId;
 @property (readonly) NSUInteger parentPostId;
+@property (readonly) NSUInteger lastReplyId;
 
 @property (retain) NSMutableArray *participants;
 @property (retain) NSMutableArray *replies;
 @property (assign) NSInteger depth;
 
 @property (assign) NSUInteger timeLevel;
+
+@property (assign) BOOL newPost;
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName;
 

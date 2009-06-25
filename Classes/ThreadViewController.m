@@ -20,7 +20,7 @@
   threadId = aThreadId;
   grippyBarPosition = 1;
   self.title = @"Thread";
-    
+  
   return self;
 }
 
@@ -31,6 +31,7 @@
   storyId = [[dictionary objectForKey:@"storyId"] intValue];
   threadId = [[dictionary objectForKey:@"threadId"] intValue];
   selectedIndexPath = [dictionary objectForKey:@"selectedIndexPath"];
+  lastReplyId = [dictionary objectForKey:@"lastReplyId"];
   
   return self;
 }
@@ -40,7 +41,8 @@
                                                     rootPost,  @"rootPost",
                                                     [NSNumber numberWithInt:storyId],  @"storyId",
                                                     [NSNumber numberWithInt:threadId], @"threadId",
-                                                    selectedIndexPath, @"selectedIndexPath", nil];
+                                                    selectedIndexPath, @"selectedIndexPath",
+                                                    [NSNumber numberWithInt:lastReplyId], nil];
 }
 
 

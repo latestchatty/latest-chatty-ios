@@ -21,12 +21,14 @@ static NSMutableDictionary *colorMapping;
 
 @synthesize storyId;
 @synthesize parentPostId;
+@synthesize lastReplyId;
 
 @synthesize participants;
 @synthesize replies;
 @synthesize depth;
 
 @synthesize timeLevel;
+@synthesize newPost;
 
 + (void)initialize {
   colorMapping = [[NSMutableDictionary alloc] init];
@@ -55,11 +57,14 @@ static NSMutableDictionary *colorMapping;
   
   storyId           = [coder decodeIntForKey:@"storyId"];
   parentPostId      = [coder decodeIntForKey:@"parentPostId"];
+  lastReplyId       = [coder decodeIntForKey:@"lastReplyId"];
   
+  self.participants = [coder decodeObjectForKey:@"participants"];
   self.replies      = [coder decodeObjectForKey:@"replies"];
   self.depth        = [coder decodeIntForKey:@"depth"];
   
   self.timeLevel    = [coder decodeIntForKey:@"timeLevel"];
+  self.newPost      = [coder decodeBoolForKey:@"newPost"];
   
   return self;
 }
@@ -76,11 +81,14 @@ static NSMutableDictionary *colorMapping;
   
   [encoder encodeInt:storyId forKey:@"storyId"];
   [encoder encodeInt:parentPostId forKey:@"parentPostId"];
+  [encoder encodeInt:lastReplyId forKey:@"lastReplyId"];
   
+  [encoder encodeObject:participants forKey:@"participants"];
   [encoder encodeObject:replies forKey:@"replies"];
   [encoder encodeInt:depth forKey:@"depth"];
   
   [encoder encodeInt:timeLevel forKey:@"timeLevel"];
+  [encoder encodeBool:newPost forKey:@"newPost"];
 }
 
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId pageNumber:(NSUInteger)pageNumber delegate:(id<ModelLoadingDelegate>)delegate {
@@ -149,12 +157,12 @@ static NSMutableDictionary *colorMapping;
   NSHTTPURLResponse *response;
   NSString *responseBody = [[NSString alloc] initWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]
                                                  encoding:NSASCIIStringEncoding];
-  [responseBody autorelease];
   
   NSLog(requestBody);
   
   if ([responseBody rangeOfString:@"navigate_page_no_history"].location != NSNotFound) {
     // This means success
+    [responseBody release];
     return YES;
     
   } else {
@@ -166,10 +174,9 @@ static NSMutableDictionary *colorMapping;
                                           otherButtonTitles:nil];
     [alert show];
     [alert release];
+    [responseBody release];
     return NO;
   }
-  
-  
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
@@ -186,6 +193,9 @@ static NSMutableDictionary *colorMapping;
   self.category = [dictionary objectForKey:@"category"];
   self.participants = [dictionary objectForKey:@"participants"];
   
+  if ([dictionary objectForKey:@"last_reply_id"] != [NSNull null])
+    lastReplyId = [[dictionary objectForKey:@"last_reply_id"] intValue];
+  
   self.replies = [[NSMutableArray alloc] init];
   for (NSMutableDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
     NSInteger newDepth = [[dictionary objectForKey:@"depth"] intValue];
@@ -195,6 +205,9 @@ static NSMutableDictionary *colorMapping;
     [replies addObject:reply];
     [reply release];
   }
+ 
+  NSUInteger lastRefresh = [[NSUserDefaults standardUserDefaults] integerForKey:@"lastRefresh"];
+  newPost = self.modelId > lastRefresh || self.lastReplyId > lastRefresh;
   
   return self;
 }

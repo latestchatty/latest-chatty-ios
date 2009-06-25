@@ -150,6 +150,14 @@
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:firstThreadIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
   }
   
+  // Record this refresh
+  if (hasPosts) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUInteger oldLastRefresh = [defaults integerForKey:@"lastRefresh"];
+    NSUInteger newLastRefresh = [[models objectAtIndex:0] lastReplyId];
+    if (newLastRefresh > oldLastRefresh)
+      [defaults setInteger:newLastRefresh forKey:@"lastRefresh"];
+  }
 }
 
 

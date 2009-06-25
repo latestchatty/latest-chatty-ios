@@ -28,6 +28,8 @@
   IBOutlet UIWebView *postView;
   IBOutlet GrippyBar *grippyBar;
   NSUInteger grippyBarPosition;
+  
+  NSUInteger lastReplyId;
 }
 
 @property (retain) Post *rootPost;

@@ -51,6 +51,9 @@
     if (username && ![username isEqualToString:@""] && [[participant objectForKey:@"username"] isEqualToString:username])
       participantIcon.hidden = NO;
   }
+  
+  // Show new post icon
+  newPostsIcon.hidden = !rootPost.newPost;
 }
 
 - (BOOL)showCount {

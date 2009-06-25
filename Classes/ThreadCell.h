@@ -21,6 +21,7 @@
   IBOutlet UILabel *replyCount;
   IBOutlet UIView  *categoryStripe;
   IBOutlet UIImageView *participantIcon;
+  IBOutlet UIImageView *newPostsIcon;
 }
 
 @property (assign) NSUInteger storyId;
