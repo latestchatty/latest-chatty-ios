@@ -31,7 +31,7 @@
   storyId = [[dictionary objectForKey:@"storyId"] intValue];
   threadId = [[dictionary objectForKey:@"threadId"] intValue];
   selectedIndexPath = [dictionary objectForKey:@"selectedIndexPath"];
-  lastReplyId = [dictionary objectForKey:@"lastReplyId"];
+  lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
   
   return self;
 }
@@ -42,7 +42,8 @@
                                                     [NSNumber numberWithInt:storyId],  @"storyId",
                                                     [NSNumber numberWithInt:threadId], @"threadId",
                                                     selectedIndexPath, @"selectedIndexPath",
-                                                    [NSNumber numberWithInt:lastReplyId], nil];
+                                                    [NSNumber numberWithInt:lastReplyId], @"lastReplyId",
+                                                    nil];
 }
 
 

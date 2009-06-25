@@ -15,7 +15,7 @@
 @synthesize window;
 @synthesize navigationController;
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   
   NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
@@ -31,8 +31,15 @@
   }
   
   if (![self reloadSavedState]) {
-    // Add the stories view controller
+    // Add the root view controller
     RootViewController *viewController = [[RootViewController alloc] init];
+    [navigationController pushViewController:viewController animated:NO];
+    [viewController release];
+  }
+  
+  if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
+    // Tapped a messge push's view button
+    MessagesViewController *viewController = [[MessagesViewController alloc] init];
     [navigationController pushViewController:viewController animated:NO];
     [viewController release];
   }
@@ -62,6 +69,28 @@
                                    [NSNumber numberWithInt:0],    @"lastRefresh",
                                    nil];
   [defaults registerDefaults:defaultSettings];
+  
+  return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+  if ([userInfo objectForKey:@"message_id"]) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incoming Message"
+                                                    message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                                   delegate:self
+                                          cancelButtonTitle:@"Dismiss"
+                                          otherButtonTitles:@"View", nil];
+    [alert show];
+    [alert release];
+  }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex == 1) {
+    MessagesViewController *viewController = [[MessagesViewController alloc] init];
+    [navigationController pushViewController:viewController animated:YES];
+    [viewController release];
+  }
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
