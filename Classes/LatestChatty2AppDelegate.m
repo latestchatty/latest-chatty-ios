@@ -57,7 +57,7 @@
   NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                    @"",                           @"username",
                                    @"",                           @"password",
-                                   @"shackchatty.com",            @"server",
+                                   @"ws.shackchatty.com",         @"server",
                                    [NSNumber numberWithBool:YES], @"landscape",
                                    [NSNumber numberWithBool:YES], @"embedYoutube",
                                    [NSNumber numberWithBool:NO],  @"push.messages",
@@ -65,7 +65,7 @@
                                    [NSNumber numberWithBool:YES], @"postCategory.offtopic",
                                    [NSNumber numberWithBool:YES], @"postCategory.stupid",
                                    [NSNumber numberWithBool:YES], @"postCategory.political",
-                                   [NSNumber numberWithBool:YES], @"postCategory.nws",
+                                   [NSNumber numberWithBool:NO], @"postCategory.nws",
                                    [NSNumber numberWithInt:0],    @"lastRefresh",
                                    nil];
   [defaults registerDefaults:defaultSettings];
