@@ -20,6 +20,21 @@
 
 - (id)init {
   self = [super initWithNibName:@"RootCell" bundle:nil];
+  
+  self.textLabel.font = [UIFont boldSystemFontOfSize:24];
+  self.textLabel.textColor = [UIColor whiteColor];
+  self.textLabel.shadowColor = [UIColor blackColor];
+  self.textLabel.shadowOffset = CGSizeMake(0, -1);
+  
+  UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.frame];
+  backgroundView.image = [[UIImage imageNamed:@"CellBackground.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+  backgroundView.contentMode = UIViewContentModeScaleToFill;
+  backgroundView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  self.backgroundView = backgroundView;
+  [backgroundView release];
+  
+  self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+  
   return self;
 }
 

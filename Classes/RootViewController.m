@@ -25,13 +25,10 @@
   return [NSDictionary dictionaryWithObject:@"Root" forKey:@"type"];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  //if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-*/
 
 - (void)viewDidAppear:(BOOL)animated {
   messageLoader = [[Message findAllWithDelegate:self] retain];
@@ -71,7 +68,6 @@
   RootCell *cell = (RootCell *)[tableView dequeueReusableCellWithIdentifier:@"RootCell"];
   if (cell == nil) {
     cell = [[[RootCell alloc] init] autorelease];
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
   }
   
   switch (indexPath.row) {

@@ -28,7 +28,7 @@
   [spinner startAnimating];
   spinner.contentMode = UIViewContentModeCenter;
   spinner.frame = CGRectMake(0, 0, self.view.frame.size.width -1, self.view.frame.size.height / 2.0 -1);
-  loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  spinner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   [loadingView addSubview:spinner];
   [spinner release];
   
