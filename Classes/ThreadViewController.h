@@ -30,6 +30,7 @@
   NSUInteger grippyBarPosition;
   
   NSUInteger lastReplyId;
+  BOOL highlightMyPost;
 }
 
 @property (retain) Post *rootPost;

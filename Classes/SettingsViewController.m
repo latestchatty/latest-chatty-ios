@@ -33,7 +33,7 @@
   
   
   landscapeSwitch     = [[self generateSwitchWithKey:@"landscape"]     retain];
-  youtubeSwitch       = [[self generateSwitchWithKey:@"youtubeSwitch"] retain];
+  youtubeSwitch       = [[self generateSwitchWithKey:@"embedYoutube"]  retain];
   pushMessagesSwitch  = [[self generateSwitchWithKey:@"push.messages"] retain];
   
   

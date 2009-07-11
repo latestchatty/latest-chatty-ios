@@ -50,6 +50,9 @@
 - (IBAction)refresh:(id)sender {
   [super refresh:sender];
   loader = [[Post findThreadWithId:threadId delegate:self] retain];
+  
+  highlightMyPost = NO;
+  if ([sender isKindOfClass:[ComposeViewController class]]) highlightMyPost = YES;
 }
 
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {  
@@ -64,8 +67,15 @@
   self.title   = [dataDictionary objectForKey:@"storyName"];
   
   // Find the target post in the thread.
-  Post *firstPost;
-  if (rootPost.modelId == threadId) {
+  Post *firstPost = nil;
+  
+  if (highlightMyPost) {
+    highlightMyPost = NO;
+    for (Post *post in [rootPost repliesArray]) {
+      if ([post.author isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]] && post.modelId > firstPost.modelId)
+        firstPost = post;
+    }
+  } else if (rootPost.modelId == threadId) {
     firstPost = rootPost;
   } else {
     for (Post *reply in [rootPost repliesArray]) {
