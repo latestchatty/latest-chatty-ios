@@ -106,6 +106,7 @@
 		FAD4EB540F96798800E74FED /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD4EB530F96798800E74FED /* MessageViewController.xib */; };
 		FADDB5200F814B5200DF3650 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FADDB51E0F814B5200DF3650 /* Default.png */; };
 		FADDB5210F814B5200DF3650 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FADDB51F0F814B5200DF3650 /* Icon.png */; };
+		FAF0781B10087B530029D2AD /* push.caf in Resources */ = {isa = PBXBuildFile; fileRef = FAF0781A10087B530029D2AD /* push.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -247,6 +248,7 @@
 		FAD4EB530F96798800E74FED /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		FADDB51E0F814B5200DF3650 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Assets/Default.png; sourceTree = "<group>"; };
 		FADDB51F0F814B5200DF3650 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Assets/Icon.png; sourceTree = "<group>"; };
+		FAF0781A10087B530029D2AD /* push.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = push.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -444,6 +446,7 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FAF0781A10087B530029D2AD /* push.caf */,
 				FADDB51E0F814B5200DF3650 /* Default.png */,
 				FADDB51F0F814B5200DF3650 /* Icon.png */,
 				FAD26D900F7EE0A5001A76F6 /* TagIcon.png */,
@@ -605,6 +608,7 @@
 				FA2ECCC10F9D4FED00912BE4 /* Lock.16.png in Resources */,
 				FACD9A7E0F9E2F49009D9A15 /* SearchResultsViewController.xib in Resources */,
 				FAA1E01E0FF2F3CE002714B6 /* NewPostBullet.png in Resources */,
+				FAF0781B10087B530029D2AD /* push.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

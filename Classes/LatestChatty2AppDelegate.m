@@ -65,7 +65,7 @@
                                    [NSNumber numberWithBool:YES], @"postCategory.offtopic",
                                    [NSNumber numberWithBool:YES], @"postCategory.stupid",
                                    [NSNumber numberWithBool:YES], @"postCategory.political",
-                                   [NSNumber numberWithBool:NO], @"postCategory.nws",
+                                   [NSNumber numberWithBool:NO],  @"postCategory.nws",
                                    [NSNumber numberWithInt:0],    @"lastRefresh",
                                    nil];
   [defaults registerDefaults:defaultSettings];
