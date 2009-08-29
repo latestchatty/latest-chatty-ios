@@ -216,7 +216,7 @@
   
   // Post category toggles
   if (indexPath.section == 2) {
-    UIView *categoryColor = [[UIView alloc] initWithFrame:CGRectMake(18, 9, 6, 28)];
+    UIView *categoryColor = [[[UIView alloc] initWithFrame:CGRectMake(18, 9, 6, 28)] autorelease];
     [cell addSubview:categoryColor];
     
     switch (indexPath.row) {

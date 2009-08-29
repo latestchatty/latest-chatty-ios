@@ -16,7 +16,7 @@
 - (id)initWithTemplateName:(NSString *)templateName {
   [self init];
   
-  self.result = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:templateName ofType:nil]];
+  self.result = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:templateName ofType:nil] usedEncoding:nil error:nil];
   
   return self;
 }

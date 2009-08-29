@@ -12,7 +12,7 @@
 @implementation Tag
 
 + (void)tagPostId:(NSUInteger)postId tag:(TagType)tagType {
-  NSString *url;
+  NSString *url = nil;
   NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
   
   switch (tagType) {

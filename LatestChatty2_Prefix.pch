@@ -6,4 +6,5 @@
   #import <Foundation/Foundation.h>
   #import <UIKit/UIKit.h>
   #import "UIImage-NSCoding.h"
+  #import "NSDate+SuppressWarnings.h"
 #endif

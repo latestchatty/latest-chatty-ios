@@ -27,7 +27,7 @@
 }
 
 - (id)initWithUrlString:(NSString *)urlString {
-  NSLog(urlString);
+  NSLog(@"Loading Browser with URL: %@", urlString);
   NSURL *url = [NSURL URLWithString:urlString];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   return [self initWithRequest:request];

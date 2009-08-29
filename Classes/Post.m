@@ -114,7 +114,6 @@ static NSMutableDictionary *colorMapping;
                           [terms stringByUrlEscape],
                           [authorName stringByUrlEscape],
                           [parentAuthor stringByUrlEscape]];
-  NSLog(urlString);
   return [self loadAllFromUrl:urlString delegate:delegate];
 }
 
@@ -158,7 +157,7 @@ static NSMutableDictionary *colorMapping;
   NSString *responseBody = [[NSString alloc] initWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]
                                                  encoding:NSASCIIStringEncoding];
   
-  NSLog(requestBody);
+  NSLog(@"Creating Post with Request body: %@", requestBody);
   
   if ([responseBody rangeOfString:@"navigate_page_no_history"].location != NSNotFound) {
     // This means success

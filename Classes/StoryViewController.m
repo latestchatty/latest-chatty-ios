@@ -59,7 +59,7 @@
   // Load blank page while we wait
   NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
   StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
-  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
+  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil] usedEncoding:nil error:nil];
   [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
   [htmlTemplate setString:@"" forKey:@"date"];
   [htmlTemplate setString:@"" forKey:@"storyId"];
@@ -78,7 +78,7 @@
   
   StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
   
-  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
+  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil] usedEncoding:nil error:nil];
   [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
   [htmlTemplate setString:[Story formatDate:story.date] forKey:@"date"];
   [htmlTemplate setString:[NSString stringWithFormat:@"%i", story.modelId] forKey:@"storyId"];

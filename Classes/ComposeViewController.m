@@ -163,9 +163,6 @@
 #pragma mark Actions
 
 - (IBAction)sendPost {
-  NSUInteger parentId = 0;
-  if (post) parentId = post.modelId;
-  
   if ([Post createWithBody:postContent.text parentId:post.modelId storyId:storyId]) {
     NSArray *controllers = [self.navigationController viewControllers];
     ModelListViewController *lastController = [controllers objectAtIndex:[controllers count] - 2];

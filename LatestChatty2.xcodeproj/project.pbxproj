@@ -210,6 +210,7 @@
 		FA9C3F200F9CFF0C0022A739 /* BlueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueButton.png; path = Assets/BlueButton.png; sourceTree = "<group>"; };
 		FA9C3F210F9CFF0C0022A739 /* BlueButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueButtonPressed.png; path = Assets/BlueButtonPressed.png; sourceTree = "<group>"; };
 		FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NewPostBullet.png; path = Assets/NewPostBullet.png; sourceTree = "<group>"; };
+		FAA3C1EB1048C070009B808F /* NSDate+SuppressWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SuppressWarnings.h"; sourceTree = "<group>"; };
 		FAA849960F78C29900026446 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
 		FAA849970F78C29900026446 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
 		FAA849990F78C2B000026446 /* ThreadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadViewController.xib; sourceTree = "<group>"; };
@@ -302,6 +303,7 @@
 			children = (
 				28A0AAE50D9B0CCF005BE974 /* LatestChatty2_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				FAA3C1EB1048C070009B808F /* NSDate+SuppressWarnings.h */,
 				FABA5D410F717A28008EEE3A /* StringAdditions.h */,
 				FABA5D420F717A28008EEE3A /* StringAdditions.m */,
 				FABA5D450F717B60008EEE3A /* HTMLEscaper.h */,
@@ -666,7 +668,6 @@
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Wayne";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -684,7 +685,6 @@
 					"-ljson",
 				);
 				PRODUCT_NAME = LatestChatty;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AA72E614-BDE2-4784-8BE4-0EF03C00E02C";
 			};
 			name = Debug;
 		};
@@ -693,7 +693,6 @@
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Wayne";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -709,7 +708,6 @@
 					"-ljson",
 				);
 				PRODUCT_NAME = LatestChatty;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AA72E614-BDE2-4784-8BE4-0EF03C00E02C";
 			};
 			name = Release;
 		};
@@ -724,7 +722,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AA72E614-BDE2-4784-8BE4-0EF03C00E02C";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -738,7 +736,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AA72E614-BDE2-4784-8BE4-0EF03C00E02C";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};
@@ -752,7 +750,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
 		};
@@ -761,7 +759,6 @@
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Alex Wayne";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -777,7 +774,6 @@
 					"-ljson",
 				);
 				PRODUCT_NAME = LatestChatty;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B8033E3F-DC24-4D75-ABF4-442BA3B57CDA";
 			};
 			name = Distribution;
 		};

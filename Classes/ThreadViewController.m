@@ -141,7 +141,7 @@
   
   // Fill in emtpy web view
   StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
-  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
+  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil] usedEncoding:nil error:nil];
   [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
   [postView loadHTMLString:htmlTemplate.result baseURL:nil];
   [htmlTemplate release];
@@ -212,7 +212,7 @@
   // Create HTML for the post
   StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
 
-  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
+  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil] usedEncoding:nil error:nil];
   [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
   [htmlTemplate setString:[Post formatDate:post.date] forKey:@"date"];
   [htmlTemplate setString:post.author forKey:@"author"];

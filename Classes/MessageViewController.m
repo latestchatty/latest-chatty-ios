@@ -25,7 +25,7 @@
   
   StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
   
-  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil]];
+  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil] usedEncoding:nil error:nil];
   [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
   [htmlTemplate setString:[Message formatDate:message.date] forKey:@"date"];
   [htmlTemplate setString:message.from forKey:@"author"];

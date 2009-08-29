@@ -47,7 +47,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
   if ([challenge previousFailureCount] == 0) {
-    LatestChatty2AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
     [[challenge sender] useCredential:[appDelegate userCredential] forAuthenticationChallenge:challenge];
   } else {    
     [[challenge sender] cancelAuthenticationChallenge:challenge];
