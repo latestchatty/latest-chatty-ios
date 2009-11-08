@@ -99,6 +99,7 @@
 }
 
 - (void)dealloc {
+	NSLog(@"ModelLoader release!");
   [urlString release];
   [connection release];
   [downloadedData release];

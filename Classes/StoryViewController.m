@@ -14,14 +14,14 @@
 @synthesize story;
 
 - (id)initWithStoryId:(NSUInteger)aStoryId {
-  [self initWithNibName:@"StoryViewController" bundle:nil];
+  self = [self initWithNibName:@"StoryViewController" bundle:nil];
   storyId = aStoryId;
   self.title = @"Loading...";
   return self;
 }
 
 - (id)initWithStory:(Story *)aStory {
-  [self initWithNibName:@"StoryViewController" bundle:nil];
+  self = [self initWithNibName:@"StoryViewController" bundle:nil];
   self.story = aStory;
   self.title = self.story.title;
   return self;
@@ -38,7 +38,8 @@
 
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
   self.story = model;
-  [story release];
+	[storyLoader release];
+  //[story release];
   storyLoader = nil;
   [self displayStory];
 }
@@ -117,6 +118,8 @@
 
 - (void)dealloc {
   [storyLoader release];
+	NSLog(@"StoryRetainCount: %d", [story retainCount]);
+		  
   [story release];
   [super dealloc];
 }
