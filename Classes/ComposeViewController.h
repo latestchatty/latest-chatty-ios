@@ -12,16 +12,18 @@
 #import "ModelListViewController.h"
 #import "BrowserViewController.h"
 
-@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate> {
-  NSInteger storyId;
-  Post *post;
-  
-  NSDictionary *tagLookup;
+@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate> {
+	NSInteger storyId;
+	Post *post;
+	
+	NSDictionary *tagLookup;
 	
 	BOOL postingWarningAlertView;
-  
-  IBOutlet UILabel *parentPostPreview;
-  IBOutlet UITextView *postContent;
+	
+	UIView* activityView;
+	
+	IBOutlet UILabel *parentPostPreview;
+	IBOutlet UITextView *postContent;
 }
 
 @property (assign) NSInteger storyId;

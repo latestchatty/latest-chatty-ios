@@ -135,30 +135,73 @@
 	}
 }
 
-- (UIProgressView*)showSpinnerWithProgressbar
+- (UIProgressView*)showActivityIndicator:(BOOL)progressViewType;
 {
-	return nil;
+	UIWindow* activeWindow = self.view.window;
+	CGRect frame = activeWindow.frame;
+	UIProgressView* progressBar = nil;
+	
+	if( activityView ){
+		[activityView removeFromSuperview];
+		activityView = [[UIView alloc] initWithFrame:frame];
+		activityView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:.5];
+	}
+	
+	UILabel* message = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+	message.backgroundColor = [UIColor clearColor];
+	message.textColor = [UIColor whiteColor];
+	message.font = [UIFont boldSystemFontOfSize:18];
+	
+	UIView* animatedView = nil;
+	
+	if( !progressViewType ){
+		UIActivityIndicatorView* spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+		message.text = @"Posting comment...";
+		spinner.tag = 1;
+		[spinner startAnimating];
+	}
+	else{
+		progressBar = [[[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar] autorelease];
+		message.text = @"Uploading image...";
+		[progressBar sizeToFit];
+		frame = progressBar.frame;
+		frame.size.width = 200;
+	}
+	
+	return progressBar;
+}
+
+- (void)hideActivytIndicator
+{
+	
+}
+
+- (void)image:(Image*)image sendComplete:(NSString*)url
+{
+	postContent.text = [postContent.text stringByAppendingString:url];
+	[image release];
+}
+
+- (void)image:(Image*)image sendFailure:(NSString*)message
+{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Failed"
+													message:@"Sorry but there was an error uploading your photo"
+												   delegate:nil
+										  cancelButtonTitle:@"Oopsie"
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+	[image release];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)anImage editingInfo:(NSDictionary *)editingInfo {
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 	Image *image = [[Image alloc] initWithImage:anImage];
+	image.delegate = self;
 	
 	UIProgressView* progressBar = [self showSpinnerWithProgressbar];
-	NSString *imageURL = [image uploadAndReturnImageUrlWithProgressView:progressBar];
-	[image release];
-	
-	if (imageURL) {
-		postContent.text = [postContent.text stringByAppendingString:imageURL];
-	} else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Failed"
-														message:@"Sorry but there was an error uploading your photo"
-													   delegate:nil
-											  cancelButtonTitle:@"Oopsie"
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+	[NSThread detachNewThreadSelector:@selector(uploadAndReturnImageUrlWithProgressView:) toTarget:image withObject:progressBar];
+	//[image uploadAndReturnImageUrlWithProgressView:progressBar];
 }
 
 #pragma mark Tagging

@@ -12,10 +12,18 @@
 #import "NSStringAdditions.h"
 #import "StringAdditions.h"
 
-@interface Image : NSObject {
-  UIImage *image;
-}
+@class Image;
+@protocol ImageSendingDelegate
+- (void)image:(Image*)image sendComplete:(NSString*)url;
+- (void)image:(Image*)image sendFailure:(NSString*)message;
+@end
 
+
+@interface Image : NSObject {
+	UIImage *image;
+	NSObject<ImageSendingDelegate>* delegate;
+}
+@property (assign,nonatomic) NSObject<ImageSendingDelegate>* delegate;
 @property (retain) UIImage *image;
 
 - (id)initWithImage:(UIImage *)anImage;

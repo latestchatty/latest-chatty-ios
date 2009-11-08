@@ -11,7 +11,7 @@
 
 @implementation Image
 
-@synthesize image;
+@synthesize image, delegate;
 
 - (id)initWithImage:(UIImage *)anImage {
 	[super init];

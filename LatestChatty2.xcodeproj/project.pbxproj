@@ -28,6 +28,7 @@
 		5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		5907C5B710A69A190028D630 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5B610A69A190028D630 /* libz.dylib */; };
+		5907C67A10A6A5910028D630 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C67910A6A5910028D630 /* UIView+Additions.m */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
@@ -158,6 +159,8 @@
 		5907C5AC10A69A0A0028D630 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5907C5B610A69A190028D630 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		5907C67810A6A5910028D630 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
+		5907C67910A6A5910028D630 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
@@ -461,6 +464,8 @@
 				FACD9A7A0F9E2F33009D9A15 /* SearchResultsViewController.h */,
 				FACD9A7B0F9E2F33009D9A15 /* SearchResultsViewController.m */,
 				FACD9A7D0F9E2F49009D9A15 /* SearchResultsViewController.xib */,
+				5907C67810A6A5910028D630 /* UIView+Additions.h */,
+				5907C67910A6A5910028D630 /* UIView+Additions.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -737,6 +742,7 @@
 				5907C59D10A699A70028D630 /* ASIS3ListRequest.m in Sources */,
 				5907C59E10A699A70028D630 /* ASIS3Request.m in Sources */,
 				5907C5A510A699DB0028D630 /* Reachability.m in Sources */,
+				5907C67A10A6A5910028D630 /* UIView+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
