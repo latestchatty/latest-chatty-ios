@@ -78,7 +78,9 @@
 	
 	// Noob help alert
 	if (buttonIndex == 1) {
-		if( postingWarningAlertView ) [self makePost];
+		if( postingWarningAlertView ){
+			[NSThread detachNewThreadSelector:@selector(makePost) toTarget:self withObject:nil];
+		}
 		else{
 			NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
 			BrowserViewController *controller = [[BrowserViewController alloc] initWithRequest:rulesPageRequest];
@@ -172,17 +174,35 @@
 
 #pragma mark Actions
 
+- (void)postSuccess
+{
+	NSArray *controllers = [self.navigationController viewControllers];
+	ModelListViewController *lastController = [controllers objectAtIndex:[controllers count] - 2];
+	[lastController refresh:self];
+	[self.navigationController popViewControllerAnimated:YES]; 
+}
+
+- (void)postFailure
+{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Failure"
+													message:@"There seems to have been an issue making the post. Try again!"
+												   delegate:nil
+										  cancelButtonTitle:@"Bummer"
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
 - (void)makePost 
 {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	if ([Post createWithBody:postContent.text parentId:post.modelId storyId:storyId]) {
-		NSArray *controllers = [self.navigationController viewControllers];
-		ModelListViewController *lastController = [controllers objectAtIndex:[controllers count] - 2];
-		[lastController refresh:self];
-		[self.navigationController popViewControllerAnimated:YES];    
+		[self performSelectorOnMainThread:@selector(postSuccess) withObject:nil waitUntilDone:NO];
 	} else {
-		NSLog(@"Failure!");
+		[self performSelectorOnMainThread:@selector(postFailure) withObject:nil waitUntilDone:NO];
 	}
 	postingWarningAlertView = NO;
+	[pool release];
 }
 
 - (IBAction)sendPost {
@@ -194,9 +214,6 @@
                                           otherButtonTitles:@"Yes Please",nil];
     [alert show];
     [alert release];
-	
-	
-	
 }
 
 
