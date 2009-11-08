@@ -17,7 +17,7 @@
 	CGRect viewFrame = view.frame;
 	CGRect selfFrame = self.frame;
 	
-	CGRect retVal = CGRectZero;
+	CGRect retVal = self.frame;
 	retVal.origin.x = (int)(viewFrame.size.width/2 - selfFrame.size.width/2);
 	retVal.origin.y = (int)(viewFrame.size.height/2 - selfFrame.size.height/2);
 	self.frame = retVal;
@@ -29,7 +29,7 @@
 	CGRect viewFrame = view.frame;
 	CGRect selfFrame = self.frame;
 	
-	CGRect retVal = CGRectZero;
+	CGRect retVal = self.frame;
 	retVal.origin.y = (int)(viewFrame.size.height/2 - selfFrame.size.height/2);
 	self.frame = retVal;
 	return retVal;
@@ -40,7 +40,7 @@
 	CGRect viewFrame = view.frame;
 	CGRect selfFrame = self.frame;
 	
-	CGRect retVal = CGRectZero;
+	CGRect retVal = self.frame;
 	retVal.origin.x = (int)(viewFrame.size.width/2 - selfFrame.size.width/2);
 	self.frame = retVal;
 	return retVal;

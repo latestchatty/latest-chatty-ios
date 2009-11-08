@@ -30,6 +30,12 @@
 	return [[NSString base64StringFromData:imageData length:[imageData length]] stringByUrlEscape];
 }
 
+- (void)informDelegateOnMainThreadWithURL:(NSString*)url
+{
+	if( url ) [delegate image:self sendComplete:url];
+	else [delegate image:self sendFailure:@"stub"];
+}
+
 - (NSString *)uploadAndReturnImageUrlWithProgressView:(UIProgressView*)progressView {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
@@ -74,15 +80,9 @@
 	
 	// Check for success
 	NSString *imageURL = [responseDictionary objectForKey:@"success"];
-	if (imageURL) {
-		[responseString release];
-		return imageURL;
-	}
-	
-	// Failed
-	NSLog(@"Upload Failed: %@", responseString);
 	[responseString release];
-	
+	[self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:imageURL waitUntilDone:YES];
+	//[self informDelegateOnMainThread:imageURL];
 	[pool release];
 	
 	return nil;

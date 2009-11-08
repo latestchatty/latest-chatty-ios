@@ -11,6 +11,7 @@
 #import "Image.h"
 #import "ModelListViewController.h"
 #import "BrowserViewController.h"
+#import "UIView+Additions.h"
 
 @interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate> {
 	NSInteger storyId;
@@ -31,7 +32,7 @@
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost;
 - (void)makePost;
-- (UIProgressView*)showSpinnerWithProgressbar;
+- (UIProgressView*)showActivityIndicator:(BOOL)progressViewType;
 
 - (IBAction)showTagButtons;
 - (IBAction)showImagePicker;
