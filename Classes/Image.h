@@ -22,6 +22,6 @@
 - (void)autoRotateAndScale:(NSUInteger)maxDimension;
 - (NSData *)compressJpeg:(CGFloat)quality;
 - (NSString *)base64String;
-- (NSString *)uploadAndReturnImageUrl;
+- (NSString *)uploadAndReturnImageUrlWithProgressView:(UIProgressView*)progressView;
 
 @end

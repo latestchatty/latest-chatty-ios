@@ -17,6 +17,8 @@
   Post *post;
   
   NSDictionary *tagLookup;
+	
+	BOOL postingWarningAlertView;
   
   IBOutlet UILabel *parentPostPreview;
   IBOutlet UITextView *postContent;
@@ -26,6 +28,8 @@
 @property (retain) Post *post;
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost;
+- (void)makePost;
+- (UIProgressView*)showSpinnerWithProgressbar;
 
 - (IBAction)showTagButtons;
 - (IBAction)showImagePicker;

@@ -7,74 +7,85 @@
 //
 
 #import "Image.h"
-
+#import "ASIHTTPRequest.h"
 
 @implementation Image
 
 @synthesize image;
 
 - (id)initWithImage:(UIImage *)anImage {
-  [super init];
-  self.image = anImage;
-  return self;
+	[super init];
+	self.image = anImage;
+	return self;
 }
 
 
 
 - (NSData *)compressJpeg:(CGFloat)quality {
-  return UIImageJPEGRepresentation(image, quality);
+	return UIImageJPEGRepresentation(image, quality);
 }
 
 - (NSString *)base64String {
-  NSData *imageData = [self compressJpeg:0.7];
-  return [[NSString base64StringFromData:imageData length:[imageData length]] stringByUrlEscape];
+	NSData *imageData = [self compressJpeg:0.7];
+	return [[NSString base64StringFromData:imageData length:[imageData length]] stringByUrlEscape];
 }
 
-- (NSString *)uploadAndReturnImageUrl {
-  [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-  
-  // Clean and resize image
-  [self autoRotateAndScale:800];
-  
-  // Setup raw image data
-  NSString *imageBase64Data = [self base64String];
-  
-  // Request setup
-  NSString *urlString = [Model urlStringWithPath:@"/images"];
-  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-  [request setHTTPMethod:@"POST"];
-  
-  // Create the post body
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  NSString *username = [[defaults stringForKey:@"username"] stringByUrlEscape];
-  NSString *password = [[defaults stringForKey:@"password"] stringByUrlEscape];
-  NSString *postBody = [NSString stringWithFormat:@"username=%@&password=%@&filename=iPhoneUpload.jpg&image=%@", username, password, imageBase64Data];
-  [request setHTTPBody:[postBody dataUsingEncoding:NSASCIIStringEncoding]];
-  
-  // Send the request
-  NSHTTPURLResponse *response;
-  NSError *error;
-  NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-  
-  // Cleanup the request
-  [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-  [request release];
-  
-  // Process response
-  NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-  NSDictionary *responseDictionary = [responseString JSONValue];
-  
-  // Check for success
-  NSString *imageURL = [responseDictionary objectForKey:@"success"];
-  if (imageURL) {
-    [responseString release];
-    return imageURL;
-  }
-  
-  // Failed
-  NSLog(@"Upload Failed: %@", responseString);
-  [responseString release];
-  return nil;
+- (NSString *)uploadAndReturnImageUrlWithProgressView:(UIProgressView*)progressView {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+	
+	// Clean and resize image
+	[self autoRotateAndScale:800];
+	
+	// Setup raw image data
+	NSString *imageBase64Data = [self base64String];
+	
+	// Request setup
+	NSString *urlString = [Model urlStringWithPath:@"/images"];
+	//NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+	ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+	[request setRequestMethod:@"POST"];
+	[request setUploadProgressDelegate:progressView];
+	//[request setHTTPMethod:@"POST"];
+	
+	// Create the post body
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSString *username = [[defaults stringForKey:@"username"] stringByUrlEscape];
+	NSString *password = [[defaults stringForKey:@"password"] stringByUrlEscape];
+	NSString *postBody = [NSString stringWithFormat:@"username=%@&password=%@&filename=iPhoneUpload.jpg&image=%@", username, password, imageBase64Data];
+	[request appendPostData:[postBody dataUsingEncoding:NSASCIIStringEncoding]];
+	//[request setHTTPBody:[postBody dataUsingEncoding:NSASCIIStringEncoding]];
+	
+	// Send the request
+	//NSHTTPURLResponse *response;
+	//NSError *error;
+	[request start];
+	
+	NSData *responseData = [request responseData];
+	
+	// Cleanup the request
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+	[request release];
+	
+	// Process response
+	NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	NSDictionary *responseDictionary = [responseString JSONValue];
+	
+	// Check for success
+	NSString *imageURL = [responseDictionary objectForKey:@"success"];
+	if (imageURL) {
+		[responseString release];
+		return imageURL;
+	}
+	
+	// Failed
+	NSLog(@"Upload Failed: %@", responseString);
+	[responseString release];
+	
+	[pool release];
+	
+	return nil;
 }
 
 #pragma mark Image Processor
