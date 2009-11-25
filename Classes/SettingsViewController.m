@@ -18,13 +18,13 @@
   usernameField = [[self generateTextFieldWithKey:@"username"] retain];
   usernameField.placeholder = @"Enter Username";
   usernameField.returnKeyType = UIReturnKeyNext;
-  usernameField.keyboardType = UIKeyboardTypeEmailAddress;
+  usernameField.keyboardType = UIKeyboardTypeASCIICapable;
   
   passwordField = [[self generateTextFieldWithKey:@"password"] retain];
   passwordField.placeholder = @"Enter Password";
   passwordField.secureTextEntry = YES;
   passwordField.returnKeyType = UIReturnKeyDone;
-  usernameField.keyboardType = UIKeyboardTypeEmailAddress;
+  passwordField.keyboardType = UIKeyboardTypeASCIICapable;
   
   serverField = [[self generateTextFieldWithKey:@"server"] retain];
   serverField.placeholder = @"shackchatty.com";
