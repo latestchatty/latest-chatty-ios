@@ -123,7 +123,10 @@ static NSMutableDictionary *colorMapping;
 }
 
 + (id)didFinishLoadingData:(id)dataObject {
-  NSArray *modelData = [[dataObject objectForKey:@"comments"] objectAtIndex:0];
+  NSArray *modelData = nil;
+  if ([dataObject count] > 0) {
+    modelData = [[dataObject objectForKey:@"comments"] objectAtIndex:0];
+  }
   return [super didFinishLoadingData:modelData];
 }
 
