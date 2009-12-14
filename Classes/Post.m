@@ -30,6 +30,8 @@ static NSMutableDictionary *colorMapping;
 @synthesize timeLevel;
 @synthesize newPost;
 
+@synthesize newReplies;
+
 + (void)initialize {
   colorMapping = [[NSMutableDictionary alloc] init];
   [colorMapping setObject:[UIColor clearColor]                                       forKey:@"ontopic"];

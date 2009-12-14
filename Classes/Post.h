@@ -14,24 +14,24 @@
 #import "StringAdditions.h"
 
 @interface Post : Model {
-  NSString *author;
-  NSString *preview;
-  NSString *body;
-  NSDate   *date;
-  NSUInteger replyCount;
-  NSString *category;
-  
-  NSUInteger storyId;
-  NSUInteger parentPostId;
-  NSUInteger lastReplyId;
-  
-  NSMutableArray *participants;
-  NSMutableArray *replies;
-  NSMutableArray *flatReplies;
-  NSInteger       depth;
-  
-  NSUInteger      timeLevel;
-  BOOL newPost;
+	NSString *author;
+	NSString *preview;
+	NSString *body;
+	NSDate   *date;
+	NSUInteger replyCount;
+	NSString *category;
+	
+	NSUInteger storyId;
+	NSUInteger parentPostId;
+	NSUInteger lastReplyId;
+	
+	NSMutableArray *participants;
+	NSMutableArray *replies;
+	NSMutableArray *flatReplies;
+	NSInteger       depth;
+	NSInteger       newReplies;
+	NSUInteger      timeLevel;
+	BOOL newPost;
 }
 
 @property (copy) NSString *author;
@@ -51,6 +51,7 @@
 @property (assign) NSInteger depth;
 
 @property (assign) NSUInteger timeLevel;
+@property (assign,nonatomic) NSInteger newReplies;
 
 @property (assign) BOOL newPost;
 
