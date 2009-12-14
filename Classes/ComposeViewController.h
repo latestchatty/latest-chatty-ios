@@ -21,10 +21,13 @@
 	
 	BOOL postingWarningAlertView;
 	
-	UIView* activityView;
-	
 	IBOutlet UILabel *parentPostPreview;
 	IBOutlet UITextView *postContent;
+	
+	IBOutlet UIView* activityView;
+	IBOutlet UILabel* activityText;
+	IBOutlet UIActivityIndicatorView* spinner;
+	IBOutlet UIProgressView* uploadBar;
 }
 
 @property (assign) NSInteger storyId;
