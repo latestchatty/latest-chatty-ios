@@ -42,7 +42,7 @@
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	
 	// Clean and resize image -- this cannot be done on a thread
-	[self autoRotateAndScale:800];
+	//[self autoRotateAndScale:800];
 	
 	// Setup raw image data
 	NSString *imageBase64Data = [self base64String];
