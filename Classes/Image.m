@@ -41,8 +41,8 @@
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	
-	// Clean and resize image
-	[self autoRotateAndScale:800];
+	// Clean and resize image -- this cannot be done on a thread
+	//[self autoRotateAndScale:800];
 	
 	// Setup raw image data
 	NSString *imageBase64Data = [self base64String];
@@ -189,7 +189,7 @@
 	
 	CGContextConcatCTM(context, transform);
 	
-	CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef);
+	CGContextDrawImage(context, CGRectMake(0, 0, width, height), imgRef);
 	UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	

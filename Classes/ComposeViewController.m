@@ -250,6 +250,9 @@
 	image.delegate = self;
 	
 	UIProgressView* progressBar = [self showActivityIndicator:YES];
+	
+	//doing this on the mainthread instead
+	[image autoRotateAndScale:800];
 	[NSThread detachNewThreadSelector:@selector(uploadAndReturnImageUrlWithProgressView:) toTarget:image withObject:progressBar];
 	//[image uploadAndReturnImageUrlWithProgressView:progressBar];
 }
