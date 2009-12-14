@@ -29,15 +29,13 @@
 	author.text       = rootPost.author;
 	preview.text      = rootPost.preview;
 	date.text         = [Post formatDate:rootPost.date];
-	replyCount.text = [NSString stringWithFormat:@"%i", rootPost.replyCount];
+	
+	NSString* newPostText = nil;
 	if( rootPost.newReplies ){
-		newPostCount.textColor = [UIColor blueColor];
-		newPostCount.text = [NSString stringWithFormat:@"+%d", rootPost.newReplies];
+		newPostText = [NSString stringWithFormat:@"+%d", rootPost.newReplies];
+		replyCount.text = [NSString stringWithFormat:@"%i (%@)", rootPost.replyCount, newPostText];
 	}
-	else{
-		newPostCount.textColor = [UIColor grayColor];
-		newPostCount.text = [NSString stringWithFormat:@"%d", rootPost.newReplies];
-	}
+	else replyCount.text = [NSString stringWithFormat:@"%i", rootPost.replyCount];
 	
 	// Set background to a light color if the user is the root poaster
 	UIImageView *background = (UIImageView *)self.backgroundView;
