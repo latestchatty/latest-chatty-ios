@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <JSON/JSON.h>
+#import "JSON.h"
 #import "ModelLoadingDelegate.h"
 #import "ModelLoader.h"
 #import "RegexKitLite.h"

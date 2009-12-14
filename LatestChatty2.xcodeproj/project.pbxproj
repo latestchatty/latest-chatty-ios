@@ -29,6 +29,12 @@
 		5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		5907C5B710A69A190028D630 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5B610A69A190028D630 /* libz.dylib */; };
 		5907C67A10A6A5910028D630 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C67910A6A5910028D630 /* UIView+Additions.m */; };
+		599FF0F610D5DDC1004476B8 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0EB10D5DDC1004476B8 /* NSObject+SBJSON.m */; };
+		599FF0F710D5DDC1004476B8 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0ED10D5DDC1004476B8 /* NSString+SBJSON.m */; };
+		599FF0F810D5DDC1004476B8 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0EF10D5DDC1004476B8 /* SBJSON.m */; };
+		599FF0F910D5DDC1004476B8 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F110D5DDC1004476B8 /* SBJsonBase.m */; };
+		599FF0FA10D5DDC1004476B8 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F310D5DDC1004476B8 /* SBJsonParser.m */; };
+		599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
@@ -161,6 +167,19 @@
 		5907C5B610A69A190028D630 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		5907C67810A6A5910028D630 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		5907C67910A6A5910028D630 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
+		599FF0E910D5DDC1004476B8 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		599FF0EA10D5DDC1004476B8 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		599FF0EB10D5DDC1004476B8 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		599FF0EC10D5DDC1004476B8 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		599FF0ED10D5DDC1004476B8 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		599FF0EE10D5DDC1004476B8 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		599FF0EF10D5DDC1004476B8 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		599FF0F010D5DDC1004476B8 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		599FF0F110D5DDC1004476B8 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		599FF0F210D5DDC1004476B8 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		599FF0F310D5DDC1004476B8 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		599FF0F410D5DDC1004476B8 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
@@ -311,6 +330,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				599FF0E810D5DDC1004476B8 /* JSON */,
 				5907C58310A699A70028D630 /* ASIHTTP */,
 				1D3623240D0F684500981E51 /* LatestChatty2AppDelegate.h */,
 				1D3623250D0F684500981E51 /* LatestChatty2AppDelegate.m */,
@@ -410,6 +430,26 @@
 				5907C59510A699A70028D630 /* ASIS3Request.m */,
 			);
 			path = ASIHTTP;
+			sourceTree = "<group>";
+		};
+		599FF0E810D5DDC1004476B8 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				599FF0E910D5DDC1004476B8 /* JSON.h */,
+				599FF0EA10D5DDC1004476B8 /* NSObject+SBJSON.h */,
+				599FF0EB10D5DDC1004476B8 /* NSObject+SBJSON.m */,
+				599FF0EC10D5DDC1004476B8 /* NSString+SBJSON.h */,
+				599FF0ED10D5DDC1004476B8 /* NSString+SBJSON.m */,
+				599FF0EE10D5DDC1004476B8 /* SBJSON.h */,
+				599FF0EF10D5DDC1004476B8 /* SBJSON.m */,
+				599FF0F010D5DDC1004476B8 /* SBJsonBase.h */,
+				599FF0F110D5DDC1004476B8 /* SBJsonBase.m */,
+				599FF0F210D5DDC1004476B8 /* SBJsonParser.h */,
+				599FF0F310D5DDC1004476B8 /* SBJsonParser.m */,
+				599FF0F410D5DDC1004476B8 /* SBJsonWriter.h */,
+				599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		FA2B47500F7E1DA30074064A /* Base64 */ = {
@@ -743,6 +783,12 @@
 				5907C59E10A699A70028D630 /* ASIS3Request.m in Sources */,
 				5907C5A510A699DB0028D630 /* Reachability.m in Sources */,
 				5907C67A10A6A5910028D630 /* UIView+Additions.m in Sources */,
+				599FF0F610D5DDC1004476B8 /* NSObject+SBJSON.m in Sources */,
+				599FF0F710D5DDC1004476B8 /* NSString+SBJSON.m in Sources */,
+				599FF0F810D5DDC1004476B8 /* SBJSON.m in Sources */,
+				599FF0F910D5DDC1004476B8 /* SBJsonBase.m in Sources */,
+				599FF0FA10D5DDC1004476B8 /* SBJsonParser.m in Sources */,
+				599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,7 +798,6 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
@@ -765,11 +810,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				OTHER_LDFLAGS = (
-					"-licucore",
-					"-ObjC",
-					"-ljson",
-				);
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Debug;
@@ -777,7 +817,6 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
@@ -788,11 +827,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				OTHER_LDFLAGS = (
-					"-licucore",
-					"-ObjC",
-					"-ljson",
-				);
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Release;
@@ -803,9 +837,14 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.0;
@@ -820,6 +859,10 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AA72E614-BDE2-4784-8BE4-0EF03C00E02C";
 				SDKROOT = iphoneos3.0;
@@ -834,6 +877,10 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.0;
@@ -843,7 +890,6 @@
 		FADDB5420F81548500DF3650 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
@@ -854,11 +900,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				OTHER_LDFLAGS = (
-					"-licucore",
-					"-ObjC",
-					"-ljson",
-				);
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Distribution;
