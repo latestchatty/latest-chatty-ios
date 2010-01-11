@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ModelLoadingDelegate.h"
-#import <JSON/JSON.h>
+#import "JSON.h"
 
 @interface ModelLoader : NSObject {
   NSString *urlString;

@@ -12,16 +12,17 @@
 #import "Post.h"
 
 @interface ThreadCell : TableCellFromNib {
-  NSUInteger storyId;
-  Post  *rootPost;
-  
-  IBOutlet UILabel *author;
-  IBOutlet UILabel *date;
-  IBOutlet UILabel *preview;
-  IBOutlet UILabel *replyCount;
-  IBOutlet UIView  *categoryStripe;
-  IBOutlet UIImageView *participantIcon;
-  IBOutlet UIImageView *newPostsIcon;
+	NSUInteger storyId;
+	Post  *rootPost;
+	
+	IBOutlet UILabel *author;
+	IBOutlet UILabel *date;
+	IBOutlet UILabel *preview;
+	IBOutlet UILabel *replyCount;
+	IBOutlet UIView  *categoryStripe;
+	IBOutlet UIImageView *participantIcon;
+	IBOutlet UIImageView *newPostsIcon;
+	IBOutlet UILabel *newPostCount;
 }
 
 @property (assign) NSUInteger storyId;

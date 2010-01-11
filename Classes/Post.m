@@ -30,6 +30,8 @@ static NSMutableDictionary *colorMapping;
 @synthesize timeLevel;
 @synthesize newPost;
 
+@synthesize newReplies;
+
 + (void)initialize {
   colorMapping = [[NSMutableDictionary alloc] init];
   [colorMapping setObject:[UIColor clearColor]                                       forKey:@"ontopic"];
@@ -123,11 +125,12 @@ static NSMutableDictionary *colorMapping;
 }
 
 + (id)didFinishLoadingData:(id)dataObject {
-  NSArray *modelData = nil;
-  if ([dataObject count] > 0) {
-    modelData = [[dataObject objectForKey:@"comments"] objectAtIndex:0];
-  }
-  return [super didFinishLoadingData:modelData];
+	NSArray* tempArray = [dataObject objectForKey:@"comments"];
+	if( tempArray && [tempArray count] ){
+		NSArray *modelData = [[dataObject objectForKey:@"comments"] objectAtIndex:0];
+		return [super didFinishLoadingData:modelData];
+	}
+	return nil;
 }
 
 + (id)otherDataForResponseData:(id)responseData {
@@ -195,7 +198,9 @@ static NSMutableDictionary *colorMapping;
   self.category = [dictionary objectForKey:@"category"];
   self.participants = [dictionary objectForKey:@"participants"];
   
-  if ([dictionary objectForKey:@"last_reply_id"] != [NSNull null])
+	//crashed on this today.
+	NSObject* lastReply = [dictionary objectForKey:@"last_reply_id"];
+  if ( lastReply != [NSNull null] && [lastReply isKindOfClass:[NSNumber class]] )
     lastReplyId = [[dictionary objectForKey:@"last_reply_id"] intValue];
   
   self.replies = [[NSMutableArray alloc] init];

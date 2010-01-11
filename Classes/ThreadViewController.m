@@ -15,25 +15,24 @@
 @synthesize selectedIndexPath;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
-  [super initWithNibName:@"ThreadViewController" bundle:nil];
-  
-  threadId = aThreadId;
-  grippyBarPosition = 1;
-  self.title = @"Thread";
-  
-  return self;
+	if( self = [super initWithNibName:@"ThreadViewController" bundle:nil] ){
+		threadId = aThreadId;
+		grippyBarPosition = 1;
+		self.title = @"Thread";
+	}
+	return self;
 }
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
-  [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]];
-  
-  self.rootPost = [dictionary objectForKey:@"rootPost"];
-  storyId = [[dictionary objectForKey:@"storyId"] intValue];
-  threadId = [[dictionary objectForKey:@"threadId"] intValue];
-  selectedIndexPath = [dictionary objectForKey:@"selectedIndexPath"];
-  lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
-  
-  return self;
+	if( self = [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]] ){
+		storyId = [[dictionary objectForKey:@"storyId"] intValue];
+		threadId = [[dictionary objectForKey:@"threadId"] intValue];
+		lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
+		self.rootPost = [dictionary objectForKey:@"rootPost"];
+		//[self didFinishLoadingModel:[dictionary objectForKey:@"rootPost"] otherData:dictionary];
+		self.selectedIndexPath = (NSIndexPath*)[dictionary objectForKey:@"selectedIndexPath"];
+	}
+	return self;
 }
 
 - (NSDictionary *)stateDictionary {
@@ -64,8 +63,10 @@
   // Set story data
   NSDictionary *dataDictionary = (NSDictionary *)otherData;
   storyId = [[dataDictionary objectForKey:@"storyId"] intValue];
-  self.title   = [dataDictionary objectForKey:@"storyName"];
-  
+	if( [dataDictionary objectForKey:@"storyName"] ) {
+		self.title   = [dataDictionary objectForKey:@"storyName"];
+	}
+	else self.title = [dataDictionary objectForKey:@"type"];
   // Find the target post in the thread.
   Post *firstPost = nil;
   
@@ -120,9 +121,13 @@
   }
 }
 
+-(void)setTitle:(NSString *)str
+{
+	[super setTitle:str];
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
   if (rootPost) {
     [self.tableView reloadData];
     NSIndexPath *indexPath = selectedIndexPath;

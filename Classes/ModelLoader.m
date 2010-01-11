@@ -81,10 +81,11 @@
   } else {
     // Process the data object with the data delegate's processor callback method
     id processedResponse = [dataDelegate didFinishLoadingData:dataObject];
-    
     // Send the final objects to the object that requested the initial load
-    [modelDelegate didFinishLoadingModel:processedResponse otherData:otherData];
-    
+    if( processedResponse ) [modelDelegate didFinishLoadingModel:processedResponse otherData:otherData];
+    else{
+		[modelDelegate didFailToLoadModels];
+	}
   }
 }
 

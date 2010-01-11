@@ -140,63 +140,86 @@
 
 - (UIProgressView*)showActivityIndicator:(BOOL)progressViewType;
 {
-	UIWindow* activeWindow = self.view.window;
-	CGRect frame = activeWindow.frame;
+	//UIWindow* activeView = self.navigationController.view;
+	//CGRect frame = activeWindow.frame;
+	/*CGRect frame = self.view.frame;
+	 frame.origin = CGPointZero;
+	 
+	 UIProgressView* progressBar = nil;
+	 
+	 if( activityView ) [activityView removeFromSuperview];
+	 activityView = [[UIView alloc] initWithFrame:frame];
+	 activityView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:.5];
+	 
+	 UILabel* message = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+	 message.backgroundColor = [UIColor clearColor];
+	 message.textColor = [UIColor whiteColor];
+	 message.font = [UIFont boldSystemFontOfSize:18];
+	 
+	 UIView* animatedView = nil;
+	 
+	 if( !progressViewType ){
+	 UIActivityIndicatorView* spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+	 message.text = @"Posting comment...";
+	 spinner.tag = 1;
+	 [spinner startAnimating];
+	 animatedView = spinner;
+	 }
+	 else{
+	 progressBar = [[[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar] autorelease];
+	 message.text = @"Uploading image...";
+	 [progressBar sizeToFit];
+	 frame = progressBar.frame;
+	 frame.size.width = 200;
+	 progressBar.frame = frame;
+	 
+	 animatedView = progressBar;
+	 }
+	 
+	 [message sizeToFit];
+	 
+	 frame = [animatedView centerInView:self.view];
+	 frame.origin.y+=15;
+	 animatedView.frame = frame;
+	 
+	 frame = [message centerInView:self.view];
+	 frame.origin.y-=15;
+	 message.frame = frame;
+	 
+	 [self.view addSubview:activityView];
+	 [activityView addSubview:message];
+	 [activityView addSubview:animatedView];
+	 [activityView release];
+	 */
+	CGRect frame = self.view.frame;
+	frame.origin = CGPointZero;
+	activityView.frame = frame;
 	UIProgressView* progressBar = nil;
-	
-	if( activityView ) [activityView removeFromSuperview];
-	activityView = [[UIView alloc] initWithFrame:frame];
-	activityView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:.5];
-
-	UILabel* message = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-	message.backgroundColor = [UIColor clearColor];
-	message.textColor = [UIColor whiteColor];
-	message.font = [UIFont boldSystemFontOfSize:18];
-	
-	UIView* animatedView = nil;
-	
+	[self.view addSubview:activityView];
 	if( !progressViewType ){
-		UIActivityIndicatorView* spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-		message.text = @"Posting comment...";
-		spinner.tag = 1;
+		activityText.text = @"Posting comment...";
+		spinner.hidden = NO;
 		[spinner startAnimating];
-		animatedView = spinner;
+		uploadBar.hidden = YES; 
 	}
 	else{
-		progressBar = [[[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar] autorelease];
-		message.text = @"Uploading image...";
-		[progressBar sizeToFit];
-		frame = progressBar.frame;
-		frame.size.width = 200;
-		progressBar.frame = frame;
-		
-		animatedView = progressBar;
+		activityText.text = @"Uploading image...";
+		spinner.hidden = YES;
+		uploadBar.hidden = NO;
+		progressBar = uploadBar;
 	}
-	
-	[message sizeToFit];
-	
-	frame = [animatedView centerInView:activeWindow];
-	frame.origin.y+=15;
-	animatedView.frame = frame;
-	
-	frame = [message centerInView:activeWindow];
-	frame.origin.y-=15;
-	message.frame = frame;
-	
-	[activeWindow addSubview:activityView];
-	[activityView addSubview:message];
-	[activityView addSubview:animatedView];
-	[activityView release];
 	
 	return progressBar;
 }
 
 - (void)hideActivtyIndicator
 {
-	UIActivityIndicatorView* actView = (UIActivityIndicatorView*)[activityView viewWithTag:1];
-	if( actView ) [actView stopAnimating];
 	[activityView removeFromSuperview];
-	activityView = nil;
+	[spinner stopAnimating];
+	//UIActivityIndicatorView* actView = (UIActivityIndicatorView*)[activityView viewWithTag:1];
+	//if( actView ) [actView stopAnimating];
+	//[activityView removeFromSuperview];
+	//activityView = nil;
 }
 
 - (void)image:(Image*)image sendComplete:(NSString*)url
@@ -227,6 +250,9 @@
 	image.delegate = self;
 	
 	UIProgressView* progressBar = [self showActivityIndicator:YES];
+	
+	//doing this on the mainthread instead
+	[image autoRotateAndScale:800];
 	[NSThread detachNewThreadSelector:@selector(uploadAndReturnImageUrlWithProgressView:) toTarget:image withObject:progressBar];
 	//[image uploadAndReturnImageUrlWithProgressView:progressBar];
 }
@@ -246,6 +272,7 @@
 
 - (void)postSuccess
 {
+	self.navigationController.view.userInteractionEnabled = YES;
 	NSArray *controllers = [self.navigationController viewControllers];
 	ModelListViewController *lastController = [controllers objectAtIndex:[controllers count] - 2];
 	[lastController refresh:self];
@@ -255,6 +282,7 @@
 
 - (void)postFailure
 {
+	self.navigationController.view.userInteractionEnabled = YES;
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Failure"
 													message:@"There seems to have been an issue making the post. Try again!"
 												   delegate:nil
@@ -268,6 +296,7 @@
 - (void)makePost 
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	self.navigationController.view.userInteractionEnabled = NO;
 	if ([Post createWithBody:postContent.text parentId:post.modelId storyId:storyId]) {
 		[self performSelectorOnMainThread:@selector(postSuccess) withObject:nil waitUntilDone:NO];
 	} else {
@@ -290,6 +319,14 @@
 
 
 - (void)dealloc {
+	[parentPostPreview release];
+	[postContent release];
+	
+	[activityView release];
+	[activityText release];
+	[spinner release];
+	[uploadBar release];
+	
 	[tagLookup release];
 	self.post = nil;
 	[super dealloc];
