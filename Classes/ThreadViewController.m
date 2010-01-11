@@ -29,6 +29,7 @@
 		threadId = [[dictionary objectForKey:@"threadId"] intValue];
 		lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
 		[self didFinishLoadingModel:[dictionary objectForKey:@"rootPost"] otherData:dictionary];
+		self.selectedIndexPath = (NSIndexPath*)[dictionary objectForKey:@"selectedIndexPath"];
 	}
 	return self;
 }
@@ -61,8 +62,10 @@
   // Set story data
   NSDictionary *dataDictionary = (NSDictionary *)otherData;
   storyId = [[dataDictionary objectForKey:@"storyId"] intValue];
-  self.title   = [dataDictionary objectForKey:@"storyName"];
-  
+	if( [dataDictionary objectForKey:@"storyName"] ) {
+		self.title   = [dataDictionary objectForKey:@"storyName"];
+	}
+	else self.title = [dataDictionary objectForKey:@"type"];
   // Find the target post in the thread.
   Post *firstPost = nil;
   
@@ -117,9 +120,13 @@
   }
 }
 
+-(void)setTitle:(NSString *)str
+{
+	[super setTitle:str];
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
   if (rootPost) {
     [self.tableView reloadData];
     NSIndexPath *indexPath = selectedIndexPath;
