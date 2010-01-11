@@ -15,36 +15,34 @@
 @synthesize threads;
 
 - (id)initWithLatestChatty {
-	[self initWithNibName:@"ChattyViewController" bundle:nil];
-	
-	self.storyId = 0;
-	self.title = @"Loading...";
-	
+	if( self = [self initWithNibName:@"ChattyViewController" bundle:nil] ){
+		self.storyId = 0;
+		self.title = @"Loading...";
+	}
 	return self;
 }
 
 - (id)initWithStoryId:(NSUInteger)aStoryId {
-	[self initWithNibName:@"ChattyViewController" bundle:nil];
-	
-	self.storyId = aStoryId;
-	self.title = @"Loading...";
-	
+	if( self = [self initWithNibName:@"ChattyViewController" bundle:nil] ){
+		self.storyId = aStoryId;
+		self.title = @"Loading...";
+	}
 	return self;
 }
 
 
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
-	[self initWithStoryId:[[dictionary objectForKey:@"storyId"] intValue]];
-	
-	self.storyId = [[dictionary objectForKey:@"storyId"] intValue];
-	self.threads = [dictionary objectForKey:@"threads"];
-	self.title =   [dictionary objectForKey:@"title"];
-	lastPage =     [[dictionary objectForKey:@"lastPage"] intValue];
-	currentPage =  [[dictionary objectForKey:@"currentPage"] intValue];
-	
-	indexPathToSelect = [[dictionary objectForKey:@"selectedIndexPath"] retain];
-	
+	if( self = [self initWithStoryId:[[dictionary objectForKey:@"storyId"] intValue]] ){
+		
+		self.storyId = [[dictionary objectForKey:@"storyId"] intValue];
+		self.threads = [dictionary objectForKey:@"threads"];
+		self.title =   [dictionary objectForKey:@"title"];
+		lastPage =     [[dictionary objectForKey:@"lastPage"] intValue];
+		currentPage =  [[dictionary objectForKey:@"currentPage"] intValue];
+		
+		indexPathToSelect = [[dictionary objectForKey:@"selectedIndexPath"] retain];
+	}
 	return self;
 }
 

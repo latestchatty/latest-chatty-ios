@@ -15,25 +15,22 @@
 @synthesize selectedIndexPath;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
-  [super initWithNibName:@"ThreadViewController" bundle:nil];
-  
-  threadId = aThreadId;
-  grippyBarPosition = 1;
-  self.title = @"Thread";
-  
-  return self;
+	if( self = [super initWithNibName:@"ThreadViewController" bundle:nil] ){
+		threadId = aThreadId;
+		grippyBarPosition = 1;
+		self.title = @"Thread";
+	}
+	return self;
 }
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
-  [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]];
-  
-  self.rootPost = [dictionary objectForKey:@"rootPost"];
-  storyId = [[dictionary objectForKey:@"storyId"] intValue];
-  threadId = [[dictionary objectForKey:@"threadId"] intValue];
-  selectedIndexPath = [dictionary objectForKey:@"selectedIndexPath"];
-  lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
-  
-  return self;
+	if( self = [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]] ){
+		storyId = [[dictionary objectForKey:@"storyId"] intValue];
+		threadId = [[dictionary objectForKey:@"threadId"] intValue];
+		lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
+		[self didFinishLoadingModel:[dictionary objectForKey:@"rootPost"] otherData:dictionary];
+	}
+	return self;
 }
 
 - (NSDictionary *)stateDictionary {
