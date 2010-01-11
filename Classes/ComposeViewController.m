@@ -272,6 +272,7 @@
 
 - (void)postSuccess
 {
+	self.navigationController.view.userInteractionEnabled = YES;
 	NSArray *controllers = [self.navigationController viewControllers];
 	ModelListViewController *lastController = [controllers objectAtIndex:[controllers count] - 2];
 	[lastController refresh:self];
@@ -281,6 +282,7 @@
 
 - (void)postFailure
 {
+	self.navigationController.view.userInteractionEnabled = YES;
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Failure"
 													message:@"There seems to have been an issue making the post. Try again!"
 												   delegate:nil
@@ -294,6 +296,7 @@
 - (void)makePost 
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	self.navigationController.view.userInteractionEnabled = NO;
 	if ([Post createWithBody:postContent.text parentId:post.modelId storyId:storyId]) {
 		[self performSelectorOnMainThread:@selector(postSuccess) withObject:nil waitUntilDone:NO];
 	} else {
