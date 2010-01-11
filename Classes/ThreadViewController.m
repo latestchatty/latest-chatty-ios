@@ -28,7 +28,8 @@
 		storyId = [[dictionary objectForKey:@"storyId"] intValue];
 		threadId = [[dictionary objectForKey:@"threadId"] intValue];
 		lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
-		[self didFinishLoadingModel:[dictionary objectForKey:@"rootPost"] otherData:dictionary];
+		self.rootPost = [dictionary objectForKey:@"rootPost"];
+		//[self didFinishLoadingModel:[dictionary objectForKey:@"rootPost"] otherData:dictionary];
 		self.selectedIndexPath = (NSIndexPath*)[dictionary objectForKey:@"selectedIndexPath"];
 	}
 	return self;
