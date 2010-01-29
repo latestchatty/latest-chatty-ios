@@ -11,12 +11,13 @@
 #import "Post.h"
 
 @interface ReplyCell : TableCellFromNib {
-  Post *post;
-  IBOutlet UILabel *preview;
-  
-  IBOutlet UIImageView *blueBullet;
-  IBOutlet UIImageView *grayBullet;
-  IBOutlet UIView      *categoryStripe;
+    Post *post;
+    IBOutlet UILabel *preview;
+    IBOutlet UILabel *usernameLabel;
+
+    IBOutlet UIImageView *blueBullet;
+    IBOutlet UIImageView *grayBullet;
+    IBOutlet UIView      *categoryStripe;
 }
 
 @property (retain) Post *post;

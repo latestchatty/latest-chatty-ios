@@ -97,9 +97,9 @@
   return (UITableViewCell *)cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return [StoryCell cellHeight];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//  return [StoryCell cellHeight];
+//}
 
 
 #pragma mark Actions
