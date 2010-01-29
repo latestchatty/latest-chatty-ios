@@ -26,7 +26,7 @@
   self.textLabel.shadowColor = [UIColor blackColor];
   self.textLabel.shadowOffset = CGSizeMake(0, -1);
   
-  UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.frame];
+  UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
   backgroundView.image = [[UIImage imageNamed:@"CellBackground.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
   backgroundView.contentMode = UIViewContentModeScaleToFill;
   backgroundView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

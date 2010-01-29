@@ -18,8 +18,8 @@
 #import "MessagesViewController.h"
 
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate> {
-  UIWindow *window;
-  UINavigationController *navigationController;
+    UIWindow *window;
+    UINavigationController *navigationController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -29,6 +29,7 @@
 
 - (NSURLCredential *)userCredential;
 - (id)viewControllerForURL:(NSURL *)url;
+- (BOOL)isPadDevice;
 
 @end
 

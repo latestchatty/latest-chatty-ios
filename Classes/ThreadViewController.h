@@ -18,27 +18,32 @@
 #import "BrowserViewController.h"
 #import "ChattyViewController.h"
 
-@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate> {
-  NSUInteger storyId;
-  NSUInteger threadId;
-  Post *rootPost;
-  
-  NSIndexPath *selectedIndexPath;
-  
-  IBOutlet UIWebView *postView;
-  IBOutlet GrippyBar *grippyBar;
-  NSUInteger grippyBarPosition;
-  
-  NSUInteger lastReplyId;
-  BOOL highlightMyPost;
+@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate> {
+    NSUInteger storyId;
+    NSUInteger threadId;
+    Post *rootPost;
+
+    NSIndexPath *selectedIndexPath;
+
+    IBOutlet UIWebView *postView;
+    IBOutlet GrippyBar *grippyBar;
+    NSUInteger grippyBarPosition;
+
+    NSUInteger lastReplyId;
+    BOOL highlightMyPost;
+    
+    UIPopoverController *popoverController;
 }
 
+@property (nonatomic, assign) NSUInteger threadId;
 @property (retain) Post *rootPost;
 @property (retain) NSIndexPath *selectedIndexPath;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
 - (IBAction)tappedReplyButton;
 - (NSString *)postBodyWithYoutubeWidgets:(NSString *)body;
+
+- (void)refreshWithThreadId:(NSUInteger)threadId;
 
 - (void)resetLayout;
 

@@ -12,20 +12,28 @@
 #import "Post.h"
 #import "ThreadCell.h"
 #import "ModelLoader.h"
-#import "ThreadViewController.h"
 #import "ComposeViewController.h"
 
-@interface ChattyViewController : ModelListViewController {
-  NSUInteger storyId;
-  NSArray *threads;
-  
-  NSIndexPath *indexPathToSelect;
-  NSUInteger currentPage;
-  NSUInteger lastPage;
+@class ThreadViewController;
+
+@interface ChattyViewController : ModelListViewController <UISplitViewControllerDelegate> {
+    ThreadViewController *threadController;
+    
+    NSUInteger storyId;
+    NSArray *threads;
+
+    NSIndexPath *indexPathToSelect;
+    NSUInteger currentPage;
+    NSUInteger lastPage;
 }
+
+@property (nonatomic, retain) ThreadViewController *threadController;
 
 @property (assign) NSUInteger storyId;
 @property (retain) NSArray *threads;
+
++ (ChattyViewController*)chattyControllerWithLatest;
++ (ChattyViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId;
 
 - (id)initWithLatestChatty;
 - (id)initWithStoryId:(NSUInteger)aStoryId;

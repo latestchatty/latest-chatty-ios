@@ -11,6 +11,7 @@
 
 @implementation ThreadViewController
 
+@synthesize threadId;
 @synthesize rootPost;
 @synthesize selectedIndexPath;
 
@@ -37,21 +38,25 @@
 
 - (NSDictionary *)stateDictionary {
     return [NSDictionary dictionaryWithObjectsAndKeys:@"Thread", @"type",
-                                                                                                        rootPost,    @"rootPost",
-                                                                                                        [NSNumber numberWithInt:storyId],    @"storyId",
-                                                                                                        [NSNumber numberWithInt:threadId], @"threadId",
-                                                                                                        selectedIndexPath, @"selectedIndexPath",
-                                                                                                        [NSNumber numberWithInt:lastReplyId], @"lastReplyId",
-                                                                                                        nil];
+                                                                            rootPost,    @"rootPost",
+                                                                            [NSNumber numberWithInt:storyId],    @"storyId",
+                                                                            [NSNumber numberWithInt:threadId], @"threadId",
+                                                                            selectedIndexPath, @"selectedIndexPath",
+                                                                            [NSNumber numberWithInt:lastReplyId], @"lastReplyId",
+                                                                            nil];
 }
 
 
 - (IBAction)refresh:(id)sender {
     [super refresh:sender];
-    loader = [[Post findThreadWithId:threadId delegate:self] retain];
-    
-    highlightMyPost = NO;
-    if ([sender isKindOfClass:[ComposeViewController class]]) highlightMyPost = YES;
+    if (threadId > 0) {
+        loader = [[Post findThreadWithId:threadId delegate:self] retain];
+        
+        highlightMyPost = NO;
+        if ([sender isKindOfClass:[ComposeViewController class]]) highlightMyPost = YES;        
+    } else {
+        [self hideLoadingSpinner];
+    }
 }
 
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {    
@@ -119,16 +124,6 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
-    // If thread is larger than the display, show more of it.
-    if ([[rootPost repliesArray] count] > [[self.tableView visibleCells] count]) {
-        [self grippyBarDidSwipeUp];
-    }
-}
-
--(void)setTitle:(NSString *)str
-{
-	[super setTitle:str];
 }
 
 - (void)viewDidLoad {
@@ -144,8 +139,8 @@
     }
     
     UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
-                                                                                                                                                             target:self
-                                                                                                                                                             action:@selector(tappedReplyButton)];
+                                                                                                     target:self
+                                                                                                     action:@selector(tappedReplyButton)];
     self.navigationItem.rightBarButtonItem = replyButton;
     [replyButton release];
     
@@ -173,6 +168,42 @@
     [viewController release];
 }
 
+#pragma mark -
+#pragma mark Split view support
+
+- (void)splitViewController:(UISplitViewController*)svc
+     willHideViewController:(UIViewController *)aViewController
+          withBarButtonItem:(UIBarButtonItem*)barButtonItem
+       forPopoverController:(UIPopoverController*)pc {
+    
+    barButtonItem.title = @"Threads";
+    [self.splitViewController.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    
+    popoverController = pc;
+}
+
+
+// Called when the view is shown again in the split view, invalidating the button and popover controller.
+- (void)splitViewController: (UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
+    [self.splitViewController.navigationItem setLeftBarButtonItem:nil animated:YES];
+}
+
+#pragma mark -
+#pragma mark Managing the popover controller
+
+/*
+ When setting the detail item, update the view and dismiss the popover controller if it's showing.
+ */
+- (void)refreshWithThreadId:(NSUInteger)_threadId {
+    self.threadId = _threadId;
+    [self refresh:nil];
+    
+    if (popoverController != nil) {
+        [popoverController dismissPopoverAnimated:YES];
+    }
+}
+
+#pragma mark -
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
@@ -243,7 +274,7 @@
     if ([body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"]) {
         @try {
             body = [body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
-                                     withString:@"<div class=\"youtube-widget\">\
+                                                  withString:@" <div class=\"youtube-widget\">\
                                                                     <object width=\"140\" height=\"105\">\
                                                                         <param name=\"movie\" value=\"$1\"></param>\
                                                                         <param name=\"wmode\" value=\"transparent\"></param>\
@@ -300,20 +331,20 @@
     }
     
     [UIView beginAnimations:@"ResizePostView" context:nil];
-    postView.frame = CGRectMake(postView.frame.origin.x,
-                                                            postView.frame.origin.y,
-                                                            postView.frame.size.width,
-                                                            floor(usableHeight * dividerLocation));
+    postView.frame  = CGRectMake(postView.frame.origin.x,
+                                 postView.frame.origin.y,
+                                 postView.frame.size.width,
+                                 floor(usableHeight * dividerLocation));
     
     grippyBar.frame = CGRectMake(grippyBar.frame.origin.x,
-                                                             floor(usableHeight * dividerLocation) - 12,
-                                                             grippyBar.frame.size.width,
-                                                             grippyBar.frame.size.height);
+                                 floor(usableHeight * dividerLocation) - 12,
+                                 grippyBar.frame.size.width,
+                                 grippyBar.frame.size.height);
     
     tableView.frame = CGRectMake(tableView.frame.origin.x,
-                                                             floor(usableHeight * dividerLocation) + 24,
-                                                             tableView.frame.size.width,
-                                                             floor(usableHeight * (1.0 - dividerLocation)));
+                                 floor(usableHeight * dividerLocation) + 24,
+                                 tableView.frame.size.width,
+                                 floor(usableHeight * (1.0 - dividerLocation)));
     [UIView commitAnimations];
 }
 
@@ -359,10 +390,10 @@
 
 - (void)grippyBarDidTapTagButton {
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
-                                                                                                         delegate:self
-                                                                                        cancelButtonTitle:@"Cancel"
-                                                                             destructiveButtonTitle:nil
-                                                                                        otherButtonTitles:@"LOL", @"INF", @"Mark", nil];
+                                                                             delegate:self
+                                                            cancelButtonTitle:@"Cancel"
+                                                 destructiveButtonTitle:nil
+                                                            otherButtonTitles:@"LOL", @"INF", @"Mark", nil];
     [sheet showInView:self.view];
     [sheet release];
 }

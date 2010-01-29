@@ -7,15 +7,40 @@
 //
 
 #import "ChattyViewController.h"
+#import "LatestChatty2AppDelegate.h"
 
+#include "ThreadViewController.h"
 
 @implementation ChattyViewController
 
+@synthesize threadController;
 @synthesize storyId;
 @synthesize threads;
 
++ (UIViewController*)chattyControllerWithLatest {
+    return [self chattyControllerWithStoryId:0];
+}
+
++ (UIViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId {
+    LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if ([appDelegate isPadDevice]) {
+        ChattyViewController *chattyController = [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
+        ThreadViewController *threadController = [[[ThreadViewController alloc] init] autorelease];
+        chattyController.threadController = threadController;
+        
+        UISplitViewController *splitController = [[[UISplitViewController alloc] init] autorelease];
+        splitController.viewControllers = [NSArray arrayWithObjects:chattyController, threadController, nil];
+        splitController.delegate = threadController;
+        return splitController;
+        
+    } else {
+        return [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
+    }
+}
+
+
 - (id)initWithLatestChatty {
-	if( self = [self initWithNibName:@"ChattyViewController" bundle:nil] ){
+	if (self = [self initWithNibName:@"ChattyViewController" bundle:nil]) {
 		self.storyId = 0;
 		self.title = @"Loading...";
 	}
@@ -72,12 +97,12 @@
 		if (indexPathToSelect) [self.tableView selectRowAtIndexPath:indexPathToSelect animated:NO scrollPosition:UITableViewScrollPositionTop];
 	}
 	
-	UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-																				   target:self
-																				   action:@selector(tappedComposeButton)];
+	UIBarButtonItem *composeButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                                    target:self
+                                                                                    action:@selector(tappedComposeButton)] autorelease];
 	composeButton.enabled = (self.storyId > 0);
-	self.navigationItem.rightBarButtonItem = composeButton;
-	[composeButton release];
+	self.splitViewController.navigationItem.rightBarButtonItem = composeButton;
+    self.navigationItem.rightBarButtonItem = composeButton;
 }
 
 - (IBAction)tappedComposeButton {
@@ -99,9 +124,9 @@
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
 	NSUInteger page = [[otherData objectForKey:@"page"] intValue];
 	self.navigationItem.rightBarButtonItem.enabled = YES;
-	NSLog(@"loaded to chattyview");
 	BOOL hasPosts = [models count] > 0;
-	
+	self.navigationItem.rightBarButtonItem.enabled = hasPosts;
+    
 	if (page <= 1) {
 		if (hasPosts) self.storyId = [[models objectAtIndex:0] storyId];
 		self.threads = models;
@@ -196,8 +221,14 @@
 		}
 		
 		// Set up the cell...
+        
+        LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
+        if (self.splitViewController) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
 		cell.storyId = storyId;
-		cell.rootPost = [threads objectAtIndex:indexPath.row];    
+		cell.rootPost = [threads objectAtIndex:indexPath.row];
 		
 		return cell;
 	} else {
@@ -217,10 +248,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row < [threads count]) {
-		Post *thread = [threads objectAtIndex:indexPath.row];
-		ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:thread.modelId];
-		[self.navigationController pushViewController:viewController animated:YES];
-		[viewController release];
+        Post *thread = [threads objectAtIndex:indexPath.row];
+        
+        if (threadController) {
+            [self.threadController refreshWithThreadId:thread.modelId];
+        } else {
+            [self.navigationController pushViewController:[[[ThreadViewController alloc] initWithThreadId:thread.modelId] autorelease] animated:YES];
+        }
+		
 	} else {
 		[self showLoadingSpinner];
 		[loader cancel];
@@ -233,7 +268,8 @@
 
 - (void)dealloc {
 	NSLog(@"Dealloc ChattyViewController");
-	[threads release];
+    self.threadController = nil;
+	self.threads = nil;
 	[super dealloc];
 }
 

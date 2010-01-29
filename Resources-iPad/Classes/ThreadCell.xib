@@ -50,7 +50,7 @@
 							<object class="IBUILabel" id="140065254">
 								<reference key="NSNextResponder" ref="417762082"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{20, 23}, {270, 50}}</string>
+								<string key="NSFrame">{{11, 18}, {288, 55}}</string>
 								<reference key="NSSuperview" ref="417762082"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -221,11 +221,9 @@
 				<string key="IBUIReuseIdentifier">ThreadCell</string>
 			</object>
 			<object class="IBUIImageView" id="564885448">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<string key="NSFrameSize">{320, 120}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<bool key="IBUIUserInteractionEnabled">NO</bool>
