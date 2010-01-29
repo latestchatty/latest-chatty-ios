@@ -221,8 +221,6 @@
 		}
 		
 		// Set up the cell...
-        
-        LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
         if (self.splitViewController) {
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
