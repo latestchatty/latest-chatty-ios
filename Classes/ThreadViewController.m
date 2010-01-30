@@ -174,7 +174,8 @@
 - (void)splitViewController:(UISplitViewController*)svc
      willHideViewController:(UIViewController *)aViewController
           withBarButtonItem:(UIBarButtonItem*)barButtonItem
-       forPopoverController:(UIPopoverController*)pc {
+       forPopoverController:(UIPopoverController*)pc
+{
     
     barButtonItem.title = @"Threads";
     [self.splitViewController.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
@@ -184,8 +185,18 @@
 
 
 // Called when the view is shown again in the split view, invalidating the button and popover controller.
-- (void)splitViewController: (UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
+- (void)splitViewController: (UISplitViewController*)svc
+     willShowViewController:(UIViewController *)aViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
     [self.splitViewController.navigationItem setLeftBarButtonItem:nil animated:YES];
+}
+
+- (void)splitViewController:(UISplitViewController*)svc
+          popoverController:(UIPopoverController*)pc
+  willPresentViewController:(UIViewController *)aViewController
+{
+    pc.popoverContentSize = CGSizeMake(480, pc.popoverContentSize.height);
 }
 
 #pragma mark -

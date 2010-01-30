@@ -29,10 +29,9 @@
         chattyController.threadController = threadController;
         
         UISplitViewController *splitController = [[[UISplitViewController alloc] init] autorelease];
-        splitController.viewControllers = [NSArray arrayWithObjects:chattyController, threadController, nil];
         splitController.delegate = threadController;
+        splitController.viewControllers = [NSArray arrayWithObjects:chattyController, threadController, nil];        
         return splitController;
-        
     } else {
         return [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
     }
@@ -192,9 +191,16 @@
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		NSUInteger oldLastRefresh = [defaults integerForKey:@"lastRefresh"];
 		NSUInteger newLastRefresh = [[models objectAtIndex:0] lastReplyId];
-		if (newLastRefresh > oldLastRefresh)
-			[defaults setInteger:newLastRefresh forKey:@"lastRefresh"];
+		if (newLastRefresh > oldLastRefresh) {
+            [defaults setInteger:newLastRefresh forKey:@"lastRefresh"];
+        }
 	}
+    
+    // Open the popover if it's hidden
+    if (self.splitViewController && UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
+        UIBarButtonItem *button = self.splitViewController.navigationItem.leftBarButtonItem;
+        [button.target performSelector:button.action withObject:button];
+    }    
 }
 
 
