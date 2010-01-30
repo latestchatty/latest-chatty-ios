@@ -33,11 +33,13 @@
     BOOL highlightMyPost;
     
     UIPopoverController *popoverController;
+    UIToolbar *toolbar;
 }
 
 @property (nonatomic, assign) NSUInteger threadId;
 @property (retain) Post *rootPost;
 @property (retain) NSIndexPath *selectedIndexPath;
+@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
 - (IBAction)tappedReplyButton;

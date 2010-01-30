@@ -14,6 +14,7 @@
 @synthesize threadId;
 @synthesize rootPost;
 @synthesize selectedIndexPath;
+@synthesize toolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
 	if( self = [super initWithNibName:@"ThreadViewController" bundle:nil] ){
@@ -178,7 +179,11 @@
 {
     
     barButtonItem.title = @"Threads";
-    [self.splitViewController.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    NSArray *items = [NSArray arrayWithObjects:
+                      //[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+                      barButtonItem,
+                      nil];
+    [self.toolbar setItems:items animated:YES];
     
     popoverController = pc;
 }
@@ -189,14 +194,15 @@
      willShowViewController:(UIViewController *)aViewController
   invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    [self.splitViewController.navigationItem setLeftBarButtonItem:nil animated:YES];
+    [self.toolbar setItems:[NSArray array] animated:YES];
 }
 
 - (void)splitViewController:(UISplitViewController*)svc
           popoverController:(UIPopoverController*)pc
   willPresentViewController:(UIViewController *)aViewController
 {
-    pc.popoverContentSize = CGSizeMake(480, pc.popoverContentSize.height);
+    pc.popoverContentSize = CGSizeMake(480, 900);
+    [pc presentPopoverFromBarButtonItem:[self.toolbar.items objectAtIndex:0] permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
 }
 
 #pragma mark -
@@ -425,6 +431,9 @@
 - (void)dealloc {
     [rootPost release];
     [selectedIndexPath release];
+    
+    self.toolbar = nil;
+    
     [super dealloc];
 }
 

@@ -197,8 +197,8 @@
 	}
     
     // Open the popover if it's hidden
-    if (self.splitViewController && UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
-        UIBarButtonItem *button = self.splitViewController.navigationItem.leftBarButtonItem;
+    if (self.threadController && UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
+        UIBarButtonItem *button = [self.threadController.toolbar.items objectAtIndex:0];
         [button.target performSelector:button.action withObject:button];
     }    
 }
