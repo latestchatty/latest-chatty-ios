@@ -65,7 +65,20 @@
     tagButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     [self addSubview:tagButton];
     [tagButton release];
-    
+
+	//Only needed for mods
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	BOOL modFlag = [defaults boolForKey:@"modFlag"];
+	if(modFlag==YES){
+		UIButton *modButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, 50, 48)];
+		[modButton addTarget:self action:@selector(tappedModButton) forControlEvents:UIControlEventTouchUpInside];
+		[modButton setImage:[UIImage imageNamed:@"gavel.png"] forState:UIControlStateNormal];
+		modButton.showsTouchWhenHighlighted = YES;
+		modButton.alpha = 0.4;
+		modButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+		[self addSubview:modButton];
+		[modButton release];
+	}
   }
   return self;
 }
@@ -110,6 +123,9 @@
   [delegate grippyBarDidTapTagButton];
 }
 
+- (void)tappedModButton {
+	[delegate grippyBarDidTapModButton];
+}
 
 - (void)dealloc {
   [super dealloc];

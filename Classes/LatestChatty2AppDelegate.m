@@ -203,6 +203,14 @@
   [defaults setObject:state forKey:@"savedState"];
   [defaults setObject:[NSDate date] forKey:@"savedStateDate"];
   [defaults synchronize];
+	
+  //'logout' essentially
+  NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+  NSArray* shackCookies = [cookies cookiesForURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
+  for (NSHTTPCookie* cookie in shackCookies) {
+	 NSLog(@"Name: %@ : Value: %@", cookie.name, cookie.value); 
+	 [cookies deleteCookie:cookie];
+  }
 }
 
 

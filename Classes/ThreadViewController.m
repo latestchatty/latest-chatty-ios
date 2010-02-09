@@ -47,11 +47,11 @@
 
 
 - (IBAction)refresh:(id)sender {
-  [super refresh:sender];
-  loader = [[Post findThreadWithId:threadId delegate:self] retain];
-  
-  highlightMyPost = NO;
-  if ([sender isKindOfClass:[ComposeViewController class]]) highlightMyPost = YES;
+	[super refresh:sender];
+	loader = [[Post findThreadWithId:threadId delegate:self] retain];
+
+	highlightMyPost = NO;
+	if ([sender isKindOfClass:[ComposeViewController class]]) highlightMyPost = YES;
 }
 
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {  
@@ -361,15 +361,38 @@
   [sheet showInView:self.view];
   [sheet release];
 }
+-(void)grippyBarDidTapModButton {
+	UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Mod this Post"
+													   delegate:self
+											  cancelButtonTitle:@"Cancel"
+										 destructiveButtonTitle:nil
+											  otherButtonTitles:@"stupid", @"offtopic", @"nws",@"political",@"informative",@"nuked",@"ontopic", nil];
+	[sheet showInView:self.view];
+	[sheet release];
+}
 
 #pragma mark Action Sheet Delegate
-
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   NSUInteger postId = [[[rootPost repliesArray] objectAtIndex:selectedIndexPath.row] modelId];
+  NSUInteger parentId = [rootPost modelId];
   
-  if (buttonIndex == 0) [Tag tagPostId:postId tag:TagTypeLOL];
-  if (buttonIndex == 1) [Tag tagPostId:postId tag:TagTypeINF];
-  if (buttonIndex == 2) [Tag tagPostId:postId tag:TagTypeMark];
+  if([actionSheet title]==@"Mod this Post"){
+	  if (buttonIndex == 0) [Mod modParentId:parentId modPostId:postId mod:ModTypeStupid];
+	  if (buttonIndex == 1) [Mod modParentId:parentId modPostId:postId mod:ModTypeOfftopic];
+	  if (buttonIndex == 2) [Mod modParentId:parentId modPostId:postId mod:ModTypeNWS];
+	  if (buttonIndex == 3) [Mod modParentId:parentId modPostId:postId mod:ModTypePolitical];
+	  if (buttonIndex == 4) [Mod modParentId:parentId modPostId:postId mod:ModTypeInformative];
+	  if (buttonIndex == 5) [Mod modParentId:parentId modPostId:postId mod:ModTypeNuked];
+	  if (buttonIndex == 6) [Mod modParentId:parentId modPostId:postId mod:ModTypeOntopic];
+
+
+	  
+	}
+  else{
+		if (buttonIndex == 0) [Tag tagPostId:postId tag:TagTypeLOL];
+		if (buttonIndex == 1) [Tag tagPostId:postId tag:TagTypeINF];
+		if (buttonIndex == 2) [Tag tagPostId:postId tag:TagTypeMark];
+	}
 }
 
 

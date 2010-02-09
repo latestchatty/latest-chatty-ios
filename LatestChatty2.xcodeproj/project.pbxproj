@@ -35,6 +35,9 @@
 		599FF0F910D5DDC1004476B8 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F110D5DDC1004476B8 /* SBJsonBase.m */; };
 		599FF0FA10D5DDC1004476B8 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F310D5DDC1004476B8 /* SBJsonParser.m */; };
 		599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */; };
+		96CECAD81120D4A600898D74 /* gavel.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CECAD71120D4A600898D74 /* gavel.png */; };
+		96CECADC1120D4E400898D74 /* Mod.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CECADB1120D4E400898D74 /* Mod.m */; };
+		96CECAEA1120D5A600898D74 /* UITableViewCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CECAE91120D5A600898D74 /* UITableViewCellContentView.m */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
@@ -181,6 +184,11 @@
 		599FF0F410D5DDC1004476B8 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96CECAD71120D4A600898D74 /* gavel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gavel.png; path = "Projects/latest-chatty-2/gavel.png"; sourceTree = DEVELOPER_DIR; };
+		96CECADA1120D4E400898D74 /* Mod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mod.h; path = "Projects/latest-chatty-2/Classes/Mod.h"; sourceTree = DEVELOPER_DIR; };
+		96CECADB1120D4E400898D74 /* Mod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mod.m; path = "Projects/latest-chatty-2/Classes/Mod.m"; sourceTree = DEVELOPER_DIR; };
+		96CECAE81120D5A600898D74 /* UITableViewCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITableViewCellContentView.h; path = "Projects/latest-chatty-2/UITableViewCellContentView.h"; sourceTree = DEVELOPER_DIR; };
+		96CECAE91120D5A600898D74 /* UITableViewCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableViewCellContentView.m; path = "Projects/latest-chatty-2/UITableViewCellContentView.m"; sourceTree = DEVELOPER_DIR; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
@@ -364,6 +372,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				96CECAE81120D5A600898D74 /* UITableViewCellContentView.h */,
+				96CECAE91120D5A600898D74 /* UITableViewCellContentView.m */,
 				28A0AAE50D9B0CCF005BE974 /* LatestChatty2_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				FAA3C1EB1048C070009B808F /* NSDate+SuppressWarnings.h */,
@@ -528,6 +538,8 @@
 				FA26AD070F80F85C00EB5FF0 /* Tag.m */,
 				FAB1B6400F8FBF390021896A /* Message.h */,
 				FAB1B6410F8FBF390021896A /* Message.m */,
+				96CECADA1120D4E400898D74 /* Mod.h */,
+				96CECADB1120D4E400898D74 /* Mod.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -575,6 +587,7 @@
 				FAD29A600F796452006E14A2 /* DropShadow.png */,
 				FA5FD0550F7014BD00878F27 /* CellBackground.png */,
 				FA87BE1B0F7B0A9E0044898C /* CellBackgroundLight.png */,
+				96CECAD71120D4A600898D74 /* gavel.png */,
 				FAD29A520F79621C006E14A2 /* GrippyBar.png */,
 				FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */,
 				FA9C3F200F9CFF0C0022A739 /* BlueButton.png */,
@@ -726,6 +739,7 @@
 				FACD9A7E0F9E2F49009D9A15 /* SearchResultsViewController.xib in Resources */,
 				FAA1E01E0FF2F3CE002714B6 /* NewPostBullet.png in Resources */,
 				FAF0781B10087B530029D2AD /* push.caf in Resources */,
+				96CECAD81120D4A600898D74 /* gavel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +803,8 @@
 				599FF0F910D5DDC1004476B8 /* SBJsonBase.m in Sources */,
 				599FF0FA10D5DDC1004476B8 /* SBJsonParser.m in Sources */,
 				599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */,
+				96CECADC1120D4E400898D74 /* Mod.m in Sources */,
+				96CECAEA1120D5A600898D74 /* UITableViewCellContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

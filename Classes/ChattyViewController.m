@@ -170,6 +170,41 @@
 		if (newLastRefresh > oldLastRefresh)
 			[defaults setInteger:newLastRefresh forKey:@"lastRefresh"];
 	}
+	
+	
+	//login to shack - the cookie expires after 30 days
+	//but we might as well reset it on every refresh
+	//And this is how we check for the modflag
+	NSLog(@"logging in - checking mod cookie");
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* usernameString = [[defaults stringForKey:@"username"] stringByUrlEscape];
+	NSString* passwordString = [[defaults stringForKey:@"password"] stringByUrlEscape];
+	NSString* myRequestString = [NSString stringWithFormat:@"username=%@&password=%@", usernameString, passwordString];
+	NSHTTPURLResponse * response;
+	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
+	NSData *data;
+	NSError * error;
+	NSMutableURLRequest *request;
+	request=[[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.shacknews.com/login.x"]
+										  cachePolicy:NSURLRequestReloadIgnoringCacheData 
+									  timeoutInterval:60] autorelease];
+	[request setHTTPMethod: @"POST" ];
+	[request setHTTPBody:myRequestData];
+	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+	data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];	
+
+	request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.shacknews.com/mod_laryn.x"]
+											cachePolicy:NSURLRequestReloadIgnoringCacheData 
+										timeoutInterval:60] autorelease];
+	data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];	
+	//seems necessary to set the cookies, odd but oh well
+	NSArray *all = [NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:[NSURL URLWithString:@"www.shacknews.com"]];
+	NSString *modResult = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
+	if([modResult rangeOfString:@"Invalid moderation flags"].location != NSNotFound){
+		[defaults setBool:YES forKey:@"modFlag"];		
+	}else{
+		[defaults setBool:NO forKey:@"modFlag"];
+	}
 }
 
 
