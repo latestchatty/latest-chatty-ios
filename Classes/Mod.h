@@ -20,8 +20,11 @@ typedef enum {
 
 
 @interface Mod : NSObject {
+    
 }
 
++ (void)setModeratorStatus;
 + (void)modParentId:(NSUInteger)parentID modPostId:(NSUInteger)postId mod:(ModType)modType;
+
 @end
 
