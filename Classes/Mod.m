@@ -35,7 +35,7 @@
 	[request setHTTPMethod: @"POST" ];
 	[request setHTTPBody:myRequestData];
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-//	data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];	
+	data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];	
     
     
     // Send mod tools request
