@@ -202,9 +202,9 @@
 		return cell;
 	} else {
 		UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
-		cell.text = @"Load More";
-		cell.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-		cell.textAlignment = UITextAlignmentCenter;
+		cell.textLabel.text = @"Load More";
+		cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+		cell.textLabel.textAlignment = UITextAlignmentCenter;
 		return [cell autorelease];
 	}
 	

@@ -180,17 +180,17 @@
 		switch (indexPath.row) {
 			case 0:
 				cell.accessoryView = usernameField;
-				cell.text = @"Username:";
+				cell.textLabel.text = @"Username:";
 				break;
 				
 			case 1:
 				cell.accessoryView = passwordField;
-				cell.text = @"Password:";
+				cell.textLabel.text = @"Password:";
 				break;
 				
 			case 2:
 				cell.accessoryView = serverField;
-				cell.text = @"Server URL:";
+				cell.textLabel.text = @"Server URL:";
 				break;
 				
 		}
@@ -201,17 +201,17 @@
 		switch (indexPath.row) {
 			case 0:
 				cell.accessoryView = landscapeSwitch;
-				cell.text = @"Allow Landscape:";
+				cell.textLabel.text = @"Allow Landscape:";
 				break;
 				
 			case 1:
 				cell.accessoryView = youtubeSwitch;
-				cell.text = @"Embed Youtube:";
+				cell.textLabel.text = @"Embed Youtube:";
 				break;
 				
 			case 2:
 				cell.accessoryView = pushMessagesSwitch;
-				cell.text = @"Push Messages:";
+				cell.textLabel.text = @"Push Messages:";
 				break;
 		}
 	}
@@ -224,32 +224,32 @@
 		switch (indexPath.row) {
 			case 0:
 				cell.accessoryView = interestingSwitch;
-				cell.text = @"  Interesting:";
+				cell.textLabel.text = @"  Interesting:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"informative"];
 				break;
 				
 			case 1:
 				cell.accessoryView = offtopicSwitch;
-				cell.text = @"  Off Topic:";
+				cell.textLabel.text = @"  Off Topic:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"offtopic"];
 				break;
 				
 			case 2:
 				cell.accessoryView = randomSwitch;
-				cell.text = @"  Stupid:";
+				cell.textLabel.text = @"  Stupid:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"stupid"];
 				break;
 				
 			case 3:
 				cell.accessoryView = politicsSwitch;
-				cell.text = @"  Politics / Religion:";
+				cell.textLabel.text = @"  Politics / Religion:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"political"];
 				break;
 				
 				
 			case 4:
 				cell.accessoryView = nwsSwitch;
-				cell.text = @"  NWS:";
+				cell.textLabel.text = @"  NWS:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"nws"];
 				break;
 		}
