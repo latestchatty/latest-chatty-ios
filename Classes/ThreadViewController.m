@@ -366,29 +366,31 @@
 													   delegate:self
 											  cancelButtonTitle:@"Cancel"
 										 destructiveButtonTitle:nil
-											  otherButtonTitles:@"stupid", @"offtopic", @"nws",@"political",@"informative",@"nuked",@"ontopic", nil];
+											  otherButtonTitles:@"stupid", @"offtopic", @"nws", @"political", @"informative", @"nuked", @"ontopic", nil];
 	[sheet showInView:self.view];
 	[sheet release];
 }
 
 #pragma mark Action Sheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-  NSUInteger postId = [[[rootPost repliesArray] objectAtIndex:selectedIndexPath.row] modelId];
-  NSUInteger parentId = [rootPost modelId];
-  
-  if([actionSheet title]==@"Mod this Post"){
-	  if (buttonIndex == 0) [Mod modParentId:parentId modPostId:postId mod:ModTypeStupid];
-	  if (buttonIndex == 1) [Mod modParentId:parentId modPostId:postId mod:ModTypeOfftopic];
-	  if (buttonIndex == 2) [Mod modParentId:parentId modPostId:postId mod:ModTypeNWS];
-	  if (buttonIndex == 3) [Mod modParentId:parentId modPostId:postId mod:ModTypePolitical];
-	  if (buttonIndex == 4) [Mod modParentId:parentId modPostId:postId mod:ModTypeInformative];
-	  if (buttonIndex == 5) [Mod modParentId:parentId modPostId:postId mod:ModTypeNuked];
-	  if (buttonIndex == 6) [Mod modParentId:parentId modPostId:postId mod:ModTypeOntopic];
-
-
-	  
-	}
-  else{
+    Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
+    NSUInteger postId = [post modelId];
+    NSUInteger parentId = [rootPost modelId];
+    
+    if ([[actionSheet title] isEqualToString:@"Mod this Post"]) {
+        if (buttonIndex == 0) [Mod modParentId:parentId modPostId:postId mod:ModTypeStupid];
+        if (buttonIndex == 1) [Mod modParentId:parentId modPostId:postId mod:ModTypeOfftopic];
+        if (buttonIndex == 2) [Mod modParentId:parentId modPostId:postId mod:ModTypeNWS];
+        if (buttonIndex == 3) [Mod modParentId:parentId modPostId:postId mod:ModTypePolitical];
+        if (buttonIndex == 4) [Mod modParentId:parentId modPostId:postId mod:ModTypeInformative];
+        if (buttonIndex == 5) [Mod modParentId:parentId modPostId:postId mod:ModTypeNuked];
+        if (buttonIndex == 6) [Mod modParentId:parentId modPostId:postId mod:ModTypeOntopic];
+        
+        if (buttonIndex <= 6 ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"nuked"]) {
+            post.category = [actionSheet buttonTitleAtIndex:buttonIndex];
+            [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
+        }
+    } else {
 		if (buttonIndex == 0) [Tag tagPostId:postId tag:TagTypeLOL];
 		if (buttonIndex == 1) [Tag tagPostId:postId tag:TagTypeINF];
 		if (buttonIndex == 2) [Tag tagPostId:postId tag:TagTypeMark];
