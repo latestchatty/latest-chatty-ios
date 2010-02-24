@@ -66,7 +66,7 @@
 		alert = [[UIAlertView alloc] initWithTitle:title
 										   message:message
 										  delegate:self
-								 cancelButtonTitle:([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait ? @"OK" : nil)
+								 cancelButtonTitle:@"OK"
 								 otherButtonTitles:@"Rules", @"Hide", nil];
 		[alert show];
 		[alert release];
@@ -79,12 +79,11 @@
 	
 	// Noob help alert
 	if (buttonIndex == 1) {
-		if( postingWarningAlertView ){
+		if (postingWarningAlertView) {
 			[self showActivityIndicator:NO];
 			[postContent resignFirstResponder];
-			[NSThread detachNewThreadSelector:@selector(makePost) toTarget:self withObject:nil];
-		}
-		else{
+            [self performSelectorInBackground:@selector(makePost) withObject:nil];
+		} else {
 			NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
 			BrowserViewController *controller = [[BrowserViewController alloc] initWithRequest:rulesPageRequest];
 			[[self navigationController] pushViewController:controller animated:YES];
