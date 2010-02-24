@@ -81,6 +81,7 @@
             } else {
                 cell.title = @"Messages";
             }
+            break;
             
         case 3:
             cell.title = @"Search"; break;
@@ -107,6 +108,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     id viewController = nil;
     BOOL modal = NO;
+    NSString *urlString;
     
     switch (indexPath.row) {
         case 0:
@@ -131,7 +133,8 @@
             break;
             
         case 5:
-            viewController = [[[BrowserViewController alloc] initWithUrlString:[NSString stringWithFormat:@"http://%@/about", [[Model class] host]]] autorelease];
+            urlString = [NSString stringWithFormat:@"http://%@/about", [Model host]];
+            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]] autorelease];
             break;
             
         default:
