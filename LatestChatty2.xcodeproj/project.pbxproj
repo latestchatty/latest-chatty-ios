@@ -94,6 +94,12 @@
 		FA8D243E0F85848900AB23E2 /* Youtube.html in Resources */ = {isa = PBXBuildFile; fileRef = FA8D243D0F85848900AB23E2 /* Youtube.html */; };
 		FA8D24FD0F8661D200AB23E2 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8D24FB0F8661D200AB23E2 /* left.png */; };
 		FA8D24FE0F8661D200AB23E2 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8D24FC0F8661D200AB23E2 /* right.png */; };
+		FA9523731134FAD300540CE0 /* NSString+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9523661134FAD300540CE0 /* NSString+HelperKit.m */; };
+		FA9523761134FAD300540CE0 /* UIAlertView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA95236A1134FAD300540CE0 /* UIAlertView+HelperKit.m */; };
+		FA9523771134FAD300540CE0 /* UIBarButtonItem+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA95236C1134FAD300540CE0 /* UIBarButtonItem+HelperKit.m */; };
+		FA9523781134FAD300540CE0 /* UIImage+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA95236E1134FAD300540CE0 /* UIImage+HelperKit.m */; };
+		FA9523791134FAD300540CE0 /* UINavigationController+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9523701134FAD300540CE0 /* UINavigationController+HelperKit.m */; };
+		FA95237A1134FAD300540CE0 /* UIViewController+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9523721134FAD300540CE0 /* UIViewController+HelperKit.m */; };
 		FA9C3ED00F9CEB1E0022A739 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */; };
 		FA9C3ED50F9CED010022A739 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C3ED40F9CED010022A739 /* SearchViewController.m */; };
 		FA9C3F170F9CFD580022A739 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3F160F9CFD580022A739 /* GrayButton.png */; };
@@ -265,6 +271,19 @@
 		FA8D243D0F85848900AB23E2 /* Youtube.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Youtube.html; sourceTree = "<group>"; };
 		FA8D24FB0F8661D200AB23E2 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left.png; sourceTree = "<group>"; };
 		FA8D24FC0F8661D200AB23E2 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
+		FA9523641134FAD300540CE0 /* HKHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKHelperKit.h; sourceTree = "<group>"; };
+		FA9523651134FAD300540CE0 /* NSString+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HelperKit.h"; sourceTree = "<group>"; };
+		FA9523661134FAD300540CE0 /* NSString+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HelperKit.m"; sourceTree = "<group>"; };
+		FA9523691134FAD300540CE0 /* UIAlertView+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+HelperKit.h"; sourceTree = "<group>"; };
+		FA95236A1134FAD300540CE0 /* UIAlertView+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+HelperKit.m"; sourceTree = "<group>"; };
+		FA95236B1134FAD300540CE0 /* UIBarButtonItem+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+HelperKit.h"; sourceTree = "<group>"; };
+		FA95236C1134FAD300540CE0 /* UIBarButtonItem+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+HelperKit.m"; sourceTree = "<group>"; };
+		FA95236D1134FAD300540CE0 /* UIImage+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+HelperKit.h"; sourceTree = "<group>"; };
+		FA95236E1134FAD300540CE0 /* UIImage+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+HelperKit.m"; sourceTree = "<group>"; };
+		FA95236F1134FAD300540CE0 /* UINavigationController+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+HelperKit.h"; sourceTree = "<group>"; };
+		FA9523701134FAD300540CE0 /* UINavigationController+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+HelperKit.m"; sourceTree = "<group>"; };
+		FA9523711134FAD300540CE0 /* UIViewController+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HelperKit.h"; sourceTree = "<group>"; };
+		FA9523721134FAD300540CE0 /* UIViewController+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HelperKit.m"; sourceTree = "<group>"; };
 		FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		FA9C3ED30F9CED010022A739 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		FA9C3ED40F9CED010022A739 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
@@ -399,6 +418,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA9523631134FAD300540CE0 /* HKHelperKit */,
 				FA2B47500F7E1DA30074064A /* Base64 */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -613,6 +633,26 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		FA9523631134FAD300540CE0 /* HKHelperKit */ = {
+			isa = PBXGroup;
+			children = (
+				FA9523641134FAD300540CE0 /* HKHelperKit.h */,
+				FA9523651134FAD300540CE0 /* NSString+HelperKit.h */,
+				FA9523661134FAD300540CE0 /* NSString+HelperKit.m */,
+				FA9523691134FAD300540CE0 /* UIAlertView+HelperKit.h */,
+				FA95236A1134FAD300540CE0 /* UIAlertView+HelperKit.m */,
+				FA95236B1134FAD300540CE0 /* UIBarButtonItem+HelperKit.h */,
+				FA95236C1134FAD300540CE0 /* UIBarButtonItem+HelperKit.m */,
+				FA95236D1134FAD300540CE0 /* UIImage+HelperKit.h */,
+				FA95236E1134FAD300540CE0 /* UIImage+HelperKit.m */,
+				FA95236F1134FAD300540CE0 /* UINavigationController+HelperKit.h */,
+				FA9523701134FAD300540CE0 /* UINavigationController+HelperKit.m */,
+				FA9523711134FAD300540CE0 /* UIViewController+HelperKit.h */,
+				FA9523721134FAD300540CE0 /* UIViewController+HelperKit.m */,
+			);
+			path = HKHelperKit;
+			sourceTree = "<group>";
+		};
 		FABA5D340F7178A0008EEE3A /* Templates */ = {
 			isa = PBXGroup;
 			children = (
@@ -799,6 +839,12 @@
 				599FF0FA10D5DDC1004476B8 /* SBJsonParser.m in Sources */,
 				599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */,
 				FA08ADB3112B40E800B89890 /* Mod.m in Sources */,
+				FA9523731134FAD300540CE0 /* NSString+HelperKit.m in Sources */,
+				FA9523761134FAD300540CE0 /* UIAlertView+HelperKit.m in Sources */,
+				FA9523771134FAD300540CE0 /* UIBarButtonItem+HelperKit.m in Sources */,
+				FA9523781134FAD300540CE0 /* UIImage+HelperKit.m in Sources */,
+				FA9523791134FAD300540CE0 /* UINavigationController+HelperKit.m in Sources */,
+				FA95237A1134FAD300540CE0 /* UIViewController+HelperKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

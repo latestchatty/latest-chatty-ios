@@ -58,18 +58,11 @@
 	[super viewDidAppear:animated];
 	
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"hideOrientationWarning"] != YES && !activityView) {
-		UIAlertView *alert;
-		
-		NSString *title = @"Important!";
-		NSString *message = @"This app is just one portal to a much larger community. If you are new here, tap \"Rules\" to read up on what to do and what not to do. Improper conduct may lead to unpleasant experiences and getting banned by community moderators.\n\n Lastly, use the text formatting tags sparingly. Please.";
-		
-		alert = [[UIAlertView alloc] initWithTitle:title
-										   message:message
-										  delegate:self
-								 cancelButtonTitle:@"OK"
-								 otherButtonTitles:@"Rules", @"Hide", nil];
-		[alert show];
-		[alert release];
+        [UIAlertView showWithTitle:@"Important!"
+                           message:@"This app is just one portal to a much larger community. If you are new here, tap \"Rules\" to read up on what to do and what not to do. Improper conduct may lead to unpleasant experiences and getting banned by community moderators.\n\n Lastly, use the text formatting tags sparingly. Please."
+                          delegate:self
+                 cancelButtonTitle:@"OK"
+                 otherButtonTitles:@"Rules", @"Hide", nil];
 	}
 }
 
@@ -231,13 +224,9 @@
 
 - (void)image:(Image*)image sendFailure:(NSString*)message
 {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Failed"
-													message:@"Sorry but there was an error uploading your photo"
-												   delegate:nil
-										  cancelButtonTitle:@"Oopsie"
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+    [UIAlertView showSimpleAlertWithTitle:@"Upload Failed"
+                                  message:@"Sorry but there was an error uploading your photo"
+                              buttonTitle:@"Oopsie"];
 	[image release];
 	[self hideActivtyIndicator];
 }
@@ -248,12 +237,9 @@
 	Image *image = [[Image alloc] initWithImage:anImage];
 	image.delegate = self;
 	
-	UIProgressView* progressBar = [self showActivityIndicator:YES];
-	
-	//doing this on the mainthread instead
+	UIProgressView* progressBar = [self showActivityIndicator:YES];	
 	[image autoRotateAndScale:800];
-	[NSThread detachNewThreadSelector:@selector(uploadAndReturnImageUrlWithProgressView:) toTarget:image withObject:progressBar];
-	//[image uploadAndReturnImageUrlWithProgressView:progressBar];
+    [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithProgressView:) withObject:progressBar];
 }
 
 #pragma mark Tagging
@@ -272,8 +258,7 @@
 - (void)postSuccess
 {
 	self.navigationController.view.userInteractionEnabled = YES;
-	NSArray *controllers = [self.navigationController viewControllers];
-	ModelListViewController *lastController = [controllers objectAtIndex:[controllers count] - 2];
+	ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
 	[lastController refresh:self];
 	[self.navigationController popViewControllerAnimated:YES]; 
 	[self hideActivtyIndicator];
@@ -282,13 +267,9 @@
 - (void)postFailure
 {
 	self.navigationController.view.userInteractionEnabled = YES;
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Failure"
-													message:@"There seems to have been an issue making the post. Try again!"
-												   delegate:nil
-										  cancelButtonTitle:@"Bummer"
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+    [UIAlertView showSimpleAlertWithTitle:@"Post Failure"
+                                  message:@"There seems to have been an issue making the post. Try again!"
+                              buttonTitle:@"Bummer"];
 	[self hideActivtyIndicator];
 }
 
@@ -307,13 +288,11 @@
 
 - (IBAction)sendPost {
 	postingWarningAlertView = YES;
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post?"
-                                                    message:@"Send this post to the Shack?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Nope"
-                                          otherButtonTitles:@"Yes Please",nil];
-    [alert show];
-    [alert release];
+    [UIAlertView showWithTitle:@"Post?"
+                       message:@"Submit this post?"
+                      delegate:self
+             cancelButtonTitle:@"Cancel"
+             otherButtonTitles:@"Send", nil];
 }
 
 

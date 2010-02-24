@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HKHelperKit.h"
 #import "RootCell.h"
 
 #import "Model.h"

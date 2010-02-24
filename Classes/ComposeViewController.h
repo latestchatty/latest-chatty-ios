@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HKHelperKit.h"
+
 #import "Post.h"
 #import "Image.h"
 #import "ModelListViewController.h"

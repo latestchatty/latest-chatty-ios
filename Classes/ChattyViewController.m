@@ -72,28 +72,27 @@
 		if (indexPathToSelect) [self.tableView selectRowAtIndexPath:indexPathToSelect animated:NO scrollPosition:UITableViewScrollPositionTop];
 	}
 	
-	UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-																				   target:self
-																				   action:@selector(tappedComposeButton)];
+	UIBarButtonItem *composeButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose
+                                                                  target:self
+                                                                  action:@selector(tappedComposeButton)];
 	composeButton.enabled = (self.storyId > 0);
 	self.navigationItem.rightBarButtonItem = composeButton;
-	[composeButton release];
 }
 
 - (IBAction)tappedComposeButton {
-	ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:nil];
+	ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:nil] autorelease];
 	[self.navigationController pushViewController:viewController animated:YES];
-	[viewController release];
 }
 
 - (IBAction)refresh:(id)sender {
 	[super refresh:self];
 	currentPage = 1;
 	
-	if (storyId > 0)
-		loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];
-	else
-		loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
+	if (storyId > 0) {
+        loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];
+    } else {
+        loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
+    }
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
@@ -114,7 +113,8 @@
 	
 	lastPage = [[otherData objectForKey:@"lastPage"] intValue];
 	
-	NSMutableDictionary* postHistoryDict = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"PostCountHistory"]];
+	NSMutableDictionary* postHistoryDict = [NSMutableDictionary dictionaryWithDictionary:
+                                            [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"PostCountHistory"]];
 	
 	// Filter Posts
 	NSMutableArray *filteredThreads = [NSMutableArray array];
@@ -135,7 +135,7 @@
 	}
 	self.threads = filteredThreads;
 	
-	[[NSUserDefaults standardUserDefaults] setValue:[postHistoryDict autorelease] forKey:@"PostCountHistory"];
+	[[NSUserDefaults standardUserDefaults] setValue:postHistoryDict forKey:@"PostCountHistory"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 
 	
@@ -167,8 +167,9 @@
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		NSUInteger oldLastRefresh = [defaults integerForKey:@"lastRefresh"];
 		NSUInteger newLastRefresh = [[models objectAtIndex:0] lastReplyId];
-		if (newLastRefresh > oldLastRefresh)
-			[defaults setInteger:newLastRefresh forKey:@"lastRefresh"];
+		if (newLastRefresh > oldLastRefresh) {
+            [defaults setInteger:newLastRefresh forKey:@"lastRefresh"];
+        }
 	}
 }
 
@@ -201,11 +202,11 @@
 		
 		return cell;
 	} else {
-		UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
+		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
 		cell.textLabel.text = @"Load More";
 		cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
 		cell.textLabel.textAlignment = UITextAlignmentCenter;
-		return [cell autorelease];
+		return cell;
 	}
 	
 	return nil;
@@ -218,9 +219,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row < [threads count]) {
 		Post *thread = [threads objectAtIndex:indexPath.row];
-		ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:thread.modelId];
+		ThreadViewController *viewController = [[[ThreadViewController alloc] initWithThreadId:thread.modelId] autorelease];
 		[self.navigationController pushViewController:viewController animated:YES];
-		[viewController release];
 	} else {
 		[self showLoadingSpinner];
 		[loader cancel];
