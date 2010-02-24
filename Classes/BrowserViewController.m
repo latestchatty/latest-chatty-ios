@@ -8,68 +8,52 @@
 
 #import "BrowserViewController.h"
 
-
 @implementation BrowserViewController
 
-- (id)initWithRequest:(NSURLRequest*)request {
+@synthesize request;
+@synthesize webView, backButton, forwardButton, spinner;
+
+- (id)initWithRequest:(NSURLRequest*)_request {
     if (self = [super initWithNibName:@"BrowserViewController" bundle:nil]) {
-        initialRequest = [request retain];
+        self.request = _request;
         self.title = @"Browser";
     }
     return self;
 }
 
-
-
-- (id)initWithStateDictionary:(NSDictionary *)dictionary {
-    return [self initWithRequest:[dictionary objectForKey:@"initialRequest"]];
-}
-
-- (id)initWithUrlString:(NSString*)urlString {
-    NSLog(@"Loading Browser with URL: %@", urlString);
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    return [self initWithRequest:request];
-}
-
-- (NSDictionary*)stateDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"Browser", @"type",
-            initialRequest, @"initialRequest",
-            nil];
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *safariButton = [UIBarButtonItem itemWithTitle:@"Safari" style:UIBarButtonItemStyleBordered target:self action:@selector(openInSafari)];
-    self.navigationItem.rightBarButtonItem = safariButton;
-    [webView loadRequest:initialRequest];
+    [webView loadRequest:request];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [spinner startAnimating];
 }
 
-- (IBAction)dragonDrop {
-	[initialRequest setValue:@"" forHTTPHeaderField:@"Referer"];
-	[webView loadRequest:initialRequest];
+- (void)webViewDidFinishLoad:(UIWebView *)_webView {
+    [spinner stopAnimating];
+    backButton.enabled = webView.canGoBack;
+    forwardButton.enabled = webView.canGoForward;
 }
 
-- (IBAction)openInSafari {
+- (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error {
+    [self webViewDidFinishLoad:webView];
+}
+
+- (IBAction)safari {
     [[UIApplication sharedApplication] openURL:[webView.request URL]];
+}
+
+- (void)viewDidUnload {
+	self.webView = nil;
+    self.backButton = nil;
+    self.forwardButton = nil;
+    self.spinner = nil;
 }
 
 
 - (void)dealloc {
-    [initialRequest release];
+    self.request = nil;
     [super dealloc];
 }
 
