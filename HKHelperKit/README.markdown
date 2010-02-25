@@ -56,6 +56,8 @@ HKHelperKit fixes some annoyances when developing Objective-C applications.  Mos
 
 * Convenience Initializers
     * `[UIViewController controller];`
+    * `[UIViewController controllerWithNib];` This loads the nib with the same name as the view controller class.  `[MyController controllerWithNib]` is the same as `[[[MyController alloc] initWithNibName:@"MyController" bundle:nil] autorelease]`
     * `[UIViewController controllerWithNibName:@"SomeNibName"];`
     * `[UIViewController controllerWithNibName:@"SomeNibName" bundle:someBundle];`
     * `[[UIViewController alloc] initWithNibName:@"SomeNibName"];`
+    * `[[UIViewController alloc] initWithNib];` instance level initializer that works as described in the `controllerWithNib` class method.

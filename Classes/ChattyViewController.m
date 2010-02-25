@@ -15,18 +15,13 @@
 @synthesize threads;
 
 - (id)initWithLatestChatty {
-	if( self = [self initWithNibName:@"ChattyViewController" bundle:nil] ){
-		self.storyId = 0;
-		self.title = @"Loading...";
-	}
-	return self;
+    return [self initWithStoryId:0];
 }
 
 - (id)initWithStoryId:(NSUInteger)aStoryId {
-	if( self = [self initWithNibName:@"ChattyViewController" bundle:nil] ){
-		self.storyId = aStoryId;
-		self.title = @"Loading...";
-	}
+	self = [super initWithNib];
+    self.storyId = aStoryId;
+    self.title = @"Loading...";
 	return self;
 }
 

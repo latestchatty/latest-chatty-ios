@@ -14,7 +14,7 @@
 @synthesize message;
 
 - (id)initWithMesage:(Message *)aMessage {
-  self = [super initWithNibName:@"MessageViewController" bundle:nil];
+  self = [super initWithNib];
   self.message = aMessage;
   self.title = self.message.subject;
   return self;

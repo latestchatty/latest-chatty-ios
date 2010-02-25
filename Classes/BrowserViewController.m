@@ -14,10 +14,9 @@
 @synthesize webView, backButton, forwardButton, spinner;
 
 - (id)initWithRequest:(NSURLRequest*)_request {
-    if (self = [super initWithNibName:@"BrowserViewController" bundle:nil]) {
-        self.request = _request;
-        self.title = @"Browser";
-    }
+    self = [super initWithNib];
+    self.request = _request;
+    self.title = @"Browser";
     return self;
 }
 

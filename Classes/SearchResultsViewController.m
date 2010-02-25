@@ -14,7 +14,7 @@
 @synthesize posts;
 
 - (id)initWithTerms:(NSString *)searchTerms author:(NSString *)searchAuthor parentAuthor:(NSString *)searchParentAuthor {
-  self = [super initWithNibName:@"SearchResultsViewController" bundle:nil];
+  self = [super initWithNib];
   
   self.title = @"Search Results";
   terms = [searchTerms retain];

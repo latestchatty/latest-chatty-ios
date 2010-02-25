@@ -14,9 +14,11 @@
 #pragma mark Initializers
 
 + (UIViewController*)controller;
++ (UIViewController*)controllerWithNib; // Creates controller with a nib named same as the class: "FooController" would load "FooController.xib"
 + (UIViewController*)controllerWithNibName:(NSString*)nibName;
 + (UIViewController*)controllerWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle;
 
 - (id)initWithNibName:(NSString *)nibName;
+- (id)initWithNib;
 
 @end

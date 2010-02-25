@@ -56,10 +56,10 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     [super initWithDictionary:dictionary];
     
-    self.title     = [[dictionary objectForKey:@"name"] stringByUnescapingHTML];
+    self.title   = [[dictionary objectForKey:@"name"] stringByUnescapingHTML];
     self.preview = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
-    self.body        = [dictionary objectForKey:@"body"];
-    self.date        = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
+    self.body    = [dictionary objectForKey:@"body"];
+    self.date    = [[self class] decodeDate:[dictionary objectForKey:@"date"]];
     commentCount = [[dictionary objectForKey:@"comment_count"] intValue];
     
     return self;

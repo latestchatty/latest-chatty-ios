@@ -23,8 +23,8 @@
     
     // Setup login request
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* usernameString = [[defaults stringForKey:@"username"] stringByUrlEscape];
-	NSString* passwordString = [[defaults stringForKey:@"password"] stringByUrlEscape];
+	NSString* usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
+	NSString* passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
 	NSString* myRequestString = [NSString stringWithFormat:@"username=%@&password=%@", usernameString, passwordString];    
     NSData *myRequestData = [NSData dataWithBytes:[myRequestString UTF8String] length:[myRequestString length]];
     request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.shacknews.com/login.x"]

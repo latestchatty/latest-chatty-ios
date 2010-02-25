@@ -15,7 +15,7 @@
 @synthesize post;
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost {
-	[super initWithNibName:@"ComposeViewController" bundle:nil];
+	self = [super initWithNib];
 	
 	self.storyId = aStoryId;
 	self.post = aPost;

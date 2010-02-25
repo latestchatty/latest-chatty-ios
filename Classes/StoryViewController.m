@@ -14,7 +14,7 @@
 @synthesize story;
 
 - (id)initWithStoryId:(NSUInteger)aStoryId {
-  self = [self initWithNibName:@"StoryViewController" bundle:nil];
+  self = [super initWithNib];
   storyId = aStoryId;
   self.title = @"Loading...";
   return self;

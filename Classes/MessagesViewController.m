@@ -14,7 +14,7 @@
 @synthesize messages;
 
 - (id)init {
-  self = [self initWithNibName:@"MessagesViewController" bundle:nil];
+  self = [super initWithNib];
   self.title = @"Messages";
   return self;
 }

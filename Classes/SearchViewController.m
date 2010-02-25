@@ -12,7 +12,7 @@
 @implementation SearchViewController
 
 - (id)init {
-  self = [super initWithNibName:@"SearchViewController" bundle:nil];
+  self = [super initWithNib];
   self.title = @"Comment Search";
   return self;
 }

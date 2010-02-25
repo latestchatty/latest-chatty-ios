@@ -19,6 +19,7 @@
 @property (readonly) NSUInteger modelId;
 
 + (NSString *)formatDate:(NSDate *)date;
++ (NSDate *)decodeDate:(NSString *)string;
 
 + (NSString *)host;
 + (NSString *)urlStringWithPath:(NSString *)path;

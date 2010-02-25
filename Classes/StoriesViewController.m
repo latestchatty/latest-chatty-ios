@@ -15,7 +15,7 @@
 @synthesize stories;
 
 - (id)init {
-  [super initWithNibName:@"StoriesViewController" bundle:nil];
+  self = [super initWithNib];
   self.title = @"Stories";
   return self;
 }

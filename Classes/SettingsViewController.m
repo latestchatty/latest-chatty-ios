@@ -13,7 +13,7 @@
 
 
 - (id)init {
-	[super initWithNibName:@"SettingsViewController" bundle:nil];
+	self = [super initWithNib];
 	
 	usernameField = [[self generateTextFieldWithKey:@"username"] retain];
 	usernameField.placeholder = @"Enter Username";

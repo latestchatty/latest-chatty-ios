@@ -113,9 +113,9 @@ static NSMutableDictionary *colorMapping;
 
 + (ModelLoader *)searchWithTerms:(NSString *)terms author:(NSString *)authorName parentAuthor:(NSString *)parentAuthor delegate:(id<ModelLoadingDelegate>)delegate {
   NSString *urlString = [NSString stringWithFormat:@"/search?terms=%@&author=%@&parent_author=%@",
-                          [terms stringByUrlEscape],
-                          [authorName stringByUrlEscape],
-                          [parentAuthor stringByUrlEscape]];
+                          [terms stringByEscapingURL],
+                          [authorName stringByEscapingURL],
+                          [parentAuthor stringByEscapingURL]];
   return [self loadAllFromUrl:urlString delegate:delegate];
 }
 
@@ -149,10 +149,10 @@ static NSMutableDictionary *colorMapping;
   
   // Set request body and HTTP method
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  NSString *usernameString = [[defaults stringForKey:@"username"] stringByUrlEscape];
-  NSString *passwordString = [[defaults stringForKey:@"password"] stringByUrlEscape];
+  NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
+  NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
   NSString *parentIdString = parentId == 0 ? @"" : [NSString stringWithFormat:@"%i", parentId];
-  NSString *bodyString     = [body stringByUrlEscape];
+  NSString *bodyString     = [body stringByEscapingURL];
   
   NSString *requestBody = [NSString stringWithFormat:@"iuser=%@&ipass=%@&parent=%@&group=%i&body=%@", usernameString, passwordString, parentIdString, storyId, bodyString];
   [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
@@ -191,7 +191,7 @@ static NSMutableDictionary *colorMapping;
   self.preview = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
   self.body    = [dictionary objectForKey:@"body"];
   if (self.body != (NSString *)[NSNull null]) self.body = [self.body stringByReplacingOccurrencesOfRegex:@" target=\"_blank\"" withString:@""];
-  self.date    = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
+  self.date    = [[self class] decodeDate:[dictionary objectForKey:@"date"]];
   self.depth   = [[dictionary objectForKey:@"depth"] intValue];
   storyId    = [[dictionary objectForKey:@"story_id"] intValue];
   if ([dictionary objectForKey:@"reply_count"] != [NSNull null]) replyCount = [[dictionary objectForKey:@"reply_count"] intValue];

@@ -17,6 +17,10 @@
     return [self controllerWithNibName:nil bundle:nil];
 }
 
++ (UIViewController*)controllerWithNib {
+    return [[[self alloc] initWithNib] autorelease];
+}
+
 + (UIViewController*)controllerWithNibName:(NSString*)nibNameOrNil {
     return [self controllerWithNibName:nibNameOrNil bundle:nil];
 }
@@ -27,6 +31,11 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil {
     return [self initWithNibName:nibNameOrNil bundle:nil];
+}
+
+- (id)initWithNib {
+    NSString *className = NSStringFromClass([self class]);
+    return [self initWithNibName:className];
 }
 
 @end

@@ -27,7 +27,7 @@
 
 - (NSString *)base64String {
 	NSData *imageData = [self compressJpeg:0.7];
-	return [[NSString base64StringFromData:imageData length:[imageData length]] stringByUrlEscape];
+	return [[NSString base64StringFromData:imageData length:[imageData length]] stringByEscapingURL];
 }
 
 - (void)informDelegateOnMainThreadWithURL:(NSString*)url
@@ -57,8 +57,8 @@
 	
 	// Create the post body
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSString *username = [[defaults stringForKey:@"username"] stringByUrlEscape];
-	NSString *password = [[defaults stringForKey:@"password"] stringByUrlEscape];
+	NSString *username = [[defaults stringForKey:@"username"] stringByEscapingURL];
+	NSString *password = [[defaults stringForKey:@"password"] stringByEscapingURL];
 	NSString *postBody = [NSString stringWithFormat:@"username=%@&password=%@&filename=iPhoneUpload.jpg&image=%@", username, password, imageBase64Data];
 	[request appendPostData:[postBody dataUsingEncoding:NSASCIIStringEncoding]];
 	//[request setHTTPBody:[postBody dataUsingEncoding:NSASCIIStringEncoding]];

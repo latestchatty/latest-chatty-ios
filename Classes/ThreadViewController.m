@@ -15,11 +15,10 @@
 @synthesize selectedIndexPath;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
-	if (self = [super initWithNibName:@"ThreadViewController" bundle:nil]) {
-		threadId = aThreadId;
-		grippyBarPosition = 1;
-		self.title = @"Thread";
-	}
+	self = [super initWithNib];
+    threadId = aThreadId;
+    grippyBarPosition = 1;
+    self.title = @"Thread";
 	return self;
 }
 

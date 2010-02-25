@@ -11,7 +11,7 @@
 @implementation RootViewController
 
 - (id)init {
-    self = [self initWithNibName:@"RootViewController" bundle:nil];
+    self = [super initWithNib];
     self.title = @"Home";
     return self;
 }

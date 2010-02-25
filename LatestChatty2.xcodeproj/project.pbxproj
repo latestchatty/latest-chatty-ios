@@ -42,7 +42,6 @@
 		FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
 		FA2260530F8EE251002F77DD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA2260520F8EE251002F77DD /* Settings.bundle */; };
 		FA26AD080F80F85C00EB5FF0 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = FA26AD070F80F85C00EB5FF0 /* Tag.m */; };
-		FA2B43280F7D4BBE0074064A /* UIImage-NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */; };
 		FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B458E0F7D95710074064A /* BlueBullet.png */; };
 		FA2B45910F7D96060074064A /* GrayBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B45900F7D96060074064A /* GrayBullet.png */; };
 		FA2B47550F7E1DA30074064A /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B47520F7E1DA30074064A /* NSDataAdditions.m */; };
@@ -201,8 +200,6 @@
 		FA2260520F8EE251002F77DD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FA26AD060F80F85B00EB5FF0 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		FA26AD070F80F85C00EB5FF0 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		FA2B43260F7D4BBE0074064A /* UIImage-NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-NSCoding.h"; sourceTree = "<group>"; };
-		FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-NSCoding.m"; sourceTree = "<group>"; };
 		FA2B458E0F7D95710074064A /* BlueBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueBullet.png; path = Assets/BlueBullet.png; sourceTree = "<group>"; };
 		FA2B45900F7D96060074064A /* GrayBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrayBullet.png; path = Assets/GrayBullet.png; sourceTree = "<group>"; };
 		FA2B47510F7E1DA30074064A /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAdditions.h; sourceTree = "<group>"; };
@@ -292,7 +289,6 @@
 		FA9C3F200F9CFF0C0022A739 /* BlueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueButton.png; path = Assets/BlueButton.png; sourceTree = "<group>"; };
 		FA9C3F210F9CFF0C0022A739 /* BlueButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueButtonPressed.png; path = Assets/BlueButtonPressed.png; sourceTree = "<group>"; };
 		FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NewPostBullet.png; path = Assets/NewPostBullet.png; sourceTree = "<group>"; };
-		FAA3C1EB1048C070009B808F /* NSDate+SuppressWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SuppressWarnings.h"; sourceTree = "<group>"; };
 		FAA849960F78C29900026446 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
 		FAA849970F78C29900026446 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
 		FAA849990F78C2B000026446 /* ThreadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadViewController.xib; sourceTree = "<group>"; };
@@ -390,15 +386,12 @@
 			children = (
 				28A0AAE50D9B0CCF005BE974 /* LatestChatty2_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				FAA3C1EB1048C070009B808F /* NSDate+SuppressWarnings.h */,
 				FABA5D410F717A28008EEE3A /* StringAdditions.h */,
 				FABA5D420F717A28008EEE3A /* StringAdditions.m */,
 				FABA5D450F717B60008EEE3A /* HTMLEscaper.h */,
 				FABA5D460F717B60008EEE3A /* HTMLEscaper.m */,
 				FAD29AD30F796A22006E14A2 /* RegexKitLite.h */,
 				FAD29AD40F796A22006E14A2 /* RegexKitLite.m */,
-				FA2B43260F7D4BBE0074064A /* UIImage-NSCoding.h */,
-				FA2B43270F7D4BBE0074064A /* UIImage-NSCoding.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -808,7 +801,6 @@
 				FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */,
 				FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */,
 				FAB765F60F7C9E5B00CE0E38 /* BrowserViewController.m in Sources */,
-				FA2B43280F7D4BBE0074064A /* UIImage-NSCoding.m in Sources */,
 				FA2B47550F7E1DA30074064A /* NSDataAdditions.m in Sources */,
 				FA2B47560F7E1DA30074064A /* NSStringAdditions.m in Sources */,
 				FA2B475C0F7E1DDB0074064A /* Image.m in Sources */,

@@ -102,8 +102,8 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *pushToken = [[deviceToken description] stringByReplacingOccurrencesOfRegex:@"<|>" withString:@""];
-    NSString *usernameString = [[defaults stringForKey:@"username"] stringByUrlEscape];
-    NSString *passwordString = [[defaults stringForKey:@"password"] stringByUrlEscape];
+    NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
+    NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
     
     NSString *requestBody = [NSString stringWithFormat:@"token=%@&username=%@&password=%@", pushToken, usernameString, passwordString];
     [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
