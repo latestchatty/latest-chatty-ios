@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HKHelperKit.h"
 
 #import "Post.h"
 #import "Image.h"
 #import "ModelListViewController.h"
 #import "BrowserViewController.h"
-#import "UIView+Additions.h"
 
 @interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate> {
 	NSInteger storyId;

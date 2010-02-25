@@ -44,8 +44,6 @@
 										timeoutInterval:60] autorelease];
 	data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];	
 	
-    // Seems necessary to set the cookies, odd but oh well...
-//    [NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:[NSURL URLWithString:@"www.shacknews.com"]];
 	NSString *modResult = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
 	if ([modResult rangeOfString:@"Invalid moderation flags"].location != NSNotFound) {
 		[defaults setBool:YES forKey:@"moderator"];
