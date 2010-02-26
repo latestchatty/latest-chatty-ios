@@ -13,4 +13,6 @@
 
 @property (nonatomic, readonly, retain) UIViewController *backViewController;
 
++ (UINavigationController*)controllerWithRootController:(UIViewController*)controller;
+
 @end

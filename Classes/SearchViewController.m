@@ -11,9 +11,10 @@
 
 @implementation SearchViewController
 
-- (id)init {
-  self = [super initWithNib];
-  self.title = @"Comment Search";
+- (id)initWithNib {
+  if (self = [super initWithNib]) {
+      self.title = @"Comment Search";
+  }
   return self;
 }
 

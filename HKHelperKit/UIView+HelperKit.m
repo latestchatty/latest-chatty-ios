@@ -22,20 +22,22 @@
 }
 
 
-#pragma mark Positioning
+#pragma mark Frame Manipulation
 
-- (void)center {
-    [self centerHorizontally:YES vertically:YES];
+- (void)centerInSuperview {
+    [self centerInSuperviewHorizontally:YES vertically:YES];
 }
 
-- (void)centerHorizontally:(BOOL)horizontal vertically:(BOOL)vertical {
-    CGRect viewFrame = self.superview.frame;
-	CGRect selfFrame = self.frame;
-	
-	if (horizontal) selfFrame.origin.x = round(viewFrame.size.width/2  - selfFrame.size.width/2);
-    if (vertical)   selfFrame.origin.y = round(viewFrame.size.height/2 - selfFrame.size.height/2);
-    
-	self.frame = selfFrame;
+- (void)centerInSuperviewHorizontally:(BOOL)horizontal vertically:(BOOL)vertical {
+	self.frame = CGRectCenterInRect(self.frame, self.superview.frame, horizontal, vertical);
+}
+
+- (void)padFrameWithTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left {
+    self.frame = CGRectWithPadding(self.frame, top, right, bottom, left);
+}
+
+- (void)tranlateFrameByX:(CGFloat)x y:(CGFloat)y {
+    self.frame = CGRectWithTranslation(self.frame, x, y);
 }
 
 

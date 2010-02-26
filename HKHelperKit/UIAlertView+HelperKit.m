@@ -34,7 +34,20 @@
                                                      message:message
                                                     delegate:delegate
                                            cancelButtonTitle:cancelButtonTitle
-                                           otherButtonTitles:otherButtonTitles] autorelease];
+                                           otherButtonTitles:otherButtonTitles, nil] autorelease];
+    
+    // Add a button for each string after the first in the otherButtonTitles nil terminated list
+    va_list args;
+    va_start(args, otherButtonTitles);
+    {
+        NSString *buttonTitle = nil;
+        while (buttonTitle = va_arg(args, NSString*)) {
+            [alert addButtonWithTitle:buttonTitle];
+        }        
+    }
+    va_end(args);
+    
+    
     [alert show];
 }
 

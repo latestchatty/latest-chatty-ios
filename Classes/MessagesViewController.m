@@ -13,9 +13,10 @@
 
 @synthesize messages;
 
-- (id)init {
-  self = [super initWithNib];
-  self.title = @"Messages";
+- (id)initWithNib {
+  if (self = [super initWithNib]) {
+      self.title = @"Messages";
+  }
   return self;
 }
 

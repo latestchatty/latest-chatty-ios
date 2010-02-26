@@ -6,6 +6,8 @@
 //  Copyright 2010 Beautiful Pixel. All rights reserved.
 //
 
+#import "CGRect+HelperKit.h"
+
 #import "NSString+HelperKit.h"
 
 #import "UIAlertView+HelperKit.h"

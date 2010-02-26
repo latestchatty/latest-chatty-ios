@@ -19,6 +19,6 @@
 + (UIViewController*)controllerWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle;
 
 - (id)initWithNibName:(NSString *)nibName;
-- (id)initWithNib;
+- (id)initWithNib; // Instance version of the controllerWithNib method
 
 @end

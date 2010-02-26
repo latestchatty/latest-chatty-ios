@@ -14,9 +14,10 @@
 
 @synthesize stories;
 
-- (id)init {
-  self = [super initWithNib];
-  self.title = @"Stories";
+- (id)initWithNib {
+  if (self = [super initWithNib]) {
+      self.title = @"Stories";
+  }
   return self;
 }
 

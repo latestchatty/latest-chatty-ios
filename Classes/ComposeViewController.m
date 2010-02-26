@@ -67,12 +67,9 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-	// Adjust index for missing "OK" in landscape view.
-	if ([[UIApplication sharedApplication] statusBarOrientation] != UIInterfaceOrientationPortrait) buttonIndex++;
-	
 	// Noob help alert
 	if (buttonIndex == 1) {
-		if (postingWarningAlertView) {
+		if ([alertView.title isEqualToString:@"Important!"]) {
 			[self showActivityIndicator:NO];
 			[postContent resignFirstResponder];
             [self performSelectorInBackground:@selector(makePost) withObject:nil];

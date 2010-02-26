@@ -12,36 +12,36 @@
 @implementation SettingsViewController
 
 
-- (id)init {
-	self = [super initWithNib];
-	
-	usernameField = [[self generateTextFieldWithKey:@"username"] retain];
-	usernameField.placeholder = @"Enter Username";
-	usernameField.returnKeyType = UIReturnKeyNext;
-	usernameField.keyboardType = UIKeyboardTypeEmailAddress;
-	
-	passwordField = [[self generateTextFieldWithKey:@"password"] retain];
-	passwordField.placeholder = @"Enter Password";
-	passwordField.secureTextEntry = YES;
-	passwordField.returnKeyType = UIReturnKeyDone;
-	usernameField.keyboardType = UIKeyboardTypeEmailAddress;
-	
-	serverField = [[self generateTextFieldWithKey:@"server"] retain];
-	serverField.placeholder = @"shackchatty.com";
-	serverField.returnKeyType = UIReturnKeyDone;
-	serverField.keyboardType = UIKeyboardTypeURL;
-	
-	
-	landscapeSwitch     = [[self generateSwitchWithKey:@"landscape"]     retain];
-	youtubeSwitch       = [[self generateSwitchWithKey:@"embedYoutube"]  retain];
-	pushMessagesSwitch  = [[self generateSwitchWithKey:@"push.messages"] retain];
-	
-	
-	interestingSwitch   = [[self generateSwitchWithKey:@"postCategory.informative"] retain];
-	offtopicSwitch      = [[self generateSwitchWithKey:@"postCategory.offtopic"] retain];
-	randomSwitch        = [[self generateSwitchWithKey:@"postCategory.stupid"] retain];
-	politicsSwitch      = [[self generateSwitchWithKey:@"postCategory.political"] retain];
-	nwsSwitch           = [[self generateSwitchWithKey:@"postCategory.nws"] retain];
+- (id)initWithNib {
+	if (self = [super initWithNib]) {
+        usernameField = [[self generateTextFieldWithKey:@"username"] retain];
+        usernameField.placeholder = @"Enter Username";
+        usernameField.returnKeyType = UIReturnKeyNext;
+        usernameField.keyboardType = UIKeyboardTypeEmailAddress;
+        
+        passwordField = [[self generateTextFieldWithKey:@"password"] retain];
+        passwordField.placeholder = @"Enter Password";
+        passwordField.secureTextEntry = YES;
+        passwordField.returnKeyType = UIReturnKeyDone;
+        usernameField.keyboardType = UIKeyboardTypeEmailAddress;
+        
+        serverField = [[self generateTextFieldWithKey:@"server"] retain];
+        serverField.placeholder = @"shackchatty.com";
+        serverField.returnKeyType = UIReturnKeyDone;
+        serverField.keyboardType = UIKeyboardTypeURL;
+        
+        
+        landscapeSwitch     = [[self generateSwitchWithKey:@"landscape"]     retain];
+        youtubeSwitch       = [[self generateSwitchWithKey:@"embedYoutube"]  retain];
+        pushMessagesSwitch  = [[self generateSwitchWithKey:@"push.messages"] retain];
+        
+        
+        interestingSwitch   = [[self generateSwitchWithKey:@"postCategory.informative"] retain];
+        offtopicSwitch      = [[self generateSwitchWithKey:@"postCategory.offtopic"] retain];
+        randomSwitch        = [[self generateSwitchWithKey:@"postCategory.stupid"] retain];
+        politicsSwitch      = [[self generateSwitchWithKey:@"postCategory.political"] retain];
+        nwsSwitch           = [[self generateSwitchWithKey:@"postCategory.nws"] retain];        
+    }	
 	
 	return self;
 }
@@ -80,11 +80,13 @@
 	[defaults setBool:youtubeSwitch.on      forKey:@"embedYoutube"];
 	[defaults setBool:pushMessagesSwitch.on forKey:@"push.messages"];
 	
-	if (pushMessagesSwitch.on)
-		[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-	else
-		[[UIApplication sharedApplication] unregisterForRemoteNotifications];
+	if (pushMessagesSwitch.on) {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+    } else {
+        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    }
 	
+    
 	NSString *serverAddress = serverField.text;
 	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
 	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"/$" withString:@""];
@@ -174,7 +176,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-	
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
 	// username/password/server text entry fields
 	if (indexPath.section == 0) {
 		switch (indexPath.row) {

@@ -112,7 +112,7 @@
     
     switch (indexPath.row) {
         case 0:
-            viewController = [StoriesViewController controller];
+            viewController = [StoriesViewController controllerWithNib];
             break;
             
         case 1:
@@ -120,16 +120,16 @@
             break;
             
         case 2:
-            viewController = [MessagesViewController controller];
+            viewController = [MessagesViewController controllerWithNib];
             break;
             
         case 3:
-            viewController = [SearchViewController controller];
+            viewController = [SearchViewController controllerWithNib];
             break;
             
         case 4:
             modal = YES;
-            viewController = [SettingsViewController controller];
+            viewController = [SettingsViewController controllerWithNib];
             break;
             
         case 5:

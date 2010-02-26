@@ -1,1 +1,0 @@
-* [UIViewController controllerWithNib] and [[UIViewController alloc] initWithNib] which load a nib based on the controller class name

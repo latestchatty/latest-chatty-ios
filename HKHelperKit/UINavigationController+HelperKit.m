@@ -11,6 +11,10 @@
 
 @implementation UINavigationController (HelperKit)
 
++ (UINavigationController*)controllerWithRootController:(UIViewController*)controller {
+    return [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+}
+
 - (UIViewController*)backViewController {
     UIViewController *result = nil;
     NSUInteger count = [self.viewControllers count];
