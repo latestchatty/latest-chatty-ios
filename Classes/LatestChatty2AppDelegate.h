@@ -20,10 +20,12 @@
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate> {
     UIWindow *window;
     UINavigationController *navigationController;
+    UISplitViewController *splitController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet UISplitViewController *splitController;
 
 - (BOOL)reloadSavedState;
 

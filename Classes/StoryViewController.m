@@ -98,9 +98,8 @@
 
 
 - (void)loadChatty {
-  ChattyViewController *viewController = [[ChattyViewController alloc] initWithStoryId:story.modelId];
+  ChattyViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
   [self.navigationController pushViewController:viewController animated:YES];
-  [viewController release];
 }
 
 

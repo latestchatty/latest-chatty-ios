@@ -25,7 +25,7 @@
     LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
     if ([appDelegate isPadDevice]) {
         ChattyViewController *chattyController = [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
-        ThreadViewController *threadController = [[[ThreadViewController alloc] init] autorelease];
+        ThreadViewController *threadController = [ThreadViewController controllerWithNib];
         chattyController.threadController = threadController;
         
         UISplitViewController *splitController = [[[UISplitViewController alloc] init] autorelease];
@@ -193,10 +193,10 @@
 	}
     
     // Open the popover if it's hidden
-    if (self.threadController && UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
-        UIBarButtonItem *button = [self.threadController.toolbar.items objectAtIndex:0];
-        [button.target performSelector:button.action withObject:button];
-    }    
+//    if (self.threadController && UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
+//        UIBarButtonItem *button = [self.threadController.toolbar.items objectAtIndex:0];
+//        [button.target performSelector:button.action withObject:button];
+//    }    
 }
 
 

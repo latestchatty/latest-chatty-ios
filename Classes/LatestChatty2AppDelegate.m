@@ -13,7 +13,7 @@
 @implementation LatestChatty2AppDelegate
 
 @synthesize window;
-@synthesize navigationController;
+@synthesize navigationController, splitController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -32,16 +32,14 @@
     
     if (![self reloadSavedState]) {
         // Add the root view controller
-        RootViewController *viewController = [[RootViewController alloc] init];
+        RootViewController *viewController = [RootViewController controllerWithNib];
         [navigationController pushViewController:viewController animated:NO];
-        [viewController release];
     }
     
     if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
         // Tapped a messge push's view button
-        MessagesViewController *viewController = [[MessagesViewController alloc] init];
+        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
         [navigationController pushViewController:viewController animated:NO];
-        [viewController release];
     }
     
     // Style the navigation bar
@@ -49,7 +47,12 @@
     
 	// Configure and show the window
     window.backgroundColor = [UIColor blackColor];
-	[window addSubview:[navigationController view]];
+    
+    if ([self isPadDevice]) {
+        [window addSubview:[navigationController view]];
+    } else {
+        [window addSubview:[navigationController view]];
+    }
 	[window makeKeyAndVisible];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     
@@ -219,8 +222,8 @@
 
 
 - (void)dealloc {
-	[navigationController release];
-	[window release];
+	self.navigationController = nil;
+	self.window = nil;
 	[super dealloc];
 }
 

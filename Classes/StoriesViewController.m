@@ -120,15 +120,13 @@
   }
   
   Story *story = [stories objectAtIndex:indexPath.row];
-  ChattyViewController *viewController = [[ChattyViewController alloc] initWithStoryId:story.modelId];
+  UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
   [self.navigationController pushViewController:viewController animated:YES];
-  [viewController release];
 }
 
 - (IBAction)tappedLatestChattyButton {
-  ChattyViewController *viewController = [[ChattyViewController alloc] initWithLatestChatty];
+  ChattyViewController *viewController = [ChattyViewController chattyControllerWithLatest];
   [self.navigationController pushViewController:viewController animated:YES];
-  [viewController release];
 }
 
 - (void)dealloc {

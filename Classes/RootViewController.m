@@ -116,7 +116,7 @@
             break;
             
         case 1:
-            viewController = [[[ChattyViewController alloc] initWithLatestChatty] autorelease];
+            viewController = [ChattyViewController chattyControllerWithLatest];
             break;
             
         case 2:
