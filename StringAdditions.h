@@ -12,7 +12,6 @@
 @interface NSString (StringAdditions)
 
 - (NSString *)stringByUnescapingHTML;
-- (NSString *)stringByUrlEscape;
 
 @end
 

@@ -11,10 +11,8 @@
 @implementation RootViewController
 
 - (id)init {
-    self = [self initWithNibName:@"RootViewController" bundle:nil];
-    
+    self = [super initWithNib];
     self.title = @"Home";
-    
     return self;
 }
 
@@ -78,10 +76,11 @@
             cell.title = @"Latest Chatty"; break;
             
         case 2:
-            if (messageCount > 0)
+            if (messageCount > 0) {
                 cell.title = [NSString stringWithFormat:@"Messages (%i)", messageCount];
-            else
+            } else {
                 cell.title = @"Messages";
+            }
             break;
             
         case 3:
@@ -109,31 +108,33 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     id viewController = nil;
     BOOL modal = NO;
+    NSString *urlString;
     
     switch (indexPath.row) {
         case 0:
-            viewController = [[[StoriesViewController alloc] init] autorelease];
+            viewController = [StoriesViewController controllerWithNib];
             break;
             
         case 1:
-            viewController = [ChattyViewController chattyControllerWithLatest];
+            viewController = [[[ChattyViewController alloc] initWithLatestChatty] autorelease];
             break;
             
         case 2:
-            viewController = [[[MessagesViewController alloc] init] autorelease];
+            viewController = [MessagesViewController controllerWithNib];
             break;
             
         case 3:
-            viewController = [[[SearchViewController alloc] init] autorelease];
+            viewController = [SearchViewController controllerWithNib];
             break;
             
         case 4:
             modal = YES;
-            viewController = [[[SettingsViewController alloc] init] autorelease];
+            viewController = [SettingsViewController controllerWithNib];
             break;
             
         case 5:
-            viewController = [[[BrowserViewController alloc] initWithUrlString:[NSString stringWithFormat:@"http://%@/about", [[Model class] host]]] autorelease];
+            urlString = [NSString stringWithFormat:@"http://%@/about", [Model host]];
+            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]] autorelease];
             break;
             
         default:
@@ -148,49 +149,7 @@
             [self.navigationController pushViewController:viewController animated:YES];
         }
     }
-    
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-        // Return NO if you do not want the specified item to be editable.
-        return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-        
-        if (editingStyle == UITableViewCellEditingStyleDelete) {
-                // Delete the row from the data source
-                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-        }     
-        else if (editingStyle == UITableViewCellEditingStyleInsert) {
-                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }     
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-        // Return NO if you do not want the item to be re-orderable.
-        return YES;
-}
-*/
-
 
 - (void)dealloc {
     [messageLoader release];

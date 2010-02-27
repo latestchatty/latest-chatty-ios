@@ -16,7 +16,7 @@
 - (void)grippyBarDidTapRightButton;
 - (void)grippyBarDidTapRefreshButton;
 - (void)grippyBarDidTapTagButton;
-
+- (void)grippyBarDidTapModButton;
 @end
 
 
@@ -32,5 +32,6 @@
 - (void)tappedRightButton;
 - (void)tappedRefreshButton;
 - (void)tappedTagButton;
+- (void)tappedModButton;
 
 @end

@@ -14,9 +14,10 @@
 
 @synthesize stories;
 
-- (id)init {
-  [super initWithNibName:@"StoriesViewController" bundle:nil];
-  self.title = @"Stories";
+- (id)initWithNib {
+  if (self = [super initWithNib]) {
+      self.title = @"Stories";
+  }
   return self;
 }
 

@@ -13,17 +13,20 @@
 
 @synthesize result;
 
++ (StringTemplate*)templateWithName:(NSString*)name {
+    return [[[StringTemplate alloc] initWithTemplateName:name] autorelease];
+}
+
 - (id)initWithTemplateName:(NSString *)templateName {
-  [self init];
-  
-  self.result = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:templateName ofType:nil] usedEncoding:nil error:nil];
-  
-  return self;
+    [self init];
+    self.result = [NSString stringFromResource:templateName];
+    return self;
 }
 
 - (void)setString:(NSString *)string forKey:(NSString *)key {
-  NSString *findString = [NSString stringWithFormat:@"<%%= %@ %%>", key];
-  self.result = [self.result stringByReplacingOccurrencesOfString:findString withString:string];
+    NSString *findString = [NSString stringWithFormat:@"<%%= %@ %%>", key];
+    if (!string) string = @"";
+    self.result = [self.result stringByReplacingOccurrencesOfString:findString withString:string];
 }
 
 - (void)dealloc {

@@ -13,16 +13,15 @@
 
 
 + (CGFloat)cellHeight {
-  return 44.0;
+    return 44.0;
 }
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundleOrNil {
-  UIViewController *cellFactory = [[UIViewController alloc] initWithNibName:nibName bundle:nibBundleOrNil];
-  self = (TableCellFromNib *)cellFactory.view;
-  [self retain];
-  [cellFactory release];
-  
-  return self;
+    UIViewController *cellFactory = [[[UIViewController alloc] initWithNibName:nibName bundle:nibBundleOrNil] autorelease];
+    self = (TableCellFromNib *)cellFactory.view;
+    [self retain];
+
+    return self;
 }
 
 @end

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+rm -rf HKHelperKit
+git clone git@github.com:Squeegy/HKHelperKit.git
+rm -rf HKHelperKit/.git/

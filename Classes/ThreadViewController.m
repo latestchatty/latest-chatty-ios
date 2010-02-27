@@ -17,16 +17,15 @@
 @synthesize toolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
-	if( self = [super initWithNibName:@"ThreadViewController" bundle:nil] ){
-		threadId = aThreadId;
-		grippyBarPosition = 1;
-		self.title = @"Thread";
-	}
+	self = [super initWithNib];
+    threadId = aThreadId;
+    grippyBarPosition = 1;
+    self.title = @"Thread";
 	return self;
 }
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
-	if( self = [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]] ){
+	if (self = [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]]) {
 		storyId = [[dictionary objectForKey:@"storyId"] intValue];
 		threadId = [[dictionary objectForKey:@"threadId"] intValue];
 		lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
@@ -38,13 +37,14 @@
 }
 
 - (NSDictionary *)stateDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:@"Thread", @"type",
-                                                                            rootPost,    @"rootPost",
-                                                                            [NSNumber numberWithInt:storyId],    @"storyId",
-                                                                            [NSNumber numberWithInt:threadId], @"threadId",
-                                                                            selectedIndexPath, @"selectedIndexPath",
-                                                                            [NSNumber numberWithInt:lastReplyId], @"lastReplyId",
-                                                                            nil];
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            @"Thread", @"type",
+            rootPost,    @"rootPost",
+            [NSNumber numberWithInt:storyId],    @"storyId",
+            [NSNumber numberWithInt:threadId], @"threadId",
+            selectedIndexPath, @"selectedIndexPath",
+            [NSNumber numberWithInt:lastReplyId], @"lastReplyId",
+            nil];
 }
 
 
@@ -69,18 +69,21 @@
     // Set story data
     NSDictionary *dataDictionary = (NSDictionary *)otherData;
     storyId = [[dataDictionary objectForKey:@"storyId"] intValue];
-	if( [dataDictionary objectForKey:@"storyName"] ) {
-		self.title     = [dataDictionary objectForKey:@"storyName"];
-	}
-	else self.title = [dataDictionary objectForKey:@"type"];
+	if ([dataDictionary objectForKey:@"storyName"]) {
+		self.title = [dataDictionary objectForKey:@"storyName"];
+	} else {
+        self.title = [dataDictionary objectForKey:@"type"];
+    }
+    
     // Find the target post in the thread.
     Post *firstPost = nil;
     
     if (highlightMyPost) {
         highlightMyPost = NO;
         for (Post *post in [rootPost repliesArray]) {
-            if ([post.author isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]] && post.modelId > firstPost.modelId)
+            if ([post.author isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]] && post.modelId > firstPost.modelId) {
                 firstPost = post;
+            }
         }
     } else if (rootPost.modelId == threadId) {
         firstPost = rootPost;
@@ -92,13 +95,9 @@
     
     // Check for invalid data
     if (rootPost.date == nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                        message:@"Thread loading failed.    Could not parse the response properly."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Sad face"
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
+        [UIAlertView showSimpleAlertWithTitle:@"Error!"
+                                      message:@"Thread loading failed.    Could not parse the response properly."
+                                  buttonTitle:@"Sad face"];
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
@@ -106,8 +105,9 @@
     
     // Select and display the targeted post
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];    
-    if (indexPath == nil || indexPath.row >= [[rootPost repliesArray] count])
+    if (indexPath == nil || indexPath.row >= [[rootPost repliesArray] count]) {
         indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([rootPost.category isEqualToString:@"ontopic"] || [defaults boolForKey:[NSString stringWithFormat:@"postCategory.%@", rootPost.category]]) {
@@ -115,14 +115,8 @@
         [self tableView:tableView didSelectRowAtIndexPath:indexPath];
         
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Check your Filters"
-                                                        message:@"You current filters do not allow to view this thead.    Check the filters in your settings and try again."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-        
+        [UIAlertView showSimpleAlertWithTitle:@"Check you filters"
+                                      message:@"You current filters do not allow to view this thead.    Check the filters in your settings and try again."];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -139,20 +133,20 @@
         [self refresh:self];
     }
     
-    UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
-                                                                                                     target:self
-                                                                                                     action:@selector(tappedReplyButton)];
+    UIBarButtonItem *replyButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply
+                                                                target:self
+                                                                action:@selector(tappedReplyButton)];
     self.navigationItem.rightBarButtonItem = replyButton;
-    [replyButton release];
     
     // Fill in emtpy web view
-    StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
-    NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil] usedEncoding:nil error:nil];
+    StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [postView loadHTMLString:htmlTemplate.result baseURL:nil];
-    [htmlTemplate release];
     
-    if (selectedIndexPath) [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
+    if (selectedIndexPath) {
+        [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
+    }
     
     [self resetLayout];
 }
@@ -164,9 +158,8 @@
 - (IBAction)tappedReplyButton {
     Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
     
-    ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:post];
-    [self.navigationController pushViewController:viewController animated:YES];
-    [viewController release];
+    ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:post] autorelease];
+    [self.navigationController pushViewController:viewController animated:YES];    
 }
 
 #pragma mark -
@@ -253,10 +246,10 @@
 
 
 - (UIView *)tableView:(UITableView *)aTableView viewForHeaderInSection:(NSInteger)section {
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DropShadow.png"]];
+    UIImageView *background = [UIImageView viewWithImage:[UIImage imageNamed:@"DropShadow.png"]];
     background.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 16);
     background.alpha = 0.75;
-    return [background autorelease];
+    return background;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -268,9 +261,9 @@
     Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
         
     // Create HTML for the post
-    StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
+    StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
 
-    NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil] usedEncoding:nil error:nil];
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:[Post formatDate:post.date] forKey:@"date"];
     [htmlTemplate setString:post.author forKey:@"author"];
@@ -280,8 +273,6 @@
     
     [htmlTemplate setString:body forKey:@"body"];
     [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://shacknews.com/laryn.x?id=%i", rootPost.modelId]]];
-    
-    [htmlTemplate release];
 }
 
 - (NSString *)postBodyWithYoutubeWidgets:(NSString *)body {
@@ -290,8 +281,8 @@
     // Insert youtube widgets
     if ([body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"]) {
         @try {
-            body = [body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
-                                                  withString:@" <div class=\"youtube-widget\">\
+            body = [body stringByReplacingOccurrencesOfRegex: @"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
+                                                  withString: @"<div class=\"youtube-widget\">\
                                                                     <object width=\"140\" height=\"105\">\
                                                                         <param name=\"movie\" value=\"$1\"></param>\
                                                                         <param name=\"wmode\" value=\"transparent\"></param>\
@@ -300,7 +291,7 @@
                                                                     <a href=\"$1\">$1</a>\
                                                                 </div>"];
         } @catch (NSException *exception) {
-            NSLog(@"Error inserting youtube widgets.");
+            NSLog(@"Error inserting youtube widgets. %@", exception);
         }
     }
     
@@ -348,10 +339,10 @@
     }
     
     [UIView beginAnimations:@"ResizePostView" context:nil];
-    postView.frame  = CGRectMake(postView.frame.origin.x,
-                                 postView.frame.origin.y,
-                                 postView.frame.size.width,
-                                 floor(usableHeight * dividerLocation));
+    postView.frame = CGRectMake(postView.frame.origin.x,
+                                postView.frame.origin.y,
+                                postView.frame.size.width,
+                                floor(usableHeight * dividerLocation));
     
     grippyBar.frame = CGRectMake(grippyBar.frame.origin.x,
                                  floor(usableHeight * dividerLocation) - 12,
@@ -406,23 +397,45 @@
 }
 
 - (void)grippyBarDidTapTagButton {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
-                                                                             delegate:self
-                                                            cancelButtonTitle:@"Cancel"
-                                                 destructiveButtonTitle:nil
-                                                            otherButtonTitles:@"LOL", @"INF", @"Mark", nil];
-    [sheet showInView:self.view];
-    [sheet release];
+    [[[[UIActionSheet alloc] initWithTitle:@"Tag this Post"
+                                  delegate:self
+                         cancelButtonTitle:@"Cancel"
+                    destructiveButtonTitle:nil
+                         otherButtonTitles:@"LOL", @"INF", @"Mark", nil] autorelease] showInView:self.view];
+}
+
+-(void)grippyBarDidTapModButton {
+	[[[[UIActionSheet alloc] initWithTitle:@"Mod this Post"
+                                  delegate:self
+                         cancelButtonTitle:@"Cancel"
+                    destructiveButtonTitle:nil
+                         otherButtonTitles:@"stupid", @"offtopic", @"nws", @"political", @"informative", @"nuked", @"ontopic", nil] autorelease] showInView:self.view];
 }
 
 #pragma mark Action Sheet Delegate
-
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSUInteger postId = [[[rootPost repliesArray] objectAtIndex:selectedIndexPath.row] modelId];
-    
-    if (buttonIndex == 0) [Tag tagPostId:postId tag:TagTypeLOL];
-    if (buttonIndex == 1) [Tag tagPostId:postId tag:TagTypeINF];
-    if (buttonIndex == 2) [Tag tagPostId:postId tag:TagTypeMark];
+    Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
+    NSUInteger postId = [post modelId];
+    NSUInteger parentId = [rootPost modelId];
+
+    if ([[actionSheet title] isEqualToString:@"Mod this Post"]) {
+        if (buttonIndex == 0) [Mod modParentId:parentId modPostId:postId mod:ModTypeStupid];
+        if (buttonIndex == 1) [Mod modParentId:parentId modPostId:postId mod:ModTypeOfftopic];
+        if (buttonIndex == 2) [Mod modParentId:parentId modPostId:postId mod:ModTypeNWS];
+        if (buttonIndex == 3) [Mod modParentId:parentId modPostId:postId mod:ModTypePolitical];
+        if (buttonIndex == 4) [Mod modParentId:parentId modPostId:postId mod:ModTypeInformative];
+        if (buttonIndex == 5) [Mod modParentId:parentId modPostId:postId mod:ModTypeNuked];
+        if (buttonIndex == 6) [Mod modParentId:parentId modPostId:postId mod:ModTypeOntopic];
+
+        if (buttonIndex <= 6 && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"nuked"]) {
+                post.category = [actionSheet buttonTitleAtIndex:buttonIndex];
+                [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
+        }
+    } else {
+		if (buttonIndex == 0) [Tag tagPostId:postId tag:TagTypeLOL];
+		if (buttonIndex == 1) [Tag tagPostId:postId tag:TagTypeINF];
+		if (buttonIndex == 2) [Tag tagPostId:postId tag:TagTypeMark];
+	}
 }
 
 

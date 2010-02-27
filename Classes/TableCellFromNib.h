@@ -12,6 +12,7 @@
 @interface TableCellFromNib : UITableViewCell {
 
 }
+
 + (CGFloat)cellHeight;
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundleOrNil;
 

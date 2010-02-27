@@ -10,6 +10,7 @@
 #import "ModelListViewController.h"
 #import "Post.h"
 #import "Tag.h"
+#import "Mod.h"
 #import "ReplyCell.h"
 #import "StringTemplate.h"
 #import "RegexKitLite.h"

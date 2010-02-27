@@ -15,7 +15,7 @@
 @synthesize post;
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost {
-	[super initWithNibName:@"ComposeViewController" bundle:nil];
+	self = [super initWithNib];
 	
 	self.storyId = aStoryId;
 	self.post = aPost;
@@ -58,33 +58,22 @@
 	[super viewDidAppear:animated];
 	
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"hideOrientationWarning"] != YES && !activityView) {
-		UIAlertView *alert;
-		
-		NSString *title = @"Important!";
-		NSString *message = @"This app is just one portal to a much larger community. If you are new here, tap \"Rules\" to read up on what to do and what not to do. Improper conduct may lead to unpleasant experiences and getting banned by community moderators.\n\n Lastly, use the text formatting tags sparingly. Please.";
-		
-		alert = [[UIAlertView alloc] initWithTitle:title
-										   message:message
-										  delegate:self
-								 cancelButtonTitle:([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait ? @"OK" : nil)
-								 otherButtonTitles:@"Rules", @"Hide", nil];
-		[alert show];
-		[alert release];
+        [UIAlertView showWithTitle:@"Important!"
+                           message:@"This app is just one portal to a much larger community. If you are new here, tap \"Rules\" to read up on what to do and what not to do. Improper conduct may lead to unpleasant experiences and getting banned by community moderators.\n\n Lastly, use the text formatting tags sparingly. Please."
+                          delegate:self
+                 cancelButtonTitle:@"OK"
+                 otherButtonTitles:@"Rules", @"Hide", nil];
 	}
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-	// Adjust index for missing "OK" in landscape view.
-	if ([[UIApplication sharedApplication] statusBarOrientation] != UIInterfaceOrientationPortrait) buttonIndex++;
-	
 	// Noob help alert
 	if (buttonIndex == 1) {
-		if( postingWarningAlertView ){
+		if ([alertView.title isEqualToString:@"Important!"]) {
 			[self showActivityIndicator:NO];
 			[postContent resignFirstResponder];
-			[NSThread detachNewThreadSelector:@selector(makePost) toTarget:self withObject:nil];
-		}
-		else{
+            [self performSelectorInBackground:@selector(makePost) withObject:nil];
+		} else {
 			NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
 			BrowserViewController *controller = [[BrowserViewController alloc] initWithRequest:rulesPageRequest];
 			[[self navigationController] pushViewController:controller animated:YES];
@@ -140,57 +129,6 @@
 
 - (UIProgressView*)showActivityIndicator:(BOOL)progressViewType;
 {
-	//UIWindow* activeView = self.navigationController.view;
-	//CGRect frame = activeWindow.frame;
-	/*CGRect frame = self.view.frame;
-	 frame.origin = CGPointZero;
-	 
-	 UIProgressView* progressBar = nil;
-	 
-	 if( activityView ) [activityView removeFromSuperview];
-	 activityView = [[UIView alloc] initWithFrame:frame];
-	 activityView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:.5];
-	 
-	 UILabel* message = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-	 message.backgroundColor = [UIColor clearColor];
-	 message.textColor = [UIColor whiteColor];
-	 message.font = [UIFont boldSystemFontOfSize:18];
-	 
-	 UIView* animatedView = nil;
-	 
-	 if( !progressViewType ){
-	 UIActivityIndicatorView* spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-	 message.text = @"Posting comment...";
-	 spinner.tag = 1;
-	 [spinner startAnimating];
-	 animatedView = spinner;
-	 }
-	 else{
-	 progressBar = [[[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar] autorelease];
-	 message.text = @"Uploading image...";
-	 [progressBar sizeToFit];
-	 frame = progressBar.frame;
-	 frame.size.width = 200;
-	 progressBar.frame = frame;
-	 
-	 animatedView = progressBar;
-	 }
-	 
-	 [message sizeToFit];
-	 
-	 frame = [animatedView centerInView:self.view];
-	 frame.origin.y+=15;
-	 animatedView.frame = frame;
-	 
-	 frame = [message centerInView:self.view];
-	 frame.origin.y-=15;
-	 message.frame = frame;
-	 
-	 [self.view addSubview:activityView];
-	 [activityView addSubview:message];
-	 [activityView addSubview:animatedView];
-	 [activityView release];
-	 */
 	CGRect frame = self.view.frame;
 	frame.origin = CGPointZero;
 	activityView.frame = frame;
@@ -232,13 +170,9 @@
 
 - (void)image:(Image*)image sendFailure:(NSString*)message
 {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Failed"
-													message:@"Sorry but there was an error uploading your photo"
-												   delegate:nil
-										  cancelButtonTitle:@"Oopsie"
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+    [UIAlertView showSimpleAlertWithTitle:@"Upload Failed"
+                                  message:@"Sorry but there was an error uploading your photo"
+                              buttonTitle:@"Oopsie"];
 	[image release];
 	[self hideActivtyIndicator];
 }
@@ -249,12 +183,9 @@
 	Image *image = [[Image alloc] initWithImage:anImage];
 	image.delegate = self;
 	
-	UIProgressView* progressBar = [self showActivityIndicator:YES];
-	
-	//doing this on the mainthread instead
+	UIProgressView* progressBar = [self showActivityIndicator:YES];	
 	[image autoRotateAndScale:800];
-	[NSThread detachNewThreadSelector:@selector(uploadAndReturnImageUrlWithProgressView:) toTarget:image withObject:progressBar];
-	//[image uploadAndReturnImageUrlWithProgressView:progressBar];
+    [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithProgressView:) withObject:progressBar];
 }
 
 #pragma mark Tagging
@@ -273,8 +204,7 @@
 - (void)postSuccess
 {
 	self.navigationController.view.userInteractionEnabled = YES;
-	NSArray *controllers = [self.navigationController viewControllers];
-	ModelListViewController *lastController = [controllers objectAtIndex:[controllers count] - 2];
+	ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
 	[lastController refresh:self];
 	[self.navigationController popViewControllerAnimated:YES]; 
 	[self hideActivtyIndicator];
@@ -283,13 +213,9 @@
 - (void)postFailure
 {
 	self.navigationController.view.userInteractionEnabled = YES;
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Failure"
-													message:@"There seems to have been an issue making the post. Try again!"
-												   delegate:nil
-										  cancelButtonTitle:@"Bummer"
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+    [UIAlertView showSimpleAlertWithTitle:@"Post Failure"
+                                  message:@"There seems to have been an issue making the post. Try again!"
+                              buttonTitle:@"Bummer"];
 	[self hideActivtyIndicator];
 }
 
@@ -308,13 +234,11 @@
 
 - (IBAction)sendPost {
 	postingWarningAlertView = YES;
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post?"
-                                                    message:@"Send this post to the Shack?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Nope"
-                                          otherButtonTitles:@"Yes Please",nil];
-    [alert show];
-    [alert release];
+    [UIAlertView showWithTitle:@"Post?"
+                       message:@"Submit this post?"
+                      delegate:self
+             cancelButtonTitle:@"Cancel"
+             otherButtonTitles:@"Send", nil];
 }
 
 

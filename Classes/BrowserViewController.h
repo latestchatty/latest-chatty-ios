@@ -7,17 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HKHelperKit.h"
 
 @interface BrowserViewController : UIViewController <UIWebViewDelegate> {
-  NSMutableURLRequest *initialRequest;
-  IBOutlet UIWebView *webView;
+    NSURLRequest *request;
+    
+    UIWebView *webView;
+    UIBarButtonItem *backButton;
+    UIBarButtonItem *forwardButton;
+    UIActivityIndicatorView *spinner;
 }
 
-- (id)initWithRequest:(NSURLRequest *)request;
-- (id)initWithUrlString:(NSString *)urlString;
+@property (nonatomic, retain) NSURLRequest *request;
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *forwardButton;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 
-- (IBAction)dragonDrop;
-- (IBAction)openInSafari;
+
+- (id)initWithRequest:(NSURLRequest *)request;
+
+- (IBAction)safari;
 
 @end

@@ -7,8 +7,8 @@
 //
 
 #import "LatestChatty2AppDelegate.h"
-
 #import "StringTemplate.h"
+#import "Mod.h"
 
 @implementation LatestChatty2AppDelegate
 
@@ -70,18 +70,19 @@
                                      nil];
     [defaults registerDefaults:defaultSettings];
     
+    // Check for mod status
+    [Mod performSelectorInBackground:@selector(setModeratorStatus) withObject:nil];
+    
     return YES;
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if ([userInfo objectForKey:@"message_id"]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incoming Message"
-                                                                        message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
-                                                                     delegate:self
-                                                    cancelButtonTitle:@"Dismiss"
-                                                    otherButtonTitles:@"View", nil];
-        [alert show];
-        [alert release];
+        [UIAlertView showWithTitle:@"Incoming Message"
+                           message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                          delegate:self
+                 cancelButtonTitle:@"Dismiss"
+                 otherButtonTitles:@"View", nil];
     }
 }
 
@@ -99,8 +100,8 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *pushToken = [[deviceToken description] stringByReplacingOccurrencesOfRegex:@"<|>" withString:@""];
-    NSString *usernameString = [[defaults stringForKey:@"username"] stringByUrlEscape];
-    NSString *passwordString = [[defaults stringForKey:@"password"] stringByUrlEscape];
+    NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
+    NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
     
     NSString *requestBody = [NSString stringWithFormat:@"token=%@&username=%@&password=%@", pushToken, usernameString, passwordString];
     [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
@@ -117,8 +118,8 @@
 - (NSURLCredential *)userCredential {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
     return [NSURLCredential credentialWithUser:[defaults objectForKey:@"username"]
-                                        password:[defaults objectForKey:@"password"]
-                                                                 persistence:NSURLCredentialPersistenceNone];
+                                      password:[defaults objectForKey:@"password"]
+                                   persistence:NSURLCredentialPersistenceNone];
 }
 
 - (id)viewControllerForURL:(NSURL *)url {
@@ -206,6 +207,14 @@
     [defaults setObject:state forKey:@"savedState"];
     [defaults setObject:[NSDate date] forKey:@"savedStateDate"];
     [defaults synchronize];
+	
+    //'logout' essentially
+    NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray* shackCookies = [cookies cookiesForURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
+    for (NSHTTPCookie* cookie in shackCookies) {
+	 NSLog(@"Name: %@ : Value: %@", cookie.name, cookie.value); 
+	 [cookies deleteCookie:cookie];
+    }
 }
 
 
