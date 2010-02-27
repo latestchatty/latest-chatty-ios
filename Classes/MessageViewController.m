@@ -14,44 +14,41 @@
 @synthesize message;
 
 - (id)initWithMesage:(Message *)aMessage {
-  self = [super initWithNib];
-  self.message = aMessage;
-  self.title = self.message.subject;
-  return self;
+    self = [super initWithNib];
+    self.message = aMessage;
+    self.title = self.message.subject;
+    return self;
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  
-  StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Post.html"];
-  
-  NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil] usedEncoding:nil error:nil];
-  [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
-  [htmlTemplate setString:[Message formatDate:message.date] forKey:@"date"];
-  [htmlTemplate setString:message.from forKey:@"author"];
-  [htmlTemplate setString:message.body forKey:@"body"];
-  
-  [webView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://www.shacknews.com/msgcenter.x"]];
-  
-  [htmlTemplate release];
+    [super viewDidLoad];
+    
+    StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
+    
+    [htmlTemplate setString:[NSString stringFromResource:@"Stylesheet.css"] forKey:@"stylesheet"];
+    [htmlTemplate setString:[Message formatDate:message.date] forKey:@"date"];
+    [htmlTemplate setString:message.from forKey:@"author"];
+    [htmlTemplate setString:message.body forKey:@"body"];
+    
+    [webView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://www.shacknews.com/msgcenter.x"]];
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-  if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-    LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
-    id viewController = [appDelegate viewControllerForURL:[request URL]];
-    if (viewController == nil) viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
-    [self.navigationController pushViewController:viewController animated:YES];
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
+        id viewController = [appDelegate viewControllerForURL:[request URL]];
+        if (viewController == nil) viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+        return NO;
+    }
     
-    return NO;
-  }
-  
-  return YES;
+    return YES;
 }
 
 - (void)dealloc {
-  self.message = nil;
-  [super dealloc];
+    self.message = nil;
+    [super dealloc];
 }
 
 

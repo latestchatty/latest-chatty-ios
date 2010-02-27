@@ -15,6 +15,8 @@
 
 @property (copy) NSString *result;
 
++ (StringTemplate*)templateWithName:(NSString*)name;
+
 - (id)initWithTemplateName:(NSString *)templateName;
 - (void)setString:(NSString *)string forKey:(NSString *)key;
 

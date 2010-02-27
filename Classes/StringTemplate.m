@@ -13,6 +13,10 @@
 
 @synthesize result;
 
++ (StringTemplate*)templateWithName:(NSString*)name {
+    return [[[StringTemplate alloc] initWithTemplateName:name] autorelease];
+}
+
 - (id)initWithTemplateName:(NSString *)templateName {
     [self init];
     self.result = [NSString stringFromResource:templateName];
