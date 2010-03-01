@@ -53,6 +53,8 @@
 
 - (void)dealloc {
     self.request = nil;
+    [webView stopLoading];
+    webView.delegate = nil;
     [super dealloc];
 }
 
