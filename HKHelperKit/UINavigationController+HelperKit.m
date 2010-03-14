@@ -11,7 +11,7 @@
 
 @implementation UINavigationController (HelperKit)
 
-+ (UINavigationController*)controllerWithRootController:(UIViewController*)controller {
++ (id)controllerWithRootController:(UIViewController*)controller {
     return [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
 }
 

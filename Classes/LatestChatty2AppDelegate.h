@@ -15,6 +15,7 @@
 #import "ChattyViewController.h"
 #import "ThreadViewController.h"
 #import "BrowserViewController.h"
+#import "ImageViewController.h"
 #import "MessagesViewController.h"
 
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate> {

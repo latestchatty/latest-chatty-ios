@@ -60,11 +60,15 @@
 #pragma mark Escaping
 
 - (NSString*)stringByPercentEscapingCharacters:(NSString*)characters {
-    return [(NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, (CFStringRef)characters, kCFStringEncodingUTF8) autorelease];
+    return [(NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, (CFStringRef)characters, kCFStringEncodingUTF8) autorelease];
 }
 
 - (NSString*)stringByEscapingURL {
     return [self stringByPercentEscapingCharacters:@";/?:@&=+$,"];    
+}
+
+- (NSString*)stringByUnescapingURL {
+    return [(NSString*)CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)self, CFSTR("")) autorelease];
 }
 
 @end

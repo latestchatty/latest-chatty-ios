@@ -13,19 +13,19 @@
 
 #pragma mark Initializers
 
-+ (UIViewController*)controller {
++ (id)controller {
     return [self controllerWithNibName:nil bundle:nil];
 }
 
-+ (UIViewController*)controllerWithNib {
++ (id)controllerWithNib {
     return [[[self alloc] initWithNib] autorelease];
 }
 
-+ (UIViewController*)controllerWithNibName:(NSString*)nibNameOrNil {
++ (id)controllerWithNibName:(NSString*)nibNameOrNil {
     return [self controllerWithNibName:nibNameOrNil bundle:nil];
 }
 
-+ (UIViewController*)controllerWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)bundle {
++ (id)controllerWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)bundle {
     return [[[self alloc] initWithNibName:nibNameOrNil bundle:bundle] autorelease];
 }
 
@@ -36,6 +36,39 @@
 - (id)initWithNib {
     NSString *className = NSStringFromClass([self class]);
     return [self initWithNibName:className];
+}
+
+
+#pragma mark Animation Helpers
+
+- (void)slideUp {
+    self.view.hidden = NO;
+    [self animateWithType:kCATransitionMoveIn direction:kCATransitionFromTop];
+}
+
+- (void)slideDown {
+    [self animateWithType:kCATransitionReveal direction:kCATransitionFromBottom];
+    self.view.hidden = YES;
+}
+
+- (void)slideIn {
+    self.view.hidden = NO;
+    [self animateWithType:kCATransitionPush direction:kCATransitionFromRight];
+}
+
+- (void)slideOut {
+    [self animateWithType:kCATransitionPush direction:kCATransitionFromLeft];
+    self.view.hidden = YES;
+}
+
+- (void)animateWithType:(NSString*)transition direction:(NSString*)direction {
+    CATransition* animation = [CATransition animation];
+	animation.type = transition;
+	animation.subtype = direction;
+	animation.duration = 0.5f;
+	animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    
+	[[self.view layer] addAnimation:animation forKey:nil];
 }
 
 @end

@@ -40,8 +40,12 @@
 
 #pragma mark Escaping
 
-// Returns a new new string with URL unsafe characters escaped
+// Returns a new string with URL unsafe characters escaped
 - (NSString*)stringByPercentEscapingCharacters:(NSString*)characters;
 - (NSString*)stringByEscapingURL;
+
+// Returns a new string with URL unsafe characters unescaped
+- (NSString*)stringByUnescapingURL;
+
 
 @end

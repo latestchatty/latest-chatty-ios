@@ -15,10 +15,10 @@
 #pragma mark Convenience Initializers
 
 // Initialize an autoreleased view with a frame of CGRectZero
-+ (UIView*)view;
++ (id)view;
 
 // Initialize an autoreleased view with a specified frame
-+ (UIView*)viewWithFrame:(CGRect)frame;
++ (id)viewWithFrame:(CGRect)frame;
 
 
 #pragma mark Frame Manipulation
@@ -34,6 +34,10 @@
 
 // Alter this views frame by moving it by an amount
 - (void)tranlateFrameByX:(CGFloat)x y:(CGFloat)y;
+
+#pragma mark Animation
+
+- (void)animateFadeIn;
 
 
 @end

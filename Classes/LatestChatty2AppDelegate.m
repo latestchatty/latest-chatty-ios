@@ -126,19 +126,19 @@
 
 - (id)viewControllerForURL:(NSURL *)url {
     NSString *uri = [url absoluteString];
-    id viewController = nil;
+    UIViewController *viewController = nil;
     
     if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?id=(\\d+)" capture:1] intValue];
-        viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
-        
+        viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?story=(\\d+)" capture:1] intValue];
-        viewController = [[ChattyViewController alloc] initWithStoryId:targetStoryId];
-        
+        viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
+    } else if ([[uri lowercaseString] isMatchedByRegex:@"\\.(png|jpg)$"]) {
+        viewController = [ImageViewController controllerWithURL:url];
     }
     
-    return [viewController autorelease];
+    return viewController;
 }
 
 

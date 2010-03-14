@@ -10,6 +10,8 @@ HKHelperKit fixes some annoyances when developing Objective-C applications.  Mos
 
 ## Features
 
+_This list is WAY out of date...  Just checkout the header files to see what's up._
+
 `HKHelperKit` enhances the following classes in the following ways:
 
 ### NSString

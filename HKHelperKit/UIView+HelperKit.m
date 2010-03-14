@@ -13,11 +13,11 @@
 
 #pragma mark Convenience Initializers
 
-+ (UIView*)view {
++ (id)view {
     return [self viewWithFrame:CGRectZero];
 }
 
-+ (UIView*)viewWithFrame:(CGRect)frame {
++ (id)viewWithFrame:(CGRect)frame {
     return [[[UIView alloc] initWithFrame:frame] autorelease];
 }
 
@@ -38,6 +38,23 @@
 
 - (void)tranlateFrameByX:(CGFloat)x y:(CGFloat)y {
     self.frame = CGRectWithTranslation(self.frame, x, y);
+}
+
+
+#pragma mark Animation
+
+- (void)animateFadeIn {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.25];
+    self.alpha = 1.0;
+    [UIView commitAnimations];
+}
+
+- (void)animateFadeOut {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.25];
+    self.alpha = 0.0;
+    [UIView commitAnimations];
 }
 
 
