@@ -44,17 +44,18 @@
 #pragma mark Animation
 
 - (void)animateFadeIn {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25];
-    self.alpha = 1.0;
-    [UIView commitAnimations];
+    [self animateToOpaque:YES duration:0.25];
 }
 
 - (void)animateFadeOut {
+    [self animateToOpaque:NO duration:0.25];
+}
+
+- (void)animateToOpaque:(BOOL)toOpaque duration:(CGFloat)duration {
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25];
-    self.alpha = 0.0;
-    [UIView commitAnimations];
+    [UIView setAnimationDuration:duration];
+    self.alpha = toOpaque ? 1.0 : 0.0;
+    [UIView commitAnimations];    
 }
 
 
