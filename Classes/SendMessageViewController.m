@@ -28,10 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	UIBarButtonItem *sendSMButton = [[UIBarButtonItem alloc] initWithTitle:@"Send Message" style:UIBarButtonItemStyleDone target:self action:@selector(send)];
-	self.navigationItem.rightBarButtonItem = sendSMButton;
-	[sendSMButton release];
-	
+    body.font = [UIFont systemFontOfSize:12];
+    
+	UIBarButtonItem *sendButton = [UIBarButtonItem itemWithTitle:@"Send Message" style:UIBarButtonItemStyleDone target:self action:@selector(send)];
+	self.navigationItem.rightBarButtonItem = sendButton;
 }
 
 
@@ -55,18 +55,25 @@
 	// e.g. self.myOutlet = nil;
 }
 
-- (IBAction)send
-{
-	Message *m = [[Message alloc] init];
-	[m setTo:[recipient text]];
-	[m setSubject:[subject text]];
-	[m setBody:[body text]];
-	[m send];
-	[m release];
+- (IBAction)send {
+	Message *message = [[[Message alloc] init] autorelease];
+    message.to = recipient.text;
+    message.subject = subject.text;
+    message.body = body.text;
+	[message send];
 	
+    [UIAlertView showSimpleAlertWithTitle:@"Message Sent!" message:nil];
+    
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)setupReply:(Message*)message {
+    recipient.text = message.from;
+    subject.text = [NSString stringWithFormat:@"RE: %@", message.subject];
+    body.text = [NSString stringWithFormat:@"\n\n\n--------------------\n\n/[%@]/", [message.body stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""]];
+    [body becomeFirstResponder];
+    body.selectedRange = NSRangeFromString(@"0");
+}
 
 - (void)dealloc {
     [super dealloc];

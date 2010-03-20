@@ -1,9 +1,9 @@
 //
-//  MessagesViewController.m
-//  LatestChatty2
+//    MessagesViewController.m
+//    LatestChatty2
 //
-//  Created by Alex Wayne on 4/10/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Created by Alex Wayne on 4/10/09.
+//    Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
 #import "MessagesViewController.h"
@@ -15,9 +15,9 @@
 @synthesize messages;
 
 - (id)init {
-  self = [self initWithNibName:@"MessagesViewController" bundle:nil];
-  self.title = @"Messages";
-  return self;
+    self = [self initWithNibName:@"MessagesViewController" bundle:nil];
+    self.title = @"Messages";
+    return self;
 }
 
 /*
@@ -29,84 +29,76 @@
 */
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  [self refresh:self];
-	UIBarButtonItem *newSM = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(pushSendMessageViewController)];
-	self.navigationItem.rightBarButtonItem = newSM;
-	
-	[newSM release];
+    [super viewDidLoad];
+    [self refresh:self];
+	UIBarButtonItem *composeButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
+	self.navigationItem.rightBarButtonItem = composeButton;
 }
 
-- (void)pushSendMessageViewController
-{
-	SendMessageViewController *sendMessageViewController = [[SendMessageViewController alloc] initWithNibName:@"SendMessageViewController" bundle:nil];
+- (void)composeMessage {
+	SendMessageViewController *sendMessageViewController = [SendMessageViewController controllerWithNib];
 	[self.navigationController pushViewController:sendMessageViewController animated:YES];
-	[sendMessageViewController release];
 }
 
 - (IBAction)refresh:(id)sender {
-  [super refresh:self];
-  loader = [[Message findAllWithDelegate:self] retain];
+    [super refresh:self];
+    loader = [[Message findAllWithDelegate:self] retain];
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
-  self.messages = [NSMutableArray arrayWithArray:models];
-  [self.tableView reloadData];
-  
-  [loader release];
-  loader = nil;
-  
-  [super didFinishLoadingAllModels:models otherData:otherData];
+    self.messages = [NSMutableArray arrayWithArray:models];
+    [self.tableView reloadData];
+    
+    [loader release];
+    loader = nil;
+    
+    [super didFinishLoadingAllModels:models otherData:otherData];
 }
 
 - (void)didFailToLoadModels {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                  message:@"Could not retrieve your messages.  Check you internet connection, or your username and password in Settings"
-                                                 delegate:nil
-                                        cancelButtonTitle:@"OK"
-                                        otherButtonTitles:nil];
-  [alert show];
-  [alert release];
+    [UIAlertView showSimpleAlertWithTitle:@"Error"
+                                  message:@"Could not retrieve your messages.    "
+                                          @"Check you internet connection, or your username and password in Settings"];
 }
 
 
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+    return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [messages count];
+    return [messages count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
-  if (cell == nil) {
-    cell = [[[MessageCell alloc] init] autorelease];
-  }
-  
-  cell.message = [messages objectAtIndex:indexPath.row];
+    MessageCell *cell = (MessageCell*)[tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
+    if (cell == nil) {
+        cell = [[[MessageCell alloc] init] autorelease];
+    }
+    
+    cell.message = [messages objectAtIndex:indexPath.row];
 
-  return cell;
+    return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  Message *message = [messages objectAtIndex:indexPath.row];
-  [message markRead];
-  
-  MessageViewController *viewController = [[MessageViewController alloc] initWithMesage:message];
-  [self.navigationController pushViewController:viewController animated:YES];
-  [viewController release];
+    Message *message = [messages objectAtIndex:indexPath.row];
+    [message markRead];
+    
+    MessageViewController *viewController = [[MessageViewController alloc] initWithMesage:message];
+    [self.navigationController pushViewController:viewController animated:YES];
+    [viewController release];
 }
 
 - (void)dealloc {
-  [super dealloc];
+    [super dealloc];
 }
 
 

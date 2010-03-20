@@ -517,9 +517,6 @@
 		FA5FCD110F6F607200878F27 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */,
-				61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */,
-				61BB54EC1151A42A00BFB041 /* SendMessageViewController.h */,
 				FA4123040F8FE08B002E1978 /* RootViewController.h */,
 				FA4123050F8FE08B002E1978 /* RootViewController.m */,
 				FA4123070F8FE09E002E1978 /* RootViewController.xib */,
@@ -555,6 +552,9 @@
 				FAD4EB4F0F96797900E74FED /* MessageViewController.h */,
 				FAD4EB500F96797900E74FED /* MessageViewController.m */,
 				FAD4EB530F96798800E74FED /* MessageViewController.xib */,
+				61BB54EC1151A42A00BFB041 /* SendMessageViewController.h */,
+				61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */,
+				61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */,
 				FA9C3ED30F9CED010022A739 /* SearchViewController.h */,
 				FA9C3ED40F9CED010022A739 /* SearchViewController.m */,
 				FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */,

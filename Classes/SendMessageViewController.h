@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Message.h"
 
 @interface SendMessageViewController : UIViewController {
 	IBOutlet UITextField *recipient;
@@ -19,6 +19,7 @@
 @property (retain) UITextField *subject;
 @property (retain) UITextView *body;
 
+- (void)setupReply:(Message*)message;
 - (IBAction)send;
 
 @end
