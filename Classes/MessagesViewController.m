@@ -7,16 +7,16 @@
 //
 
 #import "MessagesViewController.h"
+#import "SendMessageViewController.h"
 
 
 @implementation MessagesViewController
 
 @synthesize messages;
 
-- (id)initWithNib {
-  if (self = [super initWithNib]) {
-      self.title = @"Messages";
-  }
+- (id)init {
+  self = [self initWithNibName:@"MessagesViewController" bundle:nil];
+  self.title = @"Messages";
   return self;
 }
 
@@ -31,6 +31,17 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self refresh:self];
+	UIBarButtonItem *newSM = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(pushSendMessageViewController)];
+	self.navigationItem.rightBarButtonItem = newSM;
+	
+	[newSM release];
+}
+
+- (void)pushSendMessageViewController
+{
+	SendMessageViewController *sendMessageViewController = [[SendMessageViewController alloc] initWithNibName:@"SendMessageViewController" bundle:nil];
+	[self.navigationController pushViewController:sendMessageViewController animated:YES];
+	[sendMessageViewController release];
 }
 
 - (IBAction)refresh:(id)sender {

@@ -13,6 +13,7 @@
 
 @interface Message : Model {
   NSString *from;
+  NSString *to;
   NSString *subject;
   NSString *body;
   NSDate   *date;
@@ -20,6 +21,7 @@
 }
 
 @property (copy) NSString *from;
+@property (copy) NSString *to;
 @property (copy) NSString *subject;
 @property (copy) NSString *body;
 @property (retain) NSDate *date;
@@ -29,5 +31,6 @@
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
 
 - (void)markRead;
+- (void)send;
 
 @end

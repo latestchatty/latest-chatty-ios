@@ -12,6 +12,7 @@
 @implementation Message
 
 @synthesize from;
+@synthesize to;
 @synthesize subject;
 @synthesize body;
 @synthesize date;
@@ -32,7 +33,7 @@
   self.from     = [dictionary objectForKey:@"from"]/* stringByUnescapingHTML]*/;
   self.subject  = [dictionary objectForKey:@"subject"]/* stringByUnescapingHTML]*/;
   self.body     = [dictionary objectForKey:@"body"];
-  self.date     = [[self class] decodeDate:[dictionary objectForKey:@"date"]];
+  self.date     = [NSDate dateWithNaturalLanguageString:[dictionary objectForKey:@"date"]];
   self.unread   = [[dictionary objectForKey:@"unread"] boolValue];
   
   return self;
@@ -57,6 +58,21 @@
   } else {    
     [[challenge sender] cancelAuthenticationChallenge:challenge];
   }
+}
+
+- (void)send
+{
+	NSString *string = [Message urlStringWithPath:@"/messages"];
+	NSURL *url = [NSURL URLWithString:string];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+	
+	NSString *requestBody = [NSString stringWithFormat:@"to=%@&subject=%@&body=%@", self.to, self.subject, self.body];
+
+	[request setHTTPBody:[requestBody dataUsingEncoding:NSISOLatin1StringEncoding]];
+	
+	[request setHTTPMethod:@"POST"];
+	[NSURLConnection connectionWithRequest:request delegate:self];
+
 }
 
 
