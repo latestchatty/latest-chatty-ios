@@ -13,7 +13,11 @@
 @implementation LatestChatty2AppDelegate
 
 @synthesize window;
-@synthesize navigationController, splitController;
+@synthesize navigationController, splitController, contentNavigationController;
+
++ (LatestChatty2AppDelegate*)delegate {
+    return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -49,9 +53,15 @@
     window.backgroundColor = [UIColor blackColor];
     
     if ([self isPadDevice]) {
-        [window addSubview:[navigationController view]];
+        self.contentNavigationController = [UINavigationController controller];
+        contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+        
+        self.splitController = [[[UISplitViewController alloc] init] autorelease];
+        splitController.viewControllers = [NSArray arrayWithObjects:navigationController, contentNavigationController, nil];
+        splitController.view.frame = [UIScreen mainScreen].bounds;
+        [window addSubview:splitController.view];
     } else {
-        [window addSubview:[navigationController view]];
+        [window addSubview:navigationController.view];
     }
 	[window makeKeyAndVisible];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];

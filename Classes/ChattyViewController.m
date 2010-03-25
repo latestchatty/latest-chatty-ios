@@ -21,20 +21,20 @@
     return [self chattyControllerWithStoryId:0];
 }
 
-+ (UIViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId {
-    LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
-    if ([appDelegate isPadDevice]) {
-        ChattyViewController *chattyController = [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
-        ThreadViewController *threadController = [ThreadViewController controllerWithNib];
-        chattyController.threadController = threadController;
-        
-        UISplitViewController *splitController = [[[UISplitViewController alloc] init] autorelease];
-        splitController.delegate = threadController;
-        splitController.viewControllers = [NSArray arrayWithObjects:chattyController, threadController, nil];        
-        return splitController;
-    } else {
++ (UIViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId {//
+//    LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    if ([appDelegate isPadDevice]) {
+//        ChattyViewController *chattyController = [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
+//        ThreadViewController *threadController = [ThreadViewController controllerWithNib];
+//        chattyController.threadController = threadController;
+//        
+//        UISplitViewController *splitController = [[[UISplitViewController alloc] init] autorelease];
+//        splitController.delegate = threadController;
+//        splitController.viewControllers = [NSArray arrayWithObjects:chattyController, threadController, nil];        
+//        return splitController;
+//    } else {
         return [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
-    }
+//    }
 }
 
 
@@ -109,7 +109,7 @@
 	currentPage = 1;
 	
 	if (storyId > 0) {
-        loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];
+        loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];        
     } else {
         loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
     }
@@ -192,6 +192,10 @@
         }
 	}
     
+    if (!threadController && [[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    }    
+    
     // Open the popover if it's hidden
 //    if (self.threadController && UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
 //        UIBarButtonItem *button = [self.threadController.toolbar.items objectAtIndex:0];
@@ -250,8 +254,15 @@
 	if (indexPath.row < [threads count]) {
         Post *thread = [threads objectAtIndex:indexPath.row];
         
-        if (threadController) {
-            [self.threadController refreshWithThreadId:thread.modelId];
+        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray array];
+        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:threadController animated:NO];
+        
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            if (threadController) {
+                [threadController refreshWithThreadId:thread.modelId];
+            } else {
+                self.threadController = [[[ThreadViewController alloc] initWithThreadId:[[threads objectAtIndex:0] modelId]] autorelease];
+            }
         } else {
             [self.navigationController pushViewController:[[[ThreadViewController alloc] initWithThreadId:thread.modelId] autorelease] animated:YES];
         }

@@ -11,7 +11,7 @@
 
 @implementation UIImageView (HelperKit)
 
-+ (UIImageView*)viewWithImage:(UIImage*)image {
++ (id)viewWithImage:(UIImage*)image {
     return [[[self alloc] initWithImage:image] autorelease];
 }
 

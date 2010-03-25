@@ -13,11 +13,11 @@
 
 #pragma mark Convenience Initializers
 
-+ (UIView*)view {
++ (id)view {
     return [self viewWithFrame:CGRectZero];
 }
 
-+ (UIView*)viewWithFrame:(CGRect)frame {
++ (id)viewWithFrame:(CGRect)frame {
     return [[[UIView alloc] initWithFrame:frame] autorelease];
 }
 
@@ -36,8 +36,85 @@
     self.frame = CGRectWithPadding(self.frame, top, right, bottom, left);
 }
 
-- (void)tranlateFrameByX:(CGFloat)x y:(CGFloat)y {
-    self.frame = CGRectWithTranslation(self.frame, x, y);
+- (void)tranlateFrame:(CGPoint)distance {
+    self.frame = CGRectWithTranslation(self.frame, distance.x, distance.y);
+}
+
+- (CGPoint)frameOrigin {
+    return self.frame.origin;
+}
+
+- (void)setFrameOrigin:(CGPoint)newOrigin {
+    CGRect newFrame = self.frame;
+    newFrame.origin = newOrigin;
+    self.frame = newFrame;
+}
+
+- (CGFloat)frameX {
+    return self.frame.origin.x;
+}
+
+- (void)setFrameX:(CGFloat)newX {
+    CGRect newFrame = self.frame;
+    newFrame.origin.x = newX;
+    self.frame = newFrame;
+}
+
+- (CGFloat)frameY {
+    return self.frame.origin.y;
+}
+
+- (void)setFrameY:(CGFloat)newY {
+    CGRect newFrame = self.frame;
+    newFrame.origin.y = newY;
+    self.frame = newFrame;
+}
+
+- (CGSize)frameSize {
+    return self.frame.size;
+}
+
+- (void)setFrameSize:(CGSize)newSize {
+    CGRect newFrame = self.frame;
+    newFrame.size = newSize;
+    self.frame = newFrame;
+}
+
+- (CGFloat)frameWidth {
+    return self.frame.size.width;
+}
+
+- (void)setFrameWidth:(CGFloat)newWidth {
+    CGRect newFrame = self.frame;
+    newFrame.size.width = newWidth;
+    self.frame = newFrame;
+}
+
+- (CGFloat)frameHeight {
+    return self.frame.size.height;
+}
+
+- (void)setFrameHeight:(CGFloat)newHeight {
+    CGRect newFrame = self.frame;
+    newFrame.size.height = newHeight;
+    self.frame = newFrame;
+}
+
+#pragma mark Animation
+
+- (void)animateFadeIn {
+    [self animateToOpaque:YES duration:0.25];
+}
+
+- (void)animateFadeOut {
+    [self animateToOpaque:NO duration:0.25];
+}
+
+- (void)animateToOpaque:(BOOL)toOpaque duration:(CGFloat)duration {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:duration];
+    self.alpha = toOpaque ? 1.0 : 0.0;
+    [UIView commitAnimations];    
 }
 
 

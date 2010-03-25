@@ -106,7 +106,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    id viewController = nil;
+    UIViewController *viewController = nil;
     BOOL modal = NO;
     NSString *urlString;
     

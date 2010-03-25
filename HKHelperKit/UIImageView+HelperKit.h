@@ -11,6 +11,6 @@
 
 @interface UIImageView (HelperKit)
 
-+ (UIImageView*)viewWithImage:(UIImage*)image;
++ (id)viewWithImage:(UIImage*)image;
 
 @end

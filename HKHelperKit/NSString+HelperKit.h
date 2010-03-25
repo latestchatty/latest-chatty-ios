@@ -20,8 +20,6 @@
 
 // Returns YES if the argument string can be found at the described location in the receiver string
 - (BOOL)containsString:(NSString *)otherString;
-- (BOOL)startsWithString:(NSString*)otherString;
-- (BOOL)endsWithString:(NSString*)otherString;
 
 // Returns YES is the string has content.  Readable shorthand for: (string && ![string isEqualToString:@""])
 - (BOOL)isPresent;
@@ -40,8 +38,12 @@
 
 #pragma mark Escaping
 
-// Returns a new new string with URL unsafe characters escaped
+// Returns a new string with URL unsafe characters escaped
 - (NSString*)stringByPercentEscapingCharacters:(NSString*)characters;
 - (NSString*)stringByEscapingURL;
+
+// Returns a new string with URL unsafe characters unescaped
+- (NSString*)stringByUnescapingURL;
+
 
 @end

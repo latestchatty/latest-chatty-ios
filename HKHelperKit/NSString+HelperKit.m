@@ -23,14 +23,6 @@
     return [self rangeOfString:otherString].location != NSNotFound;
 }
 
-- (BOOL)startsWithString:(NSString*)otherString {
-    return [self rangeOfString:otherString].location == 0;
-}
-
-- (BOOL)endsWithString:(NSString*)otherString {
-    return [self rangeOfString:otherString].location == [self length]-[otherString length];
-}
-
 - (BOOL)isPresent {
     return ![self isEqualToString:@""];
 }
@@ -60,11 +52,15 @@
 #pragma mark Escaping
 
 - (NSString*)stringByPercentEscapingCharacters:(NSString*)characters {
-    return [(NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, (CFStringRef)characters, kCFStringEncodingUTF8) autorelease];
+    return [(NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, (CFStringRef)characters, kCFStringEncodingUTF8) autorelease];
 }
 
 - (NSString*)stringByEscapingURL {
     return [self stringByPercentEscapingCharacters:@";/?:@&=+$,"];    
+}
+
+- (NSString*)stringByUnescapingURL {
+    return [(NSString*)CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)self, CFSTR("")) autorelease];
 }
 
 @end
