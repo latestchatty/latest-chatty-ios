@@ -9,11 +9,12 @@
 #import "LatestChatty2AppDelegate.h"
 #import "StringTemplate.h"
 #import "Mod.h"
+#import "NoContentController.h"
 
 @implementation LatestChatty2AppDelegate
 
 @synthesize window;
-@synthesize navigationController, splitController, contentNavigationController;
+@synthesize navigationController, splitController, contentNavigationController, popoverController;
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -53,13 +54,21 @@
     window.backgroundColor = [UIColor blackColor];
     
     if ([self isPadDevice]) {
-        self.contentNavigationController = [UINavigationController controller];
+        self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
         contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
         
         self.splitController = [[[UISplitViewController alloc] init] autorelease];
+        splitController.delegate = self;
         splitController.viewControllers = [NSArray arrayWithObjects:navigationController, contentNavigationController, nil];
-        splitController.view.frame = [UIScreen mainScreen].bounds;
+        [splitController viewWillAppear:NO];
         [window addSubview:splitController.view];
+        [splitController.view sizeToFit];
+        [splitController viewDidAppear:NO];
+        
+        UIBarButtonItem *barButton = contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
+        if ([barButton.title isEqualToString:@"Navigation"]) {
+            [barButton.target performSelector:barButton.action withObject:barButton];
+        }
     } else {
         [window addSubview:navigationController.view];
     }
@@ -235,6 +244,37 @@
 	self.navigationController = nil;
 	self.window = nil;
 	[super dealloc];
+}
+
+#pragma mark -
+#pragma mark UISplitViewControllerDelegate
+
+- (void)splitViewController:(UISplitViewController*)svc
+     willHideViewController:(UIViewController *)aViewController
+          withBarButtonItem:(UIBarButtonItem*)barButtonItem
+       forPopoverController:(UIPopoverController*)pc
+{
+    barButtonItem.title = @"Navigation";
+    [contentNavigationController.topViewController.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+}
+
+- (void)splitViewController:(UISplitViewController*)svc
+          popoverController:(UIPopoverController*)pc
+  willPresentViewController:(UIViewController *)aViewController
+{
+    self.popoverController = pc;
+}
+
+- (void)splitViewController:(UISplitViewController*)svc
+     willShowViewController:(UIViewController *)aViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)button
+{
+    navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [contentNavigationController.topViewController.navigationItem setLeftBarButtonItem:nil animated:YES];
+}
+
+- (void)dismissPopover {
+    [popoverController dismissPopoverAnimated:YES];
 }
 
 @end

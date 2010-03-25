@@ -368,18 +368,15 @@
     [self resetLayout];
 }
 
-
-- (void)grippyBarDidTapRightButton; {
-    NSIndexPath *oldIndexPath = selectedIndexPath;
-    
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
-    if (oldIndexPath.row == [[rootPost repliesArray] count] - 1) newIndexPath = oldIndexPath;
-    
-    [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
+- (IBAction)tag {
+    [[[[UIActionSheet alloc] initWithTitle:@"Tag this Post"
+                                  delegate:self
+                         cancelButtonTitle:@"Cancel"
+                    destructiveButtonTitle:nil
+                         otherButtonTitles:@"LOL", @"INF", @"Mark", nil] autorelease] showInView:self.view];    
 }
 
-- (void)grippyBarDidTapLeftButton {
+- (IBAction)previous {
     NSIndexPath *oldIndexPath = selectedIndexPath;
     
     NSIndexPath *newIndexPath;
@@ -392,16 +389,30 @@
     [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];    
 }
 
+- (IBAction)next {
+    NSIndexPath *oldIndexPath = selectedIndexPath;
+    
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
+    if (oldIndexPath.row == [[rootPost repliesArray] count] - 1) newIndexPath = oldIndexPath;
+    
+    [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
+}
+
+- (void)grippyBarDidTapRightButton; {
+    [self next];
+}
+
+- (void)grippyBarDidTapLeftButton {
+    [self previous];
+}
+
 - (void)grippyBarDidTapRefreshButton {
     [self refresh:nil];
 }
 
 - (void)grippyBarDidTapTagButton {
-    [[[[UIActionSheet alloc] initWithTitle:@"Tag this Post"
-                                  delegate:self
-                         cancelButtonTitle:@"Cancel"
-                    destructiveButtonTitle:nil
-                         otherButtonTitles:@"LOL", @"INF", @"Mark", nil] autorelease] showInView:self.view];
+    [self tag];
 }
 
 -(void)grippyBarDidTapModButton {
@@ -411,6 +422,8 @@
                     destructiveButtonTitle:nil
                          otherButtonTitles:@"stupid", @"offtopic", @"nws", @"political", @"informative", @"nuked", @"ontopic", nil] autorelease] showInView:self.view];
 }
+
+
 
 #pragma mark Action Sheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

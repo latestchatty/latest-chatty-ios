@@ -24,6 +24,7 @@
     // iPad
     UISplitViewController *splitController;
     UINavigationController *contentNavigationController;
+    UIPopoverController *popoverController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -31,6 +32,7 @@
 
 @property (nonatomic, retain) IBOutlet UISplitViewController *splitController;
 @property (nonatomic, retain) IBOutlet UINavigationController *contentNavigationController;
+@property (nonatomic, retain) UIPopoverController *popoverController;
 
 + (LatestChatty2AppDelegate*)delegate;
 
@@ -39,6 +41,7 @@
 - (NSURLCredential *)userCredential;
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
+- (void)dismissPopover;
 
 @end
 

@@ -43,7 +43,14 @@
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
+
 - (IBAction)tappedReplyButton;
+- (IBAction)refresh;
+- (IBAction)tag;
+- (IBAction)previous;
+- (IBAction)next;
+
+
 - (NSString *)postBodyWithYoutubeWidgets:(NSString *)body;
 
 - (void)refreshWithThreadId:(NSUInteger)threadId;

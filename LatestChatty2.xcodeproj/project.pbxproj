@@ -67,6 +67,10 @@
 		FA268F9E115AE19300D153C0 /* UIView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA268F83115AE19300D153C0 /* UIView+HelperKit.m */; };
 		FA268F9F115AE19300D153C0 /* UIViewController+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA268F85115AE19300D153C0 /* UIViewController+HelperKit.m */; };
 		FA268FA5115AE23500D153C0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA268FA4115AE23500D153C0 /* QuartzCore.framework */; };
+		FA2690BF115AEDC800D153C0 /* NoContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2690BD115AEDC800D153C0 /* NoContentController.m */; };
+		FA2690C0115AEDC800D153C0 /* NoContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2690BE115AEDC800D153C0 /* NoContentController.xib */; };
+		FA2690C1115AEDC800D153C0 /* NoContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2690BD115AEDC800D153C0 /* NoContentController.m */; };
+		FA2690C2115AEDC800D153C0 /* NoContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2690BE115AEDC800D153C0 /* NoContentController.xib */; };
 		FA26AD080F80F85C00EB5FF0 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = FA26AD070F80F85C00EB5FF0 /* Tag.m */; };
 		FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B458E0F7D95710074064A /* BlueBullet.png */; };
 		FA2B45910F7D96060074064A /* GrayBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B45900F7D96060074064A /* GrayBullet.png */; };
@@ -363,6 +367,9 @@
 		FA268F84115AE19300D153C0 /* UIViewController+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HelperKit.h"; sourceTree = "<group>"; };
 		FA268F85115AE19300D153C0 /* UIViewController+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HelperKit.m"; sourceTree = "<group>"; };
 		FA268FA4115AE23500D153C0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FA2690BC115AEDC800D153C0 /* NoContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoContentController.h; sourceTree = "<group>"; };
+		FA2690BD115AEDC800D153C0 /* NoContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoContentController.m; sourceTree = "<group>"; };
+		FA2690BE115AEDC800D153C0 /* NoContentController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoContentController.xib; sourceTree = "<group>"; };
 		FA26AD060F80F85B00EB5FF0 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		FA26AD070F80F85C00EB5FF0 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		FA2B458E0F7D95710074064A /* BlueBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueBullet.png; path = Assets/BlueBullet.png; sourceTree = "<group>"; };
@@ -744,6 +751,9 @@
 				FACD9A7A0F9E2F33009D9A15 /* SearchResultsViewController.h */,
 				FACD9A7B0F9E2F33009D9A15 /* SearchResultsViewController.m */,
 				FACD9A7D0F9E2F49009D9A15 /* SearchResultsViewController.xib */,
+				FA2690BC115AEDC800D153C0 /* NoContentController.h */,
+				FA2690BD115AEDC800D153C0 /* NoContentController.m */,
+				FA2690BE115AEDC800D153C0 /* NoContentController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1011,6 +1021,7 @@
 				FAF0781B10087B530029D2AD /* push.caf in Resources */,
 				FA08ADC0112B412500B89890 /* ModGavel.png in Resources */,
 				FA7A3436112F652700DCD653 /* StoryViewController.xib in Resources */,
+				FA2690C0115AEDC800D153C0 /* NoContentController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,6 +1090,7 @@
 				FAA5BA921110DE7F0007C34C /* MessageViewController.xib in Resources */,
 				FAA5BA931110DE7F0007C34C /* SearchViewController.xib in Resources */,
 				FAA5BA941110DE7F0007C34C /* SearchResultsViewController.xib in Resources */,
+				FA2690C2115AEDC800D153C0 /* NoContentController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1154,6 +1166,7 @@
 				FA268F90115AE19300D153C0 /* UITableView+HelperKit.m in Sources */,
 				FA268F91115AE19300D153C0 /* UIView+HelperKit.m in Sources */,
 				FA268F92115AE19300D153C0 /* UIViewController+HelperKit.m in Sources */,
+				FA2690BF115AEDC800D153C0 /* NoContentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1226,6 +1239,7 @@
 				FA268F9D115AE19300D153C0 /* UITableView+HelperKit.m in Sources */,
 				FA268F9E115AE19300D153C0 /* UIView+HelperKit.m in Sources */,
 				FA268F9F115AE19300D153C0 /* UIViewController+HelperKit.m in Sources */,
+				FA2690C1115AEDC800D153C0 /* NoContentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "LatestChatty2AppDelegate.h"
 
 #include "ThreadViewController.h"
+#include "NoContentController.h"
 
 @implementation ChattyViewController
 
@@ -46,6 +47,10 @@
 	self = [super initWithNib];
     self.storyId = aStoryId;
     self.title = @"Loading...";
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        self.threadController = [[[ThreadViewController alloc] initWithThreadId:0] autorelease];
+        threadController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
+    }
 	return self;
 }
 
@@ -100,8 +105,13 @@
 }
 
 - (IBAction)tappedComposeButton {
-	ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:nil] autorelease];
-	[self.navigationController pushViewController:viewController animated:YES];
+    ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:nil] autorelease];
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
+    } else {
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 - (IBAction)refresh:(id)sender {
@@ -192,15 +202,10 @@
         }
 	}
     
-    if (!threadController && [[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    }    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:threadController];
+    }
     
-    // Open the popover if it's hidden
-//    if (self.threadController && UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
-//        UIBarButtonItem *button = [self.threadController.toolbar.items objectAtIndex:0];
-//        [button.target performSelector:button.action withObject:button];
-//    }    
 }
 
 
@@ -258,11 +263,9 @@
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:threadController animated:NO];
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            if (threadController) {
-                [threadController refreshWithThreadId:thread.modelId];
-            } else {
-                self.threadController = [[[ThreadViewController alloc] initWithThreadId:[[threads objectAtIndex:0] modelId]] autorelease];
-            }
+            [threadController refreshWithThreadId:thread.modelId];
+            [[LatestChatty2AppDelegate delegate] dismissPopover];
+            
         } else {
             [self.navigationController pushViewController:[[[ThreadViewController alloc] initWithThreadId:thread.modelId] autorelease] animated:YES];
         }
