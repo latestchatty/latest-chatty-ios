@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
+<archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">528</int>
 		<string key="IBDocument.SystemVersion">10C2234</string>
-		<string key="IBDocument.InterfaceBuilderVersion">759</string>
+		<string key="IBDocument.InterfaceBuilderVersion">762</string>
 		<string key="IBDocument.AppKitVersion">1038.25</string>
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">79</string>
+			<string key="NS.object.0">87</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -50,7 +50,7 @@
 							<object class="IBUILabel" id="105670479">
 								<reference key="NSNextResponder" ref="447161640"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{17, 10}, {204, 25}}</string>
+								<string key="NSFrame">{{17, 10}, {276, 50}}</string>
 								<reference key="NSSuperview" ref="447161640"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -78,11 +78,12 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">14</float>
+								<int key="IBUINumberOfLines">2</int>
 							</object>
 							<object class="IBUILabel" id="538143207">
 								<reference key="NSNextResponder" ref="447161640"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{17, 50}, {204, 90}}</string>
+								<string key="NSFrame">{{17, 68}, {204, 77}}</string>
 								<reference key="NSSuperview" ref="447161640"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -109,7 +110,7 @@
 							<object class="IBUILabel" id="679956139">
 								<reference key="NSNextResponder" ref="447161640"/>
 								<int key="NSvFlags">289</int>
-								<string key="NSFrame">{{235, 107}, {58, 29}}</string>
+								<string key="NSFrame">{{235, 122}, {58, 29}}</string>
 								<reference key="NSSuperview" ref="447161640"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -135,7 +136,7 @@
 							<object class="IBUIButton" id="881179706">
 								<reference key="NSNextResponder" ref="447161640"/>
 								<int key="NSvFlags">289</int>
-								<string key="NSFrame">{{243, 32}, {50, 50}}</string>
+								<string key="NSFrame">{{243, 62}, {50, 50}}</string>
 								<reference key="NSSuperview" ref="447161640"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -173,7 +174,7 @@
 							<object class="IBUILabel" id="41322655">
 								<reference key="NSNextResponder" ref="447161640"/>
 								<int key="NSvFlags">289</int>
-								<string key="NSFrame">{{249, 38}, {38, 30}}</string>
+								<string key="NSFrame">{{249, 68}, {38, 30}}</string>
 								<reference key="NSSuperview" ref="447161640"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -432,6 +433,13 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">HKHelperKit/NSObject+HelperKit.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">StoryCell</string>
 					<string key="superclassName">TableCellFromNib</string>
 					<object class="NSMutableDictionary" key="outlets">
@@ -467,10 +475,24 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">UIImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">HKHelperKit/UIImageView+HelperKit.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">UIView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/UIView+Additions.h</string>
+						<string key="minorKey">HKHelperKit/UIView+HelperKit.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">HKHelperKit/UIViewController+HelperKit.h</string>
 					</object>
 				</object>
 			</object>
@@ -572,6 +594,20 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">Foundation.framework/Headers/NSXMLParser.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CAAnimation.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CALayer.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -682,6 +718,20 @@
 					<string key="className">UIViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIPopoverController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UISplitViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UITabBarController.h</string>
 					</object>
 				</object>
@@ -725,7 +775,6 @@
 				<string>{48, 48}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">79</string>
-		<nil key="IBCocoaTouchSimulationTargetRuntimeIdentifier"/>
+		<string key="IBCocoaTouchPluginVersion">87</string>
 	</data>
 </archive>
