@@ -34,12 +34,12 @@ static NSMutableDictionary *colorMapping;
 
 + (void)initialize {
     colorMapping = [[NSMutableDictionary alloc] init];
-    [colorMapping setObject:[UIColor clearColor]                                                                             forKey:@"ontopic"];
-    [colorMapping setObject:[UIColor colorWithRed:0.02 green:0.65 blue:0.83 alpha:1.0] forKey:@"informative"];
-    [colorMapping setObject:[UIColor colorWithWhite:0.6 alpha:1.0]                                         forKey:@"offtopic"];
-    [colorMapping setObject:[UIColor colorWithRed:0.29 green:0.52 blue:0.31 alpha:1.0] forKey:@"stupid"];
-    [colorMapping setObject:[UIColor colorWithRed:0.95 green:0.69 blue:0.0    alpha:1.0] forKey:@"political"];
-    [colorMapping setObject:[UIColor redColor]                                                                                 forKey:@"nws"];
+    [colorMapping setObject:[UIColor clearColor]                                        forKey:@"ontopic"];
+    [colorMapping setObject:[UIColor colorWithRed:0.02 green:0.65 blue:0.83 alpha:1.0]  forKey:@"informative"];
+    [colorMapping setObject:[UIColor colorWithWhite:0.6 alpha:1.0]                      forKey:@"offtopic"];
+    [colorMapping setObject:[UIColor colorWithRed:0.29 green:0.52 blue:0.31 alpha:1.0]  forKey:@"stupid"];
+    [colorMapping setObject:[UIColor colorWithRed:0.95 green:0.69 blue:0.0  alpha:1.0]  forKey:@"political"];
+    [colorMapping setObject:[UIColor redColor]                                          forKey:@"nws"];
 }
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName {
@@ -50,23 +50,23 @@ static NSMutableDictionary *colorMapping;
 - (id)initWithCoder:(NSCoder *)coder {
     [super initWithCoder:coder];
     
-    self.author             = [coder decodeObjectForKey:@"author"];
-    self.preview            = [coder decodeObjectForKey:@"preview"];
-    self.body                 = [coder decodeObjectForKey:@"body"];
-    self.date                 = [coder decodeObjectForKey:@"date"];
-    replyCount                = [coder decodeIntForKey:@"replyCount"];
-    self.category         = [coder decodeObjectForKey:@"category"];
+    self.author         = [coder decodeObjectForKey:@"author"];
+    self.preview        = [coder decodeObjectForKey:@"preview"];
+    self.body           = [coder decodeObjectForKey:@"body"];
+    self.date           = [coder decodeObjectForKey:@"date"];
+    replyCount          = [coder decodeIntForKey:@"replyCount"];
+    self.category       = [coder decodeObjectForKey:@"category"];
     
-    storyId                     = [coder decodeIntForKey:@"storyId"];
-    parentPostId            = [coder decodeIntForKey:@"parentPostId"];
-    lastReplyId             = [coder decodeIntForKey:@"lastReplyId"];
+    storyId             = [coder decodeIntForKey:@"storyId"];
+    parentPostId        = [coder decodeIntForKey:@"parentPostId"];
+    lastReplyId         = [coder decodeIntForKey:@"lastReplyId"];
     
-    self.participants = [coder decodeObjectForKey:@"participants"];
-    self.replies            = [coder decodeObjectForKey:@"replies"];
-    self.depth                = [coder decodeIntForKey:@"depth"];
+    self.participants   = [coder decodeObjectForKey:@"participants"];
+    self.replies        = [coder decodeObjectForKey:@"replies"];
+    self.depth          = [coder decodeIntForKey:@"depth"];
     
-    self.timeLevel        = [coder decodeIntForKey:@"timeLevel"];
-    self.newPost            = [coder decodeBoolForKey:@"newPost"];
+    self.timeLevel      = [coder decodeIntForKey:@"timeLevel"];
+    self.newPost        = [coder decodeBoolForKey:@"newPost"];
     
     return self;
 }
@@ -75,22 +75,22 @@ static NSMutableDictionary *colorMapping;
     [super encodeWithCoder:encoder];
     
     [encoder encodeObject:author    forKey:@"author"];
-    [encoder encodeObject:preview forKey:@"preview"];
-    [encoder encodeObject:body        forKey:@"body"];
-    [encoder encodeObject:date        forKey:@"date"];
-    [encoder encodeInt:replyCount forKey:@"replyCount"];
-    [encoder encodeObject:category forKey:@"category"];
+    [encoder encodeObject:preview   forKey:@"preview"];
+    [encoder encodeObject:body      forKey:@"body"];
+    [encoder encodeObject:date      forKey:@"date"];
+    [encoder encodeInt:replyCount   forKey:@"replyCount"];
+    [encoder encodeObject:category  forKey:@"category"];
     
-    [encoder encodeInt:storyId forKey:@"storyId"];
+    [encoder encodeInt:storyId      forKey:@"storyId"];
     [encoder encodeInt:parentPostId forKey:@"parentPostId"];
-    [encoder encodeInt:lastReplyId forKey:@"lastReplyId"];
+    [encoder encodeInt:lastReplyId  forKey:@"lastReplyId"];
     
     [encoder encodeObject:participants forKey:@"participants"];
-    [encoder encodeObject:replies forKey:@"replies"];
-    [encoder encodeInt:depth forKey:@"depth"];
+    [encoder encodeObject:replies   forKey:@"replies"];
+    [encoder encodeInt:depth        forKey:@"depth"];
     
-    [encoder encodeInt:timeLevel forKey:@"timeLevel"];
-    [encoder encodeBool:newPost forKey:@"newPost"];
+    [encoder encodeInt:timeLevel    forKey:@"timeLevel"];
+    [encoder encodeBool:newPost     forKey:@"newPost"];
 }
 
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId pageNumber:(NSUInteger)pageNumber delegate:(id<ModelLoadingDelegate>)delegate {
@@ -126,7 +126,7 @@ static NSMutableDictionary *colorMapping;
 
 + (id)didFinishLoadingData:(id)dataObject {
 	NSArray* tempArray = [dataObject objectForKey:@"comments"];
-	if( tempArray && [tempArray count] ){
+	if (tempArray && [tempArray count]) {
 		NSArray *modelData = [[dataObject objectForKey:@"comments"] objectAtIndex:0];
 		return [super didFinishLoadingData:modelData];
 	}
@@ -135,11 +135,12 @@ static NSMutableDictionary *colorMapping;
 
 + (id)otherDataForResponseData:(id)responseData {
     NSDictionary *dictionary = (NSDictionary *)responseData;
-    return [NSDictionary dictionaryWithObjectsAndKeys:[dictionary objectForKey:@"story_id"], @"storyId",
-                                                                                                        [dictionary objectForKey:@"story_name"], @"storyName",
-                                                                                                        [dictionary objectForKey:@"page"], @"page",
-                                                                                                        [dictionary objectForKey:@"last_page"], @"lastPage",
-                                                                                                        nil];
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            [dictionary objectForKey:@"story_id"], @"storyId",
+            [dictionary objectForKey:@"story_name"], @"storyName",
+            [dictionary objectForKey:@"page"],       @"page",
+            [dictionary objectForKey:@"last_page"],  @"lastPage",
+            nil];
 }
 
 
@@ -149,27 +150,24 @@ static NSMutableDictionary *colorMapping;
     
     // Set request body and HTTP method
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
-    NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
-    NSString *parentIdString = parentId == 0 ? @"" : [NSString stringWithFormat:@"%i", parentId];
-    NSString *bodyString         = [body stringByEscapingURL];
-    
-    NSString *requestBody = [NSString stringWithFormat:@"iuser=%@&ipass=%@&parent=%@&group=%i&body=%@", usernameString, passwordString, parentIdString, storyId, bodyString];
-    [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
+    NSString *requestBody = [NSString stringWithFormat:
+                             @"iuser=%@&ipass=%@&parent=%@&group=%i&body=%@",
+                             [[defaults stringForKey:@"username"] stringByEscapingURL],         // Username
+                             [[defaults stringForKey:@"password"] stringByEscapingURL],         // Password
+                             parentId == 0 ? @"" : [NSString stringWithFormat:@"%i", parentId], // Parent ID
+                             storyId,                                                           // Story ID
+                             [body stringByEscapingURL]];                                       // Comment Body
+    [request setHTTPBody:[requestBody data]];
     [request setHTTPMethod:@"POST"];
 
     // Send the request
     NSHTTPURLResponse *response;
-    NSString *responseBody = [[NSString alloc] initWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]
-                                                                                                 encoding:NSASCIIStringEncoding];
+    NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]];
     
     NSLog(@"Creating Post with Request body: %@", requestBody);
     
-    if ([responseBody rangeOfString:@"navigate_page_no_history"].location != NSNotFound) {
-        // This means success
-        [responseBody release];
-        return YES;
-        
+    if ([responseBody containsString:@"navigate_page_no_history"]) {
+        return YES;        
     } else {
         NSString *errorString = [responseBody stringByMatching:@"alert\\(.*\"(.+?)\".*\\)" capture:1];
         [UIAlertView showSimpleAlertWithTitle:@"Error!" message:errorString buttonTitle:@"Dang"];
@@ -182,29 +180,35 @@ static NSMutableDictionary *colorMapping;
     
     self.author     = [[dictionary objectForKey:@"author"] stringByUnescapingHTML];
     self.preview    = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
+    
     self.body       = [dictionary objectForKey:@"body"];
-    if (self.body  != (NSString *)[NSNull null]) self.body = [self.body stringByReplacingOccurrencesOfRegex:@" target=\"_blank\"" withString:@""];
+    if (self.body  != (NSString *)[NSNull null]) {
+        self.body = [self.body stringByReplacingOccurrencesOfString:@" target=\"_blank\"" withString:@""];
+    }
+    
     self.date       = [[self class] decodeDate:[dictionary objectForKey:@"date"]];
     self.depth      = [[dictionary objectForKey:@"depth"] intValue];
     storyId         = [[dictionary objectForKey:@"story_id"] intValue];
-    if ([dictionary objectForKey:@"reply_count"] != [NSNull null]) replyCount = [[dictionary objectForKey:@"reply_count"] intValue];
+    
+    if ([dictionary objectForKey:@"reply_count"] != [NSNull null]) {
+        replyCount = [[dictionary objectForKey:@"reply_count"] intValue];
+    }
+    
     self.category   = [dictionary objectForKey:@"category"];
     self.participants = [dictionary objectForKey:@"participants"];
     
-	//crashed on this today.
 	NSObject* lastReply = [dictionary objectForKey:@"last_reply_id"];
     if (lastReply != [NSNull null] && [lastReply isKindOfClass:[NSNumber class]]) {
         lastReplyId = [[dictionary objectForKey:@"last_reply_id"] intValue];
     }
     
-    self.replies = [[NSMutableArray alloc] init];
+    self.replies = [NSMutableArray array];
     for (NSMutableDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
         NSInteger newDepth = [[dictionary objectForKey:@"depth"] intValue];
         [replyDictionary setObject:[NSNumber numberWithInt:newDepth + 1] forKey:@"depth"];
         
-        Post *reply = [[Post alloc] initWithDictionary:replyDictionary];
+        Post *reply = [[[Post alloc] initWithDictionary:replyDictionary] autorelease];
         [replies addObject:reply];
-        [reply release];
     }
  
     NSUInteger lastRefresh = [[NSUserDefaults standardUserDefaults] integerForKey:@"lastRefresh"];
@@ -221,6 +225,7 @@ static NSMutableDictionary *colorMapping;
     
     NSMutableArray *timeSortedReplies = [NSMutableArray arrayWithArray:flatReplies];
     [timeSortedReplies sortUsingSelector:@selector(compareById:)];
+    
     for (int i = 0; i < [timeSortedReplies count]; i++) {
         Post *post = [timeSortedReplies objectAtIndex:i];
         post.timeLevel = i;
@@ -243,8 +248,8 @@ static NSMutableDictionary *colorMapping;
 }
 
 - (NSInteger)compareById:(Post *)otherPost {
-    if (modelId > otherPost.modelId)    return NSOrderedAscending;
-    if (modelId < otherPost.modelId)    return NSOrderedDescending;
+    if (modelId > otherPost.modelId) return NSOrderedAscending;
+    if (modelId < otherPost.modelId) return NSOrderedDescending;
     return NSOrderedSame;
 }
 

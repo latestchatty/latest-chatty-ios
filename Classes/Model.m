@@ -9,8 +9,8 @@
 #import "Model.h"
 #import "ModelLoadingDelegate.h"
 
-static NSString *kDateFormat = @"MMM d, YYYY hh:mm a";       // Feb 25, 2010 12:22 AM
-static NSString *kParseDateFormat = @"MMM d, YYYY hh:mma V"; // Feb 25, 2010 12:22am CST
+static NSString *kDateFormat = @"MMM d, YYYY hh:mm a";      // Feb 25, 2010 12:22 AM
+static NSString *kParseDateFormat = @"yyyy/M/d kk:mm:ss Z"; // 2010/03/06 16:13:00 -0800
 
 
 @implementation Model
@@ -34,12 +34,14 @@ static NSString *kParseDateFormat = @"MMM d, YYYY hh:mma V"; // Feb 25, 2010 12:
 + (NSString *)formatDate:(NSDate *)date; {
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateFormat:kDateFormat];
+//    NSLog(@"date: %@, string: %@", date, [formatter stringFromDate:date]);
     return [formatter stringFromDate:date];
 }
 
 + (NSDate *)decodeDate:(NSString *)string {
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateFormat:kParseDateFormat];
+    NSLog(@"string: %@, date: %@", string, [formatter dateFromString:string]);
     return [formatter dateFromString:string];
 }
 

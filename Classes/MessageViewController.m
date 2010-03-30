@@ -8,6 +8,7 @@
 
 #import "MessageViewController.h"
 #include "LatestChatty2AppDelegate.h"
+#import "SendMessageViewController.h"
 
 @implementation MessageViewController
 
@@ -17,6 +18,9 @@
     self = [super initWithNib];
     self.message = aMessage;
     self.title = self.message.subject;
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply
+                                                                          target:self
+                                                                          action:@selector(reply)];
     return self;
 }
 
@@ -31,6 +35,12 @@
     [htmlTemplate setString:message.body forKey:@"body"];
     
     [webView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://www.shacknews.com/msgcenter.x"]];
+}
+
+- (void)reply {
+    SendMessageViewController *sendMessageViewController = [SendMessageViewController controllerWithNib];
+	[self.navigationController pushViewController:sendMessageViewController animated:YES];
+    [sendMessageViewController setupReply:message];
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

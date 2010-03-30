@@ -18,4 +18,6 @@
 
 @property (retain) NSMutableArray *messages;
 
+- (void)composeMessage;
+
 @end

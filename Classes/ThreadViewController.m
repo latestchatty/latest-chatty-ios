@@ -94,7 +94,7 @@
     }
     
     // Check for invalid data
-    if (rootPost.date == nil) {
+    if (rootPost.body == nil) {
         [UIAlertView showSimpleAlertWithTitle:@"Error!"
                                       message:@"Thread loading failed.    Could not parse the response properly."
                                   buttonTitle:@"Sad face"];

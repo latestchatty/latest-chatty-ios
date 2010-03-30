@@ -70,14 +70,14 @@
 	// Noob help alert
 	if (buttonIndex == 1) {
 		if ([alertView.title isEqualToString:@"Important!"]) {
-			[self showActivityIndicator:NO];
-			[postContent resignFirstResponder];
-            [self performSelectorInBackground:@selector(makePost) withObject:nil];
-		} else {
-			NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
+            NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
 			BrowserViewController *controller = [[BrowserViewController alloc] initWithRequest:rulesPageRequest];
 			[[self navigationController] pushViewController:controller animated:YES];
-			[controller release];
+			[controller release];            
+		} else {
+            [self showActivityIndicator:NO];
+			[postContent resignFirstResponder];
+            [self performSelectorInBackground:@selector(makePost) withObject:nil];            
 		}
 	} else if (buttonIndex == 2) {
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hideOrientationWarning"];
