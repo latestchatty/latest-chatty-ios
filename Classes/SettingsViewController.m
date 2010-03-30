@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "RegexKitLite.h"
+#import "LatestChatty2AppDelegate.h"
 
 @implementation SettingsViewController
 
@@ -105,6 +106,11 @@
 
 - (void)viewDidLoad {
 	//...
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[LatestChatty2AppDelegate delegate].popoverController dismissPopoverAnimated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
