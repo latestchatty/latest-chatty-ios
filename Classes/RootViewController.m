@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "LatestChatty2AppDelegate.h"
 
 @implementation RootViewController
 
@@ -125,6 +126,14 @@
             
         case 3:
             viewController = [SearchViewController controllerWithNib];
+            
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
+                viewController.navigationItem.leftBarButtonItem = appDelegate.contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
+                [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
+                [appDelegate.popoverController dismissPopoverAnimated:YES];
+                viewController = nil;
+            }
             break;
             
         case 4:

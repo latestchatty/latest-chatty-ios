@@ -322,6 +322,10 @@
 
 - (void)resetLayout {
     CGFloat usableHeight = self.view.frame.size.height - 24.0;
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        usableHeight -= [LatestChatty2AppDelegate delegate].contentNavigationController.toolbar.frame.size.height;
+    }
+    
     CGFloat dividerLocation;
     
     switch (grippyBarPosition) {
