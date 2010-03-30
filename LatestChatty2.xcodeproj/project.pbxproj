@@ -227,40 +227,6 @@
 		FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
 		FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA84AFE0F78DD9F00026446 /* ReplyCell.m */; };
 		FAAB72501138EF610001030C /* Mod.m in Sources */ = {isa = PBXBuildFile; fileRef = FA08ADB2112B40E800B89890 /* Mod.m */; };
-		FAAFAD031161CF10009A6B4C /* CGRect+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACE11161CF10009A6B4C /* CGRect+HelperKit.m */; };
-		FAAFAD041161CF10009A6B4C /* NSBundle+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACE41161CF10009A6B4C /* NSBundle+HelperKit.m */; };
-		FAAFAD051161CF10009A6B4C /* NSDictionary+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACE61161CF10009A6B4C /* NSDictionary+HelperKit.m */; };
-		FAAFAD061161CF10009A6B4C /* NSObject+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACE81161CF10009A6B4C /* NSObject+HelperKit.m */; };
-		FAAFAD071161CF10009A6B4C /* NSString+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACEA1161CF10009A6B4C /* NSString+HelperKit.m */; };
-		FAAFAD081161CF10009A6B4C /* NSURL+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACEC1161CF10009A6B4C /* NSURL+HelperKit.m */; };
-		FAAFAD091161CF10009A6B4C /* NSURLRequest+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACEE1161CF10009A6B4C /* NSURLRequest+HelperKit.m */; };
-		FAAFAD0A1161CF10009A6B4C /* UIAlertView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACF01161CF10009A6B4C /* UIAlertView+HelperKit.m */; };
-		FAAFAD0B1161CF10009A6B4C /* UIBarButtonItem+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACF21161CF10009A6B4C /* UIBarButtonItem+HelperKit.m */; };
-		FAAFAD0C1161CF10009A6B4C /* UIDevice+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACF41161CF10009A6B4C /* UIDevice+HelperKit.m */; };
-		FAAFAD0D1161CF10009A6B4C /* UIImage+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACF61161CF10009A6B4C /* UIImage+HelperKit.m */; };
-		FAAFAD0E1161CF10009A6B4C /* UIImageView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACF81161CF10009A6B4C /* UIImageView+HelperKit.m */; };
-		FAAFAD0F1161CF10009A6B4C /* UINavigationController+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACFA1161CF10009A6B4C /* UINavigationController+HelperKit.m */; };
-		FAAFAD101161CF10009A6B4C /* UITableView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACFC1161CF10009A6B4C /* UITableView+HelperKit.m */; };
-		FAAFAD111161CF10009A6B4C /* UIView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACFE1161CF10009A6B4C /* UIView+HelperKit.m */; };
-		FAAFAD121161CF10009A6B4C /* UIViewController+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAD001161CF10009A6B4C /* UIViewController+HelperKit.m */; };
-		FAAFAD131161CF10009A6B4C /* UIWebView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAD021161CF10009A6B4C /* UIWebView+HelperKit.m */; };
-		FAAFAD141161CF10009A6B4C /* CGRect+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACE11161CF10009A6B4C /* CGRect+HelperKit.m */; };
-		FAAFAD151161CF10009A6B4C /* NSBundle+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACE41161CF10009A6B4C /* NSBundle+HelperKit.m */; };
-		FAAFAD161161CF10009A6B4C /* NSDictionary+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACE61161CF10009A6B4C /* NSDictionary+HelperKit.m */; };
-		FAAFAD171161CF10009A6B4C /* NSObject+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACE81161CF10009A6B4C /* NSObject+HelperKit.m */; };
-		FAAFAD181161CF10009A6B4C /* NSString+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACEA1161CF10009A6B4C /* NSString+HelperKit.m */; };
-		FAAFAD191161CF10009A6B4C /* NSURL+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACEC1161CF10009A6B4C /* NSURL+HelperKit.m */; };
-		FAAFAD1A1161CF10009A6B4C /* NSURLRequest+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACEE1161CF10009A6B4C /* NSURLRequest+HelperKit.m */; };
-		FAAFAD1B1161CF10009A6B4C /* UIAlertView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACF01161CF10009A6B4C /* UIAlertView+HelperKit.m */; };
-		FAAFAD1C1161CF10009A6B4C /* UIBarButtonItem+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACF21161CF10009A6B4C /* UIBarButtonItem+HelperKit.m */; };
-		FAAFAD1D1161CF10009A6B4C /* UIDevice+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACF41161CF10009A6B4C /* UIDevice+HelperKit.m */; };
-		FAAFAD1E1161CF10009A6B4C /* UIImage+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACF61161CF10009A6B4C /* UIImage+HelperKit.m */; };
-		FAAFAD1F1161CF10009A6B4C /* UIImageView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACF81161CF10009A6B4C /* UIImageView+HelperKit.m */; };
-		FAAFAD201161CF10009A6B4C /* UINavigationController+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACFA1161CF10009A6B4C /* UINavigationController+HelperKit.m */; };
-		FAAFAD211161CF10009A6B4C /* UITableView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACFC1161CF10009A6B4C /* UITableView+HelperKit.m */; };
-		FAAFAD221161CF10009A6B4C /* UIView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFACFE1161CF10009A6B4C /* UIView+HelperKit.m */; };
-		FAAFAD231161CF10009A6B4C /* UIViewController+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAD001161CF10009A6B4C /* UIViewController+HelperKit.m */; };
-		FAAFAD241161CF10009A6B4C /* UIWebView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAD021161CF10009A6B4C /* UIWebView+HelperKit.m */; };
 		FAB1B6420F8FBF390021896A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB1B6410F8FBF390021896A /* Message.m */; };
 		FAB2F8700F7985FB000E4DC9 /* GrippyBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB2F86F0F7985FB000E4DC9 /* GrippyBar.m */; };
 		FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */; };
@@ -454,41 +420,6 @@
 		FAA84AF90F78DCB300026446 /* ReplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReplyCell.xib; sourceTree = "<group>"; };
 		FAA84AFD0F78DD9F00026446 /* ReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCell.h; sourceTree = "<group>"; };
 		FAA84AFE0F78DD9F00026446 /* ReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyCell.m; sourceTree = "<group>"; };
-		FAAFACE01161CF10009A6B4C /* CGRect+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGRect+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACE11161CF10009A6B4C /* CGRect+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGRect+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACE21161CF10009A6B4C /* HKHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKHelperKit.h; sourceTree = "<group>"; };
-		FAAFACE31161CF10009A6B4C /* NSBundle+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACE41161CF10009A6B4C /* NSBundle+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACE51161CF10009A6B4C /* NSDictionary+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACE61161CF10009A6B4C /* NSDictionary+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACE71161CF10009A6B4C /* NSObject+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACE81161CF10009A6B4C /* NSObject+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACE91161CF10009A6B4C /* NSString+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACEA1161CF10009A6B4C /* NSString+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACEB1161CF10009A6B4C /* NSURL+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACEC1161CF10009A6B4C /* NSURL+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACED1161CF10009A6B4C /* NSURLRequest+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACEE1161CF10009A6B4C /* NSURLRequest+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACEF1161CF10009A6B4C /* UIAlertView+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACF01161CF10009A6B4C /* UIAlertView+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACF11161CF10009A6B4C /* UIBarButtonItem+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACF21161CF10009A6B4C /* UIBarButtonItem+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACF31161CF10009A6B4C /* UIDevice+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACF41161CF10009A6B4C /* UIDevice+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACF51161CF10009A6B4C /* UIImage+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACF61161CF10009A6B4C /* UIImage+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACF71161CF10009A6B4C /* UIImageView+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACF81161CF10009A6B4C /* UIImageView+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACF91161CF10009A6B4C /* UINavigationController+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACFA1161CF10009A6B4C /* UINavigationController+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACFB1161CF10009A6B4C /* UITableView+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACFC1161CF10009A6B4C /* UITableView+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACFD1161CF10009A6B4C /* UIView+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFACFE1161CF10009A6B4C /* UIView+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFACFF1161CF10009A6B4C /* UIViewController+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFAD001161CF10009A6B4C /* UIViewController+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HelperKit.m"; sourceTree = "<group>"; };
-		FAAFAD011161CF10009A6B4C /* UIWebView+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+HelperKit.h"; sourceTree = "<group>"; };
-		FAAFAD021161CF10009A6B4C /* UIWebView+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+HelperKit.m"; sourceTree = "<group>"; };
 		FAB1B6400F8FBF390021896A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		FAB1B6410F8FBF390021896A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		FAB2F86E0F7985FB000E4DC9 /* GrippyBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrippyBar.h; sourceTree = "<group>"; };
@@ -621,7 +552,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FAAFACDF1161CF10009A6B4C /* HKHelperKit */,
 				FA2B47500F7E1DA30074064A /* Base64 */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -861,48 +791,6 @@
 				FAA5BA821110DE7F0007C34C /* SearchResultsViewController.xib */,
 			);
 			name = "Resources-iPad";
-			sourceTree = "<group>";
-		};
-		FAAFACDF1161CF10009A6B4C /* HKHelperKit */ = {
-			isa = PBXGroup;
-			children = (
-				FAAFACE01161CF10009A6B4C /* CGRect+HelperKit.h */,
-				FAAFACE11161CF10009A6B4C /* CGRect+HelperKit.m */,
-				FAAFACE21161CF10009A6B4C /* HKHelperKit.h */,
-				FAAFACE31161CF10009A6B4C /* NSBundle+HelperKit.h */,
-				FAAFACE41161CF10009A6B4C /* NSBundle+HelperKit.m */,
-				FAAFACE51161CF10009A6B4C /* NSDictionary+HelperKit.h */,
-				FAAFACE61161CF10009A6B4C /* NSDictionary+HelperKit.m */,
-				FAAFACE71161CF10009A6B4C /* NSObject+HelperKit.h */,
-				FAAFACE81161CF10009A6B4C /* NSObject+HelperKit.m */,
-				FAAFACE91161CF10009A6B4C /* NSString+HelperKit.h */,
-				FAAFACEA1161CF10009A6B4C /* NSString+HelperKit.m */,
-				FAAFACEB1161CF10009A6B4C /* NSURL+HelperKit.h */,
-				FAAFACEC1161CF10009A6B4C /* NSURL+HelperKit.m */,
-				FAAFACED1161CF10009A6B4C /* NSURLRequest+HelperKit.h */,
-				FAAFACEE1161CF10009A6B4C /* NSURLRequest+HelperKit.m */,
-				FAAFACEF1161CF10009A6B4C /* UIAlertView+HelperKit.h */,
-				FAAFACF01161CF10009A6B4C /* UIAlertView+HelperKit.m */,
-				FAAFACF11161CF10009A6B4C /* UIBarButtonItem+HelperKit.h */,
-				FAAFACF21161CF10009A6B4C /* UIBarButtonItem+HelperKit.m */,
-				FAAFACF31161CF10009A6B4C /* UIDevice+HelperKit.h */,
-				FAAFACF41161CF10009A6B4C /* UIDevice+HelperKit.m */,
-				FAAFACF51161CF10009A6B4C /* UIImage+HelperKit.h */,
-				FAAFACF61161CF10009A6B4C /* UIImage+HelperKit.m */,
-				FAAFACF71161CF10009A6B4C /* UIImageView+HelperKit.h */,
-				FAAFACF81161CF10009A6B4C /* UIImageView+HelperKit.m */,
-				FAAFACF91161CF10009A6B4C /* UINavigationController+HelperKit.h */,
-				FAAFACFA1161CF10009A6B4C /* UINavigationController+HelperKit.m */,
-				FAAFACFB1161CF10009A6B4C /* UITableView+HelperKit.h */,
-				FAAFACFC1161CF10009A6B4C /* UITableView+HelperKit.m */,
-				FAAFACFD1161CF10009A6B4C /* UIView+HelperKit.h */,
-				FAAFACFE1161CF10009A6B4C /* UIView+HelperKit.m */,
-				FAAFACFF1161CF10009A6B4C /* UIViewController+HelperKit.h */,
-				FAAFAD001161CF10009A6B4C /* UIViewController+HelperKit.m */,
-				FAAFAD011161CF10009A6B4C /* UIWebView+HelperKit.h */,
-				FAAFAD021161CF10009A6B4C /* UIWebView+HelperKit.m */,
-			);
-			path = HKHelperKit;
 			sourceTree = "<group>";
 		};
 		FABA5D340F7178A0008EEE3A /* Templates */ = {
@@ -1178,23 +1066,6 @@
 				599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */,
 				FA08ADB3112B40E800B89890 /* Mod.m in Sources */,
 				FA2690BF115AEDC800D153C0 /* NoContentController.m in Sources */,
-				FAAFAD031161CF10009A6B4C /* CGRect+HelperKit.m in Sources */,
-				FAAFAD041161CF10009A6B4C /* NSBundle+HelperKit.m in Sources */,
-				FAAFAD051161CF10009A6B4C /* NSDictionary+HelperKit.m in Sources */,
-				FAAFAD061161CF10009A6B4C /* NSObject+HelperKit.m in Sources */,
-				FAAFAD071161CF10009A6B4C /* NSString+HelperKit.m in Sources */,
-				FAAFAD081161CF10009A6B4C /* NSURL+HelperKit.m in Sources */,
-				FAAFAD091161CF10009A6B4C /* NSURLRequest+HelperKit.m in Sources */,
-				FAAFAD0A1161CF10009A6B4C /* UIAlertView+HelperKit.m in Sources */,
-				FAAFAD0B1161CF10009A6B4C /* UIBarButtonItem+HelperKit.m in Sources */,
-				FAAFAD0C1161CF10009A6B4C /* UIDevice+HelperKit.m in Sources */,
-				FAAFAD0D1161CF10009A6B4C /* UIImage+HelperKit.m in Sources */,
-				FAAFAD0E1161CF10009A6B4C /* UIImageView+HelperKit.m in Sources */,
-				FAAFAD0F1161CF10009A6B4C /* UINavigationController+HelperKit.m in Sources */,
-				FAAFAD101161CF10009A6B4C /* UITableView+HelperKit.m in Sources */,
-				FAAFAD111161CF10009A6B4C /* UIView+HelperKit.m in Sources */,
-				FAAFAD121161CF10009A6B4C /* UIViewController+HelperKit.m in Sources */,
-				FAAFAD131161CF10009A6B4C /* UIWebView+HelperKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,23 +1126,6 @@
 				FAA5BA621110DE7B0007C34C /* SBJsonWriter.m in Sources */,
 				FAAB72501138EF610001030C /* Mod.m in Sources */,
 				FA2690C1115AEDC800D153C0 /* NoContentController.m in Sources */,
-				FAAFAD141161CF10009A6B4C /* CGRect+HelperKit.m in Sources */,
-				FAAFAD151161CF10009A6B4C /* NSBundle+HelperKit.m in Sources */,
-				FAAFAD161161CF10009A6B4C /* NSDictionary+HelperKit.m in Sources */,
-				FAAFAD171161CF10009A6B4C /* NSObject+HelperKit.m in Sources */,
-				FAAFAD181161CF10009A6B4C /* NSString+HelperKit.m in Sources */,
-				FAAFAD191161CF10009A6B4C /* NSURL+HelperKit.m in Sources */,
-				FAAFAD1A1161CF10009A6B4C /* NSURLRequest+HelperKit.m in Sources */,
-				FAAFAD1B1161CF10009A6B4C /* UIAlertView+HelperKit.m in Sources */,
-				FAAFAD1C1161CF10009A6B4C /* UIBarButtonItem+HelperKit.m in Sources */,
-				FAAFAD1D1161CF10009A6B4C /* UIDevice+HelperKit.m in Sources */,
-				FAAFAD1E1161CF10009A6B4C /* UIImage+HelperKit.m in Sources */,
-				FAAFAD1F1161CF10009A6B4C /* UIImageView+HelperKit.m in Sources */,
-				FAAFAD201161CF10009A6B4C /* UINavigationController+HelperKit.m in Sources */,
-				FAAFAD211161CF10009A6B4C /* UITableView+HelperKit.m in Sources */,
-				FAAFAD221161CF10009A6B4C /* UIView+HelperKit.m in Sources */,
-				FAAFAD231161CF10009A6B4C /* UIViewController+HelperKit.m in Sources */,
-				FAAFAD241161CF10009A6B4C /* UIWebView+HelperKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
