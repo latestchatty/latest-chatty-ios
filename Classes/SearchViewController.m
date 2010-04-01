@@ -89,7 +89,9 @@
     }
     
     if (usernameField) {
-        for (UITextField *field in fields) field.text = @"";
+        for (UITextField *field in fields) {
+            field.text = @"";
+        }
         
         usernameField.text = username;
         usernameField.enabled = NO;
@@ -120,15 +122,15 @@
     return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"searchInputCell"];
+    UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    UIImageView *lockImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Lock.16.png"]];
+    UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
     lockImage.hidden = YES;
     cell.accessoryView = lockImage;
-    [lockImage release];
     
     CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 60 : 20;
-    UILabel *prompt = [[UILabel alloc] initWithFrame:CGRectMake(leftEdge, 4, 85, 31)];
+    UILabel *prompt = [UILabel viewWithFrame:CGRectMake(leftEdge, 4, 85, 31)];
     if (indexPath.row == 0) prompt.text = @"Terms:";
     if (indexPath.row == 1) prompt.text = @"Author:";
     if (indexPath.row == 2) prompt.text = @"Parent Author:";
@@ -137,13 +139,12 @@
     prompt.backgroundColor = [UIColor clearColor];
     prompt.textColor = [UIColor colorWithWhite:0.0 alpha:0.6];
     [cell addSubview:prompt];
-    [prompt release];
     
     if (indexPath.row == 0) [cell addSubview:termsField];
     if (indexPath.row == 1) [cell addSubview:authorField];
     if (indexPath.row == 2) [cell addSubview:parentAuthorField];
     
-    return [cell autorelease];
+    return cell;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

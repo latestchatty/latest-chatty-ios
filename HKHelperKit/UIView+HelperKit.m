@@ -18,7 +18,7 @@
 }
 
 + (id)viewWithFrame:(CGRect)frame {
-    return [[[UIView alloc] initWithFrame:frame] autorelease];
+    return [[[self alloc] initWithFrame:frame] autorelease];
 }
 
 

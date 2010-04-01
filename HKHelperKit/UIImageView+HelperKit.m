@@ -15,4 +15,19 @@
     return [[[self alloc] initWithImage:image] autorelease];
 }
 
++ (id)viewWithImageNamed:(NSString*)imageName {
+    UIImage *image = [UIImage imageNamed:imageName];
+    return [self viewWithImage:image];
+}
+
++ (id)viewWithImageURL:(NSURL*)imageURL {
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage *image = [UIImage imageWithData:imageData];
+    return [UIImageView viewWithImage:image];
+}
+
++ (id)viewWithImageURLString:(NSString*)imageURLString {
+    return [self viewWithImageURL:[NSURL URLWithString:imageURLString]];
+}
+
 @end

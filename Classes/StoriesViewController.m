@@ -16,7 +16,7 @@
 
 - (id)initWithNib {
     if (self = [super initWithNib]) {
-            self.title = @"Stories";
+        self.title = @"Stories";
     }
     return self;
 }

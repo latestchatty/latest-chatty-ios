@@ -100,7 +100,7 @@
                                                                   target:self
                                                                   action:@selector(tappedComposeButton)];
 	composeButton.enabled = (self.storyId > 0);
-    self.splitViewController.navigationItem.rightBarButtonItem = composeButton;
+    if ([self respondsToSelector:@selector(splitViewController)]) self.splitViewController.navigationItem.rightBarButtonItem = composeButton;
 	self.navigationItem.rightBarButtonItem = composeButton;
 }
 
@@ -232,7 +232,7 @@
 		}
 		
 		// Set up the cell...
-        if (self.splitViewController) {
+        if ([self respondsToSelector:@selector(splitViewController)] && self.splitViewController) {
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
         

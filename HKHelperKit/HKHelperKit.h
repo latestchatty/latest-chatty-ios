@@ -9,16 +9,19 @@
 #import "CGRect+HelperKit.h"
 
 #import "NSBundle+HelperKit.h"
+#import "NSDictionary+HelperKit.h"
+#import "NSObject+HelperKit.h"
 #import "NSString+HelperKit.h"
 #import "NSURL+HelperKit.h"
 #import "NSURLRequest+HelperKit.h"
 
 #import "UIAlertView+HelperKit.h"
 #import "UIBarButtonItem+HelperKit.h"
+#import "UIDevice+HelperKit.h"
 #import "UIImage+HelperKit.h"
 #import "UIImageView+HelperKit.h"
 #import "UINavigationController+HelperKit.h"
 #import "UITableView+HelperKit.h"
 #import "UIView+HelperKit.h"
 #import "UIViewController+HelperKit.h"
-
+#import "UIWebView+HelperKit.h"

@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+HelperKit.h"
+#import "UIDevice+HelperKit.h"
 
 
 @implementation UIViewController (HelperKit)
@@ -29,8 +30,12 @@
     return [[[self alloc] initWithNibName:nibNameOrNil bundle:bundle] autorelease];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil {
-    return [self initWithNibName:nibNameOrNil bundle:nil];
+- (id)initWithNibName:(NSString *)name {
+    NSString *deviceName = [UIDevice currentDevice].screenTypeString;
+    if ([deviceName isEqualToString:@"iPad"]) {
+        name = [NSString stringWithFormat:@"%@-%@", name, deviceName];
+    }
+    return [self initWithNibName:name bundle:nil];
 }
 
 - (id)initWithNib {
