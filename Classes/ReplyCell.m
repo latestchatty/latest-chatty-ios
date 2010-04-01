@@ -54,7 +54,7 @@
     }
     
     // Only show blue bullet if this is my post.
-    CGRect bulletFrame = CGRectMake(indentation - 15, 0, 10, self.frame.size.height);
+    CGRect bulletFrame = CGRectMake(indentation - 12, 0, 10, self.frame.size.height);
     blueBullet.frame = bulletFrame;
     grayBullet.frame = bulletFrame;
     if ([post.author isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]]) {
