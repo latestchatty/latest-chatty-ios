@@ -377,7 +377,7 @@
                                   delegate:self
                          cancelButtonTitle:@"Cancel"
                     destructiveButtonTitle:nil
-                         otherButtonTitles:@"LOL", @"INF", @"Mark", nil] autorelease] showInView:self.view];    
+                         otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", nil] autorelease] showInView:self.view];    
 }
 
 - (IBAction)previous {
@@ -434,7 +434,9 @@
     Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
     NSUInteger postId = [post modelId];
     NSUInteger parentId = [rootPost modelId];
-
+    
+    if (buttonIndex == actionSheet.cancelButtonIndex) return;
+    
     if ([[actionSheet title] isEqualToString:@"Mod this Post"]) {
         if (buttonIndex == 0) [Mod modParentId:parentId modPostId:postId mod:ModTypeStupid];
         if (buttonIndex == 1) [Mod modParentId:parentId modPostId:postId mod:ModTypeOfftopic];
@@ -449,9 +451,7 @@
                 [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
         }
     } else {
-		if (buttonIndex == 0) [Tag tagPostId:postId tag:TagTypeLOL];
-		if (buttonIndex == 1) [Tag tagPostId:postId tag:TagTypeINF];
-		if (buttonIndex == 2) [Tag tagPostId:postId tag:TagTypeMark];
+        [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
 	}
 }
 

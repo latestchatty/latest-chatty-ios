@@ -9,15 +9,17 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-  TagTypeLOL,
-  TagTypeINF,
-  TagTypeMark,
+    TagTypeLOL,
+    TagTypeINF,
+    TagTypeUNF,
+    TagTypeTAG,
+    TagTypeWTF,
 } TagType;
 
 @interface Tag : NSObject {
   
 }
 
-+ (void)tagPostId:(NSUInteger)postId tag:(TagType)tagType;
++ (void)tagPostId:(NSUInteger)postId tag:(NSString*)tag;
 
 @end
