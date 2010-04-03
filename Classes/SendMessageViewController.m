@@ -8,6 +8,8 @@
 
 #import "SendMessageViewController.h"
 #import "Message.h"
+#import "NoContentController.h"
+#import "LatestChatty2AppDelegate.h"
 
 @implementation SendMessageViewController
 
@@ -64,15 +66,30 @@
 	
     [UIAlertView showSimpleAlertWithTitle:@"Message Sent!" message:nil];
     
-	[self.navigationController popViewControllerAnimated:YES];
+    if ([self.navigationController.viewControllers count] > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        UIViewController *viewController = [NoContentController controllerWithNib];
+        viewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
+        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
+        [[LatestChatty2AppDelegate delegate] showPopover];
+    }
 }
 
 - (void)setupReply:(Message*)message {
+    body.text = [message.body stringByReplacingOccurrencesOfRegex:@"<br.*?>" withString:@"\n"];
+    body.text = [NSString stringWithFormat:@"\n\n\n--------------------\n\n/[%@]/", [body.text stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""]];
+    
     recipient.text = message.from;
     subject.text = [NSString stringWithFormat:@"RE: %@", message.subject];
-    body.text = [NSString stringWithFormat:@"\n\n\n--------------------\n\n/[%@]/", [message.body stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""]];
+    
     [body becomeFirstResponder];
     body.selectedRange = NSRangeFromString(@"0");
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
 - (void)dealloc {

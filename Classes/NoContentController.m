@@ -29,7 +29,8 @@
 */
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
 - (void)didReceiveMemoryWarning {

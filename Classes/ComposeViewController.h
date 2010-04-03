@@ -13,7 +13,7 @@
 #import "ModelListViewController.h"
 #import "BrowserViewController.h"
 
-@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate> {
+@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate, UIPopoverControllerDelegate> {
 	NSInteger storyId;
 	Post *post;
 	
@@ -28,6 +28,9 @@
 	IBOutlet UILabel* activityText;
 	IBOutlet UIActivityIndicatorView* spinner;
 	IBOutlet UIProgressView* uploadBar;
+    
+    IBOutlet UIButton *imageButton;
+    UIPopoverController *popoverController;
 }
 
 @property (assign) NSInteger storyId;

@@ -49,8 +49,9 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
+
 # pragma mark Actions
 
 - (IBAction)refresh:(id)sender {

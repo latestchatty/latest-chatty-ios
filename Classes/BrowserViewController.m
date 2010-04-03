@@ -43,6 +43,11 @@
     [[UIApplication sharedApplication] openURL:[webView.request URL]];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+}
+
 - (void)viewDidUnload {
 	self.webView = nil;
     self.backButton = nil;

@@ -110,7 +110,9 @@
     StoryViewController *viewController = [[[StoryViewController alloc] initWithStoryId:story.modelId] autorelease];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        viewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
+        [[LatestChatty2AppDelegate delegate] dismissPopover];
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
     }

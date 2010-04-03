@@ -8,7 +8,7 @@
 
 #import "MessagesViewController.h"
 #import "SendMessageViewController.h"
-
+#import "LatestChatty2AppDelegate.h"
 
 @implementation MessagesViewController
 
@@ -37,7 +37,14 @@
 
 - (void)composeMessage {
 	SendMessageViewController *sendMessageViewController = [SendMessageViewController controllerWithNib];
-	[self.navigationController pushViewController:sendMessageViewController animated:YES];
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        sendMessageViewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
+        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:sendMessageViewController];
+        [[LatestChatty2AppDelegate delegate] dismissPopover];
+    } else {
+        [self.navigationController pushViewController:sendMessageViewController animated:YES];
+    }
 }
 
 - (IBAction)refresh:(id)sender {
@@ -91,10 +98,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Message *message = [messages objectAtIndex:indexPath.row];
     [message markRead];
+    MessageViewController *viewController = [[[MessageViewController alloc] initWithMesage:message] autorelease];
     
-    MessageViewController *viewController = [[MessageViewController alloc] initWithMesage:message];
-    [self.navigationController pushViewController:viewController animated:YES];
-    [viewController release];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        viewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
+        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
+        [[LatestChatty2AppDelegate delegate] dismissPopover];
+    } else {
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 - (void)dealloc {

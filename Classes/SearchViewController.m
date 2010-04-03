@@ -101,11 +101,10 @@
 }
 
 - (IBAction)search {
-    SearchResultsViewController *viewController = [[SearchResultsViewController alloc] initWithTerms:termsField.text
-                                                                                                                                                                                        author:authorField.text
-                                                                                                                                                                            parentAuthor:parentAuthorField.text];
+    SearchResultsViewController *viewController = [[[SearchResultsViewController alloc] initWithTerms:termsField.text
+                                                                                               author:authorField.text
+                                                                                         parentAuthor:parentAuthorField.text] autorelease];
     [self.navigationController pushViewController:viewController animated:YES];
-    [viewController release];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -151,6 +150,10 @@
     return nil;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+}
 
 - (void)dealloc {
     [termsField release];

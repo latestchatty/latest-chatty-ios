@@ -26,7 +26,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -129,9 +129,9 @@
             
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
-                viewController.navigationItem.leftBarButtonItem = appDelegate.contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
+                viewController.navigationItem.leftBarButtonItem = appDelegate.navPopoverButton;
                 [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
-                [appDelegate.popoverController dismissPopoverAnimated:YES];
+                [appDelegate dismissPopover];
                 viewController = nil;
             }
             break;

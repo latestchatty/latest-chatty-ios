@@ -23,6 +23,7 @@
     UINavigationController *navigationController;
     
     // iPad
+    UIBarButtonItem *navPopoverButton;
     UISplitViewController *splitController;
     UINavigationController *contentNavigationController;
     UIPopoverController *popoverController;
@@ -31,6 +32,7 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *navPopoverButton;
 @property (nonatomic, retain) IBOutlet UISplitViewController *splitController;
 @property (nonatomic, retain) IBOutlet UINavigationController *contentNavigationController;
 @property (nonatomic, retain) UIPopoverController *popoverController;
@@ -42,6 +44,7 @@
 - (NSURLCredential *)userCredential;
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
+- (void)showPopover;
 - (void)dismissPopover;
 
 @end

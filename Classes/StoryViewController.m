@@ -97,13 +97,18 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
 
 - (void)loadChatty {
     ChattyViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
-    [self.navigationController pushViewController:viewController animated:YES];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
+        [[LatestChatty2AppDelegate delegate] showPopover];
+    } else {
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 

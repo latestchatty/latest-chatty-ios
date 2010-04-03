@@ -7,7 +7,7 @@
 //
 
 #import "ComposeViewController.h"
-
+#import "LatestChatty2AppDelegate.h"
 
 @implementation ComposeViewController
 
@@ -90,8 +90,8 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
 
@@ -99,15 +99,14 @@
 #pragma mark Image Handling
 - (IBAction)showImagePicker {
 	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-		UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Insert Image"
-															delegate:self
-												   cancelButtonTitle:@"Cancel"
-											  destructiveButtonTitle:nil
-												   otherButtonTitles:@"Camera", @"Library", nil];
+		UIActionSheet *dialog = [[[UIActionSheet alloc] initWithTitle:@"Insert Image"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Camera", @"Library", nil] autorelease];
 		dialog.actionSheetStyle = UIBarStyleBlackOpaque;
 		dialog.destructiveButtonIndex = -1;
-		[dialog showInView:self.view];
-		[dialog release];
+        [dialog showInView:self.view];
 	} else {
 		[self actionSheet:nil clickedButtonAtIndex:1];
 	}
@@ -119,11 +118,20 @@
 		if (buttonIndex == 0) sourceType = UIImagePickerControllerSourceTypeCamera;
 		if (buttonIndex == 1) sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		
-		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+		UIImagePickerController *imagePicker = [[[UIImagePickerController alloc] init] autorelease];
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
-		[self presentModalViewController:imagePicker animated:YES];
-		[imagePicker release];
+        
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+            popoverController.delegate = self;
+            [popoverController presentPopoverFromRect:imageButton.frame
+                                               inView:self.view
+                             permittedArrowDirections:UIPopoverArrowDirectionAny
+                                             animated:YES];
+        } else {
+            [self presentModalViewController:imagePicker animated:YES];
+        }
 	}
 }
 
@@ -171,7 +179,7 @@
 - (void)image:(Image*)image sendFailure:(NSString*)message
 {
     [UIAlertView showSimpleAlertWithTitle:@"Upload Failed"
-                                  message:@"Sorry but there was an error uploading your photo"
+                                  message:@"Sorry but there was an error uploading your photo.  Be sure you have set a valid Shacknews.com username and password."
                               buttonTitle:@"Oopsie"];
 	[image release];
 	[self hideActivtyIndicator];
@@ -186,6 +194,17 @@
 	UIProgressView* progressBar = [self showActivityIndicator:YES];	
 	[image autoRotateAndScale:800];
     [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithProgressView:) withObject:progressBar];
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [popoverController dismissPopoverAnimated:YES];
+    }
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
+    if (popoverController == pc) {
+        [popoverController release];
+        popoverController = nil;
+    }
 }
 
 #pragma mark Tagging
@@ -240,7 +259,6 @@
              cancelButtonTitle:@"Cancel"
              otherButtonTitles:@"Send", nil];
 }
-
 
 - (void)dealloc {
 	[parentPostPreview release];

@@ -14,7 +14,7 @@
 @implementation LatestChatty2AppDelegate
 
 @synthesize window;
-@synthesize navigationController, splitController, contentNavigationController, popoverController;
+@synthesize navigationController, splitController, contentNavigationController, popoverController, navPopoverButton;
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -67,7 +67,7 @@
         
         UIBarButtonItem *barButton = contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
         if ([barButton.title isEqualToString:@"Navigation"]) {
-            [barButton.target performSelector:barButton.action withObject:barButton];
+            [self showPopover];
         }
     } else {
         [window addSubview:navigationController.view];
@@ -241,6 +241,7 @@
 
 
 - (void)dealloc {
+    self.navPopoverButton = nil;
 	self.navigationController = nil;
 	self.window = nil;
 	[super dealloc];
@@ -254,8 +255,9 @@
           withBarButtonItem:(UIBarButtonItem*)barButtonItem
        forPopoverController:(UIPopoverController*)pc
 {
-    barButtonItem.title = @"Navigation";
-    [contentNavigationController.topViewController.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    self.navPopoverButton = barButtonItem;
+    navPopoverButton.title = @"Navigation";
+    [[[contentNavigationController.viewControllers objectAtIndex:0] navigationItem] setLeftBarButtonItem:navPopoverButton animated:YES];
 }
 
 - (void)splitViewController:(UISplitViewController*)svc
@@ -269,8 +271,13 @@
      willShowViewController:(UIViewController *)aViewController
   invalidatingBarButtonItem:(UIBarButtonItem *)button
 {
+    if (navPopoverButton == button) self.navPopoverButton = nil;
     navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    [contentNavigationController.topViewController.navigationItem setLeftBarButtonItem:nil animated:YES];
+    [[[contentNavigationController.viewControllers objectAtIndex:0] navigationItem] setLeftBarButtonItem:nil animated:YES];
+}
+
+- (void)showPopover {
+    [navPopoverButton.target performSelector:navPopoverButton.action];
 }
 
 - (void)dismissPopover {

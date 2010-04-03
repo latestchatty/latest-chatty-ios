@@ -117,6 +117,7 @@
 		FA8D243E0F85848900AB23E2 /* Youtube.html in Resources */ = {isa = PBXBuildFile; fileRef = FA8D243D0F85848900AB23E2 /* Youtube.html */; };
 		FA8D24FD0F8661D200AB23E2 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8D24FB0F8661D200AB23E2 /* left.png */; };
 		FA8D24FE0F8661D200AB23E2 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8D24FC0F8661D200AB23E2 /* right.png */; };
+		FA907CA81166D8D800306828 /* SendMessageViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA907CA71166D8D800306828 /* SendMessageViewController-iPad.xib */; };
 		FA9C3ED00F9CEB1E0022A739 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */; };
 		FA9C3ED50F9CED010022A739 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C3ED40F9CED010022A739 /* SearchViewController.m */; };
 		FA9C3F170F9CFD580022A739 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3F160F9CFD580022A739 /* GrayButton.png */; };
@@ -314,6 +315,7 @@
 		FA8D243D0F85848900AB23E2 /* Youtube.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Youtube.html; sourceTree = "<group>"; };
 		FA8D24FB0F8661D200AB23E2 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left.png; sourceTree = "<group>"; };
 		FA8D24FC0F8661D200AB23E2 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
+		FA907CA71166D8D800306828 /* SendMessageViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SendMessageViewController-iPad.xib"; path = "Resources-iPad/Classes/SendMessageViewController-iPad.xib"; sourceTree = "<group>"; };
 		FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		FA9C3ED30F9CED010022A739 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		FA9C3ED40F9CED010022A739 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
@@ -742,6 +744,7 @@
 				FAA5BA801110DE7F0007C34C /* MessageViewController-iPad.xib */,
 				FAA5BA811110DE7F0007C34C /* SearchViewController-iPad.xib */,
 				FAA5BA821110DE7F0007C34C /* SearchResultsViewController-iPad.xib */,
+				FA907CA71166D8D800306828 /* SendMessageViewController-iPad.xib */,
 			);
 			name = "Resources-iPad";
 			sourceTree = "<group>";
@@ -931,6 +934,7 @@
 				FA04878D11640DA600290D2D /* ImageViewController.xib in Resources */,
 				FA04878F11640DA800290D2D /* SendMessageViewController.xib in Resources */,
 				FA0489DA116429DD00290D2D /* IconLarge.png in Resources */,
+				FA907CA81166D8D800306828 /* SendMessageViewController-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
