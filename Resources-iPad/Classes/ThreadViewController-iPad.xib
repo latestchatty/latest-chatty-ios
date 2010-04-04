@@ -2,17 +2,17 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">528</int>
-		<string key="IBDocument.SystemVersion">10C2234</string>
+		<string key="IBDocument.SystemVersion">10D573</string>
 		<string key="IBDocument.InterfaceBuilderVersion">762</string>
-		<string key="IBDocument.AppKitVersion">1038.25</string>
-		<string key="IBDocument.HIToolboxVersion">458.00</string>
+		<string key="IBDocument.AppKitVersion">1038.29</string>
+		<string key="IBDocument.HIToolboxVersion">460.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">87</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="54"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -69,15 +69,31 @@
 						<float key="IBUISectionHeaderHeight">27</float>
 						<float key="IBUISectionFooterHeight">27</float>
 					</object>
-					<object class="IBUIWebView" id="169343361">
+					<object class="IBUIView" id="86364179">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">306</int>
-						<string key="NSFrameSize">{768, 452}</string>
+						<int key="NSvFlags">292</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIWebView" id="169343361">
+								<reference key="NSNextResponder" ref="86364179"/>
+								<int key="NSvFlags">306</int>
+								<string key="NSFrameSize">{768, 456}</string>
+								<reference key="NSSuperview" ref="86364179"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xMDE5NjA3ODQzIDAuMTAxOTYwNzg0MyAwLjEwMTk2MDc4NDMAA</bytes>
+								</object>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+							</object>
+						</object>
+						<string key="NSFrameSize">{768, 456}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC4yAA</bytes>
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4wODIzNTI5NDExOCAwLjA4MjM1Mjk0MTE4IDAuMDgyMzUyOTQxMTgAA</bytes>
 						</object>
+						<bool key="IBUIAutoresizesSubviews">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
@@ -298,6 +314,14 @@
 					</object>
 					<int key="connectionID">53</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">postViewContainer</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="86364179"/>
+					</object>
+					<int key="connectionID">55</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -313,11 +337,11 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="169343361"/>
 							<reference ref="903573083"/>
 							<reference ref="496896691"/>
 							<reference ref="699756008"/>
 							<reference ref="214994013"/>
+							<reference ref="86364179"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -331,11 +355,6 @@
 						<int key="objectID">-2</int>
 						<reference key="object" ref="975951072"/>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">21</int>
-						<reference key="object" ref="169343361"/>
-						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
@@ -414,6 +433,20 @@
 						<reference key="object" ref="696156103"/>
 						<reference key="parent" ref="699756008"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">54</int>
+						<reference key="object" ref="86364179"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="169343361"/>
+						</object>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">21</int>
+						<reference key="object" ref="169343361"/>
+						<reference key="parent" ref="86364179"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -438,6 +471,7 @@
 					<string>45.IBPluginDependency</string>
 					<string>46.IBPluginDependency</string>
 					<string>47.IBPluginDependency</string>
+					<string>54.IBPluginDependency</string>
 					<string>9.IBEditorWindowLastContentRect</string>
 					<string>9.IBLastUsedUIStatusBarStylesToTargetRuntimesMap</string>
 					<string>9.IBPluginDependency</string>
@@ -446,7 +480,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ThreadViewController</string>
 					<string>UIResponder</string>
-					<string>{{722, 127}, {768, 1024}}</string>
+					<string>{{369, -110}, {783, 752}}</string>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">IBCocoaTouchFramework</string>
 						<integer value="2" key="NS.object.0"/>
@@ -454,6 +488,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GrippyBar</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -489,7 +524,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">53</int>
+			<int key="maxID">55</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -552,7 +587,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>next</string>
 							<string>previous</string>
-							<string>refresh</string>
+							<string>refresh:</string>
 							<string>tag</string>
 							<string>tappedReplyButton</string>
 						</object>
@@ -571,12 +606,14 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>grippyBar</string>
 							<string>postView</string>
+							<string>postViewContainer</string>
 							<string>toolbar</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>GrippyBar</string>
 							<string>UIWebView</string>
+							<string>UIView</string>
 							<string>UIToolbar</string>
 						</object>
 					</object>
@@ -837,6 +874,20 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UINavigationController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIPopoverController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UISplitViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

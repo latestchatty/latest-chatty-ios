@@ -26,6 +26,7 @@
 
     NSIndexPath *selectedIndexPath;
 
+	IBOutlet UIView *postViewContainer;
     IBOutlet UIWebView *postView;
     IBOutlet GrippyBar *grippyBar;
     NSUInteger grippyBarPosition;

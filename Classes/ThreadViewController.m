@@ -317,8 +317,16 @@
     return YES;
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+{
+	[self resetLayout];
+}
 
 #pragma mark Grippy Bar Methods
+- (void)resetLayoutAnimationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context
+{
+	[postView setFrame:postViewContainer.frame];
+}
 
 - (void)resetLayout {
     CGFloat usableHeight = self.view.frame.size.height - 24.0;
@@ -343,20 +351,38 @@
     }
     
     [UIView beginAnimations:@"ResizePostView" context:nil];
-    postView.frame = CGRectMake(postView.frame.origin.x,
-                                postView.frame.origin.y,
-                                postView.frame.size.width,
-                                floor(usableHeight * dividerLocation));
-    
-    grippyBar.frame = CGRectMake(grippyBar.frame.origin.x,
-                                 floor(usableHeight * dividerLocation) - 12,
-                                 grippyBar.frame.size.width,
-                                 grippyBar.frame.size.height);
-    
-    tableView.frame = CGRectMake(tableView.frame.origin.x,
-                                 floor(usableHeight * dividerLocation) + 24,
-                                 tableView.frame.size.width,
-                                 floor(usableHeight * (1.0 - dividerLocation)));
+			
+	CGRect subFrame = postViewContainer.frame;
+	double oldHeight = subFrame.size.height;
+	subFrame.size.height = floor(usableHeight * dividerLocation);
+	[postViewContainer setFrame:subFrame];
+	
+	// When resizing, if the new height is larger than the old height,
+	// resize the UIWebView immediately. Otherwise, resize it after
+	// the animation completes. UIWebView content is resized immediately
+	// when the size of the top level view changes instead of
+	// animating smoothly.
+
+	if(oldHeight < subFrame.size.height) {
+		subFrame = postView.frame;
+		subFrame.size.height = floor(usableHeight * dividerLocation);
+		[postView setFrame:subFrame];
+	}
+	else {
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDidStopSelector:@selector(resetLayoutAnimationDidStop:finished:context:)];
+	}
+
+	
+	subFrame = grippyBar.frame;
+	subFrame.origin.y = floor(usableHeight * dividerLocation) - 12;
+	[grippyBar setFrame:subFrame];
+	
+	subFrame = tableView.frame;
+	subFrame.origin.y = floor(usableHeight * dividerLocation) + 24;
+	subFrame.size.height = floor(usableHeight * (1.0 - dividerLocation));
+	[tableView setFrame:subFrame];
+	
     [UIView commitAnimations];
 }
 
