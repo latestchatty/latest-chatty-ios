@@ -45,7 +45,7 @@
 - (id)initWithThreadId:(NSUInteger)aThreadId;
 
 - (IBAction)tappedReplyButton;
-- (IBAction)refresh;
+- (IBAction)refresh:(id)sender;
 - (IBAction)tag;
 - (IBAction)previous;
 - (IBAction)next;
