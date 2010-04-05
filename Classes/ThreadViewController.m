@@ -317,15 +317,17 @@
     return YES;
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
-{
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
 	[self resetLayout];
 }
 
 #pragma mark Grippy Bar Methods
-- (void)resetLayoutAnimationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context
-{
-	[postView setFrame:postViewContainer.frame];
+- (void)resetLayoutAnimationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
+	CGRect postViewContainerFrame = postViewContainer.frame;
+	[postView setFrame:postViewContainerFrame];
+	
+	// Reload the post to fit the new view sizes.
+	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
 - (void)resetLayout {
@@ -355,6 +357,7 @@
 	CGRect subFrame = postViewContainer.frame;
 	double oldHeight = subFrame.size.height;
 	subFrame.size.height = floor(usableHeight * dividerLocation);
+	subFrame.size.width = tableView.frame.size.width;
 	[postViewContainer setFrame:subFrame];
 	
 	// When resizing, if the new height is larger than the old height,
@@ -366,13 +369,13 @@
 	if(oldHeight < subFrame.size.height) {
 		subFrame = postView.frame;
 		subFrame.size.height = floor(usableHeight * dividerLocation);
+		subFrame.size.width = postViewContainer.frame.size.width;
 		[postView setFrame:subFrame];
 	}
 	else {
 		[UIView setAnimationDelegate:self];
 		[UIView setAnimationDidStopSelector:@selector(resetLayoutAnimationDidStop:finished:context:)];
 	}
-
 	
 	subFrame = grippyBar.frame;
 	subFrame.origin.y = floor(usableHeight * dividerLocation) - 12;
@@ -384,6 +387,9 @@
 	[tableView setFrame:subFrame];
 	
     [UIView commitAnimations];
+	
+	// Reload the post to fit the new view sizes.
+	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
 - (void)grippyBarDidSwipeUp {
