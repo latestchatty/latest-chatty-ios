@@ -76,7 +76,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIWebView" id="169343361">
 								<reference key="NSNextResponder" ref="119595432"/>
-								<int key="NSvFlags">306</int>
+								<int key="NSvFlags">-2147483342</int>
 								<string key="NSFrameSize">{320, 196}</string>
 								<reference key="NSSuperview" ref="119595432"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -284,7 +284,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ThreadViewController</string>
 					<string>UIResponder</string>
-					<string>{{1240, 346}, {0, -22}}</string>
+					<string>{{960, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GrippyBar</string>

@@ -119,6 +119,9 @@
                                       message:@"You current filters do not allow to view this thead.    Check the filters in your settings and try again."];
         [self.navigationController popViewControllerAnimated:YES];
     }
+	
+	if(postView.hidden)
+		postView.hidden = NO;
 }
 
 - (void)viewDidLoad {
@@ -321,13 +324,16 @@
 	[self resetLayout];
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	// Reload the post to fit the new view sizes.
+	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
+}
+
 #pragma mark Grippy Bar Methods
 - (void)resetLayoutAnimationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
 	CGRect postViewContainerFrame = postViewContainer.frame;
 	[postView setFrame:postViewContainerFrame];
-	
-	// Reload the post to fit the new view sizes.
-	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
 - (void)resetLayout {
@@ -387,9 +393,6 @@
 	[tableView setFrame:subFrame];
 	
     [UIView commitAnimations];
-	
-	// Reload the post to fit the new view sizes.
-	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
 - (void)grippyBarDidSwipeUp {
