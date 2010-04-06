@@ -11,6 +11,8 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2704C032116BEEDC0075E416 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 2704C030116BEEDC0075E416 /* Default-Landscape.png */; };
+		2704C033116BEEDC0075E416 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 2704C031116BEEDC0075E416 /* Default-Portrait.png */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		2899E5600DE3E45000AC0155 /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* StoriesViewController.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
@@ -178,6 +180,8 @@
 		1D3623250D0F684500981E51 /* LatestChatty2AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatestChatty2AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* LatestChatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2704C030116BEEDC0075E416 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Assets/Default-Landscape.png"; sourceTree = "<group>"; };
+		2704C031116BEEDC0075E416 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "Assets/Default-Portrait.png"; sourceTree = "<group>"; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E55F0DE3E45000AC0155 /* StoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = StoriesViewController.xib; path = ../StoriesViewController.xib; sourceTree = "<group>"; };
 		28A0AAE50D9B0CCF005BE974 /* LatestChatty2_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatestChatty2_Prefix.pch; sourceTree = "<group>"; };
@@ -680,6 +684,8 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				2704C030116BEEDC0075E416 /* Default-Landscape.png */,
+				2704C031116BEEDC0075E416 /* Default-Portrait.png */,
 				FAF0781A10087B530029D2AD /* push.caf */,
 				FADDB51E0F814B5200DF3650 /* Default.png */,
 				FADDB51F0F814B5200DF3650 /* Icon.png */,
@@ -935,6 +941,8 @@
 				FA04878F11640DA800290D2D /* SendMessageViewController.xib in Resources */,
 				FA0489DA116429DD00290D2D /* IconLarge.png in Resources */,
 				FA907CA81166D8D800306828 /* SendMessageViewController-iPad.xib in Resources */,
+				2704C032116BEEDC0075E416 /* Default-Landscape.png in Resources */,
+				2704C033116BEEDC0075E416 /* Default-Portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
