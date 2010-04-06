@@ -114,7 +114,7 @@
         [self tableView:tableView didSelectRowAtIndexPath:indexPath];
         
     } else {
-        [UIAlertView showSimpleAlertWithTitle:@"Check you filters"
+        [UIAlertView showSimpleAlertWithTitle:@"Check your filters"
                                       message:@"You current filters do not allow to view this thead.    Check the filters in your settings and try again."];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -165,6 +165,16 @@
     
     ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:post] autorelease];
     [self.navigationController pushViewController:viewController animated:YES];    
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
+	[self resetLayout];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	// Reload the post to fit the new view sizes.
+	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
 #pragma mark -
@@ -322,20 +332,12 @@
     return YES;
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
-	[self resetLayout];
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-	// Reload the post to fit the new view sizes.
-	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
-}
-
 #pragma mark Grippy Bar Methods
 - (void)resetLayoutAnimationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
 	CGRect postViewContainerFrame = postViewContainer.frame;
 	[postView setFrame:postViewContainerFrame];
+	// Reload the post to fit the new view sizes.
+	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
 - (void)resetLayout {
