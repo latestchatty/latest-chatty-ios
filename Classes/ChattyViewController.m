@@ -108,6 +108,7 @@
     ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:nil] autorelease];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+		tableView.hidden = YES;		
         viewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
         [[LatestChatty2AppDelegate delegate] dismissPopover];

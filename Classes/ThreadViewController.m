@@ -102,7 +102,6 @@
         return;
     }
     
-    
     // Select and display the targeted post
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];    
     if (indexPath == nil || indexPath.row >= [[rootPost repliesArray] count]) {
@@ -121,7 +120,10 @@
     }
 	
 	if(postView.hidden)
+	{
 		postView.hidden = NO;
+		[self resetLayout];
+	}
 }
 
 - (void)viewDidLoad {
