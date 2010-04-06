@@ -296,15 +296,29 @@
     // Insert youtube widgets
     if ([body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"]) {
         @try {
-            body = [body stringByReplacingOccurrencesOfRegex: @"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
-                                                  withString: @"<div class=\"youtube-widget\">\
-                                                                    <object width=\"140\" height=\"105\">\
-                                                                        <param name=\"movie\" value=\"$1\"></param>\
-                                                                        <param name=\"wmode\" value=\"transparent\"></param>\
-                                                                        <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"140\" height=\"105\"></embed>\
-                                                                    </object>\
-                                                                    <a href=\"$1\">$1</a>\
-                                                                </div>"];
+			if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+				body = [body stringByReplacingOccurrencesOfRegex: @"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
+													  withString: @"<div class=\"youtube-widget\">\
+						<object width=\"640\" height=\"480\">\
+						<param name=\"movie\" value=\"$1\"></param>\
+						<param name=\"wmode\" value=\"transparent\"></param>\
+						<embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"640\" height=\"480\"></embed>\
+						</object>\
+						<a href=\"$1\">$1</a>\
+						</div>"];
+				
+			} else {				
+				body = [body stringByReplacingOccurrencesOfRegex: @"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
+													  withString: @"<div class=\"youtube-widget\">\
+						<object width=\"140\" height=\"105\">\
+						<param name=\"movie\" value=\"$1\"></param>\
+						<param name=\"wmode\" value=\"transparent\"></param>\
+						<embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"140\" height=\"105\"></embed>\
+						</object>\
+						<a href=\"$1\">$1</a>\
+						</div>"];
+				
+			}
         } @catch (NSException *exception) {
             NSLog(@"Error inserting youtube widgets. %@", exception);
         }
