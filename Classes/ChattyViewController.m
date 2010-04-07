@@ -84,10 +84,10 @@
 	return dictionary;
 }
 
-
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	
+	[LatestChatty2AppDelegate delegate].contentNavigationController.delegate = self;
 	
 	if (threads == nil || [threads count] == 0) {
 		[self refresh:self];
@@ -102,6 +102,11 @@
 	composeButton.enabled = (self.storyId > 0);
     if ([self respondsToSelector:@selector(splitViewController)]) self.splitViewController.navigationItem.rightBarButtonItem = composeButton;
 	self.navigationItem.rightBarButtonItem = composeButton;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+	if(viewController == self.threadController)
+		[threadController resetLayout];
 }
 
 - (IBAction)tappedComposeButton {
