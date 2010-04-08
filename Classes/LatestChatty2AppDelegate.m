@@ -20,21 +20,8 @@
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
-    
-    // Register for Push
-    if ([defaults boolForKey:@"push.messages"]) {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-    }
-    
-    // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
-    if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
-        [defaults removeObjectForKey:@"savedState"];
-    }
-    
+- (void)setupInterfaceForPhoneWithOptions:(NSDictionary *)launchOptions
+{    
     if (![self reloadSavedState]) {
         // Add the root view controller
         RootViewController *viewController = [RootViewController controllerWithNib];
@@ -52,26 +39,61 @@
     
 	// Configure and show the window
     window.backgroundColor = [UIColor blackColor];
+	
+	[window addSubview:navigationController.view];
+}
+
+- (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions
+{
+	//    if ([self isPadDevice]) {
+	//        self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
+	//        contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	//        
+	//        self.splitController = [[[UISplitViewController alloc] init] autorelease];
+	//        splitController.delegate = self;
+	//        splitController.viewControllers = [NSArray arrayWithObjects:navigationController, contentNavigationController, nil];
+	//        [splitController viewWillAppear:NO];
+	//        [window addSubview:splitController.view];
+	//        [splitController.view sizeToFit];
+	//        [splitController viewDidAppear:NO];
+	//        
+	//        UIBarButtonItem *barButton = contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
+	//        if ([barButton.title isEqualToString:@"Navigation"]) {
+	//            [self showPopover];
+	//        }
+	//    } else {
+	//        [window addSubview:navigationController.view];
+	//    }
+	 
+	[navigationController pushViewController:[NoContentController controllerWithNib] animated:NO];
+	
+	[window addSubview:navigationController.view];	
+	UIBarButtonItem *barButton = navigationController.topViewController.navigationItem.leftBarButtonItem;
+	if ([barButton.title isEqualToString:@"Navigation"])
+		[self showPopover];	
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if ([self isPadDevice]) {
-        self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
-        contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-        
-        self.splitController = [[[UISplitViewController alloc] init] autorelease];
-        splitController.delegate = self;
-        splitController.viewControllers = [NSArray arrayWithObjects:navigationController, contentNavigationController, nil];
-        [splitController viewWillAppear:NO];
-        [window addSubview:splitController.view];
-        [splitController.view sizeToFit];
-        [splitController viewDidAppear:NO];
-        
-        UIBarButtonItem *barButton = contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
-        if ([barButton.title isEqualToString:@"Navigation"]) {
-            [self showPopover];
-        }
-    } else {
-        [window addSubview:navigationController.view];
+    NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
+    
+    // Register for Push
+    if ([defaults boolForKey:@"push.messages"]) {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
     }
+    
+    // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
+    if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
+        [defaults removeObjectForKey:@"savedState"];
+    }    
+	
+	if ([self isPadDevice])
+		[self setupInterfaceForPadWithOptions:launchOptions];
+	else
+		[self setupInterfaceForPhoneWithOptions:launchOptions];
+	
 	[window makeKeyAndVisible];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     
@@ -94,7 +116,7 @@
     
     // Check for mod status
     [Mod performSelectorInBackground:@selector(setModeratorStatus) withObject:nil];
-    
+	
     return YES;
 }
 

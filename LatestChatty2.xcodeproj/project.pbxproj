@@ -1063,7 +1063,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeffrey Eli (T6CN667HSF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
 					"$(inherited)",
@@ -1081,7 +1081,7 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "13F429C7-E951-4C20-8AE3-8CC08A6A0A29";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1091,7 +1091,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Wayne";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeffrey Eli (T6CN667HSF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
 					"$(inherited)",
@@ -1108,7 +1108,7 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AA72E614-BDE2-4784-8BE4-0EF03C00E02C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "13F429C7-E951-4C20-8AE3-8CC08A6A0A29";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1119,7 +1119,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeffrey Eli (T6CN667HSF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
 					"$(inherited)",
@@ -1136,7 +1136,7 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "13F429C7-E951-4C20-8AE3-8CC08A6A0A29";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
