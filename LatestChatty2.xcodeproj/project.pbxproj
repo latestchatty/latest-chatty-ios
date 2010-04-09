@@ -36,6 +36,10 @@
 		599FF0F910D5DDC1004476B8 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F110D5DDC1004476B8 /* SBJsonBase.m */; };
 		599FF0FA10D5DDC1004476B8 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F310D5DDC1004476B8 /* SBJsonParser.m */; };
 		599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */; };
+		A29EDD94116EAEBD0098B5F4 /* MenuPullTab.png in Resources */ = {isa = PBXBuildFile; fileRef = A29EDD93116EAEBD0098B5F4 /* MenuPullTab.png */; };
+		A29EDD98116EAEFF0098B5F4 /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A29EDD96116EAEFF0098B5F4 /* SlideOutViewController.m */; };
+		A29EDD99116EAEFF0098B5F4 /* SlideOutViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A29EDD97116EAEFF0098B5F4 /* SlideOutViewController-iPad.xib */; };
+		A29EDDE7116EBB990098B5F4 /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A29EDDE6116EBB990098B5F4 /* MenuBorder.png */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA04877A11640D7000290D2D /* ThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */; };
@@ -229,6 +233,11 @@
 		61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageViewController.m; sourceTree = "<group>"; };
 		61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A29EDD93116EAEBD0098B5F4 /* MenuPullTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuPullTab.png; path = Assets/MenuPullTab.png; sourceTree = "<group>"; };
+		A29EDD95116EAEFF0098B5F4 /* SlideOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutViewController.h; sourceTree = "<group>"; };
+		A29EDD96116EAEFF0098B5F4 /* SlideOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutViewController.m; sourceTree = "<group>"; };
+		A29EDD97116EAEFF0098B5F4 /* SlideOutViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SlideOutViewController-iPad.xib"; path = "Classes/SlideOutViewController-iPad.xib"; sourceTree = "<group>"; };
+		A29EDDE6116EBB990098B5F4 /* MenuBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuBorder.png; path = Assets/MenuBorder.png; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
@@ -584,8 +593,8 @@
 				FA5DA7750F7284CB00F05ED9 /* ModelListViewController.h */,
 				FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */,
 				FA87BD660F7AE96B0044898C /* SettingsViewController.h */,
-				FA87BD670F7AE96B0044898C /* SettingsViewController.m */,
 				FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */,
+				FA87BD670F7AE96B0044898C /* SettingsViewController.m */,
 				28C286DF0D94DF7D0034E888 /* StoriesViewController.h */,
 				28C286E00D94DF7D0034E888 /* StoriesViewController.m */,
 				2899E55F0DE3E45000AC0155 /* StoriesViewController.xib */,
@@ -625,6 +634,8 @@
 				FA2690BC115AEDC800D153C0 /* NoContentController.h */,
 				FA2690BD115AEDC800D153C0 /* NoContentController.m */,
 				FA2690BE115AEDC800D153C0 /* NoContentController-iPad.xib */,
+				A29EDD95116EAEFF0098B5F4 /* SlideOutViewController.h */,
+				A29EDD96116EAEFF0098B5F4 /* SlideOutViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -684,6 +695,8 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				A29EDDE6116EBB990098B5F4 /* MenuBorder.png */,
+				A29EDD93116EAEBD0098B5F4 /* MenuPullTab.png */,
 				2704C030116BEEDC0075E416 /* Default-Landscape.png */,
 				2704C031116BEEDC0075E416 /* Default-Portrait.png */,
 				FAF0781A10087B530029D2AD /* push.caf */,
@@ -733,6 +746,7 @@
 		FAA5BA701110DE7B0007C34C /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				A29EDD97116EAEFF0098B5F4 /* SlideOutViewController-iPad.xib */,
 				FAA5BA721110DE7F0007C34C /* StoriesViewController-iPad.xib */,
 				FAA5BA731110DE7F0007C34C /* StoryCell-iPad.xib */,
 				FAA5BA741110DE7F0007C34C /* ChattyViewController-iPad.xib */,
@@ -943,6 +957,9 @@
 				FA907CA81166D8D800306828 /* SendMessageViewController-iPad.xib in Resources */,
 				2704C032116BEEDC0075E416 /* Default-Landscape.png in Resources */,
 				2704C033116BEEDC0075E416 /* Default-Portrait.png in Resources */,
+				A29EDD94116EAEBD0098B5F4 /* MenuPullTab.png in Resources */,
+				A29EDD99116EAEFF0098B5F4 /* SlideOutViewController-iPad.xib in Resources */,
+				A29EDDE7116EBB990098B5F4 /* MenuBorder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1025,6 +1042,7 @@
 				FAAFAE5F1161DAA5009A6B4C /* UIWebView+HelperKit.m in Sources */,
 				FA04878C11640DA600290D2D /* ImageViewController.m in Sources */,
 				FA04878E11640DA800290D2D /* SendMessageViewController.m in Sources */,
+				A29EDD98116EAEFF0098B5F4 /* SlideOutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
