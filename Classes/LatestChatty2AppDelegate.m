@@ -14,7 +14,7 @@
 @implementation LatestChatty2AppDelegate
 
 @synthesize window;
-@synthesize navigationController, splitController, contentNavigationController, popoverController, navPopoverButton;
+@synthesize navigationController, splitController, contentNavigationController, popoverController, navPopoverButton, slideOutViewController;
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -40,37 +40,20 @@
 	// Configure and show the window
     window.backgroundColor = [UIColor blackColor];
 	
-	[window addSubview:navigationController.view];
+	[window addSubview:navigationController.view];	
 }
 
 - (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions
 {
-	//    if ([self isPadDevice]) {
-	//        self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
-	//        contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	//        
-	//        self.splitController = [[[UISplitViewController alloc] init] autorelease];
-	//        splitController.delegate = self;
-	//        splitController.viewControllers = [NSArray arrayWithObjects:navigationController, contentNavigationController, nil];
-	//        [splitController viewWillAppear:NO];
-	//        [window addSubview:splitController.view];
-	//        [splitController.view sizeToFit];
-	//        [splitController viewDidAppear:NO];
-	//        
-	//        UIBarButtonItem *barButton = contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
-	//        if ([barButton.title isEqualToString:@"Navigation"]) {
-	//            [self showPopover];
-	//        }
-	//    } else {
-	//        [window addSubview:navigationController.view];
-	//    }
-	 
-	[navigationController pushViewController:[NoContentController controllerWithNib] animated:NO];
+	self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
+	contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+		
+	[navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
 	
-	[window addSubview:navigationController.view];	
-	UIBarButtonItem *barButton = navigationController.topViewController.navigationItem.leftBarButtonItem;
-	if ([barButton.title isEqualToString:@"Navigation"])
-		[self showPopover];	
+	self.slideOutViewController =  [SlideOutViewController controllerWithNib];
+	[slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
+	[slideOutViewController.view setFrame:CGRectMake(0,	20,	768, 1004)];
+	[window addSubview:slideOutViewController.view];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -87,16 +70,17 @@
     // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
     if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
         [defaults removeObjectForKey:@"savedState"];
-    }    
+    }    	
 	
 	if ([self isPadDevice])
 		[self setupInterfaceForPadWithOptions:launchOptions];
 	else
 		[self setupInterfaceForPhoneWithOptions:launchOptions];
+
+  	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];	
 	
 	[window makeKeyAndVisible];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    
+
     // Settings defaults
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                      @"",                           @"username",

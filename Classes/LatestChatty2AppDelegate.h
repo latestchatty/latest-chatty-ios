@@ -17,6 +17,7 @@
 #import "BrowserViewController.h"
 #import "ImageViewController.h"
 #import "MessagesViewController.h"
+#import "SlideOutViewController.h"
 
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate> {
     UIWindow *window;
@@ -27,12 +28,14 @@
     UISplitViewController *splitController;
     UINavigationController *contentNavigationController;
     UIPopoverController *popoverController;
+	SlideOutViewController *slideOutViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *navPopoverButton;
+@property (nonatomic, retain) IBOutlet SlideOutViewController *slideOutViewController;
 @property (nonatomic, retain) IBOutlet UISplitViewController *splitController;
 @property (nonatomic, retain) IBOutlet UINavigationController *contentNavigationController;
 @property (nonatomic, retain) UIPopoverController *popoverController;

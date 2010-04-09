@@ -172,7 +172,7 @@
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
+{	
 	// Reload the post to fit the new view sizes.
 	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
@@ -380,6 +380,7 @@
 			
 	CGRect subFrame = postViewContainer.frame;
 	double oldHeight = subFrame.size.height;
+	double oldWidth = subFrame.size.width;
 	subFrame.size.height = floor(usableHeight * dividerLocation);
 	subFrame.size.width = tableView.frame.size.width;
 	[postViewContainer setFrame:subFrame];
@@ -390,7 +391,7 @@
 	// when the size of the top level view changes instead of
 	// animating smoothly.
 
-	if(oldHeight < subFrame.size.height) {
+	if(oldHeight < subFrame.size.height || oldWidth < subFrame.size.width) {
 		subFrame = postView.frame;
 		subFrame.size.height = floor(usableHeight * dividerLocation);
 		subFrame.size.width = postViewContainer.frame.size.width;
