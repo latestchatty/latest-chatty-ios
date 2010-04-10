@@ -20,10 +20,13 @@
 #import "ChattyViewController.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
-@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate> {
+#define DELEGATES UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate
 #else
-@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate> {
+#define DELEGATES UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate
 #endif
+
+@interface ThreadViewController : ModelListViewController <DELEGATES> {
+
     NSUInteger storyId;
     NSUInteger threadId;
     Post *rootPost;
@@ -33,10 +36,12 @@
 	IBOutlet UIView *postViewContainer;
     IBOutlet UIWebView *postView;
     IBOutlet GrippyBar *grippyBar;
+	IBOutlet UIBarButtonItem *orderByPostDateButton;
     NSUInteger grippyBarPosition;
 
     NSUInteger lastReplyId;
     BOOL highlightMyPost;
+	BOOL orderByPostDate;
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
     UIPopoverController *popoverController;
@@ -56,7 +61,7 @@
 - (IBAction)tag;
 - (IBAction)previous;
 - (IBAction)next;
-
+- (IBAction)toggleOrderByPostDate;
 
 - (NSString *)postBodyWithYoutubeWidgets:(NSString *)body;
 

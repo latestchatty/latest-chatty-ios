@@ -151,8 +151,8 @@
     
     if (selectedIndexPath) {
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
-    }
-    
+    }    
+	
     [self resetLayout];
 }
 
@@ -437,11 +437,55 @@
                          otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", nil] autorelease] showInView:self.view];    
 }
 
+- (IBAction)toggleOrderByPostDate {	
+	orderByPostDate = !orderByPostDate;
+	if([[LatestChatty2AppDelegate delegate] isPadDevice])
+		orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
+}
+
+
+- (int)nextRowByTimeLevel:(int)currentRow {
+	Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
+	
+	for(int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
+	{
+		Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];		
+		if(post.timeLevel == currentPost.timeLevel - 1)
+			return postIndex;		
+	}
+	
+	return 0;
+}
+
+
+- (int)previousRowByTimeLevel:(int)currentRow {
+	Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
+	int minTimeLevel = -1, minTimeLevelPostIndex = 0;
+	
+	for(int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
+	{
+		Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];		
+		if(post.timeLevel == currentPost.timeLevel + 1)
+			return postIndex;
+		
+		if(post.timeLevel < minTimeLevel || minTimeLevel == -1)
+		{
+			minTimeLevel = post.timeLevel;
+			minTimeLevelPostIndex = postIndex;
+		}
+	}
+	
+	return minTimeLevelPostIndex;
+}
+
+
 - (IBAction)previous {
     NSIndexPath *oldIndexPath = selectedIndexPath;
 	
     NSIndexPath *newIndexPath;
-    if (oldIndexPath.row == 0)
+	if (orderByPostDate)
+		newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:oldIndexPath.row] inSection:0];
+    else if (oldIndexPath.row == 0)
 		newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
     else
         newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
@@ -454,14 +498,21 @@
     NSIndexPath *oldIndexPath = selectedIndexPath;
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
-    if (oldIndexPath.row == [[rootPost repliesArray] count] - 1) 
+	
+	if (orderByPostDate)
+		newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:oldIndexPath.row] inSection:0];
+	else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1) 
 		newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    
+	
     [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
 }
 
-- (void)grippyBarDidTapRightButton; {
+- (void)grippyBarDidTapOrderByPostDateButton {
+	[self toggleOrderByPostDate];
+}
+
+- (void)grippyBarDidTapRightButton {
     [self next];
 }
 

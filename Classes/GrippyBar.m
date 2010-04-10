@@ -29,7 +29,15 @@
         [self addSubview:grippy];
         
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            UIButton *previousButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 100, 0, 50, 48)] autorelease];
+            orderByPostDateButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 120, 0, 30, 48)] autorelease];
+            [orderByPostDateButton addTarget:self action:@selector(tappedOrderByPostDateButton) forControlEvents:UIControlEventTouchUpInside];
+            [orderByPostDateButton setImage:[UIImage imageNamed:@"chrono.png"] forState:UIControlStateNormal];
+            orderByPostDateButton.showsTouchWhenHighlighted = YES;
+            orderByPostDateButton.alpha = 0.4;
+            orderByPostDateButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+            [self addSubview:orderByPostDateButton];
+			
+			UIButton *previousButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 75, 0, 30, 48)] autorelease];
             [previousButton addTarget:self action:@selector(tappedLeftButton) forControlEvents:UIControlEventTouchUpInside];
             [previousButton setImage:[UIImage imageNamed:@"left.png"] forState:UIControlStateNormal];
             previousButton.showsTouchWhenHighlighted = YES;
@@ -37,7 +45,7 @@
             previousButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
             [self addSubview:previousButton];
             
-            UIButton *nextButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 50, 0, 50, 48)] autorelease];
+            UIButton *nextButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 30, 0, 30, 48)] autorelease];
             [nextButton addTarget:self action:@selector(tappedRightButton) forControlEvents:UIControlEventTouchUpInside];
             [nextButton setImage:[UIImage imageNamed:@"right.png"] forState:UIControlStateNormal];
             nextButton.showsTouchWhenHighlighted = YES;
@@ -118,6 +126,12 @@
 
 - (void)tappedModButton {
 	[delegate grippyBarDidTapModButton];
+}
+
+- (void)tappedOrderByPostDateButton {
+	isOrderByPostDate = !isOrderByPostDate;
+	orderByPostDateButton.alpha = isOrderByPostDate ? 0.8 : 0.4;
+	[delegate grippyBarDidTapOrderByPostDateButton];
 }
 
 - (void)dealloc {

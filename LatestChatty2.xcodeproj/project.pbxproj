@@ -40,6 +40,7 @@
 		A254B844116FFE9A001534FF /* MenuPullTab.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B842116FFE9A001534FF /* MenuPullTab.png */; };
 		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		A254B849116FFEC5001534FF /* SlideOutViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */; };
+		A27EA5CE1170F0520072EB59 /* chrono.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA5CD1170F0520072EB59 /* chrono.png */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA04877A11640D7000290D2D /* ThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */; };
@@ -238,6 +239,7 @@
 		A254B845116FFEB0001534FF /* SlideOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutViewController.h; sourceTree = "<group>"; };
 		A254B846116FFEB0001534FF /* SlideOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutViewController.m; sourceTree = "<group>"; };
 		A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SlideOutViewController-iPad.xib"; path = "Classes/SlideOutViewController-iPad.xib"; sourceTree = "<group>"; };
+		A27EA5CD1170F0520072EB59 /* chrono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chrono.png; path = Assets/chrono.png; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
@@ -695,6 +697,7 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				A27EA5CD1170F0520072EB59 /* chrono.png */,
 				A254B841116FFE9A001534FF /* MenuBorder.png */,
 				A254B842116FFE9A001534FF /* MenuPullTab.png */,
 				2704C030116BEEDC0075E416 /* Default-Landscape.png */,
@@ -960,6 +963,7 @@
 				A254B843116FFE9A001534FF /* MenuBorder.png in Resources */,
 				A254B844116FFE9A001534FF /* MenuPullTab.png in Resources */,
 				A254B849116FFEC5001534FF /* SlideOutViewController-iPad.xib in Resources */,
+				A27EA5CE1170F0520072EB59 /* chrono.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

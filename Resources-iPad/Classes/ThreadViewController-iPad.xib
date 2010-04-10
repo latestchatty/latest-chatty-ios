@@ -2,17 +2,17 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">528</int>
-		<string key="IBDocument.SystemVersion">10D573</string>
+		<string key="IBDocument.SystemVersion">10C540</string>
 		<string key="IBDocument.InterfaceBuilderVersion">762</string>
-		<string key="IBDocument.AppKitVersion">1038.29</string>
-		<string key="IBDocument.HIToolboxVersion">460.00</string>
+		<string key="IBDocument.AppKitVersion">1038.25</string>
+		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">87</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="54"/>
+			<integer value="38"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -174,7 +174,7 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<reference key="IBUIToolbar" ref="699756008"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="160131726">
+							<object class="IBUIBarButtonItem" id="197001591">
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<float key="IBUIWidth">42</float>
 								<reference key="IBUIToolbar" ref="699756008"/>
@@ -186,6 +186,21 @@
 									<string key="NSResourceName">right.png</string>
 								</object>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<reference key="IBUIToolbar" ref="699756008"/>
+							</object>
+							<object class="IBUIBarButtonItem" id="160131726">
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<float key="IBUIWidth">42</float>
+								<reference key="IBUIToolbar" ref="699756008"/>
+								<int key="IBUISystemItemIdentifier">6</int>
+							</object>
+							<object class="IBUIBarButtonItem" id="262659935">
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">chrono.png</string>
+								</object>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="699756008"/>
 							</object>
 						</object>
@@ -322,6 +337,22 @@
 					</object>
 					<int key="connectionID">55</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">orderByPostDateButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="262659935"/>
+					</object>
+					<int key="connectionID">59</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">toggleOrderByPostDate</string>
+						<reference key="source" ref="262659935"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -392,9 +423,11 @@
 							<reference ref="186962573"/>
 							<reference ref="637805415"/>
 							<reference ref="529339572"/>
+							<reference ref="262659935"/>
 							<reference ref="243486225"/>
-							<reference ref="160131726"/>
+							<reference ref="197001591"/>
 							<reference ref="696156103"/>
+							<reference ref="160131726"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -447,6 +480,16 @@
 						<reference key="object" ref="169343361"/>
 						<reference key="parent" ref="86364179"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">56</int>
+						<reference key="object" ref="262659935"/>
+						<reference key="parent" ref="699756008"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">57</int>
+						<reference key="object" ref="197001591"/>
+						<reference key="parent" ref="699756008"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -472,6 +515,8 @@
 					<string>46.IBPluginDependency</string>
 					<string>47.IBPluginDependency</string>
 					<string>54.IBPluginDependency</string>
+					<string>56.IBPluginDependency</string>
+					<string>57.IBPluginDependency</string>
 					<string>9.IBEditorWindowLastContentRect</string>
 					<string>9.IBLastUsedUIStatusBarStylesToTargetRuntimesMap</string>
 					<string>9.IBPluginDependency</string>
@@ -480,7 +525,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ThreadViewController</string>
 					<string>UIResponder</string>
-					<string>{{369, 4}, {783, 752}}</string>
+					<string>{{369, 80}, {768, 1024}}</string>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">IBCocoaTouchFramework</string>
 						<integer value="2" key="NS.object.0"/>
@@ -488,6 +533,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GrippyBar</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -524,7 +571,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">55</int>
+			<int key="maxID">60</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -590,9 +637,11 @@
 							<string>refresh:</string>
 							<string>tag</string>
 							<string>tappedReplyButton</string>
+							<string>toggleOrderByPostDate</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -605,6 +654,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>grippyBar</string>
+							<string>orderByPostDateButton</string>
 							<string>postView</string>
 							<string>postViewContainer</string>
 							<string>toolbar</string>
@@ -612,6 +662,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>GrippyBar</string>
+							<string>UIBarButtonItem</string>
 							<string>UIWebView</string>
 							<string>UIView</string>
 							<string>UIToolbar</string>
@@ -937,12 +988,14 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>TagIcon.png</string>
+				<string>chrono.png</string>
 				<string>left.png</string>
 				<string>right.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{20, 24}</string>
+				<string>{24, 24}</string>
 				<string>{11, 21}</string>
 				<string>{11, 21}</string>
 			</object>

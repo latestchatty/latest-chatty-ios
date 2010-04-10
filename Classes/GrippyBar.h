@@ -17,15 +17,18 @@
 - (void)grippyBarDidTapRefreshButton;
 - (void)grippyBarDidTapTagButton;
 - (void)grippyBarDidTapModButton;
+- (void)grippyBarDidTapOrderByPostDateButton;
+
 @end
 
 
 @interface GrippyBar : UIView {
   
   BOOL isDragging;
+  BOOL isOrderByPostDate;
   CGPoint initialTouchPoint;
   IBOutlet id<GrippyBarDelegate> delegate;
-  
+  UIButton *orderByPostDateButton;
 }
 
 - (void)tappedLeftButton;
@@ -33,5 +36,6 @@
 - (void)tappedRefreshButton;
 - (void)tappedTagButton;
 - (void)tappedModButton;
+- (void)tappedOrderByPostDateButton;
 
 @end
