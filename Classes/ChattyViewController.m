@@ -18,11 +18,11 @@
 @synthesize storyId;
 @synthesize threads;
 
-+ (UIViewController*)chattyControllerWithLatest {
++ (ChattyViewController*)chattyControllerWithLatest {
     return [self chattyControllerWithStoryId:0];
 }
 
-+ (UIViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId {//
++ (ChattyViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId {//
 //    LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
 //    if ([appDelegate isPadDevice]) {
 //        ChattyViewController *chattyController = [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
@@ -100,7 +100,9 @@
                                                                   target:self
                                                                   action:@selector(tappedComposeButton)];
 	composeButton.enabled = (self.storyId > 0);
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
     if ([self respondsToSelector:@selector(splitViewController)]) self.splitViewController.navigationItem.rightBarButtonItem = composeButton;
+#endif
 	self.navigationItem.rightBarButtonItem = composeButton;
 }
 
@@ -116,7 +118,9 @@
         viewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200		
         [[LatestChatty2AppDelegate delegate] dismissPopover];
+#endif
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
     }
@@ -240,7 +244,7 @@
 		}
 		
 		// Set up the cell...
-        if ([self respondsToSelector:@selector(splitViewController)] && self.splitViewController) {
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
         

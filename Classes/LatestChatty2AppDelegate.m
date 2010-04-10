@@ -14,7 +14,11 @@
 @implementation LatestChatty2AppDelegate
 
 @synthesize window;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 @synthesize navigationController, contentNavigationController, popoverController, navPopoverButton, slideOutViewController;
+#else
+@synthesize navigationController, contentNavigationController, navPopoverButton, slideOutViewController;
+#endif
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -262,6 +266,8 @@
 	[super dealloc];
 }
 
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 #pragma mark -
 #pragma mark UISplitViewControllerDelegate
 
@@ -272,5 +278,6 @@
 - (void)dismissPopover {
     [popoverController dismissPopoverAnimated:YES];
 }
+#endif
 
 @end

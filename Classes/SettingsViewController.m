@@ -110,7 +110,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200	
     [[LatestChatty2AppDelegate delegate].popoverController dismissPopoverAnimated:YES];
+#endif
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

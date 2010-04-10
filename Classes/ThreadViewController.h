@@ -19,7 +19,11 @@
 #import "BrowserViewController.h"
 #import "ChattyViewController.h"
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 @interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate> {
+#else
+@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate> {
+#endif
     NSUInteger storyId;
     NSUInteger threadId;
     Post *rootPost;
@@ -34,7 +38,9 @@
     NSUInteger lastReplyId;
     BOOL highlightMyPost;
     
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
     UIPopoverController *popoverController;
+#endif
     UIToolbar *toolbar;
 }
 

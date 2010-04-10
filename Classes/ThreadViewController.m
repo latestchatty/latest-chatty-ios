@@ -180,7 +180,7 @@
 
 #pragma mark -
 #pragma mark Split view support
-
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 - (void)splitViewController:(UISplitViewController*)svc
      willHideViewController:(UIViewController *)aViewController
           withBarButtonItem:(UIBarButtonItem*)barButtonItem
@@ -213,7 +213,7 @@
     pc.popoverContentSize = CGSizeMake(480, 900);
     [pc presentPopoverFromBarButtonItem:[self.toolbar.items objectAtIndex:0] permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
 }
-
+#endif
 #pragma mark -
 #pragma mark Managing the popover controller
 
@@ -223,10 +223,12 @@
 - (void)refreshWithThreadId:(NSUInteger)_threadId {
     self.threadId = _threadId;
     [self refresh:nil];
-    
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200    
     if (popoverController != nil) {
         [popoverController dismissPopoverAnimated:YES];
     }
+#endif	
 }
 
 #pragma mark -

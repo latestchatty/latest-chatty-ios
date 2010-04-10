@@ -126,6 +126,7 @@
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
         
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
             popoverController.delegate = self;
@@ -134,8 +135,9 @@
                              permittedArrowDirections:UIPopoverArrowDirectionAny
                                              animated:YES];
         } else {
-            [self presentModalViewController:imagePicker animated:YES];
-        }
+            [self presentModalViewController:imagePicker animated:YES];			
+		}
+#endif
 	}
 }
 
@@ -192,24 +194,28 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)anImage editingInfo:(NSDictionary *)editingInfo {
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 	[postContent resignFirstResponder];
-	Image *image = [[Image alloc] initWithImage:anImage];
+	Image *image = [[[Image alloc] initWithImage:anImage] autorelease];
 	image.delegate = self;
 	
 	UIProgressView* progressBar = [self showActivityIndicator:YES];	
 	[image autoRotateAndScale:800];
     [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithProgressView:) withObject:progressBar];
     
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [popoverController dismissPopoverAnimated:YES];
     }
+#endif
 }
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 - (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
     if (popoverController == pc) {
         [popoverController release];
         popoverController = nil;
     }
 }
+#endif
 
 #pragma mark Tagging
 - (IBAction)tag:(id)sender {
