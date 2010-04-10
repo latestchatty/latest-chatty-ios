@@ -74,7 +74,8 @@
             cell.title = @"Stories"; break;
             
         case 1:
-            cell.title = @"Latest Chatty"; break;
+				cell.title = @"Latest Chatty"; 
+			break;
             
         case 2:
             if (messageCount > 0) {

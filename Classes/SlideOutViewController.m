@@ -89,21 +89,20 @@
 
 - (void)updateViewsForOrientation:(UIInterfaceOrientation) orientation
 {
-	CGSize availableSize = [self availableSizeForOrientation:orientation];
+	CGSize availableSize = [self availableSizeForOrientation:orientation];	
+	CGFloat trayWidth = UIInterfaceOrientationIsLandscape(orientation) ? 320 : 240;
 	
 	if(self.isCollapsed)
 	{
-		[sliderBar setFrame:CGRectMake(0, 0, 5, availableSize.height)];
-		[tabButton setFrame:CGRectMake(5, 295, 25, 132)];	
-		[navigationController.view setFrame:CGRectMake(-245, 0, 245, availableSize.height)];
-		[contentNavigationController.view setFrame:CGRectMake(5, 0, availableSize.width-5, availableSize.height)];
+		[tabButton setFrame:CGRectMake(0, 0, 25, availableSize.height)];	
+		[navigationController.view setFrame:CGRectMake(-trayWidth, 0, trayWidth, availableSize.height)];
+		[contentNavigationController.view setFrame:CGRectMake(25, 0, availableSize.width-25, availableSize.height)];
 		return;
 	}
 	
-	[sliderBar setFrame:CGRectMake(245, 0, 5, availableSize.height)];
-	[tabButton setFrame:CGRectMake(250, 295, 25, 132)];		
-	[navigationController.view setFrame:CGRectMake(0, 0, 245, availableSize.height)];	
-	[contentNavigationController.view setFrame:CGRectMake(250, 0, availableSize.width-245, availableSize.height)];
+	[tabButton setFrame:CGRectMake(trayWidth, 0, 25, availableSize.height)];		
+	[navigationController.view setFrame:CGRectMake(0, 0, trayWidth, availableSize.height)];	
+	[contentNavigationController.view setFrame:CGRectMake(trayWidth+25, 0, availableSize.width-(trayWidth+25), availableSize.height)];
 	
 	return;
 }
@@ -132,7 +131,6 @@
 	[self.view addSubview:navigationController.view];
 	[self.view addSubview:contentNavigationController.view];
 	
-	[self.view bringSubviewToFront:sliderBar];
 	[self.view bringSubviewToFront:tabButton];
 	
 	[self updateViewsForOrientation:[self interfaceOrientation]];

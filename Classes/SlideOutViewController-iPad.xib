@@ -42,16 +42,14 @@
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIButton" id="957413630">
+					<object class="IBUIButton" id="230677473">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{250, 295}, {25, 132}}</string>
+						<string key="NSFrame">{{240, 0}, {25, 1004}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<bool key="IBUIOpaque">NO</bool>
-						<float key="IBUIAlpha">0.25</float>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
@@ -70,18 +68,6 @@
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">MenuPullTab.png</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="151085882">
-						<reference key="NSNextResponder" ref="766721923"/>
-						<int key="NSvFlags">310</int>
-						<string key="NSFrame">{{245, 0}, {5, 1004}}</string>
-						<reference key="NSSuperview" ref="766721923"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">MenuBorder.png</string>
 						</object>
@@ -115,27 +101,19 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">tabTouched</string>
-						<reference key="source" ref="957413630"/>
+						<reference key="source" ref="230677473"/>
 						<reference key="destination" ref="841351856"/>
-						<int key="IBEventType">1</int>
+						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">15</int>
+					<int key="connectionID">19</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">tabButton</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="957413630"/>
+						<reference key="destination" ref="230677473"/>
 					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">sliderBar</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="151085882"/>
-					</object>
-					<int key="connectionID">17</int>
+					<int key="connectionID">20</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -163,19 +141,13 @@
 						<reference key="object" ref="766721923"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="151085882"/>
-							<reference ref="957413630"/>
+							<reference ref="230677473"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">11</int>
-						<reference key="object" ref="151085882"/>
-						<reference key="parent" ref="766721923"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">14</int>
-						<reference key="object" ref="957413630"/>
+						<int key="objectID">18</int>
+						<reference key="object" ref="230677473"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 				</object>
@@ -186,8 +158,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
-					<string>11.IBPluginDependency</string>
-					<string>14.IBPluginDependency</string>
+					<string>18.IBPluginDependency</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
 				</object>
@@ -195,7 +166,6 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>SlideOutViewController</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{653, 113}, {768, 1024}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -217,7 +187,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">20</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -251,28 +221,12 @@
 						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>sliderBar</string>
-							<string>tabButton</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIImageView</string>
-							<string>UIButton</string>
-						</object>
+						<string key="NS.key.0">tabButton</string>
+						<string key="NS.object.0">UIButton</string>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/SlideOutViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UIImageView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">HKHelperKit/UIImageView+HelperKit.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -442,14 +396,6 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">UIImageView</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UIImageView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">UIResponder</string>
 					<string key="superclassName">NSObject</string>
 					<reference key="sourceIdentifier" ref="786211723"/>
@@ -537,17 +483,8 @@
 		<string key="IBDocument.LastKnownRelativeProjectPath">../LatestChatty2.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<bool key="EncodedWithXMLCoder">YES</bool>
-			<object class="NSArray" key="dict.sortedKeys">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>MenuBorder.png</string>
-				<string>MenuPullTab.png</string>
-			</object>
-			<object class="NSMutableArray" key="dict.values">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{5, 1004}</string>
-				<string>{25, 132}</string>
-			</object>
+			<string key="NS.key.0">MenuBorder.png</string>
+			<string key="NS.object.0">{25, 1004}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">87</string>
 	</data>
