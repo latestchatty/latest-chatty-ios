@@ -50,7 +50,7 @@
 							<object class="IBUILabel" id="941782781">
 								<reference key="NSNextResponder" ref="760161990"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{116, 17}, {110, 83}}</string>
+								<string key="NSFrame">{{75, 17}, {145, 83}}</string>
 								<reference key="NSSuperview" ref="760161990"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -59,7 +59,7 @@
 								<string key="IBUIText">Stories</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">24</double>
+									<double key="NSSize">20</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">
@@ -75,12 +75,13 @@
 									</object>
 								</object>
 								<int key="IBUIBaselineAdjustment">1</int>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
 							<object class="IBUIImageView" id="161928873">
 								<reference key="NSNextResponder" ref="760161990"/>
 								<int key="NSvFlags">300</int>
-								<string key="NSFrame">{{35, 36}, {48, 48}}</string>
+								<string key="NSFrame">{{15, 36}, {48, 48}}</string>
 								<reference key="NSSuperview" ref="760161990"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -93,7 +94,7 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrameSize">{225, 120}</string>
+						<string key="NSFrameSize">{220, 120}</string>
 						<reference key="NSSuperview" ref="951898690"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -106,7 +107,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{245, 120}</string>
+				<string key="NSFrameSize">{240, 120}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -207,7 +208,7 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>RootCell</string>
-					<string>{{653, 457}, {245, 120}}</string>
+					<string>{{653, 457}, {240, 120}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
