@@ -339,10 +339,16 @@
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
-        id viewController = [appDelegate viewControllerForURL:[request URL]];
+        UIViewController *viewController = [appDelegate viewControllerForURL:[request URL]];
         if (viewController == nil) viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
-        [self.navigationController pushViewController:viewController animated:YES];
-            
+		
+		if([appDelegate	isPadDevice]) {
+			viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+			[appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
+		} else {
+			[self.navigationController pushViewController:viewController animated:YES];
+		}
+		
         return NO;
     }
     

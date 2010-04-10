@@ -28,5 +28,6 @@
 - (id)initWithRequest:(NSURLRequest *)request;
 
 - (IBAction)safari;
+- (IBAction)closeBrowser;
 
 @end

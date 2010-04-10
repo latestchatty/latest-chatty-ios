@@ -63,5 +63,9 @@
     [super dealloc];
 }
 
+- (IBAction)closeBrowser
+{
+	[self.parentViewController dismissModalViewControllerAnimated:YES];
+}
 
 @end
