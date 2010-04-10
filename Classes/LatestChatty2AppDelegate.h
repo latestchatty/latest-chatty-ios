@@ -25,7 +25,6 @@
     
     // iPad
     UIBarButtonItem *navPopoverButton;
-    UISplitViewController *splitController;
     UINavigationController *contentNavigationController;
     UIPopoverController *popoverController;
 	SlideOutViewController *slideOutViewController;
@@ -36,7 +35,6 @@
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *navPopoverButton;
 @property (nonatomic, retain) IBOutlet SlideOutViewController *slideOutViewController;
-@property (nonatomic, retain) IBOutlet UISplitViewController *splitController;
 @property (nonatomic, retain) IBOutlet UINavigationController *contentNavigationController;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 

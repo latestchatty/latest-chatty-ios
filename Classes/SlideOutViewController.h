@@ -11,7 +11,8 @@
 
 @interface SlideOutViewController : UIViewController {
 
-	BOOL isCollapsed;	
+	BOOL isCollapsed;
+	BOOL collapsedToCompose;
 
 	UINavigationController *navigationController;
 	UINavigationController *contentNavigationController;

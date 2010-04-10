@@ -63,7 +63,11 @@
                           delegate:self
                  cancelButtonTitle:@"OK"
                  otherButtonTitles:@"Rules", @"Hide", nil];
-	}
+	}		
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -225,7 +229,8 @@
 	self.navigationController.view.userInteractionEnabled = YES;
 	ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
 	[lastController refresh:self];
-	[self.navigationController popViewControllerAnimated:YES]; 
+	[self.navigationController popViewControllerAnimated:YES];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
 	[self hideActivtyIndicator];
 }
 

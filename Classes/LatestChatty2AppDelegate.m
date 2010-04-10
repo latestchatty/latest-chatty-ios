@@ -14,7 +14,7 @@
 @implementation LatestChatty2AppDelegate
 
 @synthesize window;
-@synthesize navigationController, splitController, contentNavigationController, popoverController, navPopoverButton, slideOutViewController;
+@synthesize navigationController, contentNavigationController, popoverController, navPopoverButton, slideOutViewController;
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -48,7 +48,16 @@
 	self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
 	contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 		
-	[navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
+    if (![self reloadSavedState]) {
+        // Add the root view controller	
+		[navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
+	}
+	
+	if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
+        // Tapped a messge push's view button
+        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
+        [navigationController pushViewController:viewController animated:NO];
+    }
 	
 	self.slideOutViewController =  [SlideOutViewController controllerWithNib];
 	[slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
@@ -255,32 +264,6 @@
 
 #pragma mark -
 #pragma mark UISplitViewControllerDelegate
-
-- (void)splitViewController:(UISplitViewController*)svc
-     willHideViewController:(UIViewController *)aViewController
-          withBarButtonItem:(UIBarButtonItem*)barButtonItem
-       forPopoverController:(UIPopoverController*)pc
-{
-    self.navPopoverButton = barButtonItem;
-    navPopoverButton.title = @"Navigation";
-    [[[contentNavigationController.viewControllers objectAtIndex:0] navigationItem] setLeftBarButtonItem:navPopoverButton animated:YES];
-}
-
-- (void)splitViewController:(UISplitViewController*)svc
-          popoverController:(UIPopoverController*)pc
-  willPresentViewController:(UIViewController *)aViewController
-{
-    self.popoverController = pc;
-}
-
-- (void)splitViewController:(UISplitViewController*)svc
-     willShowViewController:(UIViewController *)aViewController
-  invalidatingBarButtonItem:(UIBarButtonItem *)button
-{
-    if (navPopoverButton == button) self.navPopoverButton = nil;
-    navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    [[[contentNavigationController.viewControllers objectAtIndex:0] navigationItem] setLeftBarButtonItem:nil animated:YES];
-}
 
 - (void)showPopover {
     [navPopoverButton.target performSelector:navPopoverButton.action];

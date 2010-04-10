@@ -164,7 +164,8 @@
     Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
     
     ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:post] autorelease];
-    [self.navigationController pushViewController:viewController animated:YES];    
+    [self.navigationController pushViewController:viewController animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {

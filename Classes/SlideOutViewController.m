@@ -23,6 +23,24 @@
 }
 */
 
+- (void)composeAppeared:(NSObject *)sender
+{
+	if(isCollapsed)
+	{
+		collapsedToCompose = NO;
+		return;
+	}
+	
+	collapsedToCompose = YES;
+	[self tabTouched];
+}
+
+- (void)composeDisappeared:(NSObject *)sender
+{
+	if(!collapsedToCompose) return;
+	collapsedToCompose = NO;	
+	[self tabTouched];
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -30,8 +48,10 @@
 	
 	if(UIInterfaceOrientationIsLandscape([self interfaceOrientation]))
 		self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 1024, 748);
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(composeAppeared:) name:@"ComposeAppeared" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(composeDisappeared:) name:@"ComposeDisappeared" object:nil];	
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Overriden to allow any orientation.

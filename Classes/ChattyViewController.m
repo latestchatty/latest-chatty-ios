@@ -115,6 +115,7 @@
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         viewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
         [[LatestChatty2AppDelegate delegate] dismissPopover];
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
