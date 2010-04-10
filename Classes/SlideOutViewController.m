@@ -103,7 +103,7 @@
 	[sliderBar setFrame:CGRectMake(245, 0, 5, availableSize.height)];
 	[tabButton setFrame:CGRectMake(250, 295, 25, 132)];		
 	[navigationController.view setFrame:CGRectMake(0, 0, 245, availableSize.height)];	
-	[contentNavigationController.view setFrame:CGRectMake(245, 0, availableSize.width-245, availableSize.height)];
+	[contentNavigationController.view setFrame:CGRectMake(250, 0, availableSize.width-245, availableSize.height)];
 	
 	return;
 }
