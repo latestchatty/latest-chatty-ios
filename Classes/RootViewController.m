@@ -143,6 +143,8 @@
             break;
             
         case 5:
+			if ([[LatestChatty2AppDelegate delegate] isPadDevice])
+				modal = YES;
             urlString = [NSString stringWithFormat:@"http://%@/about", [Model host]];
             viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]] autorelease];
             break;
@@ -154,7 +156,12 @@
     
     if (viewController) {
         if (modal) {
-            [self.navigationController presentModalViewController:viewController animated:YES];
+			if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
+				viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+				[appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
+			} else
+				[self.navigationController presentModalViewController:viewController animated:YES];
         } else {
             [self.navigationController pushViewController:viewController animated:YES];
         }
