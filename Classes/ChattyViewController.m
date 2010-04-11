@@ -146,9 +146,7 @@
         viewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200		
         [[LatestChatty2AppDelegate delegate] dismissPopover];
-#endif
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
     }

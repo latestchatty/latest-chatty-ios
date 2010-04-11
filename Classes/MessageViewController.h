@@ -11,7 +11,7 @@
 #import "StringTemplate.h"
 #import "BrowserViewController.h"
 
-@interface MessageViewController : UIViewController {
+@interface MessageViewController : UIViewController <UIWebViewDelegate> {
   Message *message;
   
   IBOutlet UIWebView *webView;

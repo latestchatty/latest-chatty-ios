@@ -37,6 +37,16 @@
     [webView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://www.shacknews.com/msgcenter.x"]];
 }
 
+- (void)showWebView:(NSTimer*)theTimer
+{
+	webView.hidden = NO;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)messageWebView
+{
+	[NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(showWebView:) userInfo:nil repeats:NO];
+}
+
 - (void)reply {
     SendMessageViewController *sendMessageViewController = [SendMessageViewController controllerWithNib];
 	[self.navigationController pushViewController:sendMessageViewController animated:YES];
@@ -46,7 +56,15 @@
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
-        id viewController = [appDelegate viewControllerForURL:[request URL]];
+        UIViewController *viewController = [appDelegate viewControllerForURL:[request URL]];
+
+		if([[LatestChatty2AppDelegate delegate] isPadDevice])
+		{
+			viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+            [appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
+			return NO;
+		}
+		
         if (viewController == nil) viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
         [self.navigationController pushViewController:viewController animated:YES];
         
@@ -55,6 +73,7 @@
     
     return YES;
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;

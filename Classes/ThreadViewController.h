@@ -19,13 +19,7 @@
 #import "BrowserViewController.h"
 #import "ChattyViewController.h"
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
-#define DELEGATES UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate
-#else
-#define DELEGATES UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate
-#endif
-
-@interface ThreadViewController : ModelListViewController <DELEGATES> {
+@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate> {
 
     NSUInteger storyId;
     NSUInteger threadId;
@@ -43,9 +37,7 @@
     BOOL highlightMyPost;
 	BOOL orderByPostDate;
     
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
     UIPopoverController *popoverController;
-#endif
     UIToolbar *toolbar;
     UIToolbar *leftToolbar;
 }
