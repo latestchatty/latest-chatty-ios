@@ -194,24 +194,29 @@
 #pragma mark Thread pinning
 - (void)pinThread:(NSUInteger)postId {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
-    for(NSNumber *pinnedThread in pinnedThreads)
-        if([pinnedThread unsignedIntValue] == postId)
+    NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
+    NSMutableArray *updatedPinnedThreads = [[[NSMutableArray alloc] initWithArray:pinnedThreads] autorelease];    
+    
+    for(NSNumber *pinnedThread in updatedPinnedThreads)
+        if([updatedPinnedThreads unsignedIntValue] == postId)
             return;
-    [pinnedThreads addObject:[NSNumber numberWithUnsignedInt:postId]];
+    
+    [updatedPinnedThreads addObject:[NSNumber numberWithUnsignedInt:postId]];
+
+    [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];    
     [defaults synchronize];
 }
 
 - (void)unPinThread:(NSUInteger)postId {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
-
+    NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
+    NSMutableArray *updatedPinnedThreads = [[[NSMutableArray alloc] init] autorelease];
+    
     for (NSNumber *pinnedId in pinnedThreads)
-        if([pinnedId unsignedIntValue] == postId)
-        {
-            [pinnedThreads removeObject:pinnedId];
-            break;
-        }
+        if([pinnedId unsignedIntValue] != postId)
+            [updatedPinnedThreads addObject:pinnedId];
+    
+    [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
     [defaults synchronize];    
 }
 

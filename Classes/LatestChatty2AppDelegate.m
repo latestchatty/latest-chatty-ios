@@ -106,7 +106,7 @@
                                      [NSNumber numberWithBool:YES],        @"postCategory.political",
                                      [NSNumber numberWithBool:NO],         @"postCategory.nws",
                                      [NSNumber numberWithInt:0],           @"lastRefresh",
-									 [NSMutableArray arrayWithCapacity:0], @"pinnedPosts",
+									 [NSMutableArray array],        @"pinnedPosts",
                                      nil];
     [defaults registerDefaults:defaultSettings];
     
