@@ -11,7 +11,7 @@
 
 @implementation MessageCell
 
-@synthesize message;
+@synthesize message, previewLabel, subjectLabel, dateLabel;
 
 - (id)init {
   self = [super initWithNibName:@"MessageCell" bundle:nil];

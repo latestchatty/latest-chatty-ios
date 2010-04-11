@@ -22,5 +22,8 @@
 }
 
 @property (retain) Message *message;
+@property (nonatomic, retain) UILabel *subjectLabel;
+@property (nonatomic, retain) UILabel *dateLabel;
+@property (nonatomic, retain) UILabel *previewLabel;
 
 @end

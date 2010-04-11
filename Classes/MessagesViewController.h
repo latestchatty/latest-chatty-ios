@@ -19,5 +19,6 @@
 @property (retain) NSMutableArray *messages;
 
 - (void)composeMessage;
+- (void)layoutCellsForOrientation:(UIInterfaceOrientation)orientation;
 
 @end

@@ -101,15 +101,15 @@
 	
 	if(self.isCollapsed)
 	{
-		[tabButton setFrame:CGRectMake(0, 0, 25, availableSize.height)];	
-		[navigationController.view setFrame:CGRectMake(-trayWidth, 0, trayWidth, availableSize.height)];
+		[divider setFrame:CGRectMake(15, 0, 10, availableSize.height)];	
+		[navigationController.view setFrame:CGRectMake(-trayWidth+15, 0, trayWidth, availableSize.height)];
 		[contentNavigationController.view setFrame:CGRectMake(25, 0, availableSize.width-25, availableSize.height)];
 		return;
 	}
 	
-	[tabButton setFrame:CGRectMake(trayWidth, 0, 25, availableSize.height)];		
-	[navigationController.view setFrame:CGRectMake(0, 0, trayWidth, availableSize.height)];	
-	[contentNavigationController.view setFrame:CGRectMake(trayWidth+25, 0, availableSize.width-(trayWidth+25), availableSize.height)];
+	[divider setFrame:CGRectMake(trayWidth+25, 0, 10, availableSize.height)];		
+	[navigationController.view setFrame:CGRectMake(25, 0, trayWidth, availableSize.height)];	
+	[contentNavigationController.view setFrame:CGRectMake(trayWidth+35, 0, availableSize.width-(trayWidth+35), availableSize.height)];
 	
 	return;
 }

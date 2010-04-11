@@ -18,6 +18,7 @@
 	UINavigationController *contentNavigationController;
 		
 	IBOutlet UIButton *tabButton;
+	IBOutlet UIImageView *divider;
 }
 
 @property (nonatomic) BOOL isCollapsed;

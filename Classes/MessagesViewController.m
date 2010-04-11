@@ -60,6 +60,7 @@
     loader = nil;
     
     [super didFinishLoadingAllModels:models otherData:otherData];
+	[self layoutCellsForOrientation:[self interfaceOrientation]];
 }
 
 - (void)didFailToLoadModels {
@@ -68,6 +69,24 @@
                                           @"Check you internet connection, or your username and password in Settings"];
 }
 
+
+- (void)layoutCellsForOrientation:(UIInterfaceOrientation)orientation {		
+	for (UIView *subView in [tableView subviews]) {
+		if(![subView isKindOfClass:[MessageCell class]]) continue;
+		MessageCell *cell = (MessageCell *)subView;
+		CGRect cellFrame = cell.frame;
+
+		cell.previewLabel.frame = CGRectMake(10, 30, cellFrame.size.width - 30, 42);
+		cell.subjectLabel.frame = CGRectMake(10, 18, cellFrame.size.width - 30, 18);
+		cell.dateLabel.frame = CGRectMake(cellFrame.size.width - 137, 0, 112, 21);
+	}
+}
+
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+	[self layoutCellsForOrientation:toInterfaceOrientation];
+}
 
 #pragma mark Table view methods
 
@@ -88,7 +107,7 @@
     if (cell == nil) {
         cell = [[[MessageCell alloc] init] autorelease];
     }
-    
+	
     cell.message = [messages objectAtIndex:indexPath.row];
 
     return cell;
