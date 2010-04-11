@@ -141,11 +141,7 @@
     
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        self.toolbar.frameHeight = 43;
-//        self.leftToolbar.frameHeight = 43;
-        
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.toolbar] autorelease];
-        self.navigationItem.leftBarButtonItem  = [[[UIBarButtonItem alloc] initWithCustomView:self.leftToolbar] autorelease];
+        self.navigationItem.titleView = self.toolbar;
     } else {
         UIBarButtonItem *replyButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply
                                                                     target:self
@@ -350,12 +346,17 @@
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
         UIViewController *viewController = [appDelegate viewControllerForURL:[request URL]];
-        if (viewController == nil) viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
-		
-		if([appDelegate	isPadDevice]) {
-			viewController.modalPresentationStyle = UIModalPresentationPageSheet;
-			[appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
-		} else {
+        
+        // No special controller, follow the link in a browser
+        if (viewController == nil) {
+            viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
+        }
+        
+        // if on iPad and we have a web browser, present it modal.  Otherwise, just push it.
+        if ([viewController isKindOfClass:[BrowserViewController class]] && [appDelegate isPadDevice]) {
+            viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+            [appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
+        } else {
 			[self.navigationController pushViewController:viewController animated:YES];
 		}
 		
