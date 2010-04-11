@@ -14,7 +14,7 @@
 @synthesize threadId;
 @synthesize rootPost;
 @synthesize selectedIndexPath;
-@synthesize toolbar;
+@synthesize toolbar, leftToolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
 	self = [super initWithNib];
@@ -69,11 +69,6 @@
     // Set story data
     NSDictionary *dataDictionary = (NSDictionary *)otherData;
     storyId = [[dataDictionary objectForKey:@"storyId"] intValue];
-	if ([dataDictionary objectForKey:@"storyName"]) {
-		self.title = [dataDictionary objectForKey:@"storyName"];
-	} else {
-        self.title = [dataDictionary objectForKey:@"type"];
-    }
     
     // Find the target post in the thread.
     Post *firstPost = nil;
@@ -102,6 +97,10 @@
         return;
     }
     
+    // Enable toolbars
+    self.toolbar.userInteractionEnabled     = YES;
+    self.leftToolbar.userInteractionEnabled = YES;
+    
     // Select and display the targeted post
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];    
     if (indexPath == nil || indexPath.row >= [[rootPost repliesArray] count]) {
@@ -119,7 +118,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 	
-	if(postView.hidden)
+	if (postView.hidden)
 	{
 		postView.hidden = NO;
 		[self resetLayout];
@@ -138,10 +137,21 @@
         [self refresh:self];
     }
     
-    UIBarButtonItem *replyButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply
-                                                                target:self
-                                                                action:@selector(tappedReplyButton)];
-    self.navigationItem.rightBarButtonItem = replyButton;
+    // Load buttons
+    
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        self.toolbar.frameHeight = 43;
+//        self.leftToolbar.frameHeight = 43;
+        
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.toolbar] autorelease];
+        self.navigationItem.leftBarButtonItem  = [[[UIBarButtonItem alloc] initWithCustomView:self.leftToolbar] autorelease];
+    } else {
+        UIBarButtonItem *replyButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply
+                                                                    target:self
+                                                                    action:@selector(tappedReplyButton)];        
+        self.navigationItem.rightBarButtonItem = replyButton;        
+    }
     
     // Fill in emtpy web view
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
@@ -365,9 +375,9 @@
 
 - (void)resetLayout {
     CGFloat usableHeight = self.view.frame.size.height - 24.0;
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        usableHeight -= [LatestChatty2AppDelegate delegate].contentNavigationController.toolbar.frame.size.height;
-    }
+//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        usableHeight -= [LatestChatty2AppDelegate delegate].contentNavigationController.toolbar.frame.size.height;
+//    }
     
     CGFloat dividerLocation;
     
@@ -400,13 +410,12 @@
 	// when the size of the top level view changes instead of
 	// animating smoothly.
 
-	if(oldHeight < subFrame.size.height || oldWidth < subFrame.size.width) {
+	if (oldHeight < subFrame.size.height || oldWidth < subFrame.size.width) {
 		subFrame = postView.frame;
 		subFrame.size.height = floor(usableHeight * dividerLocation);
 		subFrame.size.width = postViewContainer.frame.size.width;
 		[postView setFrame:subFrame];
-	}
-	else {
+	} else {
 		[UIView setAnimationDelegate:self];
 		[UIView setAnimationDidStopSelector:@selector(resetLayoutAnimationDidStop:finished:context:)];
 	}
@@ -446,18 +455,18 @@
 - (IBAction)toggleOrderByPostDate {	
 	orderByPostDate = !orderByPostDate;
 	if([[LatestChatty2AppDelegate delegate] isPadDevice])
-		orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
+		orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
 }
 
 
 - (int)nextRowByTimeLevel:(int)currentRow {
 	Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
 	
-	for(int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
+	for (int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
 	{
 		Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];		
-		if(post.timeLevel == currentPost.timeLevel - 1)
-			return postIndex;		
+		if (post.timeLevel == currentPost.timeLevel - 1)
+			return postIndex;
 	}
 	
 	return 0;
@@ -578,6 +587,7 @@
     [selectedIndexPath release];
     
     self.toolbar = nil;
+    self.leftToolbar = nil;
     
     [super dealloc];
 }

@@ -51,7 +51,9 @@
 {
 	self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
 	contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-		
+    contentNavigationController.navigationBar.tintColor = [UIColor blackColor];
+    navigationController.navigationBar.tintColor = [UIColor blackColor];
+    
     if (![self reloadSavedState]) {
         // Add the root view controller	
 		[navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
