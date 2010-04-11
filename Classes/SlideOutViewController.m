@@ -23,6 +23,12 @@
 }
 */
 
+- (void)searchLoaded:(NSObject *)sender
+{
+	if(isCollapsed) return;
+	[self tabTouched];
+}
+
 - (void)composeAppeared:(NSObject *)sender
 {
 	if(isCollapsed)
@@ -50,7 +56,8 @@
 		self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 1024, 748);
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(composeAppeared:) name:@"ComposeAppeared" object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(composeDisappeared:) name:@"ComposeDisappeared" object:nil];	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(composeDisappeared:) name:@"ComposeDisappeared" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchLoaded:) name:@"SearchLoaded" object:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

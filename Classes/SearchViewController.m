@@ -55,7 +55,10 @@
     [self modeChanged];
     
     [termsField becomeFirstResponder];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"SearchLoaded" object:self];
 }
+
 
 /*
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
