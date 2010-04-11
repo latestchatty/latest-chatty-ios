@@ -39,6 +39,7 @@
 
 - (void)showWebView:(NSTimer*)theTimer
 {
+	[theTimer invalidate];
 	webView.hidden = NO;
 }
 

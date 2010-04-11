@@ -48,6 +48,13 @@
 }
 
 
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+	if(tableView.contentInset.top == 0)
+		[self refresh:self];
+}
+
+
 - (IBAction)refresh:(id)sender {
     [super refresh:sender];
     if (threadId > 0) {
@@ -137,9 +144,7 @@
         [self refresh:self];
     }
     
-    // Load buttons
-    
-    
+    // Load buttons        
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         self.navigationItem.titleView = self.toolbar;
     } else {
@@ -183,6 +188,50 @@
 	// Reload the post to fit the new view sizes.
 	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
+
+
+#pragma mark -
+#pragma mark Thread pinning
+- (void)pinThread:(NSUInteger)postId {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
+    for(NSNumber *pinnedThread in pinnedThreads)
+        if([pinnedThread unsignedIntValue] == postId)
+            return;
+    [pinnedThreads addObject:[NSNumber numberWithUnsignedInt:postId]];
+    [defaults synchronize];
+}
+
+- (void)unPinThread:(NSUInteger)postId {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
+
+    for (NSNumber *pinnedId in pinnedThreads)
+        if([pinnedId unsignedIntValue] == postId)
+        {
+            [pinnedThreads removeObject:pinnedId];
+            break;
+        }
+    [defaults synchronize];    
+}
+
+
+- (IBAction)toggleThreadPinned {    
+	Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
+	if (post.pinned) {
+		[threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
+		threadPinButton.alpha = 0.2;
+		post.pinned = NO;
+        [self unPinThread:[post modelId]];
+		return;
+	}
+		 
+	[threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
+	threadPinButton.alpha = 1.0;
+	post.pinned = YES;
+    [self pinThread:[post modelId]];
+}
+
 
 #pragma mark -
 #pragma mark Split view support
@@ -280,8 +329,22 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.selectedIndexPath = indexPath;
-    Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
-        
+	if(indexPath == nil)
+		return;
+    
+	Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
+	
+	if (post.pinned) {
+		threadPinButton.hidden = NO;
+		[threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
+		threadPinButton.alpha = 1.0;
+	} else {
+		threadPinButton.hidden = NO;
+		[threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
+		threadPinButton.alpha = 0.2;
+	}
+
+
     // Create HTML for the post
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
 
@@ -422,6 +485,8 @@
 	subFrame = grippyBar.frame;
 	subFrame.origin.y = floor(usableHeight * dividerLocation) - 12;
 	[grippyBar setFrame:subFrame];
+    
+    [threadPinButton setFrame:CGRectMake(subFrame.origin.x + subFrame.size.width - 32, subFrame.origin.y - 24, 32, 32)];
 	
 	subFrame = tableView.frame;
 	subFrame.origin.y = floor(usableHeight * dividerLocation) + 24;

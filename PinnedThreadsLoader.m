@@ -1,0 +1,110 @@
+//
+//  PinnedThreadsLoader.m
+//  LatestChatty2
+//
+//  Created by Kyle Eli on 4/11/10.
+//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//
+
+#import "PinnedThreadsLoader.h"
+
+
+@implementation PinnedThreadsLoader
+
+@synthesize pinnedThreadsToLoad, loadingFor, loadingStoryId;
+
+- (id) initWithThreadsToLoad:(NSMutableArray *)threadsToLoad for:(id<ModelLoadingDelegate>)delegate withStoryId:(NSUInteger)storyId page:(NSUInteger)page
+{
+    self = [super init];
+    if (self != nil) {
+        pinnedThreadsToLoad = [threadsToLoad retain];
+        loadingModels = [[NSMutableArray alloc] init];
+        loadingStoryId = storyId;
+        loadingPageId = page;
+        loadingFor = delegate;
+    }
+    return self;
+}
+
+
++ (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId page:(NSUInteger)page for:(id<ModelLoadingDelegate>)delegate {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *threadsToLoad = [[[NSMutableArray alloc] init] autorelease];
+    for(NSNumber *threadId in [defaults objectForKey:@"pinnedThreads"])
+        [threadsToLoad addObject:threadId];
+    return [[[[PinnedThreadsLoader alloc] initWithThreadsToLoad:threadsToLoad for:delegate withStoryId:storyId page:page] autorelease] loadPinnedThread];
+}
+
+
++ (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId for:(id<ModelLoadingDelegate>)delegate {
+    return [PinnedThreadsLoader loadPinnedThreadsThenStoryId:storyId page:1 for:delegate];
+}
+    
+
++ (ModelLoader *)loadPinnedThreadsThenLatestChattyFor:(id<ModelLoadingDelegate>)delegate {
+    return [PinnedThreadsLoader loadPinnedThreadsThenStoryId:0 for:delegate];
+}
+
+- (void)finishLoading {
+    if(loadingStoryId == 0)
+        [Post findAllInLatestChattyWithDelegate:self];
+    else
+        [Post findAllWithStoryId:loadingStoryId delegate:self];
+}
+
+- (ModelLoader *)loadPinnedThread {
+
+    if([pinnedThreadsToLoad count] == 0)
+    {
+        [self finishLoading];
+        return nil;
+    }
+    
+    NSNumber *pinnedThreadIdToLoad = [pinnedThreadsToLoad objectAtIndex:0];    
+    return [Post findThreadWithId:[pinnedThreadIdToLoad unsignedIntValue] delegate:self];
+}
+
+
+- (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
+    NSNumber *loadedPinnedThreadId = [pinnedThreadsToLoad objectAtIndex:0];
+    [pinnedThreadsToLoad removeObjectAtIndex:0];
+    Post *postModel = (Post *)model;
+    if (postModel.modelId != [loadedPinnedThreadId unsignedIntValue]) {
+        for(Post *reply in [postModel replies])
+            if (reply.modelId == [loadedPinnedThreadId unsignedIntValue])
+                [loadingModels addObject:reply];
+    } else
+        [loadingModels addObject:model];
+
+    [self loadPinnedThread];
+}
+
+
+- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
+    
+//    [[dictionary objectForKey:@"id"] intValue]
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *nonDuplicateModels = [[[NSMutableArray alloc] init] autorelease];
+    
+    if(models != nil && [models count] > 0) { 
+        for(Post *post in models)
+        {
+            BOOL isDuplicate = NO;
+            for(NSNumber *threadId in [defaults objectForKey:@"pinnedThreads"])
+            {     
+                if([post modelId] != [threadId intValue]) continue;
+                isDuplicate = YES;
+                break;
+            }
+            
+            if(!isDuplicate)
+                [nonDuplicateModels addObject:post];
+        }
+    }
+    
+    [loadingModels addObjectsFromArray:nonDuplicateModels];
+    [loadingFor didFinishLoadingAllModels:loadingModels otherData:otherData];
+}
+
+@end

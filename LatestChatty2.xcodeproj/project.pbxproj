@@ -42,6 +42,9 @@
 		A254B849116FFEC5001534FF /* SlideOutViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */; };
 		A27EA5CE1170F0520072EB59 /* chrono.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA5CD1170F0520072EB59 /* chrono.png */; };
 		A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
+		A27EAB8411728E260072EB59 /* Pushpin-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8211728E260072EB59 /* Pushpin-Active.png */; };
+		A27EAB8511728E260072EB59 /* Pushpin-Inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */; };
+		A27EAB8811728E360072EB59 /* PinnedThreadsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A27EAB8711728E360072EB59 /* PinnedThreadsLoader.m */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA04877A11640D7000290D2D /* ThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */; };
@@ -242,6 +245,10 @@
 		A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SlideOutViewController-iPad.xib"; path = "Classes/SlideOutViewController-iPad.xib"; sourceTree = "<group>"; };
 		A27EA5CD1170F0520072EB59 /* chrono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chrono.png; path = Assets/chrono.png; sourceTree = "<group>"; };
 		A27EA7211171E60D0072EB59 /* SliderDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SliderDivider.png; path = Assets/SliderDivider.png; sourceTree = "<group>"; };
+		A27EAB8211728E260072EB59 /* Pushpin-Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pushpin-Active.png"; path = "Assets/Pushpin-Active.png"; sourceTree = "<group>"; };
+		A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pushpin-Inactive.png"; path = "Assets/Pushpin-Inactive.png"; sourceTree = "<group>"; };
+		A27EAB8611728E360072EB59 /* PinnedThreadsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinnedThreadsLoader.h; sourceTree = "<group>"; };
+		A27EAB8711728E360072EB59 /* PinnedThreadsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinnedThreadsLoader.m; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
@@ -489,6 +496,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A27EAB8611728E360072EB59 /* PinnedThreadsLoader.h */,
+				A27EAB8711728E360072EB59 /* PinnedThreadsLoader.m */,
 				28A0AAE50D9B0CCF005BE974 /* LatestChatty2_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				FABA5D410F717A28008EEE3A /* StringAdditions.h */,
@@ -699,6 +708,8 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				A27EAB8211728E260072EB59 /* Pushpin-Active.png */,
+				A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */,
 				A27EA7211171E60D0072EB59 /* SliderDivider.png */,
 				A27EA5CD1170F0520072EB59 /* chrono.png */,
 				A254B841116FFE9A001534FF /* MenuBorder.png */,
@@ -968,6 +979,8 @@
 				A254B849116FFEC5001534FF /* SlideOutViewController-iPad.xib in Resources */,
 				A27EA5CE1170F0520072EB59 /* chrono.png in Resources */,
 				A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */,
+				A27EAB8411728E260072EB59 /* Pushpin-Active.png in Resources */,
+				A27EAB8511728E260072EB59 /* Pushpin-Inactive.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1051,6 +1064,7 @@
 				FA04878C11640DA600290D2D /* ImageViewController.m in Sources */,
 				FA04878E11640DA800290D2D /* SendMessageViewController.m in Sources */,
 				A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */,
+				A27EAB8811728E360072EB59 /* PinnedThreadsLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

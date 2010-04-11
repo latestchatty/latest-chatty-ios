@@ -29,6 +29,7 @@ static NSMutableDictionary *colorMapping;
 
 @synthesize timeLevel;
 @synthesize newPost;
+@synthesize pinned;
 
 @synthesize newReplies;
 
@@ -213,7 +214,18 @@ static NSMutableDictionary *colorMapping;
  
     NSUInteger lastRefresh = [[NSUserDefaults standardUserDefaults] integerForKey:@"lastRefresh"];
     newPost = self.modelId > lastRefresh || self.lastReplyId > lastRefresh;
-    
+        
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    if ([defaults objectForKey:@"pinnedThreads"] != nil) {
+        NSMutableArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];        
+        for (NSNumber *pinnedThread in pinnedThreads)
+            if(self.modelId == [pinnedThread unsignedIntValue])
+                self.pinned = YES;
+    } else {
+        [defaults setObject:[NSMutableArray arrayWithCapacity:0] forKey:@"pinnedThreads"];
+        [defaults synchronize];
+    }
     return self;
 }
 

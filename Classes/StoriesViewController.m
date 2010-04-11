@@ -28,8 +28,7 @@
 }
 
 - (NSDictionary *)stateDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:@"Stories", @"type",
-                                                                                                        stories, @"stories", nil];
+    return [NSDictionary dictionaryWithObjectsAndKeys:@"Stories", @"type", stories, @"stories", nil];
 }
 
 
@@ -39,9 +38,9 @@
     if (stories == nil || [stories count] == 0) [self refresh:self];
     
     UIBarButtonItem *latestChattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
-                                                                                                                                                 style:UIBarButtonItemStyleDone
-                                                                                                                                                target:self
-                                                                                                                                                action:@selector(tappedLatestChattyButton)];
+																		   style:UIBarButtonItemStyleDone
+																		  target:self
+																		  action:@selector(tappedLatestChattyButton)];
     self.navigationItem.rightBarButtonItem = latestChattyButton;
     [latestChattyButton release];
 }

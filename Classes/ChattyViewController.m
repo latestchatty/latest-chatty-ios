@@ -156,10 +156,16 @@
 	[super refresh:self];
 	currentPage = 1;
 	
-	if (storyId > 0) {
-        loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];        
+//	if (storyId > 0) {
+//        loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];        
+//    } else {
+//        loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
+//    }
+    
+    if (storyId > 0) {
+        loader = [[PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self] retain];        
     } else {
-        loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
+        loader = [[PinnedThreadsLoader loadPinnedThreadsThenLatestChattyFor:self] retain];
     }
 }
 

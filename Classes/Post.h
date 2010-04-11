@@ -32,6 +32,7 @@
 	NSInteger       newReplies;
 	NSUInteger      timeLevel;
 	BOOL newPost;
+	BOOL pinned;
 }
 
 @property (copy) NSString *author;
@@ -54,6 +55,7 @@
 @property (assign,nonatomic) NSInteger newReplies;
 
 @property (assign) BOOL newPost;
+@property (assign) BOOL pinned;
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName;
 

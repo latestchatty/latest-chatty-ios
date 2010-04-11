@@ -14,11 +14,7 @@
 @implementation LatestChatty2AppDelegate
 
 @synthesize window;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 @synthesize navigationController, contentNavigationController, popoverController, navPopoverButton, slideOutViewController;
-#else
-@synthesize navigationController, contentNavigationController, navPopoverButton, slideOutViewController;
-#endif
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -98,18 +94,19 @@
 
     // Settings defaults
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     @"",                           @"username",
-                                     @"",                           @"password",
-                                     @"ws.shackchatty.com",         @"server",
-                                     [NSNumber numberWithBool:YES], @"landscape",
-                                     [NSNumber numberWithBool:YES], @"embedYoutube",
-                                     [NSNumber numberWithBool:NO],  @"push.messages",
-                                     [NSNumber numberWithBool:YES], @"postCategory.informative",
-                                     [NSNumber numberWithBool:YES], @"postCategory.offtopic",
-                                     [NSNumber numberWithBool:YES], @"postCategory.stupid",
-                                     [NSNumber numberWithBool:YES], @"postCategory.political",
-                                     [NSNumber numberWithBool:NO],  @"postCategory.nws",
-                                     [NSNumber numberWithInt:0],    @"lastRefresh",
+                                     @"",                                  @"username",
+                                     @"",                                  @"password",
+                                     @"ws.shackchatty.com",                @"server",
+                                     [NSNumber numberWithBool:YES],        @"landscape",
+                                     [NSNumber numberWithBool:YES],        @"embedYoutube",
+                                     [NSNumber numberWithBool:NO],         @"push.messages",
+                                     [NSNumber numberWithBool:YES],        @"postCategory.informative",
+                                     [NSNumber numberWithBool:YES],        @"postCategory.offtopic",
+                                     [NSNumber numberWithBool:YES],        @"postCategory.stupid",
+                                     [NSNumber numberWithBool:YES],        @"postCategory.political",
+                                     [NSNumber numberWithBool:NO],         @"postCategory.nws",
+                                     [NSNumber numberWithInt:0],           @"lastRefresh",
+									 [NSMutableArray arrayWithCapacity:0], @"pinnedPosts",
                                      nil];
     [defaults registerDefaults:defaultSettings];
     
@@ -269,7 +266,6 @@
 }
 
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 #pragma mark -
 #pragma mark UISplitViewControllerDelegate
 
@@ -280,6 +276,5 @@
 - (void)dismissPopover {
     [popoverController dismissPopoverAnimated:YES];
 }
-#endif
 
 @end

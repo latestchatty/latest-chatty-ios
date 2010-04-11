@@ -19,7 +19,7 @@
 #import "BrowserViewController.h"
 #import "ChattyViewController.h"
 
-@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate> {
+@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate, UIScrollViewDelegate> {
 
     NSUInteger storyId;
     NSUInteger threadId;
@@ -31,6 +31,7 @@
     IBOutlet UIWebView *postView;
     IBOutlet GrippyBar *grippyBar;
 	IBOutlet UIBarButtonItem *orderByPostDateButton;
+	IBOutlet UIButton *threadPinButton;
     NSUInteger grippyBarPosition;
 
     NSUInteger lastReplyId;
@@ -56,6 +57,7 @@
 - (IBAction)previous;
 - (IBAction)next;
 - (IBAction)toggleOrderByPostDate;
+- (IBAction)toggleThreadPinned;
 
 - (NSString *)postBodyWithYoutubeWidgets:(NSString *)body;
 

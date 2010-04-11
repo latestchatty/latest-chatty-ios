@@ -15,13 +15,11 @@
 #import "ThreadCell.h"
 #import "ModelLoader.h"
 #import "ComposeViewController.h"
+#import "PinnedThreadsLoader.h"
 
 @class ThreadViewController;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
+
 @interface ChattyViewController : ModelListViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate> {
-#else
-@interface ChattyViewController : ModelListViewController <UINavigationControllerDelegate> {
-#endif
     ThreadViewController *threadController;
     
     NSUInteger storyId;

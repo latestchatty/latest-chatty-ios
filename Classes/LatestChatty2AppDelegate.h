@@ -19,20 +19,15 @@
 #import "MessagesViewController.h"
 #import "SlideOutViewController.h"
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate> {
-#else
-@interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate> {
-#endif
     UIWindow *window;
     UINavigationController *navigationController;
     
     // iPad
     UIBarButtonItem *navPopoverButton;
     UINavigationController *contentNavigationController;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
     UIPopoverController *popoverController;
-#endif
+
 	SlideOutViewController *slideOutViewController;
 }
 
@@ -42,9 +37,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *navPopoverButton;
 @property (nonatomic, retain) IBOutlet SlideOutViewController *slideOutViewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *contentNavigationController;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 @property (nonatomic, retain) UIPopoverController *popoverController;
-#endif
 	
 + (LatestChatty2AppDelegate*)delegate;
 
@@ -54,10 +47,8 @@
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
 	
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 - (void)showPopover;
 - (void)dismissPopover;
-#endif
 	
 @end
 
