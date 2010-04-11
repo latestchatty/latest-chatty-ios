@@ -47,12 +47,14 @@
     UIPopoverController *popoverController;
 #endif
     UIToolbar *toolbar;
+    UIToolbar *leftToolbar;
 }
 
 @property (nonatomic, assign) NSUInteger threadId;
 @property (retain) Post *rootPost;
 @property (retain) NSIndexPath *selectedIndexPath;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, retain) IBOutlet UIToolbar *leftToolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
 

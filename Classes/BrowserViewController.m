@@ -48,18 +48,19 @@
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
-- (void)viewDidUnload {
-	self.webView = nil;
+- (void)dealloc {
+    self.request = nil;
+    [webView loadHTMLString:@"<div></div>" baseURL:nil];
+    if (webView.loading) {
+        [webView stopLoading];
+    }
+    webView.delegate = nil;
+    
+    self.webView = nil;
     self.backButton = nil;
     self.forwardButton = nil;
     self.spinner = nil;
-}
-
-
-- (void)dealloc {
-    self.request = nil;
-    [webView stopLoading];
-    webView.delegate = nil;
+    
     [super dealloc];
 }
 

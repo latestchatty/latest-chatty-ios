@@ -46,11 +46,13 @@
 - (id)initWithStoryId:(NSUInteger)aStoryId {
 	self = [super initWithNib];
     self.storyId = aStoryId;
-    self.title = @"Loading...";
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         self.threadController = [[[ThreadViewController alloc] initWithThreadId:0] autorelease];
-        threadController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
+        //threadController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
     }
+    
+    self.title = @"Loading...";
+    
 	return self;
 }
 
@@ -84,6 +86,11 @@
 	return dictionary;
 }
 
+- (void)setTitle:(NSString *)newTitle {
+    [(UILabel*)self.navigationItem.titleView setText:newTitle];
+    [super setTitle:newTitle];
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
@@ -100,10 +107,31 @@
                                                                   target:self
                                                                   action:@selector(tappedComposeButton)];
 	composeButton.enabled = (self.storyId > 0);
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
-    if ([self respondsToSelector:@selector(splitViewController)]) self.splitViewController.navigationItem.rightBarButtonItem = composeButton;
-#endif
-	self.navigationItem.rightBarButtonItem = composeButton;
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIToolbar *rightToolbar = [UIToolbar viewWithFrame:self.navigationController.navigationBar.bounds];
+        rightToolbar.tintColor = [UIColor blackColor];
+        rightToolbar.frameWidth = 70;
+        
+        rightToolbar.items = [NSArray arrayWithObjects:
+                              [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose target:self action:@selector(tappedComposeButton)],
+                              [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)],
+                              nil];
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:rightToolbar] autorelease];
+    } else {
+        self.navigationItem.rightBarButtonItem = composeButton;
+    }
+    
+    UILabel *titleLabel = [UILabel viewWithFrame:self.navigationController.navigationBar.frame];
+    titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.numberOfLines = 2;
+    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    titleLabel.opaque = NO;
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.shadowColor = [UIColor blackColor];
+    titleLabel.textAlignment = UITextAlignmentCenter;
+    titleLabel.text = self.title;
+    self.navigationItem.titleView = titleLabel;    
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -188,8 +216,8 @@
 	NSDictionary *dataDictionary = (NSDictionary *)otherData;
 	self.storyId = [[dataDictionary objectForKey:@"storyId"] intValue];
 	self.title   = [dataDictionary objectForKey:@"storyName"];
-	
-	// Override super method so there is no fade if we are loading a second page.
+
+    // Override super method so there is no fade if we are loading a second page.
 	if (page <= 1) {
 		[super didFinishLoadingAllModels:models otherData:otherData];
 	} else {
@@ -269,8 +297,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row < [threads count]) {
-        Post *thread = [threads objectAtIndex:indexPath.row];        
-        threadController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
+        Post *thread = [threads objectAtIndex:indexPath.row];
+        //threadController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
         
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray array];
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:threadController animated:NO];
