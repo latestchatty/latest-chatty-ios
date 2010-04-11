@@ -294,6 +294,9 @@
 
 - (void)dealloc {
 	NSLog(@"Dealloc ChattyViewController");
+
+	if([LatestChatty2AppDelegate delegate] != nil && [LatestChatty2AppDelegate delegate].contentNavigationController != nil)
+		[LatestChatty2AppDelegate delegate].contentNavigationController.delegate = nil;
     self.threadController = nil;
 	self.threads = nil;
 	[super dealloc];
