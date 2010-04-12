@@ -66,14 +66,24 @@
 }
 
 
+- (Post *)findReply:(NSUInteger)postId inReplies:(NSMutableArray *)replies
+{
+    for(Post *reply in replies) {        
+        if (reply.modelId == postId)
+            return reply;
+        else
+            return [self findReply:postId inReplies:[reply replies]];
+    }
+     
+    return nil;
+}
+
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
     NSNumber *loadedPinnedThreadId = [pinnedThreadsToLoad objectAtIndex:0];
     [pinnedThreadsToLoad removeObjectAtIndex:0];
     Post *postModel = (Post *)model;
     if (postModel.modelId != [loadedPinnedThreadId unsignedIntValue]) {
-        for(Post *reply in [postModel replies])
-            if (reply.modelId == [loadedPinnedThreadId unsignedIntValue])
-                [loadingModels addObject:reply];
+        [loadingModels addObject:[self findReply:[loadedPinnedThreadId unsignedIntValue] inReplies:[postModel replies]]];
     } else
         [loadingModels addObject:model];
 
