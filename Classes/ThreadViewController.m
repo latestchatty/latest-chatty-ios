@@ -198,7 +198,7 @@
     NSMutableArray *updatedPinnedThreads = [[[NSMutableArray alloc] initWithArray:pinnedThreads] autorelease];    
     
     for(NSNumber *pinnedThread in updatedPinnedThreads)
-        if([updatedPinnedThreads unsignedIntValue] == postId)
+        if([pinnedThread unsignedIntValue] == postId)
             return;
     
     [updatedPinnedThreads addObject:[NSNumber numberWithUnsignedInt:postId]];
