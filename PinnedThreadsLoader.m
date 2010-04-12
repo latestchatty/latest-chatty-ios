@@ -71,8 +71,11 @@
     for(Post *reply in replies) {        
         if (reply.modelId == postId)
             return reply;
-        else
-            return [self findReply:postId inReplies:[reply replies]];
+        else if([reply replies] != nil && [reply replies].count > 0) {
+            Post* subReply = [self findReply:postId inReplies:[reply replies]];
+            if(subReply != nil)
+                return subReply;
+        }
     }
      
     return nil;
