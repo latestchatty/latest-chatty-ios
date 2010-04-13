@@ -179,11 +179,6 @@
 								<reference key="IBUIToolbar" ref="133727155"/>
 								<int key="IBUISystemItemIdentifier">13</int>
 							</object>
-							<object class="IBUIBarButtonItem" id="457475592">
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<reference key="IBUIToolbar" ref="133727155"/>
-								<int key="IBUISystemItemIdentifier">5</int>
-							</object>
 							<object class="IBUIBarButtonItem" id="304756173">
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<reference key="IBUIToolbar" ref="133727155"/>
@@ -194,10 +189,11 @@
 								<reference key="IBUIToolbar" ref="133727155"/>
 								<int key="IBUISystemItemIdentifier">8</int>
 							</object>
-							<object class="IBUIBarButtonItem" id="567317887">
+							<object class="IBUIBarButtonItem" id="400742496">
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<float key="IBUIWidth">42</float>
 								<reference key="IBUIToolbar" ref="133727155"/>
-								<int key="IBUISystemItemIdentifier">5</int>
+								<int key="IBUISystemItemIdentifier">6</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="175537488">
 								<object class="NSCustomResource" key="IBUIImage">
@@ -496,12 +492,11 @@
 							<reference ref="243486225"/>
 							<reference ref="363737913"/>
 							<reference ref="175537488"/>
-							<reference ref="457475592"/>
 							<reference ref="30274924"/>
 							<reference ref="83711853"/>
 							<reference ref="940797705"/>
-							<reference ref="567317887"/>
 							<reference ref="304756173"/>
+							<reference ref="400742496"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -551,23 +546,18 @@
 						<reference key="parent" ref="133727155"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">95</int>
-						<reference key="object" ref="457475592"/>
-						<reference key="parent" ref="133727155"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">100</int>
 						<reference key="object" ref="1050571311"/>
 						<reference key="parent" ref="86364179"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">107</int>
-						<reference key="object" ref="567317887"/>
+						<int key="objectID">108</int>
+						<reference key="object" ref="304756173"/>
 						<reference key="parent" ref="133727155"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">108</int>
-						<reference key="object" ref="304756173"/>
+						<int key="objectID">109</int>
+						<reference key="object" ref="400742496"/>
 						<reference key="parent" ref="133727155"/>
 					</object>
 				</object>
@@ -582,8 +572,8 @@
 					<string>1.IBLastUsedUIStatusBarStylesToTargetRuntimesMap</string>
 					<string>1.IBPluginDependency</string>
 					<string>100.IBPluginDependency</string>
-					<string>107.IBPluginDependency</string>
 					<string>108.IBPluginDependency</string>
+					<string>109.IBPluginDependency</string>
 					<string>21.IBPluginDependency</string>
 					<string>27.CustomClassName</string>
 					<string>27.IBPluginDependency</string>
@@ -601,7 +591,6 @@
 					<string>9.IBLastUsedUIStatusBarStylesToTargetRuntimesMap</string>
 					<string>9.IBPluginDependency</string>
 					<string>91.IBPluginDependency</string>
-					<string>95.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -636,7 +625,6 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -655,7 +643,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">108</int>
+			<int key="maxID">109</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
