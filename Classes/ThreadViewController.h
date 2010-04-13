@@ -27,16 +27,16 @@
 
     NSIndexPath *selectedIndexPath;
 
-	IBOutlet UIView *postViewContainer;
+    IBOutlet UIView *postViewContainer;
     IBOutlet UIWebView *postView;
     IBOutlet GrippyBar *grippyBar;
-	IBOutlet UIBarButtonItem *orderByPostDateButton;
-	IBOutlet UIButton *threadPinButton;
+    IBOutlet UIBarButtonItem *orderByPostDateButton;
+    IBOutlet UIButton *threadPinButton;
     NSUInteger grippyBarPosition;
 
     NSUInteger lastReplyId;
     BOOL highlightMyPost;
-	BOOL orderByPostDate;
+    BOOL orderByPostDate;
     
     UIPopoverController *popoverController;
     UIToolbar *toolbar;

@@ -17,23 +17,23 @@
 @synthesize toolbar, leftToolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
-	self = [super initWithNib];
+        self = [super initWithNib];
     threadId = aThreadId;
     grippyBarPosition = 1;
     self.title = @"Thread";
-	return self;
+        return self;
 }
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
-	if (self = [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]]) {
-		storyId = [[dictionary objectForKey:@"storyId"] intValue];
-		threadId = [[dictionary objectForKey:@"threadId"] intValue];
-		lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
-		self.rootPost = [dictionary objectForKey:@"rootPost"];
-		//[self didFinishLoadingModel:[dictionary objectForKey:@"rootPost"] otherData:dictionary];
-		self.selectedIndexPath = (NSIndexPath*)[dictionary objectForKey:@"selectedIndexPath"];
-	}
-	return self;
+        if (self = [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]]) {
+                storyId = [[dictionary objectForKey:@"storyId"] intValue];
+                threadId = [[dictionary objectForKey:@"threadId"] intValue];
+                lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
+                self.rootPost = [dictionary objectForKey:@"rootPost"];
+                //[self didFinishLoadingModel:[dictionary objectForKey:@"rootPost"] otherData:dictionary];
+                self.selectedIndexPath = (NSIndexPath*)[dictionary objectForKey:@"selectedIndexPath"];
+        }
+        return self;
 }
 
 - (NSDictionary *)stateDictionary {
@@ -50,8 +50,8 @@
 
 - (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer
 {
-	if(tableView.contentInset.top == 0)
-		[self refresh:self];
+        if(tableView.contentInset.top == 0)
+                [self refresh:self];
 }
 
 
@@ -124,11 +124,11 @@
                                       message:@"You current filters do not allow to view this thead.    Check the filters in your settings and try again."];
         [self.navigationController popViewControllerAnimated:YES];
     }
-	
-	if (postView.hidden) {
-		postView.hidden = NO;
-		[self resetLayout];
-	}
+        
+        if (postView.hidden) {
+                postView.hidden = NO;
+                [self resetLayout];
+        }
 }
 
 - (void)viewDidLoad {
@@ -163,7 +163,7 @@
     if (selectedIndexPath) {
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
     }    
-	
+        
     [self resetLayout];
 }
 
@@ -180,13 +180,13 @@
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
-	[self resetLayout];
+        [self resetLayout];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{	
-	// Reload the post to fit the new view sizes.
-	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
+{        
+        // Reload the post to fit the new view sizes.
+        [self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
 
@@ -223,19 +223,19 @@
 }
 
 
-- (IBAction)toggleThreadPinned {    
-	Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
-	if (post.pinned) {
-		[threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
-		threadPinButton.alpha = 0.2;
-		post.pinned = NO;
+- (IBAction)toggleThreadPinned {
+        Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
+        if (post.pinned) {
+                [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
+                threadPinButton.alpha = 0.2;
+                post.pinned = NO;
         [self unPinThread:[post modelId]];
-		return;
-	}
-		 
-	[threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
-	threadPinButton.alpha = 1.0;
-	post.pinned = YES;
+                return;
+        }
+                 
+        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
+        threadPinButton.alpha = 1.0;
+        post.pinned = YES;
     [self pinThread:[post modelId]];
 }
 
@@ -284,11 +284,11 @@
     self.threadId = _threadId;
     [self refresh:nil];
  
-	if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-		if (popoverController != nil) {
-			[popoverController dismissPopoverAnimated:YES];
-		}
-	}    
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                if (popoverController != nil) {
+                        [popoverController dismissPopoverAnimated:YES];
+                }
+        }    
 }
 
 #pragma mark -
@@ -336,22 +336,23 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.selectedIndexPath = indexPath;
-	if(indexPath == nil)
-		return;
+    if (indexPath == nil) return;
+
+    Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
     
-	Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
-	
-	if (post.pinned) {
-		threadPinButton.hidden = NO;
-		[threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
-		threadPinButton.alpha = 1.0;
-	} else {
-		threadPinButton.hidden = NO;
-		[threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
-		threadPinButton.alpha = 0.2;
-	}
-
-
+    if (post.pinned) {
+        threadPinButton.hidden = NO;
+        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
+        threadPinButton.alpha = 1.0;
+    } else {
+        threadPinButton.hidden = NO;
+        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
+        threadPinButton.alpha = 0.2;
+    }
+    
+    // Force pin thread button to be hidden for this release
+    threadPinButton.hidden = YES;
+    
     // Create HTML for the post
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
 
@@ -373,29 +374,20 @@
     // Insert youtube widgets
     if ([body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"]) {
         @try {
-			if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-				body = [body stringByReplacingOccurrencesOfRegex: @"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
-													  withString: @"<div class=\"youtube-widget\">\
-						<object width=\"640\" height=\"480\">\
-						<param name=\"movie\" value=\"$1\"></param>\
-						<param name=\"wmode\" value=\"transparent\"></param>\
-						<embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"640\" height=\"480\"></embed>\
-						</object>\
-						<a href=\"$1\">$1</a>\
-						</div>"];
-				
-			} else {				
-				body = [body stringByReplacingOccurrencesOfRegex: @"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"
-													  withString: @"<div class=\"youtube-widget\">\
-						<object width=\"140\" height=\"105\">\
-						<param name=\"movie\" value=\"$1\"></param>\
-						<param name=\"wmode\" value=\"transparent\"></param>\
-						<embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"140\" height=\"105\"></embed>\
-						</object>\
-						<a href=\"$1\">$1</a>\
-						</div>"];
-				
-			}
+            CGSize youtubeSize = [[LatestChatty2AppDelegate delegate] isPadDevice] ? CGSizeMake(640, 480) : CGSizeMake(140, 105);
+            NSString *replacement = [NSString stringWithFormat:
+                                     @"<div class=\"youtube-widget\">"
+                                     @"  <object width=\"%d\" height=\"%d\">"
+                                     @"    <param name=\"movie\" value=\"$1\"></param>"
+                                     @"    <param name=\"wmode\" value=\"transparent\"></param>"
+                                     @"    <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"%d\" height=\"%d\"></embed>"
+                                     @"  </object>"
+                                     @"  <a href=\"$1\">$1</a>"
+                                     @"</div>",
+                                     youtubeSize.width, youtubeSize.height,
+                                     youtubeSize.width, youtubeSize.height];
+                
+            body = [body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>" withString:replacement];
         } @catch (NSException *exception) {
             NSLog(@"Error inserting youtube widgets. %@", exception);
         }
@@ -425,9 +417,9 @@
             viewController.modalPresentationStyle = UIModalPresentationPageSheet;
             [appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
         } else {
-			[self.navigationController pushViewController:viewController animated:YES];
-		}
-		
+                        [self.navigationController pushViewController:viewController animated:YES];
+                }
+                
         return NO;
     }
     
@@ -436,10 +428,10 @@
 
 #pragma mark Grippy Bar Methods
 - (void)resetLayoutAnimationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
-	CGRect postViewContainerFrame = postViewContainer.frame;
-	[postView setFrame:postViewContainerFrame];
-	// Reload the post to fit the new view sizes.
-	[self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
+        CGRect postViewContainerFrame = postViewContainer.frame;
+        [postView setFrame:postViewContainerFrame];
+        // Reload the post to fit the new view sizes.
+        [self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
 - (void)resetLayout {
@@ -465,41 +457,41 @@
     }
     
     [UIView beginAnimations:@"ResizePostView" context:nil];
-			
-	CGRect subFrame = postViewContainer.frame;
-	double oldHeight = subFrame.size.height;
-	double oldWidth = subFrame.size.width;
-	subFrame.size.height = floor(usableHeight * dividerLocation);
-	subFrame.size.width = tableView.frame.size.width;
-	[postViewContainer setFrame:subFrame];
-	
-	// When resizing, if the new height is larger than the old height,
-	// resize the UIWebView immediately. Otherwise, resize it after
-	// the animation completes. UIWebView content is resized immediately
-	// when the size of the top level view changes instead of
-	// animating smoothly.
+                        
+        CGRect subFrame = postViewContainer.frame;
+        double oldHeight = subFrame.size.height;
+        double oldWidth = subFrame.size.width;
+        subFrame.size.height = floor(usableHeight * dividerLocation);
+        subFrame.size.width = tableView.frame.size.width;
+        [postViewContainer setFrame:subFrame];
+        
+        // When resizing, if the new height is larger than the old height,
+        // resize the UIWebView immediately. Otherwise, resize it after
+        // the animation completes. UIWebView content is resized immediately
+        // when the size of the top level view changes instead of
+        // animating smoothly.
 
-	if (oldHeight < subFrame.size.height || oldWidth < subFrame.size.width) {
-		subFrame = postView.frame;
-		subFrame.size.height = floor(usableHeight * dividerLocation);
-		subFrame.size.width = postViewContainer.frame.size.width;
-		[postView setFrame:subFrame];
-	} else {
-		[UIView setAnimationDelegate:self];
-		[UIView setAnimationDidStopSelector:@selector(resetLayoutAnimationDidStop:finished:context:)];
-	}
-	
-	subFrame = grippyBar.frame;
-	subFrame.origin.y = floor(usableHeight * dividerLocation) - 12;
-	[grippyBar setFrame:subFrame];
+        if (oldHeight < subFrame.size.height || oldWidth < subFrame.size.width) {
+                subFrame = postView.frame;
+                subFrame.size.height = floor(usableHeight * dividerLocation);
+                subFrame.size.width = postViewContainer.frame.size.width;
+                [postView setFrame:subFrame];
+        } else {
+                [UIView setAnimationDelegate:self];
+                [UIView setAnimationDidStopSelector:@selector(resetLayoutAnimationDidStop:finished:context:)];
+        }
+        
+        subFrame = grippyBar.frame;
+        subFrame.origin.y = floor(usableHeight * dividerLocation) - 12;
+        [grippyBar setFrame:subFrame];
     
     [threadPinButton setFrame:CGRectMake(subFrame.origin.x + subFrame.size.width - 32, subFrame.origin.y - 24, 32, 32)];
-	
-	subFrame = tableView.frame;
-	subFrame.origin.y = floor(usableHeight * dividerLocation) + 24;
-	subFrame.size.height = floor(usableHeight * (1.0 - dividerLocation));
-	[tableView setFrame:subFrame];
-	
+        
+        subFrame = tableView.frame;
+        subFrame.origin.y = floor(usableHeight * dividerLocation) + 24;
+        subFrame.size.height = floor(usableHeight * (1.0 - dividerLocation));
+        [tableView setFrame:subFrame];
+        
     [UIView commitAnimations];
 }
 
@@ -523,56 +515,56 @@
                          otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", nil] autorelease] showInView:self.view];    
 }
 
-- (IBAction)toggleOrderByPostDate {	
-	orderByPostDate = !orderByPostDate;
-	if([[LatestChatty2AppDelegate delegate] isPadDevice])
-		orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
+- (IBAction)toggleOrderByPostDate {        
+        orderByPostDate = !orderByPostDate;
+        if([[LatestChatty2AppDelegate delegate] isPadDevice])
+                orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
 }
 
 
 - (int)nextRowByTimeLevel:(int)currentRow {
-	Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
-	
-	for (int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
-	{
-		Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];		
-		if (post.timeLevel == currentPost.timeLevel - 1)
-			return postIndex;
-	}
-	
-	return 0;
+        Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
+        
+        for (int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
+        {
+                Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];                
+                if (post.timeLevel == currentPost.timeLevel - 1)
+                        return postIndex;
+        }
+        
+        return 0;
 }
 
 
 - (int)previousRowByTimeLevel:(int)currentRow {
-	Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
-	int minTimeLevel = -1, minTimeLevelPostIndex = 0;
-	
-	for(int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
-	{
-		Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];		
-		if(post.timeLevel == currentPost.timeLevel + 1)
-			return postIndex;
-		
-		if(post.timeLevel < minTimeLevel || minTimeLevel == -1)
-		{
-			minTimeLevel = post.timeLevel;
-			minTimeLevelPostIndex = postIndex;
-		}
-	}
-	
-	return minTimeLevelPostIndex;
+        Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
+        int minTimeLevel = -1, minTimeLevelPostIndex = 0;
+        
+        for(int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
+        {
+                Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];                
+                if(post.timeLevel == currentPost.timeLevel + 1)
+                        return postIndex;
+                
+                if(post.timeLevel < minTimeLevel || minTimeLevel == -1)
+                {
+                        minTimeLevel = post.timeLevel;
+                        minTimeLevelPostIndex = postIndex;
+                }
+        }
+        
+        return minTimeLevelPostIndex;
 }
 
 
 - (IBAction)previous {
     NSIndexPath *oldIndexPath = selectedIndexPath;
-	
+        
     NSIndexPath *newIndexPath;
-	if (orderByPostDate)
-		newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:oldIndexPath.row] inSection:0];
+        if (orderByPostDate)
+                newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:oldIndexPath.row] inSection:0];
     else if (oldIndexPath.row == 0)
-		newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
+                newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
     else
         newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
     
@@ -584,18 +576,18 @@
     NSIndexPath *oldIndexPath = selectedIndexPath;
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
-	
-	if (orderByPostDate)
-		newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:oldIndexPath.row] inSection:0];
-	else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1) 
-		newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-	
+        
+        if (orderByPostDate)
+                newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:oldIndexPath.row] inSection:0];
+        else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1) 
+                newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        
     [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
 }
 
 - (void)grippyBarDidTapOrderByPostDateButton {
-	[self toggleOrderByPostDate];
+        [self toggleOrderByPostDate];
 }
 
 - (void)grippyBarDidTapRightButton {
@@ -615,7 +607,7 @@
 }
 
 -(void)grippyBarDidTapModButton {
-	[[[[UIActionSheet alloc] initWithTitle:@"Mod this Post"
+        [[[[UIActionSheet alloc] initWithTitle:@"Mod this Post"
                                   delegate:self
                          cancelButtonTitle:@"Cancel"
                     destructiveButtonTitle:nil
@@ -647,7 +639,7 @@
         }
     } else {
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
-	}
+        }
 }
 
 
