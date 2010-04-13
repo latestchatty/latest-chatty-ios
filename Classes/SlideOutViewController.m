@@ -23,16 +23,13 @@
 }
 */
 
-- (void)searchLoaded:(NSObject *)sender
-{
+- (void)searchLoaded:(NSObject*)sender {
 	if(isCollapsed) return;
 	[self tabTouched];
 }
 
-- (void)composeAppeared:(NSObject *)sender
-{
-	if(isCollapsed)
-	{
+- (void)composeAppeared:(NSObject*)sender {
+	if (isCollapsed) {
 		collapsedToCompose = NO;
 		return;
 	}
@@ -41,9 +38,8 @@
 	[self tabTouched];
 }
 
-- (void)composeDisappeared:(NSObject *)sender
-{
-	if(!collapsedToCompose) return;
+- (void)composeDisappeared:(NSObject*)sender {
+	if (!collapsedToCompose) return;
 	collapsedToCompose = NO;	
 	[self tabTouched];
 }
