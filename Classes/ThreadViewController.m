@@ -125,8 +125,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 	
-	if (postView.hidden)
-	{
+	if (postView.hidden) {
 		postView.hidden = NO;
 		[self resetLayout];
 	}
@@ -146,6 +145,7 @@
     
     // Load buttons        
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        self.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
         self.navigationItem.titleView = self.toolbar;
     } else {
         UIBarButtonItem *replyButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply

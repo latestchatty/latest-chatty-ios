@@ -180,6 +180,7 @@
 		FAD4EB540F96798800E74FED /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD4EB530F96798800E74FED /* MessageViewController.xib */; };
 		FADDB5200F814B5200DF3650 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FADDB51E0F814B5200DF3650 /* Default.png */; };
 		FADDB5210F814B5200DF3650 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FADDB51F0F814B5200DF3650 /* Icon.png */; };
+		FAE438C81173FAA5000263F7 /* MenuBorderOut.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE438C71173FAA5000263F7 /* MenuBorderOut.png */; };
 		FAF0781B10087B530029D2AD /* push.caf in Resources */ = {isa = PBXBuildFile; fileRef = FAF0781A10087B530029D2AD /* push.caf */; };
 /* End PBXBuildFile section */
 
@@ -437,6 +438,7 @@
 		FAD4EB530F96798800E74FED /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		FADDB51E0F814B5200DF3650 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Assets/Default.png; sourceTree = "<group>"; };
 		FADDB51F0F814B5200DF3650 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Assets/Icon.png; sourceTree = "<group>"; };
+		FAE438C71173FAA5000263F7 /* MenuBorderOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuBorderOut.png; path = Assets/MenuBorderOut.png; sourceTree = "<group>"; };
 		FAF0781A10087B530029D2AD /* push.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = push.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -713,6 +715,7 @@
 				A27EA7211171E60D0072EB59 /* SliderDivider.png */,
 				A27EA5CD1170F0520072EB59 /* chrono.png */,
 				A254B841116FFE9A001534FF /* MenuBorder.png */,
+				FAE438C71173FAA5000263F7 /* MenuBorderOut.png */,
 				A254B842116FFE9A001534FF /* MenuPullTab.png */,
 				2704C030116BEEDC0075E416 /* Default-Landscape.png */,
 				2704C031116BEEDC0075E416 /* Default-Portrait.png */,
@@ -981,6 +984,7 @@
 				A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */,
 				A27EAB8411728E260072EB59 /* Pushpin-Active.png in Resources */,
 				A27EAB8511728E260072EB59 /* Pushpin-Inactive.png in Resources */,
+				FAE438C81173FAA5000263F7 /* MenuBorderOut.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

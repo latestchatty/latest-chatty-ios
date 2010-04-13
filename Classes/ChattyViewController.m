@@ -109,7 +109,7 @@
 	composeButton.enabled = (self.storyId > 0);
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIToolbar *rightToolbar = [UIToolbar viewWithFrame:self.navigationController.navigationBar.bounds];
-        rightToolbar.tintColor = [UIColor blackColor];
+        rightToolbar.tintColor = self.navigationController.navigationBar.tintColor;
         rightToolbar.frameWidth = 70;
         
         rightToolbar.items = [NSArray arrayWithObjects:

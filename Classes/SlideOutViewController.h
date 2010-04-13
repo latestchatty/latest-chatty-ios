@@ -27,4 +27,6 @@
 
 - (void)addNavigationController:(UINavigationController *)navigation contentNavigationController:(UINavigationController *)content;
 
+- (CGSize)availableSizeForOrientation:(UIInterfaceOrientation)orientation;
+
 @end
