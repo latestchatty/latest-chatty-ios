@@ -12,7 +12,8 @@
 
 @implementation StoryViewController
 
-@synthesize story;
+@synthesize story, storyLoader;
+@synthesize content;
 
 - (id)initWithStoryId:(NSUInteger)aStoryId {
     self = [super initWithNib];
@@ -22,9 +23,9 @@
 }
 
 - (id)initWithStory:(Story *)aStory {
-    self = [self initWithNibName:@"StoryViewController" bundle:nil];
+    self = [self initWithNib];
     self.story = aStory;
-    self.title = self.story.title;
+    self.title = story.title;
     return self;
 }
 
@@ -33,35 +34,36 @@
 }
 
 - (NSDictionary *)stateDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:@"Story", @"type",
-                                                                                                        story,        @"story", nil];
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            @"Story", @"type",
+            story, @"story",
+            nil];
 }
 
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
     self.story = model;
-	[storyLoader release];
-    //[story release];
-    storyLoader = nil;
+    self.storyLoader = nil;
     [self displayStory];
+}
+
+- (void)didFailToLoadModels {
+    self.storyLoader = nil;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *chattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
-                                                                                                                                     style:UIBarButtonItemStylePlain
-                                                                                                                                    target:self
-                                                                                                                                    action:@selector(loadChatty)];
-	self.navigationItem.rightBarButtonItem = chattyButton;
-    [chattyButton release];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(loadChatty)];
     
     // Load story
-    storyLoader = [[Story findById:storyId delegate:self] retain];
+    self.storyLoader = [Story findById:storyId delegate:self];
     
-    // Load blank page while we wait
     NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
-    StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
-    NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil] usedEncoding:nil error:nil];
+    StringTemplate *htmlTemplate = [[[StringTemplate alloc] initWithTemplateName:@"Story.html"] autorelease];
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:@"" forKey:@"date"];
     [htmlTemplate setString:@"" forKey:@"storyId"];
@@ -69,7 +71,6 @@
     [htmlTemplate setString:@"" forKey:@"storyTitle"];
     
     [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
-    [htmlTemplate release];        
 }
 
 - (void)displayStory {
@@ -83,7 +84,7 @@
     } else {
         StringTemplate *htmlTemplate = [[[StringTemplate alloc] initWithTemplateName:@"Story.html"] autorelease];
         
-        NSString *stylesheet = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Stylesheet.css" ofType:nil] usedEncoding:nil error:nil];
+        NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
         [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
         [htmlTemplate setString:[Story formatDate:story.date] forKey:@"date"];
         [htmlTemplate setString:[NSString stringWithFormat:@"%i", story.modelId] forKey:@"storyId"];
@@ -105,13 +106,10 @@
     ChattyViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
-        [[LatestChatty2AppDelegate delegate] showPopover];
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
     }
 }
-
-
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
@@ -124,10 +122,14 @@
 }
 
 - (void)dealloc {
-    [storyLoader release];
-	NSLog(@"StoryRetainCount: %d", [story retainCount]);
-		    
-    [story release];
+    content.delegate = nil;
+    [content stopLoading];
+    self.content = nil;
+    
+    [storyLoader cancel];
+    self.storyLoader = nil;
+    
+    self.story = nil;
     [super dealloc];
 }
 
