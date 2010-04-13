@@ -102,19 +102,17 @@
     CGSize availableSize = [self availableSizeForOrientation:orientation];    
     CGFloat trayWidth = UIInterfaceOrientationIsLandscape(orientation) ? 320 : 240;
     
-    if (self.isCollapsed) {
-        [divider setFrame:CGRectMake(15, 0, 10, availableSize.height)];    
-        [navigationController.view setFrame:CGRectMake(-trayWidth+15, 0, trayWidth, availableSize.height)];
-        [contentNavigationController.view setFrame:CGRectMake(25, 0, availableSize.width-25, availableSize.height)];
-        return;
-    }
-    
     tabButton.frameHeight = availableSize.height;
-    [divider setFrame:CGRectMake(trayWidth+25, 0, 10, availableSize.height)];        
-    [navigationController.view setFrame:CGRectMake(25, 0, trayWidth, availableSize.height)];    
-    [contentNavigationController.view setFrame:CGRectMake(trayWidth+35, 0, availableSize.width-(trayWidth+35), availableSize.height)];
     
-    return;
+    if (self.isCollapsed) {
+        divider.frame = CGRectMake(15, 0, 10, availableSize.height);
+        navigationController.view.frame = CGRectMake(-trayWidth+15, 0, trayWidth, availableSize.height);
+        contentNavigationController.view.frame = CGRectMake(25, 0, availableSize.width-25, availableSize.height);
+    } else {
+        [divider setFrame:CGRectMake(trayWidth+25, 0, 10, availableSize.height)];
+        [navigationController.view setFrame:CGRectMake(25, 0, trayWidth, availableSize.height)];
+        [contentNavigationController.view setFrame:CGRectMake(trayWidth+35, 0, availableSize.width-(trayWidth+35), availableSize.height)];        
+    }
 }
 
 
