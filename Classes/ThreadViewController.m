@@ -171,6 +171,13 @@
     // prevent superclass behaviour of cell deselection
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.toolbar.frame = self.navigationController.navigationBar.frame;
+    [self.view setNeedsLayout];
+}
+
 - (IBAction)tappedReplyButton {
     Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
     

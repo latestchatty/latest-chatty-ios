@@ -37,39 +37,39 @@
     // Style the navigation bar
     navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     
-	// Configure and show the window
+    // Configure and show the window
     window.backgroundColor = [UIColor blackColor];
-	
-	[window addSubview:navigationController.view];	
+    
+    [window addSubview:navigationController.view];    
 }
 
 - (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions
 {
-	self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
-	contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
+    contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     contentNavigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.15 alpha:1.0];
     navigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.15 alpha:1.0];
     
     if (![self reloadSavedState]) {
-        // Add the root view controller	
-		[navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
-	}
-	
-	if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
+        // Add the root view controller
+        [navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
+    }
+    
+    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
         // Tapped a messge push's view button
         MessagesViewController *viewController = [MessagesViewController controllerWithNib];
         [navigationController pushViewController:viewController animated:NO];
     }
-	
-	self.slideOutViewController =  [SlideOutViewController controllerWithNib];
-	[slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
-	[slideOutViewController.view setFrame:CGRectMake(0,	20,	768, 1004)];
-	[window addSubview:slideOutViewController.view];
+    
+    self.slideOutViewController =  [SlideOutViewController controllerWithNib];
+    [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
+    [slideOutViewController.view setFrame:CGRectMake(0,    20,    768, 1004)];
+    [window addSubview:slideOutViewController.view];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
     
@@ -81,16 +81,16 @@
     // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
     if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
         [defaults removeObjectForKey:@"savedState"];
-    }    	
-	
-	if ([self isPadDevice])
-		[self setupInterfaceForPadWithOptions:launchOptions];
-	else
-		[self setupInterfaceForPhoneWithOptions:launchOptions];
+    }        
+    
+    if ([self isPadDevice])
+        [self setupInterfaceForPadWithOptions:launchOptions];
+    else
+        [self setupInterfaceForPhoneWithOptions:launchOptions];
 
-  	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];	
-	
-	[window makeKeyAndVisible];
+      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];    
+    
+    [window makeKeyAndVisible];
 
     // Settings defaults
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -106,13 +106,13 @@
                                      [NSNumber numberWithBool:YES],        @"postCategory.political",
                                      [NSNumber numberWithBool:NO],         @"postCategory.nws",
                                      [NSNumber numberWithInt:0],           @"lastRefresh",
-									 [NSMutableArray array],        @"pinnedPosts",
+                                     [NSMutableArray array],        @"pinnedPosts",
                                      nil];
     [defaults registerDefaults:defaultSettings];
     
     // Check for mod status
     [Mod performSelectorInBackground:@selector(setModeratorStatus) withObject:nil];
-	
+    
     return YES;
 }
 
@@ -247,22 +247,22 @@
     [defaults setObject:state forKey:@"savedState"];
     [defaults setObject:[NSDate date] forKey:@"savedStateDate"];
     [defaults synchronize];
-	
+    
     //'logout' essentially
     NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSArray* shackCookies = [cookies cookiesForURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
     for (NSHTTPCookie* cookie in shackCookies) {
-	 NSLog(@"Name: %@ : Value: %@", cookie.name, cookie.value); 
-	 [cookies deleteCookie:cookie];
+     NSLog(@"Name: %@ : Value: %@", cookie.name, cookie.value); 
+     [cookies deleteCookie:cookie];
     }
 }
 
 
 - (void)dealloc {
     self.navPopoverButton = nil;
-	self.navigationController = nil;
-	self.window = nil;
-	[super dealloc];
+    self.navigationController = nil;
+    self.window = nil;
+    [super dealloc];
 }
 
 
