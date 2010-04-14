@@ -32,6 +32,7 @@
     IBOutlet GrippyBar *grippyBar;
     IBOutlet UIBarButtonItem *orderByPostDateButton;
     IBOutlet UIButton *threadPinButton;
+    IBOutlet UIBarButtonItem *tagButton;
     NSUInteger grippyBarPosition;
 
     NSUInteger lastReplyId;

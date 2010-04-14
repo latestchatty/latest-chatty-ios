@@ -1,9 +1,9 @@
 //
-//  SearchResultsViewController.m
-//  LatestChatty2
+//    SearchResultsViewController.m
+//    LatestChatty2
 //
-//  Created by Alex Wayne on 4/21/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Created by Alex Wayne on 4/21/09.
+//    Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
 #import "SearchResultsViewController.h"
@@ -14,24 +14,24 @@
 @synthesize posts;
 
 - (id)initWithTerms:(NSString *)searchTerms author:(NSString *)searchAuthor parentAuthor:(NSString *)searchParentAuthor {
-  self = [super initWithNib];
-  
-  self.title = @"Search Results";
-  terms = [searchTerms retain];
-  author = [searchAuthor retain];
-  parentAuthor = [searchParentAuthor retain];
-  
-  return self;
+    self = [super initWithNib];
+    
+    self.title = @"Search Results";
+    terms = [searchTerms retain];
+    author = [searchAuthor retain];
+    parentAuthor = [searchParentAuthor retain];
+    
+    return self;
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  [self refresh:self];
+    [super viewDidLoad];
+    [self refresh:self];
 }
 
 - (IBAction)refresh:(id)sender {
-  [super refresh:sender];
-  loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor delegate:self] retain];
+    [super refresh:sender];
+    loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor delegate:self] retain];
 }
 
 /*
@@ -42,59 +42,59 @@
 }
 */
 
-- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {  
-  self.posts = models;
-  [loader release];
-  loader = nil;
-  [super didFinishLoadingAllModels:nil otherData:otherData];
-  [tableView reloadData];
+- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {    
+    self.posts = models;
+    [loader release];
+    loader = nil;
+    [super didFinishLoadingAllModels:nil otherData:otherData];
+    [tableView reloadData];
 }
 
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+    return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [posts count];
+    return [posts count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:@"ThreadCell"];
-  if (cell == nil) cell = [[[ThreadCell alloc] init] autorelease];
-  
-  // Set up the cell...
-  Post *post = [posts objectAtIndex:indexPath.row];
-  cell.storyId = post.storyId;
-  cell.rootPost = post;
-  cell.showCount = NO;
-  
-  return cell;
+    ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:@"ThreadCell"];
+    if (cell == nil) cell = [[[ThreadCell alloc] init] autorelease];
+    
+    // Set up the cell...
+    Post *post = [posts objectAtIndex:indexPath.row];
+    cell.storyId = post.storyId;
+    cell.rootPost = post;
+    cell.showCount = NO;
+    
+    return cell;
 }
 
 
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  Post *post = [posts objectAtIndex:indexPath.row];
-  
-  ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:post.modelId];
-  [self.navigationController pushViewController:viewController animated:YES];
-  [viewController release];
+    Post *post = [posts objectAtIndex:indexPath.row];
+    
+    ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:post.modelId];
+    [self.navigationController pushViewController:viewController animated:YES];
+    [viewController release];
 }
 
 
 - (void)dealloc {
-  self.posts = nil;
-  [terms release];
-  [author release];
-  [parentAuthor release];
-  [super dealloc];
+    self.posts = nil;
+    [terms release];
+    [author release];
+    [parentAuthor release];
+    [super dealloc];
 }
 
 

@@ -162,8 +162,10 @@
     tabButton.selected = !isCollapsed;
     
     [UIView beginAnimations:@"slideView" context:nil];
+    [UIView setAnimationDuration:0.35];
+    [UIView setAnimationBeginsFromCurrentState:YES];
     [self updateViewsForOrientation:[self interfaceOrientation]];
-    [self updateContentLayoutIfNecessary];    
+    [self updateContentLayoutIfNecessary];
     [UIView commitAnimations];
 }
 @end

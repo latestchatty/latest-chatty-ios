@@ -391,10 +391,11 @@
                                      @"  </object>"
                                      @"  <a href=\"$1\">$1</a>"
                                      @"</div>",
-                                     youtubeSize.width, youtubeSize.height,
-                                     youtubeSize.width, youtubeSize.height];
-                
+                                     (int)youtubeSize.width, (int)youtubeSize.height,
+                                     (int)youtubeSize.width, (int)youtubeSize.height];
+            
             body = [body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>" withString:replacement];
+            
         } @catch (NSException *exception) {
             NSLog(@"Error inserting youtube widgets. %@", exception);
         }
@@ -515,11 +516,18 @@
 }
 
 - (IBAction)tag {
-    [[[[UIActionSheet alloc] initWithTitle:@"Tag this Post"
-                                  delegate:self
-                         cancelButtonTitle:@"Cancel"
-                    destructiveButtonTitle:nil
-                         otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", nil] autorelease] showInView:self.view];    
+    UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:@"Tag this Post"
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                               otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", nil] autorelease];
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [sheet showFromBarButtonItem:tagButton animated:YES];
+    } else {
+        [sheet showInView:self.navigationController.view];
+    }
+    
 }
 
 - (IBAction)toggleOrderByPostDate {        

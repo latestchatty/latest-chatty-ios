@@ -16,6 +16,7 @@
     UIBarButtonItem *backButton;
     UIBarButtonItem *forwardButton;
     UIActivityIndicatorView *spinner;
+    UIToolbar *mainToolbar;
 }
 
 @property (nonatomic, retain) NSURLRequest *request;
@@ -23,7 +24,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *forwardButton;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
-
+@property (nonatomic, retain) IBOutlet UIToolbar *mainToolbar;
 
 - (id)initWithRequest:(NSURLRequest *)request;
 

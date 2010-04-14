@@ -7,11 +7,12 @@
 //
 
 #import "BrowserViewController.h"
+#import "LatestChatty2AppDelegate.h"
 
 @implementation BrowserViewController
 
 @synthesize request;
-@synthesize webView, backButton, forwardButton, spinner;
+@synthesize webView, backButton, forwardButton, spinner, mainToolbar;
 
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
@@ -23,6 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [webView loadRequest:request];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice] && self.navigationController) {
+        mainToolbar.tintColor = self.navigationController.navigationBar.tintColor;
+        self.navigationItem.titleView = self.mainToolbar;
+        webView.frame = self.view.bounds;
+    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
