@@ -32,11 +32,14 @@
 
 - (void)informDelegateOnMainThreadWithURL:(NSString*)url
 {
-	if( url ) [delegate image:self sendComplete:url];
-	else [delegate image:self sendFailure:@"stub"];
+	if (url) {
+        [delegate image:self sendComplete:url];
+    } else {
+        [delegate image:self sendFailure:@"stub"];
+    }
 }
 
-- (NSString *)uploadAndReturnImageUrlWithProgressView:(UIProgressView*)progressView {
+- (void)uploadAndReturnImageUrlWithProgressView:(UIProgressView*)progressView {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -50,7 +53,7 @@
 	// Request setup
 	NSString *urlString = [Model urlStringWithPath:@"/images"];
 	//NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-	ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+	ASIHTTPRequest* request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]] autorelease];
 	[request setRequestMethod:@"POST"];
 	[request setUploadProgressDelegate:progressView];
 	//[request setHTTPMethod:@"POST"];
@@ -72,20 +75,17 @@
 	
 	// Cleanup the request
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-	[request release];
 	
 	// Process response
-	NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	NSString *responseString = [NSString stringWithData:responseData];
 	NSDictionary *responseDictionary = [responseString JSONValue];
 	
 	// Check for success
 	NSString *imageURL = [responseDictionary objectForKey:@"success"];
-	[responseString release];
 	[self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:imageURL waitUntilDone:YES];
 	//[self informDelegateOnMainThread:imageURL];
-	[pool release];
-	
-	return nil;
+    
+	[pool drain];
 }
 
 #pragma mark Image Processor
@@ -194,6 +194,11 @@
 	UIGraphicsEndImageContext();
 	
 	self.image = imageCopy;
+}
+
+- (void)dealloc {
+    self.image = nil;
+    [super dealloc];
 }
 
 @end

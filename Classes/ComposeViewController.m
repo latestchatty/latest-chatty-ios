@@ -148,13 +148,12 @@
 	activityView.frame = frame;
 	UIProgressView* progressBar = nil;
 	[self.view addSubview:activityView];
-	if( !progressViewType ){
+	if (!progressViewType) {
 		activityText.text = @"Posting comment...";
 		spinner.hidden = NO;
 		[spinner startAnimating];
 		uploadBar.hidden = YES; 
-	}
-	else{
+	} else {
 		activityText.text = @"Uploading image...";
 		spinner.hidden = YES;
 		uploadBar.hidden = NO;
@@ -177,7 +176,6 @@
 - (void)image:(Image*)image sendComplete:(NSString*)url
 {
 	postContent.text = [postContent.text stringByAppendingString:url];
-	[image release];
 	[self hideActivtyIndicator];
 	[postContent becomeFirstResponder];
 }
