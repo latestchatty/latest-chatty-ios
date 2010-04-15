@@ -23,6 +23,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    UIBarButtonItem *spinnerItem = [[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease];
+    
+    NSMutableArray *items = [NSMutableArray arrayWithArray:mainToolbar.items];
+    [items insertObject:spinnerItem atIndex:[items count]-1];
+    mainToolbar.items = items;
+    
     [webView loadRequest:request];
 }
 
@@ -73,8 +81,7 @@
     [super dealloc];
 }
 
-- (IBAction)closeBrowser
-{
+- (IBAction)closeBrowser {
 	[self.parentViewController dismissModalViewControllerAnimated:YES];
 }
 

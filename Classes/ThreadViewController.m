@@ -389,6 +389,7 @@
                                      @"    <param name=\"wmode\" value=\"transparent\"></param>"
                                      @"    <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"%d\" height=\"%d\"></embed>"
                                      @"  </object>"
+                                     @"  <br/>"
                                      @"  <a href=\"$1\">$1</a>"
                                      @"</div>",
                                      (int)youtubeSize.width, (int)youtubeSize.height,
@@ -420,13 +421,13 @@
             viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
         }
         
-        // if on iPad and we have a web browser, present it modal.  Otherwise, just push it.
-        if ([viewController isKindOfClass:[BrowserViewController class]] && [appDelegate isPadDevice]) {
-            viewController.modalPresentationStyle = UIModalPresentationPageSheet;
-            [appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
-        } else {
-                        [self.navigationController pushViewController:viewController animated:YES];
-                }
+//        // if on iPad and we have a web browser, present it modal.  Otherwise, just push it.
+//        if ([viewController isKindOfClass:[BrowserViewController class]] && [appDelegate isPadDevice]) {
+//            viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+//            [appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
+//        } else {
+            [self.navigationController pushViewController:viewController animated:YES];
+//        }
                 
         return NO;
     }
