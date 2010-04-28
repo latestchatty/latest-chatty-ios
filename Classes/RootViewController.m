@@ -130,9 +130,7 @@
             
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
-                viewController.navigationItem.leftBarButtonItem = appDelegate.navPopoverButton;
                 [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
-                [appDelegate dismissPopover];
                 viewController = nil;
             }
             break;
@@ -143,10 +141,14 @@
             break;
             
         case 5:
-			if ([[LatestChatty2AppDelegate delegate] isPadDevice])
-				modal = YES;
             urlString = [NSString stringWithFormat:@"http://%@/about", [Model host]];
             viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]] autorelease];
+            
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
+                [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
+                viewController = nil;
+            }
             break;
             
         default:
