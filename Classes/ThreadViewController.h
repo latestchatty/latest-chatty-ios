@@ -33,7 +33,7 @@
     IBOutlet UIBarButtonItem *orderByPostDateButton;
     IBOutlet UIButton *threadPinButton;
     IBOutlet UIBarButtonItem *tagButton;
-    NSUInteger grippyBarPosition;
+    NSInteger grippyBarPosition;
 
     NSUInteger lastReplyId;
     BOOL highlightMyPost;
