@@ -167,10 +167,6 @@
 {
 	[activityView removeFromSuperview];
 	[spinner stopAnimating];
-	//UIActivityIndicatorView* actView = (UIActivityIndicatorView*)[activityView viewWithTag:1];
-	//if( actView ) [actView stopAnimating];
-	//[activityView removeFromSuperview];
-	//activityView = nil;
 }
 
 - (void)image:(Image*)image sendComplete:(NSString*)url
@@ -185,7 +181,6 @@
     [UIAlertView showSimpleAlertWithTitle:@"Upload Failed"
                                   message:@"Sorry but there was an error uploading your photo.  Be sure you have set a valid Shacknews.com username and password."
                               buttonTitle:@"Oopsie"];
-	[image release];
 	[self hideActivtyIndicator];
 }
 
