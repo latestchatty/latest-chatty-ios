@@ -163,11 +163,11 @@ static NSMutableDictionary *colorMapping;
 
     // Send the request
     NSHTTPURLResponse *response;
-    NSString *responseBody = nil;// [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]];
+    NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]];
     
     NSLog(@"Creating Post with Request body: %@", requestBody);
     
-    if (YES || [responseBody containsString:@"navigate_page_no_history"]) {
+    if ([responseBody containsString:@"navigate_page_no_history"]) {
         return YES;        
     } else {
         NSString *errorString = [responseBody stringByMatching:@"alert\\(.*\"(.+?)\".*\\)" capture:1];
