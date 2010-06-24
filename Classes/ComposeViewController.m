@@ -57,7 +57,7 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	
-    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isPresent] || [[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isPresent]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isPresent] || ![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isPresent]) {
         [UIAlertView showSimpleAlertWithTitle:@"Not Logged In" message:@"Please head back to the main menu and tap \"Settings\" to set your Shacknews.com username and password"];
         
         [postContent becomeFirstResponder];
