@@ -103,6 +103,11 @@
 		FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE920F6F7CA600878F27 /* StoryCell.m */; };
 		FA5FCE950F6F7CB600878F27 /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5FCE940F6F7CB600878F27 /* StoryCell.xib */; };
 		FA5FD0560F7014BD00878F27 /* CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5FD0550F7014BD00878F27 /* CellBackground.png */; };
+		FA689DEF11D2EA680088CF3D /* BlueBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DEE11D2EA680088CF3D /* BlueBullet@2x.png */; };
+		FA689DF311D2EAE20088CF3D /* GrayBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DF211D2EAE20088CF3D /* GrayBullet@2x.png */; };
+		FA689DF911D2EB840088CF3D /* NewPostBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DF811D2EB840088CF3D /* NewPostBullet@2x.png */; };
+		FA689DFD11D2ED3C0088CF3D /* GrippyBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DFC11D2ED3C0088CF3D /* GrippyBar@2x.png */; };
+		FA689DFF11D2ED5A0088CF3D /* GrippyBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DFE11D2ED5A0088CF3D /* GrippyBarBackground@2x.png */; };
 		FA6EDD320F70D56B00AAF4E4 /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDD310F70D56B00AAF4E4 /* ChattyViewController.xib */; };
 		FA6EDD6A0F70D95A00AAF4E4 /* ThreadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDD690F70D95A00AAF4E4 /* ThreadCell.xib */; };
 		FA6EDD6F0F70DA0400AAF4E4 /* ThreadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6EDD6E0F70DA0400AAF4E4 /* ThreadCell.m */; };
@@ -120,7 +125,6 @@
 		FA87BE830F7B182D0044898C /* ButtonCode.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE7C0F7B182D0044898C /* ButtonCode.png */; };
 		FA87BE840F7B182D0044898C /* ButtonContentSpoiler.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE7D0F7B182D0044898C /* ButtonContentSpoiler.png */; };
 		FA87BE850F7B182D0044898C /* ButtonPushed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE7E0F7B182D0044898C /* ButtonPushed.png */; };
-		FA87BE860F7B182D0044898C /* ButtonSend.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE7F0F7B182D0044898C /* ButtonSend.png */; };
 		FA87BE870F7B182D0044898C /* ButtonStrike.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE800F7B182D0044898C /* ButtonStrike.png */; };
 		FA87BE880F7B182D0044898C /* ButtonUnderline.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE810F7B182D0044898C /* ButtonUnderline.png */; };
 		FA87BE8A0F7B18C60044898C /* NavButtonTags.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE890F7B18C60044898C /* NavButtonTags.png */; };
@@ -310,6 +314,11 @@
 		FA5FCE920F6F7CA600878F27 /* StoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryCell.m; sourceTree = "<group>"; };
 		FA5FCE940F6F7CB600878F27 /* StoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryCell.xib; sourceTree = "<group>"; };
 		FA5FD0550F7014BD00878F27 /* CellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellBackground.png; path = Assets/CellBackground.png; sourceTree = "<group>"; };
+		FA689DEE11D2EA680088CF3D /* BlueBullet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BlueBullet@2x.png"; path = "Assets/BlueBullet@2x.png"; sourceTree = "<group>"; };
+		FA689DF211D2EAE20088CF3D /* GrayBullet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GrayBullet@2x.png"; path = "Assets/GrayBullet@2x.png"; sourceTree = "<group>"; };
+		FA689DF811D2EB840088CF3D /* NewPostBullet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NewPostBullet@2x.png"; path = "Assets/NewPostBullet@2x.png"; sourceTree = "<group>"; };
+		FA689DFC11D2ED3C0088CF3D /* GrippyBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GrippyBar@2x.png"; path = "Assets/GrippyBar@2x.png"; sourceTree = "<group>"; };
+		FA689DFE11D2ED5A0088CF3D /* GrippyBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GrippyBarBackground@2x.png"; path = "Assets/GrippyBarBackground@2x.png"; sourceTree = "<group>"; };
 		FA6EDD310F70D56B00AAF4E4 /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattyViewController.xib; sourceTree = "<group>"; };
 		FA6EDD690F70D95A00AAF4E4 /* ThreadCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadCell.xib; sourceTree = "<group>"; };
 		FA6EDD6D0F70DA0400AAF4E4 /* ThreadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadCell.h; sourceTree = "<group>"; };
@@ -331,7 +340,6 @@
 		FA87BE7C0F7B182D0044898C /* ButtonCode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonCode.png; path = Assets/ButtonCode.png; sourceTree = "<group>"; };
 		FA87BE7D0F7B182D0044898C /* ButtonContentSpoiler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonContentSpoiler.png; path = Assets/ButtonContentSpoiler.png; sourceTree = "<group>"; };
 		FA87BE7E0F7B182D0044898C /* ButtonPushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonPushed.png; path = Assets/ButtonPushed.png; sourceTree = "<group>"; };
-		FA87BE7F0F7B182D0044898C /* ButtonSend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonSend.png; path = Assets/ButtonSend.png; sourceTree = "<group>"; };
 		FA87BE800F7B182D0044898C /* ButtonStrike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonStrike.png; path = Assets/ButtonStrike.png; sourceTree = "<group>"; };
 		FA87BE810F7B182D0044898C /* ButtonUnderline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonUnderline.png; path = Assets/ButtonUnderline.png; sourceTree = "<group>"; };
 		FA87BE890F7B18C60044898C /* NavButtonTags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NavButtonTags.png; path = Assets/NavButtonTags.png; sourceTree = "<group>"; };
@@ -727,13 +735,18 @@
 				FAD26D8A0F7EDFE0001A76F6 /* RefreshIcon.png */,
 				FA2B47C10F7E2E790074064A /* Camera.png */,
 				FA2B45900F7D96060074064A /* GrayBullet.png */,
+				FA689DF211D2EAE20088CF3D /* GrayBullet@2x.png */,
 				FA2B458E0F7D95710074064A /* BlueBullet.png */,
+				FA689DEE11D2EA680088CF3D /* BlueBullet@2x.png */,
 				FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */,
+				FA689DF811D2EB840088CF3D /* NewPostBullet@2x.png */,
 				FAD29A600F796452006E14A2 /* DropShadow.png */,
 				FA5FD0550F7014BD00878F27 /* CellBackground.png */,
 				FA87BE1B0F7B0A9E0044898C /* CellBackgroundLight.png */,
 				FAD29A520F79621C006E14A2 /* GrippyBar.png */,
+				FA689DFC11D2ED3C0088CF3D /* GrippyBar@2x.png */,
 				FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */,
+				FA689DFE11D2ED5A0088CF3D /* GrippyBarBackground@2x.png */,
 				FA9C3F200F9CFF0C0022A739 /* BlueButton.png */,
 				FA9C3F210F9CFF0C0022A739 /* BlueButtonPressed.png */,
 				FA9C3F160F9CFD580022A739 /* GrayButton.png */,
@@ -742,7 +755,6 @@
 				FA87BE7C0F7B182D0044898C /* ButtonCode.png */,
 				FA87BE7D0F7B182D0044898C /* ButtonContentSpoiler.png */,
 				FA87BE7E0F7B182D0044898C /* ButtonPushed.png */,
-				FA87BE7F0F7B182D0044898C /* ButtonSend.png */,
 				FA87BE800F7B182D0044898C /* ButtonStrike.png */,
 				FA87BE810F7B182D0044898C /* ButtonUnderline.png */,
 				FA87BE890F7B18C60044898C /* NavButtonTags.png */,
@@ -915,7 +927,6 @@
 				FA87BE830F7B182D0044898C /* ButtonCode.png in Resources */,
 				FA87BE840F7B182D0044898C /* ButtonContentSpoiler.png in Resources */,
 				FA87BE850F7B182D0044898C /* ButtonPushed.png in Resources */,
-				FA87BE860F7B182D0044898C /* ButtonSend.png in Resources */,
 				FA87BE870F7B182D0044898C /* ButtonStrike.png in Resources */,
 				FA87BE880F7B182D0044898C /* ButtonUnderline.png in Resources */,
 				FA87BE8A0F7B18C60044898C /* NavButtonTags.png in Resources */,
@@ -985,6 +996,11 @@
 				A27EAB8411728E260072EB59 /* Pushpin-Active.png in Resources */,
 				A27EAB8511728E260072EB59 /* Pushpin-Inactive.png in Resources */,
 				FAE438C81173FAA5000263F7 /* MenuBorderOut.png in Resources */,
+				FA689DEF11D2EA680088CF3D /* BlueBullet@2x.png in Resources */,
+				FA689DF311D2EAE20088CF3D /* GrayBullet@2x.png in Resources */,
+				FA689DF911D2EB840088CF3D /* NewPostBullet@2x.png in Resources */,
+				FA689DFD11D2ED3C0088CF3D /* GrippyBar@2x.png in Resources */,
+				FA689DFF11D2ED5A0088CF3D /* GrippyBarBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,7 +1122,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
@@ -1134,7 +1150,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Wayne";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
@@ -1162,7 +1178,7 @@
 		FADDB5410F81548500DF3650 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
