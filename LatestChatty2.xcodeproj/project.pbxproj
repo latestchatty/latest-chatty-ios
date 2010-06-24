@@ -186,6 +186,7 @@
 		FADDB5210F814B5200DF3650 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FADDB51F0F814B5200DF3650 /* Icon.png */; };
 		FAE438C81173FAA5000263F7 /* MenuBorderOut.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE438C71173FAA5000263F7 /* MenuBorderOut.png */; };
 		FAF0781B10087B530029D2AD /* push.caf in Resources */ = {isa = PBXBuildFile; fileRef = FAF0781A10087B530029D2AD /* push.caf */; };
+		FAFD342411D32DC0002011AB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD342311D32DC0002011AB /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -448,6 +449,7 @@
 		FADDB51F0F814B5200DF3650 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Assets/Icon.png; sourceTree = "<group>"; };
 		FAE438C71173FAA5000263F7 /* MenuBorderOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuBorderOut.png; path = Assets/MenuBorderOut.png; sourceTree = "<group>"; };
 		FAF0781A10087B530029D2AD /* push.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = push.caf; sourceTree = "<group>"; };
+		FAFD342311D32DC0002011AB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Assets/Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -718,6 +720,10 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FADDB51E0F814B5200DF3650 /* Default.png */,
+				FAFD342311D32DC0002011AB /* Default@2x.png */,
+				2704C030116BEEDC0075E416 /* Default-Landscape.png */,
+				2704C031116BEEDC0075E416 /* Default-Portrait.png */,
 				A27EAB8211728E260072EB59 /* Pushpin-Active.png */,
 				A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */,
 				A27EA7211171E60D0072EB59 /* SliderDivider.png */,
@@ -725,10 +731,7 @@
 				A254B841116FFE9A001534FF /* MenuBorder.png */,
 				FAE438C71173FAA5000263F7 /* MenuBorderOut.png */,
 				A254B842116FFE9A001534FF /* MenuPullTab.png */,
-				2704C030116BEEDC0075E416 /* Default-Landscape.png */,
-				2704C031116BEEDC0075E416 /* Default-Portrait.png */,
 				FAF0781A10087B530029D2AD /* push.caf */,
-				FADDB51E0F814B5200DF3650 /* Default.png */,
 				FADDB51F0F814B5200DF3650 /* Icon.png */,
 				FA0489D9116429DD00290D2D /* IconLarge.png */,
 				FAD26D900F7EE0A5001A76F6 /* TagIcon.png */,
@@ -1001,6 +1004,7 @@
 				FA689DF911D2EB840088CF3D /* NewPostBullet@2x.png in Resources */,
 				FA689DFD11D2ED3C0088CF3D /* GrippyBar@2x.png in Resources */,
 				FA689DFF11D2ED5A0088CF3D /* GrippyBarBackground@2x.png in Resources */,
+				FAFD342411D32DC0002011AB /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
