@@ -68,7 +68,6 @@
 		FA04878D11640DA600290D2D /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA56C87D114B5A5F006A493B /* ImageViewController.xib */; };
 		FA04878E11640DA800290D2D /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */; };
 		FA04878F11640DA800290D2D /* SendMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */; };
-		FA0489DA116429DD00290D2D /* IconLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = FA0489D9116429DD00290D2D /* IconLarge.png */; };
 		FA08ADB3112B40E800B89890 /* Mod.m in Sources */ = {isa = PBXBuildFile; fileRef = FA08ADB2112B40E800B89890 /* Mod.m */; };
 		FA08ADC0112B412500B89890 /* ModGavel.png in Resources */ = {isa = PBXBuildFile; fileRef = FA08ADBF112B412500B89890 /* ModGavel.png */; };
 		FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
@@ -183,10 +182,13 @@
 		FAD4EB510F96797900E74FED /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD4EB500F96797900E74FED /* MessageViewController.m */; };
 		FAD4EB540F96798800E74FED /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD4EB530F96798800E74FED /* MessageViewController.xib */; };
 		FADDB5200F814B5200DF3650 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FADDB51E0F814B5200DF3650 /* Default.png */; };
-		FADDB5210F814B5200DF3650 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FADDB51F0F814B5200DF3650 /* Icon.png */; };
 		FAE438C81173FAA5000263F7 /* MenuBorderOut.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE438C71173FAA5000263F7 /* MenuBorderOut.png */; };
 		FAF0781B10087B530029D2AD /* push.caf in Resources */ = {isa = PBXBuildFile; fileRef = FAF0781A10087B530029D2AD /* push.caf */; };
 		FAFD342411D32DC0002011AB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD342311D32DC0002011AB /* Default@2x.png */; };
+		FAFD344711D3324C002011AB /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD344311D3324C002011AB /* Icon-57.png */; };
+		FAFD344811D3324C002011AB /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD344411D3324C002011AB /* Icon-72.png */; };
+		FAFD344911D3324C002011AB /* Icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD344511D3324C002011AB /* Icon-114.png */; };
+		FAFD344A11D3324C002011AB /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD344611D3324C002011AB /* Icon-144.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -260,7 +262,6 @@
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
 		FA0481210F70D10300F752A6 /* ChattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyViewController.m; sourceTree = "<group>"; };
 		FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ThreadViewController-iPad.xib"; path = "Resources-iPad/Classes/ThreadViewController-iPad.xib"; sourceTree = "<group>"; };
-		FA0489D9116429DD00290D2D /* IconLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconLarge.png; path = Assets/IconLarge.png; sourceTree = "<group>"; };
 		FA08ADB1112B40E800B89890 /* Mod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mod.h; sourceTree = "<group>"; };
 		FA08ADB2112B40E800B89890 /* Mod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mod.m; sourceTree = "<group>"; };
 		FA08ADBF112B412500B89890 /* ModGavel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ModGavel.png; path = Assets/ModGavel.png; sourceTree = "<group>"; };
@@ -446,10 +447,13 @@
 		FAD4EB500F96797900E74FED /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		FAD4EB530F96798800E74FED /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		FADDB51E0F814B5200DF3650 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Assets/Default.png; sourceTree = "<group>"; };
-		FADDB51F0F814B5200DF3650 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Assets/Icon.png; sourceTree = "<group>"; };
 		FAE438C71173FAA5000263F7 /* MenuBorderOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuBorderOut.png; path = Assets/MenuBorderOut.png; sourceTree = "<group>"; };
 		FAF0781A10087B530029D2AD /* push.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = push.caf; sourceTree = "<group>"; };
 		FAFD342311D32DC0002011AB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Assets/Default@2x.png"; sourceTree = "<group>"; };
+		FAFD344311D3324C002011AB /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-57.png"; path = "Assets/Icon-57.png"; sourceTree = "<group>"; };
+		FAFD344411D3324C002011AB /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Assets/Icon-72.png"; sourceTree = "<group>"; };
+		FAFD344511D3324C002011AB /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-114.png"; path = "Assets/Icon-114.png"; sourceTree = "<group>"; };
+		FAFD344611D3324C002011AB /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-144.png"; path = "Assets/Icon-144.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -720,6 +724,10 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FAFD344311D3324C002011AB /* Icon-57.png */,
+				FAFD344411D3324C002011AB /* Icon-72.png */,
+				FAFD344511D3324C002011AB /* Icon-114.png */,
+				FAFD344611D3324C002011AB /* Icon-144.png */,
 				FADDB51E0F814B5200DF3650 /* Default.png */,
 				FAFD342311D32DC0002011AB /* Default@2x.png */,
 				2704C030116BEEDC0075E416 /* Default-Landscape.png */,
@@ -732,8 +740,6 @@
 				FAE438C71173FAA5000263F7 /* MenuBorderOut.png */,
 				A254B842116FFE9A001534FF /* MenuPullTab.png */,
 				FAF0781A10087B530029D2AD /* push.caf */,
-				FADDB51F0F814B5200DF3650 /* Icon.png */,
-				FA0489D9116429DD00290D2D /* IconLarge.png */,
 				FAD26D900F7EE0A5001A76F6 /* TagIcon.png */,
 				FAD26D8A0F7EDFE0001A76F6 /* RefreshIcon.png */,
 				FA2B47C10F7E2E790074064A /* Camera.png */,
@@ -941,7 +947,6 @@
 				FAD26D8B0F7EDFE0001A76F6 /* RefreshIcon.png in Resources */,
 				FAD26D910F7EE0A5001A76F6 /* TagIcon.png in Resources */,
 				FADDB5200F814B5200DF3650 /* Default.png in Resources */,
-				FADDB5210F814B5200DF3650 /* Icon.png in Resources */,
 				FA8D243E0F85848900AB23E2 /* Youtube.html in Resources */,
 				FA8D24FD0F8661D200AB23E2 /* left.png in Resources */,
 				FA8D24FE0F8661D200AB23E2 /* right.png in Resources */,
@@ -987,7 +992,6 @@
 				FA04878B11640DA300290D2D /* BrowserViewController-iPad.xib in Resources */,
 				FA04878D11640DA600290D2D /* ImageViewController.xib in Resources */,
 				FA04878F11640DA800290D2D /* SendMessageViewController.xib in Resources */,
-				FA0489DA116429DD00290D2D /* IconLarge.png in Resources */,
 				FA907CA81166D8D800306828 /* SendMessageViewController-iPad.xib in Resources */,
 				2704C032116BEEDC0075E416 /* Default-Landscape.png in Resources */,
 				2704C033116BEEDC0075E416 /* Default-Portrait.png in Resources */,
@@ -1005,6 +1009,10 @@
 				FA689DFD11D2ED3C0088CF3D /* GrippyBar@2x.png in Resources */,
 				FA689DFF11D2ED5A0088CF3D /* GrippyBarBackground@2x.png in Resources */,
 				FAFD342411D32DC0002011AB /* Default@2x.png in Resources */,
+				FAFD344711D3324C002011AB /* Icon-57.png in Resources */,
+				FAFD344811D3324C002011AB /* Icon-72.png in Resources */,
+				FAFD344911D3324C002011AB /* Icon-114.png in Resources */,
+				FAFD344A11D3324C002011AB /* Icon-144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

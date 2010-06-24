@@ -37,8 +37,10 @@
 	<string>UIStatusBarStyleOpaqueBlack</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Icon.png</string>
-		<string>IconLarge.png</string>
+		<string>Icon-57.png</string>
+		<string>Icon-72.png</string>
+		<string>Icon-114.png</string>
+		<string>Icon-144.png</string>
 	</array>
 </dict>
 </plist>
