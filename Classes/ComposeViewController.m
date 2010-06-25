@@ -252,9 +252,7 @@
 
 - (void)makePost 
 {
-    [postContent resignFirstResponder];
-    
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	self.navigationController.view.userInteractionEnabled = NO;
 	if ([Post createWithBody:postContent.text parentId:post.modelId storyId:storyId]) {
 		[self performSelectorOnMainThread:@selector(postSuccess) withObject:nil waitUntilDone:NO];
@@ -266,6 +264,9 @@
 }
 
 - (IBAction)sendPost {
+    [postContent becomeFirstResponder];
+    [postContent resignFirstResponder];
+    
     postingWarningAlertView = YES;
     [UIAlertView showWithTitle:@"Post?"
                        message:@"Submit this post?"
@@ -275,6 +276,7 @@
 }
 
 - (void)dealloc {
+    NSLog(@"ComposeViewController dealloc");
 	[parentPostPreview release];
 	[postContent release];
 	

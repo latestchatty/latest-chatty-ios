@@ -449,7 +449,7 @@
 //        usableHeight -= [LatestChatty2AppDelegate delegate].contentNavigationController.toolbar.frame.size.height;
 //    }
     
-    CGFloat dividerLocation;
+    CGFloat dividerLocation = 0.5;
     
     switch (grippyBarPosition) {
         case 0:

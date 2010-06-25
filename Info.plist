@@ -26,15 +26,17 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.6</string>
+	<string>2.6.1</string>
 	<key>LSRequiresIPhoneOS</key>
-	<true/>
+	<false/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleOpaqueBlack</string>
+	<key>CFBundleIconFile</key>
+	<string>Icon-57.png</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon-57.png</string>
