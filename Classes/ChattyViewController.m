@@ -87,6 +87,7 @@
 }
 
 - (void)setTitle:(NSString *)newTitle {
+    newTitle = [newTitle stringByReplacingOccurrencesOfString:@": " withString:@":\n"];
     [(UILabel*)self.navigationItem.titleView setText:newTitle];
     [super setTitle:newTitle];
 }
