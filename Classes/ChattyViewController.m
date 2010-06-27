@@ -140,6 +140,11 @@
     [tableView reloadData];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [loader cancel];
+}
+
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
 	if(viewController == self.threadController)
 		[threadController resetLayout];
@@ -162,17 +167,17 @@
 	[super refresh:self];
 	currentPage = 1;
 	
-//	if (storyId > 0) {
-//        loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];        
-//    } else {
-//        loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
-//    }
-    
-    if (storyId > 0) {
-        loader = [[PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self] retain];        
+	if (storyId > 0) {
+        loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];        
     } else {
-        loader = [[PinnedThreadsLoader loadPinnedThreadsThenLatestChattyFor:self] retain];
+        loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
     }
+    
+//    if (storyId > 0) {
+//        loader = [[PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self] retain];        
+//    } else {
+//        loader = [[PinnedThreadsLoader loadPinnedThreadsThenLatestChattyFor:self] retain];
+//    }
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
@@ -335,9 +340,13 @@
 
 - (void)dealloc {
 	NSLog(@"Dealloc ChattyViewController");
-
-	if([LatestChatty2AppDelegate delegate] != nil && [LatestChatty2AppDelegate delegate].contentNavigationController != nil)
-		[LatestChatty2AppDelegate delegate].contentNavigationController.delegate = nil;
+    
+    [loader cancel];
+    
+	if ([LatestChatty2AppDelegate delegate] != nil && [LatestChatty2AppDelegate delegate].contentNavigationController != nil) {
+        [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = nil;
+    }
+    
     self.threadController = nil;
 	self.threads = nil;
 	[super dealloc];
