@@ -22,7 +22,7 @@
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)s {
-  [self.resultString appendString:s];
+  [resultString appendString:s];
 }
 
 - (NSString*)unescapeEntitiesInString:(NSString*)inputString {
@@ -36,7 +36,7 @@
 }
 
 - (void)dealloc {
-  [resultString release];
+  [resultString autorelease];
   [super dealloc];
 }
 
