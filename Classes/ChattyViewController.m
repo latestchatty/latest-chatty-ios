@@ -135,6 +135,11 @@
     self.navigationItem.titleView = titleLabel;    
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [tableView reloadData];
+}
+
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
 	if(viewController == self.threadController)
 		[threadController resetLayout];
@@ -300,7 +305,7 @@
 //	return [ThreadCell cellHeight];
 //}
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row < [threads count]) {
         Post *thread = [threads objectAtIndex:indexPath.row];
         //threadController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
@@ -310,11 +315,14 @@
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             [threadController refreshWithThreadId:thread.modelId];
-            [[LatestChatty2AppDelegate delegate] dismissPopover];
-            
+            [[LatestChatty2AppDelegate delegate] dismissPopover];    
         } else {
             [self.navigationController pushViewController:[[[ThreadViewController alloc] initWithThreadId:thread.modelId] autorelease] animated:YES];
         }
+        
+        thread.newReplies = 0;
+        [tableView reloadData];
+        
     } else {
 		[self showLoadingSpinner];
 		[loader cancel];
