@@ -457,9 +457,6 @@
 
 - (void)resetLayout {
     CGFloat usableHeight = self.view.frame.size.height - 24.0;
-//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        usableHeight -= [LatestChatty2AppDelegate delegate].contentNavigationController.toolbar.frame.size.height;
-//    }
     
     CGFloat dividerLocation = 0.5;
     
@@ -482,7 +479,7 @@
         CGRect subFrame = postViewContainer.frame;
         double oldHeight = subFrame.size.height;
         double oldWidth = subFrame.size.width;
-        subFrame.size.height = floor(usableHeight * dividerLocation);
+        subFrame.size.height = round(usableHeight * dividerLocation);
         subFrame.size.width = tableView.frame.size.width;
         [postViewContainer setFrame:subFrame];
         
@@ -494,7 +491,7 @@
 
         if (oldHeight < subFrame.size.height || oldWidth < subFrame.size.width) {
                 subFrame = postView.frame;
-                subFrame.size.height = floor(usableHeight * dividerLocation);
+                subFrame.size.height = round(usableHeight * dividerLocation);
                 subFrame.size.width = postViewContainer.frame.size.width;
                 [postView setFrame:subFrame];
         } else {
@@ -503,14 +500,14 @@
         }
         
         subFrame = grippyBar.frame;
-        subFrame.origin.y = floor(usableHeight * dividerLocation) - 12;
+        subFrame.origin.y = round(usableHeight * dividerLocation) - 12;
         [grippyBar setFrame:subFrame];
     
     [threadPinButton setFrame:CGRectMake(subFrame.origin.x + subFrame.size.width - 32, subFrame.origin.y - 24, 32, 32)];
         
         subFrame = tableView.frame;
-        subFrame.origin.y = floor(usableHeight * dividerLocation) + 24;
-        subFrame.size.height = floor(usableHeight * (1.0 - dividerLocation));
+        subFrame.origin.y = round(usableHeight * dividerLocation) + 24;
+        subFrame.size.height = round(usableHeight * (1.0 - dividerLocation));
         [tableView setFrame:subFrame];
         
     [UIView commitAnimations];
