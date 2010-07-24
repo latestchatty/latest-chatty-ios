@@ -23,19 +23,7 @@
 }
 
 + (ChattyViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId {//
-//    LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    if ([appDelegate isPadDevice]) {
-//        ChattyViewController *chattyController = [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
-//        ThreadViewController *threadController = [ThreadViewController controllerWithNib];
-//        chattyController.threadController = threadController;
-//        
-//        UISplitViewController *splitController = [[[UISplitViewController alloc] init] autorelease];
-//        splitController.delegate = threadController;
-//        splitController.viewControllers = [NSArray arrayWithObjects:chattyController, threadController, nil];        
-//        return splitController;
-//    } else {
-        return [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
-//    }
+    return [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
 }
 
 
@@ -322,7 +310,7 @@
         }
         
         thread.newReplies = 0;
-        [tableView reloadData];
+        [[tableView cellForRowAtIndexPath:indexPath] setNeedsLayout];
         
     } else {
 		[self showLoadingSpinner];
