@@ -24,6 +24,7 @@
     NSUInteger storyId;
     NSUInteger threadId;
     Post *rootPost;
+    NSString *threadStarter;
 
     NSIndexPath *selectedIndexPath;
 
@@ -46,6 +47,7 @@
 
 @property (nonatomic, assign) NSUInteger threadId;
 @property (retain) Post *rootPost;
+@property (nonatomic, copy) NSString *threadStarter;
 @property (retain) NSIndexPath *selectedIndexPath;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIToolbar *leftToolbar;

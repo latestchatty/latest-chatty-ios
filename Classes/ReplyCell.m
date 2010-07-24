@@ -12,7 +12,7 @@
 
 @implementation ReplyCell
 
-@synthesize post;
+@synthesize post, isThreadStarter;
 
 + (CGFloat)cellHeight {
     return 24.0;
@@ -20,6 +20,7 @@
 
 - (id)init {
     self = [super initWithNibName:@"ReplyCell" bundle:nil];
+    self.isThreadStarter = NO;
     return self;
 }
 
@@ -31,6 +32,12 @@
     
     // Set the username
     usernameLabel.text = post.author;
+    
+    if (isThreadStarter) {
+        usernameLabel.font = [UIFont boldSystemFontOfSize:usernameLabel.font.pointSize];
+    } else {
+        usernameLabel.font = [UIFont systemFontOfSize:usernameLabel.font.pointSize];
+    }
     
     // Set the indentation depth
     CGFloat indentation = 3 + post.depth * self.indentationWidth;
@@ -67,7 +74,8 @@
     
     // Set category stripe
     categoryStripe.backgroundColor = [post categoryColor];
-    categoryStripe.frame = CGRectMake(indentation - 3, categoryStripe.frame.origin.y, categoryStripe.frame.size.width, categoryStripe.frame.size.height);
+    categoryStripe.frame = CGRectMake(indentation - 3, categoryStripe.frame.origin.y,
+                                      categoryStripe.frame.size.width, categoryStripe.frame.size.height);
 }
 
 - (void)dealloc {

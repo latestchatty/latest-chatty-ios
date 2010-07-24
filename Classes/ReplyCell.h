@@ -12,6 +12,8 @@
 
 @interface ReplyCell : TableCellFromNib {
     Post *post;
+    BOOL isThreadStarter;
+    
     IBOutlet UILabel *preview;
     IBOutlet UILabel *usernameLabel;
 
@@ -20,6 +22,7 @@
     IBOutlet UIView      *categoryStripe;
 }
 
-@property (retain) Post *post;
+@property (nonatomic, retain) Post *post;
+@property (nonatomic, assign) BOOL isThreadStarter;
 
 @end

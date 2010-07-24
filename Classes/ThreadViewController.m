@@ -13,6 +13,7 @@
 
 @synthesize threadId;
 @synthesize rootPost;
+@synthesize threadStarter;
 @synthesize selectedIndexPath;
 @synthesize toolbar, leftToolbar;
 
@@ -76,7 +77,11 @@
     self.rootPost = (Post *)model;
     [loader release];
     loader = nil;
+    
+    self.threadStarter = [[[rootPost repliesArray] objectAtIndex:0] author];
+    
     [super didFinishLoadingAllModels:nil otherData:otherData];
+    
     
     // Set story data
     NSDictionary *dataDictionary = (NSDictionary *)otherData;
@@ -337,7 +342,8 @@
     }
     
     cell.post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
-
+    cell.isThreadStarter = [cell.post.author isEqualToString:threadStarter];
+    
     return cell;
 }
 
@@ -674,6 +680,7 @@
     [rootPost release];
     [selectedIndexPath release];
     
+    self.threadStarter = nil;
     self.toolbar = nil;
     self.leftToolbar = nil;
     
