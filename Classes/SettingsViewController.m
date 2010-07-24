@@ -105,13 +105,8 @@
 }
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
 	//...
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if([[LatestChatty2AppDelegate delegate] isPadDevice])
-        [[LatestChatty2AppDelegate delegate].popoverController dismissPopoverAnimated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

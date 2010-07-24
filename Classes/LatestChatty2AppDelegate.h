@@ -24,9 +24,7 @@
     UINavigationController *navigationController;
     
     // iPad
-    UIBarButtonItem *navPopoverButton;
     UINavigationController *contentNavigationController;
-    UIPopoverController *popoverController;
 
 	SlideOutViewController *slideOutViewController;
 }
@@ -34,10 +32,8 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *navPopoverButton;
 @property (nonatomic, retain) IBOutlet SlideOutViewController *slideOutViewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *contentNavigationController;
-@property (nonatomic, retain) UIPopoverController *popoverController;
 	
 + (LatestChatty2AppDelegate*)delegate;
 
@@ -46,9 +42,6 @@
 - (NSURLCredential *)userCredential;
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
-	
-- (void)showPopover;
-- (void)dismissPopover;
 	
 @end
 

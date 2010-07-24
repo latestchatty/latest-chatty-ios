@@ -39,9 +39,7 @@
 	SendMessageViewController *sendMessageViewController = [SendMessageViewController controllerWithNib];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        sendMessageViewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:sendMessageViewController];
-        [[LatestChatty2AppDelegate delegate] dismissPopover];
     } else {
         [self.navigationController pushViewController:sendMessageViewController animated:YES];
     }

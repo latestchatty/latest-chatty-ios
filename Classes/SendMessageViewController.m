@@ -70,9 +70,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         UIViewController *viewController = [NoContentController controllerWithNib];
-        viewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
-        [[LatestChatty2AppDelegate delegate] showPopover];
     }
 }
 

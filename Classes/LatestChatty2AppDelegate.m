@@ -14,7 +14,7 @@
 @implementation LatestChatty2AppDelegate
 
 @synthesize window;
-@synthesize navigationController, contentNavigationController, popoverController, navPopoverButton, slideOutViewController;
+@synthesize navigationController, contentNavigationController, slideOutViewController;
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -259,22 +259,9 @@
 
 
 - (void)dealloc {
-    self.navPopoverButton = nil;
     self.navigationController = nil;
     self.window = nil;
     [super dealloc];
-}
-
-
-#pragma mark -
-#pragma mark UISplitViewControllerDelegate
-
-- (void)showPopover {
-    [navPopoverButton.target performSelector:navPopoverButton.action];
-}
-
-- (void)dismissPopover {
-    [popoverController dismissPopoverAnimated:YES];
 }
 
 @end

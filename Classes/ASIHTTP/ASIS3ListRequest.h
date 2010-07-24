@@ -10,7 +10,7 @@
 #import "ASIS3Request.h"
 @class ASIS3BucketObject;
 
-@interface ASIS3ListRequest : ASIS3Request {
+@interface ASIS3ListRequest : ASIS3Request <NSXMLParserDelegate> {
 	
 	NSString *prefix;
 	NSString *marker;

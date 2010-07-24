@@ -154,10 +154,8 @@
     ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:nil] autorelease];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        viewController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
-        [[LatestChatty2AppDelegate delegate] dismissPopover];
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
     }
@@ -313,14 +311,12 @@
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row < [threads count]) {
         Post *thread = [threads objectAtIndex:indexPath.row];
-        //threadController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].navPopoverButton;
         
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray array];
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:threadController animated:NO];
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             [threadController refreshWithThreadId:thread.modelId];
-            [[LatestChatty2AppDelegate delegate] dismissPopover];    
         } else {
             [self.navigationController pushViewController:[[[ThreadViewController alloc] initWithThreadId:thread.modelId] autorelease] animated:YES];
         }

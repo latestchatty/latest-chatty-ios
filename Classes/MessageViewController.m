@@ -58,14 +58,7 @@
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
         UIViewController *viewController = [appDelegate viewControllerForURL:[request URL]];
-
-		if([[LatestChatty2AppDelegate delegate] isPadDevice])
-		{
-			viewController.modalPresentationStyle = UIModalPresentationPageSheet;
-            [appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
-			return NO;
-		}
-		
+        
         if (viewController == nil) viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
         [self.navigationController pushViewController:viewController animated:YES];
         
