@@ -185,7 +185,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // prevent superclass behaviour of cell deselection
+    if (rootPost) {
+        postView.hidden = NO;
+        self.toolbar.userInteractionEnabled     = YES;
+        self.leftToolbar.userInteractionEnabled = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -204,13 +208,13 @@
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
-        [self resetLayout];
+    [self resetLayout];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {        
-        // Reload the post to fit the new view sizes.
-        [self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
+    // Reload the post to fit the new view sizes.
+    [self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
 
