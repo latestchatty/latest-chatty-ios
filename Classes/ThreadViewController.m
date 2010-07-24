@@ -67,7 +67,12 @@
     }
 }
 
-- (void)didFinishLoadingModel:(id)model otherData:(id)otherData {    
+- (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
+    NSUInteger selectedPostID = 0;
+    if (selectedIndexPath) {
+        selectedPostID = [(ReplyCell*)[tableView cellForRowAtIndexPath:selectedIndexPath] post].modelId;
+    }
+    
     self.rootPost = (Post *)model;
     [loader release];
     loader = nil;
@@ -85,6 +90,13 @@
         for (Post *post in [rootPost repliesArray]) {
             if ([post.author isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]] && post.modelId > firstPost.modelId) {
                 firstPost = post;
+            }
+        }
+    } else if (selectedIndexPath) {
+        for (Post *post in [rootPost repliesArray]) {
+            if (post.modelId == selectedPostID) {
+                firstPost = post;
+                break;
             }
         }
     } else if (rootPost.modelId == threadId) {
@@ -109,7 +121,7 @@
     self.leftToolbar.userInteractionEnabled = YES;
     
     // Select and display the targeted post
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];
     if (indexPath == nil || indexPath.row >= [[rootPost repliesArray] count]) {
         indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     }
@@ -125,10 +137,10 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
         
-        if (postView.hidden) {
-                postView.hidden = NO;
-                [self resetLayout];
-        }
+    if (postView.hidden) {
+        postView.hidden = NO;
+        [self resetLayout];
+    }
 }
 
 - (void)viewDidLoad {
