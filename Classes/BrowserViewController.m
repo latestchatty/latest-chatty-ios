@@ -24,7 +24,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        self.spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    }
     
     if (mainToolbar) {
         UIBarButtonItem *spinnerItem = [[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease];
