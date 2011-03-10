@@ -83,10 +83,11 @@
         [defaults removeObjectForKey:@"savedState"];
     }        
     
-    if ([self isPadDevice])
+    if ([self isPadDevice]) {
         [self setupInterfaceForPadWithOptions:launchOptions];
-    else
+    } else {
         [self setupInterfaceForPhoneWithOptions:launchOptions];
+    }
 
       [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];    
     
@@ -109,9 +110,6 @@
                                      [NSMutableArray array],        @"pinnedPosts",
                                      nil];
     [defaults registerDefaults:defaultSettings];
-    
-    // Check for mod status
-    [Mod performSelectorInBackground:@selector(setModeratorStatus) withObject:nil];
     
     return YES;
 }

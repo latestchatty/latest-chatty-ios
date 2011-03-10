@@ -23,7 +23,6 @@ typedef enum {
     
 }
 
-+ (void)setModeratorStatus;
 + (void)modParentId:(NSUInteger)parentID modPostId:(NSUInteger)postId mod:(ModType)modType;
 
 @end

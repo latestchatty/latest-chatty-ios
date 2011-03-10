@@ -14,7 +14,8 @@
 
 
 - (id)initWithNib {
-	if (self = [super initWithNib]) {
+    self = [super initWithNib];
+	if (self) {
         usernameField = [[self generateTextFieldWithKey:@"username"] retain];
         usernameField.placeholder = @"Enter Username";
         usernameField.returnKeyType = UIReturnKeyNext;
@@ -31,11 +32,10 @@
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
         
-        
         landscapeSwitch     = [[self generateSwitchWithKey:@"landscape"]     retain];
         youtubeSwitch       = [[self generateSwitchWithKey:@"embedYoutube"]  retain];
         pushMessagesSwitch  = [[self generateSwitchWithKey:@"push.messages"] retain];
-        
+        modToolsSwitch      = [[self generateSwitchWithKey:@"modTools"]      retain];
         
         interestingSwitch   = [[self generateSwitchWithKey:@"postCategory.informative"] retain];
         offtopicSwitch      = [[self generateSwitchWithKey:@"postCategory.offtopic"] retain];
@@ -80,6 +80,7 @@
 	[defaults setBool:landscapeSwitch.on    forKey:@"landscape"];
 	[defaults setBool:youtubeSwitch.on      forKey:@"embedYoutube"];
 	[defaults setBool:pushMessagesSwitch.on forKey:@"push.messages"];
+    [defaults setBool:modToolsSwitch.on     forKey:@"modTools"];
 	
 	if (pushMessagesSwitch.on) {
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
@@ -143,7 +144,7 @@
 			break;
 			
 		case 1:
-			return 3;
+			return 4;
 			break;
 			
 		case 2:
@@ -217,6 +218,11 @@
 			case 2:
 				cell.accessoryView = pushMessagesSwitch;
 				cell.textLabel.text = @"Push Messages:";
+				break;
+                
+			case 3:
+				cell.accessoryView = modToolsSwitch;
+				cell.textLabel.text = @"Mod Tools:";
 				break;
 		}
 	}

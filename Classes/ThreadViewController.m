@@ -26,15 +26,16 @@
 }
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
-        if (self = [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]]) {
-                storyId = [[dictionary objectForKey:@"storyId"] intValue];
-                threadId = [[dictionary objectForKey:@"threadId"] intValue];
-                lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
-                self.rootPost = [dictionary objectForKey:@"rootPost"];
-                //[self didFinishLoadingModel:[dictionary objectForKey:@"rootPost"] otherData:dictionary];
-                self.selectedIndexPath = (NSIndexPath*)[dictionary objectForKey:@"selectedIndexPath"];
-        }
-        return self;
+    self = [self initWithThreadId:[[dictionary objectForKey:@"threadId"] intValue]];
+    if (self) {
+        storyId = [[dictionary objectForKey:@"storyId"] intValue];
+        threadId = [[dictionary objectForKey:@"threadId"] intValue];
+        lastReplyId = [[dictionary objectForKey:@"lastReplyId"] intValue];
+        self.rootPost = [dictionary objectForKey:@"rootPost"];
+        //[self didFinishLoadingModel:[dictionary objectForKey:@"rootPost"] otherData:dictionary];
+        self.selectedIndexPath = (NSIndexPath*)[dictionary objectForKey:@"selectedIndexPath"];
+    }
+    return self;
 }
 
 - (NSDictionary *)stateDictionary {
@@ -131,7 +132,6 @@
         indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([rootPost visible]) {
         [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         [self tableView:tableView didSelectRowAtIndexPath:indexPath];

@@ -12,21 +12,22 @@
 #import "Post.h"
 
 @interface SettingsViewController : UIViewController <UITextFieldDelegate> {
-  IBOutlet UITableView *tableView;
+    IBOutlet UITableView *tableView;
   
-  IBOutlet UITextField *usernameField;
-  IBOutlet UITextField *passwordField;
-  IBOutlet UITextField *serverField;
+    IBOutlet UITextField *usernameField;
+    IBOutlet UITextField *passwordField;
+    IBOutlet UITextField *serverField;
   
-  IBOutlet UISwitch    *landscapeSwitch;
-  IBOutlet UISwitch    *youtubeSwitch;
-  IBOutlet UISwitch    *pushMessagesSwitch;
+    IBOutlet UISwitch    *landscapeSwitch;
+    IBOutlet UISwitch    *youtubeSwitch;
+    IBOutlet UISwitch    *pushMessagesSwitch;
+    IBOutlet UISwitch    *modToolsSwitch;
   
-  IBOutlet UISwitch    *interestingSwitch;
-  IBOutlet UISwitch    *offtopicSwitch;
-  IBOutlet UISwitch    *randomSwitch;
-  IBOutlet UISwitch    *politicsSwitch;
-  IBOutlet UISwitch    *nwsSwitch;
+    IBOutlet UISwitch    *interestingSwitch;
+    IBOutlet UISwitch    *offtopicSwitch;
+    IBOutlet UISwitch    *randomSwitch;
+    IBOutlet UISwitch    *politicsSwitch;
+    IBOutlet UISwitch    *nwsSwitch;
 }
 
 - (IBAction)dismiss:(id)sender;

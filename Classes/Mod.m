@@ -11,50 +11,6 @@
 
 @implementation Mod
 
-// Login and check to see if the mod tools allows us access.  If it does, set the mod tools flag to enable modding!
-+ (void)setModeratorStatus {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
-    // Reusable pointers
-    NSData *data;
-	NSError *error;
-	NSMutableURLRequest *request;
-    NSHTTPURLResponse *response;
-    
-    // Setup login request
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
-	NSString* passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
-	NSString* myRequestString = [NSString stringWithFormat:@"username=%@&password=%@", usernameString, passwordString];    
-    NSData *myRequestData = [NSData dataWithBytes:[myRequestString UTF8String] length:[myRequestString length]];
-    request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.shacknews.com/login.x"]
-                                                                 cachePolicy:NSURLRequestReloadIgnoringCacheData 
-                                                             timeoutInterval:60] autorelease];
-    
-    // Send login request
-	[request setHTTPMethod: @"POST" ];
-	[request setHTTPBody:myRequestData];
-	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];	
-    
-    
-    // Send mod tools request
-	request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.shacknews.com/mod_laryn.x"]
-											cachePolicy:NSURLRequestReloadIgnoringCacheData 
-										timeoutInterval:60] autorelease];
-	data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];	
-	
-	NSString *modResult = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
-	if ([modResult rangeOfString:@"Invalid moderation flags"].location != NSNotFound) {
-		[defaults setBool:YES forKey:@"moderator"];
-        NSLog(@"You're a mod");
-	} else {
-		[defaults setBool:NO forKey:@"moderator"];
-	}
-    
-    [pool drain];
-}
-
 + (void)modParentId:(NSUInteger)parentId modPostId:(NSUInteger)postId mod:(ModType)modType {
 	
     NSString *modCategory = nil;

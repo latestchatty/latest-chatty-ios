@@ -71,7 +71,7 @@
         }
 
         //Only needed for mods
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"moderator"]) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"modTools"]) {
             UIButton *modButton = [[[UIButton alloc] initWithFrame:CGRectMake(100, 0, 50, 48)] autorelease];
             [modButton addTarget:self action:@selector(tappedModButton) forControlEvents:UIControlEventTouchUpInside];
             [modButton setImage:[UIImage imageNamed:@"ModGavel.png"] forState:UIControlStateNormal];
