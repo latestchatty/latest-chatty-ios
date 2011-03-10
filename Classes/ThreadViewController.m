@@ -132,7 +132,7 @@
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([rootPost.category isEqualToString:@"ontopic"] || [defaults boolForKey:[NSString stringWithFormat:@"postCategory.%@", rootPost.category]]) {
+    if ([rootPost visible]) {
         [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         [self tableView:tableView didSelectRowAtIndexPath:indexPath];
         

@@ -198,11 +198,9 @@
 		else rootPost.newReplies = rootPost.replyCount;
 		
 		[postHistoryDict setObject:[NSNumber numberWithInt:rootPost.replyCount] forKey:modelID];
-		if ([rootPost.category isEqualToString:@"ontopic"]) {
-			[filteredThreads addObject:rootPost];
-		} else if ([[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"postCategory.%@", rootPost.category]]) {
-			[filteredThreads addObject:rootPost];
-		}
+        if ([rootPost visible]) {
+            [filteredThreads addObject:rootPost];
+        }
 	}
 	self.threads = filteredThreads;
 	

@@ -247,14 +247,11 @@ static NSMutableDictionary *colorMapping;
 }
 
 - (NSArray *)repliesArray:(NSMutableArray *)parentArray {
-    BOOL isOnTopic = [self.category isEqualToString:@"ontopic"];
-    BOOL isAllowed = [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"postCategory.%@", self.category]];
-    
-    if (isOnTopic || isAllowed) {
+    if ([self visible]) {
         [parentArray addObject:self];
         for (Post *reply in self.replies) {
             [reply repliesArray:parentArray];
-        }        
+        }
     }
     return parentArray;
 }
@@ -267,6 +264,22 @@ static NSMutableDictionary *colorMapping;
 
 - (UIColor *)categoryColor {
     return [[self class] colorForPostCategory:self.category];
+}
+
+- (BOOL)visible {
+    BOOL isOnTopic = [self.category isEqualToString:@"ontopic"];
+    BOOL isAllowed = [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"postCategory.%@", self.category]];
+    
+    // Anonymous and Apple testers do NOT get NWS.
+    //   This snippet dedicated to pancakehumper
+    if ([self.category isEqualToString:@"nws"]) {
+        NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+        if (username == nil || [username length] == 0 || [username isEqualToString:@"AppleTesting"]) {
+            return NO;
+        }
+    }
+    
+    return isOnTopic || isAllowed;
 }
 
 

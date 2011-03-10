@@ -71,5 +71,6 @@
 - (NSArray *)repliesArray:(NSMutableArray *)parentArray;
 
 - (NSInteger)compareById:(Post *)otherPost;
+- (BOOL)visible;
 
 @end
