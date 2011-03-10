@@ -94,18 +94,18 @@
 
     // Settings defaults
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     @"",                                  @"username",
-                                     @"",                                  @"password",
-                                     @"ws.shackchatty.com",                @"server",
-                                     [NSNumber numberWithBool:YES],        @"landscape",
-                                     [NSNumber numberWithBool:YES],        @"embedYoutube",
-                                     [NSNumber numberWithBool:NO],         @"push.messages",
-                                     [NSNumber numberWithBool:YES],        @"postCategory.informative",
-                                     [NSNumber numberWithBool:YES],        @"postCategory.offtopic",
-                                     [NSNumber numberWithBool:YES],        @"postCategory.stupid",
-                                     [NSNumber numberWithBool:YES],        @"postCategory.political",
-                                     [NSNumber numberWithBool:NO],         @"postCategory.nws",
-                                     [NSNumber numberWithInt:0],           @"lastRefresh",
+                                     @"",                           @"username",
+                                     @"",                           @"password",
+                                     @"shackapi.stonedonkey.com",   @"server",
+                                     [NSNumber numberWithBool:YES], @"landscape",
+                                     [NSNumber numberWithBool:YES], @"embedYoutube",
+                                     [NSNumber numberWithBool:NO],  @"push.messages",
+                                     [NSNumber numberWithBool:YES], @"postCategory.informative",
+                                     [NSNumber numberWithBool:YES], @"postCategory.offtopic",
+                                     [NSNumber numberWithBool:YES], @"postCategory.stupid",
+                                     [NSNumber numberWithBool:YES], @"postCategory.political",
+                                     [NSNumber numberWithBool:NO],  @"postCategory.nws",
+                                     [NSNumber numberWithInt:0],    @"lastRefresh",
                                      [NSMutableArray array],        @"pinnedPosts",
                                      nil];
     [defaults registerDefaults:defaultSettings];

@@ -41,7 +41,7 @@ static NSString *kParseDateFormat = @"yyyy/M/d kk:mm:ss Z"; // 2010/03/06 16:13:
 + (NSDate *)decodeDate:(NSString *)string {
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateFormat:kParseDateFormat];
-    NSLog(@"string: %@, date: %@", string, [formatter dateFromString:string]);
+//    NSLog(@"string: %@, date: %@", string, [formatter dateFromString:string]);
     return [formatter dateFromString:string];
 }
 

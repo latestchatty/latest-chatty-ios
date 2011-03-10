@@ -31,8 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refresh:self];
-	UIBarButtonItem *composeButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
-	self.navigationItem.rightBarButtonItem = composeButton;
+//	UIBarButtonItem *composeButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
+//	self.navigationItem.rightBarButtonItem = composeButton;
 }
 
 - (void)composeMessage {

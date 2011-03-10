@@ -8,6 +8,8 @@
 
 #import "Post.h"
 
+#import "LatestChatty2AppDelegate.h"
+
 static NSMutableDictionary *colorMapping;
 
 @implementation Post
@@ -144,34 +146,64 @@ static NSMutableDictionary *colorMapping;
             nil];
 }
 
++ (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    if ([challenge previousFailureCount] == 0) {
+        LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [[challenge sender] useCredential:[appDelegate userCredential] forAuthenticationChallenge:challenge];
+    } else {    
+        [[challenge sender] cancelAuthenticationChallenge:challenge];
+    }
+}
 
 + (BOOL)createWithBody:(NSString *)body parentId:(NSUInteger)parentId storyId:(NSUInteger)storyId {
+//    parent_id = options[:parent_id] || '0'
+//    story_id  = options[:story_id] || CHATTY_ID
+//    response = post(
+//                    "/api/chat/create/#{story_id}.json",
+//                    :basic_auth => {
+//                        :username => username,
+//                        :password => password,
+//                    },
+//                    :body => {
+//                        :key => KEY,
+//                        :time => Time.now.to_i,
+//                        :signature => signature,
+//                        :body => message,
+//                        :parent_id => parent_id,
+//                        :content_id => CHATTY_ID,
+//                        :content_type_id => CHATTY_ID,
+//                    }
+//                    )
+    
     NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
-    [request setURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/post_laryn_iphone.x"]];
+    [request setURL:[NSURL URLWithString:@"http://www.shacknews.com/api/chat/create/17.json"]];
     
     // Set request body and HTTP method
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *requestBody = [NSString stringWithFormat:
-                             @"iuser=%@&ipass=%@&parent=%@&group=%i&body=%@",
-                             [[defaults stringForKey:@"username"] stringByEscapingURL],         // Username
-                             [[defaults stringForKey:@"password"] stringByEscapingURL],         // Password
-                             parentId == 0 ? @"" : [NSString stringWithFormat:@"%i", parentId], // Parent ID
-                             storyId,                                                           // Story ID
-                             [body stringByEscapingURL]];                                       // Comment Body
+                             @"body=%@&parent_id=%@&content_id=17&content_type_id=17",
+                             [body stringByEscapingURL],                                         // Comment Body
+                             parentId == 0 ? @"" : [NSString stringWithFormat:@"%i", parentId]]; // Parent ID
     [request setHTTPBody:[requestBody data]];
     [request setHTTPMethod:@"POST"];
-
+    
+    // Set auth
+    NSString *authStr = [NSString stringWithFormat:@"%@:%@", [defaults stringForKey:@"username"], [defaults stringForKey:@"password"]];
+    NSData *authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
+    NSString *authValue = [NSString stringWithFormat:@"Basic %@", [NSString base64StringFromData:authData length:[authData length]]];
+    [request setValue:[authValue stringByReplacingOccurrencesOfString:@"\n" withString:@""] forHTTPHeaderField:@"Authorization"];
+    
     // Send the request
     NSHTTPURLResponse *response;
     NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]];
     
     NSLog(@"Creating Post with Request body: %@", requestBody);
+    NSLog(@"Server responded: %@", responseBody);
     
-    if ([responseBody containsString:@"navigate_page_no_history"]) {
+    if ([response statusCode] >= 200 && [response statusCode] < 300) {
         return YES;        
     } else {
-        NSString *errorString = [responseBody stringByMatching:@"alert\\(.*\"(.+?)\".*\\)" capture:1];
-        [UIAlertView showSimpleAlertWithTitle:@"Error!" message:errorString buttonTitle:@"Dang"];
+        [UIAlertView showSimpleAlertWithTitle:@"Error!" message:@"Unable to post.  Check your username and pasword in the Settings from the main menu." buttonTitle:@"Dang"];
         return NO;
     }
 }

@@ -244,9 +244,9 @@
 - (void)postFailure
 {
 	self.navigationController.view.userInteractionEnabled = YES;
-    [UIAlertView showSimpleAlertWithTitle:@"Post Failure"
-                                  message:@"There seems to have been an issue making the post. Try again!"
-                              buttonTitle:@"Bummer"];
+//    [UIAlertView showSimpleAlertWithTitle:@"Post Failure"
+//                                  message:@"There seems to have been an issue making the post. Try again!"
+//                              buttonTitle:@"Bummer"];
 	[self hideActivtyIndicator];
 }
 
