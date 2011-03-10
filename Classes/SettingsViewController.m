@@ -27,7 +27,7 @@
         usernameField.keyboardType = UIKeyboardTypeEmailAddress;
         
         serverField = [[self generateTextFieldWithKey:@"server"] retain];
-        serverField.placeholder = @"shackchatty.com";
+        serverField.placeholder = @"shackapi.stonedonkey.com";
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
         

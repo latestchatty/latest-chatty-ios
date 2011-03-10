@@ -69,7 +69,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 5;
 }
 
 
@@ -125,7 +125,9 @@
     
     switch (indexPath.row) {
         case 0:
-            viewController = [StoriesViewController controllerWithNib];
+            //viewController = [StoriesViewController controllerWithNib];
+            [UIAlertView showSimpleAlertWithTitle:@"Sorry" message:@"Stories are disabled for now.  They were broken by the shacknews.com redesign.  Check back soon!"];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
             
         case 1:
