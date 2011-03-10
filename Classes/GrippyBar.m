@@ -13,7 +13,8 @@
 @implementation GrippyBar
 
 - (id)initWithCoder:(NSCoder *)coder {
-    if (self = [super initWithCoder:coder]) {
+    self = [super initWithCoder:coder];
+    if (self) {
         self.contentMode = UIViewContentModeCenter;
         
         UIImageView *backgroundView = [UIImageView viewWithImage:[UIImage imageNamed:@"GrippyBarBackground.png"]];
