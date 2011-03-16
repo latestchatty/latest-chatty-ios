@@ -156,32 +156,15 @@ static NSMutableDictionary *colorMapping;
 }
 
 + (BOOL)createWithBody:(NSString *)body parentId:(NSUInteger)parentId storyId:(NSUInteger)storyId {
-//    parent_id = options[:parent_id] || '0'
-//    story_id  = options[:story_id] || CHATTY_ID
-//    response = post(
-//                    "/api/chat/create/#{story_id}.json",
-//                    :basic_auth => {
-//                        :username => username,
-//                        :password => password,
-//                    },
-//                    :body => {
-//                        :key => KEY,
-//                        :time => Time.now.to_i,
-//                        :signature => signature,
-//                        :body => message,
-//                        :parent_id => parent_id,
-//                        :content_id => CHATTY_ID,
-//                        :content_type_id => CHATTY_ID,
-//                    }
-//                    )
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
-    [request setURL:[NSURL URLWithString:@"http://www.shacknews.com/api/chat/create/17.json"]];
+    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/post/", server]]];
     
     // Set request body and HTTP method
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *requestBody = [NSString stringWithFormat:
-                             @"body=%@&parent_id=%@&content_id=17&content_type_id=17",
+                             @"body=%@&parent_id=%@",
                              [body stringByEscapingURL],                                         // Comment Body
                              parentId == 0 ? @"" : [NSString stringWithFormat:@"%i", parentId]]; // Parent ID
     [request setHTTPBody:[requestBody data]];
@@ -201,7 +184,7 @@ static NSMutableDictionary *colorMapping;
     NSLog(@"Server responded: %@", responseBody);
     
     if ([response statusCode] >= 200 && [response statusCode] < 300) {
-        return YES;        
+        return YES;
     } else {
         [UIAlertView showSimpleAlertWithTitle:@"Error!" message:@"Unable to post.  Check your username and pasword in the Settings from the main menu." buttonTitle:@"Dang"];
         return NO;
