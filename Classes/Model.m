@@ -9,8 +9,9 @@
 #import "Model.h"
 #import "ModelLoadingDelegate.h"
 
-static NSString *kDateFormat = @"MMM d, YYYY hh:mm a";      // Feb 25, 2010 12:22 AM
-static NSString *kParseDateFormat = @"yyyy/M/d kk:mm:ss Z"; // 2010/03/06 16:13:00 -0800
+static NSString *kDateFormat = @"MMM d, yyyy hh:mm a";          // Feb 25, 2010 12:22 AM
+static NSString *kParseDateFormat = @"yyyy/M/d kk:mm:ss Z";     // 2010/03/06 16:13:00 -0800
+static NSString *kParseDateFormat2 = @"MMM d, yyyy hh:mma zzz"; // Mar 15, 2011 6:28pm PDT
 
 
 @implementation Model
@@ -34,7 +35,6 @@ static NSString *kParseDateFormat = @"yyyy/M/d kk:mm:ss Z"; // 2010/03/06 16:13:
 + (NSString *)formatDate:(NSDate *)date; {
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateFormat:kDateFormat];
-//    NSLog(@"date: %@, string: %@", date, [formatter stringFromDate:date]);
     return [formatter stringFromDate:date];
 }
 
@@ -43,8 +43,12 @@ static NSString *kParseDateFormat = @"yyyy/M/d kk:mm:ss Z"; // 2010/03/06 16:13:
     
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateFormat:kParseDateFormat];
-//    NSLog(@"string: %@, date: %@", string, [formatter dateFromString:string]);
-    return [formatter dateFromString:string];
+    NSDate *date = [formatter dateFromString:string];
+    if (!date) {
+        [formatter setDateFormat:kParseDateFormat2];
+        date = [formatter dateFromString:string];
+    }
+    return date;
 }
 
 + (NSString *)host {
