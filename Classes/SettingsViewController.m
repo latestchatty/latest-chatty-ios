@@ -25,12 +25,23 @@
         passwordField.placeholder = @"Enter Password";
         passwordField.secureTextEntry = YES;
         passwordField.returnKeyType = UIReturnKeyDone;
-        usernameField.keyboardType = UIKeyboardTypeEmailAddress;
+        //usernameField.keyboardType = UIKeyboardTypeEmailAddress;
         
         serverField = [[self generateTextFieldWithKey:@"server"] retain];
         serverField.placeholder = @"shackapi.stonedonkey.com";
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
+        
+        picsUsernameField = [[self generateTextFieldWithKey:@"picsUsername"] retain];
+        picsUsernameField.placeholder = @"Enter Username";
+        picsUsernameField.returnKeyType = UIReturnKeyNext;
+        picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
+        
+        picsPasswordField = [[self generateTextFieldWithKey:@"picsPassword"] retain];
+        picsPasswordField.placeholder = @"Enter Password";
+        picsPasswordField.secureTextEntry = YES;
+        picsPasswordField.returnKeyType = UIReturnKeyDone;
+        
         
         landscapeSwitch     = [[self generateSwitchWithKey:@"landscape"]     retain];
         youtubeSwitch       = [[self generateSwitchWithKey:@"embedYoutube"]  retain];
@@ -75,12 +86,14 @@
 
 - (IBAction)dismiss:(id)sender {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setObject:usernameField.text  forKey:@"username"];
-	[defaults setObject:passwordField.text  forKey:@"password"];
-	[defaults setBool:landscapeSwitch.on    forKey:@"landscape"];
-	[defaults setBool:youtubeSwitch.on      forKey:@"embedYoutube"];
-	[defaults setBool:pushMessagesSwitch.on forKey:@"push.messages"];
-    [defaults setBool:modToolsSwitch.on     forKey:@"modTools"];
+	[defaults setObject:usernameField.text      forKey:@"username"];
+	[defaults setObject:passwordField.text      forKey:@"password"];
+    [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
+    [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
+	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
+	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
+	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+    [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
 	
 	if (pushMessagesSwitch.on) {
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
@@ -123,7 +136,11 @@
 		[passwordField resignFirstResponder];
 	} else if (textField == serverField) {
 		[serverField resignFirstResponder];
-	}
+	} else if (textField == picsUsernameField) {
+        [picsPasswordField becomeFirstResponder];
+    } else if (textField == picsPasswordField) {
+        [picsPasswordField resignFirstResponder];
+    }
 	return NO;
 }
 
@@ -142,12 +159,15 @@
 		case 0:
 			return 3;
 			break;
+        case 1:
+            return 2;
+            break;
 			
-		case 1:
+		case 2:
 			return 4;
 			break;
 			
-		case 2:
+		case 3:
 			return 5;
 			break;
 			
@@ -162,12 +182,16 @@
 		case 0:
 			return @"Connection";
 			break;
+        
+        case 1:
+            return @"ChattyPics.com Account";
+            break;
 			
-		case 1:
+		case 2:
 			return @"Preferences";
 			break;
 			
-		case 2:
+		case 3:
 			return @"Post Categories";
 			break;
 			
@@ -201,9 +225,24 @@
 				
 		}
 	}
+    
+    // ChattyPics text fields
+    if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case 0:
+                cell.accessoryView = picsUsernameField;
+                cell.textLabel.text = @"Username:";
+                break;
+            
+            case 1:
+                cell.accessoryView = picsPasswordField;
+                cell.textLabel.text = @"Password:";
+                break;
+        }
+    }
 	
 	// Preference toggles
-	if (indexPath.section == 1) {
+	if (indexPath.section == 2) {
 		switch (indexPath.row) {
 			case 0:
 				cell.accessoryView = landscapeSwitch;
@@ -228,7 +267,7 @@
 	}
 	
 	// Post category toggles
-	if (indexPath.section == 2) {
+	if (indexPath.section == 3) {
 		UIView *categoryColor = [[[UIView alloc] initWithFrame:CGRectMake(18, 9, 6, 28)] autorelease];
 		[cell addSubview:categoryColor];
 		
@@ -278,6 +317,9 @@
 	[usernameField release];
 	[passwordField release];
 	[serverField release];
+    
+    [picsUsernameField release];
+    [picsPasswordField release];
 	
 	[landscapeSwitch release];
 	[youtubeSwitch release];
