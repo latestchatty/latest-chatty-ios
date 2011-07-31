@@ -8,6 +8,7 @@
 
 #import "Image.h"
 #import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 
 @implementation Image
 
@@ -48,22 +49,52 @@
 	//[self autoRotateAndScale:800];
 	
 	// Setup raw image data
-	NSString *imageBase64Data = [self base64String];
+	//NSString *imageBase64Data = [self base64String];
 	
 	// Request setup
-	NSString *urlString = [Model urlStringWithPath:@"/images"];
+	//NSString *urlString = [Model urlStringWithPath:@"/images"];
+    
+    NSString *urlString = @"http://chattypics.com/upload.php";
+    NSString *loginString = @"http://chattypics.com/users.php?act=login_go";
+    
+    ASIFormDataRequest* loginRequest = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:loginString]];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *picsUsername = [[defaults stringForKey:@"picsUsername"] stringByEscapingURL];
+    NSString *picsPassword = [[defaults stringForKey:@"picsPassword"] stringByEscapingURL];
+    
+    [loginRequest setPostValue:picsUsername forKey:@"user_name"];
+    [loginRequest setPostValue:picsPassword forKey:@"user_password"];
+    
+    [loginRequest start];
+    
+    NSString *loginResponseString = [loginRequest responseString];
+    
+    // Should we even bother the notifying user if they couldn't login?
+    // The only benefits of logging in are the increased filelimits (doesn't really matter
+    // as we heavily compress the image) and saving to the user's gallery...
+    if ([loginResponseString containsString:@"Logged In"]) {
+        NSLog(@"Logged into ChattyPics");
+    }
+    
 	//NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-	ASIHTTPRequest* request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]] autorelease];
-	[request setRequestMethod:@"POST"];
-	[request setUploadProgressDelegate:progressView];
+	//ASIHTTPRequest* request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]] autorelease];
+    ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    
+    [request setData:[self compressJpeg:0.7] withFileName:@"iPhoneUpload.jpg" andContentType:@"image/jpeg" forKey:@"userfile[]"];
+    
+    
+    /*[request setRequestMethod:@"POST"];
+	[request setUploadProgressDelegate:progressView];*/
 	//[request setHTTPMethod:@"POST"];
 	
 	// Create the post body
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	/*NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSString *username = [[defaults stringForKey:@"username"] stringByEscapingURL];
 	NSString *password = [[defaults stringForKey:@"password"] stringByEscapingURL];
 	NSString *postBody = [NSString stringWithFormat:@"username=%@&password=%@&filename=iPhoneUpload.jpg&image=%@", username, password, imageBase64Data];
-	[request appendPostData:[postBody dataUsingEncoding:NSASCIIStringEncoding]];
+	[request appendPostData:[postBody dataUsingEncoding:NSASCIIStringEncoding]];*/
 	//[request setHTTPBody:[postBody dataUsingEncoding:NSASCIIStringEncoding]];
 	
 	// Send the request
@@ -71,17 +102,22 @@
 	//NSError *error;
 	[request start];
 	
-	NSData *responseData = [request responseData];
+	NSString *responseString = [request responseString];
 	
 	// Cleanup the request
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
 	// Process response
-	NSString *responseString = [NSString stringWithData:responseData];
-	NSDictionary *responseDictionary = [responseString JSONValue];
+	//NSString *responseString = [NSString stringWithData:responseData];
+	//NSDictionary *responseDictionary = [responseString JSONValue];
 	
+    
+    // regex will fail if there's a second underscore anywhere in the URL, but that shouldn't happen...
+    NSString *regEx = @"http://chattypics\\.com/files/iPhoneUpload_[^_]+\\.jpg";
+    NSString *imageURL = [responseString stringByMatching:regEx];
+
 	// Check for success
-	NSString *imageURL = [responseDictionary objectForKey:@"success"];
+	//NSString *imageURL = [responseDictionary objectForKey:@"success"];
 	[self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:imageURL waitUntilDone:YES];
 	//[self informDelegateOnMainThread:imageURL];
     
