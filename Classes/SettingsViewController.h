@@ -17,6 +17,9 @@
     IBOutlet UITextField *usernameField;
     IBOutlet UITextField *passwordField;
     IBOutlet UITextField *serverField;
+    
+    IBOutlet UITextField *picsUsernameField;
+    IBOutlet UITextField *picsPasswordField;
   
     IBOutlet UISwitch    *landscapeSwitch;
     IBOutlet UISwitch    *youtubeSwitch;
