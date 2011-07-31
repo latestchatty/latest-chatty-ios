@@ -67,8 +67,7 @@
 
 - (UITextField *)generateTextFieldWithKey:(NSString *)key {
 	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 20)];
-	
-    textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
 	textField.returnKeyType = UIReturnKeyNext;
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	textField.autocorrectionType = UITextAutocorrectionTypeNo;
