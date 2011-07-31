@@ -25,7 +25,6 @@
         passwordField.placeholder = @"Enter Password";
         passwordField.secureTextEntry = YES;
         passwordField.returnKeyType = UIReturnKeyDone;
-        //usernameField.keyboardType = UIKeyboardTypeEmailAddress;
         
         serverField = [[self generateTextFieldWithKey:@"server"] retain];
         serverField.placeholder = @"shackapi.stonedonkey.com";
@@ -69,6 +68,7 @@
 - (UITextField *)generateTextFieldWithKey:(NSString *)key {
 	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 20)];
 	
+    textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	textField.returnKeyType = UIReturnKeyNext;
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -151,7 +151,7 @@
 #pragma mark Table View Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 3;
+	return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -180,7 +180,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
-			return @"Connection";
+			return @"Shacknews.com Account";
 			break;
         
         case 1:
@@ -220,7 +220,7 @@
 				
 			case 2:
 				cell.accessoryView = serverField;
-				cell.textLabel.text = @"Server URL:";
+				cell.textLabel.text = @"API Server:";
 				break;
 				
 		}
