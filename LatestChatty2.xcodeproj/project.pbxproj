@@ -1243,7 +1243,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Alex Wayne";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
 					"$(inherited)",
@@ -1259,7 +1259,7 @@
 					"-ObjC",
 					"-licucore",
 				);
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BDCFA70-81F4-4516-A4E9-71AB14F50273";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
