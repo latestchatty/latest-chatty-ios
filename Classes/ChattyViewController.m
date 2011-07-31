@@ -135,7 +135,7 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
 	if(viewController == self.threadController)
-		[threadController resetLayout];
+		[threadController resetLayout:YES];
 }
 
 - (IBAction)tappedComposeButton {

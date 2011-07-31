@@ -66,6 +66,6 @@
 
 - (void)refreshWithThreadId:(NSUInteger)threadId;
 
-- (void)resetLayout;
+- (void)resetLayout:(BOOL)animated;
 
 @end

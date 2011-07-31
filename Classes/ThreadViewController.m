@@ -144,7 +144,7 @@
         
     if (postView.hidden) {
         postView.hidden = NO;
-        [self resetLayout];
+        [self resetLayout:YES];
     }
 }
 
@@ -181,7 +181,7 @@
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
     }    
         
-    [self resetLayout];
+    [self resetLayout:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -190,6 +190,7 @@
         self.toolbar.userInteractionEnabled     = YES;
         self.leftToolbar.userInteractionEnabled = YES;
     }
+    [self resetLayout:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -208,7 +209,7 @@
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
-    [self resetLayout];
+    [self resetLayout:YES];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -465,7 +466,7 @@
         [self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
-- (void)resetLayout {
+- (void)resetLayout:(BOOL)animated {
     CGFloat usableHeight = self.view.frame.size.height - 24.0;
     
     CGFloat dividerLocation = 0.5;
@@ -485,7 +486,11 @@
     }
     
     [UIView beginAnimations:@"ResizePostView" context:nil];
-                        
+    {
+        if (!animated){
+            [UIView setAnimationDuration:0];
+        }
+        
         CGRect subFrame = postViewContainer.frame;
         double oldHeight = subFrame.size.height;
         double oldWidth = subFrame.size.width;
@@ -504,35 +509,35 @@
                 subFrame.size.height = round(usableHeight * dividerLocation);
                 subFrame.size.width = postViewContainer.frame.size.width;
                 [postView setFrame:subFrame];
-        } else {
-                [UIView setAnimationDelegate:self];
-                [UIView setAnimationDidStopSelector:@selector(resetLayoutAnimationDidStop:finished:context:)];
         }
+        
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(resetLayoutAnimationDidStop:finished:context:)];
         
         subFrame = grippyBar.frame;
         subFrame.origin.y = round(usableHeight * dividerLocation) - 12;
         [grippyBar setFrame:subFrame];
     
-    [threadPinButton setFrame:CGRectMake(subFrame.origin.x + subFrame.size.width - 32, subFrame.origin.y - 24, 32, 32)];
+        [threadPinButton setFrame:CGRectMake(subFrame.origin.x + subFrame.size.width - 32, subFrame.origin.y - 24, 32, 32)];
         
         subFrame = tableView.frame;
         subFrame.origin.y = round(usableHeight * dividerLocation) + 24;
         subFrame.size.height = round(usableHeight * (1.0 - dividerLocation));
         [tableView setFrame:subFrame];
-        
+    }
     [UIView commitAnimations];
 }
 
 - (void)grippyBarDidSwipeUp {
     grippyBarPosition--;
     if (grippyBarPosition < 0) grippyBarPosition = 0;
-    [self resetLayout];
+    [self resetLayout:YES];
 }
 
 - (void)grippyBarDidSwipeDown {
     grippyBarPosition++;
     if (grippyBarPosition > 2) grippyBarPosition = 2;
-    [self resetLayout];
+    [self resetLayout:YES];
 }
 
 - (IBAction)tag {

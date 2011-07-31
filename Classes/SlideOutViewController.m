@@ -152,7 +152,7 @@
         return;
     
     ThreadViewController *threadViewController = (ThreadViewController *)contentNavigationController.topViewController;
-    [threadViewController resetLayout];
+    [threadViewController resetLayout:YES];
 }
 
 
