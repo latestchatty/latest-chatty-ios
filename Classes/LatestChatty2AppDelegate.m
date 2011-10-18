@@ -110,7 +110,20 @@
                                      [NSMutableArray array],        @"pinnedPosts",
                                      nil];
     [defaults registerDefaults:defaultSettings];
-    
+
+    if([defaults boolForKey:@"modTools"]==YES){
+        //Mods need cookies
+        //
+        NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
+        NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
+        NSString *requestBody = [NSString stringWithFormat:@"email=%@&password=%@&login=login", usernameString, passwordString];
+        NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+
+        [request setURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
+        [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
+        [request setHTTPMethod:@"POST"];
+        [NSURLConnection connectionWithRequest:request delegate:nil];    
+    }
     return YES;
 }
 
@@ -140,7 +153,6 @@
     NSString *pushToken = [[deviceToken description] stringByReplacingOccurrencesOfRegex:@"<|>" withString:@""];
     NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
     NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
-    
     NSString *requestBody = [NSString stringWithFormat:@"token=%@&username=%@&password=%@", pushToken, usernameString, passwordString];
     [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
     [request setHTTPMethod:@"POST"];
