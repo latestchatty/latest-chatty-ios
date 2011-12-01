@@ -182,7 +182,15 @@
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?story=(\\d+)" capture:1] intValue];
         viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
-    } //else if ([[uri lowercaseString] isMatchedByRegex:@"\\.(png|jpg)$"]) {
+    } else
+        if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
+            NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?id=(\\d+)" capture:1] intValue];
+            viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
+        } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?story=\\d+"]) {
+            NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?story=(\\d+)" capture:1] intValue];
+            viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
+        }
+    //else if ([[uri lowercaseString] isMatchedByRegex:@"\\.(png|jpg)$"]) {
 //        viewController = [ImageViewController controllerWithURL:url];
 //    }
     
