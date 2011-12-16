@@ -114,7 +114,7 @@
 	
 	[defaults synchronize];
 	
-	[self.parentViewController dismissModalViewControllerAnimated:YES];
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HKHelperKit.h"
+#import "PullToRefreshView.h"
 
 #import "ModelListViewController.h"
 #import "Story.h"
@@ -19,7 +20,7 @@
 
 @class ThreadViewController;
 
-@interface ChattyViewController : ModelListViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate> {
+@interface ChattyViewController : ModelListViewController <PullToRefreshViewDelegate, UISplitViewControllerDelegate, UINavigationControllerDelegate> {
     ThreadViewController *threadController;
     
     NSUInteger storyId;
@@ -31,6 +32,7 @@
 }
 
 @property (nonatomic, retain) ThreadViewController *threadController;
+@property (nonatomic, retain) PullToRefreshView *pull;
 
 @property (assign) NSUInteger storyId;
 @property (retain) NSArray *threads;

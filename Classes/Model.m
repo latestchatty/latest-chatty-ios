@@ -34,14 +34,18 @@ static NSString *kParseDateFormat2 = @"MMM d, yyyy hh:mma zzz"; // Mar 15, 2011 
 
 + (NSString *)formatDate:(NSDate *)date; {
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    //Force the 12hr locale so dates appear on the 24hr guys
+    [formatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease]];
     [formatter setDateFormat:kDateFormat];
     return [formatter stringFromDate:date];
 }
 
 + (NSDate *)decodeDate:(NSString *)string {
     if ((id)string == [NSNull null]) return nil;
-    
+  
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    //Force the 12hr locale so dates appear on the 24hr guys    
+    [formatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease]];
     [formatter setDateFormat:kParseDateFormat];
     NSDate *date = [formatter dateFromString:string];
     if (!date) {

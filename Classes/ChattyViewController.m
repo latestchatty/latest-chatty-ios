@@ -8,15 +8,18 @@
 
 #import "ChattyViewController.h"
 #import "LatestChatty2AppDelegate.h"
+#import "PullToRefreshView.h"
 
 #include "ThreadViewController.h"
 #include "NoContentController.h"
+
 
 @implementation ChattyViewController
 
 @synthesize threadController;
 @synthesize storyId;
 @synthesize threads;
+@synthesize pull;
 
 + (ChattyViewController*)chattyControllerWithLatest {
     return [self chattyControllerWithStoryId:0];
@@ -24,6 +27,13 @@
 
 + (ChattyViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId {//
     return [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
+}
+
+
+- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
+    NSLog(@"Pull?");
+    [self refresh:self];
+    [pull finishedLoading];
 }
 
 
@@ -38,6 +48,7 @@
         self.threadController = [[[ThreadViewController alloc] initWithThreadId:0] autorelease];
         //threadController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
     }
+
     
     self.title = @"Loading...";
     
@@ -83,7 +94,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	[LatestChatty2AppDelegate delegate].contentNavigationController.delegate = self;
+    [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = self;
 	
 	if (threads == nil || [threads count] == 0) {
 		[self refresh:self];
@@ -121,6 +132,11 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     titleLabel.text = self.title;
     self.navigationItem.titleView = titleLabel;    
+    
+    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
+    [pull setDelegate:self];
+    [self.tableView addSubview:pull];
+    [pull finishedLoading];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
