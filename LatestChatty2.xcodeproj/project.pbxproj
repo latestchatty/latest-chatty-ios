@@ -36,6 +36,9 @@
 		599FF0F910D5DDC1004476B8 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F110D5DDC1004476B8 /* SBJsonBase.m */; };
 		599FF0FA10D5DDC1004476B8 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F310D5DDC1004476B8 /* SBJsonParser.m */; };
 		599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */; };
+		967A7FFB149BC1A1001D0BD7 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 967A7FFA149BC1A1001D0BD7 /* PullToRefreshView.m */; };
+		967A7FFF149BC1AC001D0BD7 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 967A7FFD149BC1AC001D0BD7 /* arrow.png */; };
+		967A8000149BC1AC001D0BD7 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 967A7FFE149BC1AC001D0BD7 /* arrow@2x.png */; };
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
 		A254B844116FFE9A001534FF /* MenuPullTab.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B842116FFE9A001534FF /* MenuPullTab.png */; };
 		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
@@ -258,6 +261,10 @@
 		61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageViewController.m; sourceTree = "<group>"; };
 		61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		967A7FF9149BC1A1001D0BD7 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
+		967A7FFA149BC1A1001D0BD7 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshView.m; sourceTree = "<group>"; };
+		967A7FFD149BC1AC001D0BD7 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		967A7FFE149BC1AC001D0BD7 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		A254B841116FFE9A001534FF /* MenuBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuBorder.png; path = Assets/MenuBorder.png; sourceTree = "<group>"; };
 		A254B842116FFE9A001534FF /* MenuPullTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuPullTab.png; path = Assets/MenuPullTab.png; sourceTree = "<group>"; };
 		A254B845116FFEB0001534FF /* SlideOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutViewController.h; sourceTree = "<group>"; };
@@ -539,6 +546,8 @@
 				A27EAB8611728E360072EB59 /* PinnedThreadsLoader.h */,
 				A27EAB8711728E360072EB59 /* PinnedThreadsLoader.m */,
 				28A0AAE50D9B0CCF005BE974 /* LatestChatty2_Prefix.pch */,
+				967A7FF9149BC1A1001D0BD7 /* PullToRefreshView.h */,
+				967A7FFA149BC1A1001D0BD7 /* PullToRefreshView.m */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				FABA5D410F717A28008EEE3A /* StringAdditions.h */,
 				FABA5D420F717A28008EEE3A /* StringAdditions.m */,
@@ -748,6 +757,8 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				967A7FFD149BC1AC001D0BD7 /* arrow.png */,
+				967A7FFE149BC1AC001D0BD7 /* arrow@2x.png */,
 				FAFD344311D3324C002011AB /* Icon-57.png */,
 				FAFD344411D3324C002011AB /* Icon-72.png */,
 				FAFD344511D3324C002011AB /* Icon-114.png */,
@@ -925,7 +936,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0420;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "LatestChatty2" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1065,6 +1076,8 @@
 				FA5B5F2B11D70914000CC71C /* ChatIcon.48@2x.png in Resources */,
 				FA5B5F2D11D7091F000CC71C /* ChatIcon.24@2x.png in Resources */,
 				FA5B5F3311D709DC000CC71C /* ModGavel@2x.png in Resources */,
+				967A7FFF149BC1AC001D0BD7 /* arrow.png in Resources */,
+				967A8000149BC1AC001D0BD7 /* arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,6 +1162,7 @@
 				FA04878E11640DA800290D2D /* SendMessageViewController.m in Sources */,
 				A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */,
 				A27EAB8811728E360072EB59 /* PinnedThreadsLoader.m in Sources */,
+				967A7FFB149BC1A1001D0BD7 /* PullToRefreshView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

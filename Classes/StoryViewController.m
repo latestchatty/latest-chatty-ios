@@ -79,9 +79,9 @@
     // Load up web view content
     NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
     
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [content loadRequest:[NSURLRequest requestWithURLString:baseUrlString]];
-    } else {
+    //if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+    //    [content loadRequest:[NSURLRequest requestWithURLString:baseUrlString]];
+    //} else {
         StringTemplate *htmlTemplate = [[[StringTemplate alloc] initWithTemplateName:@"Story.html"] autorelease];
         
         NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
@@ -92,7 +92,7 @@
         [htmlTemplate setString:story.title forKey:@"storyTitle"];
         
         [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
-    }
+    //}
 }
 
 

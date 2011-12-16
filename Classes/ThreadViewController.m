@@ -395,7 +395,7 @@
     NSString *body = [self postBodyWithYoutubeWidgets:post.body];
     
     [htmlTemplate setString:body forKey:@"body"];
-    [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://shacknews.com/laryn.x?id=%i", rootPost.modelId]]];
+    [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%i", rootPost.modelId]]];
 }
 
 - (NSString *)postBodyWithYoutubeWidgets:(NSString *)body {

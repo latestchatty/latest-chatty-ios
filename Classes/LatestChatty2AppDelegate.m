@@ -110,7 +110,20 @@
                                      [NSMutableArray array],        @"pinnedPosts",
                                      nil];
     [defaults registerDefaults:defaultSettings];
-    
+
+    if([defaults boolForKey:@"modTools"]==YES){
+        //Mods need cookies
+        //
+        NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
+        NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
+        NSString *requestBody = [NSString stringWithFormat:@"email=%@&password=%@&login=login", usernameString, passwordString];
+        NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+
+        [request setURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
+        [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
+        [request setHTTPMethod:@"POST"];
+        [NSURLConnection connectionWithRequest:request delegate:nil];    
+    }
     return YES;
 }
 
@@ -140,7 +153,6 @@
     NSString *pushToken = [[deviceToken description] stringByReplacingOccurrencesOfRegex:@"<|>" withString:@""];
     NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
     NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
-    
     NSString *requestBody = [NSString stringWithFormat:@"token=%@&username=%@&password=%@", pushToken, usernameString, passwordString];
     [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
     [request setHTTPMethod:@"POST"];
@@ -170,7 +182,15 @@
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?story=(\\d+)" capture:1] intValue];
         viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
-    } //else if ([[uri lowercaseString] isMatchedByRegex:@"\\.(png|jpg)$"]) {
+    } else
+        if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
+            NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?id=(\\d+)" capture:1] intValue];
+            viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
+        } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?story=\\d+"]) {
+            NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?story=(\\d+)" capture:1] intValue];
+            viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
+        }
+    //else if ([[uri lowercaseString] isMatchedByRegex:@"\\.(png|jpg)$"]) {
 //        viewController = [ImageViewController controllerWithURL:url];
 //    }
     
