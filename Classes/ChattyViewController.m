@@ -347,7 +347,8 @@
     
     self.threadController = nil;
 	self.threads = nil;
-	[super dealloc];
+    [pull release];
+    [super dealloc];
 }
 
 
