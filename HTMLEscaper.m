@@ -7,6 +7,7 @@
 //
 
 #import "HTMLEscaper.h"
+#import "RegexKitLite.h"
 
 
 @implementation HTMLEscaper
@@ -27,7 +28,7 @@
 
 - (NSString*)unescapeEntitiesInString:(NSString*)inputString {
   NSString* wrappedStr = [NSString stringWithFormat:@"<d>%@</d>", inputString];
-  NSString* xmlStr = [wrappedStr stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+  NSString* xmlStr = [wrappedStr stringByReplacingOccurrencesOfRegex:@"&(?![a-z#]+;)" withString:@"&amp;"];
   NSData *data = [xmlStr dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
   NSXMLParser* xmlParse = [[NSXMLParser alloc] initWithData:data];
   [xmlParse setDelegate:self];
