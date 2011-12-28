@@ -27,7 +27,6 @@
 }
 
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
-    NSLog(@"Pull?");
     [self refresh:self];
     [pull finishedLoading];
 }
