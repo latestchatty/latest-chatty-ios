@@ -108,6 +108,7 @@
     [terms release];
     [author release];
     [parentAuthor release];
+    [pull release];
     [super dealloc];
 }
 
