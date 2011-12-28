@@ -7,11 +7,13 @@
 //
 
 #import "SearchResultsViewController.h"
+#import "UIViewController+HelperKit.h"
 
 
 @implementation SearchResultsViewController
 
 @synthesize posts;
+@synthesize pull;
 
 - (id)initWithTerms:(NSString *)searchTerms author:(NSString *)searchAuthor parentAuthor:(NSString *)searchParentAuthor {
     self = [super initWithNib];
@@ -24,9 +26,21 @@
     return self;
 }
 
+- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
+    NSLog(@"Pull?");
+    [self refresh:self];
+    [pull finishedLoading];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refresh:self];
+
+    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
+    [pull setDelegate:self];
+    [self.tableView addSubview:pull];
+    [pull finishedLoading];
 }
 
 - (IBAction)refresh:(id)sender {
