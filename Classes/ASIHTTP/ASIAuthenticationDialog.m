@@ -230,6 +230,12 @@ NSLock *dialogLock = nil;
 	return nil;
 }
 
+- (void)dealloc {
+    self.request = nil;
+    self.loginDialog = nil;
+    [super dealloc];
+}
+
 @synthesize request;
 @synthesize loginDialog;
 @synthesize type;

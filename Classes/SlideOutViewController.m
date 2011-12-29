@@ -82,6 +82,8 @@
 
 
 - (void)dealloc {
+    [navigationController release];
+    [contentNavigationController release];
     [super dealloc];
 }
 

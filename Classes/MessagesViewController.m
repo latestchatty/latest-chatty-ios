@@ -125,6 +125,7 @@
 }
 
 - (void)dealloc {
+    self.messages = nil;
     [super dealloc];
 }
 

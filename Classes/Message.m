@@ -75,5 +75,14 @@
 
 }
 
+- (void)dealloc {
+    self.from = nil;
+    self.to = nil;
+    self.subject =nil;
+    self.body = nil;
+    self.date = nil;
+    [super dealloc];
+}
+
 
 @end
