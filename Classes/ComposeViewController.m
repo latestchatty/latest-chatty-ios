@@ -116,7 +116,7 @@
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Camera", @"Library", nil] autorelease];
-		dialog.actionSheetStyle = UIBarStyleBlackOpaque;
+		dialog.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 		dialog.destructiveButtonIndex = -1;
         [dialog showInView:self.view];
 	} else {

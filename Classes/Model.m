@@ -73,14 +73,14 @@ static NSString *kParseDateFormat2 = @"MMM d, yyyy hh:mma zzz"; // Mar 15, 2011 
 
 + (ModelLoader *)loadAllFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
     ModelLoader *loader =    [[ModelLoader alloc] initWithAllObjectsAtURL:[self urlStringWithPath:urlString]
-                                                             dataDelegate:self
+                                                             dataDelegate:(id)self
                                                             modelDelegate:delegate];
     return [loader autorelease];
 }
 
 + (ModelLoader *)loadObjectFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
     ModelLoader *loader =    [[ModelLoader alloc] initWithObjectAtURL:[self urlStringWithPath:urlString]
-                                                         dataDelegate:self
+                                                         dataDelegate:(id)self
                                                         modelDelegate:delegate];
     return [loader autorelease];
 }

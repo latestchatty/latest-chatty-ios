@@ -95,7 +95,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   // Override this method
-  return [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"tableCell"] autorelease];
+    return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
 }
 
 
