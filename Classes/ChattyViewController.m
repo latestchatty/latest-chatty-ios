@@ -13,6 +13,11 @@
 #include "ThreadViewController.h"
 #include "NoContentController.h"
 
+@interface ChattyViewController ()
+
+-(void)loadMorePosts;
+
+@end
 
 @implementation ChattyViewController
 
@@ -296,10 +301,14 @@
 		
 		return cell;
 	} else {
-		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-		cell.textLabel.text = @"Load More";
-		cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-		cell.textLabel.textAlignment = UITextAlignmentCenter;
+		UITableViewCell *cell                = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [cell.contentView addSubview:cellSpinner];
+        
+        [cellSpinner setCenter: cell.contentView.center];
+        [cellSpinner startAnimating];
+        
+        [cellSpinner release];   
 		return cell;
 	}
 	
@@ -327,18 +336,26 @@
         [[tableView cellForRowAtIndexPath:indexPath] setNeedsLayout];
         
     } else {
-		[self showLoadingSpinner];
-		[loader cancel];
-		[loader release];
-		currentPage++;
-		loader = [[Post findAllWithStoryId:storyId pageNumber:currentPage delegate:self] retain];
+        [self loadMorePosts];
 	}
 }
 
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [threads count]) {
+        [self loadMorePosts];
+    }
+}
+
+-(void)loadMorePosts {
+    [loader cancel];
+    [loader release];
+    currentPage++;
+    loader = [[Post findAllWithStoryId:storyId pageNumber:currentPage delegate:self] retain];
+}
+
 - (void)dealloc {
-	NSLog(@"Dealloc ChattyViewController");
-    
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     [loader cancel];
     
 	if ([LatestChatty2AppDelegate delegate] != nil && [LatestChatty2AppDelegate delegate].contentNavigationController != nil) {

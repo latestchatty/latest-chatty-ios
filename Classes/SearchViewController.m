@@ -124,7 +124,7 @@
     return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+    UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
