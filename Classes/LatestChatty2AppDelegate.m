@@ -279,6 +279,8 @@
 - (void)dealloc {
     self.navigationController = nil;
     self.window = nil;
+    self.contentNavigationController = nil;
+    self.slideOutViewController = nil;
     [super dealloc];
 }
 

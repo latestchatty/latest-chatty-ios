@@ -33,8 +33,9 @@
   NSXMLParser* xmlParse = [[NSXMLParser alloc] initWithData:data];
   [xmlParse setDelegate:self];
   [xmlParse parse];
-  
-  return resultString;
+
+    [xmlParse release];
+    return resultString;
 }
 
 - (void)dealloc {

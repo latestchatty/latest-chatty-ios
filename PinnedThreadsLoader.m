@@ -120,4 +120,11 @@
     [loadingFor didFinishLoadingAllModels:loadingModels otherData:otherData];
 }
 
+- (void)dealloc {
+    self.pinnedThreadsToLoad = nil;
+    self.loadingFor = nil;
+    [loadingModels release];
+    [super dealloc];
+}
+
 @end
