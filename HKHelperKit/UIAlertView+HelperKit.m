@@ -41,7 +41,7 @@
     va_start(args, otherButtonTitles);
     {
         NSString *buttonTitle = nil;
-        while (buttonTitle = va_arg(args, NSString*)) {
+        while ((buttonTitle = va_arg(args, NSString*))) {
             [alert addButtonWithTitle:buttonTitle];
         }        
     }

@@ -17,7 +17,7 @@
     va_start(args, objects);
     {
         NSObject *object = nil;
-        while (object = va_arg(args, NSObject*)) {
+        while ((object = va_arg(args, NSObject*))) {
             if ([self isEqual:object]) {
                 return YES;
             }
