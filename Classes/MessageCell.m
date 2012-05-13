@@ -28,7 +28,10 @@
 
 - (void)dealloc {
   self.message = nil;
-  [super dealloc];
+    self.previewLabel = nil;
+    self.subjectLabel = nil;
+    self.dateLabel = nil;
+    [super dealloc];
 }
 
 

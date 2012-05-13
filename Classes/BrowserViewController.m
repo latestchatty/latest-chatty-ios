@@ -76,12 +76,12 @@
         [webView stopLoading];
     }
     webView.delegate = nil;
-    
+
     self.webView = nil;
     self.backButton = nil;
     self.forwardButton = nil;
     self.spinner = nil;
-    
+    self.mainToolbar = nil;
     [super dealloc];
 }
 

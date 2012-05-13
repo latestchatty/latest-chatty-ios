@@ -72,7 +72,7 @@
 	if (![self fileData]) {
 		[self setFileData:[NSMutableDictionary dictionary]];
 	}
-	
+
 	// If data is a path to a local file
 	if ([data isKindOfClass:[NSString class]]) {
 		BOOL isDirectory = NO;
@@ -85,14 +85,14 @@
 		if (!fileName) {
 			fileName = [(NSString *)data lastPathComponent];
 		}
-	
+
 		// If we were given the path to a file, and the user didn't specify a mime type, we can detect it (currently only on Mac OS)
 		// Will return 'application/octet-stream' on iPhone, or if the mime type cannot be determined
 		if (!contentType) {
 			contentType = [ASIHTTPRequest mimeTypeForFileAtPath:data];
 		}
 	}
-	
+
 	NSDictionary *fileInfo = [NSDictionary dictionaryWithObjectsAndKeys:data, @"data", contentType, @"contentType", fileName, @"fileName", nil];
 	[[self fileData] setObject:fileInfo forKey:key];
 	[self setRequestMethod: @"POST"];

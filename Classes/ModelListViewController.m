@@ -140,7 +140,8 @@
 - (void)dealloc {
   [loader release];
   [loadingView release];
-  [super dealloc];
+    self.tableView = nil;
+    [super dealloc];
 }
 
 

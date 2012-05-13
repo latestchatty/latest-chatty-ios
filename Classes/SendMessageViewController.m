@@ -91,6 +91,9 @@
 }
 
 - (void)dealloc {
+    self.body = nil;
+    self.recipient =nil;
+    self.subject = nil;
     [super dealloc];
 }
 
