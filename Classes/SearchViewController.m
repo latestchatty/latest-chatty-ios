@@ -25,27 +25,32 @@
     
     CGRect fieldRect;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        fieldRect = CGRectMake(150, 7, inputTable.frame.size.width - 160, 21);
+        fieldRect = CGRectMake(150, 7, inputTable.frame.size.width - 220, 21);
     } else {
         fieldRect = CGRectMake(110, 7, inputTable.frame.size.width - 120, 21);
     }
+    
+    NSLog(@"%@", inputTable);
     
     inputTable.backgroundColor = [UIColor clearColor];
     segmentedBar.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
     
     termsField = [[UITextField alloc] initWithFrame:fieldRect];
+    termsField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     termsField.borderStyle = UITextBorderStyleNone;
     termsField.returnKeyType = UIReturnKeySearch;
     termsField.clearButtonMode = UITextFieldViewModeAlways;
     termsField.delegate = self;
     
     authorField = [[UITextField alloc] initWithFrame:fieldRect];
+    authorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     authorField.borderStyle = UITextBorderStyleNone;
     authorField.returnKeyType = UIReturnKeySearch;
     authorField.clearButtonMode = UITextFieldViewModeAlways;
     authorField.delegate = self;
     
     parentAuthorField = [[UITextField alloc] initWithFrame:fieldRect];
+    parentAuthorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     parentAuthorField.borderStyle = UITextBorderStyleNone;
     parentAuthorField.returnKeyType = UIReturnKeySearch;
     parentAuthorField.clearButtonMode = UITextFieldViewModeAlways;
@@ -142,9 +147,17 @@
     prompt.textColor = [UIColor colorWithWhite:0.0 alpha:0.6];
     [cell addSubview:prompt];
     
-    if (indexPath.row == 0) [cell addSubview:termsField];
-    if (indexPath.row == 1) [cell addSubview:authorField];
-    if (indexPath.row == 2) [cell addSubview:parentAuthorField];
+    UITextField *textField = nil;
+    if (indexPath.row == 0) textField = termsField;
+    if (indexPath.row == 1) textField = authorField;
+    if (indexPath.row == 2) textField = parentAuthorField;
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        textField.frameWidth = cell.frameWidth - 200;
+    } else {
+        textField.frameWidth = cell.frameWidth - 120;
+    }
+    [cell addSubview:textField];
     
     return cell;
 }
