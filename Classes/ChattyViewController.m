@@ -247,9 +247,10 @@
 		// Refresh the table
 		[self.tableView reloadData];
 		
+        // Removed "scroll to top of first thread on next page" behavior with infinite scrolling.
 		// Scroll the table so that the first thread from the next page is at the top of the screen
-		NSUInteger firstThreadIndex = [self.threads indexOfObject:[models objectAtIndex:0]];
-		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:firstThreadIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+		//NSUInteger firstThreadIndex = [self.threads indexOfObject:[models objectAtIndex:0]];
+		//[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:firstThreadIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 	}
 	
 	// Record this refresh
