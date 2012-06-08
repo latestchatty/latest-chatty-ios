@@ -182,8 +182,9 @@ static NSMutableDictionary *colorMapping;
     
     NSLog(@"Creating Post with Request body: %@", requestBody);
     NSLog(@"Server responded: %@", responseBody);
+    NSLog(@"response statusCode: %d", [response statusCode]);
     
-    if ([response statusCode] >= 200 && [response statusCode] < 300) {
+    if ([response statusCode] >= 200 && [response statusCode] < 300 && ![responseBody isEqualToString:@"error_login_failed"]) {
         return YES;
     } else {
         [UIAlertView showSimpleAlertWithTitle:@"Error!" message:@"Unable to post.  Check your username and pasword in the Settings from the main menu." buttonTitle:@"Dang"];
