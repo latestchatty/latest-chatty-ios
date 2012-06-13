@@ -32,6 +32,12 @@
     
     NSLog(@"%@", inputTable);
     
+    //respondsToSelector needed for versions prior to iOS 3.2
+    if ([inputTable respondsToSelector:@selector(backgroundView)]) {
+        [inputTable setBackgroundView:nil];
+        [inputTable setBackgroundView:[[[UIView alloc] init] autorelease]];
+    }
+
     inputTable.backgroundColor = [UIColor clearColor];
     segmentedBar.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
     
