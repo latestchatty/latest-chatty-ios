@@ -184,11 +184,33 @@ static NSMutableDictionary *colorMapping;
     NSLog(@"Server responded: %@", responseBody);
     NSLog(@"response statusCode: %d", [response statusCode]);
     
-    if ([response statusCode] >= 200 && [response statusCode] < 300 && ![responseBody isEqualToString:@"error_login_failed"]) {
-        return YES;
-    } else {
+    // Handle login failed
+    if ([responseBody isEqualToString:@"error_login_failed"]) {
+        [UIAlertView showSimpleAlertWithTitle:@"Login Failed"
+                                      message:@"Check your Username and Password in Settings from the main menu."
+                                  buttonTitle:@"Dang"];
+        return NO;
+    }
+    
+    // Handle specific errors
+    else if ([responseBody isMatchedByRegex:@"^error_"]) {
+        NSString *msg = [[responseBody stringByReplacingOccurrencesOfString:@"error_" withString:@""]
+                         stringByReplacingOccurrencesOfString:@"_" withString:@" "];
         [UIAlertView showSimpleAlertWithTitle:@"Error!"
-                                      message:@"Login Failed. Check your username and pasword in Settings from the main menu."
+                                      message:[NSString stringWithFormat:@"Post failed:\n%@", msg]
+                                  buttonTitle:@"Dang"];
+        return NO;
+    }
+    
+    // Handle successful post
+    else if ([response statusCode] >= 200 && [response statusCode] < 300) {
+        return YES;
+    }
+    
+    // Handle any other error
+    else {
+        [UIAlertView showSimpleAlertWithTitle:@"Error!"
+                                      message:@"Post failed and we don't know why :("
                                   buttonTitle:@"Dang"];
         return NO;
     }
