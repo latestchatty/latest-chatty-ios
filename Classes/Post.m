@@ -207,7 +207,7 @@ static NSMutableDictionary *colorMapping;
         return YES;
     }
     
-    // Handle any other error
+    // Handle any other error 
     else {
         [UIAlertView showSimpleAlertWithTitle:@"Error!"
                                       message:@"Post failed and we don't know why :("
