@@ -17,6 +17,8 @@
 @synthesize selectedIndexPath;
 @synthesize toolbar, leftToolbar;
 
+UIActionSheet *theActionSheet;
+
 - (id)initWithThreadId:(NSUInteger)aThreadId {
         self = [super initWithNib];
     threadId = aThreadId;
@@ -59,6 +61,12 @@
 
 - (IBAction)refresh:(id)sender {
     [super refresh:sender];
+
+    //dismiss tag action sheet if it is showing
+    if (theActionSheet) {
+        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+    }
+    
     if (threadId > 0) {
         loader = [[Post findThreadWithId:threadId delegate:self] retain];
         
@@ -201,6 +209,11 @@
 }
 
 - (IBAction)tappedReplyButton {
+    //dismiss tag action sheet if it is showing
+    if (theActionSheet) {
+        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+    }
+    
     Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
     
     ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:post] autorelease];
@@ -540,19 +553,32 @@
     [self resetLayout:YES];
 }
 
+//Patch-E: fixed the iPad issue where if you tap the tag button numerous times, many action sheet popovers are created
+//the tag action sheet popover would stay visible when tapping the refresh thread and compose reply buttons, fixed that issue too
+//leff the tag action sheet popover stay in view when the clock/previous reply/next reply buttons are tapped
 - (IBAction)tag {
-    UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:@"Tag this Post"
+    //check to see if tag action sheet is already showing (isn't nil), dismiss it if so
+    if (theActionSheet) {
+        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+        theActionSheet = nil;
+        return;
+    }
+    //keep track of the action sheet
+    theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Tag this Post"
                                                         delegate:self
                                                cancelButtonTitle:@"Cancel"
                                           destructiveButtonTitle:nil
                                                otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", nil] autorelease];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [sheet showFromBarButtonItem:tagButton animated:YES];
+        [theActionSheet showFromBarButtonItem:tagButton animated:YES];
     } else {
-        [sheet showInView:self.navigationController.view];
+        [theActionSheet showInView:self.navigationController.view];
     }
-    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    theActionSheet = nil;
 }
 
 - (IBAction)toggleOrderByPostDate {        
@@ -653,8 +679,6 @@
                     destructiveButtonTitle:nil
                          otherButtonTitles:@"stupid", @"offtopic", @"nws", @"political", @"informative", @"nuked", @"ontopic", nil] autorelease] showInView:self.view];
 }
-
-
 
 #pragma mark Action Sheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
