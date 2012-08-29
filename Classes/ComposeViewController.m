@@ -106,7 +106,18 @@
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
-
+//Patch-E: implemented fix for text view being underneath the keyboard in landscape, this just toggles between the text view's frame with two sets of coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+            //iPhone portrait activated
+            [postContent setFrame:CGRectMake(0, 60, 320, 141)];            
+        } else {
+            //iPhone landscape activated
+            [postContent setFrame:CGRectMake(0, 43, 480, 60)];
+        }
+    }
+}
 
 #pragma mark Image Handling
 - (IBAction)showImagePicker {
