@@ -72,6 +72,18 @@
                  cancelButtonTitle:@"OK"
                  otherButtonTitles:@"Rules", @"Hide", nil];
 	}
+    
+//Patch-E: implemented fix for text view being underneath the keyboard when view appears in landscape. Causes a minor flash when the view appears, but it is minimal.  
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        CGRect screenBound = [[UIScreen mainScreen] bounds];
+        CGSize screenSize = screenBound.size;
+        CGFloat screenHeight = screenSize.height;
+        UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+
+        if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeLeft) {
+            [postContent setFrame:CGRectMake(0, 43, screenHeight, 60)];
+        }
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -106,7 +118,7 @@
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
-//Patch-E: implemented fix for text view being underneath the keyboard in landscape, this just toggles between the text view's frame with two sets of coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
+//Patch-E: implemented fix for text view being underneath the keyboard in landscape, sets coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         CGRect screenBound = [[UIScreen mainScreen] bounds];
