@@ -113,9 +113,6 @@
         CGSize screenSize = screenBound.size;
         CGFloat screenWidth = screenSize.width;
         CGFloat screenHeight = screenSize.height;
-
-        NSLog(@"width: %f", screenWidth);
-        NSLog(@"height: %f", screenHeight);
     
         if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
             //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
