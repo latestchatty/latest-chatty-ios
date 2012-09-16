@@ -112,19 +112,23 @@
                                                                   target:self
                                                                   action:@selector(tappedComposeButton)];
 	composeButton.enabled = (self.storyId > 0);
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIToolbar *rightToolbar = [UIToolbar viewWithFrame:self.navigationController.navigationBar.bounds];
-        rightToolbar.tintColor = self.navigationController.navigationBar.tintColor;
-        rightToolbar.frameWidth = 70;
-        
-        rightToolbar.items = [NSArray arrayWithObjects:
-                              [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose target:self action:@selector(tappedComposeButton)],
-                              [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)],
-                              nil];
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:rightToolbar] autorelease];
-    } else {
-        self.navigationItem.rightBarButtonItem = composeButton;
-    }
+    
+// Patch-E: removed refresh button from iPad right toolbar, pull to refresh makes this obsolete
+// no longer need iPad specific code for >1 buttons in the right toolbar
+//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        UIToolbar *rightToolbar = [UIToolbar viewWithFrame:self.navigationController.navigationBar.bounds];
+//        rightToolbar.tintColor = self.navigationController.navigationBar.tintColor;
+//        rightToolbar.frameWidth = 70;
+//        rightToolbar.items = [NSArray arrayWithObjects:
+//                              [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose target:self action:@selector(tappedComposeButton)],
+//                              [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)],
+//                              nil];
+//        self.navigationItem.rightBarButtonItem = composeButton;
+//    } else {
+//        self.navigationItem.rightBarButtonItem = composeButton;
+//    }
+    
+    self.navigationItem.rightBarButtonItem = composeButton;
     
     UILabel *titleLabel = [UILabel viewWithFrame:self.navigationController.navigationBar.frame];
     titleLabel.font = [UIFont boldSystemFontOfSize:14];
