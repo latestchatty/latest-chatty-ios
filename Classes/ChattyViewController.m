@@ -201,10 +201,11 @@
 		if (hasPosts) self.storyId = [[models objectAtIndex:0] storyId];
 		self.threads = models;
 	} else {
-		NSMutableArray *newThreadsArray = [NSMutableArray arrayWithArray:self.threads];
-		[newThreadsArray addObjectsFromArray:models];
-		self.threads = newThreadsArray;
-		[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
+        NSMutableArray *mutableThreadsArray = [NSMutableArray arrayWithArray:self.threads];
+        NSArray *newThreads = [self removeDuplicateThreadsFromArray:models];
+        [mutableThreadsArray addObjectsFromArray:newThreads];
+        self.threads = mutableThreadsArray;
+        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
 	}
 	
 	lastPage = [[otherData objectForKey:@"lastPage"] intValue];
@@ -271,6 +272,29 @@
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:threadController];
     }
     
+}
+
+// Filter any duplicate threads out. These threads have drifted to the next page since the last page was loaded.
+- (NSArray*)removeDuplicateThreadsFromArray:(NSArray*)threadArray {
+    NSMutableArray *mutableThreads = [NSMutableArray arrayWithArray:threadArray];
+    
+    NSIndexSet *duplicateIndexes = [mutableThreads indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        Post *newThread = (Post*)obj;
+        
+        for (Post *existingThread in self.threads) {
+            if (existingThread.modelId == newThread.modelId) {
+                NSLog(@"DUPE existingThread:%d newThread:%d", existingThread.modelId, newThread.modelId);
+                return YES;
+            }
+        }
+        NSLog(@"FRESH newThread:%d", newThread.modelId);
+        return NO;
+    }];
+    
+    NSLog(@"duped indexes: %@", duplicateIndexes);
+    [mutableThreads removeObjectsAtIndexes:duplicateIndexes];
+    
+    return mutableThreads;
 }
 
 

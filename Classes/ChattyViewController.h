@@ -45,4 +45,6 @@
 
 - (IBAction)tappedComposeButton;
 
+- (NSArray*)removeDuplicateThreadsFromArray:(NSArray*)threads;
+
 @end
