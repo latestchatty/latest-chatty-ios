@@ -283,17 +283,13 @@
         
         for (Post *existingThread in self.threads) {
             if (existingThread.modelId == newThread.modelId) {
-                NSLog(@"DUPE existingThread:%d newThread:%d", existingThread.modelId, newThread.modelId);
                 return YES;
             }
         }
-        NSLog(@"FRESH newThread:%d", newThread.modelId);
         return NO;
     }];
     
-    NSLog(@"duped indexes: %@", duplicateIndexes);
     [mutableThreads removeObjectsAtIndexes:duplicateIndexes];
-    
     return mutableThreads;
 }
 
