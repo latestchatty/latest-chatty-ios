@@ -40,7 +40,11 @@
     // Configure and show the window
     window.backgroundColor = [UIColor blackColor];
     
-    [window addSubview:navigationController.view];    
+    //Patch-E: not setting rootViewController property on the window object in iOS 6 causes a
+    //"Application windows are expected to have a root view controller at the end of application launch" message in the output console
+    //and orientation changes do not function. Change below tested on iOS 5+.
+    //[window addSubview:navigationController.view];
+    window.rootViewController = navigationController;
 }
 
 - (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions
@@ -64,7 +68,12 @@
     self.slideOutViewController =  [SlideOutViewController controllerWithNib];
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
     [slideOutViewController.view setFrame:CGRectMake(0,    20,    768, 1004)];
-    [window addSubview:slideOutViewController.view];
+    
+    //Patch-E: not setting rootViewController property on the window object in iOS 6 causes a
+    //"Application windows are expected to have a root view controller at the end of application launch" message in the output console
+    //and orientation changes do not function. Change below tested on iOS 5+.
+    //[window addSubview:slideOutViewController.view];
+    window.rootViewController = slideOutViewController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
