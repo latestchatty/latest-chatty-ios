@@ -87,10 +87,12 @@ UIActionSheet *theActionSheet;
     [loader release];
     loader = nil;
     
-    self.threadStarter = [[[rootPost repliesArray] objectAtIndex:0] author];
+    //Patch-E: for the latestchatty:// protocol launch, needed to check for an empty repliesArray here if a chatty URL launched the app that ulimately goes to a thread that falls outside of the user's set category filters
+    if ([[rootPost repliesArray] count] > 0) {
+        self.threadStarter = [[[rootPost repliesArray] objectAtIndex:0] author];
+    }
     
     [super didFinishLoadingAllModels:nil otherData:otherData];
-    
     
     // Set story data
     NSDictionary *dataDictionary = (NSDictionary *)otherData;

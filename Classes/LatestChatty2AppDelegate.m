@@ -284,6 +284,29 @@
     }
 }
 
+//Patch-E: handling the registered latestchatty:// URL scheme
+//  Uses the existing AppDelegate method viewControllerForURL to determine what kind of ViewController to instantiate and push onto the appropriate navigation controller stack.
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    NSLog(@"Passed in URL: %@", url);
+    if (!url) {
+        return NO;
+    }
+    
+    NSLog(@"Loading passed in URL.");
+    ChattyViewController *viewController = [self viewControllerForURL:url];
+    
+    if ([self isPadDevice]) {
+        [self.contentNavigationController pushViewController:viewController animated:YES];
+    } else {
+        [self.navigationController dismissModalViewControllerAnimated:YES];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+    [viewController release];
+    
+    return YES;
+}
+
 
 - (void)dealloc {
     self.navigationController = nil;
