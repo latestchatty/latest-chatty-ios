@@ -69,7 +69,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 
@@ -82,10 +82,11 @@
     
     switch (indexPath.row) {
         case 0:
-            cell.title = @"Stories"; break;
+            cell.title = @"Stories";
+            break;
             
         case 1:
-				cell.title = @"Latest Chatty"; 
+            cell.title = @"Latest Chatty";
 			break;
             
         case 2:
@@ -97,13 +98,20 @@
             break;
             
         case 3:
-            cell.title = @"Search"; break;
+            cell.title = @"Search";
+            break;
             
         case 4:
-            cell.title = @"Settings"; break;
+            cell.title = @"Shack[LOL]";
+            break;
             
         case 5:
-            cell.title = @"About"; break;
+            cell.title = @"Settings";
+            break;
+            
+        case 6:
+            cell.title = @"About";
+            break;
             
         default:
             [NSException raise:@"too many rows" format:@"This table can only have 5 cells!"];
@@ -148,12 +156,24 @@
             }
             break;
             
+            //Patch-E: added new menu item for Shack[LOL]-tergration! Passes user= on the URL to allow lol'ing within the web view on the Shack[LOL] site. Uses new BrowserViewController constructor.
         case 4:
+            urlString = [NSString stringWithFormat:@"http://lol.lmnopc.com?user=%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]];
+            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]] title:@"Shack[LOL]" isShackLOL:YES] autorelease];
+            
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
+                [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
+                viewController = nil;
+            }
+            break;
+            
+        case 5:
             modal = YES;
             viewController = [SettingsViewController controllerWithNib];
             break;
             
-        case 5:
+        case 6:
             urlString = [NSString stringWithFormat:@"http://%@/about", [Model host]];
             viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]] autorelease];
             

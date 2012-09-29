@@ -27,6 +27,7 @@
 @property (nonatomic, retain) IBOutlet UIToolbar *mainToolbar;
 
 - (id)initWithRequest:(NSURLRequest *)request;
+- (id)initWithRequest:(NSURLRequest *)request title:(NSString*)title isShackLOL:(BOOL)isShackLOL;
 
 - (IBAction)safari;
 - (IBAction)closeBrowser;

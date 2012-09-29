@@ -21,6 +21,25 @@
     return self;
 }
 
+//Patch-E: new constructor to support Shack[LOL]-tergration. Overrides the title and if the web view is to point to the Shack[LOL] site, a menu button is created that fires the lolMenu selector.
+- (id)initWithRequest:(NSURLRequest*)_request title:(NSString*)title isShackLOL:(BOOL)isShackLOL {
+    self = [super initWithNib];
+    self.request = _request;
+    self.title = title;
+    
+    if (isShackLOL) {
+        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+                                                                          style:UIBarButtonItemStyleBordered
+                                                                         target:self
+                                                                         action:@selector(lolMenu)];
+        [self.navigationItem setRightBarButtonItem:lolMenuButton];
+        
+        [lolMenuButton release];        
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -62,6 +81,11 @@
 
 - (IBAction)safari {
     [[UIApplication sharedApplication] openURL:[webView.request URL]];
+}
+
+//Patch-E: launches the custom iPhone menu on the Shack[LOL] site.
+- (void)lolMenu {
+    [self.webView loadURLString:@"http://lol.lmnopc.com/iphonemenu.php"];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
