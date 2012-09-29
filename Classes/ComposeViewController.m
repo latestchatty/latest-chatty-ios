@@ -85,7 +85,7 @@
     NSUInteger availableSpaceLandscape = screenWidth - 64;
     
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+        UIInterfaceOrientation orientation = self.interfaceOrientation;
         
         if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeLeft) {
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 60)];
