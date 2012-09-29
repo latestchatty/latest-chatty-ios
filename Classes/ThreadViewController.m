@@ -104,7 +104,7 @@ UIActionSheet *theActionSheet;
     if (highlightMyPost) {
         highlightMyPost = NO;
         for (Post *post in [rootPost repliesArray]) {
-            if ([post.author isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]] && post.modelId > firstPost.modelId) {
+            if ([post.author.lowercaseString isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"].lowercaseString] && post.modelId > firstPost.modelId) {
                 firstPost = post;
             }
         }
@@ -362,7 +362,7 @@ UIActionSheet *theActionSheet;
     }
     
     cell.post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
-    cell.isThreadStarter = [cell.post.author isEqualToString:threadStarter];
+    cell.isThreadStarter = [cell.post.author.lowercaseString isEqualToString:threadStarter.lowercaseString];
     
     return cell;
 }

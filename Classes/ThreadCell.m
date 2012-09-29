@@ -37,9 +37,9 @@
 	}
 	else replyCount.text = [NSString stringWithFormat:@"%i", rootPost.replyCount];
 	
-	// Set background to a light color if the user is the root poaster
+	// Set background to a light color if the user is the root poster
 	UIImageView *background = (UIImageView *)self.backgroundView;
-	if ([rootPost.author isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]]) {
+	if ([rootPost.author.lowercaseString isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"].lowercaseString]) {
 		author.font = [UIFont boldSystemFontOfSize:12.0];
 		background.image = [UIImage imageNamed:@"CellBackgroundLight.png"];
 	} else {
@@ -53,9 +53,14 @@
 	// Show participant icon
 	participantIcon.hidden = YES;
 	for (NSDictionary *participant in rootPost.participants) {
-		NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
-		if (username && ![username isEqualToString:@""] && [[participant objectForKey:@"username"] isEqualToString:username])
+		NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"].lowercaseString;
+        NSString *participantName = [participant objectForKey:@"username"];
+        participantName = participantName.lowercaseString;
+        
+		if (username && ![username isEqualToString:@""] && [participantName isEqualToString:username]) {
 			participantIcon.hidden = NO;
+        }
+
 	}
 	
 	// Show new post icon

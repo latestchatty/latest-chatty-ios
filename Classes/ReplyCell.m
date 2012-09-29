@@ -64,7 +64,7 @@
     CGRect bulletFrame = CGRectMake(indentation - 12, 0, 10, self.frame.size.height);
     blueBullet.frame = bulletFrame;
     grayBullet.frame = bulletFrame;
-    if ([post.author isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]]) {
+    if ([post.author.lowercaseString isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"].lowercaseString]) {
         blueBullet.hidden = (post.depth == 0);
         grayBullet.hidden = YES;
     } else {
