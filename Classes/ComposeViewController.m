@@ -72,16 +72,32 @@
                  cancelButtonTitle:@"OK"
                  otherButtonTitles:@"Rules", @"Hide", nil];
 	}
-    
-//Patch-E: implemented fix for text view being underneath the keyboard when view appears in landscape. Causes a minor flash when the view appears, but it is minimal.  
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        CGRect screenBound = [[UIScreen mainScreen] bounds];
-        CGSize screenSize = screenBound.size;
-        CGFloat screenHeight = screenSize.height;
-        UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+}
 
+//Patch-E: implemented fix for text view being underneath the keyboard when view appears in landscape on iPhone. Also for iPhone, resizing postContent text view and the parent view containing all shack tag buttons before the view appears based on Retina 4" or non-Retina 4" screen.
+- (void)viewWillAppear:(BOOL)animated {
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    CGFloat screenHeight = screenSize.height;
+    CGFloat screenWidth = screenSize.width;
+    
+    NSUInteger availableSpacePortrait = screenHeight - 64;
+    NSUInteger availableSpaceLandscape = screenWidth - 64;
+    
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+        
         if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeLeft) {
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 60)];
+            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
+        } else {
+            if ( screenHeight > 480 ) {
+                [postContent setFrame:CGRectMake(0, 72, screenWidth, 216)];
+            }
+            else {
+                [postContent setFrame:CGRectMake(0, 60, screenWidth, 141)];
+            }
+            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenWidth, availableSpacePortrait-(postContent.frameY + postContent.frameHeight))];
         }
     }
 }
@@ -126,6 +142,10 @@
         CGFloat screenWidth = screenSize.width;
         CGFloat screenHeight = screenSize.height;
     
+        //screen height/width - 64 for the status and navigation bars (20 and 44 respectively)
+        NSUInteger availableSpacePortrait = screenHeight - 64;
+        NSUInteger availableSpaceLandscape = screenWidth - 64;
+        
         if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
             //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
             if (postContent.frame.size.width > 320) {
@@ -134,14 +154,16 @@
             
             //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
             if ( screenHeight > 480 ) {
-                [postContent setFrame:CGRectMake(0, 72, screenWidth, 170)];
+                [postContent setFrame:CGRectMake(0, 72, screenWidth, 216)];
             }
             else {
                 [postContent setFrame:CGRectMake(0, 60, screenWidth, 141)];
             }
+            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenWidth, availableSpacePortrait-(postContent.frameY + postContent.frameHeight))];
         } else {
             //iPhone landscape activated
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 60)];
+            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
         }
     }
 }
@@ -317,6 +339,7 @@
     NSLog(@"ComposeViewController dealloc");
 	[parentPostPreview release];
 	[postContent release];
+    [tagView release];
 	
 	[activityView release];
 	[activityText release];

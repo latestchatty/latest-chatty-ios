@@ -27,6 +27,7 @@
 	
 	IBOutlet UILabel *parentPostPreview;
 	IBOutlet UITextView *postContent;
+    IBOutlet UIView *tagView;
 	
 	IBOutlet UIView* activityView;
 	IBOutlet UILabel* activityText;
