@@ -18,8 +18,6 @@
     return self;
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -28,6 +26,15 @@
         fieldRect = CGRectMake(150, 7, inputTable.frame.size.width - 220, 21);
     } else {
         fieldRect = CGRectMake(110, 7, inputTable.frame.size.width - 120, 21);
+        
+        //Patch-E: Search button under the table view unecessary for iPhone now, removed from iPhone xib and programmatically create one on the top right of navigation bar.
+        UIBarButtonItem* searchButton = [[UIBarButtonItem alloc] initWithTitle:@"Search"
+                                                                         style:UIBarButtonItemStyleDone
+                                                                        target:self
+                                                                        action:@selector(search)];
+        [self.navigationItem setRightBarButtonItem:searchButton];
+        
+        [searchButton release];
     }
     
     NSLog(@"%@", inputTable);
@@ -70,7 +77,6 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"SearchLoaded" object:self];
 }
 
-
 /*
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -93,13 +99,19 @@
     
     switch (segmentedBar.selectedSegmentIndex) {
         case 0:
-            usernameField = authorField; break;
+            usernameField = authorField;
+            break;
         
         case 1:
-            usernameField = termsField; break;
+            usernameField = termsField;
+            break;
             
         case 2:
-            usernameField = parentAuthorField; break;
+            usernameField = parentAuthorField;
+            break;
+            
+        default:
+            break;
     }
     
     if (usernameField) {
@@ -111,6 +123,19 @@
         usernameField.enabled = NO;
         usernameField.clearButtonMode = UITextFieldViewModeNever;
         [(UITableViewCell *)usernameField.superview accessoryView].hidden = NO;
+    }
+    
+    //Patch-E: always keeping focus in one of the text fields upon segemented control mode change, made the search button under the table view unecessary for iPhone, removed from iPhone xib and programmatically create one on the top right of navigation bar. Always scrolling the text field with focus into view on iPhone.
+    switch (segmentedBar.selectedSegmentIndex) {
+        case 1:
+            [authorField becomeFirstResponder];
+            break;
+        default:
+            [termsField becomeFirstResponder];
+            break;
+    }
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [inputTable setContentOffset:CGPointZero animated:YES];
     }
 }
 
@@ -183,6 +208,5 @@
     [parentAuthorField release];
     [super dealloc];
 }
-
 
 @end
