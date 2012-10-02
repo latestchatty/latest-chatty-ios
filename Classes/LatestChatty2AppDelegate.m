@@ -191,15 +191,19 @@
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?story=(\\d+)" capture:1] intValue];
         viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
-    } else
-        if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
-            NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?id=(\\d+)" capture:1] intValue];
-            viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
-        } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?story=\\d+"]) {
-            NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?story=(\\d+)" capture:1] intValue];
-            viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
-        }
-    //else if ([[uri lowercaseString] isMatchedByRegex:@"\\.(png|jpg)$"]) {
+    }
+    //Patch-E: added handling for profiles URLs to do a search of that users' post history through SearchResultsViewController with default search values. Profile links posted in a chatty thread or tapping a user's name in a ThreadViewController will launch the search. Can also pass in a search externally via the latestchatty:// protocol.
+    else if ([uri isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
+        NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/profile/(.*)" capture:1] stringByReplacingOccurrencesOfRegex:@"%20" withString:@" "];
+        viewController = [[[SearchResultsViewController alloc] initWithTerms:@"" author:profileName parentAuthor:@""] autorelease];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
+        NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?id=(\\d+)" capture:1] intValue];
+        viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?story=\\d+"]) {
+        NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?story=(\\d+)" capture:1] intValue];
+        viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
+    }
+//    else if ([[uri lowercaseString] isMatchedByRegex:@"\\.(png|jpg)$"]) {
 //        viewController = [ImageViewController controllerWithURL:url];
 //    }
     
@@ -294,7 +298,12 @@
     }
     
     NSLog(@"Loading passed in URL.");
-    ChattyViewController *viewController = [self viewControllerForURL:url];
+    UIViewController *viewController = [self viewControllerForURL:url];
+    
+    if (viewController == nil) {
+        NSLog(@"URL passed in did not match any handlers.");
+        return NO;
+    }
     
     if ([self isPadDevice]) {
         [self.contentNavigationController pushViewController:viewController animated:YES];
