@@ -194,7 +194,7 @@
     }
     //Patch-E: added handling for profiles URLs to do a search of that users' post history through SearchResultsViewController with default search values. Profile links posted in a chatty thread or tapping a user's name in a ThreadViewController will launch the search. Can also pass in a search externally via the latestchatty:// protocol.
     else if ([uri isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
-        NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/profile/(.*)" capture:1] stringByReplacingOccurrencesOfRegex:@"%20" withString:@" "];
+        NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/profile/(.*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         viewController = [[[SearchResultsViewController alloc] initWithTerms:@"" author:profileName parentAuthor:@""] autorelease];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?id=(\\d+)" capture:1] intValue];
