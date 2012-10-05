@@ -13,7 +13,7 @@
 
 + (void)tagPostId:(NSUInteger)postId tag:(NSString*)tag {
     NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
-    NSString *url = [NSString stringWithFormat:@"http://lmnopc.com/greasemonkey/shacklol/report.php?who=%@&what=%d&tag=%@&version=-1", username, postId, tag];
+    NSString *url = [[NSString stringWithFormat:@"http://lmnopc.com/greasemonkey/shacklol/report.php?who=%@&what=%d&tag=%@&version=-1", username, postId, tag] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
     NSLog(@"Tagging post with URL: %@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
