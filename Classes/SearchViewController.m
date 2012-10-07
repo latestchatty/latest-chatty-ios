@@ -26,15 +26,6 @@
         fieldRect = CGRectMake(150, 7, inputTable.frame.size.width - 220, 21);
     } else {
         fieldRect = CGRectMake(110, 7, inputTable.frame.size.width - 120, 21);
-        
-        //Patch-E: Search button under the table view unecessary for iPhone now, removed from iPhone xib and programmatically create one on the top right of navigation bar.
-        UIBarButtonItem* searchButton = [[UIBarButtonItem alloc] initWithTitle:@"Search"
-                                                                         style:UIBarButtonItemStyleDone
-                                                                        target:self
-                                                                        action:@selector(search)];
-        [self.navigationItem setRightBarButtonItem:searchButton];
-        
-        [searchButton release];
     }
     
     NSLog(@"%@", inputTable);
