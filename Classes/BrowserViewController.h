@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HKHelperKit.h"
 
-@interface BrowserViewController : UIViewController <UIWebViewDelegate> {
+@interface BrowserViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
     NSURLRequest *request;
     
     UIWebView *webView;
@@ -17,6 +17,10 @@
     UIBarButtonItem *forwardButton;
     UIActivityIndicatorView *spinner;
     UIToolbar *mainToolbar;
+    UIBarButtonItem *lolMenuButton;
+    UIBarButtonItem *actionButton;
+    UIToolbar *bottomToolbar;
+    BOOL isShackLOL;
 }
 
 @property (nonatomic, retain) NSURLRequest *request;
@@ -25,11 +29,16 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *forwardButton;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, retain) IBOutlet UIToolbar *mainToolbar;
+@property (nonatomic, retain) UIBarButtonItem *lolMenuButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
+@property (nonatomic, retain) IBOutlet UIToolbar *bottomToolbar;
+@property (nonatomic, assign) BOOL isShackLOL;
 
 - (id)initWithRequest:(NSURLRequest *)request;
-- (id)initWithRequest:(NSURLRequest *)request title:(NSString*)title isShackLOL:(BOOL)isShackLOL;
+- (id)initWithRequest:(NSURLRequest *)request title:(NSString*)title isForShackLOL:(BOOL)isForShackLOL;
 
 - (IBAction)safari;
+- (IBAction)action:(id)sender;
 - (IBAction)closeBrowser;
 
 @end
