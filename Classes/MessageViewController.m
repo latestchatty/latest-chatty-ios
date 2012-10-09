@@ -57,9 +57,48 @@
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
         UIViewController *viewController = [appDelegate viewControllerForURL:[request URL]];
         
-        if (viewController == nil) viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
+        // No special controller, handle the URL.
+        // Check URL for Youtube, open externally is necessary.
+        // If not Youtube, check if URL should open in Safari/Chrome
+        // Otherwise open URL in browser view controller web view.
+        if (viewController == nil) {
+            BOOL isYouTubeURL = [appDelegate isYoutubeURL:[request URL]];
+            BOOL embedYoutube = [[NSUserDefaults standardUserDefaults] boolForKey:@"embedYoutube"];
+            BOOL useSafari = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafari"];
+            BOOL useChrome = [[NSUserDefaults standardUserDefaults] boolForKey:@"useChrome"];
+            
+            if (isYouTubeURL) {
+                if (!embedYoutube) {
+                    //don't embed, open Youtube URL on some external app that opens Youtube URLs
+                    [[UIApplication sharedApplication] openURL:[request URL]];
+                    return NO;
+                }
+            } else {
+                //open current URL in Safari (not guaranteed to open in Safari, could be a iTunes/App Store URL that opens in an external app, most of the time the URL will get handled by Safari
+                if (useSafari) {
+                    [[UIApplication sharedApplication] openURL:[request URL]];
+                    return NO;
+                }
+                //open current URL in Chrome
+                if (useChrome) {
+                    //replace http,https:// with googlechrome://
+                    NSURL *chromeURL = [appDelegate urlAsChromeScheme:[request URL]];
+                    if (chromeURL != nil) {
+                        [[UIApplication sharedApplication] openURL:chromeURL];
+                        
+                        chromeURL = nil;
+                        return NO;
+                    }
+                }
+                
+            }
+            
+            viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
+        }
+        
         [self.navigationController pushViewController:viewController animated:YES];
         
         return NO;
