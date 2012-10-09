@@ -23,6 +23,8 @@
   
     IBOutlet UISwitch    *landscapeSwitch;
     IBOutlet UISwitch    *youtubeSwitch;
+    IBOutlet UISwitch    *safariSwitch;
+    IBOutlet UISwitch    *chromeSwitch;
     IBOutlet UISwitch    *pushMessagesSwitch;
     IBOutlet UISwitch    *modToolsSwitch;
   

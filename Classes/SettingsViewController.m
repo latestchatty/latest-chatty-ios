@@ -41,9 +41,10 @@
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
         
-        
         landscapeSwitch     = [[self generateSwitchWithKey:@"landscape"]     retain];
         youtubeSwitch       = [[self generateSwitchWithKey:@"embedYoutube"]  retain];
+        chromeSwitch        = [[self generateSwitchWithKey:@"useChrome"]  retain];
+        safariSwitch        = [[self generateSwitchWithKey:@"useSafari"]  retain];
         pushMessagesSwitch  = [[self generateSwitchWithKey:@"push.messages"] retain];
         modToolsSwitch      = [[self generateSwitchWithKey:@"modTools"]      retain];
         
@@ -51,10 +52,25 @@
         offtopicSwitch      = [[self generateSwitchWithKey:@"postCategory.offtopic"] retain];
         randomSwitch        = [[self generateSwitchWithKey:@"postCategory.stupid"] retain];
         politicsSwitch      = [[self generateSwitchWithKey:@"postCategory.political"] retain];
-        nwsSwitch           = [[self generateSwitchWithKey:@"postCategory.nws"] retain];        
+        nwsSwitch           = [[self generateSwitchWithKey:@"postCategory.nws"] retain];
+
+        [safariSwitch addTarget:self action:@selector(handleSafariSwitch:) forControlEvents:UIControlEventValueChanged];
+        [chromeSwitch addTarget:self action:@selector(handleChromeSwitch:) forControlEvents:UIControlEventValueChanged];
     }	
 	
 	return self;
+}
+
+-(void)handleSafariSwitch:(id)sender {
+    if (safariSwitch.on == YES) {
+        [chromeSwitch setOn:NO animated:YES];
+    }
+}
+
+-(void)handleChromeSwitch:(id)sender {
+    if (chromeSwitch.on == YES) {
+        [safariSwitch setOn:NO animated:YES];
+    }
 }
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
@@ -91,6 +107,8 @@
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
 	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
+    [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
+    [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
 	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
 	
@@ -99,7 +117,6 @@
     } else {
         [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     }
-	
     
 	NSString *serverAddress = serverField.text;
 	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
@@ -163,7 +180,7 @@
             break;
 			
 		case 2:
-			return 4;
+			return 6;
 			break;
 			
 		case 3:
@@ -247,18 +264,28 @@
 				cell.accessoryView = landscapeSwitch;
 				cell.textLabel.text = @"Allow Landscape:";
 				break;
-				
+                
 			case 1:
 				cell.accessoryView = youtubeSwitch;
-				cell.textLabel.text = @"Embed Youtube:";
+				cell.textLabel.text = @"Embed YouTube:";
 				break;
-				
-			case 2:
-				cell.accessoryView = pushMessagesSwitch;
-				cell.textLabel.text = @"Push Messages:";
+                
+            case 2:
+				cell.accessoryView = safariSwitch;
+				cell.textLabel.text = @"Use Safari:";
 				break;
                 
 			case 3:
+				cell.accessoryView = chromeSwitch;
+				cell.textLabel.text = @"Use Chrome:";
+				break;
+				
+			case 4:
+				cell.accessoryView = pushMessagesSwitch;
+				cell.textLabel.text = @"Push Messages:";
+				break;
+            
+			case 5:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Mod Tools:";
 				break;
@@ -321,7 +348,9 @@
     [picsPasswordField release];
 	
 	[landscapeSwitch release];
+    [safariSwitch release];
 	[youtubeSwitch release];
+	[chromeSwitch release];
 	[pushMessagesSwitch release];
 	
 	[interestingSwitch release];
