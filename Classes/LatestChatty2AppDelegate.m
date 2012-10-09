@@ -40,10 +40,6 @@
     // Configure and show the window
     window.backgroundColor = [UIColor blackColor];
     
-    //Patch-E: not setting rootViewController property on the window object in iOS 6 causes a
-    //"Application windows are expected to have a root view controller at the end of application launch" message in the output console
-    //and orientation changes do not function. Change below tested on iOS 5+.
-    //[window addSubview:navigationController.view];
     window.rootViewController = navigationController;
 }
 
@@ -69,10 +65,6 @@
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
     [slideOutViewController.view setFrame:CGRectMake(0,    20,    768, 1004)];
     
-    //Patch-E: not setting rootViewController property on the window object in iOS 6 causes a
-    //"Application windows are expected to have a root view controller at the end of application launch" message in the output console
-    //and orientation changes do not function. Change below tested on iOS 5+.
-    //[window addSubview:slideOutViewController.view];
     window.rootViewController = slideOutViewController;
 }
 
@@ -179,6 +171,32 @@
     return [NSURLCredential credentialWithUser:[defaults objectForKey:@"username"]
                                       password:[defaults objectForKey:@"password"]
                                    persistence:NSURLCredentialPersistenceNone];
+}
+
+//Patch-E: check the Embed YouTube user setting, if embedding is turned off open YouTube URL in either the YouTube app (if installed, either the Apple created pre-iOS 6 app or Google created app) or Safari if a YouTube app isn't installed. If embedding turned on, open YouTube URL in web view.
+- (BOOL)isYoutubeURL:(NSURL *)url {
+    if ([[url host] containsString:@"youtube.com"] || [[url host] containsString:@"youtu.be"]) {
+        return YES;
+    }
+    return NO;
+}
+
+//Patch-E: if user has URLs set to open in Chrome, check to see if the app can open Chrome. If it can, construct the URL on the googlechrome:// URL scheme and return it.
+- (id)urlAsChromeScheme:(NSURL *)url {
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
+        NSString *absoluteURLString = [url absoluteString];
+        NSRange rangeForScheme = [absoluteURLString rangeOfString:@":"];
+        NSString *urlWithNoScheme =  [absoluteURLString substringFromIndex:rangeForScheme.location];
+        NSString *chromeURLString = [@"googlechrome" stringByAppendingString:urlWithNoScheme];
+        NSURL *chromeURL = [NSURL URLWithString:chromeURLString];
+        
+        absoluteURLString = nil;
+        urlWithNoScheme = nil;
+        chromeURLString = nil;
+        
+        return chromeURL;
+    }
+    return nil;
 }
 
 - (id)viewControllerForURL:(NSURL *)url {

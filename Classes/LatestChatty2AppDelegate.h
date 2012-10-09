@@ -40,6 +40,8 @@
 - (BOOL)reloadSavedState;
 
 - (NSURLCredential *)userCredential;
+- (BOOL)isYoutubeURL:(NSURL *)url;
+- (id)urlAsChromeScheme:(NSURL *)url;
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
 	
