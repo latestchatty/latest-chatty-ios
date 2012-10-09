@@ -1,0 +1,64 @@
+//
+//  GoogleChromeActivity.m
+//  LatestChatty2
+//
+//  Created by Patrick Crager on 10/7/12.
+//
+//
+
+#import "GoogleChromeActivity.h"
+
+@implementation GoogleChromeActivity
+
+@synthesize url;
+
+- (NSString *)activityType {
+    //set identifier (not seen by user)
+    return @"googlechrome";
+}
+
+- (NSString *)activityTitle {
+    //set title (seen by user)
+    return @"Google Chrome";
+}
+
+- (UIImage *)activityImage {
+//    UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GoogleChrome-Icon" ofType:@"png"]];
+    return nil;
+}
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    //determine if activity can perform on passed in data or if Chrome is installed
+    if (![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
+        return NO;
+    }
+    //Chrome activity works if an NSURL is passed in as the first item
+    if ([[activityItems objectAtIndex:0] isKindOfClass:[NSURL class]]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)prepareWithActivityItems:(NSArray *)activityItems {
+    //set the passed in NSURL in the url property
+    self.url = [activityItems objectAtIndex:0];
+}
+
+- (void)performActivity {
+    //open the url property in chrome
+    NSString *absoluteURLString = [self.url absoluteString];
+    NSRange rangeForScheme = [absoluteURLString rangeOfString:@":"];
+    NSString *urlWithNoScheme =  [absoluteURLString substringFromIndex:rangeForScheme.location];
+    NSString *chromeURLString = [@"googlechrome" stringByAppendingString:urlWithNoScheme];
+    NSURL *chromeURL = [NSURL URLWithString:chromeURLString];
+    
+    absoluteURLString = nil;
+    urlWithNoScheme = nil;
+    chromeURLString = nil;
+    
+    NSLog(@"Opening: %@", [chromeURL absoluteString]);
+    [[UIApplication sharedApplication] openURL:chromeURL];
+}
+
+@end
