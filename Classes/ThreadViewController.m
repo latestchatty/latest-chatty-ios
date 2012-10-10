@@ -18,6 +18,7 @@
 @synthesize toolbar, leftToolbar;
 
 UIActionSheet *theActionSheet;
+CGPoint scrollPosition;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
         self = [super initWithNib];
@@ -189,8 +190,11 @@ UIActionSheet *theActionSheet;
     
     if (selectedIndexPath) {
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
-    }    
-        
+    }
+    
+    //initialize scoll position ivar 
+    scrollPosition = CGPointMake(0, 0);
+    
     [self resetLayout:NO];
 }
 
@@ -208,6 +212,12 @@ UIActionSheet *theActionSheet;
     
     self.toolbar.frame = self.navigationController.navigationBar.frame;
     [self.view setNeedsLayout];
+    
+    //if there is a saved scroll position, animate the scroll to it and reinitialize the ivar
+    if (scrollPosition.y > 0) {
+        [postView.scrollView setContentOffset:scrollPosition animated:YES];
+        scrollPosition = CGPointMake(0, 0);
+    }
 }
 
 - (IBAction)tappedReplyButton {
@@ -490,9 +500,11 @@ UIActionSheet *theActionSheet;
                 }                
             
             }
-        
+
             viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
         }
+        //save scroll position of web view before pushing view controller
+        scrollPosition = aWebView.scrollView.contentOffset;
         
         [self.navigationController pushViewController:viewController animated:YES];
         
