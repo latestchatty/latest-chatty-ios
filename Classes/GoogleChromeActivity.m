@@ -14,17 +14,17 @@
 
 - (NSString *)activityType {
     //set identifier (not seen by user)
-    return @"googlechrome";
+    return @"com.google.chrome.ios";
 }
 
 - (NSString *)activityTitle {
     //set title (seen by user)
-    return @"Google Chrome";
+    return @"Chrome";
 }
 
 - (UIImage *)activityImage {
-//    UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GoogleChrome-Icon" ofType:@"png"]];
-    return nil;
+    UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GoogleChrome-Icon" ofType:@"png"]];
+    return image;
 }
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
@@ -57,8 +57,9 @@
     urlWithNoScheme = nil;
     chromeURLString = nil;
     
-    NSLog(@"Opening: %@", [chromeURL absoluteString]);
     [[UIApplication sharedApplication] openURL:chromeURL];
+    
+    [self activityDidFinish:YES];
 }
 
 @end

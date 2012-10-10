@@ -14,7 +14,7 @@
 
 - (NSString *)activityType {
     //set identifier (not seen by user)
-    return @"applesafari";
+    return @"com.apple.mobilesafari";
 }
 
 - (NSString *)activityTitle {
@@ -23,13 +23,13 @@
 }
 
 - (UIImage *)activityImage {
-//    UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GoogleChrome-Icon" ofType:@"png"]];
-    return nil;
+    UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AppleSafari-Icon" ofType:@"png"]];
+    return image;
 }
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
     //determine if activity can perform on passed in data
-    //Chrome activity works if an NSURL is passed in as the first item
+    //Safari activity works if an NSURL is passed in as the first item
     if ([[activityItems objectAtIndex:0] isKindOfClass:[NSURL class]]) {
         return YES;
     }
@@ -46,6 +46,8 @@
     //open the url
     //not guaranteed to open in Safari if some other app is registered to intercept certain URL patterns
     [[UIApplication sharedApplication] openURL:self.url];
+    
+    [self activityDidFinish:YES];
 }
 
 @end
