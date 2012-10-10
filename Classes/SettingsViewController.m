@@ -54,21 +54,32 @@
         politicsSwitch      = [[self generateSwitchWithKey:@"postCategory.political"] retain];
         nwsSwitch           = [[self generateSwitchWithKey:@"postCategory.nws"] retain];
 
-        [safariSwitch addTarget:self action:@selector(handleSafariSwitch:) forControlEvents:UIControlEventValueChanged];
-        [chromeSwitch addTarget:self action:@selector(handleChromeSwitch:) forControlEvents:UIControlEventValueChanged];
+        [safariSwitch addTarget:self action:@selector(handleSafariSwitch) forControlEvents:UIControlEventValueChanged];
+        [chromeSwitch addTarget:self action:@selector(handleChromeSwitch) forControlEvents:UIControlEventValueChanged];
     }	
 	
 	return self;
 }
 
--(void)handleSafariSwitch:(id)sender {
-    if (safariSwitch.on == YES) {
+-(void)handleSafariSwitch {
+    if (safariSwitch.on) {
         [chromeSwitch setOn:NO animated:YES];
     }
 }
 
--(void)handleChromeSwitch:(id)sender {
-    if (chromeSwitch.on == YES) {
+-(void)handleChromeSwitch {
+    if (![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
+         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Google Chrome"
+                                                             message:@"App not found on device, install it first to use this option."
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil];
+        [chromeSwitch setOn:NO animated:YES];
+        [alertView show];
+        [alertView release];
+    }
+    
+    if (chromeSwitch.on) {
         [safariSwitch setOn:NO animated:YES];
     }
 }
