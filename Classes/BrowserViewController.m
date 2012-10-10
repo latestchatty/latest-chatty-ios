@@ -17,9 +17,6 @@
 @synthesize request;
 @synthesize webView, backButton, forwardButton, spinner, mainToolbar, lolMenuButton, actionButton, bottomToolbar, isShackLOL;
 
-UIActionSheet *theActionSheet;
-UIPopoverController *pop;
-
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
     self.request = _request;
@@ -171,11 +168,11 @@ UIPopoverController *pop;
         //present as popover on iPad, as a regular view on iPhone
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             //hide popover if its already showing and the button is pressed again
-            if ([pop isPopoverVisible]) {
-                [pop dismissPopoverAnimated:YES];
+            if ([popoverController isPopoverVisible]) {
+                [popoverController dismissPopoverAnimated:YES];
             } else {
-                pop = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
-                [pop presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+                popoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
+                [popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             }
         } else {
             [self presentViewController:activityViewController animated:YES completion:nil];

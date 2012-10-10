@@ -81,6 +81,8 @@
             modButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
             [self addSubview:modButton];
         }
+        
+        self.userInteractionEnabled = NO;
     }
     return self;
 }

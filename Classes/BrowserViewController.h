@@ -21,6 +21,9 @@
     UIBarButtonItem *actionButton;
     UIToolbar *bottomToolbar;
     BOOL isShackLOL;
+    
+    UIActionSheet *theActionSheet;
+    UIPopoverController *popoverController;
 }
 
 @property (nonatomic, retain) NSURLRequest *request;

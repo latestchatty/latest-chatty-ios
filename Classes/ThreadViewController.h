@@ -43,6 +43,9 @@
     UIPopoverController *popoverController;
     UIToolbar *toolbar;
     UIToolbar *leftToolbar;
+    
+    UIActionSheet *theActionSheet;
+    CGPoint scrollPosition;
 }
 
 @property (nonatomic, assign) NSUInteger threadId;
