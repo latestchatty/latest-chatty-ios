@@ -52,6 +52,8 @@
 		CD1804CD162337690094A3F1 /* GoogleChrome-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1804CB162337690094A3F1 /* GoogleChrome-Icon.png */; };
 		CD1804CE162337690094A3F1 /* GoogleChrome-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1804CC162337690094A3F1 /* GoogleChrome-Icon@2x.png */; };
 		CD1804D1162338F90094A3F1 /* AppleSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */; };
+		CD22021D16248959000931F5 /* AppleSafari-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22021B16248959000931F5 /* AppleSafari-Icon.png */; };
+		CD22021E16248959000931F5 /* AppleSafari-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22021C16248959000931F5 /* AppleSafari-Icon@2x.png */; };
 		CD2541D01601EF1800564F09 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2541CF1601EF1800564F09 /* Default-568h@2x.png */; };
 		CDCB16921616636000CF0147 /* Shack[LOL]Icon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB16901616636000CF0147 /* Shack[LOL]Icon.48@2x.png */; };
 		CDCB16931616636000CF0147 /* Shack[LOL]Icon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB16911616636000CF0147 /* Shack[LOL]Icon.48.png */; };
@@ -289,6 +291,8 @@
 		CD1804CC162337690094A3F1 /* GoogleChrome-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoogleChrome-Icon@2x.png"; sourceTree = "<group>"; };
 		CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleSafariActivity.h; sourceTree = "<group>"; };
 		CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleSafariActivity.m; sourceTree = "<group>"; };
+		CD22021B16248959000931F5 /* AppleSafari-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleSafari-Icon.png"; sourceTree = "<group>"; };
+		CD22021C16248959000931F5 /* AppleSafari-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleSafari-Icon@2x.png"; sourceTree = "<group>"; };
 		CD2541CF1601EF1800564F09 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CDCB16901616636000CF0147 /* Shack[LOL]Icon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shack[LOL]Icon.48@2x.png"; sourceTree = "<group>"; };
 		CDCB16911616636000CF0147 /* Shack[LOL]Icon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shack[LOL]Icon.48.png"; sourceTree = "<group>"; };
@@ -777,6 +781,8 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CD22021B16248959000931F5 /* AppleSafari-Icon.png */,
+				CD22021C16248959000931F5 /* AppleSafari-Icon@2x.png */,
 				CD1804CB162337690094A3F1 /* GoogleChrome-Icon.png */,
 				CD1804CC162337690094A3F1 /* GoogleChrome-Icon@2x.png */,
 				967A7FFD149BC1AC001D0BD7 /* arrow.png */,
@@ -1108,6 +1114,8 @@
 				CDCB16931616636000CF0147 /* Shack[LOL]Icon.48.png in Resources */,
 				CD1804CD162337690094A3F1 /* GoogleChrome-Icon.png in Resources */,
 				CD1804CE162337690094A3F1 /* GoogleChrome-Icon@2x.png in Resources */,
+				CD22021D16248959000931F5 /* AppleSafari-Icon.png in Resources */,
+				CD22021E16248959000931F5 /* AppleSafari-Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
