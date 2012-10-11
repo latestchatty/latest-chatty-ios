@@ -19,7 +19,7 @@
 #import "BrowserViewController.h"
 #import "ChattyViewController.h"
 
-@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate, UIScrollViewDelegate> {
+@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate> {
 
     NSUInteger storyId;
     NSUInteger threadId;
@@ -46,6 +46,10 @@
     
     UIActionSheet *theActionSheet;
     CGPoint scrollPosition;
+    
+    UILongPressGestureRecognizer *longPress;
+    CGPoint longPressPoint;
+    NSIndexPath *longPressIndexPath;
 }
 
 @property (nonatomic, assign) NSUInteger threadId;
@@ -54,6 +58,7 @@
 @property (retain) NSIndexPath *selectedIndexPath;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIToolbar *leftToolbar;
+@property (retain) NSIndexPath *longPressIndexPath;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
 

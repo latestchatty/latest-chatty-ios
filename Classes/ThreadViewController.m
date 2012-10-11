@@ -14,7 +14,7 @@
 @synthesize threadId;
 @synthesize rootPost;
 @synthesize threadStarter;
-@synthesize selectedIndexPath;
+@synthesize selectedIndexPath, longPressIndexPath;
 @synthesize toolbar, leftToolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
@@ -22,7 +22,7 @@
     threadId = aThreadId;
     grippyBarPosition = 1;
     self.title = @"Thread";
-        return self;
+    return self;
 }
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
@@ -192,6 +192,15 @@
     
     //initialize scoll position ivar 
     scrollPosition = CGPointMake(0, 0);
+    longPressPoint = CGPointMake(0, 0);
+    longPressIndexPath = [[NSIndexPath alloc] init];
+    
+    //initialize long press gesture
+    longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    longPress.minimumPressDuration = 1.0; //seconds
+    longPress.delegate = self;
+    [self.tableView addGestureRecognizer:longPress];
+    [longPress release];
     
     [self resetLayout:NO];
 }
@@ -729,7 +738,7 @@
     
     if (buttonIndex == actionSheet.cancelButtonIndex) return;
     
-    if ([[actionSheet title] isEqualToString:@"Mod this Post"]) {
+    if ([[actionSheet title] isEqualToString:@"Mod this Post"]) { //modding
         if (buttonIndex == 0) [Mod modParentId:parentId modPostId:postId mod:ModTypeStupid];
         if (buttonIndex == 1) [Mod modParentId:parentId modPostId:postId mod:ModTypeOfftopic];
         if (buttonIndex == 2) [Mod modParentId:parentId modPostId:postId mod:ModTypeNWS];
@@ -742,17 +751,78 @@
                 post.category = [actionSheet buttonTitleAtIndex:buttonIndex];
                 [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
         }
-    } else {
+    } else if ([[actionSheet title] isEqualToString:@"Tag this Post"]) { //tagging
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
+    }
+    else { //long pressing
+        if (buttonIndex == 0) {
+            //"Reply to this Post"
+            //fire the reply button method to do a reply to the long pressed post
+            [self tappedReplyButton];
+        } else if (buttonIndex == 1) {
+            //"Reply to root post"
+            //set the selected row to the 0th row in the table view
+            self.longPressIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [self.tableView selectRowAtIndexPath:self.longPressIndexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+            [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:longPressIndexPath];
+            //fire the reply button method to do a reply to on the now selected root post
+            [self tappedReplyButton];
         }
+    }
 }
 
+#pragma mark Long Press Gesture Recognizer
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+    //only fire on the intial long press detection
+    if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
+        //grab the long press point
+        longPressPoint = [gestureRecognizer locationInView:self.tableView];
+        
+        //get the index path based on the long press point
+        self.longPressIndexPath = [self.tableView indexPathForRowAtPoint:longPressPoint];
+        
+        //long press was on a row and not somewhere else in the table view
+        if (self.longPressIndexPath != nil) {
+            //set the selected row to the long pressed row and don't move scroll position
+            [self.tableView selectRowAtIndexPath:self.longPressIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:longPressIndexPath];
+            
+            //standard action sheet code
+            if (theActionSheet) {
+                [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+                theActionSheet = nil;
+                return;
+            }
+            //keep track of the action sheet
+            theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Reply"
+                                                          delegate:self
+                                                 cancelButtonTitle:@"Cancel"
+                                            destructiveButtonTitle:nil
+                                                 otherButtonTitles:@"Reply to this post", @"Reply to root post", nil] autorelease];
+            
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                //make an rect out of the long press point and another point offset by 1 in both directions
+                CGRect rowRect = CGRectMake(MIN(longPressPoint.x, longPressPoint.x+1),
+                                            MIN(longPressPoint.y, longPressPoint.y+1),
+                                            fabs(longPressPoint.x - longPressPoint.x+1),
+                                            fabs(longPressPoint.y - longPressPoint.y+1));
+                //popover the action sheet from that rect in the table view
+                [theActionSheet showFromRect:rowRect inView:self.tableView animated:YES];
+            } else {
+                //show standard style action sheet on iPhone
+                [theActionSheet showInView:self.navigationController.view];
+            }
+        }
+    }
+}
 
 #pragma mark Cleanup
 
 - (void)dealloc {
     [rootPost release];
     [selectedIndexPath release];
+    [longPressIndexPath release];
     
     self.threadStarter = nil;
     self.toolbar = nil;
