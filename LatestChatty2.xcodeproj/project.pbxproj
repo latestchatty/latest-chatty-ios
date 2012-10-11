@@ -55,6 +55,10 @@
 		CD22021D16248959000931F5 /* AppleSafari-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22021B16248959000931F5 /* AppleSafari-Icon.png */; };
 		CD22021E16248959000931F5 /* AppleSafari-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22021C16248959000931F5 /* AppleSafari-Icon@2x.png */; };
 		CD2541D01601EF1800564F09 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2541CF1601EF1800564F09 /* Default-568h@2x.png */; };
+		CD2E102F162643D2007104C3 /* AppleSafari-Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2E102D162643D2007104C3 /* AppleSafari-Icon~ipad.png */; };
+		CD2E1030162643D2007104C3 /* AppleSafari-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2E102E162643D2007104C3 /* AppleSafari-Icon@2x~ipad.png */; };
+		CD2E103416264609007104C3 /* GoogleChrome-Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2E103216264609007104C3 /* GoogleChrome-Icon~ipad.png */; };
+		CD2E103516264609007104C3 /* GoogleChrome-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2E103316264609007104C3 /* GoogleChrome-Icon@2x~ipad.png */; };
 		CDCB16921616636000CF0147 /* Shack[LOL]Icon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB16901616636000CF0147 /* Shack[LOL]Icon.48@2x.png */; };
 		CDCB16931616636000CF0147 /* Shack[LOL]Icon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB16911616636000CF0147 /* Shack[LOL]Icon.48.png */; };
 		FA01C32811D6FB3D0080311B /* SettingsIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA01C32711D6FB3D0080311B /* SettingsIcon.48@2x.png */; };
@@ -294,6 +298,10 @@
 		CD22021B16248959000931F5 /* AppleSafari-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleSafari-Icon.png"; sourceTree = "<group>"; };
 		CD22021C16248959000931F5 /* AppleSafari-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleSafari-Icon@2x.png"; sourceTree = "<group>"; };
 		CD2541CF1601EF1800564F09 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CD2E102D162643D2007104C3 /* AppleSafari-Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleSafari-Icon~ipad.png"; sourceTree = "<group>"; };
+		CD2E102E162643D2007104C3 /* AppleSafari-Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleSafari-Icon@2x~ipad.png"; sourceTree = "<group>"; };
+		CD2E103216264609007104C3 /* GoogleChrome-Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoogleChrome-Icon~ipad.png"; sourceTree = "<group>"; };
+		CD2E103316264609007104C3 /* GoogleChrome-Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoogleChrome-Icon@2x~ipad.png"; sourceTree = "<group>"; };
 		CDCB16901616636000CF0147 /* Shack[LOL]Icon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shack[LOL]Icon.48@2x.png"; sourceTree = "<group>"; };
 		CDCB16911616636000CF0147 /* Shack[LOL]Icon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shack[LOL]Icon.48.png"; sourceTree = "<group>"; };
 		FA01C32711D6FB3D0080311B /* SettingsIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIcon.48@2x.png"; sourceTree = "<group>"; };
@@ -783,8 +791,12 @@
 			children = (
 				CD22021B16248959000931F5 /* AppleSafari-Icon.png */,
 				CD22021C16248959000931F5 /* AppleSafari-Icon@2x.png */,
+				CD2E102D162643D2007104C3 /* AppleSafari-Icon~ipad.png */,
+				CD2E102E162643D2007104C3 /* AppleSafari-Icon@2x~ipad.png */,
 				CD1804CB162337690094A3F1 /* GoogleChrome-Icon.png */,
 				CD1804CC162337690094A3F1 /* GoogleChrome-Icon@2x.png */,
+				CD2E103216264609007104C3 /* GoogleChrome-Icon~ipad.png */,
+				CD2E103316264609007104C3 /* GoogleChrome-Icon@2x~ipad.png */,
 				967A7FFD149BC1AC001D0BD7 /* arrow.png */,
 				967A7FFE149BC1AC001D0BD7 /* arrow@2x.png */,
 				FAFD344311D3324C002011AB /* Icon-57.png */,
@@ -1116,6 +1128,10 @@
 				CD1804CE162337690094A3F1 /* GoogleChrome-Icon@2x.png in Resources */,
 				CD22021D16248959000931F5 /* AppleSafari-Icon.png in Resources */,
 				CD22021E16248959000931F5 /* AppleSafari-Icon@2x.png in Resources */,
+				CD2E102F162643D2007104C3 /* AppleSafari-Icon~ipad.png in Resources */,
+				CD2E1030162643D2007104C3 /* AppleSafari-Icon@2x~ipad.png in Resources */,
+				CD2E103416264609007104C3 /* GoogleChrome-Icon~ipad.png in Resources */,
+				CD2E103516264609007104C3 /* GoogleChrome-Icon@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
