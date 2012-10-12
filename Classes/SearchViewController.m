@@ -28,8 +28,6 @@
         fieldRect = CGRectMake(110, 7, inputTable.frame.size.width - 120, 21);
     }
     
-    NSLog(@"%@", inputTable);
-    
     //respondsToSelector needed for versions prior to iOS 3.2
     if ([inputTable respondsToSelector:@selector(backgroundView)]) {
         [inputTable setBackgroundView:nil];
