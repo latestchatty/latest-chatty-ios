@@ -78,6 +78,16 @@ static NSString *kParseDateFormat2 = @"MMM d, yyyy hh:mma zzz"; // Mar 15, 2011 
     return [loader autorelease];
 }
 
+//Patch-E: 10/13/2012, stonedonkey API URL rewriting is broken when paging is needed for search
+//mimic'd loadAllFromUrl: class function with a function that bypasses the construction of the rewritten URL
++ (ModelLoader *)loadAllFromUrlSearchNoRewrite:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
+    NSString *urlSearchNoRewriteString = [NSString stringWithFormat:@"http://%@%@", [self host], urlString];
+    ModelLoader *loader =    [[ModelLoader alloc] initWithAllObjectsAtURL:urlSearchNoRewriteString
+                                                             dataDelegate:(id)self
+                                                            modelDelegate:delegate];
+    return [loader autorelease];
+}
+
 + (ModelLoader *)loadObjectFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
     ModelLoader *loader =    [[ModelLoader alloc] initWithObjectAtURL:[self urlStringWithPath:urlString]
                                                          dataDelegate:(id)self

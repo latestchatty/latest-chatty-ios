@@ -116,10 +116,21 @@ static NSMutableDictionary *colorMapping;
 
 + (ModelLoader *)searchWithTerms:(NSString *)terms author:(NSString *)authorName parentAuthor:(NSString *)parentAuthor delegate:(id<ModelLoadingDelegate>)delegate {
     NSString *urlString = [NSString stringWithFormat:@"/search?terms=%@&author=%@&parent_author=%@",
+                           [terms stringByEscapingURL],
+                           [authorName stringByEscapingURL],
+                           [parentAuthor stringByEscapingURL]];
+    return [self loadAllFromUrl:urlString delegate:delegate];
+}
+
+//Patch-E: 10/13/2012, stonedonkey API URL rewriting is broken when paging is needed for search
+//mimic'd searchWithTerms: class function with a function that constructs the URL without the params that the rewritten URL expects
++ (ModelLoader *)searchWithTerms:(NSString *)terms author:(NSString *)authorName parentAuthor:(NSString *)parentAuthor page:(NSUInteger)page delegate:(id<ModelLoadingDelegate>)delegate {
+    NSString *urlString = [NSString stringWithFormat:@"/search/?SearchTerm=%@&Author=%@&ParentAuthor=%@&json=1&page=%d",
                                                     [terms stringByEscapingURL],
                                                     [authorName stringByEscapingURL],
-                                                    [parentAuthor stringByEscapingURL]];
-    return [self loadAllFromUrl:urlString delegate:delegate];
+                                                    [parentAuthor stringByEscapingURL],
+                                                    page];
+    return [self loadAllFromUrlSearchNoRewrite:urlString delegate:delegate];
 }
 
 + (id)didFinishLoadingPluralData:(id)dataObject {

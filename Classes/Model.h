@@ -25,6 +25,7 @@
 + (NSString *)urlStringWithPath:(NSString *)path;
 
 + (ModelLoader *)loadAllFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate;
++ (ModelLoader *)loadAllFromUrlSearchNoRewrite:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate;
 + (id)didFinishLoadingPluralData:(id)dataObject;
 
 + (ModelLoader *)loadObjectFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate;
