@@ -9,6 +9,7 @@
 #import "SearchResultsViewController.h"
 #import "UIViewController+HelperKit.h"
 
+#import "LatestChatty2AppDelegate.h"
 
 @implementation SearchResultsViewController
 
@@ -22,6 +23,7 @@
     terms = [searchTerms retain];
     author = [searchAuthor retain];
     parentAuthor = [searchParentAuthor retain];
+    currentPage =  1;
     
     return self;
 }
@@ -44,7 +46,9 @@
 
 - (IBAction)refresh:(id)sender {
     [super refresh:sender];
-    loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor delegate:self] retain];
+
+    currentPage = 1;
+    loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self] retain];
 }
 
 /*
@@ -56,11 +60,29 @@
 */
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {    
-    self.posts = models;
-    [loader release];
-    loader = nil;
-    [super didFinishLoadingAllModels:nil otherData:otherData];
-    [tableView reloadData];
+	if (currentPage <= 1) {
+		self.posts = models;
+	} else {
+        NSMutableArray *mutableThreadsArray = [NSMutableArray arrayWithArray:self.posts];
+        [mutableThreadsArray addObjectsFromArray:models];
+        self.posts = mutableThreadsArray;
+        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
+	}
+
+	[self.tableView reloadData];
+	[loader release];
+	loader = nil;
+  
+    // Override super method so there is no fade if we are loading a second page.
+	if (currentPage <= 1) {
+		[super didFinishLoadingAllModels:models otherData:otherData];
+	} else {
+		// Hide the loader
+		[self hideLoadingSpinner];
+		
+		// Refresh the table
+		[self.tableView reloadData];
+	}
 }
 
 #pragma mark Table view methods
@@ -69,29 +91,57 @@
     return 1;
 }
 
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ([posts count] % 15 == 0) return [posts count] + 1;
     return [posts count];
 }
 
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:@"ThreadCell"];
-    if (cell == nil) cell = [[[ThreadCell alloc] init] autorelease];
-    
-    // Set up the cell...
-    Post *post = [posts objectAtIndex:indexPath.row];
-    cell.storyId = post.storyId;
-    cell.rootPost = post;
-    cell.showCount = NO;
-    
-    return cell;
+    if (indexPath.row < [posts count]) {
+        ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:@"ThreadCell"];
+        if (cell == nil) cell = [[[ThreadCell alloc] init] autorelease];
+        
+        // Set up the cell...
+        Post *post = [posts objectAtIndex:indexPath.row];
+        cell.storyId = post.storyId;
+        cell.rootPost = post;
+        cell.showCount = NO;
+        
+        return cell;
+	} else {
+		UITableViewCell *cell                = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        
+        if ([posts count] == 0) {
+            return cell;
+        }
+        
+        UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [cell.contentView addSubview:cellSpinner];
+        
+        [cellSpinner setCenter: cell.contentView.center];
+        [cellSpinner startAnimating];
+        
+        [cellSpinner release];
+		return cell;
+	}
+	
+	return nil;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [posts count]) {
+        [self loadMorePosts];
+    }
+}
 
-
+-(void)loadMorePosts {
+    [loader cancel];
+    [loader release];
+    currentPage++;
+    loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self] retain];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Post *post = [posts objectAtIndex:indexPath.row];
@@ -100,7 +150,6 @@
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }
-
 
 - (void)dealloc {
     self.posts = nil;
@@ -111,6 +160,4 @@
     [super dealloc];
 }
 
-
 @end
-

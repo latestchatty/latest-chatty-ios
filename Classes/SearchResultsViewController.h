@@ -23,6 +23,8 @@
   NSString *terms;
   NSString *author;
   NSString *parentAuthor;
+    
+  NSUInteger currentPage;
 }
 
 @property (retain) NSArray *posts;
