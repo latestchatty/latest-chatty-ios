@@ -23,7 +23,6 @@
     terms = [searchTerms retain];
     author = [searchAuthor retain];
     parentAuthor = [searchParentAuthor retain];
-    currentPage =  1;
     
     return self;
 }
@@ -113,6 +112,8 @@
 	} else {
 		UITableViewCell *cell                = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         
+        //checking posts count for 0, and returning a blank cell if it is
+        //without this a cell is allocated with a spinner in it while the view is loading initially
         if ([posts count] == 0) {
             return cell;
         }
@@ -131,6 +132,12 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //checking posts count for 0, and returning if it is
+    //without this the view fires off the initial load request and a loadMorePosts, and continually fires loadMorePosts when a search doesn't results in any posts being returned
+    if ([posts count] == 0) {
+        return;
+    }
+    
     if (indexPath.row == [posts count]) {
         [self loadMorePosts];
     }
