@@ -41,7 +41,7 @@
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
         
-        landscapeSwitch     = [[self generateSwitchWithKey:@"landscape"]     retain];
+//        landscapeSwitch     = [[self generateSwitchWithKey:@"landscape"]     retain];
         youtubeSwitch       = [[self generateSwitchWithKey:@"embedYoutube"]  retain];
         chromeSwitch        = [[self generateSwitchWithKey:@"useChrome"]  retain];
         safariSwitch        = [[self generateSwitchWithKey:@"useSafari"]  retain];
@@ -116,7 +116,7 @@
 	[defaults setObject:passwordField.text      forKey:@"password"];
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
-	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
+//	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
     [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
     [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
@@ -151,7 +151,8 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    //    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    return YES;
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
@@ -191,7 +192,7 @@
             break;
 			
 		case 2:
-			return 6;
+			return 5;
 			break;
 			
 		case 3:
@@ -271,32 +272,32 @@
 	// Preference toggles
 	if (indexPath.section == 2) {
 		switch (indexPath.row) {
-			case 0:
-				cell.accessoryView = landscapeSwitch;
-				cell.textLabel.text = @"Allow Landscape:";
-				break;
+//			case 0:
+//				cell.accessoryView = landscapeSwitch;
+//				cell.textLabel.text = @"Allow Landscape:";
+//				break;
                 
-			case 1:
+			case 0:
 				cell.accessoryView = youtubeSwitch;
 				cell.textLabel.text = @"Embed YouTube:";
 				break;
                 
-            case 2:
+            case 1:
 				cell.accessoryView = safariSwitch;
 				cell.textLabel.text = @"Use Safari:";
 				break;
                 
-			case 3:
+			case 2:
 				cell.accessoryView = chromeSwitch;
 				cell.textLabel.text = @"Use Chrome:";
 				break;
 				
-			case 4:
+			case 3:
 				cell.accessoryView = pushMessagesSwitch;
 				cell.textLabel.text = @"Push Messages:";
 				break;
             
-			case 5:
+			case 4:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Mod Tools:";
 				break;
@@ -358,7 +359,7 @@
     [picsUsernameField release];
     [picsPasswordField release];
 	
-	[landscapeSwitch release];
+//	[landscapeSwitch release];
     [safariSwitch release];
 	[youtubeSwitch release];
 	[chromeSwitch release];
