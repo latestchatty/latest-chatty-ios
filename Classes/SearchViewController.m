@@ -59,11 +59,13 @@
     parentAuthorField.delegate = self;
     
     [inputTable reloadData];
-    [self modeChanged];
     
-    [termsField becomeFirstResponder];
-	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"SearchLoaded" object:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    //call modeChanged to set one of the input fields to be first responder when this view comes into view
+    [self modeChanged];
 }
 
 /*
