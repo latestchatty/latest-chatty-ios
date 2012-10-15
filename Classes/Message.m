@@ -60,19 +60,20 @@
   }
 }
 
-- (void)send
-{
-	NSString *string = [Message urlStringWithPath:@"/messages"];
-	NSURL *url = [NSURL URLWithString:string];
+- (void)send {
+	NSString *urlString = [Message urlStringWithPathNoRewrite:[NSString stringWithFormat:@"/messages/send/"]];
+    
+	NSURL *url = [NSURL URLWithString:urlString];
+    
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 	
-	NSString *requestBody = [NSString stringWithFormat:@"to=%@&subject=%@&body=%@", self.to, self.subject, self.body];
-
+    
+    NSString *requestBody = [NSString stringWithFormat:@"to=%@&subject=%@&body=%@", self.to, self.subject, self.body];
+    
 	[request setHTTPBody:[requestBody dataUsingEncoding:NSISOLatin1StringEncoding]];
-	
-	[request setHTTPMethod:@"POST"];
+    [request setHTTPMethod:@"POST"];
+    
 	[NSURLConnection connectionWithRequest:request delegate:self];
-
 }
 
 - (void)dealloc {
