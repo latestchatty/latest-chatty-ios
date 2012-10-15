@@ -18,9 +18,9 @@
     self = [super initWithNib];
     self.message = aMessage;
     self.title = self.message.subject;
-//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply
-//                                                                          target:self
-//                                                                          action:@selector(reply)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply
+                                                                          target:self
+                                                                          action:@selector(reply)];
     return self;
 }
 

@@ -34,6 +34,8 @@
     
 	UIBarButtonItem *sendButton = [UIBarButtonItem itemWithTitle:@"Send Message" style:UIBarButtonItemStyleDone target:self action:@selector(send)];
 	self.navigationItem.rightBarButtonItem = sendButton;
+    
+    [self.recipient becomeFirstResponder];
 }
 
 
