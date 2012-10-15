@@ -130,7 +130,7 @@ static NSMutableDictionary *colorMapping;
                                                     [authorName stringByEscapingURL],
                                                     [parentAuthor stringByEscapingURL],
                                                     page];
-    return [self loadAllFromUrlSearchNoRewrite:urlString delegate:delegate];
+    return [self loadAllFromUrlNoRewrite:urlString delegate:delegate];
 }
 
 + (id)didFinishLoadingPluralData:(id)dataObject {
