@@ -110,7 +110,7 @@
         
         return cell;
 	} else {
-		UITableViewCell *cell                = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+		UITableViewCell *cell                = [[[UITableViewCell alloc] initWithFrame:self.tableView.frame] autorelease];
         
         //checking posts count for 0, and returning a blank cell if it is
         //without this a cell is allocated with a spinner in it while the view is loading initially
@@ -121,7 +121,8 @@
         UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [cell.contentView addSubview:cellSpinner];
         
-        [cellSpinner setCenter: cell.contentView.center];
+        [cellSpinner setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
+        [cellSpinner setCenter:cell.contentView.center];
         [cellSpinner startAnimating];
         
         [cellSpinner release];
