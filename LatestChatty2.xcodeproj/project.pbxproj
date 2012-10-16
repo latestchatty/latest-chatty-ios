@@ -59,8 +59,8 @@
 		CD2E1030162643D2007104C3 /* AppleSafari-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2E102E162643D2007104C3 /* AppleSafari-Icon@2x~ipad.png */; };
 		CD2E103416264609007104C3 /* GoogleChrome-Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2E103216264609007104C3 /* GoogleChrome-Icon~ipad.png */; };
 		CD2E103516264609007104C3 /* GoogleChrome-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2E103316264609007104C3 /* GoogleChrome-Icon@2x~ipad.png */; };
-		CDCB16921616636000CF0147 /* Shack[LOL]Icon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB16901616636000CF0147 /* Shack[LOL]Icon.48@2x.png */; };
-		CDCB16931616636000CF0147 /* Shack[LOL]Icon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB16911616636000CF0147 /* Shack[LOL]Icon.48.png */; };
+		CDCB16921616636000CF0147 /* Shack[lol]Icon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB16901616636000CF0147 /* Shack[lol]Icon.48@2x.png */; };
+		CDCB16931616636000CF0147 /* Shack[lol]Icon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB16911616636000CF0147 /* Shack[lol]Icon.48.png */; };
 		FA01C32811D6FB3D0080311B /* SettingsIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA01C32711D6FB3D0080311B /* SettingsIcon.48@2x.png */; };
 		FA01C32C11D6FB790080311B /* StoriesIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA01C32B11D6FB790080311B /* StoriesIcon.48@2x.png */; };
 		FA01C33011D6FBB50080311B /* SearchIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA01C32F11D6FBB50080311B /* SearchIcon.48@2x.png */; };
@@ -302,8 +302,8 @@
 		CD2E102E162643D2007104C3 /* AppleSafari-Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleSafari-Icon@2x~ipad.png"; sourceTree = "<group>"; };
 		CD2E103216264609007104C3 /* GoogleChrome-Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoogleChrome-Icon~ipad.png"; sourceTree = "<group>"; };
 		CD2E103316264609007104C3 /* GoogleChrome-Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoogleChrome-Icon@2x~ipad.png"; sourceTree = "<group>"; };
-		CDCB16901616636000CF0147 /* Shack[LOL]Icon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shack[LOL]Icon.48@2x.png"; sourceTree = "<group>"; };
-		CDCB16911616636000CF0147 /* Shack[LOL]Icon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shack[LOL]Icon.48.png"; sourceTree = "<group>"; };
+		CDCB16901616636000CF0147 /* Shack[lol]Icon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shack[lol]Icon.48@2x.png"; sourceTree = "<group>"; };
+		CDCB16911616636000CF0147 /* Shack[lol]Icon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shack[lol]Icon.48.png"; sourceTree = "<group>"; };
 		FA01C32711D6FB3D0080311B /* SettingsIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIcon.48@2x.png"; sourceTree = "<group>"; };
 		FA01C32B11D6FB790080311B /* StoriesIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StoriesIcon.48@2x.png"; sourceTree = "<group>"; };
 		FA01C32F11D6FBB50080311B /* SearchIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchIcon.48@2x.png"; sourceTree = "<group>"; };
@@ -868,8 +868,8 @@
 				FA01C32711D6FB3D0080311B /* SettingsIcon.48@2x.png */,
 				FA4122E70F8FDCFD002E1978 /* StoriesIcon.48.png */,
 				FA01C32B11D6FB790080311B /* StoriesIcon.48@2x.png */,
-				CDCB16911616636000CF0147 /* Shack[LOL]Icon.48.png */,
-				CDCB16901616636000CF0147 /* Shack[LOL]Icon.48@2x.png */,
+				CDCB16911616636000CF0147 /* Shack[lol]Icon.48.png */,
+				CDCB16901616636000CF0147 /* Shack[lol]Icon.48@2x.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -1122,8 +1122,8 @@
 				967A7FFF149BC1AC001D0BD7 /* arrow.png in Resources */,
 				967A8000149BC1AC001D0BD7 /* arrow@2x.png in Resources */,
 				CD2541D01601EF1800564F09 /* Default-568h@2x.png in Resources */,
-				CDCB16921616636000CF0147 /* Shack[LOL]Icon.48@2x.png in Resources */,
-				CDCB16931616636000CF0147 /* Shack[LOL]Icon.48.png in Resources */,
+				CDCB16921616636000CF0147 /* Shack[lol]Icon.48@2x.png in Resources */,
+				CDCB16931616636000CF0147 /* Shack[lol]Icon.48.png in Resources */,
 				CD1804CD162337690094A3F1 /* GoogleChrome-Icon.png in Resources */,
 				CD1804CE162337690094A3F1 /* GoogleChrome-Icon@2x.png in Resources */,
 				CD22021D16248959000931F5 /* AppleSafari-Icon.png in Resources */,
