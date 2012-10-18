@@ -31,6 +31,6 @@
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
 
 - (void)markRead;
-- (void)send;
+- (BOOL)send;
 
 @end

@@ -60,20 +60,63 @@
   }
 }
 
-- (void)send {
-	NSString *urlString = [Message urlStringWithPathNoRewrite:[NSString stringWithFormat:@"/messages/send/"]];
+- (BOOL)send {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-	NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/messages/send/", server]]];
     
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-	
-    
-    NSString *requestBody = [NSString stringWithFormat:@"to=%@&subject=%@&body=%@", self.to, self.subject, self.body];
-    
-	[request setHTTPBody:[requestBody dataUsingEncoding:NSISOLatin1StringEncoding]];
+    // Set request body and HTTP method
+    NSString *requestBody = [NSString stringWithFormat:
+                             @"to=%@&subject=%@&body=%@", self.to, self.subject, self.body];
+    [request setHTTPBody:[requestBody data]];
     [request setHTTPMethod:@"POST"];
     
-	[NSURLConnection connectionWithRequest:request delegate:self];
+    // Set auth
+    NSString *authStr = [NSString stringWithFormat:@"%@:%@", [defaults stringForKey:@"username"], [defaults stringForKey:@"password"]];
+    NSData *authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
+    NSString *authValue = [NSString stringWithFormat:@"Basic %@", [NSString base64StringFromData:authData length:[authData length]]];
+    [request setValue:[authValue stringByReplacingOccurrencesOfString:@"\n" withString:@""] forHTTPHeaderField:@"Authorization"];
+    
+    // Send the request
+    NSHTTPURLResponse *response;
+    NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]];
+    
+    NSLog(@"Creating Message with Request body: %@", requestBody);
+    NSLog(@"Server responded: %@", responseBody);
+    NSLog(@"response statusCode: %d", [response statusCode]);
+    
+    // Handle login failed
+    if ([responseBody isEqualToString:@"error_login_failed"] || [response statusCode] == 401) {
+        [UIAlertView showSimpleAlertWithTitle:@"Login Failed"
+                                      message:@"Check your Username and Password in Settings from the main menu."
+                                  buttonTitle:@"Dang"];
+        return NO;
+    }
+    
+    // Handle specific errors
+    else if ([responseBody isMatchedByRegex:@"^error_"]) {
+        NSString *msg = [[responseBody stringByReplacingOccurrencesOfString:@"error_" withString:@""]
+                         stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+        [UIAlertView showSimpleAlertWithTitle:@"Error!"
+                                      message:[NSString stringWithFormat:@"Message send failed:\n%@", msg]
+                                  buttonTitle:@"Dang"];
+        return NO;
+    }
+    
+    // Handle successful message send
+    else if ([response statusCode] >= 200 && [response statusCode] < 300) {
+        return YES;
+    }
+    
+    // Handle any other error
+    else {
+        [UIAlertView showSimpleAlertWithTitle:@"Error!"
+                                      message:@"Message send failed and we don't know why :("
+                                  buttonTitle:@"Dang"];
+        return NO;
+    }
 }
 
 - (void)dealloc {
