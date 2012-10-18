@@ -14,24 +14,25 @@
 
 @synthesize messages;
 
-- (id)init {
-    self = [self initWithNibName:@"MessagesViewController" bundle:nil];
-    self.title = @"Messages";
+- (id)initWithNib {
+    self = [super initWithNib];
+
+    self.title = @"Loading...";
+    
     return self;
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    //    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    return YES;
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
-*/
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refresh:self];
 	UIBarButtonItem *composeButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
+    composeButton.enabled = NO;
 	self.navigationItem.rightBarButtonItem = composeButton;
 }
 
@@ -59,12 +60,15 @@
     
     [super didFinishLoadingAllModels:models otherData:otherData];
 	[self layoutCellsForOrientation:[self interfaceOrientation]];
+    
+    self.title = @"Messages";
+    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)didFailToLoadModels {
     [UIAlertView showSimpleAlertWithTitle:@"Error"
                                   message:@"Could not retrieve your messages.    "
-                                          @"Check you internet connection, or your username and password in Settings"];
+                                          @"Check your internet connection, or your username and password in Settings"];
 }
 
 
