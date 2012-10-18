@@ -130,17 +130,17 @@
     
     self.navigationItem.rightBarButtonItem = composeButton;
     
-    UILabel *titleLabel = [UILabel viewWithFrame:self.navigationController.navigationBar.frame];
-    titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.numberOfLines = 2;
-    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    titleLabel.opaque = NO;
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.shadowColor = [UIColor blackColor];
-    titleLabel.textAlignment = UITextAlignmentCenter;
-    titleLabel.text = self.title;
-    self.navigationItem.titleView = titleLabel;    
+//    UILabel *titleLabel = [UILabel viewWithFrame:self.navigationController.navigationBar.frame];
+//    titleLabel.font = [UIFont boldSystemFontOfSize:14];
+//    titleLabel.textColor = [UIColor whiteColor];
+//    titleLabel.numberOfLines = 2;
+//    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    titleLabel.opaque = NO;
+//    titleLabel.backgroundColor = [UIColor clearColor];
+//    titleLabel.shadowColor = [UIColor blackColor];
+//    titleLabel.textAlignment = UITextAlignmentCenter;
+//    titleLabel.text = self.title;
+//    self.navigationItem.titleView = titleLabel;
     
     pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
     [pull setDelegate:self];
