@@ -88,7 +88,7 @@
         UIInterfaceOrientation orientation = self.interfaceOrientation;
         
         if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeLeft) {
-            [postContent setFrame:CGRectMake(0, 43, screenHeight, 60)];
+            [postContent setFrame:CGRectMake(0, 39, screenHeight, 66)];
             [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
         } else {
             if ( screenHeight > 480 ) {
@@ -163,7 +163,7 @@
             [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenWidth, availableSpacePortrait-(postContent.frameY + postContent.frameHeight))];
         } else {
             //iPhone landscape activated
-            [postContent setFrame:CGRectMake(0, 43, screenHeight, 60)];
+            [postContent setFrame:CGRectMake(0, 39, screenHeight, 66)];
             [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
         }
     }
