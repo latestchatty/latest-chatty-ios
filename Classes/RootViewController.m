@@ -87,7 +87,7 @@
             break;
             
         case 1:
-            cell.title = @"Latest Chatty";
+            cell.title = @"LatestChatty";
 			break;
             
         case 2:

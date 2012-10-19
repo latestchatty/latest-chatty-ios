@@ -41,7 +41,7 @@
 - (void)layoutSubviews {
   titleLabel.text = self.title;
   
-  if ([self.title isEqualToString:@"Latest Chatty"])
+  if ([self.title isEqualToString:@"LatestChatty"])
     iconImage.image = [UIImage imageNamed:@"ChatIcon.48.png"];
   else if ([self.title hasPrefix:@"Messages"])
     iconImage.image = [UIImage imageNamed:@"MessagesIcon.48.png"];
