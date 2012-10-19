@@ -50,6 +50,8 @@
     UILongPressGestureRecognizer *longPress;
     CGPoint longPressPoint;
     NSIndexPath *longPressIndexPath;
+    
+    UISwipeGestureRecognizer *swipe;
 }
 
 @property (nonatomic, assign) NSUInteger threadId;

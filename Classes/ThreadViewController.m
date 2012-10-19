@@ -49,14 +49,6 @@
             nil];
 }
 
-
-- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer
-{
-        if(tableView.contentInset.top == 0)
-                [self refresh:self];
-}
-
-
 - (IBAction)refresh:(id)sender {
     [super refresh:sender];
 
@@ -201,6 +193,13 @@
     longPress.delegate = self;
     [self.tableView addGestureRecognizer:longPress];
     [longPress release];
+    
+    //initialize swipe gesture
+    swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [swipe setDirection:UISwipeGestureRecognizerDirectionRight];
+    swipe.delegate = self;
+    [self.tableView addGestureRecognizer:swipe];
+    [swipe release];
     
     [self resetLayout:NO];
 }
@@ -771,7 +770,11 @@
     }
 }
 
-#pragma mark Long Press Gesture Recognizer
+#pragma mark Gesture Recognizers
+
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     //only fire on the intial long press detection
