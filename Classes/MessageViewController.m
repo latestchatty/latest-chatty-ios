@@ -43,9 +43,20 @@
 	webView.hidden = NO;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)messageWebView
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView
 {
 	[NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(showWebView:) userInfo:nil repeats:NO];
+    
+    //Patch-E: shack api returns straight text for messages, this at least turns any URL into a tappable link to open either
+    //in the browser view controller or in whatever browser the user may have set in Settings
+    NSString *jsReplaceLinkCode =
+    @"document.body.innerHTML = "
+    @"document.body.innerHTML.replace("
+    @"/(\\b(https?):\\/\\/[-A-Z0-9+&@#\\/%?=~_|!:,.;]*[-A-Z0-9+&@#\\/%=~_|])/ig, "
+    @"\"<a href='$1'>$1</a>\""
+    @");";
+    
+    [aWebView stringByEvaluatingJavaScriptFromString:jsReplaceLinkCode];
 }
 
 - (void)reply {
