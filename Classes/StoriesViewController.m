@@ -12,7 +12,7 @@
 
 @implementation StoriesViewController
 
-@synthesize stories;
+@synthesize stories, pull;
 
 - (id)initWithNib {
     if (self = [super initWithNib]) {
@@ -43,6 +43,17 @@
 																		  action:@selector(tappedLatestChattyButton)];
     self.navigationItem.rightBarButtonItem = latestChattyButton;
     [latestChattyButton release];
+    
+    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
+    [pull setDelegate:self];
+    [self.tableView addSubview:pull];
+    [pull finishedLoading];
+}
+
+- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
+    NSLog(@"Pull?");
+    [self refresh:self];
+    [pull finishedLoading];
 }
 
 - (IBAction)refresh:(id)sender {
@@ -125,6 +136,7 @@
     
     Story *story = [stories objectAtIndex:indexPath.row];
     UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
+//    UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:29061947];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -135,6 +147,7 @@
 
 - (void)dealloc {
     self.stories = nil;
+    [pull release];
     [super dealloc];
 }
 

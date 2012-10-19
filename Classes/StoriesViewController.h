@@ -19,12 +19,14 @@
 #import "ChattyViewController.h"
 #import "StoryViewController.h"
 #import "SettingsViewController.h"
+#import "PullToRefreshView.h"
 
-@interface StoriesViewController : ModelListViewController {
+@interface StoriesViewController : ModelListViewController <PullToRefreshViewDelegate> {
   NSArray *stories;
 }
 
 @property (retain) NSArray *stories;
+@property (nonatomic, retain) PullToRefreshView *pull;
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)stateDictionary;
