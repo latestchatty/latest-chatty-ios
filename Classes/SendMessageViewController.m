@@ -41,7 +41,7 @@
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIInterfaceOrientation orientation = self.interfaceOrientation;
         
-        if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeLeft) {
+        if (UIInterfaceOrientationIsLandscape(orientation)) {
             [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
         } else {
             if ( screenHeight > 480 ) {
@@ -62,7 +62,7 @@
         CGFloat screenWidth = screenSize.width;
         CGFloat screenHeight = screenSize.height;
         
-        if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
             //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
             if (body.frame.size.width > 320) {
                 return;

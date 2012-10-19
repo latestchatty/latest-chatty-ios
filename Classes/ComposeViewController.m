@@ -87,7 +87,7 @@
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIInterfaceOrientation orientation = self.interfaceOrientation;
         
-        if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeLeft) {
+        if (UIInterfaceOrientationIsLandscape(orientation)) {
             [postContent setFrame:CGRectMake(0, 39, screenHeight, 66)];
             [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
         } else {
@@ -147,7 +147,7 @@
         NSUInteger availableSpacePortrait = screenHeight - 64;
         NSUInteger availableSpaceLandscape = screenWidth - 64;
         
-        if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
             //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
             if (postContent.frame.size.width > 320) {
                 return;
