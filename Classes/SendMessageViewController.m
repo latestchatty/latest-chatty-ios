@@ -121,12 +121,11 @@
 }
 
 - (IBAction)send {
-    //TODO: error handling here
-    
-	Message *message = [[[Message alloc] init] autorelease];
+    Message *message = [[[Message alloc] init] autorelease];
     message.to = recipient.text;
     message.subject = subject.text;
     message.body = body.text;
+    
 	if ([message send]) {
         [UIAlertView showSimpleAlertWithTitle:@"Message Sent!" message:nil];
         
