@@ -11,8 +11,9 @@
 #import "MessageCell.h"
 #import "Message.h"
 #import "MessageViewController.h"
+#import "PullToRefreshView.h"
 
-@interface MessagesViewController : ModelListViewController {
+@interface MessagesViewController : ModelListViewController <PullToRefreshViewDelegate> {
   NSMutableArray *messages;
 }
 
@@ -20,5 +21,7 @@
 
 - (void)composeMessage;
 - (void)layoutCellsForOrientation:(UIInterfaceOrientation)orientation;
+
+@property (nonatomic, retain) PullToRefreshView *pull;
 
 @end

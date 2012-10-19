@@ -12,7 +12,7 @@
 
 @implementation MessagesViewController
 
-@synthesize messages;
+@synthesize messages, pull;
 
 - (id)initWithNib {
     self = [super initWithNib];
@@ -34,6 +34,11 @@
 	UIBarButtonItem *composeButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
     composeButton.enabled = NO;
 	self.navigationItem.rightBarButtonItem = composeButton;
+    
+    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
+    [pull setDelegate:self];
+    [self.tableView addSubview:pull];
+    [pull finishedLoading];
 }
 
 - (void)composeMessage {
@@ -44,6 +49,12 @@
     } else {
         [self.navigationController pushViewController:sendMessageViewController animated:YES];
     }
+}
+
+- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
+    NSLog(@"Pull?");
+    [self refresh:self];
+    [pull finishedLoading];
 }
 
 - (IBAction)refresh:(id)sender {
@@ -130,6 +141,7 @@
 
 - (void)dealloc {
     self.messages = nil;
+    [pull release];
     [super dealloc];
 }
 
