@@ -16,7 +16,7 @@
 
 - (id)initWithNib {
     if (self = [super initWithNib]) {
-        self.title = @"Stories";
+        self.title = @"Loading...";
     }
     return self;
 }
@@ -67,6 +67,8 @@
     [loader release];
     loader = nil;
     [super didFinishLoadingAllModels:models otherData:otherData];
+    
+    self.title = @"Stories";
 }
 
 - (void)didReceiveMemoryWarning {
