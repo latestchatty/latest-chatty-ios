@@ -60,7 +60,7 @@
   }
 }
 
-- (BOOL)send {
++ (BOOL)createWithTo:(NSString *)to subject:(NSString *)subject body:(NSString *)body {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
@@ -69,7 +69,7 @@
     
     // Set request body and HTTP method
     NSString *requestBody = [NSString stringWithFormat:
-                             @"to=%@&subject=%@&body=%@", self.to, self.subject, self.body];
+                             @"to=%@&subject=%@&body=%@", to, subject, body];
     [request setHTTPBody:[requestBody data]];
     [request setHTTPMethod:@"POST"];
     

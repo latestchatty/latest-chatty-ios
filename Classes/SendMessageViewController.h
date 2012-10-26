@@ -14,13 +14,19 @@
 	IBOutlet UITextField *subject;
 	IBOutlet UITextView *body;
     IBOutlet UIScrollView *scrollView;
+    
+    IBOutlet UIView* activityView;
+    IBOutlet UIActivityIndicatorView* spinner;
+    BOOL postingWarningAlertView;
 }
 
 @property (retain, nonatomic) UITextField *recipient;
 @property (retain, nonatomic) UITextField *subject;
 @property (retain, nonatomic) UITextView *body;
 
+- (void)showActivityIndicator;
 - (void)setupReply:(Message*)message;
-- (IBAction)send;
+- (IBAction)makeMessage;
+- (IBAction)sendMessage;
 
 @end

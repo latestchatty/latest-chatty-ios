@@ -30,7 +30,8 @@
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
 
++ (BOOL)createWithTo:(NSString *)to subject:(NSString *)subject body:(NSString *)body;
+
 - (void)markRead;
-- (BOOL)send;
 
 @end

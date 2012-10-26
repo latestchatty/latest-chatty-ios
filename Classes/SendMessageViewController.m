@@ -26,7 +26,7 @@
     
     scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
     
-	UIBarButtonItem *sendButton = [UIBarButtonItem itemWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(send)];
+	UIBarButtonItem *sendButton = [UIBarButtonItem itemWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(sendMessage)];
 	self.navigationItem.rightBarButtonItem = sendButton;
         
     [self.recipient becomeFirstResponder];
@@ -120,22 +120,69 @@
     body.selectedRange = NSRangeFromString(@"0");
 }
 
-- (IBAction)send {
-    Message *message = [[[Message alloc] init] autorelease];
-    message.to = recipient.text;
-    message.subject = subject.text;
-    message.body = body.text;
+- (void)sendSuccess {
+    [UIAlertView showSimpleAlertWithTitle:@"Message Sent!" message:nil];
     
-	if ([message send]) {
-        [UIAlertView showSimpleAlertWithTitle:@"Message Sent!" message:nil];
-        
-        if ([self.navigationController.viewControllers count] > 1) {
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            UIViewController *viewController = [NoContentController controllerWithNib];
-            [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
-        }
+	self.navigationController.view.userInteractionEnabled = YES;
+	ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
+	[lastController refresh:self];
+	[self.navigationController popViewControllerAnimated:YES];
+    
+	[self hideActivtyIndicator];
+}
+
+- (void)sendFailure {
+	self.navigationController.view.userInteractionEnabled = YES;
+	[self hideActivtyIndicator];
+}
+
+- (IBAction)makeMessage {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    self.navigationController.view.userInteractionEnabled = NO;
+    
+	if ([Message createWithTo:recipient.text subject:subject.text body:body.text]) {
+        [self performSelectorOnMainThread:@selector(sendSuccess) withObject:nil waitUntilDone:NO];
+    } else {
+        [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
     }
+
+    postingWarningAlertView = NO;
+    [pool release];
+}
+
+- (IBAction)sendMessage {
+    [body becomeFirstResponder];
+    [body resignFirstResponder];
+    
+    postingWarningAlertView = YES;
+    [UIAlertView showWithTitle:@"Send?"
+                       message:@"Send this message?"
+                      delegate:self
+             cancelButtonTitle:@"Cancel"
+             otherButtonTitles:@"Send", nil];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 1) {
+        [self showActivityIndicator];
+        [body resignFirstResponder];
+        [self performSelectorInBackground:@selector(makeMessage) withObject:nil];
+	}
+}
+
+- (void)showActivityIndicator {
+	CGRect frame = self.view.frame;
+	frame.origin = CGPointZero;
+	activityView.frame = frame;
+
+	[self.view addSubview:activityView];
+    spinner.hidden = NO;
+    [spinner startAnimating];
+}
+
+- (void)hideActivtyIndicator {
+	[activityView removeFromSuperview];
+	[spinner stopAnimating];
 }
 
 #pragma mark Cleanup
@@ -144,7 +191,9 @@
     self.body = nil;
     self.recipient = nil;
     self.subject = nil;
-
+    
+    [activityView release];
+	[spinner release];
     [scrollView release];
     
     [super dealloc];
