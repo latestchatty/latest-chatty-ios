@@ -15,7 +15,7 @@
 @implementation BrowserViewController
 
 @synthesize request;
-@synthesize webView, backButton, forwardButton, spinner, mainToolbar, lolMenuButton, actionButton, bottomToolbar, isShackLOL;
+@synthesize webView, backButton, forwardButton, spinner, mainToolbar, actionButton, bottomToolbar, isShackLOL;
 
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
@@ -30,19 +30,21 @@
     self.request = _request;
     self.title = title;
     self.isShackLOL = isForShackLOL;
-    
+ 
     if (self.isShackLOL) {
-        self.lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-                                                              style:UIBarButtonItemStyleBordered
-                                                             target:self
-                                                             action:@selector(lolMenu)];
-        [self.lolMenuButton setEnabled:NO];
+        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+                                                                           style:UIBarButtonItemStyleBordered
+                                                                          target:self
+                                                                          action:@selector(lolMenu)];
+        [lolMenuButton setEnabled:NO];
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            [self.navigationItem setLeftBarButtonItem:self.lolMenuButton];
+            [self.navigationItem setLeftBarButtonItem:lolMenuButton];
         } else {
-            [self.navigationItem setRightBarButtonItem:self.lolMenuButton];
+            [self.navigationItem setRightBarButtonItem:lolMenuButton];
         }
+        
+        [lolMenuButton release];
     }
     
     return self;
@@ -103,7 +105,9 @@
     [spinner stopAnimating];
     backButton.enabled = webView.canGoBack;
     forwardButton.enabled = webView.canGoForward;
-    [self.lolMenuButton setEnabled:YES];
+    if (self.navigationItem.rightBarButtonItem != nil) {
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+    }
     [self.actionButton setEnabled:YES];
 }
 
@@ -140,7 +144,6 @@
     self.forwardButton = nil;
     self.spinner = nil;
     self.mainToolbar = nil;
-    self.lolMenuButton = nil;
     self.actionButton = nil;
     [super dealloc];
 }

@@ -17,7 +17,6 @@
     UIBarButtonItem *forwardButton;
     UIActivityIndicatorView *spinner;
     UIToolbar *mainToolbar;
-    UIBarButtonItem *lolMenuButton;
     UIBarButtonItem *actionButton;
     UIToolbar *bottomToolbar;
     BOOL isShackLOL;
@@ -32,7 +31,6 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *forwardButton;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, retain) IBOutlet UIToolbar *mainToolbar;
-@property (nonatomic, retain) UIBarButtonItem *lolMenuButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
 @property (nonatomic, retain) IBOutlet UIToolbar *bottomToolbar;
 @property (nonatomic, assign) BOOL isShackLOL;
