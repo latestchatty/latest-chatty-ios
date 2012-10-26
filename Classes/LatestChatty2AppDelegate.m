@@ -329,7 +329,6 @@
         [self.navigationController dismissModalViewControllerAnimated:YES];
         [self.navigationController pushViewController:viewController animated:YES];
     }
-    [viewController release];
     
     return YES;
 }

@@ -43,8 +43,6 @@
         } else {
             [self.navigationItem setRightBarButtonItem:self.lolMenuButton];
         }
-        
-        [self.lolMenuButton release];
     }
     
     return self;
@@ -129,6 +127,7 @@
 }
 
 - (void)dealloc {
+    NSLog(@"BrowserViewController dealloc");
     self.request = nil;
     [webView loadHTMLString:@"<div></div>" baseURL:nil];
     if (webView.loading) {
