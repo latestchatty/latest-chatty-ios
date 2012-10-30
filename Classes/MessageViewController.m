@@ -27,14 +27,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
+    // Create HTML for the message
+    StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Message.html"];
     
-    [htmlTemplate setString:[NSString stringFromResource:@"Stylesheet.css"] forKey:@"stylesheet"];
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
+    [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:[Message formatDate:message.date] forKey:@"date"];
     [htmlTemplate setString:message.from forKey:@"author"];
     [htmlTemplate setString:message.body forKey:@"body"];
     
-    [webView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://www.shacknews.com/msgcenter.x"]];
+    [webView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://www.shacknews.com/messages"]];
 }
 
 - (void)showWebView:(NSTimer*)theTimer
@@ -50,8 +52,8 @@
     //Patch-E: shack api returns straight text for messages, this at least turns any URL into a tappable link to open either
     //in the browser view controller or in whatever browser the user may have set in Settings
     NSString *jsReplaceLinkCode =
-    @"document.body.innerHTML = "
-    @"document.body.innerHTML.replace("
+    @"document.getElementById('body').innerHTML = "
+    @"document.getElementById('body').innerHTML.replace("
     @"/(\\b(https?):\\/\\/[-A-Z0-9+&@#\\/%?=~_|!:,.;]*[-A-Z0-9+&@#\\/%=~_|])/ig, "
     @"\"<a href='$1'>$1</a>\""
     @");";

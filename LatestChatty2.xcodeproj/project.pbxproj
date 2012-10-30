@@ -69,6 +69,7 @@
 		CD8BA2D416306B6200ED5C5E /* SettingsIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D316306B6200ED5C5E /* SettingsIcon.48@2x.png */; };
 		CD8BA2D616306B6900ED5C5E /* StoriesIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D516306B6900ED5C5E /* StoriesIcon.48@2x.png */; };
 		CD8BA2D816306BF700ED5C5E /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D716306BF700ED5C5E /* Camera.png */; };
+		CDE0905B164042DD0010E8F5 /* Message.html in Resources */ = {isa = PBXBuildFile; fileRef = CDE0905A164042DD0010E8F5 /* Message.html */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA04877A11640D7000290D2D /* ThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */; };
@@ -312,6 +313,7 @@
 		CD8BA2D316306B6200ED5C5E /* SettingsIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SettingsIcon.48@2x.png"; path = "Assets/SettingsIcon.48@2x.png"; sourceTree = "<group>"; };
 		CD8BA2D516306B6900ED5C5E /* StoriesIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StoriesIcon.48@2x.png"; path = "Assets/StoriesIcon.48@2x.png"; sourceTree = "<group>"; };
 		CD8BA2D716306BF700ED5C5E /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Camera.png; path = Assets/Camera.png; sourceTree = "<group>"; };
+		CDE0905A164042DD0010E8F5 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Message.html; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
@@ -947,6 +949,7 @@
 			children = (
 				FABA5DBE0F718042008EEE3A /* Stylesheet.css */,
 				FABA5DBC0F71802E008EEE3A /* Post.html */,
+				CDE0905A164042DD0010E8F5 /* Message.html */,
 				FABA5E200F7185CC008EEE3A /* Story.html */,
 				FA8D243D0F85848900AB23E2 /* Youtube.html */,
 			);
@@ -1132,6 +1135,7 @@
 				CD8BA2D416306B6200ED5C5E /* SettingsIcon.48@2x.png in Resources */,
 				CD8BA2D616306B6900ED5C5E /* StoriesIcon.48@2x.png in Resources */,
 				CD8BA2D816306BF700ED5C5E /* Camera.png in Resources */,
+				CDE0905B164042DD0010E8F5 /* Message.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

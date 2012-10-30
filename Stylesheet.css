@@ -18,6 +18,7 @@ div.author a {
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(255,186,0,0.5) !important;
 }
+div.date,
 div.date a {
   font-size: 8pt;
   color: rgb(100,100,100);
