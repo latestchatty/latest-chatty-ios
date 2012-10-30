@@ -45,7 +45,7 @@
         youtubeSwitch       = [[self generateSwitchWithKey:@"embedYoutube"]  retain];
         chromeSwitch        = [[self generateSwitchWithKey:@"useChrome"]  retain];
         safariSwitch        = [[self generateSwitchWithKey:@"useSafari"]  retain];
-        pushMessagesSwitch  = [[self generateSwitchWithKey:@"push.messages"] retain];
+//        pushMessagesSwitch  = [[self generateSwitchWithKey:@"push.messages"] retain];
         modToolsSwitch      = [[self generateSwitchWithKey:@"modTools"]      retain];
         
         interestingSwitch   = [[self generateSwitchWithKey:@"postCategory.informative"] retain];
@@ -120,7 +120,7 @@
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
     [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
     [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
-	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
 	
 	if (pushMessagesSwitch.on) {
@@ -192,7 +192,7 @@
             break;
 			
 		case 2:
-			return 5;
+			return 4;
 			break;
 			
 		case 3:
@@ -292,12 +292,12 @@
 				cell.textLabel.text = @"Use Chrome:";
 				break;
 				
-			case 3:
-				cell.accessoryView = pushMessagesSwitch;
-				cell.textLabel.text = @"Push Messages:";
-				break;
+//			case 3:
+//				cell.accessoryView = pushMessagesSwitch;
+//				cell.textLabel.text = @"Push Messages:";
+//				break;
             
-			case 4:
+			case 3:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Mod Tools:";
 				break;
