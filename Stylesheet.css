@@ -16,12 +16,14 @@ div.author a {
   color: rgb(255,186,0);
   float: left;
   text-decoration: none;
+  -webkit-tap-highlight-color: rgba(255,186,0,0.5) !important;
 }
 div.date a {
   font-size: 8pt;
   color: rgb(100,100,100);
   float: right;
   text-decoration: none;
+  -webkit-tap-highlight-color: rgba(255,186,0,0.5) !important;
 }
 div.body {
   color: white;
@@ -30,6 +32,8 @@ div.body {
 }
 div.body a {
   color: #AEAE9B;
+  word-wrap: break-word;
+  -webkit-tap-highlight-color: rgba(255,186,0,0.5) !important;
 }
 
 /*
