@@ -12,6 +12,7 @@
 static NSString *kDateFormat = @"MMM d, yyyy hh:mm a";          // Feb 25, 2010 12:22 AM
 static NSString *kParseDateFormat = @"yyyy/M/d kk:mm:ss Z";     // 2010/03/06 16:13:00 -0800
 static NSString *kParseDateFormat2 = @"MMM d, yyyy hh:mma zzz"; // Mar 15, 2011 6:28pm PDT
+static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a"; // Mar 15, 2011 6:28pm, pm
 
 
 @implementation Model
@@ -50,6 +51,10 @@ static NSString *kParseDateFormat2 = @"MMM d, yyyy hh:mma zzz"; // Mar 15, 2011 
     NSDate *date = [formatter dateFromString:string];
     if (!date) {
         [formatter setDateFormat:kParseDateFormat2];
+        date = [formatter dateFromString:string];
+    }
+    if (!date) {
+        [formatter setDateFormat:kParseDateFormat3];
         date = [formatter dateFromString:string];
     }
     return date;
