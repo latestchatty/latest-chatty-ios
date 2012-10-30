@@ -110,8 +110,9 @@
 #pragma mark Setup and Message Send
 
 - (void)setupReply:(Message*)message {
-    body.text = [message.body stringByReplacingOccurrencesOfRegex:@"<br.*?>" withString:@"\n"];
-    body.text = [NSString stringWithFormat:@"\n\n\n--------------------\n\n%@", [body.text stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""]];
+//    body.text = [message.body stringByReplacingOccurrencesOfRegex:@"<br.*?>" withString:@"\n"];
+    body.text = [NSString stringWithFormat:@"On %@ %@ wrote:\n\n%@", [Message formatDate:message.date], message.from, message.body];
+    body.text = [NSString stringWithFormat:@"\n\n--------------------\n\n%@", [body.text stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""]];
     
     recipient.text = message.from;
     subject.text = [NSString stringWithFormat:@"RE: %@", message.subject];
@@ -125,7 +126,9 @@
     
 	self.navigationController.view.userInteractionEnabled = YES;
 	ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
-	[lastController refresh:self];
+    if (lastController.class == [MessagesViewController class]) {
+        [lastController refresh:self];   
+    }
 	[self.navigationController popViewControllerAnimated:YES];
     
 	[self hideActivtyIndicator];
