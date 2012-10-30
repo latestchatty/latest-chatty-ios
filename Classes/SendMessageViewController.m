@@ -115,7 +115,7 @@
     body.text = [NSString stringWithFormat:@"\n\n--------------------\n\n%@", [body.text stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""]];
     
     recipient.text = message.from;
-    subject.text = [NSString stringWithFormat:@"RE: %@", message.subject];
+    subject.text = [NSString stringWithFormat:@"Re: %@", message.subject];
     
     [body becomeFirstResponder];
     body.selectedRange = NSRangeFromString(@"0");
