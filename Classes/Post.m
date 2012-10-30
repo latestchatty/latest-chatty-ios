@@ -122,15 +122,20 @@ static NSMutableDictionary *colorMapping;
     return [self loadAllFromUrl:urlString delegate:delegate];
 }
 
-//Patch-E: 10/13/2012, stonedonkey API URL rewriting is broken when paging is needed for search
-//mimic'd searchWithTerms: class function with a function that constructs the URL without the params that the rewritten URL expects
+//use this class method for search with paging
 + (ModelLoader *)searchWithTerms:(NSString *)terms author:(NSString *)authorName parentAuthor:(NSString *)parentAuthor page:(NSUInteger)page delegate:(id<ModelLoadingDelegate>)delegate {
-    NSString *urlString = [NSString stringWithFormat:@"/search/?SearchTerm=%@&Author=%@&ParentAuthor=%@&json=1&page=%d",
-                                                    [terms stringByEscapingURL],
-                                                    [authorName stringByEscapingURL],
-                                                    [parentAuthor stringByEscapingURL],
-                                                    page];
-    return [self loadAllFromUrlNoRewrite:urlString delegate:delegate];
+    //URL pattern for non-.json rewritten search URL, switched back to the .json URL since the API now accepts paging param on the query string
+//    NSString *urlString = [NSString stringWithFormat:@"/search/?SearchTerm=%@&Author=%@&ParentAuthor=%@&json=1&page=%d",
+//                                                    [terms stringByEscapingURL],
+//                                                    [authorName stringByEscapingURL],
+//                                                    [parentAuthor stringByEscapingURL],
+//                                                    page];
+    NSString *urlString = [NSString stringWithFormat:@"/search?terms=%@&author=%@&parent_author=%@&page=%d",
+                           [terms stringByEscapingURL],
+                           [authorName stringByEscapingURL],
+                           [parentAuthor stringByEscapingURL],
+                           page];
+    return [self loadAllFromUrl:urlString delegate:delegate];
 }
 
 + (id)didFinishLoadingPluralData:(id)dataObject {
@@ -150,10 +155,10 @@ static NSMutableDictionary *colorMapping;
 + (id)otherDataForResponseData:(id)responseData {
     NSDictionary *dictionary = (NSDictionary *)responseData;
     return [NSDictionary dictionaryWithObjectsAndKeys:
-            [dictionary objectForKey:@"story_id"], @"storyId",
-            [dictionary objectForKey:@"story_name"], @"storyName",
-            [dictionary objectForKey:@"page"],       @"page",
-            [dictionary objectForKey:@"last_page"],  @"lastPage",
+            (([dictionary objectForKey:@"story_id"])    ? [dictionary objectForKey:@"story_id"] : @""), @"storyId",
+            (([dictionary objectForKey:@"story_name"])  ? [dictionary objectForKey:@"story_name"] : @""), @"storyName",
+            (([dictionary objectForKey:@"page"])        ? [dictionary objectForKey:@"page"] : @""), @"page",
+            (([dictionary objectForKey:@"last_page"])   ? [dictionary objectForKey:@"last_page"] : @""), @"lastPage",
             nil];
 }
 
