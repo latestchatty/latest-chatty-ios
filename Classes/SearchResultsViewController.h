@@ -25,6 +25,7 @@
   NSString *parentAuthor;
     
   NSUInteger currentPage;
+  NSUInteger lastPage;
 }
 
 @property (retain) NSArray *posts;

@@ -67,6 +67,8 @@
         self.posts = mutableThreadsArray;
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
 	}
+    
+    lastPage = [[otherData objectForKey:@"lastPage"] intValue];
 
 	[self.tableView reloadData];
 	[loader release];
@@ -92,7 +94,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([posts count] % 15 == 0) return [posts count] + 1;
+    if (currentPage < lastPage) return [posts count] + 1;
     return [posts count];
 }
 
@@ -110,7 +112,7 @@
         
         return cell;
 	} else {
-		UITableViewCell *cell                = [[[UITableViewCell alloc] initWithFrame:self.tableView.frame] autorelease];
+		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:self.tableView.frame] autorelease];
         
         //checking posts count for 0, and returning a blank cell if it is
         //without this a cell is allocated with a spinner in it while the view is loading initially
