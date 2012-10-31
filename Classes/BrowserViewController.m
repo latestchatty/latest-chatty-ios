@@ -105,9 +105,15 @@
     [spinner stopAnimating];
     backButton.enabled = webView.canGoBack;
     forwardButton.enabled = webView.canGoForward;
+
+    if (self.navigationItem.leftBarButtonItem != nil) {
+        [self.navigationItem.leftBarButtonItem setEnabled:YES];
+    }
+
     if (self.navigationItem.rightBarButtonItem != nil) {
         [self.navigationItem.rightBarButtonItem setEnabled:YES];
     }
+    
     [self.actionButton setEnabled:YES];
 }
 
@@ -119,9 +125,11 @@
     [[UIApplication sharedApplication] openURL:[webView.request URL]];
 }
 
-//Patch-E: displays the custom iPhone menu on the Shack[LOL] site via custom menu URL. Menu button is disabled until the web view finishes loading.
+//Patch-E: displays the custom iPhone menu on the Shack[LOL] site. Menu button is disabled until the web view finishes loading.
 - (void)lolMenu {
-    [self.webView loadURLString:@"http://lol.lmnopc.com/iphonemenu.php"];
+    //switching to a javascript function called on the page rather than a page transfer
+    //[self.webView loadURLString:@"http://lol.lmnopc.com/iphonemenu.php"];
+    [self.webView stringByEvaluatingJavaScriptFromString: @"lc_menu();"];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
