@@ -30,6 +30,8 @@
 	self.navigationItem.rightBarButtonItem = sendButton;
         
     [self.recipient becomeFirstResponder];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -52,6 +54,10 @@
             }
         }
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
 }
 
 //Patch-E: implemented fix for text view being underneath the keyboard in landscape, sets coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
@@ -125,11 +131,25 @@
     [UIAlertView showSimpleAlertWithTitle:@"Message Sent!" message:nil];
     
 	self.navigationController.view.userInteractionEnabled = YES;
-	ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
-    if (lastController.class == [MessagesViewController class]) {
-        [lastController refresh:self];   
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [self.recipient setText:@""];
+        [self.subject setText:@""];
+        [self.body setText:@""];
+        
+        ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
+        if (lastController.class == [MessageViewController class]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];            
+        }
+    } else {
+        ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
+        if (lastController.class == [MessagesViewController class]) {
+            [lastController refresh:self];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
     }
-	[self.navigationController popViewControllerAnimated:YES];
     
 	[self hideActivtyIndicator];
 }
