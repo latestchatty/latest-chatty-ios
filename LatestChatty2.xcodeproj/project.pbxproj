@@ -69,6 +69,7 @@
 		CD8BA2D416306B6200ED5C5E /* SettingsIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D316306B6200ED5C5E /* SettingsIcon.48@2x.png */; };
 		CD8BA2D616306B6900ED5C5E /* StoriesIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D516306B6900ED5C5E /* StoriesIcon.48@2x.png */; };
 		CD8BA2D816306BF700ED5C5E /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D716306BF700ED5C5E /* Camera.png */; };
+		CD8CF263164189950041AA5B /* Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8CF262164189950041AA5B /* Camera@2x.png */; };
 		CDE0905B164042DD0010E8F5 /* Message.html in Resources */ = {isa = PBXBuildFile; fileRef = CDE0905A164042DD0010E8F5 /* Message.html */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
@@ -313,6 +314,7 @@
 		CD8BA2D316306B6200ED5C5E /* SettingsIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SettingsIcon.48@2x.png"; path = "Assets/SettingsIcon.48@2x.png"; sourceTree = "<group>"; };
 		CD8BA2D516306B6900ED5C5E /* StoriesIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StoriesIcon.48@2x.png"; path = "Assets/StoriesIcon.48@2x.png"; sourceTree = "<group>"; };
 		CD8BA2D716306BF700ED5C5E /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Camera.png; path = Assets/Camera.png; sourceTree = "<group>"; };
+		CD8CF262164189950041AA5B /* Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Camera@2x.png"; path = "Assets/Camera@2x.png"; sourceTree = "<group>"; };
 		CDE0905A164042DD0010E8F5 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Message.html; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
@@ -824,6 +826,7 @@
 				FAD26D8A0F7EDFE0001A76F6 /* RefreshIcon.png */,
 				FA5B5F1411D704A1000CC71C /* RefreshIcon@2x.png */,
 				CD8BA2D716306BF700ED5C5E /* Camera.png */,
+				CD8CF262164189950041AA5B /* Camera@2x.png */,
 				FA2B45900F7D96060074064A /* GrayBullet.png */,
 				FA689DF211D2EAE20088CF3D /* GrayBullet@2x.png */,
 				FA2B458E0F7D95710074064A /* BlueBullet.png */,
@@ -1136,6 +1139,7 @@
 				CD8BA2D616306B6900ED5C5E /* StoriesIcon.48@2x.png in Resources */,
 				CD8BA2D816306BF700ED5C5E /* Camera.png in Resources */,
 				CDE0905B164042DD0010E8F5 /* Message.html in Resources */,
+				CD8CF263164189950041AA5B /* Camera@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
