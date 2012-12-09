@@ -61,10 +61,10 @@
     [inputTable reloadData];
     
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"SearchLoaded" object:self];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    //call modeChanged to set one of the input fields to be first responder when this view comes into view
+    
+    //moved call to modeChanged in viewDidLoad so that it only ever gets called on view load instead of everytime
+    //the view appears, was causing a crash on iPhone landscape when scrolled down, did a search, and hit back to
+    //bring search back into view
     [self modeChanged];
 }
 
