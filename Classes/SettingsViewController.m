@@ -41,24 +41,31 @@
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
         
-//        landscapeSwitch     = [[self generateSwitchWithKey:@"landscape"]     retain];
-        youtubeSwitch       = [[self generateSwitchWithKey:@"embedYoutube"]  retain];
-        chromeSwitch        = [[self generateSwitchWithKey:@"useChrome"]  retain];
-        safariSwitch        = [[self generateSwitchWithKey:@"useSafari"]  retain];
-//        pushMessagesSwitch  = [[self generateSwitchWithKey:@"push.messages"] retain];
-        modToolsSwitch      = [[self generateSwitchWithKey:@"modTools"]      retain];
+//        landscapeSwitch  = [[self generateSwitchWithKey:@"landscape"] retain];
+        picsResizeSwitch   = [[self generateSwitchWithKey:@"picsResize"] retain];
+        picsQualitySlider  = [[self generateSliderWithKey:@"picsQuality"] retain];
+        youtubeSwitch      = [[self generateSwitchWithKey:@"embedYoutube"] retain];
+        chromeSwitch       = [[self generateSwitchWithKey:@"useChrome"] retain];
+        safariSwitch       = [[self generateSwitchWithKey:@"useSafari"] retain];
+        pushMessagesSwitch = [[self generateSwitchWithKey:@"push.messages"] retain];
+        modToolsSwitch     = [[self generateSwitchWithKey:@"modTools"] retain];
         
-        interestingSwitch   = [[self generateSwitchWithKey:@"postCategory.informative"] retain];
-        offtopicSwitch      = [[self generateSwitchWithKey:@"postCategory.offtopic"] retain];
-        randomSwitch        = [[self generateSwitchWithKey:@"postCategory.stupid"] retain];
-        politicsSwitch      = [[self generateSwitchWithKey:@"postCategory.political"] retain];
-        nwsSwitch           = [[self generateSwitchWithKey:@"postCategory.nws"] retain];
+        interestingSwitch  = [[self generateSwitchWithKey:@"postCategory.informative"] retain];
+        offtopicSwitch     = [[self generateSwitchWithKey:@"postCategory.offtopic"] retain];
+        randomSwitch       = [[self generateSwitchWithKey:@"postCategory.stupid"] retain];
+        politicsSwitch     = [[self generateSwitchWithKey:@"postCategory.political"] retain];
+        nwsSwitch          = [[self generateSwitchWithKey:@"postCategory.nws"] retain];
 
+        [picsQualitySlider addTarget:self action:@selector(handlePicsQualitySlider:) forControlEvents:UIControlEventValueChanged];
         [safariSwitch addTarget:self action:@selector(handleSafariSwitch) forControlEvents:UIControlEventValueChanged];
         [chromeSwitch addTarget:self action:@selector(handleChromeSwitch) forControlEvents:UIControlEventValueChanged];
     }	
 	
 	return self;
+}
+
+- (void)handlePicsQualitySlider:(UISlider *)slider {
+    picsQualityLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(slider.value*100)];
 }
 
 -(void)handleSafariSwitch {
@@ -110,6 +117,15 @@
 	return [toggle autorelease];
 }
 
+- (UISlider *)generateSliderWithKey:(NSString *)key {
+	UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 155, 20)];
+    slider.value = [[NSUserDefaults standardUserDefaults] floatForKey:key];
+    slider.continuous = YES;
+    slider.minimumValue = 0.10f;
+    slider.minimumValue = 0.10f;
+	return [slider autorelease];
+}
+
 - (IBAction)dismiss:(id)sender {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:usernameField.text      forKey:@"username"];
@@ -117,10 +133,12 @@
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
 //	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
+    [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
+    [defaults setFloat:picsQualitySlider.value  forKey:@"picsQuality"];
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
     [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
     [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
-//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
 	
 	if (pushMessagesSwitch.on) {
@@ -188,7 +206,7 @@
 			return 3;
 			break;
         case 1:
-            return 2;
+            return 4;
             break;
 			
 		case 2:
@@ -266,6 +284,17 @@
                 cell.accessoryView = picsPasswordField;
                 cell.textLabel.text = @"Password:";
                 break;
+                
+            case 2:
+				cell.accessoryView = picsResizeSwitch;
+				cell.textLabel.text = @"Scale Uploads:";
+				break;
+                
+            case 3:
+				cell.accessoryView = picsQualitySlider;
+				cell.textLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(picsQualitySlider.value*100)];
+                picsQualityLabel = cell.textLabel;
+				break;
         }
     }
 	
@@ -358,6 +387,9 @@
     
     [picsUsernameField release];
     [picsPasswordField release];
+    [picsResizeSwitch release];
+    [picsQualitySlider release];
+    [picsQualityLabel release];
 	
 //	[landscapeSwitch release];
     [safariSwitch release];
@@ -370,7 +402,6 @@
 	[randomSwitch release];
 	[politicsSwitch release];
 	[nwsSwitch release];
-	
 	
 	[super dealloc];
 }

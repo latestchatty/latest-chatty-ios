@@ -40,7 +40,7 @@
     }
 }
 
-- (void)uploadAndReturnImageUrlWithProgressView:(UIProgressView*)progressView {
+- (void)uploadAndReturnImageUrlWithDictionary:(NSDictionary*)args {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -81,12 +81,11 @@
 	//ASIHTTPRequest* request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]] autorelease];
     ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
     
+//    NSLog(@"qualityAmount: %f", [[args objectForKey:@"qualityAmount"] floatValue]);
+    [request setData:[self compressJpeg:[[args objectForKey:@"qualityAmount"] floatValue]] withFileName:@"iPhoneUpload.jpg" andContentType:@"image/jpeg" forKey:@"userfile[]"];
     
-    [request setData:[self compressJpeg:0.7] withFileName:@"iPhoneUpload.jpg" andContentType:@"image/jpeg" forKey:@"userfile[]"];
-    
-    
-    /*[request setRequestMethod:@"POST"];
-	[request setUploadProgressDelegate:progressView];*/
+    //[request setRequestMethod:@"POST"];
+	[request setUploadProgressDelegate:[args objectForKey:@"progressView"]];
 	//[request setHTTPMethod:@"POST"];
 	
 	// Create the post body
@@ -126,7 +125,7 @@
 
 #pragma mark Image Processor
 // Code from: http://discussions.apple.com/thread.jspa?messageID=7949889
-- (void)autoRotateAndScale:(NSUInteger)maxDimension {
+- (void)autoRotate:(NSUInteger)maxDimension scale:(BOOL)shouldScale {
 	CGImageRef imgRef = image.CGImage;
 	
 	CGFloat width = CGImageGetWidth(imgRef);
@@ -135,7 +134,7 @@
 	
 	CGAffineTransform transform = CGAffineTransformIdentity;
 	CGRect bounds = CGRectMake(0, 0, width, height);
-	if (width > maxDimension || height > maxDimension) {
+	if (shouldScale && (width > maxDimension || height > maxDimension)) {
 		CGFloat ratio = width/height;
 		if (ratio > 1) {
 			bounds.size.width = maxDimension;

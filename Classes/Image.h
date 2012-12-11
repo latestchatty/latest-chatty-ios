@@ -27,9 +27,10 @@
 @property (retain) UIImage *image;
 
 - (id)initWithImage:(UIImage *)anImage;
-- (void)autoRotateAndScale:(NSUInteger)maxDimension;
+- (void)autoRotate:(NSUInteger)maxDimension scale:(BOOL)shouldScale;
+//- (void)autoRotateAndScale:(NSUInteger)maxDimension;
 - (NSData *)compressJpeg:(CGFloat)quality;
 - (NSString *)base64String;
-- (void)uploadAndReturnImageUrlWithProgressView:(UIProgressView*)progressView;
+- (void)uploadAndReturnImageUrlWithDictionary:(NSDictionary*)args;
 
 @end

@@ -259,9 +259,21 @@
 	Image *image = [[[Image alloc] initWithImage:anImage] autorelease];
 	image.delegate = self;
 	
-	UIProgressView* progressBar = [self showActivityIndicator:YES];	
-	[image autoRotateAndScale:800];
-    [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithProgressView:) withObject:progressBar];
+	UIProgressView* progressBar = [self showActivityIndicator:YES];
+    BOOL picsResize = [[NSUserDefaults standardUserDefaults] boolForKey:@"picsResize"];
+    float picsQuality = [[NSUserDefaults standardUserDefaults] floatForKey:@"picsQuality"];
+    
+    if (picsResize) {
+        [image autoRotate:800 scale:YES];
+    } else {
+        [image autoRotate:anImage.size.width scale:NO];
+    }
+
+    NSDictionary *args = [NSDictionary dictionaryWithObjectsAndKeys:
+                           progressBar, @"progressBar",
+                           [NSNumber numberWithFloat:picsQuality], @"qualityAmount",
+                           nil];
+    [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithDictionary:) withObject:args];
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {

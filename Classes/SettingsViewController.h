@@ -20,6 +20,9 @@
     
     IBOutlet UITextField *picsUsernameField;
     IBOutlet UITextField *picsPasswordField;
+    IBOutlet UISwitch    *picsResizeSwitch;
+    IBOutlet UISlider    *picsQualitySlider;
+    UILabel *picsQualityLabel;
   
 //    IBOutlet UISwitch    *landscapeSwitch;
     IBOutlet UISwitch    *youtubeSwitch;
