@@ -389,7 +389,6 @@
     [picsPasswordField release];
     [picsResizeSwitch release];
     [picsQualitySlider release];
-    [picsQualityLabel release];
 	
 //	[landscapeSwitch release];
     [safariSwitch release];
