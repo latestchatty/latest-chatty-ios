@@ -12,6 +12,8 @@
 @interface NSString (StringAdditions)
 
 - (NSString *)stringByUnescapingHTML;
++ (NSString *)rgbaFromUIColor:(UIColor *)color;
++ (NSString *)hexFromUIColor:(UIColor *)color;
 
 @end
 

@@ -20,6 +20,7 @@
 	IBOutlet UILabel *preview;
 	IBOutlet UILabel *replyCount;
 	IBOutlet UIView  *categoryStripe;
+    IBOutlet UIView  *expirationStripe;
 	IBOutlet UIImageView *participantIcon;
 	IBOutlet UIImageView *newPostsIcon;
 	IBOutlet UILabel *newPostCount;

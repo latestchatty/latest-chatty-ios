@@ -10,7 +10,8 @@
 
 #import "LatestChatty2AppDelegate.h"
 
-static NSMutableDictionary *colorMapping;
+static NSMutableDictionary *categoryColorMapping;
+static NSMutableDictionary *expirationColorMapping;
 
 @implementation Post
 
@@ -36,18 +37,51 @@ static NSMutableDictionary *colorMapping;
 @synthesize newReplies;
 
 + (void)initialize {
-    colorMapping = [[NSMutableDictionary alloc] init];
-    [colorMapping setObject:[UIColor clearColor]                                        forKey:@"ontopic"];
-    [colorMapping setObject:[UIColor colorWithRed:0.02 green:0.65 blue:0.83 alpha:1.0]  forKey:@"informative"];
-    [colorMapping setObject:[UIColor colorWithWhite:0.6 alpha:1.0]                      forKey:@"offtopic"];
-    [colorMapping setObject:[UIColor colorWithRed:0.29 green:0.52 blue:0.31 alpha:1.0]  forKey:@"stupid"];
-    [colorMapping setObject:[UIColor colorWithRed:0.95 green:0.69 blue:0.0  alpha:1.0]  forKey:@"political"];
-    [colorMapping setObject:[UIColor redColor]                                          forKey:@"nws"];
+    categoryColorMapping = [[NSMutableDictionary alloc] init];
+    [categoryColorMapping setObject:[UIColor clearColor]                                       forKey:@"ontopic"];
+    [categoryColorMapping setObject:[UIColor colorWithRed:0.02 green:0.65 blue:0.83 alpha:0.5] forKey:@"informative"];
+    [categoryColorMapping setObject:[UIColor colorWithWhite:0.6 alpha:0.5]                     forKey:@"offtopic"];
+    [categoryColorMapping setObject:[UIColor colorWithRed:0.29 green:0.52 blue:0.31 alpha:0.5] forKey:@"stupid"];
+    [categoryColorMapping setObject:[UIColor colorWithRed:0.95 green:0.69 blue:0.0 alpha:0.5]  forKey:@"political"];
+    [categoryColorMapping setObject:[UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5]    forKey:@"nws"];
+    
+    expirationColorMapping = [[NSMutableDictionary alloc] init];
+    [expirationColorMapping setObject:[UIColor colorWithRed:0.29 green:0.52 blue:0.31 alpha:0.5] forKey:@"level1"];
+    [expirationColorMapping setObject:[UIColor colorWithRed:0.95 green:0.69 blue:0.0 alpha:0.5]  forKey:@"level2"];
+    [expirationColorMapping setObject:[UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5]    forKey:@"level3"];
 }
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName {
-    UIColor *color = [colorMapping objectForKey:categoryName];
+    UIColor *color = [categoryColorMapping objectForKey:categoryName];
     return color ? color : [UIColor clearColor];
+}
+
++ (UIColor *)colorForPostExpiration:(NSDate *)date {
+    UIColor *color;
+    
+    NSTimeInterval ti = [date timeIntervalSinceNow];
+    NSInteger hours = (ti / 3600) * -1;
+    
+    if (hours < 9) {
+        color = [expirationColorMapping objectForKey:@"level1"];
+    } else if (hours < 16) {
+        color = [expirationColorMapping objectForKey:@"level2"];
+    } else {
+        color = [expirationColorMapping objectForKey:@"level3"];
+    }
+    
+    return color ? color : [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+}
+
++ (CGFloat)sizeForPostExpiration:(NSDate *)date {
+    NSTimeInterval ti = [date timeIntervalSinceNow];
+    NSInteger minutes = (ti / 60) * -1;
+    CGFloat size = (float)minutes/1080;
+
+    size = size * 100;
+    if (size > 100) size = 100;
+    
+    return size;
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
@@ -320,6 +354,10 @@ static NSMutableDictionary *colorMapping;
 
 - (UIColor *)categoryColor {
     return [[self class] colorForPostCategory:self.category];
+}
+
+- (UIColor *)expirationColor {
+    return [[self class] colorForPostExpiration:self.date];
 }
 
 - (BOOL)visible {

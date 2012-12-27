@@ -422,6 +422,13 @@
     [htmlTemplate setString:[Post formatDate:post.date] forKey:@"date"];
     [htmlTemplate setString:post.author forKey:@"author"];
     [htmlTemplate setString:[NSString stringWithFormat:@"%i", post.modelId] forKey:@"postId"];
+
+    //set the expiration stripe's background color and size in the HTML template
+//    NSLog(@"%@", [NSString hexFromUIColor:[Post colorForPostExpiration:post.date]]);
+//    NSLog(@"%@", [NSString rgbaFromUIColor:[Post colorForPostExpiration:post.date]]);
+//    NSLog(@"%@", [NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]]);
+    [htmlTemplate setString:[NSString rgbaFromUIColor:[Post colorForPostExpiration:post.date]] forKey:@"expirationColor"];
+    [htmlTemplate setString:[NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]] forKey:@"expirationSize"];
     
     NSString *body = [self postBodyWithYoutubeWidgets:post.body];
     

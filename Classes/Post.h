@@ -42,6 +42,7 @@
 @property (readonly) NSUInteger replyCount;
 @property (copy) NSString *category;
 @property (readonly) UIColor *categoryColor;
+@property (readonly) UIColor *expirationColor;
 
 @property (readonly) NSUInteger storyId;
 @property (readonly) NSUInteger parentPostId;
@@ -58,6 +59,8 @@
 @property (assign) BOOL pinned;
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName;
++ (UIColor *)colorForPostExpiration:(NSDate *)date;
++ (CGFloat)sizeForPostExpiration:(NSDate *)date;
 
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId pageNumber:(NSUInteger)pageNumber delegate:(id<ModelLoadingDelegate>)delegate;
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate;

@@ -10,8 +10,13 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="date"><a href="http://www.shacknews.com/chatty?id=<%= postId %>"><%= date %></a></div>
-      <div class="author"><a href="http://www.shacknews.com/profile/<%= author %>"><%= author %></a></div>
+      <div class="expiration">
+        <div style="background:<%= expirationColor %>; width:<%= expirationSize %>; height: inherit;"></div>
+      </div>
+      <div style="clear: both;">
+        <div class="date"><a href="http://www.shacknews.com/chatty?id=<%= postId %>"><%= date %></a></div>
+        <div class="author"><a href="http://www.shacknews.com/profile/<%= author %>"><%= author %></a></div>
+      </div>
       <div class="body"><%= body %></div>
     </div>
   </body>
