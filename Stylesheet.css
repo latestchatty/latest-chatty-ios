@@ -37,9 +37,11 @@ div.body a {
   -webkit-tap-highlight-color: rgba(255,186,0,0.5) !important;
 }
 div.expiration {
+    background: rgb(85,85,85);
     float: right;
     height: 4px;
-    width: 115px;
+    margin-right: 5px;
+    width: 100px;
 }
 
 /*
