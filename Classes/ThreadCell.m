@@ -51,7 +51,7 @@
 	categoryStripe.backgroundColor = rootPost.categoryColor;
     
     //set expiration stripe size and color
-    expirationStripe.frameWidth = [Post sizeForPostExpiration:rootPost.date];
+//    expirationStripe.frameWidth = [Post sizeForPostExpiration:rootPost.date];
     expirationStripe.backgroundColor = rootPost.expirationColor;
 	
 	// Show participant icon

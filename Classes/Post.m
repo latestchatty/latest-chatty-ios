@@ -46,9 +46,9 @@ static NSMutableDictionary *expirationColorMapping;
     [categoryColorMapping setObject:[UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5]    forKey:@"nws"];
     
     expirationColorMapping = [[NSMutableDictionary alloc] init];
-    [expirationColorMapping setObject:[UIColor colorWithRed:0.29 green:0.52 blue:0.31 alpha:0.5] forKey:@"level1"];
-    [expirationColorMapping setObject:[UIColor colorWithRed:0.95 green:0.69 blue:0.0 alpha:0.5]  forKey:@"level2"];
-    [expirationColorMapping setObject:[UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5]    forKey:@"level3"];
+    [expirationColorMapping setObject:[UIColor colorWithRed:0.29 green:0.52 blue:0.31 alpha:0.25] forKey:@"level1"];
+    [expirationColorMapping setObject:[UIColor colorWithRed:0.95 green:0.69 blue:0.0 alpha:0.25]  forKey:@"level2"];
+    [expirationColorMapping setObject:[UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.25]    forKey:@"level3"];
 }
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName {
@@ -61,6 +61,10 @@ static NSMutableDictionary *expirationColorMapping;
     
     NSTimeInterval ti = [date timeIntervalSinceNow];
     NSInteger hours = (ti / 3600) * -1;
+    
+    if (ti == 0) {
+        return [UIColor clearColor];
+    }
     
     if (hours < 9) {
         color = [expirationColorMapping objectForKey:@"level1"];
