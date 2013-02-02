@@ -39,9 +39,10 @@ div.body a {
 div.expiration {
     background: rgba(76,76,76,0.5);
     float: right;
-    height: 4px;
+    height: 2px;
+    margin-bottom: 2px;
 
-    width: 100px;
+    width: 100%;
 }
 
 /*
