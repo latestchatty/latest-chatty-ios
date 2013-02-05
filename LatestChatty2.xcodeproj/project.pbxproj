@@ -882,25 +882,25 @@
 		FAA5BA701110DE7B0007C34C /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
-				A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */,
-				FAA5BA721110DE7F0007C34C /* StoriesViewController-iPad.xib */,
-				FAA5BA731110DE7F0007C34C /* StoryCell-iPad.xib */,
-				FAA5BA741110DE7F0007C34C /* ChattyViewController-iPad.xib */,
-				FAA5BA751110DE7F0007C34C /* ThreadCell-iPad.xib */,
-				FAA5BA761110DE7F0007C34C /* StoryViewController-iPad.xib */,
-				FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */,
-				FAA5BA781110DE7F0007C34C /* ReplyCell-iPad.xib */,
-				FAA5BA791110DE7F0007C34C /* SettingsViewController-iPad.xib */,
-				FAA5BA7A1110DE7F0007C34C /* ComposeViewController-iPad.xib */,
 				FAA5BA7B1110DE7F0007C34C /* BrowserViewController-iPad.xib */,
-				FAA5BA7C1110DE7F0007C34C /* RootCell-iPad.xib */,
-				FAA5BA7D1110DE7F0007C34C /* RootViewController-iPad.xib */,
+				FAA5BA741110DE7F0007C34C /* ChattyViewController-iPad.xib */,
+				FAA5BA7A1110DE7F0007C34C /* ComposeViewController-iPad.xib */,
 				FAA5BA7E1110DE7F0007C34C /* MessagesViewController-iPad.xib */,
 				FAA5BA7F1110DE7F0007C34C /* MessageCell-iPad.xib */,
 				FAA5BA801110DE7F0007C34C /* MessageViewController-iPad.xib */,
+				FAA5BA781110DE7F0007C34C /* ReplyCell-iPad.xib */,
+				FAA5BA7C1110DE7F0007C34C /* RootCell-iPad.xib */,
+				FAA5BA7D1110DE7F0007C34C /* RootViewController-iPad.xib */,
+				A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */,
+				FAA5BA721110DE7F0007C34C /* StoriesViewController-iPad.xib */,
+				FAA5BA731110DE7F0007C34C /* StoryCell-iPad.xib */,
+				FAA5BA761110DE7F0007C34C /* StoryViewController-iPad.xib */,
+				FAA5BA791110DE7F0007C34C /* SettingsViewController-iPad.xib */,
 				FAA5BA811110DE7F0007C34C /* SearchViewController-iPad.xib */,
 				FAA5BA821110DE7F0007C34C /* SearchResultsViewController-iPad.xib */,
 				FA907CA71166D8D800306828 /* SendMessageViewController-iPad.xib */,
+				FAA5BA751110DE7F0007C34C /* ThreadCell-iPad.xib */,
+				FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */,
 			);
 			name = "Resources-iPad";
 			sourceTree = "<group>";
