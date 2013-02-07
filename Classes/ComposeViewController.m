@@ -117,7 +117,7 @@
 		} else {
             [self showActivityIndicator:NO];
 			[postContent resignFirstResponder];
-            [self performSelectorInBackground:@selector(makePost) withObject:nil];            
+            [self performSelectorInBackground:@selector(makePost) withObject:nil];
 		}
 	} else if (buttonIndex == 2) {
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hideOrientationWarning"];
@@ -327,11 +327,23 @@
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	self.navigationController.view.userInteractionEnabled = NO;
-	if ([Post createWithBody:postContent.text parentId:post.modelId storyId:storyId]) {
-		[self performSelectorOnMainThread:@selector(postSuccess) withObject:nil waitUntilDone:NO];
-	} else {
-		[self performSelectorOnMainThread:@selector(postFailure) withObject:nil waitUntilDone:NO];
-	}
+    
+    //Patch-E: wrapped existing code in GCD blocks to avoid UIKit on background thread issues that were causing status/nav bar flashing and the console warning:
+    //"Obtaining the web lock from a thread other than the main thread or the web thread. UIKit should not be called from a secondary thread."
+    //[Post createWithBody:parentId:storyId:] was the culprit causing the UIKit on background thread issue
+    //this started happening in iOS 6
+    //same change made to [SendMessageViewController makeMessage:]
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BOOL success = [Post createWithBody:postContent.text parentId:post.modelId storyId:storyId];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                [self performSelectorOnMainThread:@selector(postSuccess) withObject:nil waitUntilDone:NO];
+            } else {
+                [self performSelectorOnMainThread:@selector(postFailure) withObject:nil waitUntilDone:NO];
+            }
+        });
+    });
+    
 	postingWarningAlertView = NO;
 	[pool release];
 }

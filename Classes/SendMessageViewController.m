@@ -163,11 +163,17 @@
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     self.navigationController.view.userInteractionEnabled = NO;
     
-	if ([Message createWithTo:recipient.text subject:subject.text body:body.text]) {
-        [self performSelectorOnMainThread:@selector(sendSuccess) withObject:nil waitUntilDone:NO];
-    } else {
-        [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
-    }
+    //Patch-E: see [ComposeViewController makePost] for explanation, same GCD blocks used there
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BOOL success = [Message createWithTo:recipient.text subject:subject.text body:body.text];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                [self performSelectorOnMainThread:@selector(sendSuccess) withObject:nil waitUntilDone:NO];
+            } else {
+                [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
+            }
+        });
+    });
 
     postingWarningAlertView = NO;
     [pool release];
