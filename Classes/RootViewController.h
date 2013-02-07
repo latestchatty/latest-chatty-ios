@@ -24,4 +24,6 @@
   NSUInteger messageCount;
 }
 
+@property (nonatomic, retain) UIActivityIndicatorView *messagesSpinner;
+
 @end

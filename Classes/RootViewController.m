@@ -37,6 +37,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self.messagesSpinner startAnimating];
     messageLoader = [[Message findAllWithDelegate:self] retain];
 }
 
@@ -53,12 +54,15 @@
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     [self.tableView reloadData];
+    [self.messagesSpinner stopAnimating];
+    
     [messageLoader release];
     messageLoader = nil;
 }
 
 - (void)didFailToLoadModels {
     NSLog(@"Failed to load messages");
+    [self.messagesSpinner stopAnimating];
 }
 
 #pragma mark Table view methods
@@ -96,6 +100,16 @@
             } else {
                 cell.title = @"Messages";
             }
+            
+            //add activity spinner to messages cell that starts spinning when messages are loading and stops when the messages call has finished
+            [self setMessagesSpinner:[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+            int center = [cell frame].size.height / 2; //vertical center
+            CGFloat spinnerSize = 25.0f;
+            //place spinner on top of messages icon
+            [self.messagesSpinner setFrame:CGRectMake(25.0f, center - spinnerSize / 2, spinnerSize, spinnerSize)];
+            [[cell contentView] addSubview:self.messagesSpinner];
+            [self.messagesSpinner release];
+            
             break;
             
         case 3:
