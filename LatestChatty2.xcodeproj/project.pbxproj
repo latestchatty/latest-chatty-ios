@@ -70,6 +70,218 @@
 		CD8BA2D616306B6900ED5C5E /* StoriesIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D516306B6900ED5C5E /* StoriesIcon.48@2x.png */; };
 		CD8BA2D816306BF700ED5C5E /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D716306BF700ED5C5E /* Camera.png */; };
 		CD8CF263164189950041AA5B /* Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8CF262164189950041AA5B /* Camera@2x.png */; };
+		CDA1174E16C1DC6600CE1375 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		CDA1174F16C1DC6600CE1375 /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* StoriesViewController.xib */; };
+		CDA1175016C1DC6600CE1375 /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5FCE940F6F7CB600878F27 /* StoryCell.xib */; };
+		CDA1175116C1DC6600CE1375 /* CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5FD0550F7014BD00878F27 /* CellBackground.png */; };
+		CDA1175216C1DC6600CE1375 /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDD310F70D56B00AAF4E4 /* ChattyViewController.xib */; };
+		CDA1175316C1DC6600CE1375 /* ThreadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDD690F70D95A00AAF4E4 /* ThreadCell.xib */; };
+		CDA1175416C1DC6600CE1375 /* ChatIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDDDC0F70E0B400AAF4E4 /* ChatIcon.48.png */; };
+		CDA1175516C1DC6600CE1375 /* ChatIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDE660F70EE1500AAF4E4 /* ChatIcon.24.png */; };
+		CDA1175616C1DC6600CE1375 /* Post.html in Resources */ = {isa = PBXBuildFile; fileRef = FABA5DBC0F71802E008EEE3A /* Post.html */; };
+		CDA1175716C1DC6600CE1375 /* Stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = FABA5DBE0F718042008EEE3A /* Stylesheet.css */; };
+		CDA1175816C1DC6600CE1375 /* Story.html in Resources */ = {isa = PBXBuildFile; fileRef = FABA5E200F7185CC008EEE3A /* Story.html */; };
+		CDA1175916C1DC6600CE1375 /* ThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA849990F78C2B000026446 /* ThreadViewController.xib */; };
+		CDA1175A16C1DC6600CE1375 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
+		CDA1175B16C1DC6600CE1375 /* GrippyBar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A520F79621C006E14A2 /* GrippyBar.png */; };
+		CDA1175C16C1DC6600CE1375 /* GrippyBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */; };
+		CDA1175D16C1DC6600CE1375 /* DropShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A600F796452006E14A2 /* DropShadow.png */; };
+		CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */; };
+		CDA1175F16C1DC6600CE1375 /* CellBackgroundLight.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE1B0F7B0A9E0044898C /* CellBackgroundLight.png */; };
+		CDA1176016C1DC6600CE1375 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE500F7B174C0044898C /* ComposeViewController.xib */; };
+		CDA1176116C1DC6600CE1375 /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE7B0F7B182D0044898C /* Button.png */; };
+		CDA1176216C1DC6600CE1375 /* ButtonCode.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE7C0F7B182D0044898C /* ButtonCode.png */; };
+		CDA1176316C1DC6600CE1375 /* ButtonContentSpoiler.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE7D0F7B182D0044898C /* ButtonContentSpoiler.png */; };
+		CDA1176416C1DC6600CE1375 /* ButtonPushed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE7E0F7B182D0044898C /* ButtonPushed.png */; };
+		CDA1176516C1DC6600CE1375 /* ButtonStrike.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE800F7B182D0044898C /* ButtonStrike.png */; };
+		CDA1176616C1DC6600CE1375 /* ButtonUnderline.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE810F7B182D0044898C /* ButtonUnderline.png */; };
+		CDA1176716C1DC6600CE1375 /* NavButtonTags.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE890F7B18C60044898C /* NavButtonTags.png */; };
+		CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */; };
+		CDA1176916C1DC6600CE1375 /* DragonDrop.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */; };
+		CDA1176A16C1DC6600CE1375 /* BlueBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B458E0F7D95710074064A /* BlueBullet.png */; };
+		CDA1176B16C1DC6600CE1375 /* GrayBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B45900F7D96060074064A /* GrayBullet.png */; };
+		CDA1176C16C1DC6600CE1375 /* RefreshIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD26D8A0F7EDFE0001A76F6 /* RefreshIcon.png */; };
+		CDA1176D16C1DC6600CE1375 /* TagIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD26D900F7EE0A5001A76F6 /* TagIcon.png */; };
+		CDA1176E16C1DC6600CE1375 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FADDB51E0F814B5200DF3650 /* Default.png */; };
+		CDA1176F16C1DC6600CE1375 /* Youtube.html in Resources */ = {isa = PBXBuildFile; fileRef = FA8D243D0F85848900AB23E2 /* Youtube.html */; };
+		CDA1177016C1DC6600CE1375 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA2260520F8EE251002F77DD /* Settings.bundle */; };
+		CDA1177116C1DC6600CE1375 /* MessagesIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4122E50F8FDCFD002E1978 /* MessagesIcon.48.png */; };
+		CDA1177216C1DC6600CE1375 /* SearchIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4122E60F8FDCFD002E1978 /* SearchIcon.48.png */; };
+		CDA1177316C1DC6600CE1375 /* StoriesIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4122E70F8FDCFD002E1978 /* StoriesIcon.48.png */; };
+		CDA1177416C1DC6600CE1375 /* RootCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4122FD0F8FDDE9002E1978 /* RootCell.xib */; };
+		CDA1177516C1DC6600CE1375 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4123070F8FE09E002E1978 /* RootViewController.xib */; };
+		CDA1177616C1DC6600CE1375 /* AboutIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4123A40F8FE584002E1978 /* AboutIcon.48.png */; };
+		CDA1177716C1DC6600CE1375 /* SettingsIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4124120F8FECED002E1978 /* SettingsIcon.48.png */; };
+		CDA1177816C1DC6600CE1375 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4124530F8FEFF1002E1978 /* MessagesViewController.xib */; };
+		CDA1177916C1DC6600CE1375 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA828B8B0F90901100B59FF8 /* MessageCell.xib */; };
+		CDA1177A16C1DC6600CE1375 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD4EB530F96798800E74FED /* MessageViewController.xib */; };
+		CDA1177B16C1DC6600CE1375 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */; };
+		CDA1177C16C1DC6600CE1375 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3F160F9CFD580022A739 /* GrayButton.png */; };
+		CDA1177D16C1DC6600CE1375 /* GrayButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3F180F9CFE130022A739 /* GrayButtonPressed.png */; };
+		CDA1177E16C1DC6600CE1375 /* BlueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3F200F9CFF0C0022A739 /* BlueButton.png */; };
+		CDA1177F16C1DC6600CE1375 /* BlueButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3F210F9CFF0C0022A739 /* BlueButtonPressed.png */; };
+		CDA1178016C1DC6600CE1375 /* Lock.16.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2ECCC00F9D4FED00912BE4 /* Lock.16.png */; };
+		CDA1178116C1DC6600CE1375 /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACD9A7D0F9E2F49009D9A15 /* SearchResultsViewController.xib */; };
+		CDA1178216C1DC6600CE1375 /* NewPostBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */; };
+		CDA1178316C1DC6600CE1375 /* push.caf in Resources */ = {isa = PBXBuildFile; fileRef = FAF0781A10087B530029D2AD /* push.caf */; };
+		CDA1178416C1DC6600CE1375 /* ModGavel.png in Resources */ = {isa = PBXBuildFile; fileRef = FA08ADBF112B412500B89890 /* ModGavel.png */; };
+		CDA1178516C1DC6600CE1375 /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDE420F70EA6700AAF4E4 /* StoryViewController.xib */; };
+		CDA1178616C1DC6600CE1375 /* NoContentController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2690BE115AEDC800D153C0 /* NoContentController-iPad.xib */; };
+		CDA1178716C1DC6600CE1375 /* ThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */; };
+		CDA1178816C1DC6600CE1375 /* ThreadCell-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA751110DE7F0007C34C /* ThreadCell-iPad.xib */; };
+		CDA1178916C1DC6600CE1375 /* StoryViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA761110DE7F0007C34C /* StoryViewController-iPad.xib */; };
+		CDA1178A16C1DC6600CE1375 /* StoryCell-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA731110DE7F0007C34C /* StoryCell-iPad.xib */; };
+		CDA1178B16C1DC6600CE1375 /* StoriesViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA721110DE7F0007C34C /* StoriesViewController-iPad.xib */; };
+		CDA1178C16C1DC6600CE1375 /* SettingsViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA791110DE7F0007C34C /* SettingsViewController-iPad.xib */; };
+		CDA1178D16C1DC6600CE1375 /* SearchViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA811110DE7F0007C34C /* SearchViewController-iPad.xib */; };
+		CDA1178E16C1DC6600CE1375 /* SearchResultsViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA821110DE7F0007C34C /* SearchResultsViewController-iPad.xib */; };
+		CDA1178F16C1DC6600CE1375 /* RootViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA7D1110DE7F0007C34C /* RootViewController-iPad.xib */; };
+		CDA1179016C1DC6600CE1375 /* RootCell-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA7C1110DE7F0007C34C /* RootCell-iPad.xib */; };
+		CDA1179116C1DC6600CE1375 /* ReplyCell-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA781110DE7F0007C34C /* ReplyCell-iPad.xib */; };
+		CDA1179216C1DC6600CE1375 /* MessageViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA801110DE7F0007C34C /* MessageViewController-iPad.xib */; };
+		CDA1179316C1DC6600CE1375 /* MessagesViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA7E1110DE7F0007C34C /* MessagesViewController-iPad.xib */; };
+		CDA1179416C1DC6600CE1375 /* MessageCell-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA7F1110DE7F0007C34C /* MessageCell-iPad.xib */; };
+		CDA1179516C1DC6600CE1375 /* ComposeViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA7A1110DE7F0007C34C /* ComposeViewController-iPad.xib */; };
+		CDA1179616C1DC6600CE1375 /* ChattyViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA741110DE7F0007C34C /* ChattyViewController-iPad.xib */; };
+		CDA1179716C1DC6600CE1375 /* BrowserViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5BA7B1110DE7F0007C34C /* BrowserViewController-iPad.xib */; };
+		CDA1179816C1DC6600CE1375 /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA56C87D114B5A5F006A493B /* ImageViewController.xib */; };
+		CDA1179916C1DC6600CE1375 /* SendMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */; };
+		CDA1179A16C1DC6600CE1375 /* SendMessageViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA907CA71166D8D800306828 /* SendMessageViewController-iPad.xib */; };
+		CDA1179B16C1DC6600CE1375 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 2704C030116BEEDC0075E416 /* Default-Landscape.png */; };
+		CDA1179C16C1DC6600CE1375 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 2704C031116BEEDC0075E416 /* Default-Portrait.png */; };
+		CDA1179D16C1DC6600CE1375 /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
+		CDA1179E16C1DC6600CE1375 /* MenuPullTab.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B842116FFE9A001534FF /* MenuPullTab.png */; };
+		CDA1179F16C1DC6600CE1375 /* SlideOutViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */; };
+		CDA117A016C1DC6600CE1375 /* chrono.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA5CD1170F0520072EB59 /* chrono.png */; };
+		CDA117A116C1DC6600CE1375 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
+		CDA117A216C1DC6600CE1375 /* Pushpin-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8211728E260072EB59 /* Pushpin-Active.png */; };
+		CDA117A316C1DC6600CE1375 /* Pushpin-Inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */; };
+		CDA117A416C1DC6600CE1375 /* MenuBorderOut.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE438C71173FAA5000263F7 /* MenuBorderOut.png */; };
+		CDA117A516C1DC6600CE1375 /* BlueBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DEE11D2EA680088CF3D /* BlueBullet@2x.png */; };
+		CDA117A616C1DC6600CE1375 /* GrayBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DF211D2EAE20088CF3D /* GrayBullet@2x.png */; };
+		CDA117A716C1DC6600CE1375 /* NewPostBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DF811D2EB840088CF3D /* NewPostBullet@2x.png */; };
+		CDA117A816C1DC6600CE1375 /* GrippyBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DFC11D2ED3C0088CF3D /* GrippyBar@2x.png */; };
+		CDA117A916C1DC6600CE1375 /* GrippyBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DFE11D2ED5A0088CF3D /* GrippyBarBackground@2x.png */; };
+		CDA117AA16C1DC6600CE1375 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD342311D32DC0002011AB /* Default@2x.png */; };
+		CDA117AB16C1DC6600CE1375 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD344311D3324C002011AB /* Icon-57.png */; };
+		CDA117AC16C1DC6600CE1375 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD344411D3324C002011AB /* Icon-72.png */; };
+		CDA117AD16C1DC6600CE1375 /* Icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD344511D3324C002011AB /* Icon-114.png */; };
+		CDA117AE16C1DC6600CE1375 /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD344611D3324C002011AB /* Icon-144.png */; };
+		CDA117AF16C1DC6600CE1375 /* AboutIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5EFF11D7031B000CC71C /* AboutIcon.48@2x.png */; };
+		CDA117B016C1DC6600CE1375 /* MessagesIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5F0511D7035C000CC71C /* MessagesIcon.48@2x.png */; };
+		CDA117B116C1DC6600CE1375 /* RefreshIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5F1411D704A1000CC71C /* RefreshIcon@2x.png */; };
+		CDA117B216C1DC6600CE1375 /* TagIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5F1C11D705CA000CC71C /* TagIcon@2x.png */; };
+		CDA117B316C1DC6600CE1375 /* chrono@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5F2611D70905000CC71C /* chrono@2x.png */; };
+		CDA117B416C1DC6600CE1375 /* ChatIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5F2A11D70914000CC71C /* ChatIcon.48@2x.png */; };
+		CDA117B516C1DC6600CE1375 /* ChatIcon.24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5F2C11D7091F000CC71C /* ChatIcon.24@2x.png */; };
+		CDA117B616C1DC6600CE1375 /* ModGavel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5F3211D709DC000CC71C /* ModGavel@2x.png */; };
+		CDA117B716C1DC6600CE1375 /* Shack[lol]Icon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2AF16302B8800ED5C5E /* Shack[lol]Icon.48.png */; };
+		CDA117B816C1DC6600CE1375 /* Shack[lol]Icon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B016302B8800ED5C5E /* Shack[lol]Icon.48@2x.png */; };
+		CDA117B916C1DC6600CE1375 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B31630697B00ED5C5E /* arrow.png */; };
+		CDA117BA16C1DC6600CE1375 /* AppleSafari-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */; };
+		CDA117BB16C1DC6600CE1375 /* AppleSafari-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */; };
+		CDA117BC16C1DC6600CE1375 /* AppleSafari-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */; };
+		CDA117BD16C1DC6600CE1375 /* AppleSafari-Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B816306A0900ED5C5E /* AppleSafari-Icon~ipad.png */; };
+		CDA117BE16C1DC6600CE1375 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2BD16306A1700ED5C5E /* arrow@2x.png */; };
+		CDA117BF16C1DC6600CE1375 /* GoogleChrome-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2BF16306A9D00ED5C5E /* GoogleChrome-Icon.png */; };
+		CDA117C016C1DC6600CE1375 /* GoogleChrome-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C016306A9D00ED5C5E /* GoogleChrome-Icon@2x.png */; };
+		CDA117C116C1DC6600CE1375 /* GoogleChrome-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C116306A9E00ED5C5E /* GoogleChrome-Icon@2x~ipad.png */; };
+		CDA117C216C1DC6600CE1375 /* GoogleChrome-Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C216306A9E00ED5C5E /* GoogleChrome-Icon~ipad.png */; };
+		CDA117C316C1DC6600CE1375 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C716306B3A00ED5C5E /* Default-568h@2x.png */; };
+		CDA117C416C1DC6600CE1375 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C916306B4B00ED5C5E /* left.png */; };
+		CDA117C516C1DC6600CE1375 /* left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2CA16306B4B00ED5C5E /* left@2x.png */; };
+		CDA117C616C1DC6600CE1375 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2CB16306B4B00ED5C5E /* right.png */; };
+		CDA117C716C1DC6600CE1375 /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2CC16306B4B00ED5C5E /* right@2x.png */; };
+		CDA117C816C1DC6600CE1375 /* SearchIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D116306B5A00ED5C5E /* SearchIcon.48@2x.png */; };
+		CDA117C916C1DC6600CE1375 /* SettingsIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D316306B6200ED5C5E /* SettingsIcon.48@2x.png */; };
+		CDA117CA16C1DC6600CE1375 /* StoriesIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D516306B6900ED5C5E /* StoriesIcon.48@2x.png */; };
+		CDA117CB16C1DC6600CE1375 /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D716306BF700ED5C5E /* Camera.png */; };
+		CDA117CC16C1DC6600CE1375 /* Message.html in Resources */ = {isa = PBXBuildFile; fileRef = CDE0905A164042DD0010E8F5 /* Message.html */; };
+		CDA117CD16C1DC6600CE1375 /* Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8CF262164189950041AA5B /* Camera@2x.png */; };
+		CDA117CF16C1DC6600CE1375 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		CDA117D016C1DC6600CE1375 /* LatestChatty2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* LatestChatty2AppDelegate.m */; };
+		CDA117D116C1DC6600CE1375 /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* StoriesViewController.m */; };
+		CDA117D216C1DC6600CE1375 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCD150F6F61A600878F27 /* Model.m */; };
+		CDA117D316C1DC6600CE1375 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCDAB0F6F6FDF00878F27 /* Story.m */; };
+		CDA117D416C1DC6600CE1375 /* TableCellFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */; };
+		CDA117D516C1DC6600CE1375 /* StoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE920F6F7CA600878F27 /* StoryCell.m */; };
+		CDA117D616C1DC6600CE1375 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
+		CDA117D716C1DC6600CE1375 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
+		CDA117D816C1DC6600CE1375 /* ThreadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6EDD6E0F70DA0400AAF4E4 /* ThreadCell.m */; };
+		CDA117D916C1DC6600CE1375 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6EDE470F70EB4900AAF4E4 /* StoryViewController.m */; };
+		CDA117DA16C1DC6600CE1375 /* StringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5D420F717A28008EEE3A /* StringAdditions.m */; };
+		CDA117DB16C1DC6600CE1375 /* HTMLEscaper.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5D460F717B60008EEE3A /* HTMLEscaper.m */; };
+		CDA117DC16C1DC6600CE1375 /* StringTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA5DC10F718086008EEE3A /* StringTemplate.m */; };
+		CDA117DD16C1DC6600CE1375 /* ModelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */; };
+		CDA117DE16C1DC6600CE1375 /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
+		CDA117DF16C1DC6600CE1375 /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA849970F78C29900026446 /* ThreadViewController.m */; };
+		CDA117E016C1DC6600CE1375 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA84AFE0F78DD9F00026446 /* ReplyCell.m */; };
+		CDA117E116C1DC6600CE1375 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD29AD40F796A22006E14A2 /* RegexKitLite.m */; };
+		CDA117E216C1DC6600CE1375 /* GrippyBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB2F86F0F7985FB000E4DC9 /* GrippyBar.m */; };
+		CDA117E316C1DC6600CE1375 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BD670F7AE96B0044898C /* SettingsViewController.m */; };
+		CDA117E416C1DC6600CE1375 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */; };
+		CDA117E516C1DC6600CE1375 /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB765F50F7C9E5B00CE0E38 /* BrowserViewController.m */; };
+		CDA117E616C1DC6600CE1375 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B47520F7E1DA30074064A /* NSDataAdditions.m */; };
+		CDA117E716C1DC6600CE1375 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B47530F7E1DA30074064A /* NSStringAdditions.m */; };
+		CDA117E816C1DC6600CE1375 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B475B0F7E1DDB0074064A /* Image.m */; };
+		CDA117E916C1DC6600CE1375 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = FA26AD070F80F85C00EB5FF0 /* Tag.m */; };
+		CDA117EA16C1DC6600CE1375 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB1B6410F8FBF390021896A /* Message.m */; };
+		CDA117EB16C1DC6600CE1375 /* RootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4123010F8FDF06002E1978 /* RootCell.m */; };
+		CDA117EC16C1DC6600CE1375 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4123050F8FE08B002E1978 /* RootViewController.m */; };
+		CDA117ED16C1DC6600CE1375 /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4124570F8FF059002E1978 /* MessagesViewController.m */; };
+		CDA117EE16C1DC6600CE1375 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA828B8F0F90906500B59FF8 /* MessageCell.m */; };
+		CDA117EF16C1DC6600CE1375 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD4EB500F96797900E74FED /* MessageViewController.m */; };
+		CDA117F016C1DC6600CE1375 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C3ED40F9CED010022A739 /* SearchViewController.m */; };
+		CDA117F116C1DC6600CE1375 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACD9A7B0F9E2F33009D9A15 /* SearchResultsViewController.m */; };
+		CDA117F216C1DC6600CE1375 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C58510A699A70028D630 /* ASIAuthenticationDialog.m */; };
+		CDA117F316C1DC6600CE1375 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C58710A699A70028D630 /* ASIFormDataRequest.m */; };
+		CDA117F416C1DC6600CE1375 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C58910A699A70028D630 /* ASIHTTPRequest.m */; };
+		CDA117F516C1DC6600CE1375 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C58B10A699A70028D630 /* ASIInputStream.m */; };
+		CDA117F616C1DC6600CE1375 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C58D10A699A70028D630 /* ASINetworkQueue.m */; };
+		CDA117F716C1DC6600CE1375 /* ASINSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C58F10A699A70028D630 /* ASINSStringAdditions.m */; };
+		CDA117F816C1DC6600CE1375 /* ASIS3BucketObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C59110A699A70028D630 /* ASIS3BucketObject.m */; };
+		CDA117F916C1DC6600CE1375 /* ASIS3ListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C59310A699A70028D630 /* ASIS3ListRequest.m */; };
+		CDA117FA16C1DC6600CE1375 /* ASIS3Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C59510A699A70028D630 /* ASIS3Request.m */; };
+		CDA117FB16C1DC6600CE1375 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5907C5A410A699DB0028D630 /* Reachability.m */; };
+		CDA117FC16C1DC6600CE1375 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0EB10D5DDC1004476B8 /* NSObject+SBJSON.m */; };
+		CDA117FD16C1DC6600CE1375 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0ED10D5DDC1004476B8 /* NSString+SBJSON.m */; };
+		CDA117FE16C1DC6600CE1375 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0EF10D5DDC1004476B8 /* SBJSON.m */; };
+		CDA117FF16C1DC6600CE1375 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F110D5DDC1004476B8 /* SBJsonBase.m */; };
+		CDA1180016C1DC6600CE1375 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F310D5DDC1004476B8 /* SBJsonParser.m */; };
+		CDA1180116C1DC6600CE1375 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */; };
+		CDA1180216C1DC6600CE1375 /* Mod.m in Sources */ = {isa = PBXBuildFile; fileRef = FA08ADB2112B40E800B89890 /* Mod.m */; };
+		CDA1180316C1DC6600CE1375 /* NoContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2690BD115AEDC800D153C0 /* NoContentController.m */; };
+		CDA1180416C1DC6600CE1375 /* CGRect+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE2B1161DAA5009A6B4C /* CGRect+HelperKit.m */; };
+		CDA1180516C1DC6600CE1375 /* NSBundle+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE2E1161DAA5009A6B4C /* NSBundle+HelperKit.m */; };
+		CDA1180616C1DC6600CE1375 /* NSDictionary+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE301161DAA5009A6B4C /* NSDictionary+HelperKit.m */; };
+		CDA1180716C1DC6600CE1375 /* NSObject+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE321161DAA5009A6B4C /* NSObject+HelperKit.m */; };
+		CDA1180816C1DC6600CE1375 /* NSString+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE341161DAA5009A6B4C /* NSString+HelperKit.m */; };
+		CDA1180916C1DC6600CE1375 /* NSURL+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE361161DAA5009A6B4C /* NSURL+HelperKit.m */; };
+		CDA1180A16C1DC6600CE1375 /* NSURLRequest+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE381161DAA5009A6B4C /* NSURLRequest+HelperKit.m */; };
+		CDA1180B16C1DC6600CE1375 /* UIAlertView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE3B1161DAA5009A6B4C /* UIAlertView+HelperKit.m */; };
+		CDA1180C16C1DC6600CE1375 /* UIBarButtonItem+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE3D1161DAA5009A6B4C /* UIBarButtonItem+HelperKit.m */; };
+		CDA1180D16C1DC6600CE1375 /* UIDevice+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE3F1161DAA5009A6B4C /* UIDevice+HelperKit.m */; };
+		CDA1180E16C1DC6600CE1375 /* UIImage+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE411161DAA5009A6B4C /* UIImage+HelperKit.m */; };
+		CDA1180F16C1DC6600CE1375 /* UIImageView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE431161DAA5009A6B4C /* UIImageView+HelperKit.m */; };
+		CDA1181016C1DC6600CE1375 /* UINavigationController+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE451161DAA5009A6B4C /* UINavigationController+HelperKit.m */; };
+		CDA1181116C1DC6600CE1375 /* UITableView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE471161DAA5009A6B4C /* UITableView+HelperKit.m */; };
+		CDA1181216C1DC6600CE1375 /* UIView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE491161DAA5009A6B4C /* UIView+HelperKit.m */; };
+		CDA1181316C1DC6600CE1375 /* UIViewController+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE4B1161DAA5009A6B4C /* UIViewController+HelperKit.m */; };
+		CDA1181416C1DC6600CE1375 /* UIWebView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAFAE4D1161DAA5009A6B4C /* UIWebView+HelperKit.m */; };
+		CDA1181516C1DC6600CE1375 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA56C87C114B5A5F006A493B /* ImageViewController.m */; };
+		CDA1181616C1DC6600CE1375 /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */; };
+		CDA1181716C1DC6600CE1375 /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
+		CDA1181816C1DC6600CE1375 /* PinnedThreadsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A27EAB8711728E360072EB59 /* PinnedThreadsLoader.m */; };
+		CDA1181916C1DC6600CE1375 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 967A7FFA149BC1A1001D0BD7 /* PullToRefreshView.m */; };
+		CDA1181A16C1DC6600CE1375 /* GoogleChromeActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */; };
+		CDA1181B16C1DC6600CE1375 /* AppleSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */; };
+		CDA1181D16C1DC6600CE1375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		CDA1181F16C1DC6600CE1375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
+		CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
+		CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5B610A69A190028D630 /* libz.dylib */; };
+		CDA1182316C1DC6600CE1375 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA56C8B5114B5FBC006A493B /* QuartzCore.framework */; };
 		CDE0905B164042DD0010E8F5 /* Message.html in Resources */ = {isa = PBXBuildFile; fileRef = CDE0905A164042DD0010E8F5 /* Message.html */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
@@ -315,6 +527,8 @@
 		CD8BA2D516306B6900ED5C5E /* StoriesIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StoriesIcon.48@2x.png"; path = "Assets/StoriesIcon.48@2x.png"; sourceTree = "<group>"; };
 		CD8BA2D716306BF700ED5C5E /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Camera.png; path = Assets/Camera.png; sourceTree = "<group>"; };
 		CD8CF262164189950041AA5B /* Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Camera@2x.png"; path = "Assets/Camera@2x.png"; sourceTree = "<group>"; };
+		CDA1182816C1DC6600CE1375 /* LatestChatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA1182916C1DC6600CE1375 /* Info beta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info beta.plist"; path = "/Users/patrick/Documents/latest-chatty-2/latest-chatty-2/Info beta.plist"; sourceTree = "<absolute>"; };
 		CDE0905A164042DD0010E8F5 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Message.html; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
@@ -534,6 +748,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CDA1181C16C1DC6600CE1375 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDA1181D16C1DC6600CE1375 /* Foundation.framework in Frameworks */,
+				CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */,
+				CDA1181F16C1DC6600CE1375 /* CoreGraphics.framework in Frameworks */,
+				CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */,
+				CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */,
+				CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */,
+				CDA1182316C1DC6600CE1375 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -555,6 +783,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* LatestChatty.app */,
+				CDA1182816C1DC6600CE1375 /* LatestChatty.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -598,6 +827,7 @@
 				FA5FD0480F70149500878F27 /* Assets */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				CDA1182916C1DC6600CE1375 /* Info beta.plist */,
 				FA2260520F8EE251002F77DD /* Settings.bundle */,
 			);
 			name = Resources;
@@ -979,6 +1209,23 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* LatestChatty.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CDA1174C16C1DC6600CE1375 /* LatestChatty2 beta */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDA1182416C1DC6600CE1375 /* Build configuration list for PBXNativeTarget "LatestChatty2 beta" */;
+			buildPhases = (
+				CDA1174D16C1DC6600CE1375 /* Resources */,
+				CDA117CE16C1DC6600CE1375 /* Sources */,
+				CDA1181C16C1DC6600CE1375 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LatestChatty2 beta";
+			productName = LatestChatty2;
+			productReference = CDA1182816C1DC6600CE1375 /* LatestChatty.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1003,6 +1250,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* LatestChatty2 */,
+				CDA1174C16C1DC6600CE1375 /* LatestChatty2 beta */,
 			);
 		};
 /* End PBXProject section */
@@ -1143,6 +1391,141 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CDA1174D16C1DC6600CE1375 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDA1174E16C1DC6600CE1375 /* MainWindow.xib in Resources */,
+				CDA1174F16C1DC6600CE1375 /* StoriesViewController.xib in Resources */,
+				CDA1175016C1DC6600CE1375 /* StoryCell.xib in Resources */,
+				CDA1175116C1DC6600CE1375 /* CellBackground.png in Resources */,
+				CDA1175216C1DC6600CE1375 /* ChattyViewController.xib in Resources */,
+				CDA1175316C1DC6600CE1375 /* ThreadCell.xib in Resources */,
+				CDA1175416C1DC6600CE1375 /* ChatIcon.48.png in Resources */,
+				CDA1175516C1DC6600CE1375 /* ChatIcon.24.png in Resources */,
+				CDA1175616C1DC6600CE1375 /* Post.html in Resources */,
+				CDA1175716C1DC6600CE1375 /* Stylesheet.css in Resources */,
+				CDA1175816C1DC6600CE1375 /* Story.html in Resources */,
+				CDA1175916C1DC6600CE1375 /* ThreadViewController.xib in Resources */,
+				CDA1175A16C1DC6600CE1375 /* ReplyCell.xib in Resources */,
+				CDA1175B16C1DC6600CE1375 /* GrippyBar.png in Resources */,
+				CDA1175C16C1DC6600CE1375 /* GrippyBarBackground.png in Resources */,
+				CDA1175D16C1DC6600CE1375 /* DropShadow.png in Resources */,
+				CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */,
+				CDA1175F16C1DC6600CE1375 /* CellBackgroundLight.png in Resources */,
+				CDA1176016C1DC6600CE1375 /* ComposeViewController.xib in Resources */,
+				CDA1176116C1DC6600CE1375 /* Button.png in Resources */,
+				CDA1176216C1DC6600CE1375 /* ButtonCode.png in Resources */,
+				CDA1176316C1DC6600CE1375 /* ButtonContentSpoiler.png in Resources */,
+				CDA1176416C1DC6600CE1375 /* ButtonPushed.png in Resources */,
+				CDA1176516C1DC6600CE1375 /* ButtonStrike.png in Resources */,
+				CDA1176616C1DC6600CE1375 /* ButtonUnderline.png in Resources */,
+				CDA1176716C1DC6600CE1375 /* NavButtonTags.png in Resources */,
+				CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */,
+				CDA1176916C1DC6600CE1375 /* DragonDrop.png in Resources */,
+				CDA1176A16C1DC6600CE1375 /* BlueBullet.png in Resources */,
+				CDA1176B16C1DC6600CE1375 /* GrayBullet.png in Resources */,
+				CDA1176C16C1DC6600CE1375 /* RefreshIcon.png in Resources */,
+				CDA1176D16C1DC6600CE1375 /* TagIcon.png in Resources */,
+				CDA1176E16C1DC6600CE1375 /* Default.png in Resources */,
+				CDA1176F16C1DC6600CE1375 /* Youtube.html in Resources */,
+				CDA1177016C1DC6600CE1375 /* Settings.bundle in Resources */,
+				CDA1177116C1DC6600CE1375 /* MessagesIcon.48.png in Resources */,
+				CDA1177216C1DC6600CE1375 /* SearchIcon.48.png in Resources */,
+				CDA1177316C1DC6600CE1375 /* StoriesIcon.48.png in Resources */,
+				CDA1177416C1DC6600CE1375 /* RootCell.xib in Resources */,
+				CDA1177516C1DC6600CE1375 /* RootViewController.xib in Resources */,
+				CDA1177616C1DC6600CE1375 /* AboutIcon.48.png in Resources */,
+				CDA1177716C1DC6600CE1375 /* SettingsIcon.48.png in Resources */,
+				CDA1177816C1DC6600CE1375 /* MessagesViewController.xib in Resources */,
+				CDA1177916C1DC6600CE1375 /* MessageCell.xib in Resources */,
+				CDA1177A16C1DC6600CE1375 /* MessageViewController.xib in Resources */,
+				CDA1177B16C1DC6600CE1375 /* SearchViewController.xib in Resources */,
+				CDA1177C16C1DC6600CE1375 /* GrayButton.png in Resources */,
+				CDA1177D16C1DC6600CE1375 /* GrayButtonPressed.png in Resources */,
+				CDA1177E16C1DC6600CE1375 /* BlueButton.png in Resources */,
+				CDA1177F16C1DC6600CE1375 /* BlueButtonPressed.png in Resources */,
+				CDA1178016C1DC6600CE1375 /* Lock.16.png in Resources */,
+				CDA1178116C1DC6600CE1375 /* SearchResultsViewController.xib in Resources */,
+				CDA1178216C1DC6600CE1375 /* NewPostBullet.png in Resources */,
+				CDA1178316C1DC6600CE1375 /* push.caf in Resources */,
+				CDA1178416C1DC6600CE1375 /* ModGavel.png in Resources */,
+				CDA1178516C1DC6600CE1375 /* StoryViewController.xib in Resources */,
+				CDA1178616C1DC6600CE1375 /* NoContentController-iPad.xib in Resources */,
+				CDA1178716C1DC6600CE1375 /* ThreadViewController-iPad.xib in Resources */,
+				CDA1178816C1DC6600CE1375 /* ThreadCell-iPad.xib in Resources */,
+				CDA1178916C1DC6600CE1375 /* StoryViewController-iPad.xib in Resources */,
+				CDA1178A16C1DC6600CE1375 /* StoryCell-iPad.xib in Resources */,
+				CDA1178B16C1DC6600CE1375 /* StoriesViewController-iPad.xib in Resources */,
+				CDA1178C16C1DC6600CE1375 /* SettingsViewController-iPad.xib in Resources */,
+				CDA1178D16C1DC6600CE1375 /* SearchViewController-iPad.xib in Resources */,
+				CDA1178E16C1DC6600CE1375 /* SearchResultsViewController-iPad.xib in Resources */,
+				CDA1178F16C1DC6600CE1375 /* RootViewController-iPad.xib in Resources */,
+				CDA1179016C1DC6600CE1375 /* RootCell-iPad.xib in Resources */,
+				CDA1179116C1DC6600CE1375 /* ReplyCell-iPad.xib in Resources */,
+				CDA1179216C1DC6600CE1375 /* MessageViewController-iPad.xib in Resources */,
+				CDA1179316C1DC6600CE1375 /* MessagesViewController-iPad.xib in Resources */,
+				CDA1179416C1DC6600CE1375 /* MessageCell-iPad.xib in Resources */,
+				CDA1179516C1DC6600CE1375 /* ComposeViewController-iPad.xib in Resources */,
+				CDA1179616C1DC6600CE1375 /* ChattyViewController-iPad.xib in Resources */,
+				CDA1179716C1DC6600CE1375 /* BrowserViewController-iPad.xib in Resources */,
+				CDA1179816C1DC6600CE1375 /* ImageViewController.xib in Resources */,
+				CDA1179916C1DC6600CE1375 /* SendMessageViewController.xib in Resources */,
+				CDA1179A16C1DC6600CE1375 /* SendMessageViewController-iPad.xib in Resources */,
+				CDA1179B16C1DC6600CE1375 /* Default-Landscape.png in Resources */,
+				CDA1179C16C1DC6600CE1375 /* Default-Portrait.png in Resources */,
+				CDA1179D16C1DC6600CE1375 /* MenuBorder.png in Resources */,
+				CDA1179E16C1DC6600CE1375 /* MenuPullTab.png in Resources */,
+				CDA1179F16C1DC6600CE1375 /* SlideOutViewController-iPad.xib in Resources */,
+				CDA117A016C1DC6600CE1375 /* chrono.png in Resources */,
+				CDA117A116C1DC6600CE1375 /* SliderDivider.png in Resources */,
+				CDA117A216C1DC6600CE1375 /* Pushpin-Active.png in Resources */,
+				CDA117A316C1DC6600CE1375 /* Pushpin-Inactive.png in Resources */,
+				CDA117A416C1DC6600CE1375 /* MenuBorderOut.png in Resources */,
+				CDA117A516C1DC6600CE1375 /* BlueBullet@2x.png in Resources */,
+				CDA117A616C1DC6600CE1375 /* GrayBullet@2x.png in Resources */,
+				CDA117A716C1DC6600CE1375 /* NewPostBullet@2x.png in Resources */,
+				CDA117A816C1DC6600CE1375 /* GrippyBar@2x.png in Resources */,
+				CDA117A916C1DC6600CE1375 /* GrippyBarBackground@2x.png in Resources */,
+				CDA117AA16C1DC6600CE1375 /* Default@2x.png in Resources */,
+				CDA117AB16C1DC6600CE1375 /* Icon-57.png in Resources */,
+				CDA117AC16C1DC6600CE1375 /* Icon-72.png in Resources */,
+				CDA117AD16C1DC6600CE1375 /* Icon-114.png in Resources */,
+				CDA117AE16C1DC6600CE1375 /* Icon-144.png in Resources */,
+				CDA117AF16C1DC6600CE1375 /* AboutIcon.48@2x.png in Resources */,
+				CDA117B016C1DC6600CE1375 /* MessagesIcon.48@2x.png in Resources */,
+				CDA117B116C1DC6600CE1375 /* RefreshIcon@2x.png in Resources */,
+				CDA117B216C1DC6600CE1375 /* TagIcon@2x.png in Resources */,
+				CDA117B316C1DC6600CE1375 /* chrono@2x.png in Resources */,
+				CDA117B416C1DC6600CE1375 /* ChatIcon.48@2x.png in Resources */,
+				CDA117B516C1DC6600CE1375 /* ChatIcon.24@2x.png in Resources */,
+				CDA117B616C1DC6600CE1375 /* ModGavel@2x.png in Resources */,
+				CDA117B716C1DC6600CE1375 /* Shack[lol]Icon.48.png in Resources */,
+				CDA117B816C1DC6600CE1375 /* Shack[lol]Icon.48@2x.png in Resources */,
+				CDA117B916C1DC6600CE1375 /* arrow.png in Resources */,
+				CDA117BA16C1DC6600CE1375 /* AppleSafari-Icon.png in Resources */,
+				CDA117BB16C1DC6600CE1375 /* AppleSafari-Icon@2x.png in Resources */,
+				CDA117BC16C1DC6600CE1375 /* AppleSafari-Icon@2x~ipad.png in Resources */,
+				CDA117BD16C1DC6600CE1375 /* AppleSafari-Icon~ipad.png in Resources */,
+				CDA117BE16C1DC6600CE1375 /* arrow@2x.png in Resources */,
+				CDA117BF16C1DC6600CE1375 /* GoogleChrome-Icon.png in Resources */,
+				CDA117C016C1DC6600CE1375 /* GoogleChrome-Icon@2x.png in Resources */,
+				CDA117C116C1DC6600CE1375 /* GoogleChrome-Icon@2x~ipad.png in Resources */,
+				CDA117C216C1DC6600CE1375 /* GoogleChrome-Icon~ipad.png in Resources */,
+				CDA117C316C1DC6600CE1375 /* Default-568h@2x.png in Resources */,
+				CDA117C416C1DC6600CE1375 /* left.png in Resources */,
+				CDA117C516C1DC6600CE1375 /* left@2x.png in Resources */,
+				CDA117C616C1DC6600CE1375 /* right.png in Resources */,
+				CDA117C716C1DC6600CE1375 /* right@2x.png in Resources */,
+				CDA117C816C1DC6600CE1375 /* SearchIcon.48@2x.png in Resources */,
+				CDA117C916C1DC6600CE1375 /* SettingsIcon.48@2x.png in Resources */,
+				CDA117CA16C1DC6600CE1375 /* StoriesIcon.48@2x.png in Resources */,
+				CDA117CB16C1DC6600CE1375 /* Camera.png in Resources */,
+				CDA117CC16C1DC6600CE1375 /* Message.html in Resources */,
+				CDA117CD16C1DC6600CE1375 /* Camera@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1227,6 +1610,90 @@
 				967A7FFB149BC1A1001D0BD7 /* PullToRefreshView.m in Sources */,
 				CD1804C9162211810094A3F1 /* GoogleChromeActivity.m in Sources */,
 				CD1804D1162338F90094A3F1 /* AppleSafariActivity.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDA117CE16C1DC6600CE1375 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDA117CF16C1DC6600CE1375 /* main.m in Sources */,
+				CDA117D016C1DC6600CE1375 /* LatestChatty2AppDelegate.m in Sources */,
+				CDA117D116C1DC6600CE1375 /* StoriesViewController.m in Sources */,
+				CDA117D216C1DC6600CE1375 /* Model.m in Sources */,
+				CDA117D316C1DC6600CE1375 /* Story.m in Sources */,
+				CDA117D416C1DC6600CE1375 /* TableCellFromNib.m in Sources */,
+				CDA117D516C1DC6600CE1375 /* StoryCell.m in Sources */,
+				CDA117D616C1DC6600CE1375 /* Post.m in Sources */,
+				CDA117D716C1DC6600CE1375 /* ChattyViewController.m in Sources */,
+				CDA117D816C1DC6600CE1375 /* ThreadCell.m in Sources */,
+				CDA117D916C1DC6600CE1375 /* StoryViewController.m in Sources */,
+				CDA117DA16C1DC6600CE1375 /* StringAdditions.m in Sources */,
+				CDA117DB16C1DC6600CE1375 /* HTMLEscaper.m in Sources */,
+				CDA117DC16C1DC6600CE1375 /* StringTemplate.m in Sources */,
+				CDA117DD16C1DC6600CE1375 /* ModelListViewController.m in Sources */,
+				CDA117DE16C1DC6600CE1375 /* ModelLoader.m in Sources */,
+				CDA117DF16C1DC6600CE1375 /* ThreadViewController.m in Sources */,
+				CDA117E016C1DC6600CE1375 /* ReplyCell.m in Sources */,
+				CDA117E116C1DC6600CE1375 /* RegexKitLite.m in Sources */,
+				CDA117E216C1DC6600CE1375 /* GrippyBar.m in Sources */,
+				CDA117E316C1DC6600CE1375 /* SettingsViewController.m in Sources */,
+				CDA117E416C1DC6600CE1375 /* ComposeViewController.m in Sources */,
+				CDA117E516C1DC6600CE1375 /* BrowserViewController.m in Sources */,
+				CDA117E616C1DC6600CE1375 /* NSDataAdditions.m in Sources */,
+				CDA117E716C1DC6600CE1375 /* NSStringAdditions.m in Sources */,
+				CDA117E816C1DC6600CE1375 /* Image.m in Sources */,
+				CDA117E916C1DC6600CE1375 /* Tag.m in Sources */,
+				CDA117EA16C1DC6600CE1375 /* Message.m in Sources */,
+				CDA117EB16C1DC6600CE1375 /* RootCell.m in Sources */,
+				CDA117EC16C1DC6600CE1375 /* RootViewController.m in Sources */,
+				CDA117ED16C1DC6600CE1375 /* MessagesViewController.m in Sources */,
+				CDA117EE16C1DC6600CE1375 /* MessageCell.m in Sources */,
+				CDA117EF16C1DC6600CE1375 /* MessageViewController.m in Sources */,
+				CDA117F016C1DC6600CE1375 /* SearchViewController.m in Sources */,
+				CDA117F116C1DC6600CE1375 /* SearchResultsViewController.m in Sources */,
+				CDA117F216C1DC6600CE1375 /* ASIAuthenticationDialog.m in Sources */,
+				CDA117F316C1DC6600CE1375 /* ASIFormDataRequest.m in Sources */,
+				CDA117F416C1DC6600CE1375 /* ASIHTTPRequest.m in Sources */,
+				CDA117F516C1DC6600CE1375 /* ASIInputStream.m in Sources */,
+				CDA117F616C1DC6600CE1375 /* ASINetworkQueue.m in Sources */,
+				CDA117F716C1DC6600CE1375 /* ASINSStringAdditions.m in Sources */,
+				CDA117F816C1DC6600CE1375 /* ASIS3BucketObject.m in Sources */,
+				CDA117F916C1DC6600CE1375 /* ASIS3ListRequest.m in Sources */,
+				CDA117FA16C1DC6600CE1375 /* ASIS3Request.m in Sources */,
+				CDA117FB16C1DC6600CE1375 /* Reachability.m in Sources */,
+				CDA117FC16C1DC6600CE1375 /* NSObject+SBJSON.m in Sources */,
+				CDA117FD16C1DC6600CE1375 /* NSString+SBJSON.m in Sources */,
+				CDA117FE16C1DC6600CE1375 /* SBJSON.m in Sources */,
+				CDA117FF16C1DC6600CE1375 /* SBJsonBase.m in Sources */,
+				CDA1180016C1DC6600CE1375 /* SBJsonParser.m in Sources */,
+				CDA1180116C1DC6600CE1375 /* SBJsonWriter.m in Sources */,
+				CDA1180216C1DC6600CE1375 /* Mod.m in Sources */,
+				CDA1180316C1DC6600CE1375 /* NoContentController.m in Sources */,
+				CDA1180416C1DC6600CE1375 /* CGRect+HelperKit.m in Sources */,
+				CDA1180516C1DC6600CE1375 /* NSBundle+HelperKit.m in Sources */,
+				CDA1180616C1DC6600CE1375 /* NSDictionary+HelperKit.m in Sources */,
+				CDA1180716C1DC6600CE1375 /* NSObject+HelperKit.m in Sources */,
+				CDA1180816C1DC6600CE1375 /* NSString+HelperKit.m in Sources */,
+				CDA1180916C1DC6600CE1375 /* NSURL+HelperKit.m in Sources */,
+				CDA1180A16C1DC6600CE1375 /* NSURLRequest+HelperKit.m in Sources */,
+				CDA1180B16C1DC6600CE1375 /* UIAlertView+HelperKit.m in Sources */,
+				CDA1180C16C1DC6600CE1375 /* UIBarButtonItem+HelperKit.m in Sources */,
+				CDA1180D16C1DC6600CE1375 /* UIDevice+HelperKit.m in Sources */,
+				CDA1180E16C1DC6600CE1375 /* UIImage+HelperKit.m in Sources */,
+				CDA1180F16C1DC6600CE1375 /* UIImageView+HelperKit.m in Sources */,
+				CDA1181016C1DC6600CE1375 /* UINavigationController+HelperKit.m in Sources */,
+				CDA1181116C1DC6600CE1375 /* UITableView+HelperKit.m in Sources */,
+				CDA1181216C1DC6600CE1375 /* UIView+HelperKit.m in Sources */,
+				CDA1181316C1DC6600CE1375 /* UIViewController+HelperKit.m in Sources */,
+				CDA1181416C1DC6600CE1375 /* UIWebView+HelperKit.m in Sources */,
+				CDA1181516C1DC6600CE1375 /* ImageViewController.m in Sources */,
+				CDA1181616C1DC6600CE1375 /* SendMessageViewController.m in Sources */,
+				CDA1181716C1DC6600CE1375 /* SlideOutViewController.m in Sources */,
+				CDA1181816C1DC6600CE1375 /* PinnedThreadsLoader.m in Sources */,
+				CDA1181916C1DC6600CE1375 /* PullToRefreshView.m in Sources */,
+				CDA1181A16C1DC6600CE1375 /* GoogleChromeActivity.m in Sources */,
+				CDA1181B16C1DC6600CE1375 /* AppleSafariActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1318,6 +1785,47 @@
 			};
 			name = Release;
 		};
+		CDA1182516C1DC6600CE1375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
+				INFOPLIST_FILE = "Info beta.plist";
+				PRODUCT_NAME = LatestChatty;
+			};
+			name = Debug;
+		};
+		CDA1182616C1DC6600CE1375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
+				INFOPLIST_FILE = "Info beta.plist";
+				PRODUCT_NAME = LatestChatty;
+			};
+			name = Release;
+		};
+		CDA1182716C1DC6600CE1375 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
+				INFOPLIST_FILE = "Info beta.plist";
+				PRODUCT_NAME = LatestChatty;
+			};
+			name = Distribution;
+		};
 		FADDB5410F81548500DF3650 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1380,6 +1888,16 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
 				FADDB5410F81548500DF3650 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDA1182416C1DC6600CE1375 /* Build configuration list for PBXNativeTarget "LatestChatty2 beta" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDA1182516C1DC6600CE1375 /* Debug */,
+				CDA1182616C1DC6600CE1375 /* Release */,
+				CDA1182716C1DC6600CE1375 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
