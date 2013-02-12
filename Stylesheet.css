@@ -9,6 +9,7 @@ body {
 }
 
 div.wrapper {
+  clear: both;
   padding: 0 10px 10px 10px;
 }
 div.author a {
@@ -42,7 +43,6 @@ div.expiration {
     height: 4px;
     margin-bottom: 2px;
     width: 100%;
-    -webkit-border-radius: 20px;
 }
 
 /*
@@ -116,4 +116,19 @@ div.focalbox img {
 div.story-content a {
   color: #CF262D;
   font-weight: bold;
+}
+
+/*
+   iPad-only media queries
+*/
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+    div.expiration {
+        height: 6px;
+    }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
+    div.expiration {
+        height: 6px;
+    }
 }

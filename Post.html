@@ -9,11 +9,11 @@
     </style>
   </head>
   <body>
+    <div class="expiration">
+      <div style="background:<%= expirationColor %>; width:<%= expirationSize %>; height: inherit;"></div>
+    </div>
     <div class="wrapper">
-      <div class="expiration">
-        <div style="background:<%= expirationColor %>; width:<%= expirationSize %>; height: inherit;"></div>
-      </div>
-      <div style="clear: both;">
+      <div>
         <div class="date"><a href="http://www.shacknews.com/chatty?id=<%= postId %>"><%= date %></a></div>
         <div class="author"><a href="http://www.shacknews.com/profile/<%= author %>"><%= author %></a></div>
       </div>
