@@ -624,7 +624,7 @@
                                                         delegate:self
                                                cancelButtonTitle:@"Cancel"
                                           destructiveButtonTitle:nil
-                                               otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", nil] autorelease];
+                                               otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", @"UGH", nil] autorelease];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [theActionSheet showFromBarButtonItem:tagButton animated:YES];

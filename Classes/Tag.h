@@ -14,6 +14,7 @@ typedef enum {
     TagTypeUNF,
     TagTypeTAG,
     TagTypeWTF,
+    TagTypeUGH
 } TagType;
 
 @interface Tag : NSObject {
