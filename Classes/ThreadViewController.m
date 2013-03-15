@@ -14,7 +14,7 @@
 @synthesize threadId;
 @synthesize rootPost;
 @synthesize threadStarter;
-@synthesize selectedIndexPath, longPressIndexPath;
+@synthesize selectedIndexPath;
 @synthesize toolbar, leftToolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
@@ -161,15 +161,15 @@
         [self refresh:self];
     }
     
-    // Load buttons        
+    // Load buttons
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         self.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
         self.navigationItem.titleView = self.toolbar;
     } else {
         UIBarButtonItem *replyButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply
                                                                     target:self
-                                                                    action:@selector(tappedReplyButton)];        
-        self.navigationItem.rightBarButtonItem = replyButton;        
+                                                                    action:@selector(tappedReplyButton)];
+        self.navigationItem.rightBarButtonItem = replyButton;
     }
     
     // Fill in emtpy web view
@@ -182,20 +182,11 @@
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
     }
     
-    //initialize scoll position ivar 
-    scrollPosition = CGPointMake(0, 0);
-    longPressPoint = CGPointMake(0, 0);
-    longPressIndexPath = [[NSIndexPath alloc] init];
-    
-    //initialize long press gesture
-    longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    longPress.minimumPressDuration = 1.0; //seconds
-    longPress.delegate = self;
-    [self.tableView addGestureRecognizer:longPress];
-    [longPress release];
+    //initialize scoll position property
+    self.scrollPosition = CGPointMake(0, 0);
     
     //initialize swipe gesture
-    swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
     [swipe setDirection:UISwipeGestureRecognizerDirectionRight];
     swipe.delegate = self;
     [self.tableView addGestureRecognizer:swipe];
@@ -220,10 +211,32 @@
     [self.view setNeedsLayout];
     
     //if there is a saved scroll position, animate the scroll to it and reinitialize the ivar
-    if (scrollPosition.y > 0) {
-        [postView.scrollView setContentOffset:scrollPosition animated:YES];
-        scrollPosition = CGPointMake(0, 0);
+    if (self.scrollPosition.y > 0) {
+        [postView.scrollView setContentOffset:self.scrollPosition animated:YES];
+        self.scrollPosition = CGPointMake(0, 0);
     }
+    
+    //long press gesture only for iPhone now
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        //initialize long press gesture
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+        longPress.minimumPressDuration = 1.0; //seconds
+        longPress.delegate = self;
+        [self.navigationController.navigationBar addGestureRecognizer:longPress];
+        [longPress release];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    //since I am adding the longpress gesture recognizer to the navigation bar, we need to remove it from the bar when this view
+    //disappears, viewDidAppear will recreate the longpress gesture
+    for (UIGestureRecognizer *recognizer in self.navigationController.navigationBar.gestureRecognizers) {
+        [self.navigationController.navigationBar removeGestureRecognizer:recognizer];
+    }
+}
+
+- (void)tappedDoneButton {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)tappedReplyButton {
@@ -517,7 +530,7 @@
             viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
         }
         //save scroll position of web view before pushing view controller
-        scrollPosition = aWebView.scrollView.contentOffset;
+        self.scrollPosition = aWebView.scrollView.contentOffset;
         
         [self.navigationController pushViewController:viewController animated:YES];
         
@@ -768,9 +781,9 @@
         } else if (buttonIndex == 1) {
             //"Reply to root post"
             //set the selected row to the 0th row in the table view
-            self.longPressIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.tableView selectRowAtIndexPath:self.longPressIndexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-            [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:longPressIndexPath];
+            NSIndexPath *rootPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [self.tableView selectRowAtIndexPath:rootPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+            [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:rootPath];
             //fire the reply button method to do a reply to on the now selected root post
             [self tappedReplyButton];
         }
@@ -778,6 +791,20 @@
 }
 
 #pragma mark Gesture Recognizers
+
+//monitor gesture touches
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    //if gesture is swipe kind, let it pass through
+    if ([gestureRecognizer.class isSubclassOfClass:[UISwipeGestureRecognizer class]]) return YES;
+    
+    //if gesture is long press (on the navigation bar), only let it pass through if the press is on the reply button
+    if ([gestureRecognizer.class isSubclassOfClass:[UILongPressGestureRecognizer class]]) {
+        //this will be faulty logic if there is ever another button on the nav bar other than the reply button,
+        //the back button is not included in this because its view's class is not a subclass of UIControl
+        if ([[[touch view] class] isSubclassOfClass:[UIControl class]]) return YES;
+    }
+    return NO;
+}
 
 - (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer {
     [self.navigationController popViewControllerAnimated:YES];
@@ -787,42 +814,32 @@
     //only fire on the intial long press detection
     if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
         //grab the long press point
-        longPressPoint = [gestureRecognizer locationInView:self.tableView];
+        CGPoint longPressPoint = [gestureRecognizer locationInView:self.tableView];
         
-        //get the index path based on the long press point
-        self.longPressIndexPath = [self.tableView indexPathForRowAtPoint:longPressPoint];
+        //standard action sheet code
+        if (theActionSheet) {
+            [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+            theActionSheet = nil;
+            return;
+        }
+        //keep track of the action sheet
+        theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Reply"
+                                                      delegate:self
+                                             cancelButtonTitle:@"Cancel"
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:@"Reply to this post", @"Reply to root post", nil] autorelease];
         
-        //long press was on a row and not somewhere else in the table view
-        if (self.longPressIndexPath != nil) {
-            //set the selected row to the long pressed row and don't move scroll position
-            [self.tableView selectRowAtIndexPath:self.longPressIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-            [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:longPressIndexPath];
-            
-            //standard action sheet code
-            if (theActionSheet) {
-                [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-                theActionSheet = nil;
-                return;
-            }
-            //keep track of the action sheet
-            theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Reply"
-                                                          delegate:self
-                                                 cancelButtonTitle:@"Cancel"
-                                            destructiveButtonTitle:nil
-                                                 otherButtonTitles:@"Reply to this post", @"Reply to root post", nil] autorelease];
-            
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                //make an rect out of the long press point and another point offset by 1 in both directions
-                CGRect rowRect = CGRectMake(MIN(longPressPoint.x, longPressPoint.x+1),
-                                            MIN(longPressPoint.y, longPressPoint.y+1),
-                                            fabs(longPressPoint.x - longPressPoint.x+1),
-                                            fabs(longPressPoint.y - longPressPoint.y+1));
-                //popover the action sheet from that rect in the table view
-                [theActionSheet showFromRect:rowRect inView:self.tableView animated:YES];
-            } else {
-                //show standard style action sheet on iPhone
-                [theActionSheet showInView:self.navigationController.view];
-            }
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            //make an rect out of the long press point and another point offset by 1 in both directions
+            CGRect rowRect = CGRectMake(MIN(longPressPoint.x, longPressPoint.x+1),
+                                        MIN(longPressPoint.y, longPressPoint.y+1),
+                                        fabs(longPressPoint.x - longPressPoint.x+1),
+                                        fabs(longPressPoint.y - longPressPoint.y+1));
+            //popover the action sheet from that rect in the table view
+            [theActionSheet showFromRect:rowRect inView:self.tableView animated:YES];
+        } else {
+            //show standard style action sheet on iPhone
+            [theActionSheet showInView:self.navigationController.view];
         }
     }
 }
@@ -832,7 +849,6 @@
 - (void)dealloc {
     [rootPost release];
     [selectedIndexPath release];
-    [longPressIndexPath release];
     
     self.threadStarter = nil;
     self.toolbar = nil;

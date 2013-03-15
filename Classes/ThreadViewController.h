@@ -45,13 +45,6 @@
     UIToolbar *leftToolbar;
     
     UIActionSheet *theActionSheet;
-    CGPoint scrollPosition;
-    
-    UILongPressGestureRecognizer *longPress;
-    CGPoint longPressPoint;
-    NSIndexPath *longPressIndexPath;
-    
-    UISwipeGestureRecognizer *swipe;
 }
 
 @property (nonatomic, assign) NSUInteger threadId;
@@ -60,7 +53,7 @@
 @property (retain) NSIndexPath *selectedIndexPath;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIToolbar *leftToolbar;
-@property (retain) NSIndexPath *longPressIndexPath;
+@property (nonatomic, assign) CGPoint scrollPosition;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
 
