@@ -501,10 +501,10 @@
 		A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pushpin-Inactive.png"; path = "Assets/Pushpin-Inactive.png"; sourceTree = "<group>"; };
 		A27EAB8611728E360072EB59 /* PinnedThreadsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinnedThreadsLoader.h; sourceTree = "<group>"; };
 		A27EAB8711728E360072EB59 /* PinnedThreadsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinnedThreadsLoader.m; sourceTree = "<group>"; };
-		CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleChromeActivity.h; sourceTree = "<group>"; };
-		CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleChromeActivity.m; sourceTree = "<group>"; };
-		CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleSafariActivity.h; sourceTree = "<group>"; };
-		CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleSafariActivity.m; sourceTree = "<group>"; };
+		CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleChromeActivity.h; path = Classes/GoogleChromeActivity.h; sourceTree = "<group>"; };
+		CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleChromeActivity.m; path = Classes/GoogleChromeActivity.m; sourceTree = "<group>"; };
+		CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleSafariActivity.h; path = Classes/AppleSafariActivity.h; sourceTree = "<group>"; };
+		CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleSafariActivity.m; path = Classes/AppleSafariActivity.m; sourceTree = "<group>"; };
 		CD8BA2AF16302B8800ED5C5E /* Shack[lol]Icon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Shack[lol]Icon.48.png"; path = "Assets/Shack[lol]Icon.48.png"; sourceTree = "<group>"; };
 		CD8BA2B016302B8800ED5C5E /* Shack[lol]Icon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Shack[lol]Icon.48@2x.png"; path = "Assets/Shack[lol]Icon.48@2x.png"; sourceTree = "<group>"; };
 		CD8BA2B31630697B00ED5C5E /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = Assets/arrow.png; sourceTree = "<group>"; };
@@ -804,6 +804,10 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */,
+				CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */,
+				CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */,
+				CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */,
 				A27EAB8611728E360072EB59 /* PinnedThreadsLoader.h */,
 				A27EAB8711728E360072EB59 /* PinnedThreadsLoader.m */,
 				28A0AAE50D9B0CCF005BE974 /* LatestChatty2_Prefix.pch */,
@@ -984,10 +988,6 @@
 				FAB1B6410F8FBF390021896A /* Message.m */,
 				FA08ADB1112B40E800B89890 /* Mod.h */,
 				FA08ADB2112B40E800B89890 /* Mod.m */,
-				CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */,
-				CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */,
-				CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */,
-				CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
