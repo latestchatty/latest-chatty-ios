@@ -70,6 +70,10 @@
 		CD8BA2D616306B6900ED5C5E /* StoriesIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D516306B6900ED5C5E /* StoriesIcon.48@2x.png */; };
 		CD8BA2D816306BF700ED5C5E /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2D716306BF700ED5C5E /* Camera.png */; };
 		CD8CF263164189950041AA5B /* Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8CF262164189950041AA5B /* Camera@2x.png */; };
+		CDA01B1217308E8600E24A28 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1017308E8200E24A28 /* Default-Landscape@2x.png */; };
+		CDA01B1317308E8600E24A28 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1017308E8200E24A28 /* Default-Landscape@2x.png */; };
+		CDA01B1417308E8600E24A28 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1117308E8400E24A28 /* Default-Portrait@2x.png */; };
+		CDA01B1517308E8600E24A28 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1117308E8400E24A28 /* Default-Portrait@2x.png */; };
 		CDA1174E16C1DC6600CE1375 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		CDA1174F16C1DC6600CE1375 /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* StoriesViewController.xib */; };
 		CDA1175016C1DC6600CE1375 /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5FCE940F6F7CB600878F27 /* StoryCell.xib */; };
@@ -527,6 +531,8 @@
 		CD8BA2D516306B6900ED5C5E /* StoriesIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StoriesIcon.48@2x.png"; path = "Assets/StoriesIcon.48@2x.png"; sourceTree = "<group>"; };
 		CD8BA2D716306BF700ED5C5E /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Camera.png; path = Assets/Camera.png; sourceTree = "<group>"; };
 		CD8CF262164189950041AA5B /* Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Camera@2x.png"; path = "Assets/Camera@2x.png"; sourceTree = "<group>"; };
+		CDA01B1017308E8200E24A28 /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x.png"; path = "Assets/Default-Landscape@2x.png"; sourceTree = "<group>"; };
+		CDA01B1117308E8400E24A28 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x.png"; path = "Assets/Default-Portrait@2x.png"; sourceTree = "<group>"; };
 		CDA1182816C1DC6600CE1375 /* LatestChatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA1182916C1DC6600CE1375 /* Info beta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info beta.plist"; path = "/Users/patrick/Documents/latest-chatty-2/latest-chatty-2/Info beta.plist"; sourceTree = "<absolute>"; };
 		CDE0905A164042DD0010E8F5 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Message.html; sourceTree = "<group>"; };
@@ -1041,7 +1047,9 @@
 				FAFD342311D32DC0002011AB /* Default@2x.png */,
 				CD8BA2C716306B3A00ED5C5E /* Default-568h@2x.png */,
 				2704C030116BEEDC0075E416 /* Default-Landscape.png */,
+				CDA01B1017308E8200E24A28 /* Default-Landscape@2x.png */,
 				2704C031116BEEDC0075E416 /* Default-Portrait.png */,
+				CDA01B1117308E8400E24A28 /* Default-Portrait@2x.png */,
 				A27EAB8211728E260072EB59 /* Pushpin-Active.png */,
 				A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */,
 				A27EA7211171E60D0072EB59 /* SliderDivider.png */,
@@ -1388,6 +1396,8 @@
 				CD8BA2D816306BF700ED5C5E /* Camera.png in Resources */,
 				CDE0905B164042DD0010E8F5 /* Message.html in Resources */,
 				CD8CF263164189950041AA5B /* Camera@2x.png in Resources */,
+				CDA01B1217308E8600E24A28 /* Default-Landscape@2x.png in Resources */,
+				CDA01B1417308E8600E24A28 /* Default-Portrait@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1523,6 +1533,8 @@
 				CDA117CB16C1DC6600CE1375 /* Camera.png in Resources */,
 				CDA117CC16C1DC6600CE1375 /* Message.html in Resources */,
 				CDA117CD16C1DC6600CE1375 /* Camera@2x.png in Resources */,
+				CDA01B1317308E8600E24A28 /* Default-Landscape@2x.png in Resources */,
+				CDA01B1517308E8600E24A28 /* Default-Portrait@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
