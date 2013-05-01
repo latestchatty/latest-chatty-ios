@@ -20,7 +20,7 @@
 - (id)initWithThreadId:(NSUInteger)aThreadId {
         self = [super initWithNib];
     threadId = aThreadId;
-    grippyBarPosition = 1;
+    grippyBarPosition = [[NSUserDefaults standardUserDefaults] integerForKey:@"grippyBarPosition"];
     self.title = @"Thread";
     return self;
 }
@@ -614,12 +614,16 @@
     grippyBarPosition--;
     if (grippyBarPosition < 0) grippyBarPosition = 0;
     [self resetLayout:YES];
+    [[NSUserDefaults standardUserDefaults] setInteger:grippyBarPosition forKey:@"grippyBarPosition"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)grippyBarDidSwipeDown {
     grippyBarPosition++;
     if (grippyBarPosition > 2) grippyBarPosition = 2;
     [self resetLayout:YES];
+    [[NSUserDefaults standardUserDefaults] setInteger:grippyBarPosition forKey:@"grippyBarPosition"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 //Patch-E: fixed the iPad issue where if you tap the tag button numerous times, many action sheet popovers are created

@@ -113,6 +113,7 @@
                                      [NSNumber numberWithBool:YES], @"postCategory.political",
                                      [NSNumber numberWithBool:NO],  @"postCategory.nws",
                                      [NSNumber numberWithInt:0],    @"lastRefresh",
+                                     [NSNumber numberWithInt:1],    @"grippyBarPosition",
                                      [NSMutableArray array],        @"pinnedPosts",
                                      nil];
     [defaults registerDefaults:defaultSettings];
@@ -162,7 +163,7 @@
     NSString *requestBody = [NSString stringWithFormat:@"token=%@&username=%@&password=%@", pushToken, usernameString, passwordString];
     [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
     [request setHTTPMethod:@"POST"];
-    
+
     [NSURLConnection connectionWithRequest:request delegate:nil];
 }
 
