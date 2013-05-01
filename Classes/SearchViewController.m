@@ -80,6 +80,7 @@
     for (UITextField *field in fields) {
         field.enabled = YES;
         field.clearButtonMode = UITextFieldViewModeAlways;
+        [field setKeyboardAppearance:UIKeyboardAppearanceAlert];
     }
     
     for (UITableViewCell *cell in [inputTable visibleCells]) {        
