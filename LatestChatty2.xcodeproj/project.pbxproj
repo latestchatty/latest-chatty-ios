@@ -74,6 +74,10 @@
 		CDA01B1317308E8600E24A28 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1017308E8200E24A28 /* Default-Landscape@2x.png */; };
 		CDA01B1417308E8600E24A28 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1117308E8400E24A28 /* Default-Portrait@2x.png */; };
 		CDA01B1517308E8600E24A28 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1117308E8400E24A28 /* Default-Portrait@2x.png */; };
+		CDA01B181730A87800E24A28 /* BlueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B161730A87500E24A28 /* BlueButton@2x.png */; };
+		CDA01B191730A87800E24A28 /* BlueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B161730A87500E24A28 /* BlueButton@2x.png */; };
+		CDA01B1A1730A87800E24A28 /* BlueButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B171730A87600E24A28 /* BlueButtonPressed@2x.png */; };
+		CDA01B1B1730A87800E24A28 /* BlueButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B171730A87600E24A28 /* BlueButtonPressed@2x.png */; };
 		CDA1174E16C1DC6600CE1375 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		CDA1174F16C1DC6600CE1375 /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* StoriesViewController.xib */; };
 		CDA1175016C1DC6600CE1375 /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5FCE940F6F7CB600878F27 /* StoryCell.xib */; };
@@ -533,6 +537,8 @@
 		CD8CF262164189950041AA5B /* Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Camera@2x.png"; path = "Assets/Camera@2x.png"; sourceTree = "<group>"; };
 		CDA01B1017308E8200E24A28 /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x.png"; path = "Assets/Default-Landscape@2x.png"; sourceTree = "<group>"; };
 		CDA01B1117308E8400E24A28 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x.png"; path = "Assets/Default-Portrait@2x.png"; sourceTree = "<group>"; };
+		CDA01B161730A87500E24A28 /* BlueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BlueButton@2x.png"; path = "Assets/BlueButton@2x.png"; sourceTree = "<group>"; };
+		CDA01B171730A87600E24A28 /* BlueButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BlueButtonPressed@2x.png"; path = "Assets/BlueButtonPressed@2x.png"; sourceTree = "<group>"; };
 		CDA1182816C1DC6600CE1375 /* LatestChatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA1182916C1DC6600CE1375 /* Info beta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info beta.plist"; path = "/Users/patrick/Documents/latest-chatty-2/latest-chatty-2/Info beta.plist"; sourceTree = "<absolute>"; };
 		CDE0905A164042DD0010E8F5 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Message.html; sourceTree = "<group>"; };
@@ -1079,7 +1085,9 @@
 				FAD29A530F79621C006E14A2 /* GrippyBarBackground.png */,
 				FA689DFE11D2ED5A0088CF3D /* GrippyBarBackground@2x.png */,
 				FA9C3F200F9CFF0C0022A739 /* BlueButton.png */,
+				CDA01B161730A87500E24A28 /* BlueButton@2x.png */,
 				FA9C3F210F9CFF0C0022A739 /* BlueButtonPressed.png */,
+				CDA01B171730A87600E24A28 /* BlueButtonPressed@2x.png */,
 				FA9C3F160F9CFD580022A739 /* GrayButton.png */,
 				FA9C3F180F9CFE130022A739 /* GrayButtonPressed.png */,
 				FA87BE7B0F7B182D0044898C /* Button.png */,
@@ -1398,6 +1406,8 @@
 				CD8CF263164189950041AA5B /* Camera@2x.png in Resources */,
 				CDA01B1217308E8600E24A28 /* Default-Landscape@2x.png in Resources */,
 				CDA01B1417308E8600E24A28 /* Default-Portrait@2x.png in Resources */,
+				CDA01B181730A87800E24A28 /* BlueButton@2x.png in Resources */,
+				CDA01B1A1730A87800E24A28 /* BlueButtonPressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1535,6 +1545,8 @@
 				CDA117CD16C1DC6600CE1375 /* Camera@2x.png in Resources */,
 				CDA01B1317308E8600E24A28 /* Default-Landscape@2x.png in Resources */,
 				CDA01B1517308E8600E24A28 /* Default-Portrait@2x.png in Resources */,
+				CDA01B191730A87800E24A28 /* BlueButton@2x.png in Resources */,
+				CDA01B1B1730A87800E24A28 /* BlueButtonPressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
