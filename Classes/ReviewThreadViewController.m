@@ -24,10 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self postBody:rootPost];
+    [self placePostInWebView:rootPost];
 }
 
-- (void)postBody:(Post *)post {
+- (IBAction)doneButton {
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)placePostInWebView:(Post *)post {
     // Create HTML for the post
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"ReviewPost.html"];
 

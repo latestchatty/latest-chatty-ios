@@ -20,4 +20,6 @@
 
 - (id)initWithPost:(Post *)aPost;
 
+- (IBAction)doneButton;
+
 @end

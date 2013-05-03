@@ -60,7 +60,12 @@
 }
 
 - (void)previewLabelTap:(UITapGestureRecognizer *)recognizer {
-    [self.navigationController pushViewController:[[[ReviewThreadViewController alloc] initWithPost:post] autorelease] animated:YES];
+    ReviewThreadViewController *reviewController = [[[ReviewThreadViewController alloc] initWithPost:post] autorelease];
+    
+    reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    [self presentViewController:reviewController animated:YES completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
