@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Latest Chatty Post</title>
+    <meta content='text/html; charset=utf-8' http-equiv='content-type'>
+    <meta content='initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport'>
+    <style>
+      <%= stylesheet %>
+    </style>
+  </head>
+  <body>
+    <div class="expiration">
+      <div style="background:<%= expirationColor %>; width:<%= expirationSize %>; height: inherit;"></div>
+    </div>
+    <div class="wrapper">
+      <div>
+        <div class="date"><%= date %></div>
+        <div class="author"><%= author %></div>
+      </div>
+      <div class="body"><%= body %></div>
+    </div>
+  </body>
+</html>
