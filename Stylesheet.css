@@ -12,6 +12,7 @@ div.wrapper {
   clear: both;
   padding: 0 10px 10px 10px;
 }
+div.author,
 div.author a {
   font-size: 10pt;
   color: rgb(255,186,0);
@@ -96,6 +97,7 @@ div.youtube-widget a {
 */
 
 h1.story-title {
+  clear: both;
   font-size: 150%;
   text-shadow: black 1px 5px 7px;
 }
@@ -114,8 +116,14 @@ div.focalbox img {
 }
 
 div.story-content a {
-  color: #CF262D;
+  text-decoration: none;
   font-weight: bold;
+  color: rgb(255,186,0);
+  -webkit-tap-highlight-color: rgba(255,186,0,0.5) !important;
+}
+
+div#video #embedswf {
+  display: none; 
 }
 
 /*
