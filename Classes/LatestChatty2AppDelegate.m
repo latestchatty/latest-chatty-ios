@@ -118,17 +118,20 @@
                                      nil];
     [defaults registerDefaults:defaultSettings];
 
+    //Patch-E: modified requestBody and request URL for May 2013 Shacknews login changes
     if([defaults boolForKey:@"modTools"]==YES){
         //Mods need cookies
-        //
         NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
         NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
-        NSString *requestBody = [NSString stringWithFormat:@"email=%@&password=%@&login=login", usernameString, passwordString];
+        //NSString *requestBody = [NSString stringWithFormat:@"email=%@&password=%@&login=login", usernameString, passwordString];
+        NSString *requestBody = [NSString stringWithFormat:@"get_fields%%5B%%5D=result&user-identifier=%@&supplied-pass=%@&remember-login=1", usernameString, passwordString];        
         NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
 
-        [request setURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
+        //[request setURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
+        [request setURL:[NSURL URLWithString:@"https://www.shacknews.com/account/signin"]];
         [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
         [request setHTTPMethod:@"POST"];
+        [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
         [NSURLConnection connectionWithRequest:request delegate:nil];    
     }
     return YES;
