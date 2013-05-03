@@ -46,6 +46,8 @@
 		A27EAB8411728E260072EB59 /* Pushpin-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8211728E260072EB59 /* Pushpin-Active.png */; };
 		A27EAB8511728E260072EB59 /* Pushpin-Inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */; };
 		A27EAB8811728E360072EB59 /* PinnedThreadsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A27EAB8711728E360072EB59 /* PinnedThreadsLoader.m */; };
+		CD028A0017337E05001E63B9 /* ReviewThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */; };
+		CD028A0117337E05001E63B9 /* ReviewThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */; };
 		CD1804C9162211810094A3F1 /* GoogleChromeActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */; };
 		CD1804D1162338F90094A3F1 /* AppleSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */; };
 		CD8BA2B116302B8800ED5C5E /* Shack[lol]Icon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2AF16302B8800ED5C5E /* Shack[lol]Icon.48.png */; };
@@ -517,6 +519,7 @@
 		A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pushpin-Inactive.png"; path = "Assets/Pushpin-Inactive.png"; sourceTree = "<group>"; };
 		A27EAB8611728E360072EB59 /* PinnedThreadsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinnedThreadsLoader.h; sourceTree = "<group>"; };
 		A27EAB8711728E360072EB59 /* PinnedThreadsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinnedThreadsLoader.m; sourceTree = "<group>"; };
+		CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ReviewThreadViewController-iPad.xib"; path = "Resources-iPad/Classes/ReviewThreadViewController-iPad.xib"; sourceTree = "<group>"; };
 		CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleChromeActivity.h; path = Classes/GoogleChromeActivity.h; sourceTree = "<group>"; };
 		CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleChromeActivity.m; path = Classes/GoogleChromeActivity.m; sourceTree = "<group>"; };
 		CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleSafariActivity.h; path = Classes/AppleSafariActivity.h; sourceTree = "<group>"; };
@@ -552,7 +555,7 @@
 		CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewThreadViewController.m; sourceTree = "<group>"; };
 		CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewThreadViewController.xib; sourceTree = "<group>"; };
 		CDA01B261733714300E24A28 /* ReviewPost.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ReviewPost.html; sourceTree = "<group>"; };
-		CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChattyBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA1182816C1DC6600CE1375 /* LatestChatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA1182916C1DC6600CE1375 /* Info beta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info beta.plist"; path = "/Users/patrick/Documents/latest-chatty-2/latest-chatty-2/Info beta.plist"; sourceTree = "<absolute>"; };
 		CDE0905A164042DD0010E8F5 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Message.html; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -808,7 +811,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* LatestChatty.app */,
-				CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */,
+				CDA1182816C1DC6600CE1375 /* LatestChatty.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1164,6 +1167,7 @@
 				FA907CA71166D8D800306828 /* SendMessageViewController-iPad.xib */,
 				FAA5BA751110DE7F0007C34C /* ThreadCell-iPad.xib */,
 				FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */,
+				CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */,
 			);
 			name = "Resources-iPad";
 			sourceTree = "<group>";
@@ -1257,7 +1261,7 @@
 			);
 			name = "LatestChatty2 beta";
 			productName = LatestChatty2;
-			productReference = CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */;
+			productReference = CDA1182816C1DC6600CE1375 /* LatestChatty.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1429,6 +1433,7 @@
 				CDA01B1D1730AD5B00E24A28 /* Lock.16@2x.png in Resources */,
 				CDA01B241731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
 				CDA01B271733714300E24A28 /* ReviewPost.html in Resources */,
+				CD028A0017337E05001E63B9 /* ReviewThreadViewController-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1571,6 +1576,7 @@
 				CDA01B1E1730AD5B00E24A28 /* Lock.16@2x.png in Resources */,
 				CDA01B251731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
 				CDA01B281733714300E24A28 /* ReviewPost.html in Resources */,
+				CD028A0117337E05001E63B9 /* ReviewThreadViewController-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1846,7 +1852,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				PRODUCT_NAME = LatestChattyBeta;
+				PRODUCT_NAME = LatestChatty;
 			};
 			name = Debug;
 		};
@@ -1859,7 +1865,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				PRODUCT_NAME = LatestChattyBeta;
+				PRODUCT_NAME = LatestChatty;
 			};
 			name = Release;
 		};
@@ -1872,7 +1878,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				PRODUCT_NAME = LatestChattyBeta;
+				PRODUCT_NAME = LatestChatty;
 			};
 			name = Distribution;
 		};
