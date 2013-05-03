@@ -57,15 +57,8 @@
     
 	if (post) parentPostPreview.text = post.preview;
 	[postContent becomeFirstResponder];
-}
-
-- (void)previewLabelTap:(UITapGestureRecognizer *)recognizer {
-    ReviewThreadViewController *reviewController = [[[ReviewThreadViewController alloc] initWithPost:post] autorelease];
     
-    reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
-    
-    [self presentViewController:reviewController animated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postContentBecomeFirstResponder:) name:@"PostContentBecomeFirstResponder" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -138,6 +131,18 @@
 	}
 }
 
+- (void)previewLabelTap:(UITapGestureRecognizer *)recognizer {
+    ReviewThreadViewController *reviewController = [[[ReviewThreadViewController alloc] initWithPost:post] autorelease];
+    
+    reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    [self presentViewController:reviewController animated:YES completion:nil];
+}
+
+- (void)postContentBecomeFirstResponder:(NSObject*)sender {
+    [postContent becomeFirstResponder];
+}
 
 - (IBAction)showTagButtons {
 	[postContent resignFirstResponder];

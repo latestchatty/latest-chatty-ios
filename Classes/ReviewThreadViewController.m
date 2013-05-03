@@ -29,6 +29,7 @@
 
 - (IBAction)doneButton {
 	[self dismissModalViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PostContentBecomeFirstResponder" object:nil];
 }
 
 - (void)placePostInWebView:(Post *)post {
