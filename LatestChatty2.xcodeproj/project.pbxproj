@@ -80,6 +80,12 @@
 		CDA01B1B1730A87800E24A28 /* BlueButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B171730A87600E24A28 /* BlueButtonPressed@2x.png */; };
 		CDA01B1D1730AD5B00E24A28 /* Lock.16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */; };
 		CDA01B1E1730AD5B00E24A28 /* Lock.16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */; };
+		CDA01B211731A31D00E24A28 /* ReviewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */; };
+		CDA01B221731A31D00E24A28 /* ReviewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */; };
+		CDA01B241731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */; };
+		CDA01B251731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */; };
+		CDA01B271733714300E24A28 /* ReviewPost.html in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B261733714300E24A28 /* ReviewPost.html */; };
+		CDA01B281733714300E24A28 /* ReviewPost.html in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B261733714300E24A28 /* ReviewPost.html */; };
 		CDA1174E16C1DC6600CE1375 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		CDA1174F16C1DC6600CE1375 /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* StoriesViewController.xib */; };
 		CDA1175016C1DC6600CE1375 /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5FCE940F6F7CB600878F27 /* StoryCell.xib */; };
@@ -542,7 +548,11 @@
 		CDA01B161730A87500E24A28 /* BlueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BlueButton@2x.png"; path = "Assets/BlueButton@2x.png"; sourceTree = "<group>"; };
 		CDA01B171730A87600E24A28 /* BlueButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BlueButtonPressed@2x.png"; path = "Assets/BlueButtonPressed@2x.png"; sourceTree = "<group>"; };
 		CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Lock.16@2x.png"; path = "Assets/Lock.16@2x.png"; sourceTree = "<group>"; };
-		CDA1182816C1DC6600CE1375 /* LatestChatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA01B1F1731A30D00E24A28 /* ReviewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewThreadViewController.h; sourceTree = "<group>"; };
+		CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewThreadViewController.m; sourceTree = "<group>"; };
+		CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewThreadViewController.xib; sourceTree = "<group>"; };
+		CDA01B261733714300E24A28 /* ReviewPost.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ReviewPost.html; sourceTree = "<group>"; };
+		CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChattyBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA1182916C1DC6600CE1375 /* Info beta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info beta.plist"; path = "/Users/patrick/Documents/latest-chatty-2/latest-chatty-2/Info beta.plist"; sourceTree = "<absolute>"; };
 		CDE0905A164042DD0010E8F5 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Message.html; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -798,7 +808,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* LatestChatty.app */,
-				CDA1182816C1DC6600CE1375 /* LatestChatty.app */,
+				CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -952,6 +962,9 @@
 				FAA849960F78C29900026446 /* ThreadViewController.h */,
 				FAA849970F78C29900026446 /* ThreadViewController.m */,
 				FAA849990F78C2B000026446 /* ThreadViewController.xib */,
+				CDA01B1F1731A30D00E24A28 /* ReviewThreadViewController.h */,
+				CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */,
+				CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */,
 				FA87BE8C0F7B1B9D0044898C /* ComposeViewController.h */,
 				FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */,
 				FA87BE500F7B174C0044898C /* ComposeViewController.xib */,
@@ -1202,6 +1215,7 @@
 			children = (
 				FABA5DBE0F718042008EEE3A /* Stylesheet.css */,
 				FABA5DBC0F71802E008EEE3A /* Post.html */,
+				CDA01B261733714300E24A28 /* ReviewPost.html */,
 				CDE0905A164042DD0010E8F5 /* Message.html */,
 				FABA5E200F7185CC008EEE3A /* Story.html */,
 				FA8D243D0F85848900AB23E2 /* Youtube.html */,
@@ -1243,7 +1257,7 @@
 			);
 			name = "LatestChatty2 beta";
 			productName = LatestChatty2;
-			productReference = CDA1182816C1DC6600CE1375 /* LatestChatty.app */;
+			productReference = CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1413,6 +1427,8 @@
 				CDA01B181730A87800E24A28 /* BlueButton@2x.png in Resources */,
 				CDA01B1A1730A87800E24A28 /* BlueButtonPressed@2x.png in Resources */,
 				CDA01B1D1730AD5B00E24A28 /* Lock.16@2x.png in Resources */,
+				CDA01B241731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
+				CDA01B271733714300E24A28 /* ReviewPost.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1553,6 +1569,8 @@
 				CDA01B191730A87800E24A28 /* BlueButton@2x.png in Resources */,
 				CDA01B1B1730A87800E24A28 /* BlueButtonPressed@2x.png in Resources */,
 				CDA01B1E1730AD5B00E24A28 /* Lock.16@2x.png in Resources */,
+				CDA01B251731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
+				CDA01B281733714300E24A28 /* ReviewPost.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1640,6 +1658,7 @@
 				967A7FFB149BC1A1001D0BD7 /* PullToRefreshView.m in Sources */,
 				CD1804C9162211810094A3F1 /* GoogleChromeActivity.m in Sources */,
 				CD1804D1162338F90094A3F1 /* AppleSafariActivity.m in Sources */,
+				CDA01B211731A31D00E24A28 /* ReviewThreadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1724,6 +1743,7 @@
 				CDA1181916C1DC6600CE1375 /* PullToRefreshView.m in Sources */,
 				CDA1181A16C1DC6600CE1375 /* GoogleChromeActivity.m in Sources */,
 				CDA1181B16C1DC6600CE1375 /* AppleSafariActivity.m in Sources */,
+				CDA01B221731A31D00E24A28 /* ReviewThreadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1826,7 +1846,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				PRODUCT_NAME = LatestChatty;
+				PRODUCT_NAME = LatestChattyBeta;
 			};
 			name = Debug;
 		};
@@ -1839,7 +1859,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				PRODUCT_NAME = LatestChatty;
+				PRODUCT_NAME = LatestChattyBeta;
 			};
 			name = Release;
 		};
@@ -1852,7 +1872,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				PRODUCT_NAME = LatestChatty;
+				PRODUCT_NAME = LatestChattyBeta;
 			};
 			name = Distribution;
 		};
