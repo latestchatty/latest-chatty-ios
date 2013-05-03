@@ -14,6 +14,7 @@
 #import "SettingsViewController.h"
 #import "ChattyViewController.h"
 #import "ThreadViewController.h"
+#import "ReviewThreadViewController.h"
 #import "BrowserViewController.h"
 #import "ImageViewController.h"
 #import "MessagesViewController.h"

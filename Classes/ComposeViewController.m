@@ -49,9 +49,18 @@
 	self.navigationItem.rightBarButtonItem = submitPostButton;
 	[submitPostButton release];
 	
-	
+    UITapGestureRecognizer *previewTapRecognizer = [[UITapGestureRecognizer alloc]
+                                                          initWithTarget:self
+                                                          action:@selector(previewLabelTap:)];
+    [previewTapRecognizer setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:previewTapRecognizer];
+    
 	if (post) parentPostPreview.text = post.preview;
 	[postContent becomeFirstResponder];
+}
+
+- (void)previewLabelTap:(UITapGestureRecognizer *)recognizer {
+    [self.navigationController pushViewController:[[[ReviewThreadViewController alloc] initWithPost:post] autorelease] animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
