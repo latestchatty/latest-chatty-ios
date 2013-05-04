@@ -53,7 +53,8 @@
                                                           initWithTarget:self
                                                           action:@selector(previewLabelTap:)];
     [previewTapRecognizer setNumberOfTapsRequired:1];
-    [self.view addGestureRecognizer:previewTapRecognizer];
+    [parentPostPreview addGestureRecognizer:previewTapRecognizer];
+    [previewTapRecognizer release];
     
 	if (post) parentPostPreview.text = post.preview;
 	[postContent becomeFirstResponder];
@@ -132,7 +133,7 @@
 }
 
 - (void)previewLabelTap:(UITapGestureRecognizer *)recognizer {
-    ReviewThreadViewController *reviewController = [[[ReviewThreadViewController alloc] initWithPost:post] autorelease];
+    ReviewThreadViewController *reviewController = [[[ReviewThreadViewController alloc] initWithPost:self.post] autorelease];
     
     reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     reviewController.modalPresentationStyle = UIModalPresentationFormSheet;

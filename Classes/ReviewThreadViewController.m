@@ -16,7 +16,7 @@
     self = [super initWithNib];
     
     self.title = @"Review";
-    rootPost = aPost;
+    self.rootPost = aPost;
     
     return self;
 }
@@ -24,7 +24,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self placePostInWebView:rootPost];
+//    NSLog(@"%@", rootPost.description);
+//    NSLog(@"%@", rootPost.preview);
+    [self placePostInWebView:self.rootPost];
 }
 
 - (IBAction)doneButton {
@@ -46,7 +48,7 @@
     [htmlTemplate setString:[NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]] forKey:@"expirationSize"];
 
     [htmlTemplate setString:post.body forKey:@"body"];
-    [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%i", rootPost.modelId]]];
+    [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%i", post.modelId]]];
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -60,7 +62,8 @@
 #pragma mark Cleanup
 
 - (void)dealloc {
-    [rootPost release];
+    NSLog(@"ReviewThreadViewController dealloc");
+    self.rootPost = nil;
     
     [super dealloc];
 }
