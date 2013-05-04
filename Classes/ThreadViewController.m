@@ -851,6 +851,7 @@
 #pragma mark Cleanup
 
 - (void)dealloc {
+    NSLog(@"ThreadViewController dealloc");
     [rootPost release];
     [selectedIndexPath release];
     
