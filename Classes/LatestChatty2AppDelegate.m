@@ -132,7 +132,16 @@
         [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
         [request setHTTPMethod:@"POST"];
         [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-        [NSURLConnection connectionWithRequest:request delegate:nil];    
+        [NSURLConnection connectionWithRequest:request delegate:nil];
+        
+        // use for testing login above and to output current cookies for www.shacknews.com
+//        NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
+//        NSLog(@"%@", responseBody);
+//        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"https://www.shacknews.com"]];
+//        for (int i=0;i<cookies.count;i++) {
+//            NSHTTPCookie *cookie = cookies[i];
+//            NSLog(@"%@", cookie.description);
+//        }
     }
     return YES;
 }
