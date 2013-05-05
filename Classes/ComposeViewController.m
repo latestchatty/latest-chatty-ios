@@ -133,12 +133,14 @@
 }
 
 - (void)previewLabelTap:(UITapGestureRecognizer *)recognizer {
-    ReviewThreadViewController *reviewController = [[[ReviewThreadViewController alloc] initWithPost:self.post] autorelease];
-    
-    reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
-    
-    [self presentViewController:reviewController animated:YES completion:nil];
+    if (self.post) {
+        ReviewThreadViewController *reviewController = [[[ReviewThreadViewController alloc] initWithPost:self.post] autorelease];
+        
+        reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
+        
+        [self presentViewController:reviewController animated:YES completion:nil];
+    }
 }
 
 - (void)postContentBecomeFirstResponder:(NSObject*)sender {
