@@ -1,3 +1,4 @@
+html { -webkit-text-size-adjust: none; }
 body {
   overflow: visible;
   padding: 0;
