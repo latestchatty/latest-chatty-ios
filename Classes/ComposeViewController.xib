@@ -205,8 +205,17 @@
 								</object>
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
-								<reference key="IBUIFontDescription" ref="566300200"/>
-								<reference key="IBUIFont" ref="550435465"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="198830197">
+									<string key="name">HelveticaNeue-Medium</string>
+									<string key="family">Helvetica Neue</string>
+									<int key="traits">0</int>
+									<double key="pointSize">14</double>
+								</object>
+								<object class="NSFont" key="IBUIFont" id="1059203236">
+									<string key="NSName">HelveticaNeue-Medium</string>
+									<double key="NSSize">14</double>
+									<int key="NSfFlags">16</int>
+								</object>
 							</object>
 							<object class="IBUIButton" id="1029042873">
 								<reference key="NSNextResponder" ref="681455586"/>
@@ -237,8 +246,8 @@
 								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
-								<reference key="IBUIFontDescription" ref="566300200"/>
-								<reference key="IBUIFont" ref="550435465"/>
+								<reference key="IBUIFontDescription" ref="198830197"/>
+								<reference key="IBUIFont" ref="1059203236"/>
 							</object>
 							<object class="IBUIButton" id="636749255">
 								<reference key="NSNextResponder" ref="681455586"/>
@@ -269,8 +278,8 @@
 								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
-								<reference key="IBUIFontDescription" ref="566300200"/>
-								<reference key="IBUIFont" ref="550435465"/>
+								<reference key="IBUIFontDescription" ref="198830197"/>
+								<reference key="IBUIFont" ref="1059203236"/>
 							</object>
 							<object class="IBUIButton" id="698237717">
 								<reference key="NSNextResponder" ref="681455586"/>
@@ -304,8 +313,8 @@
 								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
-								<reference key="IBUIFontDescription" ref="566300200"/>
-								<reference key="IBUIFont" ref="550435465"/>
+								<reference key="IBUIFontDescription" ref="198830197"/>
+								<reference key="IBUIFont" ref="1059203236"/>
 							</object>
 							<object class="IBUIButton" id="484933655">
 								<reference key="NSNextResponder" ref="681455586"/>
@@ -336,8 +345,8 @@
 								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
-								<reference key="IBUIFontDescription" ref="566300200"/>
-								<reference key="IBUIFont" ref="550435465"/>
+								<reference key="IBUIFontDescription" ref="198830197"/>
+								<reference key="IBUIFont" ref="1059203236"/>
 							</object>
 							<object class="IBUIButton" id="360626197">
 								<reference key="NSNextResponder" ref="681455586"/>
@@ -375,8 +384,8 @@
 								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
-								<reference key="IBUIFontDescription" ref="566300200"/>
-								<reference key="IBUIFont" ref="550435465"/>
+								<reference key="IBUIFontDescription" ref="198830197"/>
+								<reference key="IBUIFont" ref="1059203236"/>
 							</object>
 							<object class="IBUIButton" id="984086044">
 								<reference key="NSNextResponder" ref="681455586"/>
@@ -410,8 +419,8 @@
 								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
-								<reference key="IBUIFontDescription" ref="566300200"/>
-								<reference key="IBUIFont" ref="550435465"/>
+								<reference key="IBUIFontDescription" ref="198830197"/>
+								<reference key="IBUIFont" ref="1059203236"/>
 							</object>
 							<object class="IBUIButton" id="321117684">
 								<reference key="NSNextResponder" ref="681455586"/>
@@ -445,8 +454,8 @@
 								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
-								<reference key="IBUIFontDescription" ref="566300200"/>
-								<reference key="IBUIFont" ref="550435465"/>
+								<reference key="IBUIFontDescription" ref="198830197"/>
+								<reference key="IBUIFont" ref="1059203236"/>
 							</object>
 							<object class="IBUIButton" id="1048333169">
 								<reference key="NSNextResponder" ref="681455586"/>
@@ -474,13 +483,13 @@
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica-Oblique</string>
-									<string key="family">Helvetica</string>
+									<string key="name">HelveticaNeue-Italic</string>
+									<string key="family">Helvetica Neue</string>
 									<int key="traits">1</int>
 									<double key="pointSize">14</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-LightOblique</string>
+									<string key="NSName">HelveticaNeue-LightItalic</string>
 									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -548,14 +557,14 @@
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica</string>
-									<string key="family">Helvetica</string>
+									<string key="name">HelveticaNeue</string>
+									<string key="family">Helvetica Neue</string>
 									<int key="traits">0</int>
-									<double key="pointSize">11</double>
+									<double key="pointSize">12</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">11</double>
+									<string key="NSName">HelveticaNeue-Medium</string>
+									<double key="NSSize">12</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
@@ -585,13 +594,13 @@
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
 								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica-Bold</string>
-									<string key="family">Helvetica</string>
+									<string key="name">HelveticaNeue-Bold</string>
+									<string key="family">Helvetica Neue</string>
 									<int key="traits">2</int>
 									<double key="pointSize">14</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
+									<string key="NSName">HelveticaNeue-Bold</string>
 									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -617,16 +626,27 @@
 								<reference key="IBUISelectedTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleShadowColor" ref="128392722"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="693718233">
+								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">ButtonUnderlinePushed.png</string>
+								</object>
+								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
+								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">ButtonUnderline.png</string>
 								</object>
-								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
-								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
-								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
-								<reference key="IBUINormalBackgroundImage" ref="693718233"/>
-								<reference key="IBUIFontDescription" ref="566300200"/>
-								<reference key="IBUIFont" ref="550435465"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="874955253">
+									<string key="name">HelveticaNeue-Medium</string>
+									<string key="family">Helvetica Neue</string>
+									<int key="traits">0</int>
+									<double key="pointSize">13</double>
+								</object>
+								<object class="NSFont" key="IBUIFont" id="946799086">
+									<string key="NSName">HelveticaNeue-Medium</string>
+									<double key="NSSize">13</double>
+									<int key="NSfFlags">16</int>
+								</object>
 							</object>
 							<object class="IBUIButton" id="926384629">
 								<reference key="NSNextResponder" ref="681455586"/>
@@ -652,16 +672,18 @@
 								<reference key="IBUISelectedTitleColor" ref="570296177"/>
 								<reference key="IBUINormalTitleColor" ref="570296177"/>
 								<reference key="IBUINormalTitleShadowColor" ref="128392722"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="479149762">
+								<object class="NSCustomResource" key="IBUIDisabledImage" id="349428800">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">ButtonContentSpoiler.png</string>
 								</object>
-								<reference key="IBUIDisabledImage" ref="479149762"/>
-								<reference key="IBUISelectedImage" ref="479149762"/>
-								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
+								<reference key="IBUISelectedImage" ref="349428800"/>
+								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">ButtonContentSpoilerPushed.png</string>
+								</object>
 								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
-								<reference key="IBUINormalBackgroundImage" ref="479149762"/>
+								<reference key="IBUINormalBackgroundImage" ref="349428800"/>
 								<reference key="IBUIFontDescription" ref="566300200"/>
 								<reference key="IBUIFont" ref="550435465"/>
 							</object>
@@ -683,16 +705,18 @@
 								<reference key="IBUISelectedTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleShadowColor" ref="128392722"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="795561155">
+								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">ButtonStrikePushed.png</string>
+								</object>
+								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
+								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">ButtonStrike.png</string>
 								</object>
-								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
-								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
-								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
-								<reference key="IBUINormalBackgroundImage" ref="795561155"/>
-								<reference key="IBUIFontDescription" ref="566300200"/>
-								<reference key="IBUIFont" ref="550435465"/>
+								<reference key="IBUIFontDescription" ref="874955253"/>
+								<reference key="IBUIFont" ref="946799086"/>
 							</object>
 							<object class="IBUIButton" id="653405184">
 								<reference key="NSNextResponder" ref="681455586"/>
@@ -714,14 +738,16 @@
 								<reference key="IBUISelectedTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleShadowColor" ref="128392722"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="182853978">
+								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">ButtonCodePushed.png</string>
+								</object>
+								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
+								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">ButtonCode.png</string>
 								</object>
-								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
-								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
-								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
-								<reference key="IBUINormalBackgroundImage" ref="182853978"/>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">Courier</string>
 									<string key="family">Courier</string>
@@ -1350,7 +1376,9 @@
 					<string>105.IBPluginDependency</string>
 					<string>106.IBPluginDependency</string>
 					<string>107.IBPluginDependency</string>
+					<string>107.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>108.IBPluginDependency</string>
+					<string>108.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>109.IBPluginDependency</string>
 					<string>109.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>110.IBPluginDependency</string>
@@ -1389,24 +1417,26 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="1"/>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="1"/>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="0.0"/>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="0.0"/>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="0.0"/>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1548,15 +1578,23 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>Button.png</string>
 				<string>ButtonCode.png</string>
+				<string>ButtonCodePushed.png</string>
 				<string>ButtonContentSpoiler.png</string>
+				<string>ButtonContentSpoilerPushed.png</string>
 				<string>ButtonPushed.png</string>
 				<string>ButtonStrike.png</string>
+				<string>ButtonStrikePushed.png</string>
 				<string>ButtonUnderline.png</string>
+				<string>ButtonUnderlinePushed.png</string>
 				<string>Camera.png</string>
 				<string>NavButtonTags.png</string>
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{77, 51}</string>
+				<string>{77, 51}</string>
+				<string>{77, 51}</string>
+				<string>{77, 51}</string>
 				<string>{77, 51}</string>
 				<string>{77, 51}</string>
 				<string>{77, 51}</string>

@@ -70,6 +70,22 @@
 		CD235A0B1739D5EA0078423B /* ButtonUnderline.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F41739D5EA0078423B /* ButtonUnderline.png */; };
 		CD235A0C1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F51739D5EA0078423B /* ButtonUnderline@2x.png */; };
 		CD235A0D1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F51739D5EA0078423B /* ButtonUnderline@2x.png */; };
+		CD235A1A173AB4390078423B /* ButtonCodePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A12173AB4380078423B /* ButtonCodePushed.png */; };
+		CD235A1B173AB4390078423B /* ButtonCodePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A12173AB4380078423B /* ButtonCodePushed.png */; };
+		CD235A1C173AB4390078423B /* ButtonCodePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A13173AB4380078423B /* ButtonCodePushed@2x.png */; };
+		CD235A1D173AB4390078423B /* ButtonCodePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A13173AB4380078423B /* ButtonCodePushed@2x.png */; };
+		CD235A1E173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */; };
+		CD235A1F173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */; };
+		CD235A20173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A15173AB4380078423B /* ButtonContentSpoilerPushed@2x.png */; };
+		CD235A21173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A15173AB4380078423B /* ButtonContentSpoilerPushed@2x.png */; };
+		CD235A22173AB4390078423B /* ButtonStrikePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A16173AB4390078423B /* ButtonStrikePushed.png */; };
+		CD235A23173AB4390078423B /* ButtonStrikePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A16173AB4390078423B /* ButtonStrikePushed.png */; };
+		CD235A24173AB4390078423B /* ButtonStrikePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A17173AB4390078423B /* ButtonStrikePushed@2x.png */; };
+		CD235A25173AB4390078423B /* ButtonStrikePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A17173AB4390078423B /* ButtonStrikePushed@2x.png */; };
+		CD235A26173AB4390078423B /* ButtonUnderlinePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A18173AB4390078423B /* ButtonUnderlinePushed.png */; };
+		CD235A27173AB4390078423B /* ButtonUnderlinePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A18173AB4390078423B /* ButtonUnderlinePushed.png */; };
+		CD235A28173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A19173AB4390078423B /* ButtonUnderlinePushed@2x.png */; };
+		CD235A29173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A19173AB4390078423B /* ButtonUnderlinePushed@2x.png */; };
 		CD8BA2B116302B8800ED5C5E /* Shack[lol]Icon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2AF16302B8800ED5C5E /* Shack[lol]Icon.48.png */; };
 		CD8BA2B216302B8800ED5C5E /* Shack[lol]Icon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B016302B8800ED5C5E /* Shack[lol]Icon.48@2x.png */; };
 		CD8BA2B41630697B00ED5C5E /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B31630697B00ED5C5E /* arrow.png */; };
@@ -536,6 +552,14 @@
 		CD235A0F1739DF4A0078423B /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
 		CD235A101739DF6A0078423B /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		CD235A111739DF6A0078423B /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		CD235A12173AB4380078423B /* ButtonCodePushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonCodePushed.png; path = Assets/ButtonCodePushed.png; sourceTree = "<group>"; };
+		CD235A13173AB4380078423B /* ButtonCodePushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonCodePushed@2x.png"; path = "Assets/ButtonCodePushed@2x.png"; sourceTree = "<group>"; };
+		CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonContentSpoilerPushed.png; path = Assets/ButtonContentSpoilerPushed.png; sourceTree = "<group>"; };
+		CD235A15173AB4380078423B /* ButtonContentSpoilerPushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonContentSpoilerPushed@2x.png"; path = "Assets/ButtonContentSpoilerPushed@2x.png"; sourceTree = "<group>"; };
+		CD235A16173AB4390078423B /* ButtonStrikePushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonStrikePushed.png; path = Assets/ButtonStrikePushed.png; sourceTree = "<group>"; };
+		CD235A17173AB4390078423B /* ButtonStrikePushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonStrikePushed@2x.png"; path = "Assets/ButtonStrikePushed@2x.png"; sourceTree = "<group>"; };
+		CD235A18173AB4390078423B /* ButtonUnderlinePushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonUnderlinePushed.png; path = Assets/ButtonUnderlinePushed.png; sourceTree = "<group>"; };
+		CD235A19173AB4390078423B /* ButtonUnderlinePushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonUnderlinePushed@2x.png"; path = "Assets/ButtonUnderlinePushed@2x.png"; sourceTree = "<group>"; };
 		CD8BA2AF16302B8800ED5C5E /* Shack[lol]Icon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Shack[lol]Icon.48.png"; path = "Assets/Shack[lol]Icon.48.png"; sourceTree = "<group>"; };
 		CD8BA2B016302B8800ED5C5E /* Shack[lol]Icon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Shack[lol]Icon.48@2x.png"; path = "Assets/Shack[lol]Icon.48@2x.png"; sourceTree = "<group>"; };
 		CD8BA2B31630697B00ED5C5E /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = Assets/arrow.png; sourceTree = "<group>"; };
@@ -1111,16 +1135,24 @@
 				CDA01B171730A87600E24A28 /* BlueButtonPressed@2x.png */,
 				CD2359EA1739D5EA0078423B /* Button.png */,
 				CD2359EB1739D5EA0078423B /* Button@2x.png */,
-				CD2359EC1739D5EA0078423B /* ButtonCode.png */,
-				CD2359ED1739D5EA0078423B /* ButtonCode@2x.png */,
-				CD2359EE1739D5EA0078423B /* ButtonContentSpoiler.png */,
-				CD2359EF1739D5EA0078423B /* ButtonContentSpoiler@2x.png */,
 				CD2359F01739D5EA0078423B /* ButtonPushed.png */,
 				CD2359F11739D5EA0078423B /* ButtonPushed@2x.png */,
+				CD2359EC1739D5EA0078423B /* ButtonCode.png */,
+				CD2359ED1739D5EA0078423B /* ButtonCode@2x.png */,
+				CD235A12173AB4380078423B /* ButtonCodePushed.png */,
+				CD235A13173AB4380078423B /* ButtonCodePushed@2x.png */,
+				CD2359EE1739D5EA0078423B /* ButtonContentSpoiler.png */,
+				CD2359EF1739D5EA0078423B /* ButtonContentSpoiler@2x.png */,
+				CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */,
+				CD235A15173AB4380078423B /* ButtonContentSpoilerPushed@2x.png */,
 				CD2359F21739D5EA0078423B /* ButtonStrike.png */,
 				CD2359F31739D5EA0078423B /* ButtonStrike@2x.png */,
+				CD235A16173AB4390078423B /* ButtonStrikePushed.png */,
+				CD235A17173AB4390078423B /* ButtonStrikePushed@2x.png */,
 				CD2359F41739D5EA0078423B /* ButtonUnderline.png */,
 				CD2359F51739D5EA0078423B /* ButtonUnderline@2x.png */,
+				CD235A18173AB4390078423B /* ButtonUnderlinePushed.png */,
+				CD235A19173AB4390078423B /* ButtonUnderlinePushed@2x.png */,
 				FA9C3F160F9CFD580022A739 /* GrayButton.png */,
 				FA9C3F180F9CFE130022A739 /* GrayButtonPressed.png */,
 				FA87BE890F7B18C60044898C /* NavButtonTags.png */,
@@ -1448,6 +1480,14 @@
 				CD235A081739D5EA0078423B /* ButtonStrike@2x.png in Resources */,
 				CD235A0A1739D5EA0078423B /* ButtonUnderline.png in Resources */,
 				CD235A0C1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */,
+				CD235A1A173AB4390078423B /* ButtonCodePushed.png in Resources */,
+				CD235A1C173AB4390078423B /* ButtonCodePushed@2x.png in Resources */,
+				CD235A1E173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */,
+				CD235A20173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */,
+				CD235A22173AB4390078423B /* ButtonStrikePushed.png in Resources */,
+				CD235A24173AB4390078423B /* ButtonStrikePushed@2x.png in Resources */,
+				CD235A26173AB4390078423B /* ButtonUnderlinePushed.png in Resources */,
+				CD235A28173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1597,6 +1637,14 @@
 				CD235A091739D5EA0078423B /* ButtonStrike@2x.png in Resources */,
 				CD235A0B1739D5EA0078423B /* ButtonUnderline.png in Resources */,
 				CD235A0D1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */,
+				CD235A1B173AB4390078423B /* ButtonCodePushed.png in Resources */,
+				CD235A1D173AB4390078423B /* ButtonCodePushed@2x.png in Resources */,
+				CD235A1F173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */,
+				CD235A21173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */,
+				CD235A23173AB4390078423B /* ButtonStrikePushed.png in Resources */,
+				CD235A25173AB4390078423B /* ButtonStrikePushed@2x.png in Resources */,
+				CD235A27173AB4390078423B /* ButtonUnderlinePushed.png in Resources */,
+				CD235A29173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
