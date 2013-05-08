@@ -19,7 +19,7 @@ div.author a {
   color: rgb(255,186,0);
   float: left;
   text-decoration: none;
-  -webkit-tap-highlight-color: rgba(255,186,0,0.5) !important;
+  -webkit-tap-highlight-color: rgba(255,186,0,0.5);
 }
 div.date,
 div.date a {
@@ -27,7 +27,7 @@ div.date a {
   color: rgb(100,100,100);
   float: right;
   text-decoration: none;
-  -webkit-tap-highlight-color: rgba(255,186,0,0.5) !important;
+  -webkit-tap-highlight-color: rgba(255,186,0,0.5);
 }
 div.body {
   color: white;
@@ -37,7 +37,10 @@ div.body {
 div.body a {
   color: #AEAE9B;
   word-wrap: break-word;
-  -webkit-tap-highlight-color: rgba(255,186,0,0.5) !important;
+  -webkit-tap-highlight-color: rgba(255,186,0,0.5);
+}
+body.review div.body a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 div.expiration {
     background: rgba(76,76,76,0.5);
@@ -119,8 +122,8 @@ div.focalbox img {
 div.story-content a {
   text-decoration: none;
   font-weight: bold;
-  color: rgb(255,186,0);
-  -webkit-tap-highlight-color: rgba(255,186,0,0.5) !important;
+  color: rgb(102,204,255);
+  -webkit-tap-highlight-color: rgba(179,212,253,0.5);
 }
 
 div#video #embedswf {
