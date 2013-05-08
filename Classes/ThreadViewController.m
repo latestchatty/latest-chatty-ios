@@ -126,6 +126,7 @@
     self.toolbar.userInteractionEnabled     = YES;
     self.leftToolbar.userInteractionEnabled = YES;
     grippyBar.userInteractionEnabled = YES;
+    self.navigationItem.rightBarButtonItem.enabled = YES;
     
     // Select and display the targeted post
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];
@@ -170,6 +171,7 @@
                                                                     target:self
                                                                     action:@selector(tappedReplyButton)];
         self.navigationItem.rightBarButtonItem = replyButton;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     
     // Fill in emtpy web view
