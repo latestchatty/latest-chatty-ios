@@ -617,13 +617,14 @@
 								<reference key="IBUISelectedTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleShadowColor" ref="128392722"/>
-								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
-								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
-								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="693718233">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">ButtonUnderline.png</string>
 								</object>
+								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
+								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
+								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
+								<reference key="IBUINormalBackgroundImage" ref="693718233"/>
 								<reference key="IBUIFontDescription" ref="566300200"/>
 								<reference key="IBUIFont" ref="550435465"/>
 							</object>
@@ -657,11 +658,10 @@
 								</object>
 								<reference key="IBUIDisabledImage" ref="479149762"/>
 								<reference key="IBUISelectedImage" ref="479149762"/>
-								<reference key="IBUINormalImage" ref="479149762"/>
 								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
 								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
 								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
-								<reference key="IBUINormalBackgroundImage" ref="259952313"/>
+								<reference key="IBUINormalBackgroundImage" ref="479149762"/>
 								<reference key="IBUIFontDescription" ref="566300200"/>
 								<reference key="IBUIFont" ref="550435465"/>
 							</object>
@@ -683,13 +683,14 @@
 								<reference key="IBUISelectedTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleShadowColor" ref="128392722"/>
-								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
-								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
-								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="795561155">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">ButtonStrike.png</string>
 								</object>
+								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
+								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
+								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
+								<reference key="IBUINormalBackgroundImage" ref="795561155"/>
 								<reference key="IBUIFontDescription" ref="566300200"/>
 								<reference key="IBUIFont" ref="550435465"/>
 							</object>
@@ -699,7 +700,6 @@
 								<string key="NSFrame">{{237, 155}, {77, 51}}</string>
 								<reference key="NSSuperview" ref="681455586"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -714,13 +714,14 @@
 								<reference key="IBUISelectedTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleColor" ref="22205846"/>
 								<reference key="IBUINormalTitleShadowColor" ref="128392722"/>
-								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
-								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
-								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="182853978">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">ButtonCode.png</string>
 								</object>
+								<reference key="IBUIHighlightedBackgroundImage" ref="539545204"/>
+								<reference key="IBUIDisabledBackgroundImage" ref="259952313"/>
+								<reference key="IBUISelectedBackgroundImage" ref="259952313"/>
+								<reference key="IBUINormalBackgroundImage" ref="182853978"/>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">Courier</string>
 									<string key="family">Courier</string>
@@ -876,7 +877,6 @@
 						<string key="NSFrame">{{141, 226}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="902517198"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -1352,6 +1352,7 @@
 					<string>107.IBPluginDependency</string>
 					<string>108.IBPluginDependency</string>
 					<string>109.IBPluginDependency</string>
+					<string>109.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>110.IBPluginDependency</string>
 					<string>111.IBPluginDependency</string>
 					<string>112.IBPluginDependency</string>
@@ -1360,9 +1361,13 @@
 					<string>115.IBPluginDependency</string>
 					<string>116.IBPluginDependency</string>
 					<string>117.IBPluginDependency</string>
+					<string>117.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>118.IBPluginDependency</string>
+					<string>118.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>119.IBPluginDependency</string>
+					<string>119.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>120.IBPluginDependency</string>
+					<string>120.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>143.IBPluginDependency</string>
 					<string>144.IBPluginDependency</string>
 					<string>145.IBPluginDependency</string>
@@ -1386,6 +1391,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1394,9 +1400,13 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
