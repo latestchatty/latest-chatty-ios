@@ -91,9 +91,9 @@
 		CD235A49173AFB2F0078423B /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = CD235A46173AFB2F0078423B /* ASIDataDecompressor.m */; };
 		CD235A4A173AFB2F0078423B /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = CD235A46173AFB2F0078423B /* ASIDataDecompressor.m */; };
 		CD235A4C173AFB920078423B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4B173AFB920078423B /* MobileCoreServices.framework */; };
-		CD235A4E173AFBAE0078423B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4D173AFBAE0078423B /* libxml2.dylib */; };
 		CD235A4F173AFC000078423B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4B173AFB920078423B /* MobileCoreServices.framework */; };
-		CD235A50173AFC090078423B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4D173AFBAE0078423B /* libxml2.dylib */; };
+		CD235A52173B1F830078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
+		CD235A53173B1F920078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
 		CD8BA2B116302B8800ED5C5E /* Shack[lol]Icon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2AF16302B8800ED5C5E /* Shack[lol]Icon.48.png */; };
 		CD8BA2B216302B8800ED5C5E /* Shack[lol]Icon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B016302B8800ED5C5E /* Shack[lol]Icon.48@2x.png */; };
 		CD8BA2B41630697B00ED5C5E /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B31630697B00ED5C5E /* arrow.png */; };
@@ -333,7 +333,6 @@
 		CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5B610A69A190028D630 /* libz.dylib */; };
-		CDA1182316C1DC6600CE1375 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA56C8B5114B5FBC006A493B /* QuartzCore.framework */; };
 		CDE0905B164042DD0010E8F5 /* Message.html in Resources */ = {isa = PBXBuildFile; fileRef = CDE0905A164042DD0010E8F5 /* Message.html */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
@@ -382,7 +381,6 @@
 		FA4124130F8FECED002E1978 /* SettingsIcon.48.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4124120F8FECED002E1978 /* SettingsIcon.48.png */; };
 		FA4124540F8FEFF1002E1978 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4124530F8FEFF1002E1978 /* MessagesViewController.xib */; };
 		FA4124580F8FF059002E1978 /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4124570F8FF059002E1978 /* MessagesViewController.m */; };
-		FA56C8B6114B5FBC006A493B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA56C8B5114B5FBC006A493B /* QuartzCore.framework */; };
 		FA5B5F0011D7031B000CC71C /* AboutIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5EFF11D7031B000CC71C /* AboutIcon.48@2x.png */; };
 		FA5B5F0611D7035C000CC71C /* MessagesIcon.48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5F0511D7035C000CC71C /* MessagesIcon.48@2x.png */; };
 		FA5B5F1511D704A1000CC71C /* RefreshIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5B5F1411D704A1000CC71C /* RefreshIcon@2x.png */; };
@@ -573,7 +571,7 @@
 		CD235A45173AFB2F0078423B /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataDecompressor.h; sourceTree = "<group>"; };
 		CD235A46173AFB2F0078423B /* ASIDataDecompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataDecompressor.m; sourceTree = "<group>"; };
 		CD235A4B173AFB920078423B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		CD235A4D173AFBAE0078423B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		CD235A51173B1F1A0078423B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CD8BA2AF16302B8800ED5C5E /* Shack[lol]Icon.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Shack[lol]Icon.48.png"; path = "Assets/Shack[lol]Icon.48.png"; sourceTree = "<group>"; };
 		CD8BA2B016302B8800ED5C5E /* Shack[lol]Icon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Shack[lol]Icon.48@2x.png"; path = "Assets/Shack[lol]Icon.48@2x.png"; sourceTree = "<group>"; };
 		CD8BA2B31630697B00ED5C5E /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = Assets/arrow.png; sourceTree = "<group>"; };
@@ -619,7 +617,6 @@
 		FA1E7D650F787FEF00BAA55B /* ModelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader.h; sourceTree = "<group>"; };
 		FA1E7D660F787FEF00BAA55B /* ModelLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelLoader.m; sourceTree = "<group>"; };
 		FA2260520F8EE251002F77DD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		FA268FA4115AE23500D153C0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FA2690BC115AEDC800D153C0 /* NoContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoContentController.h; sourceTree = "<group>"; };
 		FA2690BD115AEDC800D153C0 /* NoContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoContentController.m; sourceTree = "<group>"; };
 		FA2690BE115AEDC800D153C0 /* NoContentController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "NoContentController-iPad.xib"; sourceTree = "<group>"; };
@@ -651,7 +648,6 @@
 		FA56C87B114B5A5F006A493B /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		FA56C87C114B5A5F006A493B /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		FA56C87D114B5A5F006A493B /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
-		FA56C8B5114B5FBC006A493B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FA5B5EFF11D7031B000CC71C /* AboutIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AboutIcon.48@2x.png"; path = "Assets/AboutIcon.48@2x.png"; sourceTree = "<group>"; };
 		FA5B5F0511D7035C000CC71C /* MessagesIcon.48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessagesIcon.48@2x.png"; path = "Assets/MessagesIcon.48@2x.png"; sourceTree = "<group>"; };
 		FA5B5F1411D704A1000CC71C /* RefreshIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RefreshIcon@2x.png"; path = "Assets/RefreshIcon@2x.png"; sourceTree = "<group>"; };
@@ -810,15 +806,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD235A50173AFC090078423B /* libxml2.dylib in Frameworks */,
-				CD235A4F173AFC000078423B /* MobileCoreServices.framework in Frameworks */,
-				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */,
+				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				CD235A4F173AFC000078423B /* MobileCoreServices.framework in Frameworks */,
+				CD235A53173B1F920078423B /* QuartzCore.framework in Frameworks */,
 				5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				5907C5B710A69A190028D630 /* libz.dylib in Frameworks */,
-				FA56C8B6114B5FBC006A493B /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,15 +821,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD235A4E173AFBAE0078423B /* libxml2.dylib in Frameworks */,
-				CD235A4C173AFB920078423B /* MobileCoreServices.framework in Frameworks */,
-				CDA1181D16C1DC6600CE1375 /* Foundation.framework in Frameworks */,
-				CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */,
-				CDA1181F16C1DC6600CE1375 /* CoreGraphics.framework in Frameworks */,
 				CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */,
+				CDA1181F16C1DC6600CE1375 /* CoreGraphics.framework in Frameworks */,
+				CDA1181D16C1DC6600CE1375 /* Foundation.framework in Frameworks */,
+				CD235A4C173AFB920078423B /* MobileCoreServices.framework in Frameworks */,
+				CD235A52173B1F830078423B /* QuartzCore.framework in Frameworks */,
 				CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */,
+				CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */,
 				CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */,
-				CDA1182316C1DC6600CE1375 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,8 +838,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				599FF0E810D5DDC1004476B8 /* JSON */,
-				5907C58310A699A70028D630 /* ASIHTTP */,
 				1D3623240D0F684500981E51 /* LatestChatty2AppDelegate.h */,
 				1D3623250D0F684500981E51 /* LatestChatty2AppDelegate.m */,
 				FA5FCD110F6F607200878F27 /* Controllers */,
@@ -867,8 +859,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				CD235A4D173AFBAE0078423B /* libxml2.dylib */,
-				CD235A4B173AFB920078423B /* MobileCoreServices.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -918,16 +908,18 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				599FF0E810D5DDC1004476B8 /* JSON */,
+				5907C58310A699A70028D630 /* ASIHTTP */,
 				FAAFAE291161DAA5009A6B4C /* HKHelperKit */,
 				FA2B47500F7E1DA30074064A /* Base64 */,
-				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
-				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				5907C5AC10A69A0A0028D630 /* CFNetwork.framework */,
-				FA56C8B5114B5FBC006A493B /* QuartzCore.framework */,
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				CD235A4B173AFB920078423B /* MobileCoreServices.framework */,
+				CD235A51173B1F1A0078423B /* QuartzCore.framework */,
 				5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				5907C5B610A69A190028D630 /* libz.dylib */,
-				FA268FA4115AE23500D153C0 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -956,7 +948,8 @@
 				5907C58D10A699A70028D630 /* ASINetworkQueue.m */,
 				CD235A111739DF6A0078423B /* ASIProgressDelegate.h */,
 			);
-			path = ASIHTTP;
+			name = ASIHTTP;
+			path = Classes/ASIHTTP;
 			sourceTree = "<group>";
 		};
 		599FF0E810D5DDC1004476B8 /* JSON */ = {
@@ -976,7 +969,8 @@
 				599FF0F410D5DDC1004476B8 /* SBJsonWriter.h */,
 				599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */,
 			);
-			path = JSON;
+			name = JSON;
+			path = Classes/JSON;
 			sourceTree = "<group>";
 		};
 		FA2B47500F7E1DA30074064A /* Base64 */ = {
