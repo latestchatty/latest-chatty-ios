@@ -96,14 +96,14 @@
         UIInterfaceOrientation orientation = self.interfaceOrientation;
         
         if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [postContent setFrame:CGRectMake(0, 39, screenHeight, 66)];
+            [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
             [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
         } else {
             if ( screenHeight > 480 ) {
-                [postContent setFrame:CGRectMake(0, 72, screenWidth, 216)];
+                [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
             }
             else {
-                [postContent setFrame:CGRectMake(0, 60, screenWidth, 141)];
+                [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
             }
             [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenWidth, availableSpacePortrait-(postContent.frameY + postContent.frameHeight))];
         }
@@ -177,15 +177,15 @@
             
             //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
             if ( screenHeight > 480 ) {
-                [postContent setFrame:CGRectMake(0, 72, screenWidth, 216)];
+                [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
             }
             else {
-                [postContent setFrame:CGRectMake(0, 60, screenWidth, 141)];
+                [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
             }
             [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenWidth, availableSpacePortrait-(postContent.frameY + postContent.frameHeight))];
         } else {
             //iPhone landscape activated
-            [postContent setFrame:CGRectMake(0, 39, screenHeight, 66)];
+            [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
             [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
         }
     }
