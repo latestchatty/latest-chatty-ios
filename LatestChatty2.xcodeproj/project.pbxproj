@@ -50,10 +50,6 @@
 		CD2359F71739D5EA0078423B /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EA1739D5EA0078423B /* Button.png */; };
 		CD2359F81739D5EA0078423B /* Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EB1739D5EA0078423B /* Button@2x.png */; };
 		CD2359F91739D5EA0078423B /* Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EB1739D5EA0078423B /* Button@2x.png */; };
-		CD2359FA1739D5EA0078423B /* ButtonCode.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EC1739D5EA0078423B /* ButtonCode.png */; };
-		CD2359FB1739D5EA0078423B /* ButtonCode.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EC1739D5EA0078423B /* ButtonCode.png */; };
-		CD2359FC1739D5EA0078423B /* ButtonCode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359ED1739D5EA0078423B /* ButtonCode@2x.png */; };
-		CD2359FD1739D5EA0078423B /* ButtonCode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359ED1739D5EA0078423B /* ButtonCode@2x.png */; };
 		CD2359FE1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EE1739D5EA0078423B /* ButtonContentSpoiler.png */; };
 		CD2359FF1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EE1739D5EA0078423B /* ButtonContentSpoiler.png */; };
 		CD235A001739D5EA0078423B /* ButtonContentSpoiler@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EF1739D5EA0078423B /* ButtonContentSpoiler@2x.png */; };
@@ -70,10 +66,6 @@
 		CD235A0B1739D5EA0078423B /* ButtonUnderline.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F41739D5EA0078423B /* ButtonUnderline.png */; };
 		CD235A0C1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F51739D5EA0078423B /* ButtonUnderline@2x.png */; };
 		CD235A0D1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F51739D5EA0078423B /* ButtonUnderline@2x.png */; };
-		CD235A1A173AB4390078423B /* ButtonCodePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A12173AB4380078423B /* ButtonCodePushed.png */; };
-		CD235A1B173AB4390078423B /* ButtonCodePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A12173AB4380078423B /* ButtonCodePushed.png */; };
-		CD235A1C173AB4390078423B /* ButtonCodePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A13173AB4380078423B /* ButtonCodePushed@2x.png */; };
-		CD235A1D173AB4390078423B /* ButtonCodePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A13173AB4380078423B /* ButtonCodePushed@2x.png */; };
 		CD235A1E173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */; };
 		CD235A1F173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */; };
 		CD235A20173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A15173AB4380078423B /* ButtonContentSpoilerPushed@2x.png */; };
@@ -544,8 +536,6 @@
 		CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleSafariActivity.m; path = Classes/AppleSafariActivity.m; sourceTree = "<group>"; };
 		CD2359EA1739D5EA0078423B /* Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Button.png; path = Assets/Button.png; sourceTree = "<group>"; };
 		CD2359EB1739D5EA0078423B /* Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Button@2x.png"; path = "Assets/Button@2x.png"; sourceTree = "<group>"; };
-		CD2359EC1739D5EA0078423B /* ButtonCode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonCode.png; path = Assets/ButtonCode.png; sourceTree = "<group>"; };
-		CD2359ED1739D5EA0078423B /* ButtonCode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonCode@2x.png"; path = "Assets/ButtonCode@2x.png"; sourceTree = "<group>"; };
 		CD2359EE1739D5EA0078423B /* ButtonContentSpoiler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonContentSpoiler.png; path = Assets/ButtonContentSpoiler.png; sourceTree = "<group>"; };
 		CD2359EF1739D5EA0078423B /* ButtonContentSpoiler@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonContentSpoiler@2x.png"; path = "Assets/ButtonContentSpoiler@2x.png"; sourceTree = "<group>"; };
 		CD2359F01739D5EA0078423B /* ButtonPushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonPushed.png; path = Assets/ButtonPushed.png; sourceTree = "<group>"; };
@@ -558,8 +548,6 @@
 		CD235A0F1739DF4A0078423B /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
 		CD235A101739DF6A0078423B /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		CD235A111739DF6A0078423B /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
-		CD235A12173AB4380078423B /* ButtonCodePushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonCodePushed.png; path = Assets/ButtonCodePushed.png; sourceTree = "<group>"; };
-		CD235A13173AB4380078423B /* ButtonCodePushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonCodePushed@2x.png"; path = "Assets/ButtonCodePushed@2x.png"; sourceTree = "<group>"; };
 		CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonContentSpoilerPushed.png; path = Assets/ButtonContentSpoilerPushed.png; sourceTree = "<group>"; };
 		CD235A15173AB4380078423B /* ButtonContentSpoilerPushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonContentSpoilerPushed@2x.png"; path = "Assets/ButtonContentSpoilerPushed@2x.png"; sourceTree = "<group>"; };
 		CD235A16173AB4390078423B /* ButtonStrikePushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonStrikePushed.png; path = Assets/ButtonStrikePushed.png; sourceTree = "<group>"; };
@@ -1155,10 +1143,6 @@
 				CD2359EB1739D5EA0078423B /* Button@2x.png */,
 				CD2359F01739D5EA0078423B /* ButtonPushed.png */,
 				CD2359F11739D5EA0078423B /* ButtonPushed@2x.png */,
-				CD2359EC1739D5EA0078423B /* ButtonCode.png */,
-				CD2359ED1739D5EA0078423B /* ButtonCode@2x.png */,
-				CD235A12173AB4380078423B /* ButtonCodePushed.png */,
-				CD235A13173AB4380078423B /* ButtonCodePushed@2x.png */,
 				CD2359EE1739D5EA0078423B /* ButtonContentSpoiler.png */,
 				CD2359EF1739D5EA0078423B /* ButtonContentSpoiler@2x.png */,
 				CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */,
@@ -1488,8 +1472,6 @@
 				CD028A0017337E05001E63B9 /* ReviewThreadViewController-iPad.xib in Resources */,
 				CD2359F61739D5EA0078423B /* Button.png in Resources */,
 				CD2359F81739D5EA0078423B /* Button@2x.png in Resources */,
-				CD2359FA1739D5EA0078423B /* ButtonCode.png in Resources */,
-				CD2359FC1739D5EA0078423B /* ButtonCode@2x.png in Resources */,
 				CD2359FE1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */,
 				CD235A001739D5EA0078423B /* ButtonContentSpoiler@2x.png in Resources */,
 				CD235A021739D5EA0078423B /* ButtonPushed.png in Resources */,
@@ -1498,8 +1480,6 @@
 				CD235A081739D5EA0078423B /* ButtonStrike@2x.png in Resources */,
 				CD235A0A1739D5EA0078423B /* ButtonUnderline.png in Resources */,
 				CD235A0C1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */,
-				CD235A1A173AB4390078423B /* ButtonCodePushed.png in Resources */,
-				CD235A1C173AB4390078423B /* ButtonCodePushed@2x.png in Resources */,
 				CD235A1E173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */,
 				CD235A20173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */,
 				CD235A22173AB4390078423B /* ButtonStrikePushed.png in Resources */,
@@ -1645,8 +1625,6 @@
 				CD028A0117337E05001E63B9 /* ReviewThreadViewController-iPad.xib in Resources */,
 				CD2359F71739D5EA0078423B /* Button.png in Resources */,
 				CD2359F91739D5EA0078423B /* Button@2x.png in Resources */,
-				CD2359FB1739D5EA0078423B /* ButtonCode.png in Resources */,
-				CD2359FD1739D5EA0078423B /* ButtonCode@2x.png in Resources */,
 				CD2359FF1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */,
 				CD235A011739D5EA0078423B /* ButtonContentSpoiler@2x.png in Resources */,
 				CD235A031739D5EA0078423B /* ButtonPushed.png in Resources */,
@@ -1655,8 +1633,6 @@
 				CD235A091739D5EA0078423B /* ButtonStrike@2x.png in Resources */,
 				CD235A0B1739D5EA0078423B /* ButtonUnderline.png in Resources */,
 				CD235A0D1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */,
-				CD235A1B173AB4390078423B /* ButtonCodePushed.png in Resources */,
-				CD235A1D173AB4390078423B /* ButtonCodePushed@2x.png in Resources */,
 				CD235A1F173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */,
 				CD235A21173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */,
 				CD235A23173AB4390078423B /* ButtonStrikePushed.png in Resources */,
