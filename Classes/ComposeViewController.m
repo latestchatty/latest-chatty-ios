@@ -45,7 +45,7 @@
 }
 
 - (void)viewDidLoad {
-	UIBarButtonItem *submitPostButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit Post" style:UIBarButtonItemStyleDone target:self action:@selector(sendPost)];
+	UIBarButtonItem *submitPostButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleDone target:self action:@selector(sendPost)];
 	self.navigationItem.rightBarButtonItem = submitPostButton;
 	[submitPostButton release];
 	
@@ -375,7 +375,7 @@
     [postContent resignFirstResponder];
     
     postingWarningAlertView = YES;
-    [UIAlertView showWithTitle:@"Post?"
+    [UIAlertView showWithTitle:@"Post"
                        message:@"Submit this post?"
                       delegate:self
              cancelButtonTitle:@"Cancel"
