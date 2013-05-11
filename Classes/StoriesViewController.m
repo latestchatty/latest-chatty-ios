@@ -37,12 +37,12 @@
     
     if (stories == nil || [stories count] == 0) [self refresh:self];
     
-    UIBarButtonItem *latestChattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
-																		   style:UIBarButtonItemStyleDone
-																		  target:self
-																		  action:@selector(tappedLatestChattyButton)];
-    self.navigationItem.rightBarButtonItem = latestChattyButton;
-    [latestChattyButton release];
+//    UIBarButtonItem *latestChattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
+//																		   style:UIBarButtonItemStyleDone
+//																		  target:self
+//																		  action:@selector(tappedLatestChattyButton)];
+//    self.navigationItem.rightBarButtonItem = latestChattyButton;
+//    [latestChattyButton release];
     
     pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
     [pull setDelegate:self];
