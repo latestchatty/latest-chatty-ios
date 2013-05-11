@@ -13,26 +13,27 @@
 
 @implementation LatestChatty2AppDelegate
 
-@synthesize window;
-@synthesize navigationController, contentNavigationController, slideOutViewController;
+@synthesize window,
+            navigationController,
+            contentNavigationController,
+            slideOutViewController;
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
-- (void)setupInterfaceForPhoneWithOptions:(NSDictionary *)launchOptions
-{    
+- (void)setupInterfaceForPhoneWithOptions:(NSDictionary *)launchOptions {
     if (![self reloadSavedState]) {
         // Add the root view controller
         RootViewController *viewController = [RootViewController controllerWithNib];
         [navigationController pushViewController:viewController animated:NO];
     }
     
-    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
-        // Tapped a messge push's view button
-        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
-        [navigationController pushViewController:viewController animated:NO];
-    }
+//    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
+//        // Tapped a messge push's view button
+//        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
+//        [navigationController pushViewController:viewController animated:NO];
+//    }
     
     // Style the navigation bar
     navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
@@ -43,8 +44,7 @@
     window.rootViewController = navigationController;
 }
 
-- (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions
-{
+- (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions {
     self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
     contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     contentNavigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.15 alpha:1.0];
@@ -55,11 +55,11 @@
         [navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
     }
     
-    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
-        // Tapped a messge push's view button
-        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
-        [navigationController pushViewController:viewController animated:NO];
-    }
+//    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
+//        // Tapped a messge push's view button
+//        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
+//        [navigationController pushViewController:viewController animated:NO];
+//    }
     
     self.slideOutViewController =  [SlideOutViewController controllerWithNib];
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
@@ -74,10 +74,10 @@
     
     NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
     
-    // Register for Push
-    if ([defaults boolForKey:@"push.messages"]) {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-    }
+//    // Register for Push
+//    if ([defaults boolForKey:@"push.messages"]) {
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+//    }
     
     // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
     if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
@@ -90,7 +90,7 @@
         [self setupInterfaceForPhoneWithOptions:launchOptions];
     }
 
-      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];    
     
     [window makeKeyAndVisible];
 
@@ -99,11 +99,11 @@
                                      @"",                           @"username",
                                      @"",                           @"password",
                                      @"shackapi.stonedonkey.com",   @"server",
-//                                     [NSNumber numberWithBool:YES], @"landscape",
+                                     //[NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:YES], @"embedYoutube",
-//                                     [NSNumber numberWithBool:NO],  @"push.messages",
+                                     //[NSNumber numberWithBool:NO],  @"push.messages",
                                      [NSNumber numberWithBool:YES], @"picsResize",
-                                     [NSNumber numberWithFloat:0.7], @"picsQuality",
+                                     [NSNumber numberWithFloat:0.7],@"picsQuality",
                                      [NSNumber numberWithBool:YES], @"embedYoutube",
                                      [NSNumber numberWithBool:NO],  @"useSafari",
                                      [NSNumber numberWithBool:NO],  @"useChrome",
@@ -146,42 +146,42 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    if ([userInfo objectForKey:@"message_id"]) {
-        [UIAlertView showWithTitle:@"Incoming Message"
-                           message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
-                          delegate:self
-                 cancelButtonTitle:@"Dismiss"
-                 otherButtonTitles:@"View", nil];
-    }
-}
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//    if ([userInfo objectForKey:@"message_id"]) {
+//        [UIAlertView showWithTitle:@"Incoming Message"
+//                           message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+//                          delegate:self
+//                 cancelButtonTitle:@"Dismiss"
+//                 otherButtonTitles:@"View", nil];
+//    }
+//}
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        MessagesViewController *viewController = [[MessagesViewController alloc] init];
-        [navigationController pushViewController:viewController animated:YES];
-        [viewController release];
-    }
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+//    if (buttonIndex == 1) {
+//        MessagesViewController *viewController = [[MessagesViewController alloc] init];
+//        [navigationController pushViewController:viewController animated:YES];
+//        [viewController release];
+//    }
+//}
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
-    [request setURL:[NSURL URLWithString:[[Model class] urlStringWithPath:@"/devices"]]];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *pushToken = [[deviceToken description] stringByReplacingOccurrencesOfRegex:@"<|>" withString:@""];
-    NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
-    NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
-    NSString *requestBody = [NSString stringWithFormat:@"token=%@&username=%@&password=%@", pushToken, usernameString, passwordString];
-    [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
-    [request setHTTPMethod:@"POST"];
-
-    [NSURLConnection connectionWithRequest:request delegate:nil];
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"Error in registration. Error: %@", error);
-}
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+//    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+//    [request setURL:[NSURL URLWithString:[[Model class] urlStringWithPath:@"/devices"]]];
+//    
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *pushToken = [[deviceToken description] stringByReplacingOccurrencesOfRegex:@"<|>" withString:@""];
+//    NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
+//    NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
+//    NSString *requestBody = [NSString stringWithFormat:@"token=%@&username=%@&password=%@", pushToken, usernameString, passwordString];
+//    [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
+//    [request setHTTPMethod:@"POST"];
+//
+//    [NSURLConnection connectionWithRequest:request delegate:nil];
+//}
+//
+//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+//    NSLog(@"Error in registration. Error: %@", error);
+//}
 
 
 - (NSURLCredential *)userCredential {
@@ -239,9 +239,6 @@
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?story=(\\d+)" capture:1] intValue];
         viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
     }
-//    else if ([[uri lowercaseString] isMatchedByRegex:@"\\.(png|jpg)$"]) {
-//        viewController = [ImageViewController controllerWithURL:url];
-//    }
     
     return viewController;
 }
@@ -319,15 +316,14 @@
     NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSArray* shackCookies = [cookies cookiesForURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
     for (NSHTTPCookie* cookie in shackCookies) {
-     NSLog(@"Name: %@ : Value: %@", cookie.name, cookie.value); 
-     [cookies deleteCookie:cookie];
+        NSLog(@"Name: %@ : Value: %@", cookie.name, cookie.value);
+        [cookies deleteCookie:cookie];
     }
 }
 
 //Patch-E: handling the registered latestchatty:// URL scheme
 //  Uses the existing AppDelegate method viewControllerForURL to determine what kind of ViewController to instantiate and push onto the appropriate navigation controller stack.
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     NSLog(@"Passed in URL: %@", url);
     if (!url) {
         return NO;
