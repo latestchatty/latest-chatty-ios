@@ -129,6 +129,9 @@ div#video #embedswf {
   display: none; 
 }
 
+.story img,
+.story iframe { max-width: 100%; }
+
 /*
    iPad-only media queries
 */
