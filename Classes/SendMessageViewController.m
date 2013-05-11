@@ -184,7 +184,7 @@
     [body resignFirstResponder];
     
     postingWarningAlertView = YES;
-    [UIAlertView showWithTitle:@"Send?"
+    [UIAlertView showWithTitle:@"Message"
                        message:@"Send this message?"
                       delegate:self
              cancelButtonTitle:@"Cancel"
