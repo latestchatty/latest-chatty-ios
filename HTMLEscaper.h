@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface HTMLEscaper : NSObject <NSXMLParserDelegate> {
   NSMutableString *resultString;
 }

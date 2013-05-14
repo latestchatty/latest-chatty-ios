@@ -86,19 +86,16 @@
   return 1;
 }
 
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return 0;
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   // Override this method
     return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
 }
-
 
 #pragma mark Data Loading Callbacks
 
@@ -135,7 +132,6 @@
   [alert release];
 }
 
-
 #pragma mark Cleanup
 
 - (void)dealloc {
@@ -145,6 +141,4 @@
     [super dealloc];
 }
 
-
 @end
-

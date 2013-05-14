@@ -26,7 +26,7 @@
 
 - (void)showActivityIndicator;
 - (void)setupReply:(Message*)message;
-- (IBAction)makeMessage;
-- (IBAction)sendMessage;
+- (void)makeMessage;
+- (void)sendMessage;
 
 @end

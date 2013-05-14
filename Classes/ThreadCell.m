@@ -64,7 +64,6 @@
 		if (username && ![username isEqualToString:@""] && [participantName isEqualToString:username]) {
 			participantIcon.hidden = NO;
         }
-
 	}
 	
 	// Show new post icon
@@ -83,6 +82,5 @@
 	self.rootPost = nil;
 	[super dealloc];
 }
-
 
 @end

@@ -9,7 +9,6 @@
 #import "StoryViewController.h"
 #import "LatestChatty2AppDelegate.h"
 
-
 @implementation StoryViewController
 
 @synthesize story, storyLoader;
@@ -82,26 +81,24 @@
     //if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
     //    [content loadRequest:[NSURLRequest requestWithURLString:baseUrlString]];
     //} else {
-        StringTemplate *htmlTemplate = [[[StringTemplate alloc] initWithTemplateName:@"Story.html"] autorelease];
-        
-        NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
-        [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
-        [htmlTemplate setString:[Story formatDate:story.date] forKey:@"date"];
-        [htmlTemplate setString:[NSString stringWithFormat:@"%i", story.modelId] forKey:@"storyId"];
-        [htmlTemplate setString:story.body forKey:@"content"];
-        [htmlTemplate setString:story.title forKey:@"storyTitle"];
-        
-        [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
+    StringTemplate *htmlTemplate = [[[StringTemplate alloc] initWithTemplateName:@"Story.html"] autorelease];
+    
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
+    [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
+    [htmlTemplate setString:[Story formatDate:story.date] forKey:@"date"];
+    [htmlTemplate setString:[NSString stringWithFormat:@"%i", story.modelId] forKey:@"storyId"];
+    [htmlTemplate setString:story.body forKey:@"content"];
+    [htmlTemplate setString:story.title forKey:@"storyTitle"];
+    
+    [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
     //}
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     //    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
     return YES;
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
-
 
 - (void)loadChatty {
     ChattyViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
@@ -151,7 +148,6 @@
                         return NO;
                     }
                 }
-                
             }
             
             viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
@@ -176,6 +172,5 @@
     self.story = nil;
     [super dealloc];
 }
-
 
 @end

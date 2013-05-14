@@ -28,8 +28,9 @@
 
 #import "PullToRefreshView.h"
 
-#define TEXT_COLOR          [UIColor colorWithWhite:1.0 alpha:0.5]
-#define BACKGROUND_COLOR    [UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.000];
+#define STATUS_TEXT_COLOR       [UIColor colorWithRed:119.0/255.0 green:197.0/255.0 blue:254.0/255.0 alpha:1.000]
+#define LAST_UPDATED_TEXT_COLOR [UIColor whiteColor]
+#define BACKGROUND_COLOR        [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.000]
 #define FLIP_ANIMATION_DURATION 0.18f
 
 
@@ -72,7 +73,7 @@
 		lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
 		lastUpdatedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		lastUpdatedLabel.font = [UIFont systemFontOfSize:12.0f];
-		lastUpdatedLabel.textColor = TEXT_COLOR;
+		lastUpdatedLabel.textColor = LAST_UPDATED_TEXT_COLOR;
 		//lastUpdatedLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
 		//lastUpdatedLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
 		lastUpdatedLabel.backgroundColor = [UIColor clearColor];
@@ -82,7 +83,7 @@
 		statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, self.frame.size.width, 20.0f)];
 		statusLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		statusLabel.font = [UIFont boldSystemFontOfSize:13.0f];
-		statusLabel.textColor = TEXT_COLOR;
+		statusLabel.textColor = STATUS_TEXT_COLOR;
 		//statusLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
 		//statusLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
 		statusLabel.backgroundColor = [UIColor clearColor];
@@ -93,7 +94,7 @@
         //Patch-E: anchored the arrowImage 5 points from the left, the previous value of 25 caused the arrow to be over top of the
         //pull-to-refresh text and last updated label on the iPad in portrait orientation
 		//arrowImage.frame = CGRectMake(25.0f, frame.size.height - 60.0f, 24.0f, 52.0f);
-        arrowImage.frame = CGRectMake(5.0f, frame.size.height - 60.0f, 24.0f, 52.0f);
+        arrowImage.frame = CGRectMake(5.0f, frame.size.height - 45.0f, 25.0f, 30.0f);
 		arrowImage.contentsGravity = kCAGravityResizeAspect;
 		arrowImage.contents = (id) [UIImage imageNamed:@"arrow"].CGImage;
         

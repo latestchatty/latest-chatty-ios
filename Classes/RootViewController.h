@@ -18,7 +18,6 @@
 #import "MessagesViewController.h"
 #import "SearchViewController.h"
 
-
 @interface RootViewController : UITableViewController <ModelLoadingDelegate> {
   ModelLoader *messageLoader;
   NSUInteger messageCount;

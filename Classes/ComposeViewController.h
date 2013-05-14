@@ -13,11 +13,11 @@
 #import "ModelListViewController.h"
 #import "BrowserViewController.h"
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 @interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate, UIPopoverControllerDelegate> {
-#else
-	@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate> {
-#endif
+//#else
+//	@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate> {
+//#endif
 	NSInteger storyId;
 	Post *post;
 	
@@ -35,9 +35,9 @@
 	IBOutlet UIProgressView* uploadBar;
     
     IBOutlet UIButton *imageButton;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200		
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200		
     UIPopoverController *popoverController;
-#endif		
+//#endif		
 }
 
 @property (assign) NSInteger storyId;

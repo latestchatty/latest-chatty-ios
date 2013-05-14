@@ -8,7 +8,6 @@
 
 #import "StringTemplate.h"
 
-
 @implementation StringTemplate
 
 @synthesize result;

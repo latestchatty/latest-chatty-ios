@@ -18,7 +18,6 @@ typedef enum {
 	ModTypeOntopic
 } ModType;
 
-
 @interface Mod : NSObject {
     
 }
@@ -26,4 +25,3 @@ typedef enum {
 + (void)modParentId:(NSUInteger)parentID modPostId:(NSUInteger)postId mod:(ModType)modType;
 
 @end
-

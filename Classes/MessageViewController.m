@@ -39,14 +39,12 @@
     [webView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://www.shacknews.com/messages"]];
 }
 
-- (void)showWebView:(NSTimer*)theTimer
-{
+- (void)showWebView:(NSTimer*)theTimer {
 	[theTimer invalidate];
 	webView.hidden = NO;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)aWebView
-{
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView {
 	[NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(showWebView:) userInfo:nil repeats:NO];
     
     //Patch-E: shack api returns straight text for messages, this at least turns any URL into a tappable link to open either
@@ -106,7 +104,6 @@
                         return NO;
                     }
                 }
-                
             }
             
             viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
@@ -120,7 +117,6 @@
     return YES;
 }
 
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     //    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
     return YES;
@@ -131,6 +127,5 @@
     self.message = nil;
     [super dealloc];
 }
-
 
 @end

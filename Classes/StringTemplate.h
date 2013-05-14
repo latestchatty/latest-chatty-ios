@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface StringTemplate : NSObject {
   NSString *result;
 }

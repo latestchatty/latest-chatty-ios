@@ -16,7 +16,6 @@
 #import "ThreadViewController.h"
 #import "ReviewThreadViewController.h"
 #import "BrowserViewController.h"
-#import "ImageViewController.h"
 #import "MessagesViewController.h"
 #import "SlideOutViewController.h"
 

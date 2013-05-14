@@ -8,20 +8,9 @@
 
 #import "SlideOutViewController.h"
 
-
 @implementation SlideOutViewController
 
 @synthesize isCollapsed;
-
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
 - (void)searchLoaded:(NSObject*)sender {
     if(isCollapsed) return;
@@ -44,7 +33,6 @@
     [self tabTouched];
 }
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -61,32 +49,22 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Overriden to allow any orientation.
     return YES;
 }
 
-
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
-
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
-
 
 - (void)dealloc {
     [navigationController release];
     [contentNavigationController release];
     [super dealloc];
 }
-
 
 - (CGSize)availableSizeForOrientation:(UIInterfaceOrientation)orientation {
     CGSize result = [UIScreen mainScreen].bounds.size;
@@ -98,7 +76,6 @@
     result.height -= 20; // status bar
     return result;
 }
-
 
 - (void)updateViewsForOrientation:(UIInterfaceOrientation) orientation {
     CGSize availableSize = [self availableSizeForOrientation:orientation];    
@@ -117,19 +94,16 @@
     }
 }
 
-
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [self updateViewsForOrientation:toInterfaceOrientation];
     [navigationController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     [contentNavigationController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];    
 }
 
-
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [navigationController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     [contentNavigationController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
-
 
 - (void)addNavigationController:(UINavigationController *)navigation contentNavigationController:(UINavigationController *)content {
     navigationController = [navigation retain];
@@ -148,7 +122,6 @@
     [self updateViewsForOrientation:[self interfaceOrientation]];
 }
 
-
 - (void)updateContentLayoutIfNecessary {
     if (![contentNavigationController.topViewController isKindOfClass:[ThreadViewController class]])
         return;
@@ -156,7 +129,6 @@
     ThreadViewController *threadViewController = (ThreadViewController *)contentNavigationController.topViewController;
     [threadViewController resetLayout:YES];
 }
-
 
 - (IBAction)tabTouched {
     self.isCollapsed = !isCollapsed;
@@ -170,4 +142,5 @@
     [self updateContentLayoutIfNecessary];
     [UIView commitAnimations];
 }
+
 @end

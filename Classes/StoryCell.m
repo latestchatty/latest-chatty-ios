@@ -8,7 +8,6 @@
 
 #import "StoryCell.h"
 
-
 @implementation StoryCell
 
 @synthesize story;
@@ -35,6 +34,5 @@
   [story release];
   [super dealloc];
 }
-
 
 @end

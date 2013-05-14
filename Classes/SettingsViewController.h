@@ -43,5 +43,4 @@
 - (UITextField *)generateTextFieldWithKey:(NSString *)key;
 - (UISwitch *)generateSwitchWithKey:(NSString *)key;
 
-
 @end

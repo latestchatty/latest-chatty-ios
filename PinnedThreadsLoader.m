@@ -8,7 +8,6 @@
 
 #import "PinnedThreadsLoader.h"
 
-
 @implementation PinnedThreadsLoader
 
 @synthesize pinnedThreadsToLoad, loadingFor, loadingStoryId;
@@ -26,7 +25,6 @@
     return self;
 }
 
-
 + (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId page:(NSUInteger)page for:(id<ModelLoadingDelegate>)delegate {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -35,7 +33,6 @@
         [threadsToLoad addObject:threadId];
     return [[[[PinnedThreadsLoader alloc] initWithThreadsToLoad:threadsToLoad for:delegate withStoryId:storyId page:page] autorelease] loadPinnedThread];
 }
-
 
 + (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId for:(id<ModelLoadingDelegate>)delegate {
     return [PinnedThreadsLoader loadPinnedThreadsThenStoryId:storyId page:1 for:delegate];
@@ -65,7 +62,6 @@
     return [Post findThreadWithId:[pinnedThreadIdToLoad unsignedIntValue] delegate:self];
 }
 
-
 - (Post *)findReply:(NSUInteger)postId inReplies:(NSMutableArray *)replies
 {
     for(Post *reply in replies) {        
@@ -92,7 +88,6 @@
 
     [self loadPinnedThread];
 }
-
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
     

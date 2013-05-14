@@ -32,10 +32,16 @@
     self.isShackLOL = isForShackLOL;
  
     if (self.isShackLOL) {
-        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-                                                                           style:UIBarButtonItemStyleBordered
-                                                                          target:self
-                                                                          action:@selector(lolMenu)];
+//        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+//                                                                           style:UIBarButtonItemStyleBordered
+//                                                                          target:self
+//                                                                          action:@selector(lolMenu)];
+//        [lolMenuButton setEnabled:NO];
+        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+                                                                               style:UIBarButtonItemStyleBordered
+                                                                              target:self
+                                                                              action:@selector(lolMenu)];
+        self.navigationItem.rightBarButtonItem = lolMenuButton;
         [lolMenuButton setEnabled:NO];
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -121,10 +127,6 @@
     [self webViewDidFinishLoad:webView];
 }
 
-- (IBAction)safari {
-    [[UIApplication sharedApplication] openURL:[webView.request URL]];
-}
-
 //Patch-E: displays the custom iPhone menu on the Shack[LOL] site. Menu button is disabled until the web view finishes loading.
 - (void)lolMenu {
     //switching to a javascript function called on the page rather than a page transfer
@@ -138,29 +140,8 @@
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
-- (void)dealloc {
-    NSLog(@"BrowserViewController dealloc");
-    self.request = nil;
-    [webView loadHTMLString:@"<div></div>" baseURL:nil];
-    if (webView.loading) {
-        [webView stopLoading];
-    }
-    webView.delegate = nil;
-
-    self.webView = nil;
-    self.backButton = nil;
-    self.forwardButton = nil;
-    self.spinner = nil;
-    self.mainToolbar = nil;
-    self.actionButton = nil;
-    [super dealloc];
-}
-
-- (IBAction)closeBrowser {
-	[self.parentViewController dismissModalViewControllerAnimated:YES];
-}
-
 #pragma mark UIActivityViewController & Action Sheet Delegate
+
 - (IBAction)action:(id)sender {
     //use iOS 6 ActivityViewController functionality if available
     if ([UIActivityViewController class]) {
@@ -173,7 +154,7 @@
         UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
                                                             initWithActivityItems:activityItems
                                                             applicationActivities:@[safariActivity, chromeActivity]];
-
+        
         activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToWeibo, UIActivityTypePrint, UIActivityTypeSaveToCameraRoll];
         
         //present as popover on iPad, as a regular view on iPhone
@@ -205,6 +186,7 @@
                                              cancelButtonTitle:nil
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:nil] autorelease];
+        [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         
         [theActionSheet addButtonWithTitle:@"Copy URL"];
         [theActionSheet addButtonWithTitle:@"Open in Safari"];
@@ -223,7 +205,7 @@
         } else {
             [theActionSheet showInView:self.navigationController.view];
         }
-
+        
     }
 }
 
@@ -256,6 +238,24 @@
         case 2: [self openInChrome]; break;
         default: break;
     }
+}
+
+- (void)dealloc {
+    NSLog(@"BrowserViewController dealloc");
+    self.request = nil;
+    [webView loadHTMLString:@"<div></div>" baseURL:nil];
+    if (webView.loading) {
+        [webView stopLoading];
+    }
+    webView.delegate = nil;
+
+    self.webView = nil;
+    self.backButton = nil;
+    self.forwardButton = nil;
+    self.spinner = nil;
+    self.mainToolbar = nil;
+    self.actionButton = nil;
+    [super dealloc];
 }
 
 @end

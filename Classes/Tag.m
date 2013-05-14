@@ -8,7 +8,6 @@
 
 #import "Tag.h"
 
-
 @implementation Tag
 
 + (void)tagPostId:(NSUInteger)postId tag:(NSString*)tag {

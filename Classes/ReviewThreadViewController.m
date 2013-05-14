@@ -24,8 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    NSLog(@"%@", rootPost.description);
-//    NSLog(@"%@", rootPost.preview);
     [self placePostInWebView:self.rootPost];
 }
 

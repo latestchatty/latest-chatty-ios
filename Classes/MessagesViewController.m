@@ -57,7 +57,7 @@
     [pull finishedLoading];
 }
 
-- (IBAction)refresh:(id)sender {
+- (void)refresh:(id)sender {
     [super refresh:self];
     loader = [[Message findAllWithDelegate:self] retain];
 }
@@ -70,7 +70,6 @@
     loader = nil;
     
     [super didFinishLoadingAllModels:models otherData:otherData];
-	[self layoutCellsForOrientation:[self interfaceOrientation]];
     
     self.title = @"Messages";
     self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -78,27 +77,8 @@
 
 - (void)didFailToLoadModels {
     [UIAlertView showSimpleAlertWithTitle:@"Error"
-                                  message:@"Could not retrieve your messages.    "
+                                  message:@"Could not retrieve your messages."
                                           @"Check your internet connection, or your username and password in Settings"];
-}
-
-
-- (void)layoutCellsForOrientation:(UIInterfaceOrientation)orientation {		
-	for (UIView *subView in [tableView subviews]) {
-		if(![subView isKindOfClass:[MessageCell class]]) continue;
-		MessageCell *cell = (MessageCell *)subView;
-		CGRect cellFrame = cell.frame;
-
-		cell.previewLabel.frame = CGRectMake(10, 30, cellFrame.size.width - 30, 42);
-		cell.subjectLabel.frame = CGRectMake(10, 18, cellFrame.size.width - 30, 18);
-		cell.dateLabel.frame = CGRectMake(cellFrame.size.width - 137, 0, 112, 21);
-	}
-}
-
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-	[self layoutCellsForOrientation:toInterfaceOrientation];
 }
 
 #pragma mark Table view methods
@@ -107,12 +87,10 @@
     return 1;
 }
 
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [messages count];
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -125,7 +103,6 @@
 
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Message *message = [messages objectAtIndex:indexPath.row];
@@ -145,6 +122,4 @@
     [super dealloc];
 }
 
-
 @end
-

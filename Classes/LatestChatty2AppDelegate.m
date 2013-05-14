@@ -63,12 +63,13 @@
     
     self.slideOutViewController =  [SlideOutViewController controllerWithNib];
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
-    [slideOutViewController.view setFrame:CGRectMake(0,    20,    768, 1004)];
+    [slideOutViewController.view setFrame:CGRectMake(0, 20, 768, 1004)];
     
     window.rootViewController = slideOutViewController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self customizeAppearance];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -243,7 +244,6 @@
     return viewController;
 }
 
-
 - (BOOL)reloadSavedState {
     @try {
         // Find saved state
@@ -347,6 +347,107 @@
     return YES;
 }
 
+#pragma mark - Customizations
+
+- (void)customizeAppearance {
+    //custom appearance settings for UIKit items
+    UIImage *backgroundImage =
+        [[UIImage imageNamed:@"navbar_bg"]
+        resizableImageWithCapInsets:UIEdgeInsetsMake(1, 1, 1, 1) resizingMode:UIImageResizingModeStretch];
+    [[UINavigationBar appearance] setBackgroundImage:backgroundImage
+                                       forBarMetrics:UIBarMetricsDefault];
+    [[UIToolbar appearance] setBackgroundImage:backgroundImage
+                            forToolbarPosition:UIToolbarPositionAny
+                                    barMetrics:UIBarMetricsDefault];
+    
+    UIImage *backButtonImage =
+        [[UIImage imageNamed:@"button_back"]
+        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6) resizingMode:UIImageResizingModeStretch];
+    UIImage *backButtonHighlightImage =
+        [[UIImage imageNamed:@"button_back_highlight"]
+        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6) resizingMode:UIImageResizingModeStretch];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage
+                                                      forState:UIControlStateNormal
+                                                    barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonHighlightImage
+                                                      forState:UIControlStateHighlighted
+                                                    barMetrics:UIBarMetricsDefault];
+    
+    //iOS 6 allows usage of appearance proxy to customize done and plain buttons independently
+    UIImage *barButtonDoneImage =
+        [[UIImage imageNamed:@"button_done"]
+        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    UIImage *barButtonNormalImage =
+        [[UIImage imageNamed:@"button_normal"]
+        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    UIImage *barButtonNormalHighlightImage =
+        [[UIImage imageNamed:@"button_normal_highlight"]
+        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
+                                                                                            forState:UIControlStateNormal
+                                                                                               style:UIBarButtonItemStyleBordered
+                                                                                          barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
+                                                                                            forState:UIControlStateHighlighted
+                                                                                               style:UIBarButtonItemStyleBordered
+                                                                                          barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackgroundImage:barButtonDoneImage
+                                                forState:UIControlStateNormal
+                                                   style:UIBarButtonItemStyleDone
+                                              barMetrics:UIBarMetricsDefault];
+    } else {
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
+                                                                                            forState:UIControlStateNormal
+                                                                                          barMetrics:UIBarMetricsDefault];
+        
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
+                                                                                            forState:UIControlStateHighlighted
+                                                                                          barMetrics:UIBarMetricsDefault];
+    }
+    
+//    UIImage *segmentSelected =
+//        [[UIImage imageNamed:@"segcontrol_sel.png"]
+//        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+//    UIImage *segmentUnselected =
+//        [[UIImage imageNamed:@"segcontrol_uns.png"]
+//        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+//    UIImage *segmentSelectedUnselected = [UIImage imageNamed:@"segcontrol_sel-uns.png"];
+//    UIImage *segUnselectedSelected = [UIImage imageNamed:@"segcontrol_uns-sel.png"];
+//    UIImage *segmentUnselectedUnselected = [UIImage imageNamed:@"segcontrol_uns-uns.png"];
+//    
+//    [[UISegmentedControl appearance] setBackgroundImage:segmentUnselected
+//                                               forState:UIControlStateNormal
+//                                             barMetrics:UIBarMetricsDefault];
+//    [[UISegmentedControl appearance] setBackgroundImage:segmentSelected
+//                                               forState:UIControlStateSelected
+//                                             barMetrics:UIBarMetricsDefault];
+//    
+//    [[UISegmentedControl appearance] setDividerImage:segmentUnselectedUnselected
+//                                 forLeftSegmentState:UIControlStateNormal
+//                                   rightSegmentState:UIControlStateNormal
+//                                          barMetrics:UIBarMetricsDefault];
+//    [[UISegmentedControl appearance] setDividerImage:segmentSelectedUnselected
+//                                 forLeftSegmentState:UIControlStateSelected
+//                                   rightSegmentState:UIControlStateNormal
+//                                          barMetrics:UIBarMetricsDefault];
+//    [[UISegmentedControl appearance] setDividerImage:segUnselectedSelected
+//                                 forLeftSegmentState:UIControlStateNormal
+//                                   rightSegmentState:UIControlStateSelected
+//                                          barMetrics:UIBarMetricsDefault];
+//    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:194.0/255.0 alpha:1.0],UITextAttributeTextColor,
+//                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
+//                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
+//                                UITextAttributeTextShadowOffset,
+//                                nil];
+//    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes
+//                                                forState:UIControlStateNormal];
+    
+//    [[UISwitch appearance] setTintColor:[UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0]];
+//    [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:119.0/255.0 green:197.0/255.0 blue:254.0/255.0 alpha:1.0]];
+}
 
 - (void)dealloc {
     self.navigationController = nil;

@@ -20,6 +20,7 @@
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
     return [self init];
 }
+
 - (NSDictionary *)stateDictionary {
     return [NSDictionary dictionaryWithObject:@"Root" forKey:@"type"];
 }
@@ -71,12 +72,10 @@
     return 1;
 }
 
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 6;
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -106,7 +105,7 @@
             int center = [cell frame].size.height / 2; //vertical center
             CGFloat spinnerSize = 25.0f;
             //place spinner on top of messages icon
-            [self.messagesSpinner setFrame:CGRectMake(25.0f, center - spinnerSize / 2, spinnerSize, spinnerSize)];
+            [self.messagesSpinner setFrame:CGRectMake(22.0f, center - spinnerSize / 2, spinnerSize, spinnerSize)];
             [[cell contentView] addSubview:self.messagesSpinner];
             [self.messagesSpinner release];
             
@@ -135,11 +134,6 @@
 
     return (UITableViewCell *)cell;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return [RootCell cellHeight];
-//}
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController *viewController = nil;
@@ -223,6 +217,4 @@
     [super dealloc];
 }
 
-
 @end
-

@@ -9,7 +9,6 @@
 #import "HTMLEscaper.h"
 #import "RegexKitLite.h"
 
-
 @implementation HTMLEscaper
 
 @synthesize resultString;

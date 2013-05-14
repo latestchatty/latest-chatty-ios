@@ -13,6 +13,7 @@
 #import "StringAdditions.h"
 
 @class Image;
+
 @protocol ImageSendingDelegate
 - (void)image:(Image*)image sendComplete:(NSString*)url;
 - (void)image:(Image*)image sendFailure:(NSString*)message;
@@ -30,7 +31,7 @@
 - (void)autoRotate:(NSUInteger)maxDimension scale:(BOOL)shouldScale;
 //- (void)autoRotateAndScale:(NSUInteger)maxDimension;
 - (NSData *)compressJpeg:(CGFloat)quality;
-- (NSString *)base64String;
+//- (NSString *)base64String;
 - (void)uploadAndReturnImageUrlWithDictionary:(NSDictionary*)args;
 
 @end

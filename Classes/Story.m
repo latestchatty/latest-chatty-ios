@@ -8,7 +8,6 @@
 
 #import "Story.h"
 
-
 @implementation Story
 
 @synthesize title;

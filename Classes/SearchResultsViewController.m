@@ -32,7 +32,6 @@
     [pull finishedLoading];
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refresh:self];
@@ -43,20 +42,12 @@
     [pull finishedLoading];
 }
 
-- (IBAction)refresh:(id)sender {
+- (void)refresh:(id)sender {
     [super refresh:sender];
 
     currentPage = 1;
     loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self] retain];
 }
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {    
 	if (currentPage <= 1) {
@@ -149,6 +140,7 @@
 -(void)loadMorePosts {
     [loader cancel];
     [loader release];
+    
     currentPage++;
     loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self] retain];
 }

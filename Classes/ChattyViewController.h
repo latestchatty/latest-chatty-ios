@@ -43,8 +43,6 @@
 - (id)initWithLatestChatty;
 - (id)initWithStoryId:(NSUInteger)aStoryId;
 
-- (IBAction)tappedComposeButton;
-
 - (NSArray*)removeDuplicateThreadsFromArray:(NSArray*)threads;
 
 @end

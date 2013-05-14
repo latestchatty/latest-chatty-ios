@@ -26,9 +26,13 @@
     
     scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
     
-	UIBarButtonItem *sendButton = [UIBarButtonItem itemWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(sendMessage)];
+	UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(sendMessage)];
 	self.navigationItem.rightBarButtonItem = sendButton;
-        
+    [sendButton release];
+    
     [self.recipient becomeFirstResponder];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
@@ -44,13 +48,13 @@
         UIInterfaceOrientation orientation = self.interfaceOrientation;
         
         if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
+            [body setFrame:CGRectMake(0, 43, screenHeight, 62)];
         } else {
             if ( screenHeight > 480 ) {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
+                [body setFrame:CGRectMake(0, 72, screenWidth, 214)];
             }
             else {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
+                [body setFrame:CGRectMake(0, 62, screenWidth, 136)];
             }
         }
     }
@@ -76,14 +80,14 @@
             
             //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
             if ( screenHeight > 480 ) {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
+                [body setFrame:CGRectMake(0, 72, screenWidth, 214)];
             }
             else {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
+                [body setFrame:CGRectMake(0, 62, screenWidth, 136)];
             }
         } else {
             //iPhone landscape activated
-            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
+            [body setFrame:CGRectMake(0, 43, screenHeight, 62)];
         }
     }
     
@@ -159,7 +163,7 @@
 	[self hideActivtyIndicator];
 }
 
-- (IBAction)makeMessage {
+- (void)makeMessage {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     self.navigationController.view.userInteractionEnabled = NO;
     
@@ -179,7 +183,7 @@
     [pool release];
 }
 
-- (IBAction)sendMessage {
+- (void)sendMessage {
     [body becomeFirstResponder];
     [body resignFirstResponder];
     

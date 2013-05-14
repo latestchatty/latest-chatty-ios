@@ -264,7 +264,6 @@
     [self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
 
-
 #pragma mark -
 #pragma mark Thread pinning
 - (void)pinThread:(NSUInteger)postId {
@@ -297,7 +296,6 @@
     [defaults synchronize];    
 }
 
-
 - (IBAction)toggleThreadPinned {
         Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
         if (post.pinned) {
@@ -314,7 +312,6 @@
     [self pinThread:[post modelId]];
 }
 
-
 #pragma mark -
 #pragma mark Split view support
 - (void)splitViewController:(UISplitViewController*)svc
@@ -322,7 +319,6 @@
           withBarButtonItem:(UIBarButtonItem*)barButtonItem
        forPopoverController:(UIPopoverController*)pc
 {
-    
     barButtonItem.title = @"Threads";
     NSArray *items = [NSArray arrayWithObjects:
                       //[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
@@ -332,7 +328,6 @@
     
     popoverController = pc;
 }
-
 
 // Called when the view is shown again in the split view, invalidating the button and popover controller.
 - (void)splitViewController: (UISplitViewController*)svc
@@ -349,6 +344,7 @@
     pc.popoverContentSize = CGSizeMake(480, 900);
     [pc presentPopoverFromBarButtonItem:[self.toolbar.items objectAtIndex:0] permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
 }
+
 #pragma mark -
 #pragma mark Managing the popover controller
 
@@ -373,15 +369,10 @@
     return 1;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return [ReplyCell cellHeight];
-//}
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
     return [[rootPost repliesArray] count];
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {        
@@ -397,7 +388,6 @@
     
     return cell;
 }
-
 
 - (UIView *)tableView:(UITableView *)aTableView viewForHeaderInSection:(NSInteger)section {
     UIImageView *background = [UIImageView viewWithImage:[UIImage imageNamed:@"DropShadow.png"]];
@@ -525,8 +515,7 @@
                         chromeURL = nil;
                         return NO;
                     }
-                }                
-            
+                }
             }
 
             viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
@@ -644,6 +633,7 @@
                                                cancelButtonTitle:@"Cancel"
                                           destructiveButtonTitle:nil
                                                otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", @"UGH", nil] autorelease];
+    [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [theActionSheet showFromBarButtonItem:tagButton animated:YES];
@@ -662,7 +652,6 @@
                 orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
 }
 
-
 - (int)nextRowByTimeLevel:(int)currentRow {
         Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
         
@@ -675,7 +664,6 @@
         
         return 0;
 }
-
 
 - (int)previousRowByTimeLevel:(int)currentRow {
         Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
@@ -696,7 +684,6 @@
         
         return minTimeLevelPostIndex;
 }
-
 
 - (IBAction)previous {
     NSIndexPath *oldIndexPath = selectedIndexPath;
@@ -748,14 +735,17 @@
 }
 
 -(void)grippyBarDidTapModButton {
-        [[[[UIActionSheet alloc] initWithTitle:@"Mod this Post"
-                                  delegate:self
-                         cancelButtonTitle:@"Cancel"
-                    destructiveButtonTitle:nil
-                         otherButtonTitles:@"stupid", @"offtopic", @"nws", @"political", @"informative", @"nuked", @"ontopic", nil] autorelease] showInView:self.view];
+    UIActionSheet *modActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Mod this Post"
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"stupid", @"offtopic", @"nws", @"political", @"informative", @"nuked", @"ontopic", nil] autorelease];
+    [modActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+    [modActionSheet showInView:self.view];
 }
 
 #pragma mark Action Sheet Delegate
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
     NSUInteger postId = [post modelId];
@@ -834,6 +824,7 @@
                                              cancelButtonTitle:@"Cancel"
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:@"Reply to this post", @"Reply to root post", nil] autorelease];
+        [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             //make an rect out of the long press point and another point offset by 1 in both directions
@@ -864,6 +855,4 @@
     [super dealloc];
 }
 
-
 @end
-

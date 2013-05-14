@@ -12,7 +12,6 @@
 
 @implementation SettingsViewController
 
-
 - (id)initWithNib {
     self = [super initWithNib];
 	if (self) {
@@ -165,7 +164,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	//...
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -173,7 +171,6 @@
     return YES;
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	if (textField == usernameField) {
@@ -372,7 +369,6 @@
 		}
 	}
 	
-	
 	return [cell autorelease];
 }
 
@@ -404,6 +400,5 @@
 	
 	[super dealloc];
 }
-
 
 @end

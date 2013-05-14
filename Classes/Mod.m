@@ -43,7 +43,6 @@
 			modCategory = @"5";
 			break;
 	}
-	
     
 	if (modCategory) {
         NSString *url = [NSString stringWithFormat:@"http://www.shacknews.com/mod_chatty.x?root=%d&post_id=%d&mod_type_id=%@", parentId, postId, modCategory];
@@ -58,6 +57,5 @@
 
 	}
 }
-
 
 @end

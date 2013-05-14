@@ -38,8 +38,6 @@
 - (id)initWithRequest:(NSURLRequest *)request;
 - (id)initWithRequest:(NSURLRequest *)request title:(NSString*)title isForShackLOL:(BOOL)isForShackLOL;
 
-- (IBAction)safari;
 - (IBAction)action:(id)sender;
-- (IBAction)closeBrowser;
 
 @end

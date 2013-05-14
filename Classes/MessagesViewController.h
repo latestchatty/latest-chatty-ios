@@ -20,7 +20,6 @@
 @property (retain) NSMutableArray *messages;
 
 - (void)composeMessage;
-- (void)layoutCellsForOrientation:(UIInterfaceOrientation)orientation;
 
 @property (nonatomic, retain) PullToRefreshView *pull;
 

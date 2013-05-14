@@ -9,7 +9,6 @@
 #import "StoriesViewController.h"
 #import "LatestChatty2AppDelegate.h"
 
-
 @implementation StoriesViewController
 
 @synthesize stories, pull;
@@ -30,7 +29,6 @@
 - (NSDictionary *)stateDictionary {
     return [NSDictionary dictionaryWithObjectsAndKeys:@"Stories", @"type", stories, @"stories", nil];
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,7 +59,6 @@
     loader = [[Story findAllWithDelegate:self] retain];
 }
 
-
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
     self.stories = models;
     [loader release];
@@ -72,17 +69,8 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
+    [super didReceiveMemoryWarning];
 }
-
-#pragma mark Shake Handler
-
-// FIXME: This never gets called
-//- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-//    NSLog(@"Shook!");
-//    if (motion == UIEventSubtypeMotionShake) [self refresh:self];
-//}
 
 #pragma mark Table view methods
 
@@ -92,7 +80,6 @@
     if (self.stories) count = [self.stories count];
     return count;
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -109,11 +96,6 @@
 
     return (UITableViewCell *)cell;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return [StoryCell cellHeight];
-//}
-
 
 #pragma mark Actions
 
@@ -135,17 +117,17 @@
             indexPath = [self.tableView indexPathForCell:cell];
         }
     }
-    
+
     Story *story = [stories objectAtIndex:indexPath.row];
     UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
 //    UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:29061947];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
-- (IBAction)tappedLatestChattyButton {
-    ChattyViewController *viewController = [ChattyViewController chattyControllerWithLatest];
-    [self.navigationController pushViewController:viewController animated:YES];
-}
+//- (IBAction)tappedLatestChattyButton {
+//    ChattyViewController *viewController = [ChattyViewController chattyControllerWithLatest];
+//    [self.navigationController pushViewController:viewController animated:YES];
+//}
 
 - (void)dealloc {
     self.stories = nil;
@@ -153,6 +135,4 @@
     [super dealloc];
 }
 
-
 @end
-

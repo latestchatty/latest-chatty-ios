@@ -11,7 +11,6 @@
 
 @implementation TableCellFromNib
 
-
 + (CGFloat)cellHeight {
     return 44.0;
 }

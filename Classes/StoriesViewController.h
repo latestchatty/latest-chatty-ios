@@ -31,7 +31,7 @@
 - (id)initWithStateDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)stateDictionary;
 
-- (IBAction)tappedChattyButton:(id)sender;
-- (IBAction)tappedLatestChattyButton;
+//- (IBAction)tappedChattyButton:(id)sender;
+//- (IBAction)tappedLatestChattyButton;
 
 @end

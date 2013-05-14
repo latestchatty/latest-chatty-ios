@@ -34,13 +34,11 @@
     return [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
 }
 
-
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
     NSLog(@"Pull?");
     [self refresh:self];
     [pull finishedLoading];
 }
-
 
 - (id)initWithLatestChatty {
     return [self initWithStoryId:0];
@@ -54,13 +52,10 @@
         //threadController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
     }
 
-    
     self.title = @"Loading...";
     
 	return self;
 }
-
-
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
 	if( self = [self initWithStoryId:[[dictionary objectForKey:@"storyId"] intValue]] ){
@@ -128,6 +123,7 @@
 //        self.navigationItem.rightBarButtonItem = composeButton;
 //    }
     
+    self.tableView.hidden = YES;
     self.navigationItem.rightBarButtonItem = composeButton;
     
 //    UILabel *titleLabel = [UILabel viewWithFrame:self.navigationController.navigationBar.frame];
@@ -163,7 +159,7 @@
 		[threadController resetLayout:YES];
 }
 
-- (IBAction)tappedComposeButton {
+- (void)tappedComposeButton {
     ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:nil] autorelease];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -174,7 +170,7 @@
     }
 }
 
-- (IBAction)refresh:(id)sender {
+- (void)refresh:(id)sender {
 	[super refresh:self];
 	currentPage = 1;
 	
@@ -216,8 +212,8 @@
 	// Filter Posts
 	NSMutableArray *filteredThreads = [NSMutableArray array];
 	for (Post *rootPost in self.threads) {
-		NSString* modelID = [NSString stringWithFormat:@"%d", rootPost.modelId];
-		NSNumber* numPosts = [postHistoryDict objectForKey:modelID];
+		NSString *modelID = [NSString stringWithFormat:@"%d", rootPost.modelId];
+		NSNumber *numPosts = [postHistoryDict objectForKey:modelID];
 		if( numPosts ){
 			rootPost.newReplies = rootPost.replyCount-[numPosts intValue];
 		}
@@ -232,7 +228,6 @@
 	
 	[[NSUserDefaults standardUserDefaults] setValue:postHistoryDict forKey:@"PostCountHistory"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
-
 	
 	[self.tableView reloadData];
 	[loader release];
@@ -272,6 +267,7 @@
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:threadController];
     }
     
+    self.tableView.hidden = NO;
 }
 
 // Filter any duplicate threads out. These threads have drifted to the next page since the last page was loaded.
@@ -293,20 +289,17 @@
     return mutableThreads;
 }
 
-
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
 }
 
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (currentPage < lastPage) return [threads count] + 1;
 	return [threads count];
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -341,10 +334,6 @@
 	return nil;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//	return [ThreadCell cellHeight];
-//}
-
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row < [threads count]) {
         Post *thread = [threads objectAtIndex:indexPath.row];
@@ -365,7 +354,6 @@
         [self loadMorePosts];
 	}
 }
-
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == [threads count]) {
@@ -394,6 +382,4 @@
     [super dealloc];
 }
 
-
 @end
-

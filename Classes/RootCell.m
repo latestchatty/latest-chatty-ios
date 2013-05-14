@@ -8,7 +8,6 @@
 
 #import "RootCell.h"
 
-
 @implementation RootCell
 
 @synthesize title;
@@ -16,7 +15,6 @@
 + (CGFloat)cellHeight {
   return 68;
 }
-
 
 - (id)init {
   self = [super initWithNibName:@"RootCell" bundle:nil];
@@ -27,7 +25,7 @@
   self.textLabel.shadowOffset = CGSizeMake(0, -1);
   
   UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
-  backgroundView.image = [[UIImage imageNamed:@"CellBackground.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+//  backgroundView.image = [[UIImage imageNamed:@"CellBackground.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
   backgroundView.contentMode = UIViewContentModeScaleToFill;
   backgroundView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   self.backgroundView = backgroundView;
@@ -42,7 +40,7 @@
   titleLabel.text = self.title;
   
   if ([self.title isEqualToString:@"LatestChatty"])
-    iconImage.image = [UIImage imageNamed:@"ChatIcon.48.png"];
+    iconImage.image = [UIImage imageNamed:@"LatestChatIcon.48.png"];
   else if ([self.title hasPrefix:@"Messages"])
     iconImage.image = [UIImage imageNamed:@"MessagesIcon.48.png"];
   else
@@ -53,6 +51,5 @@
   [title release];
   [super dealloc];
 }
-
 
 @end

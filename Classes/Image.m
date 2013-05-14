@@ -20,19 +20,16 @@
 	return self;
 }
 
-
-
 - (NSData *)compressJpeg:(CGFloat)quality {
 	return UIImageJPEGRepresentation(image, quality);
 }
 
-- (NSString *)base64String {
-	NSData *imageData = [self compressJpeg:0.7];
-	return [[NSString base64StringFromData:imageData length:[imageData length]] stringByEscapingURL];
-}
+//- (NSString *)base64String {
+//	NSData *imageData = [self compressJpeg:0.7];
+//	return [[NSString base64StringFromData:imageData length:[imageData length]] stringByEscapingURL];
+//}
 
-- (void)informDelegateOnMainThreadWithURL:(NSString*)url
-{
+- (void)informDelegateOnMainThreadWithURL:(NSString*)url {
 	if (url) {
         [delegate image:self sendComplete:url];
     } else {
@@ -57,12 +54,12 @@
     NSString *urlString = @"http://chattypics.com/upload.php";
     NSString *loginString = @"http://chattypics.com/users.php?act=login_go";
     
-    ASIFormDataRequest* loginRequest = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:loginString]];
+    ASIFormDataRequest *loginRequest = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:loginString]];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *picsUsername = [[defaults stringForKey:@"picsUsername"] stringByEscapingURL];
     NSString *picsPassword = [[defaults stringForKey:@"picsPassword"] stringByEscapingURL];
-    
+
     [loginRequest setPostValue:picsUsername forKey:@"user_name"];
     [loginRequest setPostValue:picsPassword forKey:@"user_password"];
     
@@ -76,7 +73,7 @@
     if ([loginResponseString containsString:@"Logged In"]) {
         NSLog(@"Logged into ChattyPics");
     }
-    
+
 	//NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
 	//ASIHTTPRequest* request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]] autorelease];
     ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
@@ -102,14 +99,12 @@
 	[request start];
 	
 	NSString *responseString = [request responseString];
-	
 	// Cleanup the request
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
 	// Process response
 	//NSString *responseString = [NSString stringWithData:responseData];
 	//NSDictionary *responseDictionary = [responseString JSONValue];
-	
     
     // regex will fail if there's a second underscore anywhere in the URL, but that shouldn't happen...
     NSString *regEx = @"http://chattypics\\.com/files/iPhoneUpload_[^_]+\\.jpg";
@@ -124,13 +119,13 @@
 }
 
 #pragma mark Image Processor
+
 // Code from: http://discussions.apple.com/thread.jspa?messageID=7949889
 - (void)autoRotate:(NSUInteger)maxDimension scale:(BOOL)shouldScale {
 	CGImageRef imgRef = image.CGImage;
 	
 	CGFloat width = CGImageGetWidth(imgRef);
 	CGFloat height = CGImageGetHeight(imgRef);
-	
 	
 	CGAffineTransform transform = CGAffineTransformIdentity;
 	CGRect bounds = CGRectMake(0, 0, width, height);
@@ -206,7 +201,6 @@
 			
 		default:
 			[NSException raise:NSInternalInconsistencyException format:@"Invalid image orientation"];
-			
 	}
 	
 	UIGraphicsBeginImageContext(bounds.size);
