@@ -404,12 +404,13 @@
                                                                                             forState:UIControlStateNormal
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
-                                                                                            forState:UIControlStateHighlighted
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalLandscapeImage
                                                                                             forState:UIControlStateNormal
+                                                                                               style:UIBarButtonItemStyleBordered
+                                                                                          barMetrics:UIBarMetricsLandscapePhone];
+        
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
+                                                                                            forState:UIControlStateHighlighted
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsDefault];
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage

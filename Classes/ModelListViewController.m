@@ -8,7 +8,6 @@
 
 #import "ModelListViewController.h"
 
-
 @implementation ModelListViewController
 
 @synthesize tableView;
@@ -35,12 +34,10 @@
   [self.view addSubview:loadingView];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
-
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
