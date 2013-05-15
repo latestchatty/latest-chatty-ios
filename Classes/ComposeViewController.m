@@ -59,8 +59,11 @@
     [parentPostPreview addGestureRecognizer:previewTapRecognizer];
     [previewTapRecognizer release];
 
+    composeLabel.text = @"Compose:";
     parentPostAuthor.text = @"";
+    parentPostPreview.text = @"New Post";
 	if (post) {
+        composeLabel.text = @"Reply to:";
         parentPostAuthor.text = post.author;
         parentPostPreview.text = post.preview;
     }
@@ -119,22 +122,19 @@
         
         if (UIInterfaceOrientationIsLandscape(orientation)) {
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-<<<<<<< HEAD
-            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
+//            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
             [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
-            [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 1, 40, 40)];
-=======
->>>>>>> markup
+//            [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 1, 40, 40)];
         } else {
             if ( screenHeight > 480 ) {
                 [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
                 [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
-                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 10, 50, 50)];
+//                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 10, 50, 50)];
             }
             else {
                 [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
                 [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
-                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 5, 50, 50)];
+//                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 5, 50, 50)];
             }
         }
     }
@@ -202,22 +202,19 @@
             if ( screenHeight > 480 ) {
                 [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
                 [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
-                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 10, 50, 50)];
+//                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 10, 50, 50)];
             }
             else {
                 [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
                 [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
-                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 5, 50, 50)];
+//                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 5, 50, 50)];
             }
         } else {
             //iPhone landscape activated
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-<<<<<<< HEAD
-            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
+//            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
             [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
-            [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 1, 40, 40)];
-=======
->>>>>>> markup
+//            [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 1, 40, 40)];
         }
     }
 }
@@ -226,7 +223,7 @@
 
 - (IBAction)showImagePicker {
 	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-		UIActionSheet *dialog = [[[UIActionSheet alloc] initWithTitle:@"Insert Image"
+		UIActionSheet *dialog = [[[UIActionSheet alloc] initWithTitle:@"Upload Image"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
@@ -449,15 +446,14 @@
 
 - (void)dealloc {
     NSLog(@"ComposeViewController dealloc");
-<<<<<<< HEAD
-    [parentPostAuthor release];
-=======
-    
+
     // Remove special style item from text selection menu
     [UIMenuController sharedMenuController].menuItems = nil;
     
->>>>>>> markup
+    [composeLabel release];
+    [parentPostAuthor release];
 	[parentPostPreview release];
+    [imageButton release];
 	[postContent release];
     [tagView release];
 	
@@ -468,8 +464,7 @@
 	
 	[tagLookup release];
 	self.post = nil;
-    [tagButton release];
-    [imageButton release];
+    
 	[super dealloc];
 }
 

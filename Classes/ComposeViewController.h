@@ -21,6 +21,7 @@
 	
 	BOOL postingWarningAlertView;
 	
+    IBOutlet UILabel *composeLabel;
     IBOutlet UILabel *parentPostAuthor;
 	IBOutlet UILabel *parentPostPreview;
 	IBOutlet UITextView *postContent;
@@ -33,15 +34,9 @@
 	IBOutlet UIProgressView* uploadBar;
     
     IBOutlet UIButton *imageButton;
-<<<<<<< HEAD
-    IBOutlet UIButton *tagButton;
-    
-=======
     
     NSRange selection;
     
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200		
->>>>>>> markup
     UIPopoverController *popoverController;
 }
 
@@ -52,7 +47,6 @@
 - (void)makePost;
 - (UIProgressView*)showActivityIndicator:(BOOL)progressViewType;
 
-- (IBAction)showTagButtons;
 - (IBAction)showImagePicker;
 - (IBAction)tag:(id)sender;
 
