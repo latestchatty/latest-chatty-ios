@@ -35,6 +35,9 @@
 	IBOutlet UIProgressView* uploadBar;
     
     IBOutlet UIButton *imageButton;
+    
+    NSRange selection;
+    
 //#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200		
     UIPopoverController *popoverController;
 //#endif		

@@ -63,6 +63,17 @@
 	[postContent becomeFirstResponder];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postContentBecomeFirstResponder:) name:@"PostContentBecomeFirstResponder" object:nil];
+    
+    
+    // Add a style item to the text selection menu
+    UIMenuController *menu = [UIMenuController sharedMenuController];
+    menu.menuItems = [NSArray arrayWithObject:[[[UIMenuItem alloc] initWithTitle:@"Style" action:@selector(styleSelection)] autorelease]];
+}
+
+- (void)styleSelection {
+    // Snag the selection and current content.
+    selection = postContent.selectedRange;
+    [self showTagButtons];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -148,6 +159,7 @@
 
 - (void)postContentBecomeFirstResponder:(NSObject*)sender {
     [postContent becomeFirstResponder];
+    selection = NSMakeRange(NSNotFound, 0);
 }
 
 - (IBAction)showTagButtons {
@@ -323,12 +335,28 @@
 
 - (IBAction)tag:(id)sender {
 	NSString *tag = [tagLookup objectForKey:[(UIButton *)sender currentTitle]];
-	postContent.text = [postContent.text stringByAppendingString:tag];
+    
+    NSMutableString *result = [[postContent.text mutableCopy] autorelease];
+    
+    // No selection, just slap the tag on the end.
+    if (selection.location == NSNotFound) {
+        selection = NSMakeRange(result.length, 0);
+    }
+    
+    // Calculate prefix and suffix of the tag.
+    NSString *prefix = [tag substringToIndex:tag.length/2];
+    NSString *suffix = [tag substringFromIndex:tag.length/2];
+    
+    // Insert the tag around the selected text.
+    [result insertString:prefix atIndex:selection.location];
+    [result insertString:suffix atIndex:selection.location + selection.length + prefix.length];
+    
+    // Update the post content
+	postContent.text = result;
 	
-	NSUInteger textLength = [[postContent text] length];
-	NSUInteger tagLength  = [tag length];
+    // Reactivate the text view with the text still selected.
 	[postContent becomeFirstResponder];
-	[postContent setSelectedRange:NSMakeRange(textLength - tagLength/2, 0)];
+	[postContent setSelectedRange:NSMakeRange(selection.location + prefix.length, selection.length)];
 }
 
 #pragma mark Actions
@@ -388,6 +416,10 @@
 
 - (void)dealloc {
     NSLog(@"ComposeViewController dealloc");
+    
+    // Remove special style item from text selection menu
+    [UIMenuController sharedMenuController].menuItems = nil;
+    
 	[parentPostPreview release];
 	[postContent release];
     [tagView release];
