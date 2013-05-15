@@ -239,8 +239,14 @@
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?story=(\\d+)" capture:1] intValue];
         viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/onearticle.x/\\d+"]) {
+        NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/onearticle.x/(\\d+)" capture:1] intValue];
+        viewController = [[[StoryViewController alloc] initWithStoryId:targetStoryId] autorelease];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/article/\\d+"]) {
+        NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/article/(\\d+)" capture:1] intValue];
+        viewController = [[[StoryViewController alloc] initWithStoryId:targetStoryId] autorelease];
     }
-    
+
     return viewController;
 }
 
