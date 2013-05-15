@@ -65,6 +65,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postContentBecomeFirstResponder:) name:@"PostContentBecomeFirstResponder" object:nil];
     
     
+    // Append inner tag view to hidden tag view container
+    [tagView addSubview:innerTagView];
+    innerTagView.frame = CGRectMake((tagView.frame.size.width - innerTagView.frame.size.width) / 2.0,
+                                    (tagView.frame.size.height - innerTagView.frame.size.height) / 2.0,
+                                    innerTagView.frame.size.width,
+                                    innerTagView.frame.size.height);
+    
     // Add a style item to the text selection menu
     UIMenuController *menu = [UIMenuController sharedMenuController];
     menu.menuItems = [NSArray arrayWithObject:[[[UIMenuItem alloc] initWithTitle:@"Style" action:@selector(styleSelection)] autorelease]];
@@ -103,15 +110,11 @@
     CGFloat screenHeight = screenSize.height;
     CGFloat screenWidth = screenSize.width;
     
-    NSUInteger availableSpacePortrait = screenHeight - 64;
-    NSUInteger availableSpaceLandscape = screenWidth - 64;
-    
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIInterfaceOrientation orientation = self.interfaceOrientation;
         
         if (UIInterfaceOrientationIsLandscape(orientation)) {
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
         } else {
             if ( screenHeight > 480 ) {
                 [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
@@ -119,7 +122,6 @@
             else {
                 [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
             }
-            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenWidth, availableSpacePortrait-(postContent.frameY + postContent.frameHeight))];
         }
     }
 }
@@ -159,12 +161,8 @@
 
 - (void)postContentBecomeFirstResponder:(NSObject*)sender {
     [postContent becomeFirstResponder];
-    selection = NSMakeRange(NSNotFound, 0);
 }
 
-- (IBAction)showTagButtons {
-	[postContent resignFirstResponder];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     //    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
@@ -179,11 +177,7 @@
         CGSize screenSize = screenBound.size;
         CGFloat screenWidth = screenSize.width;
         CGFloat screenHeight = screenSize.height;
-    
-        //screen height/width - 64 for the status and navigation bars (20 and 44 respectively)
-        NSUInteger availableSpacePortrait = screenHeight - 64;
-        NSUInteger availableSpaceLandscape = screenWidth - 64;
-        
+            
         if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
             //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
             if (postContent.frame.size.width > 320) {
@@ -197,11 +191,9 @@
             else {
                 [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
             }
-            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenWidth, availableSpacePortrait-(postContent.frameY + postContent.frameHeight))];
         } else {
             //iPhone landscape activated
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
         }
     }
 }
@@ -333,6 +325,19 @@
 
 #pragma mark Tagging
 
+- (IBAction)showTagButtons {
+    tagView.hidden = NO;
+    tagView.alpha = 0.0;
+    tagView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+    [UIView animateWithDuration:0.35 animations:^(void) {
+        tagView.alpha = 1.0;
+        tagView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    }];
+    
+	[postContent resignFirstResponder];
+}
+
+
 - (IBAction)tag:(id)sender {
 	NSString *tag = [tagLookup objectForKey:[(UIButton *)sender currentTitle]];
     
@@ -354,6 +359,16 @@
     // Update the post content
 	postContent.text = result;
 	
+    // Hide tag view
+    [UIView animateWithDuration:0.35
+                     animations:^(void) {
+                         tagView.alpha = 0.0;
+                         tagView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+                     }
+                     completion:^(BOOL finished) {
+                         tagView.hidden = YES;
+                     }];
+    
     // Reactivate the text view with the text still selected.
 	[postContent becomeFirstResponder];
 	[postContent setSelectedRange:NSMakeRange(selection.location + prefix.length, selection.length)];
