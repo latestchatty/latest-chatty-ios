@@ -13,18 +13,15 @@
 #import "ModelListViewController.h"
 #import "BrowserViewController.h"
 
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 @interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate, UIPopoverControllerDelegate> {
-//#else
-//	@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate> {
-//#endif
-	NSInteger storyId;
+    NSInteger storyId;
 	Post *post;
 	
 	NSDictionary *tagLookup;
 	
 	BOOL postingWarningAlertView;
 	
+    IBOutlet UILabel *parentPostAuthor;
 	IBOutlet UILabel *parentPostPreview;
 	IBOutlet UITextView *postContent;
     IBOutlet UIView *tagView;
@@ -36,12 +33,16 @@
 	IBOutlet UIProgressView* uploadBar;
     
     IBOutlet UIButton *imageButton;
+<<<<<<< HEAD
+    IBOutlet UIButton *tagButton;
+    
+=======
     
     NSRange selection;
     
 //#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200		
+>>>>>>> markup
     UIPopoverController *popoverController;
-//#endif		
 }
 
 @property (assign) NSInteger storyId;
@@ -55,6 +56,6 @@
 - (IBAction)showImagePicker;
 - (IBAction)tag:(id)sender;
 
-- (IBAction)sendPost;
+- (void)sendPost;
 
 @end

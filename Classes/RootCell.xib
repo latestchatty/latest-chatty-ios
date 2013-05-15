@@ -66,9 +66,7 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica-Bold</string>
-									<string key="family">Helvetica</string>
-									<int key="traits">2</int>
+									<int key="type">2</int>
 									<double key="pointSize">24</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">

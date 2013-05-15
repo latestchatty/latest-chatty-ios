@@ -48,13 +48,13 @@
         UIInterfaceOrientation orientation = self.interfaceOrientation;
         
         if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [body setFrame:CGRectMake(0, 43, screenHeight, 62)];
+            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
         } else {
             if ( screenHeight > 480 ) {
-                [body setFrame:CGRectMake(0, 72, screenWidth, 214)];
+                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
             }
             else {
-                [body setFrame:CGRectMake(0, 62, screenWidth, 136)];
+                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
             }
         }
     }
@@ -80,14 +80,14 @@
             
             //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
             if ( screenHeight > 480 ) {
-                [body setFrame:CGRectMake(0, 72, screenWidth, 214)];
+                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
             }
             else {
-                [body setFrame:CGRectMake(0, 62, screenWidth, 136)];
+                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
             }
         } else {
             //iPhone landscape activated
-            [body setFrame:CGRectMake(0, 43, screenHeight, 62)];
+            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
         }
     }
     

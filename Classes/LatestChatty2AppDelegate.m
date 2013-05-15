@@ -373,17 +373,26 @@
                                                       forState:UIControlStateHighlighted
                                                     barMetrics:UIBarMetricsDefault];
     
-    //iOS 6 allows usage of appearance proxy to customize done and plain buttons independently
     UIImage *barButtonDoneImage =
         [[UIImage imageNamed:@"button_done"]
-        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    UIImage *barButtonDoneLandscapeImage =
+        [[UIImage imageNamed:@"button_done_landscape"]
+         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
     UIImage *barButtonNormalImage =
         [[UIImage imageNamed:@"button_normal"]
-        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
     UIImage *barButtonNormalHighlightImage =
         [[UIImage imageNamed:@"button_normal_highlight"]
-        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
-    
+         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    UIImage *barButtonNormalLandscapeImage =
+        [[UIImage imageNamed:@"button_normal_landscape"]
+         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    UIImage *barButtonNormalHighlightLandscapeImage =
+        [[UIImage imageNamed:@"button_normal_highlight_landscape"]
+         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    //iOS 6 allows usage of appearance proxy to customize done and normal buttons independently
+    //downside to the following is that iOS 5 will not have blue color done style buttons, do we care?
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
                                                                                             forState:UIControlStateNormal
@@ -392,19 +401,37 @@
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
                                                                                             forState:UIControlStateHighlighted
                                                                                                style:UIBarButtonItemStyleBordered
+                                                                                          barMetrics:UIBarMetricsLandscapePhone];
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalLandscapeImage
+                                                                                            forState:UIControlStateNormal
+                                                                                               style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage
+                                                                                            forState:UIControlStateHighlighted
+                                                                                               style:UIBarButtonItemStyleBordered
+                                                                                          barMetrics:UIBarMetricsLandscapePhone];
         [[UIBarButtonItem appearance] setBackgroundImage:barButtonDoneImage
                                                 forState:UIControlStateNormal
                                                    style:UIBarButtonItemStyleDone
                                               barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackgroundImage:barButtonDoneLandscapeImage
+                                                forState:UIControlStateNormal
+                                                   style:UIBarButtonItemStyleDone
+                                              barMetrics:UIBarMetricsLandscapePhone];
     } else {
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
                                                                                             forState:UIControlStateNormal
                                                                                           barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalLandscapeImage
+                                                                                            forState:UIControlStateNormal
+                                                                                          barMetrics:UIBarMetricsLandscapePhone];
         
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
                                                                                             forState:UIControlStateHighlighted
                                                                                           barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage
+                                                                                            forState:UIControlStateHighlighted
+                                                                                          barMetrics:UIBarMetricsLandscapePhone];
     }
     
 //    UIImage *segmentSelected =

@@ -58,8 +58,12 @@
     [previewTapRecognizer setNumberOfTapsRequired:1];
     [parentPostPreview addGestureRecognizer:previewTapRecognizer];
     [previewTapRecognizer release];
-    
-	if (post) parentPostPreview.text = post.preview;
+
+    parentPostAuthor.text = @"";
+	if (post) {
+        parentPostAuthor.text = post.author;
+        parentPostPreview.text = post.preview;
+    }
 	[postContent becomeFirstResponder];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postContentBecomeFirstResponder:) name:@"PostContentBecomeFirstResponder" object:nil];
@@ -115,12 +119,22 @@
         
         if (UIInterfaceOrientationIsLandscape(orientation)) {
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
+<<<<<<< HEAD
+            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
+            [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
+            [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 1, 40, 40)];
+=======
+>>>>>>> markup
         } else {
             if ( screenHeight > 480 ) {
                 [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
+                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
+                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 10, 50, 50)];
             }
             else {
                 [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
+                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
+                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 5, 50, 50)];
             }
         }
     }
@@ -187,13 +201,23 @@
             //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
             if ( screenHeight > 480 ) {
                 [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
+                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
+                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 10, 50, 50)];
             }
             else {
                 [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
+                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
+                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 5, 50, 50)];
             }
         } else {
             //iPhone landscape activated
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
+<<<<<<< HEAD
+            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
+            [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
+            [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 1, 40, 40)];
+=======
+>>>>>>> markup
         }
     }
 }
@@ -225,7 +249,6 @@
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
         
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
             popoverController.delegate = self;
@@ -236,7 +259,6 @@
         } else {
             [self presentModalViewController:imagePicker animated:YES];			
 		}
-//#endif
 	}
 }
 
@@ -307,21 +329,17 @@
                            nil];
     [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithDictionary:) withObject:args];
     
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [popoverController dismissPopoverAnimated:YES];
     }
-//#endif
 }
 
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 - (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
     if (popoverController == pc) {
         [popoverController release];
         popoverController = nil;
     }
 }
-//#endif
 
 #pragma mark Tagging
 
@@ -417,7 +435,7 @@
 	[pool release];
 }
 
-- (IBAction)sendPost {
+- (void)sendPost {
     [postContent becomeFirstResponder];
     [postContent resignFirstResponder];
     
@@ -431,10 +449,14 @@
 
 - (void)dealloc {
     NSLog(@"ComposeViewController dealloc");
+<<<<<<< HEAD
+    [parentPostAuthor release];
+=======
     
     // Remove special style item from text selection menu
     [UIMenuController sharedMenuController].menuItems = nil;
     
+>>>>>>> markup
 	[parentPostPreview release];
 	[postContent release];
     [tagView release];
@@ -446,6 +468,8 @@
 	
 	[tagLookup release];
 	self.post = nil;
+    [tagButton release];
+    [imageButton release];
 	[super dealloc];
 }
 
