@@ -38,9 +38,9 @@
 //                                                                          action:@selector(lolMenu)];
 //        [lolMenuButton setEnabled:NO];
         UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
-                                                                               style:UIBarButtonItemStyleBordered
-                                                                              target:self
-                                                                              action:@selector(lolMenu)];
+                                                                          style:UIBarButtonItemStyleBordered
+                                                                         target:self
+                                                                         action:@selector(lolMenu)];
         self.navigationItem.rightBarButtonItem = lolMenuButton;
         [lolMenuButton setEnabled:NO];
         

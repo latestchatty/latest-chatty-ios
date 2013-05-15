@@ -92,11 +92,8 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="658422331"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MAA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace">
-						<int key="NSID">2</int>
-					</object>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC4yMTE3NjQ3MDU5IDAuMjExNzY0NzA1OSAwLjIyNzQ1MDk4MDQAA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>

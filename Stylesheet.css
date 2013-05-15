@@ -105,8 +105,10 @@ div.youtube-widget a {
 
 h1.story-title {
   clear: both;
+  color: rgb(116,196,255);
   font-size: 150%;
-  text-shadow: black 1px 5px 7px;
+  margin: 0;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
 }
 
 div.focalbox {

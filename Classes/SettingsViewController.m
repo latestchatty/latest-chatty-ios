@@ -19,6 +19,7 @@
         usernameField.placeholder = @"Enter Username";
         usernameField.returnKeyType = UIReturnKeyNext;
         usernameField.keyboardType = UIKeyboardTypeEmailAddress;
+        usernameField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
         
         passwordField = [[self generateTextFieldWithKey:@"password"] retain];
         passwordField.placeholder = @"Enter Password";
@@ -34,6 +35,7 @@
         picsUsernameField.placeholder = @"Enter Username";
         picsUsernameField.returnKeyType = UIReturnKeyNext;
         picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
+        picsUsernameField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
         
         picsPasswordField = [[self generateTextFieldWithKey:@"picsPassword"] retain];
         picsPasswordField.placeholder = @"Enter Password";
@@ -106,6 +108,7 @@
 	textField.autocorrectionType = UITextAutocorrectionTypeNo;
 	textField.delegate = self;
 	textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:key];
+    textField.textColor = [UIColor whiteColor];
 	
 	return [textField autorelease];
 }
@@ -164,6 +167,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [tableView setSeparatorColor:[UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0]];
+    
+    [tableView setBackgroundView:nil];
+    [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
+    
+    tableView.backgroundColor = [UIColor clearColor];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -220,7 +230,7 @@
 	}
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (NSString *)titleForHeaderInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
 			return @"Shacknews.com Account";
@@ -244,8 +254,43 @@
 	}
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *customTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 44)];
+    
+    titleLabel.font = [UIFont boldSystemFontOfSize:17.0];
+    titleLabel.text = [self titleForHeaderInSection:section];
+    titleLabel.textColor = [UIColor colorWithRed:121.0/255.0 green:122.0/255.0 blue:128.0/255.0 alpha:1.0];
+    titleLabel.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    [titleLabel setShadowOffset:CGSizeMake(0, -1.0)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    
+//    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                [UIColor colorWithRed:121.0/255.0 green:122.0/255.0 blue:128.0/255.0 alpha:1.0],UITextAttributeTextColor,
+//                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
+//                                [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],UITextAttributeTextShadowOffset,
+//                                nil];
+//    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:[self titleForHeaderInSection:section]
+//                                                                     attributes:attributes];
+//    
+//    titleLabel.attributedText = attrString;
+
+    [customTitleView addSubview:titleLabel];
+    return customTitleView;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 44;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
+    cell.backgroundColor = [UIColor colorWithRed:47.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
+    
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
 	// username/password/server text entry fields
@@ -368,6 +413,9 @@
 				break;
 		}
 	}
+    cell.textLabel.textColor = [UIColor colorWithRed:172.0/255.0 green:172.0/255.0 blue:173.0/255.0 alpha:1.0];
+    cell.textLabel.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
 	
 	return [cell autorelease];
 }

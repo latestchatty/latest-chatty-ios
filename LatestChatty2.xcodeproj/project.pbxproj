@@ -382,6 +382,20 @@
 		CDFA3D891741F4000083C9D5 /* segcontrol_uns.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D761741F3FF0083C9D5 /* segcontrol_uns.png */; };
 		CDFA3D8A1741F4000083C9D5 /* segcontrol_uns@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D771741F3FF0083C9D5 /* segcontrol_uns@2x.png */; };
 		CDFA3D8B1741F4000083C9D5 /* segcontrol_uns@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D771741F3FF0083C9D5 /* segcontrol_uns@2x.png */; };
+		CDFA3D8D17429F660083C9D5 /* NavButtonTags@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D8C17429F660083C9D5 /* NavButtonTags@2x.png */; };
+		CDFA3D8E17429F660083C9D5 /* NavButtonTags@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D8C17429F660083C9D5 /* NavButtonTags@2x.png */; };
+		CDFA3D911742F9160083C9D5 /* button_normal_highlight_landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D8F1742F9150083C9D5 /* button_normal_highlight_landscape@2x.png */; };
+		CDFA3D921742F9160083C9D5 /* button_normal_highlight_landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D8F1742F9150083C9D5 /* button_normal_highlight_landscape@2x.png */; };
+		CDFA3D931742F9160083C9D5 /* button_normal_landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D901742F9160083C9D5 /* button_normal_landscape@2x.png */; };
+		CDFA3D941742F9160083C9D5 /* button_normal_landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D901742F9160083C9D5 /* button_normal_landscape@2x.png */; };
+		CDFA3D971743122A0083C9D5 /* button_done_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D95174312290083C9D5 /* button_done_landscape.png */; };
+		CDFA3D981743122A0083C9D5 /* button_done_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D95174312290083C9D5 /* button_done_landscape.png */; };
+		CDFA3D991743122A0083C9D5 /* button_done_landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D961743122A0083C9D5 /* button_done_landscape@2x.png */; };
+		CDFA3D9A1743122A0083C9D5 /* button_done_landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D961743122A0083C9D5 /* button_done_landscape@2x.png */; };
+		CDFA3D9D174335D10083C9D5 /* BlueBulletThread.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D9B174335D00083C9D5 /* BlueBulletThread.png */; };
+		CDFA3D9E174335D10083C9D5 /* BlueBulletThread.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D9B174335D00083C9D5 /* BlueBulletThread.png */; };
+		CDFA3D9F174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D9C174335D10083C9D5 /* BlueBulletThread@2x.png */; };
+		CDFA3DA0174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D9C174335D10083C9D5 /* BlueBulletThread@2x.png */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA04877A11640D7000290D2D /* ThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */; };
@@ -672,6 +686,13 @@
 		CDFA3D751741F3FF0083C9D5 /* segcontrol_uns-uns@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "segcontrol_uns-uns@2x.png"; path = "Assets/segcontrol_uns-uns@2x.png"; sourceTree = "<group>"; };
 		CDFA3D761741F3FF0083C9D5 /* segcontrol_uns.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = segcontrol_uns.png; path = Assets/segcontrol_uns.png; sourceTree = "<group>"; };
 		CDFA3D771741F3FF0083C9D5 /* segcontrol_uns@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "segcontrol_uns@2x.png"; path = "Assets/segcontrol_uns@2x.png"; sourceTree = "<group>"; };
+		CDFA3D8C17429F660083C9D5 /* NavButtonTags@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NavButtonTags@2x.png"; path = "Assets/NavButtonTags@2x.png"; sourceTree = "<group>"; };
+		CDFA3D8F1742F9150083C9D5 /* button_normal_highlight_landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_normal_highlight_landscape@2x.png"; path = "Assets/button_normal_highlight_landscape@2x.png"; sourceTree = "<group>"; };
+		CDFA3D901742F9160083C9D5 /* button_normal_landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_normal_landscape@2x.png"; path = "Assets/button_normal_landscape@2x.png"; sourceTree = "<group>"; };
+		CDFA3D95174312290083C9D5 /* button_done_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_done_landscape.png; path = Assets/button_done_landscape.png; sourceTree = "<group>"; };
+		CDFA3D961743122A0083C9D5 /* button_done_landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_done_landscape@2x.png"; path = "Assets/button_done_landscape@2x.png"; sourceTree = "<group>"; };
+		CDFA3D9B174335D00083C9D5 /* BlueBulletThread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueBulletThread.png; path = Assets/BlueBulletThread.png; sourceTree = "<group>"; };
+		CDFA3D9C174335D10083C9D5 /* BlueBulletThread@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BlueBulletThread@2x.png"; path = "Assets/BlueBulletThread@2x.png"; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
@@ -1196,6 +1217,8 @@
 				FA689DF211D2EAE20088CF3D /* GrayBullet@2x.png */,
 				FA2B458E0F7D95710074064A /* BlueBullet.png */,
 				FA689DEE11D2EA680088CF3D /* BlueBullet@2x.png */,
+				CDFA3D9B174335D00083C9D5 /* BlueBulletThread.png */,
+				CDFA3D9C174335D10083C9D5 /* BlueBulletThread@2x.png */,
 				FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */,
 				FA689DF811D2EB840088CF3D /* NewPostBullet@2x.png */,
 				FAD29A600F796452006E14A2 /* DropShadow.png */,
@@ -1232,6 +1255,7 @@
 				FA9C3F160F9CFD580022A739 /* GrayButton.png */,
 				FA9C3F180F9CFE130022A739 /* GrayButtonPressed.png */,
 				FA87BE890F7B18C60044898C /* NavButtonTags.png */,
+				CDFA3D8C17429F660083C9D5 /* NavButtonTags@2x.png */,
 				FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */,
 				CD8BA2C916306B4B00ED5C5E /* left.png */,
 				CD8BA2CA16306B4B00ED5C5E /* left@2x.png */,
@@ -1267,12 +1291,16 @@
 				CD5C6655174072F600376655 /* button_back@2x.png */,
 				CD5C6656174072F600376655 /* button_normal.png */,
 				CD5C6657174072F600376655 /* button_normal@2x.png */,
+				CDFA3D901742F9160083C9D5 /* button_normal_landscape@2x.png */,
 				CDC6DEAD17408DFF004B9C78 /* button_done.png */,
 				CDC6DEAE17408DFF004B9C78 /* button_done@2x.png */,
+				CDFA3D95174312290083C9D5 /* button_done_landscape.png */,
+				CDFA3D961743122A0083C9D5 /* button_done_landscape@2x.png */,
 				CDFA3D4A17414D5C0083C9D5 /* button_back_highlight.png */,
 				CDFA3D4B17414D5C0083C9D5 /* button_back_highlight@2x.png */,
 				CDFA3D4C17414D5C0083C9D5 /* button_normal_highlight.png */,
 				CDFA3D4D17414D5C0083C9D5 /* button_normal_highlight@2x.png */,
+				CDFA3D8F1742F9150083C9D5 /* button_normal_highlight_landscape@2x.png */,
 				CDFA3D6E1741F3FE0083C9D5 /* segcontrol_sel-uns.png */,
 				CDFA3D6F1741F3FE0083C9D5 /* segcontrol_sel-uns@2x.png */,
 				CDFA3D701741F3FE0083C9D5 /* segcontrol_sel.png */,
@@ -1616,6 +1644,13 @@
 				CDFA3D861741F4000083C9D5 /* segcontrol_uns-uns@2x.png in Resources */,
 				CDFA3D881741F4000083C9D5 /* segcontrol_uns.png in Resources */,
 				CDFA3D8A1741F4000083C9D5 /* segcontrol_uns@2x.png in Resources */,
+				CDFA3D8D17429F660083C9D5 /* NavButtonTags@2x.png in Resources */,
+				CDFA3D911742F9160083C9D5 /* button_normal_highlight_landscape@2x.png in Resources */,
+				CDFA3D931742F9160083C9D5 /* button_normal_landscape@2x.png in Resources */,
+				CDFA3D971743122A0083C9D5 /* button_done_landscape.png in Resources */,
+				CDFA3D991743122A0083C9D5 /* button_done_landscape@2x.png in Resources */,
+				CDFA3D9D174335D10083C9D5 /* BlueBulletThread.png in Resources */,
+				CDFA3D9F174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1799,6 +1834,13 @@
 				CDFA3D871741F4000083C9D5 /* segcontrol_uns-uns@2x.png in Resources */,
 				CDFA3D891741F4000083C9D5 /* segcontrol_uns.png in Resources */,
 				CDFA3D8B1741F4000083C9D5 /* segcontrol_uns@2x.png in Resources */,
+				CDFA3D8E17429F660083C9D5 /* NavButtonTags@2x.png in Resources */,
+				CDFA3D921742F9160083C9D5 /* button_normal_highlight_landscape@2x.png in Resources */,
+				CDFA3D941742F9160083C9D5 /* button_normal_landscape@2x.png in Resources */,
+				CDFA3D981743122A0083C9D5 /* button_done_landscape.png in Resources */,
+				CDFA3D9A1743122A0083C9D5 /* button_done_landscape@2x.png in Resources */,
+				CDFA3D9E174335D10083C9D5 /* BlueBulletThread.png in Resources */,
+				CDFA3DA0174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2068,7 +2110,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Debug;
@@ -2082,7 +2124,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Release;
@@ -2096,7 +2138,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Distribution;
