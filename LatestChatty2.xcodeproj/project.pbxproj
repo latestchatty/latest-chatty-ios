@@ -82,6 +82,8 @@
 		CD235A4F173AFC000078423B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4B173AFB920078423B /* MobileCoreServices.framework */; };
 		CD235A52173B1F830078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
 		CD235A53173B1F920078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
+		CD43CFE61743B7AD00165FF3 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */; };
+		CD43CFE71743B7AD00165FF3 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */; };
 		CD5C6650174059C900376655 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5C664E174059C900376655 /* navbar_bg.png */; };
 		CD5C6651174059C900376655 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5C664E174059C900376655 /* navbar_bg.png */; };
 		CD5C6652174059C900376655 /* navbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5C664F174059C900376655 /* navbar_bg@2x.png */; };
@@ -150,7 +152,6 @@
 		CDA1175D16C1DC6600CE1375 /* DropShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A600F796452006E14A2 /* DropShadow.png */; };
 		CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */; };
 		CDA1175F16C1DC6600CE1375 /* CellBackgroundLight.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE1B0F7B0A9E0044898C /* CellBackgroundLight.png */; };
-		CDA1176016C1DC6600CE1375 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE500F7B174C0044898C /* ComposeViewController.xib */; };
 		CDA1176716C1DC6600CE1375 /* NavButtonTags.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE890F7B18C60044898C /* NavButtonTags.png */; };
 		CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */; };
 		CDA1176916C1DC6600CE1375 /* DragonDrop.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB765ED0F7C9DEB00CE0E38 /* DragonDrop.png */; };
@@ -475,7 +476,6 @@
 		FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BD670F7AE96B0044898C /* SettingsViewController.m */; };
 		FA87BD6B0F7AE97F0044898C /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */; };
 		FA87BE1C0F7B0A9E0044898C /* CellBackgroundLight.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE1B0F7B0A9E0044898C /* CellBackgroundLight.png */; };
-		FA87BE510F7B174C0044898C /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE500F7B174C0044898C /* ComposeViewController.xib */; };
 		FA87BE8A0F7B18C60044898C /* NavButtonTags.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87BE890F7B18C60044898C /* NavButtonTags.png */; };
 		FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */; };
 		FA8D243E0F85848900AB23E2 /* Youtube.html in Resources */ = {isa = PBXBuildFile; fileRef = FA8D243D0F85848900AB23E2 /* Youtube.html */; };
@@ -622,6 +622,7 @@
 		CD235A19173AB4390078423B /* ButtonUnderlinePushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonUnderlinePushed@2x.png"; path = "Assets/ButtonUnderlinePushed@2x.png"; sourceTree = "<group>"; };
 		CD235A4B173AFB920078423B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CD235A51173B1F1A0078423B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		CD5C664E174059C900376655 /* navbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navbar_bg.png; path = Assets/navbar_bg.png; sourceTree = "<group>"; };
 		CD5C664F174059C900376655 /* navbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar_bg@2x.png"; path = "Assets/navbar_bg@2x.png"; sourceTree = "<group>"; };
 		CD5C6654174072F600376655 /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_back.png; path = Assets/button_back.png; sourceTree = "<group>"; };
@@ -777,7 +778,6 @@
 		FA87BD670F7AE96B0044898C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		FA87BE1B0F7B0A9E0044898C /* CellBackgroundLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellBackgroundLight.png; path = Assets/CellBackgroundLight.png; sourceTree = "<group>"; };
-		FA87BE500F7B174C0044898C /* ComposeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		FA87BE890F7B18C60044898C /* NavButtonTags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NavButtonTags.png; path = Assets/NavButtonTags.png; sourceTree = "<group>"; };
 		FA87BE8C0F7B1B9D0044898C /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
@@ -1093,7 +1093,7 @@
 				CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */,
 				FA87BE8C0F7B1B9D0044898C /* ComposeViewController.h */,
 				FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */,
-				FA87BE500F7B174C0044898C /* ComposeViewController.xib */,
+				CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */,
 				FAB765F40F7C9E5B00CE0E38 /* BrowserViewController.h */,
 				FAB765F50F7C9E5B00CE0E38 /* BrowserViewController.m */,
 				FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */,
@@ -1486,7 +1486,6 @@
 				FAD29A610F796452006E14A2 /* DropShadow.png in Resources */,
 				FA87BD6B0F7AE97F0044898C /* SettingsViewController.xib in Resources */,
 				FA87BE1C0F7B0A9E0044898C /* CellBackgroundLight.png in Resources */,
-				FA87BE510F7B174C0044898C /* ComposeViewController.xib in Resources */,
 				FA87BE8A0F7B18C60044898C /* NavButtonTags.png in Resources */,
 				FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */,
 				FAB765EE0F7C9DEB00CE0E38 /* DragonDrop.png in Resources */,
@@ -1651,6 +1650,7 @@
 				CDFA3D991743122A0083C9D5 /* button_done_landscape@2x.png in Resources */,
 				CDFA3D9D174335D10083C9D5 /* BlueBulletThread.png in Resources */,
 				CDFA3D9F174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */,
+				CD43CFE61743B7AD00165FF3 /* ComposeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1676,7 +1676,6 @@
 				CDA1175D16C1DC6600CE1375 /* DropShadow.png in Resources */,
 				CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */,
 				CDA1175F16C1DC6600CE1375 /* CellBackgroundLight.png in Resources */,
-				CDA1176016C1DC6600CE1375 /* ComposeViewController.xib in Resources */,
 				CDA1176716C1DC6600CE1375 /* NavButtonTags.png in Resources */,
 				CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */,
 				CDA1176916C1DC6600CE1375 /* DragonDrop.png in Resources */,
@@ -1841,6 +1840,7 @@
 				CDFA3D9A1743122A0083C9D5 /* button_done_landscape@2x.png in Resources */,
 				CDFA3D9E174335D10083C9D5 /* BlueBulletThread.png in Resources */,
 				CDFA3DA0174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */,
+				CD43CFE71743B7AD00165FF3 /* ComposeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
