@@ -81,7 +81,7 @@
     
     // Add a style item to the text selection menu
     UIMenuController *menu = [UIMenuController sharedMenuController];
-    menu.menuItems = [NSArray arrayWithObject:[[[UIMenuItem alloc] initWithTitle:@"Style" action:@selector(styleSelection)] autorelease]];
+    menu.menuItems = [NSArray arrayWithObject:[[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)] autorelease]];
 }
 
 - (void)styleSelection {
@@ -122,19 +122,15 @@
         
         if (UIInterfaceOrientationIsLandscape(orientation)) {
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-//            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
             [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
-//            [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 1, 40, 40)];
         } else {
             if ( screenHeight > 480 ) {
                 [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
                 [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
-//                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 10, 50, 50)];
             }
             else {
                 [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
                 [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
-//                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 5, 50, 50)];
             }
         }
     }
@@ -202,19 +198,15 @@
             if ( screenHeight > 480 ) {
                 [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
                 [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
-//                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 10, 50, 50)];
             }
             else {
                 [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
                 [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
-//                [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 5, 50, 50)];
             }
         } else {
             //iPhone landscape activated
             [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-//            [tagView setFrame:CGRectMake(0, postContent.frameY + postContent.frameHeight, screenHeight, availableSpaceLandscape-(postContent.frameY + postContent.frameHeight))];
             [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
-//            [tagButton setFrame:CGRectMake(tagButton.frameOrigin.x, 1, 40, 40)];
         }
     }
 }
