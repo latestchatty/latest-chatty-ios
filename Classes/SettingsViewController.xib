@@ -117,6 +117,14 @@
 					<int key="connectionID">60</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">saveButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="516697133"/>
+					</object>
+					<int key="connectionID">61</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">dismiss:</string>
 						<reference key="source" ref="516697133"/>
@@ -212,7 +220,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">60</int>
+			<int key="maxID">61</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -245,6 +253,7 @@
 						<string key="pushMessagesSwitch">UISwitch</string>
 						<string key="randomSwitch">UISwitch</string>
 						<string key="safariSwitch">UISwitch</string>
+						<string key="saveButton">UIBarButtonItem</string>
 						<string key="serverField">UITextField</string>
 						<string key="tableView">UITableView</string>
 						<string key="usernameField">UITextField</string>
@@ -306,6 +315,10 @@
 						<object class="IBToOneOutletInfo" key="safariSwitch">
 							<string key="name">safariSwitch</string>
 							<string key="candidateClassName">UISwitch</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="saveButton">
+							<string key="name">saveButton</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="serverField">
 							<string key="name">serverField</string>

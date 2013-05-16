@@ -26,12 +26,26 @@
     
     scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
     
+//	UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send"
+//                                                                   style:UIBarButtonItemStyleDone
+//                                                                  target:self
+//                                                                  action:@selector(sendMessage)];
+//	self.navigationItem.rightBarButtonItem = sendButton;
+//    [sendButton release];
+    
 	UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send"
                                                                    style:UIBarButtonItemStyleDone
                                                                   target:self
                                                                   action:@selector(sendMessage)];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor whiteColor],UITextAttributeTextColor,
+                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
+                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
+                                UITextAttributeTextShadowOffset,
+                                nil];
+    [sendButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
 	self.navigationItem.rightBarButtonItem = sendButton;
-    [sendButton release];
+	[sendButton release];
     
     [self.recipient becomeFirstResponder];
     

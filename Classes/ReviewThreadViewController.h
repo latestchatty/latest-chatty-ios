@@ -14,12 +14,13 @@
 
     IBOutlet UIView *postViewContainer;
     IBOutlet UIWebView *postView;
+    IBOutlet UIBarButtonItem *doneButton;
 }
 
 @property (retain) Post *rootPost;
 
 - (id)initWithPost:(Post *)aPost;
 
-- (IBAction)doneButton;
+- (IBAction)dismiss;
 
 @end

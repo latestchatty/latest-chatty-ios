@@ -167,9 +167,10 @@
         self.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
         self.navigationItem.titleView = self.toolbar;
     } else {
-        UIBarButtonItem *replyButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply
-                                                                    target:self
-                                                                    action:@selector(tappedReplyButton)];
+        UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReplyIcon.24.png"]
+                                                                        style:UIBarButtonItemStyleBordered
+                                                                       target:self
+                                                                       action:@selector(tappedReplyButton)];
         self.navigationItem.rightBarButtonItem = replyButton;
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }

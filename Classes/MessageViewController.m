@@ -18,14 +18,18 @@
     self = [super initWithNib];
     self.message = aMessage;
     self.title = self.message.subject;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemReply
-                                                                          target:self
-                                                                          action:@selector(reply)];
+
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReplyIcon.24.png"]
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:@selector(reply)];
+    self.navigationItem.rightBarButtonItem = replyButton;
     
     // Create HTML for the message
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Message.html"];

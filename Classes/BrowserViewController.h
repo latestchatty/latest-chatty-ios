@@ -17,6 +17,7 @@
     UIBarButtonItem *forwardButton;
     UIActivityIndicatorView *spinner;
     UIToolbar *mainToolbar;
+    UIBarButtonItem *refreshButton;
     UIBarButtonItem *actionButton;
     UIToolbar *bottomToolbar;
     BOOL isShackLOL;
@@ -32,6 +33,7 @@
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, retain) IBOutlet UIToolbar *mainToolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic, retain) IBOutlet UIToolbar *bottomToolbar;
 @property (nonatomic, assign) BOOL isShackLOL;
 
@@ -39,5 +41,6 @@
 - (id)initWithRequest:(NSURLRequest *)request title:(NSString*)title isForShackLOL:(BOOL)isForShackLOL;
 
 - (IBAction)action:(id)sender;
+- (IBAction)refreshWebView:(id)sender;
 
 @end

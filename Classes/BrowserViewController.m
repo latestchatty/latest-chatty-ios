@@ -127,6 +127,10 @@
     [self webViewDidFinishLoad:webView];
 }
 
+- (IBAction)refreshWebView:(id)sender {
+    [self.webView reload];
+}
+
 //Patch-E: displays the custom iPhone menu on the Shack[LOL] site. Menu button is disabled until the web view finishes loading.
 - (void)lolMenu {
     //switching to a javascript function called on the page rather than a page transfer
@@ -255,6 +259,7 @@
     self.spinner = nil;
     self.mainToolbar = nil;
     self.actionButton = nil;
+    self.refreshButton = nil;
     [super dealloc];
 }
 

@@ -30,10 +30,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self refresh:self];
-	UIBarButtonItem *composeButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
+        
+    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"PenIcon.24.png"]
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:@selector(composeMessage)];
     composeButton.enabled = NO;
-	self.navigationItem.rightBarButtonItem = composeButton;
+    self.navigationItem.rightBarButtonItem = composeButton;
     
     pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
     [pull setDelegate:self];

@@ -174,6 +174,14 @@
     [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
     
     tableView.backgroundColor = [UIColor clearColor];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor whiteColor],UITextAttributeTextColor,
+                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
+                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
+                                UITextAttributeTextShadowOffset,
+                                nil];
+    [saveButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -446,6 +454,7 @@
 	[politicsSwitch release];
 	[nwsSwitch release];
 	
+    [saveButton release];
 	[super dealloc];
 }
 

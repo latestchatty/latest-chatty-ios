@@ -103,9 +103,10 @@
 		if (indexPathToSelect) [self.tableView selectRowAtIndexPath:indexPathToSelect animated:NO scrollPosition:UITableViewScrollPositionTop];
 	}
 	
-	UIBarButtonItem *composeButton = [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose
-                                                                  target:self
-                                                                  action:@selector(tappedComposeButton)];
+    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"PenIcon.24.png"]
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:@selector(tappedComposeButton)];
 	composeButton.enabled = (self.storyId > 0);
     
 // Patch-E: removed refresh button from iPad right toolbar, pull to refresh makes this obsolete

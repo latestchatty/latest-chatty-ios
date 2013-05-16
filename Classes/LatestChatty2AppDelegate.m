@@ -400,23 +400,24 @@
     //iOS 6 allows usage of appearance proxy to customize done and normal buttons independently
     //downside to the following is that iOS 5 will not have blue color done style buttons, do we care?
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
-                                                                                            forState:UIControlStateNormal
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalLandscapeImage
-                                                                                            forState:UIControlStateNormal
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
+        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalImage
+                                                forState:UIControlStateNormal
+                                                   style:UIBarButtonItemStyleBordered
+                                              barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalLandscapeImage
+                                                forState:UIControlStateNormal
+                                                   style:UIBarButtonItemStyleBordered
+                                              barMetrics:UIBarMetricsLandscapePhone];
         
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
-                                                                                            forState:UIControlStateHighlighted
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage
-                                                                                            forState:UIControlStateHighlighted
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
+        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalHighlightImage
+                                                forState:UIControlStateHighlighted
+                                                   style:UIBarButtonItemStyleBordered
+                                              barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalHighlightLandscapeImage
+                                                forState:UIControlStateHighlighted
+                                                   style:UIBarButtonItemStyleBordered
+                                              barMetrics:UIBarMetricsLandscapePhone];
+        
         [[UIBarButtonItem appearance] setBackgroundImage:barButtonDoneImage
                                                 forState:UIControlStateNormal
                                                    style:UIBarButtonItemStyleDone
@@ -426,20 +427,29 @@
                                                    style:UIBarButtonItemStyleDone
                                               barMetrics:UIBarMetricsLandscapePhone];
     } else {
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
-                                                                                            forState:UIControlStateNormal
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalLandscapeImage
-                                                                                            forState:UIControlStateNormal
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
+        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalImage
+                                                forState:UIControlStateNormal
+                                              barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalLandscapeImage
+                                                forState:UIControlStateNormal
+                                              barMetrics:UIBarMetricsLandscapePhone];
         
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
-                                                                                            forState:UIControlStateHighlighted
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage
-                                                                                            forState:UIControlStateHighlighted
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
+        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalHighlightImage
+                                                forState:UIControlStateHighlighted
+                                              barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalHighlightLandscapeImage
+                                                forState:UIControlStateHighlighted
+                                              barMetrics:UIBarMetricsLandscapePhone];
     }
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:194.0/255.0 alpha:1.0],UITextAttributeTextColor,
+                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
+                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
+                                UITextAttributeTextShadowOffset,
+                                nil];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes
+                                                forState:UIControlStateNormal];
     
 //    UIImage *segmentSelected =
 //        [[UIImage imageNamed:@"segcontrol_sel.png"]
@@ -470,14 +480,6 @@
 //                                 forLeftSegmentState:UIControlStateNormal
 //                                   rightSegmentState:UIControlStateSelected
 //                                          barMetrics:UIBarMetricsDefault];
-//    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:194.0/255.0 alpha:1.0],UITextAttributeTextColor,
-//                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-//                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-//                                UITextAttributeTextShadowOffset,
-//                                nil];
-//    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes
-//                                                forState:UIControlStateNormal];
     
 //    [[UISwitch appearance] setTintColor:[UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0]];
 //    [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:119.0/255.0 green:197.0/255.0 blue:254.0/255.0 alpha:1.0]];
