@@ -39,11 +39,11 @@ static NSMutableDictionary *expirationColorMapping;
 + (void)initialize {
     categoryColorMapping = [[NSMutableDictionary alloc] init];
     [categoryColorMapping setObject:[UIColor clearColor] forKey:@"ontopic"];
-    [categoryColorMapping setObject:[UIColor colorWithRed:23.0/255.0 green:107.0/255.0 blue:147.0/255.0 alpha:1.0] forKey:@"informative"];
-    [categoryColorMapping setObject:[UIColor colorWithRed:99.0/255.0 green:101.0/255.0 blue:106.0/255.0 alpha:1.0] forKey:@"offtopic"];
-    [categoryColorMapping setObject:[UIColor colorWithRed:23.0/255.0 green:99.0/255.0 blue:47.0/255.0 alpha:1.0] forKey:@"stupid"];
-    [categoryColorMapping setObject:[UIColor colorWithRed:148.0/255.0 green:97.0/255.0 blue:25.0/255.0 alpha:1.0] forKey:@"political"];
-    [categoryColorMapping setObject:[UIColor colorWithRed:129.0/255.0 green:39.0/255.0 blue:40.0/255.0 alpha:1.0] forKey:@"nws"];
+    [categoryColorMapping setObject:[UIColor colorWithRed:27.0/255.0 green:110.0/255.0 blue:151.0/255.0 alpha:1.0] forKey:@"informative"];
+    [categoryColorMapping setObject:[UIColor colorWithRed:103.0/255.0 green:104.0/255.0 blue:110.0/255.0 alpha:1.0] forKey:@"offtopic"];
+    [categoryColorMapping setObject:[UIColor colorWithRed:27.0/255.0 green:103.0/255.0 blue:50.0/255.0 alpha:1.0] forKey:@"stupid"];
+    [categoryColorMapping setObject:[UIColor colorWithRed:151.0/255.0 green:100.0/255.0 blue:29.0/255.0 alpha:1.0] forKey:@"political"];
+    [categoryColorMapping setObject:[UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:1.0] forKey:@"nws"];
     
     expirationColorMapping = [[NSMutableDictionary alloc] init];
     [expirationColorMapping setObject:[UIColor colorWithRed:39.0/255.0 green:77.0/255.0 blue:53.0/255.0 alpha:1.0] forKey:@"level1"];
@@ -76,7 +76,7 @@ static NSMutableDictionary *expirationColorMapping;
 //    }
     
     if (hours >= 18) {
-        color = [expirationColorMapping objectForKey:@"level3"];
+        color = [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:0.25];
     } else {
         color = [UIColor colorWithRed:116.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:0.25];
     }
