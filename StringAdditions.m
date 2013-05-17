@@ -11,11 +11,11 @@
 @implementation NSString (StringAdditions)
 
 - (NSString *)stringByUnescapingHTML {
-  HTMLEscaper *escaper = [[HTMLEscaper alloc] init];
-  NSString *unescapedString = [escaper unescapeEntitiesInString:self];
-  [escaper release];
+    HTMLEscaper *escaper = [[HTMLEscaper alloc] init];
+    NSString *unescapedString = [escaper unescapeEntitiesInString:self];
+    [escaper release];
   
-  return unescapedString;
+    return unescapedString;
 }
 
 + (NSString *)rgbaFromUIColor:(UIColor *)color {

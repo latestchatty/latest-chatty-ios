@@ -14,32 +14,32 @@
 @synthesize resultString;
 
 - (id)init {
-  [super init];
+    [super init];
   
-  resultString = [[NSMutableString alloc] init];
-  
-  return self;
+    resultString = [[NSMutableString alloc] init];
+
+    return self;
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)s {
-  [resultString appendString:s];
+    [resultString appendString:s];
 }
 
 - (NSString*)unescapeEntitiesInString:(NSString*)inputString {
-  NSString* wrappedStr = [NSString stringWithFormat:@"<d>%@</d>", inputString];
-  NSString* xmlStr = [wrappedStr stringByReplacingOccurrencesOfRegex:@"&(?![a-z#]+;)" withString:@"&amp;"];
-  NSData *data = [xmlStr dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-  NSXMLParser* xmlParse = [[NSXMLParser alloc] initWithData:data];
-  [xmlParse setDelegate:self];
-  [xmlParse parse];
+    NSString* wrappedStr = [NSString stringWithFormat:@"<d>%@</d>", inputString];
+    NSString* xmlStr = [wrappedStr stringByReplacingOccurrencesOfRegex:@"&(?![a-z#]+;)" withString:@"&amp;"];
+    NSData *data = [xmlStr dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSXMLParser* xmlParse = [[NSXMLParser alloc] initWithData:data];
+    [xmlParse setDelegate:self];
+    [xmlParse parse];
 
     [xmlParse release];
     return resultString;
 }
 
 - (void)dealloc {
-  [resultString autorelease];
-  [super dealloc];
+    [resultString autorelease];
+    [super dealloc];
 }
 
 @end

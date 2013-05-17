@@ -12,7 +12,6 @@
 #import "Post.h"
 
 @interface PinnedThreadsLoader : NSObject <ModelLoadingDelegate> {
-
     NSMutableArray *pinnedThreadsToLoad;
     NSMutableArray *loadingModels;
     id<ModelLoadingDelegate> loadingFor;
