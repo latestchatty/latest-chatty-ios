@@ -34,8 +34,9 @@
 	if( rootPost.newReplies ){
 		newPostText = [NSString stringWithFormat:@"+%d", rootPost.newReplies];
 		replyCount.text = [NSString stringWithFormat:@"%i (%@)", rootPost.replyCount, newPostText];
-	}
-	else replyCount.text = [NSString stringWithFormat:@"%i", rootPost.replyCount];
+	} else {
+        replyCount.text = [NSString stringWithFormat:@"%i", rootPost.replyCount];
+    }
 	
 	// Set background to a light color if the user is the root poster
 	UIImageView *background = (UIImageView *)self.backgroundView;
@@ -49,25 +50,24 @@
 	
 	// Set side color stripe for the post category
 	categoryStripe.backgroundColor = rootPost.categoryColor;
-    
-    //set expiration stripe size and color
-//    expirationStripe.frameWidth = [Post sizeForPostExpiration:rootPost.date];
-    expirationStripe.backgroundColor = rootPost.expirationColor;
 	
-	// Show participant icon
-	participantIcon.hidden = YES;
+	// Detect participation
+    BOOL foundParticipant = NO;
 	for (NSDictionary *participant in rootPost.participants) {
 		NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"].lowercaseString;
         NSString *participantName = [participant objectForKey:@"username"];
         participantName = participantName.lowercaseString;
         
 		if (username && ![username isEqualToString:@""] && [participantName isEqualToString:username]) {
-			participantIcon.hidden = NO;
+            foundParticipant = YES;
         }
-	}
+    }
+    
+    // Choose which timer icon to show based on post date and participation indication
+    timerIcon.image = [Post imageForPostExpiration:rootPost.date withParticipant:foundParticipant];
 	
 	// Show new post icon
-	newPostsIcon.hidden = !rootPost.newPost;
+    //newPostsIcon.hidden = !rootPost.newPost;
 }
 
 - (BOOL)showCount {

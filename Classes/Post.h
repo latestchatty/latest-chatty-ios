@@ -61,6 +61,7 @@
 + (UIColor *)colorForPostCategory:(NSString *)categoryName;
 + (UIColor *)colorForPostExpiration:(NSDate *)date;
 + (CGFloat)sizeForPostExpiration:(NSDate *)date;
++ (UIImage *)imageForPostExpiration:(NSDate *)date withParticipant:(BOOL)hasParticipant;
 
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId pageNumber:(NSUInteger)pageNumber delegate:(id<ModelLoadingDelegate>)delegate;
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId delegate:(id<ModelLoadingDelegate>)delegate;

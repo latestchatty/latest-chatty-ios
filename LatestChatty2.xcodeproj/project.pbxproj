@@ -358,6 +358,42 @@
 		CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5B610A69A190028D630 /* libz.dylib */; };
+		CDB348D5174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CC174573C0000003CA /* TimerDotQuarterBlue@2x.png */; };
+		CDB348D6174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CC174573C0000003CA /* TimerDotQuarterBlue@2x.png */; };
+		CDB348D7174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CD174573C0000003CA /* TimerDotHalfBlue@2x.png */; };
+		CDB348D8174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CD174573C0000003CA /* TimerDotHalfBlue@2x.png */; };
+		CDB348D9174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CE174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png */; };
+		CDB348DA174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CE174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png */; };
+		CDB348DB174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CF174573C0000003CA /* TimerDotFullBlue@2x.png */; };
+		CDB348DC174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CF174573C0000003CA /* TimerDotFullBlue@2x.png */; };
+		CDB348DD174573C0000003CA /* TimerDotEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D0174573C0000003CA /* TimerDotEmpty@2x.png */; };
+		CDB348DE174573C0000003CA /* TimerDotEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D0174573C0000003CA /* TimerDotEmpty@2x.png */; };
+		CDB348DF174573C0000003CA /* TimerDotQuarter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D1174573C0000003CA /* TimerDotQuarter@2x.png */; };
+		CDB348E0174573C0000003CA /* TimerDotQuarter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D1174573C0000003CA /* TimerDotQuarter@2x.png */; };
+		CDB348E1174573C0000003CA /* TimerDotHalf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D2174573C0000003CA /* TimerDotHalf@2x.png */; };
+		CDB348E2174573C0000003CA /* TimerDotHalf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D2174573C0000003CA /* TimerDotHalf@2x.png */; };
+		CDB348E3174573C0000003CA /* TimerDotThreeQuarter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D3174573C0000003CA /* TimerDotThreeQuarter@2x.png */; };
+		CDB348E4174573C0000003CA /* TimerDotThreeQuarter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D3174573C0000003CA /* TimerDotThreeQuarter@2x.png */; };
+		CDB348E5174573C0000003CA /* TimerDotFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D4174573C0000003CA /* TimerDotFull@2x.png */; };
+		CDB348E6174573C0000003CA /* TimerDotFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D4174573C0000003CA /* TimerDotFull@2x.png */; };
+		CDB348F01745745F000003CA /* TimerDotQuarterBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E71745745F000003CA /* TimerDotQuarterBlue.png */; };
+		CDB348F11745745F000003CA /* TimerDotQuarterBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E71745745F000003CA /* TimerDotQuarterBlue.png */; };
+		CDB348F21745745F000003CA /* TimerDotHalfBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E81745745F000003CA /* TimerDotHalfBlue.png */; };
+		CDB348F31745745F000003CA /* TimerDotHalfBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E81745745F000003CA /* TimerDotHalfBlue.png */; };
+		CDB348F41745745F000003CA /* TimerDotThreeQuarterBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E91745745F000003CA /* TimerDotThreeQuarterBlue.png */; };
+		CDB348F51745745F000003CA /* TimerDotThreeQuarterBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E91745745F000003CA /* TimerDotThreeQuarterBlue.png */; };
+		CDB348F61745745F000003CA /* TimerDotFullBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EA1745745F000003CA /* TimerDotFullBlue.png */; };
+		CDB348F71745745F000003CA /* TimerDotFullBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EA1745745F000003CA /* TimerDotFullBlue.png */; };
+		CDB348F81745745F000003CA /* TimerDotEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EB1745745F000003CA /* TimerDotEmpty.png */; };
+		CDB348F91745745F000003CA /* TimerDotEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EB1745745F000003CA /* TimerDotEmpty.png */; };
+		CDB348FA1745745F000003CA /* TimerDotQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EC1745745F000003CA /* TimerDotQuarter.png */; };
+		CDB348FB1745745F000003CA /* TimerDotQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EC1745745F000003CA /* TimerDotQuarter.png */; };
+		CDB348FC1745745F000003CA /* TimerDotHalf.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348ED1745745F000003CA /* TimerDotHalf.png */; };
+		CDB348FD1745745F000003CA /* TimerDotHalf.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348ED1745745F000003CA /* TimerDotHalf.png */; };
+		CDB348FE1745745F000003CA /* TimerDotThreeQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */; };
+		CDB348FF1745745F000003CA /* TimerDotThreeQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */; };
+		CDB349001745745F000003CA /* TimerDotFull.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EF1745745F000003CA /* TimerDotFull.png */; };
+		CDB349011745745F000003CA /* TimerDotFull.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EF1745745F000003CA /* TimerDotFull.png */; };
 		CDC6DEAF17408DFF004B9C78 /* button_done.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAD17408DFF004B9C78 /* button_done.png */; };
 		CDC6DEB017408DFF004B9C78 /* button_done.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAD17408DFF004B9C78 /* button_done.png */; };
 		CDC6DEB117408DFF004B9C78 /* button_done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAE17408DFF004B9C78 /* button_done@2x.png */; };
@@ -698,6 +734,24 @@
 		CDA01B261733714300E24A28 /* ReviewPost.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ReviewPost.html; sourceTree = "<group>"; };
 		CDA1182816C1DC6600CE1375 /* LatestChatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA1182916C1DC6600CE1375 /* Info beta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info beta.plist"; path = "/Users/patrick/Documents/latest-chatty-2/latest-chatty-2/Info beta.plist"; sourceTree = "<absolute>"; };
+		CDB348CC174573C0000003CA /* TimerDotQuarterBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotQuarterBlue@2x.png"; path = "Assets/TimerDotQuarterBlue@2x.png"; sourceTree = "<group>"; };
+		CDB348CD174573C0000003CA /* TimerDotHalfBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotHalfBlue@2x.png"; path = "Assets/TimerDotHalfBlue@2x.png"; sourceTree = "<group>"; };
+		CDB348CE174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotThreeQuarterBlue@2x.png"; path = "Assets/TimerDotThreeQuarterBlue@2x.png"; sourceTree = "<group>"; };
+		CDB348CF174573C0000003CA /* TimerDotFullBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotFullBlue@2x.png"; path = "Assets/TimerDotFullBlue@2x.png"; sourceTree = "<group>"; };
+		CDB348D0174573C0000003CA /* TimerDotEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotEmpty@2x.png"; path = "Assets/TimerDotEmpty@2x.png"; sourceTree = "<group>"; };
+		CDB348D1174573C0000003CA /* TimerDotQuarter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotQuarter@2x.png"; path = "Assets/TimerDotQuarter@2x.png"; sourceTree = "<group>"; };
+		CDB348D2174573C0000003CA /* TimerDotHalf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotHalf@2x.png"; path = "Assets/TimerDotHalf@2x.png"; sourceTree = "<group>"; };
+		CDB348D3174573C0000003CA /* TimerDotThreeQuarter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotThreeQuarter@2x.png"; path = "Assets/TimerDotThreeQuarter@2x.png"; sourceTree = "<group>"; };
+		CDB348D4174573C0000003CA /* TimerDotFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotFull@2x.png"; path = "Assets/TimerDotFull@2x.png"; sourceTree = "<group>"; };
+		CDB348E71745745F000003CA /* TimerDotQuarterBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotQuarterBlue.png; path = Assets/TimerDotQuarterBlue.png; sourceTree = "<group>"; };
+		CDB348E81745745F000003CA /* TimerDotHalfBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotHalfBlue.png; path = Assets/TimerDotHalfBlue.png; sourceTree = "<group>"; };
+		CDB348E91745745F000003CA /* TimerDotThreeQuarterBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotThreeQuarterBlue.png; path = Assets/TimerDotThreeQuarterBlue.png; sourceTree = "<group>"; };
+		CDB348EA1745745F000003CA /* TimerDotFullBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotFullBlue.png; path = Assets/TimerDotFullBlue.png; sourceTree = "<group>"; };
+		CDB348EB1745745F000003CA /* TimerDotEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotEmpty.png; path = Assets/TimerDotEmpty.png; sourceTree = "<group>"; };
+		CDB348EC1745745F000003CA /* TimerDotQuarter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotQuarter.png; path = Assets/TimerDotQuarter.png; sourceTree = "<group>"; };
+		CDB348ED1745745F000003CA /* TimerDotHalf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotHalf.png; path = Assets/TimerDotHalf.png; sourceTree = "<group>"; };
+		CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotThreeQuarter.png; path = Assets/TimerDotThreeQuarter.png; sourceTree = "<group>"; };
+		CDB348EF1745745F000003CA /* TimerDotFull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotFull.png; path = Assets/TimerDotFull.png; sourceTree = "<group>"; };
 		CDC6DEAD17408DFF004B9C78 /* button_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_done.png; path = Assets/button_done.png; sourceTree = "<group>"; };
 		CDC6DEAE17408DFF004B9C78 /* button_done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_done@2x.png"; path = "Assets/button_done@2x.png"; sourceTree = "<group>"; };
 		CDE0905A164042DD0010E8F5 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Message.html; sourceTree = "<group>"; };
@@ -1359,6 +1413,24 @@
 				CDFA3D751741F3FF0083C9D5 /* segcontrol_uns-uns@2x.png */,
 				CDFA3D761741F3FF0083C9D5 /* segcontrol_uns.png */,
 				CDFA3D771741F3FF0083C9D5 /* segcontrol_uns@2x.png */,
+				CDB348EB1745745F000003CA /* TimerDotEmpty.png */,
+				CDB348E71745745F000003CA /* TimerDotQuarterBlue.png */,
+				CDB348E81745745F000003CA /* TimerDotHalfBlue.png */,
+				CDB348E91745745F000003CA /* TimerDotThreeQuarterBlue.png */,
+				CDB348EA1745745F000003CA /* TimerDotFullBlue.png */,
+				CDB348EC1745745F000003CA /* TimerDotQuarter.png */,
+				CDB348ED1745745F000003CA /* TimerDotHalf.png */,
+				CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */,
+				CDB348EF1745745F000003CA /* TimerDotFull.png */,
+				CDB348D0174573C0000003CA /* TimerDotEmpty@2x.png */,
+				CDB348CC174573C0000003CA /* TimerDotQuarterBlue@2x.png */,
+				CDB348CD174573C0000003CA /* TimerDotHalfBlue@2x.png */,
+				CDB348CE174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png */,
+				CDB348CF174573C0000003CA /* TimerDotFullBlue@2x.png */,
+				CDB348D1174573C0000003CA /* TimerDotQuarter@2x.png */,
+				CDB348D2174573C0000003CA /* TimerDotHalf@2x.png */,
+				CDB348D3174573C0000003CA /* TimerDotThreeQuarter@2x.png */,
+				CDB348D4174573C0000003CA /* TimerDotFull@2x.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -1711,6 +1783,24 @@
 				CD20566C174540A9003AF4FA /* RefreshIcon.24@2x.png in Resources */,
 				CD20566E174540A9003AF4FA /* ShareIcon.24@2x.png in Resources */,
 				CD205670174540A9003AF4FA /* PenIcon.24@2x.png in Resources */,
+				CDB348D5174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */,
+				CDB348D7174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */,
+				CDB348D9174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */,
+				CDB348DB174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */,
+				CDB348DD174573C0000003CA /* TimerDotEmpty@2x.png in Resources */,
+				CDB348DF174573C0000003CA /* TimerDotQuarter@2x.png in Resources */,
+				CDB348E1174573C0000003CA /* TimerDotHalf@2x.png in Resources */,
+				CDB348E3174573C0000003CA /* TimerDotThreeQuarter@2x.png in Resources */,
+				CDB348E5174573C0000003CA /* TimerDotFull@2x.png in Resources */,
+				CDB348F01745745F000003CA /* TimerDotQuarterBlue.png in Resources */,
+				CDB348F21745745F000003CA /* TimerDotHalfBlue.png in Resources */,
+				CDB348F41745745F000003CA /* TimerDotThreeQuarterBlue.png in Resources */,
+				CDB348F61745745F000003CA /* TimerDotFullBlue.png in Resources */,
+				CDB348F81745745F000003CA /* TimerDotEmpty.png in Resources */,
+				CDB348FA1745745F000003CA /* TimerDotQuarter.png in Resources */,
+				CDB348FC1745745F000003CA /* TimerDotHalf.png in Resources */,
+				CDB348FE1745745F000003CA /* TimerDotThreeQuarter.png in Resources */,
+				CDB349001745745F000003CA /* TimerDotFull.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1913,6 +2003,24 @@
 				CD20566D174540A9003AF4FA /* RefreshIcon.24@2x.png in Resources */,
 				CD20566F174540A9003AF4FA /* ShareIcon.24@2x.png in Resources */,
 				CD205671174540A9003AF4FA /* PenIcon.24@2x.png in Resources */,
+				CDB348D6174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */,
+				CDB348D8174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */,
+				CDB348DA174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */,
+				CDB348DC174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */,
+				CDB348DE174573C0000003CA /* TimerDotEmpty@2x.png in Resources */,
+				CDB348E0174573C0000003CA /* TimerDotQuarter@2x.png in Resources */,
+				CDB348E2174573C0000003CA /* TimerDotHalf@2x.png in Resources */,
+				CDB348E4174573C0000003CA /* TimerDotThreeQuarter@2x.png in Resources */,
+				CDB348E6174573C0000003CA /* TimerDotFull@2x.png in Resources */,
+				CDB348F11745745F000003CA /* TimerDotQuarterBlue.png in Resources */,
+				CDB348F31745745F000003CA /* TimerDotHalfBlue.png in Resources */,
+				CDB348F51745745F000003CA /* TimerDotThreeQuarterBlue.png in Resources */,
+				CDB348F71745745F000003CA /* TimerDotFullBlue.png in Resources */,
+				CDB348F91745745F000003CA /* TimerDotEmpty.png in Resources */,
+				CDB348FB1745745F000003CA /* TimerDotQuarter.png in Resources */,
+				CDB348FD1745745F000003CA /* TimerDotHalf.png in Resources */,
+				CDB348FF1745745F000003CA /* TimerDotThreeQuarter.png in Resources */,
+				CDB349011745745F000003CA /* TimerDotFull.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

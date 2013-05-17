@@ -56,6 +56,7 @@ static NSMutableDictionary *expirationColorMapping;
     return color ? color : [UIColor clearColor];
 }
 
+// Return a color according to an 18 hour post date expiration
 + (UIColor *)colorForPostExpiration:(NSDate *)date {
     UIColor *color;
     
@@ -66,17 +67,24 @@ static NSMutableDictionary *expirationColorMapping;
         return [UIColor clearColor];
     }
     
-    if (hours < 9) {
-        color = [expirationColorMapping objectForKey:@"level1"];
-    } else if (hours < 16) {
-        color = [expirationColorMapping objectForKey:@"level2"];
-    } else {
+//    if (hours < 9) {
+//        color = [expirationColorMapping objectForKey:@"level1"];
+//    } else if (hours < 16) {
+//        color = [expirationColorMapping objectForKey:@"level2"];
+//    } else {
+//        color = [expirationColorMapping objectForKey:@"level3"];
+//    }
+    
+    if (hours >= 18) {
         color = [expirationColorMapping objectForKey:@"level3"];
+    } else {
+        color = [UIColor colorWithRed:116.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:0.25];
     }
     
     return color ? color : [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
 }
 
+// Return a float on a scale of 0 - 100 according to an 18 hour post date expiration
 + (CGFloat)sizeForPostExpiration:(NSDate *)date {
     NSTimeInterval ti = [date timeIntervalSinceNow];
     NSInteger minutes = (ti / 60) * -1;
@@ -86,6 +94,37 @@ static NSMutableDictionary *expirationColorMapping;
     if (size > 100) size = 100;
     
     return size;
+}
+
+// Return an image according to an 18 hour post date expiration, participant modifier alters the image used
++ (UIImage *)imageForPostExpiration:(NSDate *)date withParticipant:(BOOL)hasParticipant {
+    NSTimeInterval ti = [date timeIntervalSinceNow];
+    CGFloat hours = (ti / 3600) * -1;
+    
+    NSString *participantModifier = @"";
+    if (hasParticipant) participantModifier = @"Blue";
+    
+    NSMutableDictionary *timerDots = [[NSMutableDictionary alloc] init];
+    [timerDots setValue:@"TimerDotEmpty%@"        forKey:@"empty"];
+    [timerDots setValue:@"TimerDotQuarter%@"      forKey:@"quarter"];
+    [timerDots setValue:@"TimerDotHalf%@"         forKey:@"half"];
+    [timerDots setValue:@"TimerDotThreeQuarter%@" forKey:@"threeQuarter"];
+    [timerDots setValue:@"TimerDotFull%@"         forKey:@"full"];
+    
+    UIImage *timerDotImage;
+    if (hours >= 18.0f) {
+        timerDotImage = [UIImage imageNamed:[NSString stringWithFormat:[timerDots valueForKey:@"empty"], participantModifier]];
+    } else if (hours > 13.5f) {
+        timerDotImage = [UIImage imageNamed:[NSString stringWithFormat:[timerDots valueForKey:@"quarter"], participantModifier]];
+    } else if (hours > 9.0f) {
+        timerDotImage = [UIImage imageNamed:[NSString stringWithFormat:[timerDots valueForKey:@"half"], participantModifier]];
+    } else if (hours > 4.5f) {
+        timerDotImage = [UIImage imageNamed:[NSString stringWithFormat:[timerDots valueForKey:@"threeQuarter"], participantModifier]];
+    } else {
+        timerDotImage = [UIImage imageNamed:[NSString stringWithFormat:[timerDots valueForKey:@"full"], participantModifier]];
+    }
+
+    return timerDotImage;
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
@@ -160,9 +199,9 @@ static NSMutableDictionary *expirationColorMapping;
     return [self loadAllFromUrl:urlString delegate:delegate];
 }
 
-//use this class method for search with paging
+// Use this class method for search with paging
 + (ModelLoader *)searchWithTerms:(NSString *)terms author:(NSString *)authorName parentAuthor:(NSString *)parentAuthor page:(NSUInteger)page delegate:(id<ModelLoadingDelegate>)delegate {
-    //URL pattern for non-.json rewritten search URL, switched back to the .json URL since the API now accepts paging param on the query string
+    // URL pattern for non-.json rewritten search URL, switched back to the .json URL since the API now accepts paging param on the query string
 //    NSString *urlString = [NSString stringWithFormat:@"/search/?SearchTerm=%@&Author=%@&ParentAuthor=%@&json=1&page=%d",
 //                                                    [terms stringByEscapingURL],
 //                                                    [authorName stringByEscapingURL],
