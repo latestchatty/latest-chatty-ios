@@ -259,7 +259,6 @@
     self.spinner = nil;
     self.mainToolbar = nil;
     self.actionButton = nil;
-    self.refreshButton = nil;
     [super dealloc];
 }
 
