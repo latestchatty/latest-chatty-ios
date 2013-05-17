@@ -40,7 +40,6 @@
     
     // Configure and show the window
     window.backgroundColor = [UIColor blackColor];
-    
     window.rootViewController = navigationController;
 }
 
@@ -119,7 +118,7 @@
                                      nil];
     [defaults registerDefaults:defaultSettings];
 
-    //Patch-E: modified requestBody and request URL for May 2013 Shacknews login changes
+    // Modified requestBody and request URL for May 2013 Shacknews login changes
     if([defaults boolForKey:@"modTools"]==YES){
         //Mods need cookies
         NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
@@ -135,7 +134,7 @@
         [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
         [NSURLConnection connectionWithRequest:request delegate:nil];
         
-        // use for testing login above and to output current cookies for www.shacknews.com
+        // Use for testing login above and to output current cookies for www.shacknews.com
 //        NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
 //        NSLog(@"%@", responseBody);
 //        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"https://www.shacknews.com"]];
@@ -192,7 +191,7 @@
                                    persistence:NSURLCredentialPersistenceNone];
 }
 
-//Patch-E: check the Embed YouTube user setting, if embedding is turned off open YouTube URL in either the YouTube app (if installed, either the Apple created pre-iOS 6 app or Google created app) or Safari if a YouTube app isn't installed. If embedding turned on, open YouTube URL in web view.
+// Check the "Embed YouTube" user setting, if embedding is turned off open YouTube URL in either the YouTube app (if installed, either the Apple created pre-iOS 6 app or Google created app) or Safari if a YouTube app isn't installed. If embedding turned on, open YouTube URL in web view.
 - (BOOL)isYoutubeURL:(NSURL *)url {
     if ([[url host] containsString:@"youtube.com"] || [[url host] containsString:@"youtu.be"]) {
         return YES;
@@ -200,7 +199,7 @@
     return NO;
 }
 
-//Patch-E: if user has URLs set to open in Chrome, check to see if the app can open Chrome. If it can, construct the URL on the googlechrome:// URL scheme and return it.
+// If user has URLs set to open in Chrome, check to see if the app can open Chrome. If it can, construct the URL on the googlechrome:// URL scheme and return it.
 - (id)urlAsChromeScheme:(NSURL *)url {
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
         NSString *absoluteURLString = [url absoluteString];
@@ -228,9 +227,7 @@
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?story=(\\d+)" capture:1] intValue];
         viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
-    }
-    //Patch-E: added handling for profiles URLs to do a search of that users' post history through SearchResultsViewController with default search values. Profile links posted in a chatty thread or tapping a user's name in a ThreadViewController will launch the search. Can also pass in a search externally via the latestchatty:// protocol.
-    else if ([uri isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
         NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/profile/(.*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         viewController = [[[SearchResultsViewController alloc] initWithTerms:@"" author:profileName parentAuthor:@""] autorelease];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
@@ -327,8 +324,8 @@
     }
 }
 
-//Patch-E: handling the registered latestchatty:// URL scheme
-//  Uses the existing AppDelegate method viewControllerForURL to determine what kind of ViewController to instantiate and push onto the appropriate navigation controller stack.
+// Handle the registered latestchatty:// URL scheme
+// Uses the existing AppDelegate method viewControllerForURL to determine what kind of ViewController to instantiate and push onto the appropriate navigation controller stack.
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     NSLog(@"Passed in URL: %@", url);
     if (!url) {
@@ -355,8 +352,10 @@
 
 #pragma mark - Customizations
 
+// Custom appearance settings for UIKit items
 - (void)customizeAppearance {
-    //custom appearance settings for UIKit items
+
+    // Same nav bar background image for all orientations, landscape resizes into smaller iPhone landscape nav bar
     UIImage *backgroundImage =
         [[UIImage imageNamed:@"navbar_bg"]
         resizableImageWithCapInsets:UIEdgeInsetsMake(1, 1, 1, 1) resizingMode:UIImageResizingModeStretch];
@@ -366,6 +365,7 @@
                             forToolbarPosition:UIToolbarPositionAny
                                     barMetrics:UIBarMetricsDefault];
     
+    // Left button (back arrow) normal and highlight states
     UIImage *backButtonImage =
         [[UIImage imageNamed:@"button_back"]
         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6) resizingMode:UIImageResizingModeStretch];
@@ -379,6 +379,7 @@
                                                       forState:UIControlStateHighlighted
                                                     barMetrics:UIBarMetricsDefault];
     
+    // Load all images for normal, highlight, and done style buttons along with their landscape counterparts
     UIImage *barButtonDoneImage =
         [[UIImage imageNamed:@"button_done"]
          resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
@@ -397,27 +398,31 @@
     UIImage *barButtonNormalHighlightLandscapeImage =
         [[UIImage imageNamed:@"button_normal_highlight_landscape"]
          resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
-    //iOS 6 allows usage of appearance proxy to customize done and normal buttons independently
-    //downside to the following is that iOS 5 will not have blue color done style buttons, do we care?
+    
+    // iOS 6 allows usage of appearance proxy to customize done and normal buttons independently
+    // downside to the following is that iOS 5 will not have blue color done style buttons, do we care?
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
-        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalImage
-                                                forState:UIControlStateNormal
-                                                   style:UIBarButtonItemStyleBordered
-                                              barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalLandscapeImage
-                                                forState:UIControlStateNormal
-                                                   style:UIBarButtonItemStyleBordered
-                                              barMetrics:UIBarMetricsLandscapePhone];
+        // Normal button state with landscape
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
+                                                                                            forState:UIControlStateNormal
+                                                                                               style:UIBarButtonItemStyleBordered
+                                                                                          barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalLandscapeImage
+                                                                                            forState:UIControlStateNormal
+                                                                                               style:UIBarButtonItemStyleBordered
+                                                                                          barMetrics:UIBarMetricsLandscapePhone];
         
-        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalHighlightImage
-                                                forState:UIControlStateHighlighted
-                                                   style:UIBarButtonItemStyleBordered
-                                              barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalHighlightLandscapeImage
-                                                forState:UIControlStateHighlighted
-                                                   style:UIBarButtonItemStyleBordered
-                                              barMetrics:UIBarMetricsLandscapePhone];
+        // Highlight button state with landscape
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
+                                                                                            forState:UIControlStateHighlighted
+                                                                                               style:UIBarButtonItemStyleBordered
+                                                                                          barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage
+                                                                                            forState:UIControlStateHighlighted
+                                                                                               style:UIBarButtonItemStyleBordered
+                                                                                          barMetrics:UIBarMetricsLandscapePhone];
         
+        // Done button style (blue) with landscape
         [[UIBarButtonItem appearance] setBackgroundImage:barButtonDoneImage
                                                 forState:UIControlStateNormal
                                                    style:UIBarButtonItemStyleDone
@@ -426,22 +431,27 @@
                                                 forState:UIControlStateNormal
                                                    style:UIBarButtonItemStyleDone
                                               barMetrics:UIBarMetricsLandscapePhone];
-    } else {
-        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalImage
-                                                forState:UIControlStateNormal
-                                              barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalLandscapeImage
-                                                forState:UIControlStateNormal
-                                              barMetrics:UIBarMetricsLandscapePhone];
+    } else { // iOS 5
+        // Normal button state with landscape
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
+                                                                                            forState:UIControlStateNormal
+                                                                                          barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalLandscapeImage
+                                                                                            forState:UIControlStateNormal
+                                                                                          barMetrics:UIBarMetricsLandscapePhone];
         
-        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalHighlightImage
-                                                forState:UIControlStateHighlighted
-                                              barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:barButtonNormalHighlightLandscapeImage
-                                                forState:UIControlStateHighlighted
-                                              barMetrics:UIBarMetricsLandscapePhone];
+        // Highlight button state with landscape        
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
+                                                                                            forState:UIControlStateHighlighted
+                                                                                          barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage
+                                                                                            forState:UIControlStateHighlighted
+                                                                                          barMetrics:UIBarMetricsLandscapePhone];
     }
     
+    // Give text in buttons gray coloring with text shadowing
+    // Done style buttons will get styled here, but it gets overridden in the view controller for any view that uses Done style buttons
+    // Should probably make these attributes a dictionary category since it is used other places
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:194.0/255.0 alpha:1.0],UITextAttributeTextColor,
                                 [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
@@ -451,6 +461,7 @@
     [[UIBarButtonItem appearance] setTitleTextAttributes:attributes
                                                 forState:UIControlStateNormal];
     
+// TODO: segemented control styling
 //    UIImage *segmentSelected =
 //        [[UIImage imageNamed:@"segcontrol_sel.png"]
 //        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
@@ -481,6 +492,7 @@
 //                                   rightSegmentState:UIControlStateSelected
 //                                          barMetrics:UIBarMetricsDefault];
     
+// TODO: switch control styling
 //    [[UISwitch appearance] setTintColor:[UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0]];
 //    [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:119.0/255.0 green:197.0/255.0 blue:254.0/255.0 alpha:1.0]];
 }
