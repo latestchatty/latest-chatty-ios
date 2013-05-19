@@ -10,6 +10,7 @@
 #import "StringTemplate.h"
 #import "Mod.h"
 #import "NoContentController.h"
+#import "IIViewDeckController.h"
 
 @implementation LatestChatty2AppDelegate
 
@@ -23,24 +24,30 @@
 }
 
 - (void)setupInterfaceForPhoneWithOptions:(NSDictionary *)launchOptions {
-    if (![self reloadSavedState]) {
-        // Add the root view controller
-        RootViewController *viewController = [RootViewController controllerWithNib];
-        [navigationController pushViewController:viewController animated:NO];
-    }
-    
-//    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
-//        // Tapped a messge push's view button
-//        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
+//    if (![self reloadSavedState]) {
+//        // Add the root view controller
+//        RootViewController *viewController = [RootViewController controllerWithNib];
 //        [navigationController pushViewController:viewController animated:NO];
 //    }
+////    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
+////        // Tapped a messge push's view button
+////        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
+////        [navigationController pushViewController:viewController animated:NO];
+////    }
     
-    // Style the navigation bar
-    navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+//    // Style the navigation bar
+//    navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+
+//    // Configure and show the window
+//    window.backgroundColor = [UIColor blackColor];
+//    window.rootViewController = navigationController;
     
-    // Configure and show the window
-    window.backgroundColor = [UIColor blackColor];
-    window.rootViewController = navigationController;
+    // Create and assign the left and center controllers
+    IIViewDeckController* deckController = [self generateControllerStack];
+    self.leftController = deckController.leftController;
+    self.centerController = deckController.centerController;
+    
+    self.window.rootViewController = deckController;
 }
 
 - (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions {
@@ -64,7 +71,29 @@
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
     [slideOutViewController.view setFrame:CGRectMake(0, 20, 768, 1004)];
     
-    window.rootViewController = slideOutViewController;
+    self.window.rootViewController = slideOutViewController;
+}
+
+- (IIViewDeckController*)generateControllerStack {
+    // Left controller
+    RootViewController* leftController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    // Center controller
+    ChattyViewController *centerController = [[ChattyViewController alloc] initWithNibName:@"ChattyViewController" bundle:nil];
+    [centerController setTitle:@"Loading..."];
+    
+    // Initialize the navigation controller with the center (chatty) controller
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:centerController];
+    
+    // Create the deck controller with the left and center
+    IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController
+                                                                                    leftViewController:leftController];
+    // Set navigation type, left size, no elasticity, and no drag panning
+    [deckController setNavigationControllerBehavior:IIViewDeckNavigationControllerIntegrated];
+    [deckController setLeftSize:255];
+    [deckController setElastic:NO];
+    [deckController setPanningMode:IIViewDeckNoPanning];
+    
+    return deckController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

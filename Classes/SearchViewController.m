@@ -21,6 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(resignAndToggle)];
+        self.navigationItem.leftBarButtonItem = menuButton;
+        [menuButton release];
+    }
+    
 //    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithTitle:@"Search"
 //                                                                     style:UIBarButtonItemStyleDone
 //                                                                    target:self
@@ -72,6 +81,15 @@
     //the view appears, was causing a crash on iPhone landscape when scrolled down, did a search, and hit back to
     //bring search back into view
     [self modeChanged];
+}
+
+- (void)resignAndToggle {
+    // Resign all three text fields from first responder status and toggle the left deck view controller
+    [termsField resignFirstResponder];
+    [authorField resignFirstResponder];
+    [parentAuthorField resignFirstResponder];
+    
+    [self.viewDeckController toggleLeftView];
 }
 
 - (IBAction)modeChanged {

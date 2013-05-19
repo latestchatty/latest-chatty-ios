@@ -15,32 +15,44 @@
 - (id)initWithNib {
     self = [super initWithNib];
 	if (self) {
+        self.title = @"Settings";
+        
         usernameField = [[self generateTextFieldWithKey:@"username"] retain];
         usernameField.placeholder = @"Enter Username";
         usernameField.returnKeyType = UIReturnKeyNext;
         usernameField.keyboardType = UIKeyboardTypeEmailAddress;
+        usernameField.keyboardAppearance = UIKeyboardAppearanceAlert;
         usernameField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
+        usernameField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
         passwordField = [[self generateTextFieldWithKey:@"password"] retain];
         passwordField.placeholder = @"Enter Password";
         passwordField.secureTextEntry = YES;
         passwordField.returnKeyType = UIReturnKeyDone;
+        passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
+        passwordField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
         serverField = [[self generateTextFieldWithKey:@"server"] retain];
         serverField.placeholder = @"shackapi.stonedonkey.com";
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
+        serverField.keyboardAppearance = UIKeyboardAppearanceAlert;
+        serverField.autoresizingMask = UIViewAutoresizingFlexibleWidth;        
         
         picsUsernameField = [[self generateTextFieldWithKey:@"picsUsername"] retain];
         picsUsernameField.placeholder = @"Enter Username";
         picsUsernameField.returnKeyType = UIReturnKeyNext;
         picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
+        picsUsernameField.keyboardAppearance = UIKeyboardAppearanceAlert;                
         picsUsernameField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
+        picsUsernameField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
         picsPasswordField = [[self generateTextFieldWithKey:@"picsPassword"] retain];
         picsPasswordField.placeholder = @"Enter Password";
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
+        picsPasswordField.keyboardAppearance = UIKeyboardAppearanceAlert;
+        picsPasswordField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
 //        landscapeSwitch  = [[self generateSwitchWithKey:@"landscape"] retain];
         picsResizeSwitch   = [[self generateSwitchWithKey:@"picsResize"] retain];
@@ -116,6 +128,7 @@
 - (UISwitch *)generateSwitchWithKey:(NSString *)key {
 	UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
 	toggle.on = [[NSUserDefaults standardUserDefaults] boolForKey:key];
+    
 	return [toggle autorelease];
 }
 
@@ -125,16 +138,18 @@
     slider.continuous = YES;
     slider.minimumValue = 0.10f;
     slider.minimumValue = 0.10f;
+    slider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
 	return [slider autorelease];
 }
 
-- (IBAction)dismiss:(id)sender {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+-(void)saveSettings {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:usernameField.text      forKey:@"username"];
 	[defaults setObject:passwordField.text      forKey:@"password"];
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
-//	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
+    //	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
     [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
     [defaults setFloat:picsQualitySlider.value  forKey:@"picsQuality"];
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
@@ -161,27 +176,70 @@
 	[defaults setBool:nwsSwitch.on         forKey:@"postCategory.nws"];
 	
 	[defaults synchronize];
+}
+
+- (IBAction)dismiss:(id)sender {
+    [self saveSettings];
 	
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)save {
+    [self saveSettings];
+    
+    [usernameField resignFirstResponder];
+    [passwordField resignFirstResponder];
+    [serverField resignFirstResponder];
+    [picsUsernameField resignFirstResponder];
+    [picsPasswordField resignFirstResponder];
+    
+    [UIAlertView showSimpleAlertWithTitle:@"Settings"
+                                  message:@"Saved!"];
+    
+    [self.viewDeckController toggleLeftView];   
+}
+
+- (void)resignAndToggle {
+    [usernameField resignFirstResponder];
+    [passwordField resignFirstResponder];
+    [serverField resignFirstResponder];
+    [picsUsernameField resignFirstResponder];
+    [picsPasswordField resignFirstResponder];
+    
+    [self.viewDeckController toggleLeftView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [tableView setSeparatorColor:[UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0]];
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(resignAndToggle)];
+        self.navigationItem.leftBarButtonItem = menuButton;
+        [menuButton release];
+    }
     
-    [tableView setBackgroundView:nil];
-    [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
-    
-    tableView.backgroundColor = [UIColor clearColor];
-    
+	UIBarButtonItem *saveDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(save)];
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIColor whiteColor],UITextAttributeTextColor,
                                 [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
                                 [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
                                 UITextAttributeTextShadowOffset,
                                 nil];
+    [saveDoneButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+	self.navigationItem.rightBarButtonItem = saveDoneButton;
+	[saveDoneButton release];
     [saveButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    
+    [tableView setSeparatorColor:[UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0]];
+    [tableView setBackgroundView:nil];
+    [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
+    [tableView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -263,31 +321,20 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UIView *customTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    
+    // Generate a custom view with a label for each section
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 44)];
     
-    titleLabel.font = [UIFont boldSystemFontOfSize:17.0];
-    titleLabel.text = [self titleForHeaderInSection:section];
-    titleLabel.textColor = [UIColor colorWithRed:121.0/255.0 green:122.0/255.0 blue:128.0/255.0 alpha:1.0];
-    titleLabel.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    [titleLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+    [titleLabel setText:[self titleForHeaderInSection:section]];
+    [titleLabel setTextColor:[UIColor colorWithRed:121.0/255.0 green:122.0/255.0 blue:128.0/255.0 alpha:1.0]];
+    [titleLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5]];
     [titleLabel setShadowOffset:CGSizeMake(0, -1.0)];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    
-//    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                [UIColor colorWithRed:121.0/255.0 green:122.0/255.0 blue:128.0/255.0 alpha:1.0],UITextAttributeTextColor,
-//                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-//                                [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],UITextAttributeTextShadowOffset,
-//                                nil];
-//    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:[self titleForHeaderInSection:section]
-//                                                                     attributes:attributes];
-//    
-//    titleLabel.attributedText = attrString;
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
 
-    [customTitleView addSubview:titleLabel];
-    return customTitleView;
+    [titleView addSubview:titleLabel];
     
+    return titleView;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -297,9 +344,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
-    cell.backgroundColor = [UIColor colorWithRed:47.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
+    [cell setBackgroundColor:[UIColor colorWithRed:47.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0]];
+	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.textLabel setTextColor:[UIColor colorWithRed:172.0/255.0 green:172.0/255.0 blue:173.0/255.0 alpha:1.0]];
+    [cell.textLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5]];
+    [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
     
 	// username/password/server text entry fields
 	if (indexPath.section == 0) {
@@ -421,10 +471,7 @@
 				break;
 		}
 	}
-    cell.textLabel.textColor = [UIColor colorWithRed:172.0/255.0 green:172.0/255.0 blue:173.0/255.0 alpha:1.0];
-    cell.textLabel.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
-    [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
-	
+
 	return [cell autorelease];
 }
 

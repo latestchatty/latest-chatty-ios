@@ -32,16 +32,19 @@
     self.isShackLOL = isForShackLOL;
  
     if (self.isShackLOL) {
-//        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-//                                                                           style:UIBarButtonItemStyleBordered
-//                                                                          target:self
-//                                                                          action:@selector(lolMenu)];
-//        [lolMenuButton setEnabled:NO];
-        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+        if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+                                                                           style:UIBarButtonItemStyleBordered
+                                                                          target:self.viewDeckController
+                                                                          action:@selector(toggleLeftView)];
+            self.navigationItem.leftBarButtonItem = menuButton;
+            [menuButton release];
+        }
+        
+        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"[lol]"
                                                                           style:UIBarButtonItemStyleBordered
                                                                          target:self
                                                                          action:@selector(lolMenu)];
-        self.navigationItem.rightBarButtonItem = lolMenuButton;
         [lolMenuButton setEnabled:NO];
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -136,6 +139,25 @@
     //switching to a javascript function called on the page rather than a page transfer
     //[self.webView loadURLString:@"http://lol.lmnopc.com/iphonemenu.php"];
     [self.webView stringByEvaluatingJavaScriptFromString: @"lc_menu();"];
+}
+
+- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType {
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        UIViewController *viewController = [appDelegate viewControllerForURL:[aRequest URL]];
+        
+        // No special controller, handle the URL.
+        if (viewController == nil) {
+            return YES;
+        }
+        
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

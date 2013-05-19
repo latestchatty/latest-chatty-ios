@@ -35,6 +35,15 @@
     
     if (stories == nil || [stories count] == 0) [self refresh:self];
     
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self.viewDeckController
+                                                                      action:@selector(toggleLeftView)];
+        self.navigationItem.leftBarButtonItem = menuButton;
+        [menuButton release];
+    }
+    
 //    UIBarButtonItem *latestChattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
 //																		   style:UIBarButtonItemStyleDone
 //																		  target:self
@@ -54,7 +63,7 @@
     [pull finishedLoading];
 }
 
-- (IBAction)refresh:(id)sender {
+- (void)refresh:(id)sender {
     [super refresh:sender];
     loader = [[Story findAllWithDelegate:self] retain];
 }

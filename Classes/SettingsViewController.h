@@ -14,30 +14,30 @@
 @interface SettingsViewController : UIViewController <UITextFieldDelegate> {
     IBOutlet UITableView *tableView;
   
-    IBOutlet UITextField *usernameField;
-    IBOutlet UITextField *passwordField;
-    IBOutlet UITextField *serverField;
+    UITextField *usernameField;
+    UITextField *passwordField;
+    UITextField *serverField;
     
-    IBOutlet UITextField *picsUsernameField;
-    IBOutlet UITextField *picsPasswordField;
-    IBOutlet UISwitch    *picsResizeSwitch;
-    IBOutlet UISlider    *picsQualitySlider;
+    UITextField *picsUsernameField;
+    UITextField *picsPasswordField;
+    UISwitch    *picsResizeSwitch;
+    UISlider    *picsQualitySlider;
     UILabel *picsQualityLabel;
   
-//    IBOutlet UISwitch    *landscapeSwitch;
-    IBOutlet UISwitch    *youtubeSwitch;
-    IBOutlet UISwitch    *safariSwitch;
-    IBOutlet UISwitch    *chromeSwitch;
-    IBOutlet UISwitch    *pushMessagesSwitch;
-    IBOutlet UISwitch    *modToolsSwitch;
+//  UISwitch    *landscapeSwitch;
+    UISwitch    *youtubeSwitch;
+    UISwitch    *safariSwitch;
+    UISwitch    *chromeSwitch;
+    UISwitch    *pushMessagesSwitch;
+    UISwitch    *modToolsSwitch;
   
-    IBOutlet UISwitch    *interestingSwitch;
-    IBOutlet UISwitch    *offtopicSwitch;
-    IBOutlet UISwitch    *randomSwitch;
-    IBOutlet UISwitch    *politicsSwitch;
-    IBOutlet UISwitch    *nwsSwitch;
+    UISwitch    *interestingSwitch;
+    UISwitch    *offtopicSwitch;
+    UISwitch    *randomSwitch;
+    UISwitch    *politicsSwitch;
+    UISwitch    *nwsSwitch;
 
-    IBOutlet UIBarButtonItem *saveButton;
+    UIBarButtonItem *saveButton;
 }
 
 - (IBAction)dismiss:(id)sender;

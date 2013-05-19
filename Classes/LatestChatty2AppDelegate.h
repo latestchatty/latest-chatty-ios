@@ -18,6 +18,7 @@
 #import "BrowserViewController.h"
 #import "MessagesViewController.h"
 #import "SlideOutViewController.h"
+#import "IIViewDeckController.h"
 
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate> {
     UIWindow *window;
@@ -34,7 +35,12 @@
 
 @property (nonatomic, retain) IBOutlet SlideOutViewController *slideOutViewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *contentNavigationController;
-	
+
+@property (retain, nonatomic) UIViewController *centerController;
+@property (retain, nonatomic) UIViewController *leftController;
+
+- (IIViewDeckController*)generateControllerStack;
+
 + (LatestChatty2AppDelegate*)delegate;
 
 - (BOOL)reloadSavedState;

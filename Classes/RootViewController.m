@@ -178,7 +178,7 @@
             break;
             
         case 5:
-            modal = YES;
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) modal = YES;
             viewController = [SettingsViewController controllerWithNib];
             break;
             
@@ -204,10 +204,17 @@
                 LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
 				viewController.modalPresentationStyle = UIModalPresentationFormSheet;
 				[appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
-			} else
+			} else {
 				[self.navigationController presentModalViewController:viewController animated:YES];
+            }
         } else {
-            [self.navigationController pushViewController:viewController animated:YES];
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                [self.navigationController pushViewController:viewController animated:YES];
+            } else {
+                UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+                self.viewDeckController.centerController = navController;
+                [self.viewDeckController toggleLeftView];
+            }
         }
     }
 }

@@ -102,12 +102,26 @@
 		[self.tableView reloadData];
 		if (indexPathToSelect) [self.tableView selectRowAtIndexPath:indexPathToSelect animated:NO scrollPosition:UITableViewScrollPositionTop];
 	}
+
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self.viewDeckController
+                                                                      action:@selector(toggleLeftView)];
+        self.navigationItem.leftBarButtonItem = menuButton;
+        [menuButton release];
+    }
 	
     UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"PenIcon.24.png"]
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:self
                                                                      action:@selector(tappedComposeButton)];
+    self.navigationItem.rightBarButtonItem = composeButton;
+    
 	composeButton.enabled = (self.storyId > 0);
+    [composeButton release];
+    
+    self.tableView.hidden = YES;
     
 // Patch-E: removed refresh button from iPad right toolbar, pull to refresh makes this obsolete
 // no longer need iPad specific code for >1 buttons in the right toolbar
@@ -123,9 +137,6 @@
 //    } else {
 //        self.navigationItem.rightBarButtonItem = composeButton;
 //    }
-    
-    self.tableView.hidden = YES;
-    self.navigationItem.rightBarButtonItem = composeButton;
     
 //    UILabel *titleLabel = [UILabel viewWithFrame:self.navigationController.navigationBar.frame];
 //    titleLabel.font = [UIFont boldSystemFontOfSize:14];
