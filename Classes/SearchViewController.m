@@ -182,12 +182,12 @@
     lockImage.hidden = YES;
     cell.accessoryView = lockImage;
     
-    CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 60 : 20;
+    CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 60 : 0;
     UILabel *prompt = [UILabel viewWithFrame:CGRectMake(leftEdge, 4, 85, 31)];
     if (indexPath.row == 0) prompt.text = @"Terms:";
     if (indexPath.row == 1) prompt.text = @"Author:";
-    if (indexPath.row == 2) prompt.text = @"Parent Author:";
-    prompt.font = [UIFont boldSystemFontOfSize:12.0];
+    if (indexPath.row == 2) prompt.text = @"Parent:";
+    prompt.font = [UIFont boldSystemFontOfSize:16.0];
     prompt.textAlignment = UITextAlignmentRight;
     prompt.backgroundColor = [UIColor clearColor];
     prompt.textColor = [UIColor colorWithRed:172.0/255.0 green:172.0/255.0 blue:173.0/255.0 alpha:1.0];
