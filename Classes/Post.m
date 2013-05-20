@@ -76,9 +76,9 @@ static NSMutableDictionary *expirationColorMapping;
 //    }
     
     if (hours >= 18) {
-        color = [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:0.25];
+        color = [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:0.50];
     } else {
-        color = [UIColor colorWithRed:116.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:0.25];
+        color = [UIColor colorWithRed:116.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:0.50];
     }
     
     return color ? color : [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
