@@ -23,21 +23,18 @@
         usernameField.keyboardType = UIKeyboardTypeEmailAddress;
         usernameField.keyboardAppearance = UIKeyboardAppearanceAlert;
         usernameField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
-        usernameField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
         passwordField = [[self generateTextFieldWithKey:@"password"] retain];
         passwordField.placeholder = @"Enter Password";
         passwordField.secureTextEntry = YES;
         passwordField.returnKeyType = UIReturnKeyDone;
         passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
-        passwordField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
         serverField = [[self generateTextFieldWithKey:@"server"] retain];
         serverField.placeholder = @"shackapi.stonedonkey.com";
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
         serverField.keyboardAppearance = UIKeyboardAppearanceAlert;
-        serverField.autoresizingMask = UIViewAutoresizingFlexibleWidth;        
         
         picsUsernameField = [[self generateTextFieldWithKey:@"picsUsername"] retain];
         picsUsernameField.placeholder = @"Enter Username";
@@ -45,14 +42,12 @@
         picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
         picsUsernameField.keyboardAppearance = UIKeyboardAppearanceAlert;                
         picsUsernameField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
-        picsUsernameField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
         picsPasswordField = [[self generateTextFieldWithKey:@"picsPassword"] retain];
         picsPasswordField.placeholder = @"Enter Password";
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
         picsPasswordField.keyboardAppearance = UIKeyboardAppearanceAlert;
-        picsPasswordField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
 //        landscapeSwitch  = [[self generateSwitchWithKey:@"landscape"] retain];
         picsResizeSwitch   = [[self generateSwitchWithKey:@"picsResize"] retain];
@@ -138,7 +133,6 @@
     slider.continuous = YES;
     slider.minimumValue = 0.10f;
     slider.minimumValue = 0.10f;
-    slider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
 	return [slider autorelease];
 }
