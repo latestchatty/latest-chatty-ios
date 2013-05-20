@@ -189,11 +189,11 @@
     self.scrollPosition = CGPointMake(0, 0);
     
     //initialize swipe gesture
-    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-    [swipe setDirection:UISwipeGestureRecognizerDirectionRight];
-    swipe.delegate = self;
-    [self.tableView addGestureRecognizer:swipe];
-    [swipe release];
+//    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+//    [swipe setDirection:UISwipeGestureRecognizerDirectionRight];
+//    swipe.delegate = self;
+//    [self.tableView addGestureRecognizer:swipe];
+//    [swipe release];
     
     [self resetLayout:NO];
 }
@@ -803,9 +803,9 @@
     return NO;
 }
 
-- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer {
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     //only fire on the intial long press detection

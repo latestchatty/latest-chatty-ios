@@ -91,7 +91,6 @@
     [deckController setNavigationControllerBehavior:IIViewDeckNavigationControllerIntegrated];
     [deckController setLeftSize:255];
     [deckController setElastic:NO];
-    [deckController setPanningMode:IIViewDeckNoPanning];
     
     return deckController;
 }
@@ -383,11 +382,9 @@
 
 // Custom appearance settings for UIKit items
 - (void)customizeAppearance {
-
     // Same nav bar background image for all orientations, landscape resizes into smaller iPhone landscape nav bar
     UIImage *backgroundImage =
-        [[UIImage imageNamed:@"navbar_bg"]
-        resizableImageWithCapInsets:UIEdgeInsetsMake(1, 1, 1, 1) resizingMode:UIImageResizingModeStretch];
+    [[UIImage imageNamed:@"navbar_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
     [[UINavigationBar appearance] setBackgroundImage:backgroundImage
                                        forBarMetrics:UIBarMetricsDefault];
     [[UIToolbar appearance] setBackgroundImage:backgroundImage
@@ -396,37 +393,42 @@
     
     // Left button (back arrow) normal and highlight states
     UIImage *backButtonImage =
-        [[UIImage imageNamed:@"button_back"]
-        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6) resizingMode:UIImageResizingModeStretch];
+    [[UIImage imageNamed:@"button_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
     UIImage *backButtonHighlightImage =
-        [[UIImage imageNamed:@"button_back_highlight"]
-        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6) resizingMode:UIImageResizingModeStretch];
+    [[UIImage imageNamed:@"button_back_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+    UIImage *backButtonLandscapeImage =
+    [[UIImage imageNamed:@"button_back_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+    UIImage *backButtonHighlightLanscapeImage =
+    [[UIImage imageNamed:@"button_back_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+    
+    // Back button state with landscape
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage
                                                       forState:UIControlStateNormal
                                                     barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonHighlightImage
                                                       forState:UIControlStateHighlighted
                                                     barMetrics:UIBarMetricsDefault];
+    // Highlight back button state with landscape
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonLandscapeImage
+                                                      forState:UIControlStateNormal
+                                                    barMetrics:UIBarMetricsLandscapePhone];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonHighlightLanscapeImage
+                                                      forState:UIControlStateHighlighted
+                                                    barMetrics:UIBarMetricsLandscapePhone];
     
     // Load all images for normal, highlight, and done style buttons along with their landscape counterparts
-    UIImage *barButtonDoneImage =
-        [[UIImage imageNamed:@"button_done"]
-         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
-    UIImage *barButtonDoneLandscapeImage =
-        [[UIImage imageNamed:@"button_done_landscape"]
-         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
     UIImage *barButtonNormalImage =
-        [[UIImage imageNamed:@"button_normal"]
-         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    [[UIImage imageNamed:@"button_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
     UIImage *barButtonNormalHighlightImage =
-        [[UIImage imageNamed:@"button_normal_highlight"]
-         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    [[UIImage imageNamed:@"button_normal_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
     UIImage *barButtonNormalLandscapeImage =
-        [[UIImage imageNamed:@"button_normal_landscape"]
-         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    [[UIImage imageNamed:@"button_normal_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
     UIImage *barButtonNormalHighlightLandscapeImage =
-        [[UIImage imageNamed:@"button_normal_highlight_landscape"]
-         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6) resizingMode:UIImageResizingModeStretch];
+    [[UIImage imageNamed:@"button_normal_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    UIImage *barButtonDoneImage =
+    [[UIImage imageNamed:@"button_done"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    UIImage *barButtonDoneLandscapeImage =
+    [[UIImage imageNamed:@"button_done_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
     
     // iOS 6 allows usage of appearance proxy to customize done and normal buttons independently
     // downside to the following is that iOS 5 will not have blue color done style buttons, do we care?
@@ -440,8 +442,7 @@
                                                                                             forState:UIControlStateNormal
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
-        
-        // Highlight button state with landscape
+        // Highlight normal button state with landscape
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
                                                                                             forState:UIControlStateHighlighted
                                                                                                style:UIBarButtonItemStyleBordered
@@ -450,7 +451,6 @@
                                                                                             forState:UIControlStateHighlighted
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
-        
         // Done button style (blue) with landscape
         [[UIBarButtonItem appearance] setBackgroundImage:barButtonDoneImage
                                                 forState:UIControlStateNormal
@@ -460,6 +460,14 @@
                                                 forState:UIControlStateNormal
                                                    style:UIBarButtonItemStyleDone
                                               barMetrics:UIBarMetricsLandscapePhone];
+        
+        // TODO: switch/slider control styling
+        [[UISwitch appearance] setThumbTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
+        [[UISwitch appearance] setTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
+        [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
+        [[UISlider appearance] setThumbTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
+        [[UISlider appearance] setMinimumTrackTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
+        [[UISlider appearance] setMaximumTrackTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
     } else { // iOS 5
         // Normal button state with landscape
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
@@ -468,14 +476,18 @@
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalLandscapeImage
                                                                                             forState:UIControlStateNormal
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
-        
-        // Highlight button state with landscape        
+        // Highlight normal button state with landscape        
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
                                                                                             forState:UIControlStateHighlighted
                                                                                           barMetrics:UIBarMetricsDefault];
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage
                                                                                             forState:UIControlStateHighlighted
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
+        
+        // TODO: switch/slider control styling
+        [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
+        [[UISlider appearance] setMinimumTrackTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
+        [[UISlider appearance] setMaximumTrackTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
     }
     
     // Give text in buttons gray coloring with text shadowing
@@ -520,10 +532,6 @@
 //                                 forLeftSegmentState:UIControlStateNormal
 //                                   rightSegmentState:UIControlStateSelected
 //                                          barMetrics:UIBarMetricsDefault];
-    
-// TODO: switch control styling
-//    [[UISwitch appearance] setTintColor:[UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0]];
-//    [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:119.0/255.0 green:197.0/255.0 blue:254.0/255.0 alpha:1.0]];
 }
 
 - (void)dealloc {
