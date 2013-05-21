@@ -490,9 +490,9 @@
                                      [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
                                      [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],UITextAttributeTextShadowOffset,
                                      nil];
+    [[UINavigationBar appearance] setTitleTextAttributes:titleAttributes];    
     [[UIBarButtonItem appearance] setTitleTextAttributes:buttonAttributes
                                                 forState:UIControlStateNormal];
-    [[UINavigationBar appearance] setTitleTextAttributes:titleAttributes];
 }
 
 - (void)dealloc {
