@@ -234,6 +234,23 @@
     [tableView setBackgroundView:nil];
     [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
     [tableView setBackgroundColor:[UIColor clearColor]];
+    
+    // TODO: this isn't finished
+    // iOS 6 allows more customization of switch/slider than iOS 5
+    // They won't look the same without using images for the whole thing, do we care?
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
+//        [[UISwitch appearance] setThumbTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
+        [[UISwitch appearance] setTintColor:[UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0]];
+        [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
+        
+//        [[UISlider appearance] setThumbTintColor:[UICo[lor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
+        [[UISlider appearance] setMinimumTrackTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
+        [[UISlider appearance] setMaximumTrackTintColor:[UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0]];
+    } else { // iOS 5
+        [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
+        [[UISlider appearance] setMinimumTrackTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
+        [[UISlider appearance] setMaximumTrackTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

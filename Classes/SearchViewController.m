@@ -73,6 +73,39 @@
     parentAuthorField.clearButtonMode = UITextFieldViewModeAlways;
     parentAuthorField.delegate = self;
     
+    // Set the appearance of the segemented control
+    // Rounded edges
+    UIImage *segmentSelected =
+    [[UIImage imageNamed:@"segcontrol_sel.png"]
+     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
+    UIImage *segmentUnselected =
+    [[UIImage imageNamed:@"segcontrol_uns.png"]
+     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
+    
+    [segmentedBar setBackgroundImage:segmentUnselected
+                            forState:UIControlStateNormal
+                          barMetrics:UIBarMetricsDefault];
+    [segmentedBar setBackgroundImage:segmentSelected
+                            forState:UIControlStateSelected
+                          barMetrics:UIBarMetricsDefault];
+    // Various inner states
+    UIImage *segmentSelectedUnselected = [UIImage imageNamed:@"segcontrol_sel-uns.png"];
+    UIImage *segUnselectedSelected = [UIImage imageNamed:@"segcontrol_uns-sel.png"];
+    UIImage *segmentUnselectedUnselected = [UIImage imageNamed:@"segcontrol_uns-uns.png"];
+    
+    [segmentedBar setDividerImage:segmentUnselectedUnselected
+              forLeftSegmentState:UIControlStateNormal
+                rightSegmentState:UIControlStateNormal
+                       barMetrics:UIBarMetricsDefault];
+    [segmentedBar setDividerImage:segmentSelectedUnselected
+              forLeftSegmentState:UIControlStateSelected
+                rightSegmentState:UIControlStateNormal
+                       barMetrics:UIBarMetricsDefault];
+    [segmentedBar setDividerImage:segUnselectedSelected
+              forLeftSegmentState:UIControlStateNormal
+                rightSegmentState:UIControlStateSelected
+                       barMetrics:UIBarMetricsDefault];
+    
     [inputTable reloadData];
     
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"SearchLoaded" object:self];
@@ -234,6 +267,8 @@
     [termsField release];
     [authorField release];
     [parentAuthorField release];
+    [inputTable release];
+    [segmentedBar release];
     [super dealloc];
 }
 

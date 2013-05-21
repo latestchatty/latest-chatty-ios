@@ -460,14 +460,6 @@
                                                 forState:UIControlStateNormal
                                                    style:UIBarButtonItemStyleDone
                                               barMetrics:UIBarMetricsLandscapePhone];
-        
-        // TODO: switch/slider control styling
-        [[UISwitch appearance] setThumbTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
-        [[UISwitch appearance] setTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
-        [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
-        [[UISlider appearance] setThumbTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
-        [[UISlider appearance] setMinimumTrackTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
-        [[UISlider appearance] setMaximumTrackTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
     } else { // iOS 5
         // Normal button state with landscape
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
@@ -483,55 +475,24 @@
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage
                                                                                             forState:UIControlStateHighlighted
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
-        
-        // TODO: switch/slider control styling
-        [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
-        [[UISlider appearance] setMinimumTrackTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
-        [[UISlider appearance] setMaximumTrackTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
     }
     
     // Give text in buttons gray coloring with text shadowing
     // Done style buttons will get styled here, but it gets overridden in the view controller for any view that uses Done style buttons
     // Should probably make these attributes a dictionary category since it is used other places
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSDictionary *buttonAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:194.0/255.0 alpha:1.0],UITextAttributeTextColor,
                                 [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-                                UITextAttributeTextShadowOffset,
+                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset,
                                 nil];
-    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes
+    // Give the navigation bar title text text shadowing
+    NSDictionary *titleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
+                                     [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],UITextAttributeTextShadowOffset,
+                                     nil];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:buttonAttributes
                                                 forState:UIControlStateNormal];
-    
-// TODO: segemented control styling
-//    UIImage *segmentSelected =
-//        [[UIImage imageNamed:@"segcontrol_sel.png"]
-//        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-//    UIImage *segmentUnselected =
-//        [[UIImage imageNamed:@"segcontrol_uns.png"]
-//        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-//    UIImage *segmentSelectedUnselected = [UIImage imageNamed:@"segcontrol_sel-uns.png"];
-//    UIImage *segUnselectedSelected = [UIImage imageNamed:@"segcontrol_uns-sel.png"];
-//    UIImage *segmentUnselectedUnselected = [UIImage imageNamed:@"segcontrol_uns-uns.png"];
-//    
-//    [[UISegmentedControl appearance] setBackgroundImage:segmentUnselected
-//                                               forState:UIControlStateNormal
-//                                             barMetrics:UIBarMetricsDefault];
-//    [[UISegmentedControl appearance] setBackgroundImage:segmentSelected
-//                                               forState:UIControlStateSelected
-//                                             barMetrics:UIBarMetricsDefault];
-//    
-//    [[UISegmentedControl appearance] setDividerImage:segmentUnselectedUnselected
-//                                 forLeftSegmentState:UIControlStateNormal
-//                                   rightSegmentState:UIControlStateNormal
-//                                          barMetrics:UIBarMetricsDefault];
-//    [[UISegmentedControl appearance] setDividerImage:segmentSelectedUnselected
-//                                 forLeftSegmentState:UIControlStateSelected
-//                                   rightSegmentState:UIControlStateNormal
-//                                          barMetrics:UIBarMetricsDefault];
-//    [[UISegmentedControl appearance] setDividerImage:segUnselectedSelected
-//                                 forLeftSegmentState:UIControlStateNormal
-//                                   rightSegmentState:UIControlStateSelected
-//                                          barMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleTextAttributes:titleAttributes];
 }
 
 - (void)dealloc {
