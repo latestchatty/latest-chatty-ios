@@ -182,9 +182,8 @@
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    //    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
-    return YES;
-    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    return NO;
 }
 
 //Patch-E: implemented fix for text view being underneath the keyboard in landscape, sets coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.

@@ -65,6 +65,21 @@
     return YES;
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) return UIInterfaceOrientationMaskAll;
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscapeLeft|UIInterfaceOrientationMaskLandscapeLeft;
+}
+
+-(BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    return NO;
+}
+
 #pragma mark Cleanup
 
 - (void)dealloc {

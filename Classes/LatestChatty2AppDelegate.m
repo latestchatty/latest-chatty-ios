@@ -87,7 +87,7 @@
     // Create the deck controller with the left and center
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController
                                                                                     leftViewController:leftController];
-    // Set navigation type, left size, no elasticity, and no drag panning
+    // Set navigation type, left size, no elasticity
     [deckController setNavigationControllerBehavior:IIViewDeckNavigationControllerIntegrated];
     [deckController setLeftSize:255];
     [deckController setElastic:NO];
@@ -127,7 +127,7 @@
                                      @"",                           @"username",
                                      @"",                           @"password",
                                      @"shackapi.stonedonkey.com",   @"server",
-                                     //[NSNumber numberWithBool:YES], @"landscape",
+                                     [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:YES], @"embedYoutube",
                                      //[NSNumber numberWithBool:NO],  @"push.messages",
                                      [NSNumber numberWithBool:YES], @"picsResize",
