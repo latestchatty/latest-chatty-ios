@@ -68,7 +68,7 @@
 - (NSUInteger)supportedInterfaceOrientations {
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) return UIInterfaceOrientationMaskAll;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return UIInterfaceOrientationMaskPortrait;
-    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscapeLeft|UIInterfaceOrientationMaskLandscapeLeft;
+    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscapeLeft|UIInterfaceOrientationMaskLandscapeRight;
 }
 
 -(BOOL)shouldAutorotate {
