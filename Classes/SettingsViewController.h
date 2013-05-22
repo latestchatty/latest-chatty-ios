@@ -22,9 +22,9 @@
     UITextField *picsPasswordField;
     UISwitch    *picsResizeSwitch;
     UISlider    *picsQualitySlider;
-    UILabel *picsQualityLabel;
+    UILabel     *picsQualityLabel;
   
-//  UISwitch    *landscapeSwitch;
+    UISwitch    *landscapeSwitch;
     UISwitch    *youtubeSwitch;
     UISwitch    *safariSwitch;
     UISwitch    *chromeSwitch;

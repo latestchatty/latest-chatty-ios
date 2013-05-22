@@ -21,35 +21,30 @@
         usernameField.placeholder = @"Enter Username";
         usernameField.returnKeyType = UIReturnKeyNext;
         usernameField.keyboardType = UIKeyboardTypeEmailAddress;
-        usernameField.keyboardAppearance = UIKeyboardAppearanceAlert;
         usernameField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
         
         passwordField = [[self generateTextFieldWithKey:@"password"] retain];
         passwordField.placeholder = @"Enter Password";
         passwordField.secureTextEntry = YES;
         passwordField.returnKeyType = UIReturnKeyDone;
-        passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
         
         serverField = [[self generateTextFieldWithKey:@"server"] retain];
         serverField.placeholder = @"shackapi.stonedonkey.com";
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
-        serverField.keyboardAppearance = UIKeyboardAppearanceAlert;
         
         picsUsernameField = [[self generateTextFieldWithKey:@"picsUsername"] retain];
         picsUsernameField.placeholder = @"Enter Username";
         picsUsernameField.returnKeyType = UIReturnKeyNext;
         picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
-        picsUsernameField.keyboardAppearance = UIKeyboardAppearanceAlert;                
         picsUsernameField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
         
         picsPasswordField = [[self generateTextFieldWithKey:@"picsPassword"] retain];
         picsPasswordField.placeholder = @"Enter Password";
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
-        picsPasswordField.keyboardAppearance = UIKeyboardAppearanceAlert;
         
-//        landscapeSwitch  = [[self generateSwitchWithKey:@"landscape"] retain];
+        landscapeSwitch  = [[self generateSwitchWithKey:@"landscape"] retain];
         picsResizeSwitch   = [[self generateSwitchWithKey:@"picsResize"] retain];
         picsQualitySlider  = [[self generateSliderWithKey:@"picsQuality"] retain];
         youtubeSwitch      = [[self generateSwitchWithKey:@"embedYoutube"] retain];
@@ -116,6 +111,7 @@
 	textField.delegate = self;
 	textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:key];
     textField.textColor = [UIColor whiteColor];
+    textField.keyboardAppearance = UIKeyboardAppearanceAlert;
 	
 	return [textField autorelease];
 }
@@ -143,7 +139,7 @@
 	[defaults setObject:passwordField.text      forKey:@"password"];
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
-    //	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
+	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
     [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
     [defaults setFloat:picsQualitySlider.value  forKey:@"picsQuality"];
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
@@ -235,28 +231,23 @@
     [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
     [tableView setBackgroundColor:[UIColor clearColor]];
     
-    // TODO: this isn't finished
-    // iOS 6 allows more customization of switch/slider than iOS 5
-    // They won't look the same without using images for the whole thing, do we care?
+    // iOS 6 allows more built-in customization of switch/slider than iOS 5
+    // They won't look the same without subclassing UISwitch, do we care?
+    UIColor *blueColor = [UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0];
+    UIColor *darkGrayColor = [UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0];
+    UIColor *darkerGrayColor = [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
-        [[UISwitch appearance] setThumbTintColor:[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]];
-        [[UISwitch appearance] setTintColor:[UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0]];
-        [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
-        
-        [[UISlider appearance] setThumbTintColor:[UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0]];
-        [[UISlider appearance] setMinimumTrackTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
-        [[UISlider appearance] setMaximumTrackTintColor:[UIColor colorWithRed:26.0/255.0 green:26.0/255.0 blue:28.0/255.0 alpha:1.0]];
-    } else { // iOS 5
-        [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
-        [[UISlider appearance] setMinimumTrackTintColor:[UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0]];
-        [[UISlider appearance] setMaximumTrackTintColor:[UIColor colorWithRed:26.0/255.0 green:26.0/255.0 blue:28.0/255.0 alpha:1.0]];
+        [[UISwitch appearance] setTintColor:darkerGrayColor];
+        [[UISlider appearance] setThumbTintColor:darkGrayColor];
     }
+    [[UISwitch appearance] setOnTintColor:blueColor];
+    [[UISlider appearance] setMinimumTrackTintColor:blueColor];
+    [[UISlider appearance] setMaximumTrackTintColor:darkGrayColor];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    //    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
-    return YES;
-    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
+    return NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -294,7 +285,7 @@
             break;
 			
 		case 2:
-			return 4;
+			return 5;
 			break;
 			
 		case 3:
@@ -412,22 +403,22 @@
 	// Preference toggles
 	if (indexPath.section == 2) {
 		switch (indexPath.row) {
-//			case 0:
-//				cell.accessoryView = landscapeSwitch;
-//				cell.textLabel.text = @"Allow Landscape:";
-//				break;
-                
 			case 0:
+				cell.accessoryView = landscapeSwitch;
+				cell.textLabel.text = @"Allow Landscape:";
+				break;
+                
+			case 1:
 				cell.accessoryView = youtubeSwitch;
 				cell.textLabel.text = @"Embed YouTube:";
 				break;
                 
-            case 1:
+            case 2:
 				cell.accessoryView = safariSwitch;
 				cell.textLabel.text = @"Use Safari:";
 				break;
                 
-			case 2:
+			case 3:
 				cell.accessoryView = chromeSwitch;
 				cell.textLabel.text = @"Use Chrome:";
 				break;
@@ -437,7 +428,7 @@
 //				cell.textLabel.text = @"Push Messages:";
 //				break;
             
-			case 3:
+			case 4:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Mod Tools:";
 				break;
