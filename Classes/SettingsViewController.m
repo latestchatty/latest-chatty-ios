@@ -202,6 +202,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor whiteColor],UITextAttributeTextColor,
+                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
+                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
+                                UITextAttributeTextShadowOffset,
+                                nil];
+    
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
                                                                        style:UIBarButtonItemStyleBordered
@@ -209,22 +216,20 @@
                                                                       action:@selector(resignAndToggle)];
         self.navigationItem.leftBarButtonItem = menuButton;
         [menuButton release];
+        
+        UIBarButtonItem *saveDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                                           style:UIBarButtonItemStyleDone
+                                                                          target:self
+                                                                          action:@selector(save)];
+
+        [saveDoneButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+        
+        self.navigationItem.rightBarButtonItem = saveDoneButton;
+
+        [saveDoneButton release];
+    } else {
+        [saveButton setTitleTextAttributes:attributes forState:UIControlStateNormal];   
     }
-    
-	UIBarButtonItem *saveDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
-                                                                   style:UIBarButtonItemStyleDone
-                                                                  target:self
-                                                                  action:@selector(save)];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor whiteColor],UITextAttributeTextColor,
-                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-                                UITextAttributeTextShadowOffset,
-                                nil];
-    [saveDoneButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
-	self.navigationItem.rightBarButtonItem = saveDoneButton;
-	[saveDoneButton release];
-    [saveButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
     
     [tableView setSeparatorColor:[UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0]];
     [tableView setBackgroundView:nil];
@@ -491,7 +496,7 @@
     [picsResizeSwitch release];
     [picsQualitySlider release];
 	
-//	[landscapeSwitch release];
+	[landscapeSwitch release];
     [safariSwitch release];
 	[youtubeSwitch release];
 	[chromeSwitch release];

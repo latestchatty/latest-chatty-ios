@@ -37,7 +37,7 @@
     UISwitch    *politicsSwitch;
     UISwitch    *nwsSwitch;
 
-    UIBarButtonItem *saveButton;
+    IBOutlet UIBarButtonItem *saveButton;
 }
 
 - (IBAction)dismiss:(id)sender;

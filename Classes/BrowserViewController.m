@@ -47,12 +47,7 @@
                                                                          action:@selector(lolMenu)];
         [lolMenuButton setEnabled:NO];
         
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            [self.navigationItem setLeftBarButtonItem:lolMenuButton];
-        } else {
-            [self.navigationItem setRightBarButtonItem:lolMenuButton];
-        }
-
+        [self.navigationItem setRightBarButtonItem:lolMenuButton];
         
         [lolMenuButton release];
     }
@@ -67,24 +62,30 @@
         self.spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     }
     
+    // For iPad with top toolbar
     if (mainToolbar) {
+        // Add a spinner between the nav arrows
         UIBarButtonItem *spinnerItem = [[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease];
         NSMutableArray *items = [NSMutableArray arrayWithArray:mainToolbar.items];
-        [items insertObject:spinnerItem atIndex:[items count]-1];
-
-        //remove action button when using this controller for Shack[LOL]
+        //[items insertObject:spinnerItem atIndex:[items count]-1];
+        [items insertObject:spinnerItem atIndex:1];
+        
+        // Remove action button when using this controller for Shack[LOL]
         if (isShackLOL) {
-            for(int i = 0; i < mainToolbar.items.count; i++) {
-                UIBarButtonItem *item = (UIBarButtonItem *)[items objectAtIndex:i];
-                if([item isEqual:actionButton]) {
-                    [items removeObjectAtIndex:i];
-                }
-            }
+//            for(int i = 0; i < mainToolbar.items.count; i++) {
+//                UIBarButtonItem *item = (UIBarButtonItem *)[items objectAtIndex:i];
+//                if([item isEqual:actionButton]) {
+//                    [items removeObjectAtIndex:i];
+//                }
+//            }
+            // Hardcoded for now to remove the last button in the item list (the action/share button)
+            [items removeObjectAtIndex:[items count]-1];
         }
         mainToolbar.items = items;
     }
 
-    //remove action button when using this controller for Shack[LOL]
+    // For iPhone with bottom toolbar
+    // Remove action button when using this controller for Shack[LOL]
     if (bottomToolbar && isShackLOL) {
         NSMutableArray *items = [NSMutableArray arrayWithArray:bottomToolbar.items];
         for(int i = 0; i < bottomToolbar.items.count; i++) {
