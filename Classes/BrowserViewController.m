@@ -52,6 +52,7 @@
         } else {
             [self.navigationItem setRightBarButtonItem:lolMenuButton];
         }
+
         
         [lolMenuButton release];
     }
@@ -70,7 +71,7 @@
         UIBarButtonItem *spinnerItem = [[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease];
         NSMutableArray *items = [NSMutableArray arrayWithArray:mainToolbar.items];
         [items insertObject:spinnerItem atIndex:[items count]-1];
-        
+
         //remove action button when using this controller for Shack[LOL]
         if (isShackLOL) {
             for(int i = 0; i < mainToolbar.items.count; i++) {

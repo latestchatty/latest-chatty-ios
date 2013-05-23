@@ -212,10 +212,11 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
+    lockImage.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     lockImage.hidden = YES;
     cell.accessoryView = lockImage;
     
-    CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 60 : 0;
+    CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 40 : 0;
     UILabel *prompt = [UILabel viewWithFrame:CGRectMake(leftEdge, 4, 85, 31)];
     if (indexPath.row == 0) prompt.text = @"Terms:";
     if (indexPath.row == 1) prompt.text = @"Author:";
