@@ -125,7 +125,6 @@
 						<string key="NSFrame">{{150, 384}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="39516868"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
