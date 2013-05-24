@@ -85,7 +85,7 @@
                                     (tagView.frame.size.height - innerTagView.frame.size.height) / 2.0,
                                     innerTagView.frame.size.width,
                                     innerTagView.frame.size.height);
-    
+
     // Add a style item to the text selection menu
     UIMenuController *menu = [UIMenuController sharedMenuController];
     menu.menuItems = [NSArray arrayWithObject:[[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)] autorelease]];
@@ -372,7 +372,15 @@
     // Update the post content
 	postContent.text = result;
 	
-    // Hide tag view
+    [self closeTagView];
+    
+    // Reactivate the text view with the text still selected.
+	[postContent becomeFirstResponder];
+	[postContent setSelectedRange:NSMakeRange(selection.location + prefix.length, selection.length)];
+}
+
+- (IBAction)closeTagView {
+    // Close tag view
     [UIView animateWithDuration:0.35
                      animations:^(void) {
                          tagView.alpha = 0.0;
@@ -381,10 +389,6 @@
                      completion:^(BOOL finished) {
                          tagView.hidden = YES;
                      }];
-    
-    // Reactivate the text view with the text still selected.
-	[postContent becomeFirstResponder];
-	[postContent setSelectedRange:NSMakeRange(selection.location + prefix.length, selection.length)];
 }
 
 #pragma mark Actions

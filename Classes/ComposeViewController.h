@@ -49,6 +49,7 @@
 
 - (IBAction)showImagePicker;
 - (IBAction)tag:(id)sender;
+- (IBAction)closeTagView;
 
 - (void)sendPost;
 
