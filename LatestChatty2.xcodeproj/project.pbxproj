@@ -656,14 +656,14 @@
 		A254B842116FFE9A001534FF /* MenuPullTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuPullTab.png; path = Assets/MenuPullTab.png; sourceTree = "<group>"; };
 		A254B845116FFEB0001534FF /* SlideOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutViewController.h; sourceTree = "<group>"; };
 		A254B846116FFEB0001534FF /* SlideOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutViewController.m; sourceTree = "<group>"; };
-		A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SlideOutViewController-iPad.xib"; path = "Classes/SlideOutViewController-iPad.xib"; sourceTree = "<group>"; };
+		A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "SlideOutViewController-iPad.xib"; sourceTree = "<group>"; };
 		A27EA5CD1170F0520072EB59 /* chrono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chrono.png; path = Assets/chrono.png; sourceTree = "<group>"; };
 		A27EA7211171E60D0072EB59 /* SliderDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SliderDivider.png; path = Assets/SliderDivider.png; sourceTree = "<group>"; };
 		A27EAB8211728E260072EB59 /* Pushpin-Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pushpin-Active.png"; path = "Assets/Pushpin-Active.png"; sourceTree = "<group>"; };
 		A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pushpin-Inactive.png"; path = "Assets/Pushpin-Inactive.png"; sourceTree = "<group>"; };
 		A27EAB8611728E360072EB59 /* PinnedThreadsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinnedThreadsLoader.h; sourceTree = "<group>"; };
 		A27EAB8711728E360072EB59 /* PinnedThreadsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinnedThreadsLoader.m; sourceTree = "<group>"; };
-		CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ReviewThreadViewController-iPad.xib"; path = "Resources-iPad/Classes/ReviewThreadViewController-iPad.xib"; sourceTree = "<group>"; };
+		CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ReviewThreadViewController-iPad.xib"; path = "../Resources-iPad/Classes/ReviewThreadViewController-iPad.xib"; sourceTree = "<group>"; };
 		CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleChromeActivity.h; path = Classes/GoogleChromeActivity.h; sourceTree = "<group>"; };
 		CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleChromeActivity.m; path = Classes/GoogleChromeActivity.m; sourceTree = "<group>"; };
 		CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleSafariActivity.h; path = Classes/AppleSafariActivity.h; sourceTree = "<group>"; };
@@ -823,7 +823,7 @@
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
 		FA0481210F70D10300F752A6 /* ChattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyViewController.m; sourceTree = "<group>"; };
-		FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ThreadViewController-iPad.xib"; path = "Resources-iPad/Classes/ThreadViewController-iPad.xib"; sourceTree = "<group>"; };
+		FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ThreadViewController-iPad.xib"; path = "../Resources-iPad/Classes/ThreadViewController-iPad.xib"; sourceTree = "<group>"; };
 		FA08ADB1112B40E800B89890 /* Mod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mod.h; sourceTree = "<group>"; };
 		FA08ADB2112B40E800B89890 /* Mod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mod.m; sourceTree = "<group>"; };
 		FA08ADBF112B412500B89890 /* ModGavel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ModGavel.png; path = Assets/ModGavel.png; sourceTree = "<group>"; };
@@ -901,7 +901,7 @@
 		FA87BE8C0F7B1B9D0044898C /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		FA8D243D0F85848900AB23E2 /* Youtube.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Youtube.html; sourceTree = "<group>"; };
-		FA907CA71166D8D800306828 /* SendMessageViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SendMessageViewController-iPad.xib"; path = "Resources-iPad/Classes/SendMessageViewController-iPad.xib"; sourceTree = "<group>"; };
+		FA907CA71166D8D800306828 /* SendMessageViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SendMessageViewController-iPad.xib"; path = "../Resources-iPad/Classes/SendMessageViewController-iPad.xib"; sourceTree = "<group>"; };
 		FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		FA9C3ED30F9CED010022A739 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		FA9C3ED40F9CED010022A739 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
@@ -910,22 +910,22 @@
 		FA9C3F200F9CFF0C0022A739 /* BlueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueButton.png; path = Assets/BlueButton.png; sourceTree = "<group>"; };
 		FA9C3F210F9CFF0C0022A739 /* BlueButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueButtonPressed.png; path = Assets/BlueButtonPressed.png; sourceTree = "<group>"; };
 		FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NewPostBullet.png; path = Assets/NewPostBullet.png; sourceTree = "<group>"; };
-		FAA5BA721110DE7F0007C34C /* StoriesViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "StoriesViewController-iPad.xib"; path = "Resources-iPad/StoriesViewController-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA731110DE7F0007C34C /* StoryCell-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "StoryCell-iPad.xib"; path = "Resources-iPad/Classes/StoryCell-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA741110DE7F0007C34C /* ChattyViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ChattyViewController-iPad.xib"; path = "Resources-iPad/Classes/ChattyViewController-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA751110DE7F0007C34C /* ThreadCell-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ThreadCell-iPad.xib"; path = "Resources-iPad/Classes/ThreadCell-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA761110DE7F0007C34C /* StoryViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "StoryViewController-iPad.xib"; path = "Resources-iPad/Classes/StoryViewController-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA781110DE7F0007C34C /* ReplyCell-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ReplyCell-iPad.xib"; path = "Resources-iPad/Classes/ReplyCell-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA791110DE7F0007C34C /* SettingsViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SettingsViewController-iPad.xib"; path = "Resources-iPad/Classes/SettingsViewController-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA7A1110DE7F0007C34C /* ComposeViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ComposeViewController-iPad.xib"; path = "Resources-iPad/Classes/ComposeViewController-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA7B1110DE7F0007C34C /* BrowserViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "BrowserViewController-iPad.xib"; path = "Resources-iPad/Classes/BrowserViewController-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA7C1110DE7F0007C34C /* RootCell-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "RootCell-iPad.xib"; path = "Resources-iPad/Classes/RootCell-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA7D1110DE7F0007C34C /* RootViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "RootViewController-iPad.xib"; path = "Resources-iPad/Classes/RootViewController-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA7E1110DE7F0007C34C /* MessagesViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MessagesViewController-iPad.xib"; path = "Resources-iPad/Classes/MessagesViewController-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA7F1110DE7F0007C34C /* MessageCell-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MessageCell-iPad.xib"; path = "Resources-iPad/Classes/MessageCell-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA801110DE7F0007C34C /* MessageViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MessageViewController-iPad.xib"; path = "Resources-iPad/Classes/MessageViewController-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA811110DE7F0007C34C /* SearchViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SearchViewController-iPad.xib"; path = "Resources-iPad/Classes/SearchViewController-iPad.xib"; sourceTree = "<group>"; };
-		FAA5BA821110DE7F0007C34C /* SearchResultsViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SearchResultsViewController-iPad.xib"; path = "Resources-iPad/Classes/SearchResultsViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA721110DE7F0007C34C /* StoriesViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "StoriesViewController-iPad.xib"; path = "../Resources-iPad/StoriesViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA731110DE7F0007C34C /* StoryCell-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "StoryCell-iPad.xib"; path = "../Resources-iPad/Classes/StoryCell-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA741110DE7F0007C34C /* ChattyViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ChattyViewController-iPad.xib"; path = "../Resources-iPad/Classes/ChattyViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA751110DE7F0007C34C /* ThreadCell-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ThreadCell-iPad.xib"; path = "../Resources-iPad/Classes/ThreadCell-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA761110DE7F0007C34C /* StoryViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "StoryViewController-iPad.xib"; path = "../Resources-iPad/Classes/StoryViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA781110DE7F0007C34C /* ReplyCell-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ReplyCell-iPad.xib"; path = "../Resources-iPad/Classes/ReplyCell-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA791110DE7F0007C34C /* SettingsViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SettingsViewController-iPad.xib"; path = "../Resources-iPad/Classes/SettingsViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA7A1110DE7F0007C34C /* ComposeViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ComposeViewController-iPad.xib"; path = "../Resources-iPad/Classes/ComposeViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA7B1110DE7F0007C34C /* BrowserViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "BrowserViewController-iPad.xib"; path = "../Resources-iPad/Classes/BrowserViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA7C1110DE7F0007C34C /* RootCell-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "RootCell-iPad.xib"; path = "../Resources-iPad/Classes/RootCell-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA7D1110DE7F0007C34C /* RootViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "RootViewController-iPad.xib"; path = "../Resources-iPad/Classes/RootViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA7E1110DE7F0007C34C /* MessagesViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MessagesViewController-iPad.xib"; path = "../Resources-iPad/Classes/MessagesViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA7F1110DE7F0007C34C /* MessageCell-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MessageCell-iPad.xib"; path = "../Resources-iPad/Classes/MessageCell-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA801110DE7F0007C34C /* MessageViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MessageViewController-iPad.xib"; path = "../Resources-iPad/Classes/MessageViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA811110DE7F0007C34C /* SearchViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SearchViewController-iPad.xib"; path = "../Resources-iPad/Classes/SearchViewController-iPad.xib"; sourceTree = "<group>"; };
+		FAA5BA821110DE7F0007C34C /* SearchResultsViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "SearchResultsViewController-iPad.xib"; path = "../Resources-iPad/Classes/SearchResultsViewController-iPad.xib"; sourceTree = "<group>"; };
 		FAA849960F78C29900026446 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
 		FAA849970F78C29900026446 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
 		FAA849990F78C2B000026446 /* ThreadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadViewController.xib; sourceTree = "<group>"; };
@@ -1068,7 +1068,6 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				FAA5BA701110DE7B0007C34C /* Resources-iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -1196,6 +1195,29 @@
 			path = "../../Xcode Libraries/ViewDeck/ViewDeck";
 			sourceTree = "<group>";
 		};
+		CDD056C2174FCAC6000E0477 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				FAA5BA7B1110DE7F0007C34C /* BrowserViewController-iPad.xib */,
+				FAA5BA741110DE7F0007C34C /* ChattyViewController-iPad.xib */,
+				FAA5BA7A1110DE7F0007C34C /* ComposeViewController-iPad.xib */,
+				FAA5BA7E1110DE7F0007C34C /* MessagesViewController-iPad.xib */,
+				FAA5BA801110DE7F0007C34C /* MessageViewController-iPad.xib */,
+				CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */,
+				FAA5BA7D1110DE7F0007C34C /* RootViewController-iPad.xib */,
+				FAA5BA811110DE7F0007C34C /* SearchViewController-iPad.xib */,
+				FAA5BA821110DE7F0007C34C /* SearchResultsViewController-iPad.xib */,
+				FA907CA71166D8D800306828 /* SendMessageViewController-iPad.xib */,
+				FAA5BA791110DE7F0007C34C /* SettingsViewController-iPad.xib */,
+				A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */,
+				FAA5BA721110DE7F0007C34C /* StoriesViewController-iPad.xib */,
+				FAA5BA761110DE7F0007C34C /* StoryViewController-iPad.xib */,
+				FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */,
+				FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		FA2B47500F7E1DA30074064A /* Base64 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1210,6 +1232,7 @@
 		FA5FCD110F6F607200878F27 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CDD056C2174FCAC6000E0477 /* iPad */,
 				FAB765F40F7C9E5B00CE0E38 /* BrowserViewController.h */,
 				FAB765F50F7C9E5B00CE0E38 /* BrowserViewController.m */,
 				FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */,
@@ -1235,7 +1258,6 @@
 				FA4123070F8FE09E002E1978 /* RootViewController.xib */,
 				FA9C3ED30F9CED010022A739 /* SearchViewController.h */,
 				FA9C3ED40F9CED010022A739 /* SearchViewController.m */,
-				FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */,
 				FACD9A7A0F9E2F33009D9A15 /* SearchResultsViewController.h */,
 				FACD9A7B0F9E2F33009D9A15 /* SearchResultsViewController.m */,
 				FACD9A7D0F9E2F49009D9A15 /* SearchResultsViewController.xib */,
@@ -1291,18 +1313,23 @@
 				FA828B8E0F90906500B59FF8 /* MessageCell.h */,
 				FA828B8F0F90906500B59FF8 /* MessageCell.m */,
 				FA828B8B0F90901100B59FF8 /* MessageCell.xib */,
+				FAA5BA7F1110DE7F0007C34C /* MessageCell-iPad.xib */,
 				FAA84AFD0F78DD9F00026446 /* ReplyCell.h */,
 				FAA84AFE0F78DD9F00026446 /* ReplyCell.m */,
 				FAA84AF90F78DCB300026446 /* ReplyCell.xib */,
+				FAA5BA781110DE7F0007C34C /* ReplyCell-iPad.xib */,
 				FA4123000F8FDF06002E1978 /* RootCell.h */,
 				FA4123010F8FDF06002E1978 /* RootCell.m */,
 				FA4122FD0F8FDDE9002E1978 /* RootCell.xib */,
+				FAA5BA7C1110DE7F0007C34C /* RootCell-iPad.xib */,
 				FA5FCE910F6F7CA600878F27 /* StoryCell.h */,
 				FA5FCE920F6F7CA600878F27 /* StoryCell.m */,
 				FA5FCE940F6F7CB600878F27 /* StoryCell.xib */,
+				FAA5BA731110DE7F0007C34C /* StoryCell-iPad.xib */,
 				FA6EDD6D0F70DA0400AAF4E4 /* ThreadCell.h */,
 				FA6EDD6E0F70DA0400AAF4E4 /* ThreadCell.m */,
 				FA6EDD690F70D95A00AAF4E4 /* ThreadCell.xib */,
+				FAA5BA751110DE7F0007C34C /* ThreadCell-iPad.xib */,
 				FA5FCE8B0F6F7B6A00878F27 /* TableCellFromNib.h */,
 				FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */,
 			);
@@ -1484,33 +1511,6 @@
 				CDB348D4174573C0000003CA /* TimerDotFull@2x.png */,
 			);
 			name = Assets;
-			sourceTree = "<group>";
-		};
-		FAA5BA701110DE7B0007C34C /* Resources-iPad */ = {
-			isa = PBXGroup;
-			children = (
-				FAA5BA7F1110DE7F0007C34C /* MessageCell-iPad.xib */,
-				FAA5BA781110DE7F0007C34C /* ReplyCell-iPad.xib */,
-				FAA5BA7C1110DE7F0007C34C /* RootCell-iPad.xib */,
-				FAA5BA731110DE7F0007C34C /* StoryCell-iPad.xib */,
-				FAA5BA751110DE7F0007C34C /* ThreadCell-iPad.xib */,
-				FAA5BA7B1110DE7F0007C34C /* BrowserViewController-iPad.xib */,
-				FAA5BA741110DE7F0007C34C /* ChattyViewController-iPad.xib */,
-				FAA5BA7A1110DE7F0007C34C /* ComposeViewController-iPad.xib */,
-				FAA5BA7E1110DE7F0007C34C /* MessagesViewController-iPad.xib */,
-				FAA5BA801110DE7F0007C34C /* MessageViewController-iPad.xib */,
-				CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */,
-				FAA5BA7D1110DE7F0007C34C /* RootViewController-iPad.xib */,
-				FAA5BA811110DE7F0007C34C /* SearchViewController-iPad.xib */,
-				FAA5BA821110DE7F0007C34C /* SearchResultsViewController-iPad.xib */,
-				FA907CA71166D8D800306828 /* SendMessageViewController-iPad.xib */,
-				FAA5BA791110DE7F0007C34C /* SettingsViewController-iPad.xib */,
-				A254B848116FFEC5001534FF /* SlideOutViewController-iPad.xib */,
-				FAA5BA721110DE7F0007C34C /* StoriesViewController-iPad.xib */,
-				FAA5BA761110DE7F0007C34C /* StoryViewController-iPad.xib */,
-				FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */,
-			);
-			name = "Resources-iPad";
 			sourceTree = "<group>";
 		};
 		FAAFAE291161DAA5009A6B4C /* HKHelperKit */ = {
