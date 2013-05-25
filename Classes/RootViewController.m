@@ -102,15 +102,16 @@
                 CustomBadge *unreadMessageBadge =
                 [CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%i", messageCount]withStringColor:[UIColor whiteColor]
                                     withInsetColor:[UIColor colorWithRed:255.0/255.0 green:0 blue:0 alpha:0.75]
-                                    withBadgeFrame:NO
+                                    withBadgeFrame:YES
                                withBadgeFrameColor:[UIColor whiteColor]
-                                         withScale:0.75
+                                         withScale:1.0
                                        withShining:NO
                                         withShadow:NO];
                 // modify left edge of badge frame depending on how many digits are in the unread message count
                 float leftEdge = cell.iconImage.frameWidth - 20;
                 if (messageCount >= 10) leftEdge = leftEdge - 10;
                 if (messageCount >= 100) leftEdge = leftEdge - 10;
+                if (messageCount >= 1000) leftEdge = leftEdge - 10;
                 [unreadMessageBadge setFrame:CGRectMake(leftEdge, 0, unreadMessageBadge.frame.size.width, unreadMessageBadge.frame.size.height)];
                 [[cell iconImage] addSubview:unreadMessageBadge];
             } else {
