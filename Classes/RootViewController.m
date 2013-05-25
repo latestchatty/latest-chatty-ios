@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "LatestChatty2AppDelegate.h"
+#import "CustomBadge.h"
 
 @implementation RootViewController
 
@@ -30,20 +31,10 @@
     return NO;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES animated:animated];
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.messagesSpinner startAnimating];
     messageLoader = [[Message findAllWithDelegate:self] retain];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-//    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
@@ -93,20 +84,38 @@
 			break;
             
         case 2:
+            // add activity spinner to messages cell that starts spinning when messages are loading and stops when the messages call has finished
+            [self setMessagesSpinner:[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+            int center = [cell iconImage].frameHeight / 2; //vertical center
+            CGFloat spinnerSize = 25.0f;
+            // place spinner on top of messages icon
+            [self.messagesSpinner setFrame:CGRectMake(center - spinnerSize / 2, center - spinnerSize / 2, spinnerSize, spinnerSize)];
+            [[cell iconImage] addSubview:self.messagesSpinner];
+            [self.messagesSpinner release];
+            
             if (messageCount > 0) {
-                cell.title = [NSString stringWithFormat:@"Messages (%i)", messageCount];
+                //cell.title = [NSString stringWithFormat:@"Messages (%i)", messageCount];
+                //messageCount = 9999;
+                
+                // create a iOS-like badge and place on the top right of the messages icon to hold a count of unread messages
+                // uses CustomBadge class that fully draws in scalable Quartz
+                CustomBadge *unreadMessageBadge =
+                [CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%i", messageCount]withStringColor:[UIColor whiteColor]
+                                    withInsetColor:[UIColor colorWithRed:255.0/255.0 green:0 blue:0 alpha:0.75]
+                                    withBadgeFrame:NO
+                               withBadgeFrameColor:[UIColor whiteColor]
+                                         withScale:0.75
+                                       withShining:NO
+                                        withShadow:NO];
+                // modify left edge of badge frame depending on how many digits are in the unread message count
+                float leftEdge = cell.iconImage.frameWidth - 20;
+                if (messageCount >= 10) leftEdge = leftEdge - 10;
+                if (messageCount >= 100) leftEdge = leftEdge - 10;
+                [unreadMessageBadge setFrame:CGRectMake(leftEdge, 0, unreadMessageBadge.frame.size.width, unreadMessageBadge.frame.size.height)];
+                [[cell iconImage] addSubview:unreadMessageBadge];
             } else {
                 cell.title = @"Messages";
             }
-            
-            //add activity spinner to messages cell that starts spinning when messages are loading and stops when the messages call has finished
-            [self setMessagesSpinner:[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-            int center = [cell frame].size.height / 2; //vertical center
-            CGFloat spinnerSize = 25.0f;
-            //place spinner on top of messages icon
-            [self.messagesSpinner setFrame:CGRectMake(22.0f, center - spinnerSize / 2, spinnerSize, spinnerSize)];
-            [[cell contentView] addSubview:self.messagesSpinner];
-            [self.messagesSpinner release];
             
             break;
             

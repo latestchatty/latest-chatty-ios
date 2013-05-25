@@ -418,6 +418,12 @@
 		CDC6DEB017408DFF004B9C78 /* button_done.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAD17408DFF004B9C78 /* button_done.png */; };
 		CDC6DEB117408DFF004B9C78 /* button_done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAE17408DFF004B9C78 /* button_done@2x.png */; };
 		CDC6DEB217408DFF004B9C78 /* button_done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAE17408DFF004B9C78 /* button_done@2x.png */; };
+		CDD056C9174FCCC8000E0477 /* NoContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056C8174FCCC8000E0477 /* NoContentController.m */; };
+		CDD056CA174FCCC8000E0477 /* NoContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056C8174FCCC8000E0477 /* NoContentController.m */; };
+		CDD056CC174FCCDC000E0477 /* NoContentController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD056CB174FCCDC000E0477 /* NoContentController-iPad.xib */; };
+		CDD056CD174FCCDC000E0477 /* NoContentController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD056CB174FCCDC000E0477 /* NoContentController-iPad.xib */; };
+		CDD056D0174FD043000E0477 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056CF174FD043000E0477 /* CustomBadge.m */; };
+		CDD056D1174FD043000E0477 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056CF174FD043000E0477 /* CustomBadge.m */; };
 		CDE0905B164042DD0010E8F5 /* Message.html in Resources */ = {isa = PBXBuildFile; fileRef = CDE0905A164042DD0010E8F5 /* Message.html */; };
 		CDFA3D4E17414D5C0083C9D5 /* button_back_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D4A17414D5C0083C9D5 /* button_back_highlight.png */; };
 		CDFA3D4F17414D5C0083C9D5 /* button_back_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D4A17414D5C0083C9D5 /* button_back_highlight.png */; };
@@ -789,6 +795,11 @@
 		CDB349221746F758000003CA /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
 		CDC6DEAD17408DFF004B9C78 /* button_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_done.png; path = Assets/button_done.png; sourceTree = "<group>"; };
 		CDC6DEAE17408DFF004B9C78 /* button_done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_done@2x.png"; path = "Assets/button_done@2x.png"; sourceTree = "<group>"; };
+		CDD056C7174FCCC7000E0477 /* NoContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoContentController.h; sourceTree = "<group>"; };
+		CDD056C8174FCCC8000E0477 /* NoContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoContentController.m; sourceTree = "<group>"; };
+		CDD056CB174FCCDC000E0477 /* NoContentController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NoContentController-iPad.xib"; sourceTree = "<group>"; };
+		CDD056CE174FD042000E0477 /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomBadge.h; path = Classes/CustomBadge.h; sourceTree = "<group>"; };
+		CDD056CF174FD043000E0477 /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomBadge.m; path = Classes/CustomBadge.m; sourceTree = "<group>"; };
 		CDE0905A164042DD0010E8F5 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Message.html; sourceTree = "<group>"; };
 		CDFA3D4A17414D5C0083C9D5 /* button_back_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_back_highlight.png; path = Assets/button_back_highlight.png; sourceTree = "<group>"; };
 		CDFA3D4B17414D5C0083C9D5 /* button_back_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_back_highlight@2x.png"; path = "Assets/button_back_highlight@2x.png"; sourceTree = "<group>"; };
@@ -1086,6 +1097,8 @@
 				CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */,
 				CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */,
 				CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */,
+				CDD056CE174FD042000E0477 /* CustomBadge.h */,
+				CDD056CF174FD043000E0477 /* CustomBadge.m */,
 				FABA5D450F717B60008EEE3A /* HTMLEscaper.h */,
 				FABA5D460F717B60008EEE3A /* HTMLEscaper.m */,
 				FA5FCD1C0F6F63AC00878F27 /* ModelLoadingDelegate.h */,
@@ -1203,6 +1216,7 @@
 				FAA5BA7A1110DE7F0007C34C /* ComposeViewController-iPad.xib */,
 				FAA5BA7E1110DE7F0007C34C /* MessagesViewController-iPad.xib */,
 				FAA5BA801110DE7F0007C34C /* MessageViewController-iPad.xib */,
+				CDD056CB174FCCDC000E0477 /* NoContentController-iPad.xib */,
 				CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */,
 				FAA5BA7D1110DE7F0007C34C /* RootViewController-iPad.xib */,
 				FAA5BA811110DE7F0007C34C /* SearchViewController-iPad.xib */,
@@ -1250,6 +1264,8 @@
 				FA4124530F8FEFF1002E1978 /* MessagesViewController.xib */,
 				FA5DA7750F7284CB00F05ED9 /* ModelListViewController.h */,
 				FA5DA7760F7284CB00F05ED9 /* ModelListViewController.m */,
+				CDD056C7174FCCC7000E0477 /* NoContentController.h */,
+				CDD056C8174FCCC8000E0477 /* NoContentController.m */,
 				CDA01B1F1731A30D00E24A28 /* ReviewThreadViewController.h */,
 				CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */,
 				CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */,
@@ -1856,6 +1872,7 @@
 				CD76FFCE1749B0FC00B378E6 /* button_back_highlight_landscape@2x.png in Resources */,
 				CD76FFD01749B0FC00B378E6 /* button_back_landscape.png in Resources */,
 				CD76FFD21749B0FC00B378E6 /* button_back_landscape@2x.png in Resources */,
+				CDD056CC174FCCDC000E0477 /* NoContentController-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2080,6 +2097,7 @@
 				CD76FFCF1749B0FC00B378E6 /* button_back_highlight_landscape@2x.png in Resources */,
 				CD76FFD11749B0FC00B378E6 /* button_back_landscape.png in Resources */,
 				CD76FFD31749B0FC00B378E6 /* button_back_landscape@2x.png in Resources */,
+				CDD056CD174FCCDC000E0477 /* NoContentController-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2168,6 +2186,8 @@
 				CD760000174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */,
 				CD760002174C734B00B378E6 /* AFXMLRequestOperation.m in Sources */,
 				CD760004174C734B00B378E6 /* UIImageView+AFNetworking.m in Sources */,
+				CDD056C9174FCCC8000E0477 /* NoContentController.m in Sources */,
+				CDD056D0174FD043000E0477 /* CustomBadge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2253,6 +2273,8 @@
 				CD760001174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */,
 				CD760003174C734B00B378E6 /* AFXMLRequestOperation.m in Sources */,
 				CD760005174C734B00B378E6 /* UIImageView+AFNetworking.m in Sources */,
+				CDD056CA174FCCC8000E0477 /* NoContentController.m in Sources */,
+				CDD056D1174FD043000E0477 /* CustomBadge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

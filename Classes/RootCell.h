@@ -18,5 +18,6 @@
 }
 
 @property (copy) NSString *title;
+@property (retain, nonatomic) IBOutlet UIImageView *iconImage;
 
 @end
