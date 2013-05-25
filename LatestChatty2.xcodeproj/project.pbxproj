@@ -408,11 +408,11 @@
 		CDB348FF1745745F000003CA /* TimerDotThreeQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */; };
 		CDB349001745745F000003CA /* TimerDotFull.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EF1745745F000003CA /* TimerDotFull.png */; };
 		CDB349011745745F000003CA /* TimerDotFull.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EF1745745F000003CA /* TimerDotFull.png */; };
-		CDB349231746F758000003CA /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3491E1746F758000003CA /* IISideController.m */; };
+		CDB349231746F758000003CA /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3491E1746F758000003CA /* IISideController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDB349241746F758000003CA /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3491E1746F758000003CA /* IISideController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CDB349251746F758000003CA /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB349201746F758000003CA /* IIViewDeckController.m */; };
+		CDB349251746F758000003CA /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB349201746F758000003CA /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDB349261746F758000003CA /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB349201746F758000003CA /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CDB349271746F758000003CA /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB349221746F758000003CA /* IIWrapController.m */; };
+		CDB349271746F758000003CA /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB349221746F758000003CA /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDB349281746F758000003CA /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB349221746F758000003CA /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDC6DEAF17408DFF004B9C78 /* button_done.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAD17408DFF004B9C78 /* button_done.png */; };
 		CDC6DEB017408DFF004B9C78 /* button_done.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAD17408DFF004B9C78 /* button_done.png */; };
