@@ -7,30 +7,45 @@
 //
 
 #import "NoContentController.h"
-
+#import "LatestChatty2AppDelegate.h"
 
 @implementation NoContentController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
+- (NSUInteger)supportedInterfaceOrientations {
+    // allow landscape setting on
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            // iPad can rotate to any interface
+            return UIInterfaceOrientationMaskAll;
+        } else {
+            // iPhone can rotate to any interface except portrait upside down
+            return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscapeLeft|UIInterfaceOrientationMaskLandscapeRight;
+        }
+    } else {
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            // iPad can rotate to any portrait interface
+            return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskPortraitUpsideDown;
+        } else {
+            // iPhone can rotate to only regular portrait
+            return UIInterfaceOrientationMaskPortrait;
+        }
     }
-    return self;
 }
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) return YES;
-    return NO;
+    // never allow portrait upside down for iPhone
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice] && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        return NO;
+    }
+    
+    // allow landscape setting is on, allow rotation
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
+        return YES;
+    } else {
+        // allow landscape setting is off, allow rotation if the orientation isn't landscape
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation))return NO;
+        return YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
