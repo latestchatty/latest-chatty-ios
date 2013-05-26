@@ -408,12 +408,12 @@
 		CDB348FF1745745F000003CA /* TimerDotThreeQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */; };
 		CDB349001745745F000003CA /* TimerDotFull.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EF1745745F000003CA /* TimerDotFull.png */; };
 		CDB349011745745F000003CA /* TimerDotFull.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EF1745745F000003CA /* TimerDotFull.png */; };
-		CDB349231746F758000003CA /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3491E1746F758000003CA /* IISideController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CDB349241746F758000003CA /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3491E1746F758000003CA /* IISideController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CDB349251746F758000003CA /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB349201746F758000003CA /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CDB349261746F758000003CA /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB349201746F758000003CA /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CDB349271746F758000003CA /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB349221746F758000003CA /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CDB349281746F758000003CA /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB349221746F758000003CA /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CDBD380517521EC2000A9F58 /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBD380017521EC2000A9F58 /* IISideController.m */; };
+		CDBD380617521EC2000A9F58 /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBD380017521EC2000A9F58 /* IISideController.m */; };
+		CDBD380717521EC2000A9F58 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBD380217521EC2000A9F58 /* IIViewDeckController.m */; };
+		CDBD380817521EC2000A9F58 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBD380217521EC2000A9F58 /* IIViewDeckController.m */; };
+		CDBD380917521EC2000A9F58 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBD380417521EC2000A9F58 /* IIWrapController.m */; };
+		CDBD380A17521EC2000A9F58 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBD380417521EC2000A9F58 /* IIWrapController.m */; };
 		CDC6DEAF17408DFF004B9C78 /* button_done.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAD17408DFF004B9C78 /* button_done.png */; };
 		CDC6DEB017408DFF004B9C78 /* button_done.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAD17408DFF004B9C78 /* button_done.png */; };
 		CDC6DEB117408DFF004B9C78 /* button_done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC6DEAE17408DFF004B9C78 /* button_done@2x.png */; };
@@ -787,12 +787,12 @@
 		CDB348ED1745745F000003CA /* TimerDotHalf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotHalf.png; path = Assets/TimerDotHalf.png; sourceTree = "<group>"; };
 		CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotThreeQuarter.png; path = Assets/TimerDotThreeQuarter.png; sourceTree = "<group>"; };
 		CDB348EF1745745F000003CA /* TimerDotFull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotFull.png; path = Assets/TimerDotFull.png; sourceTree = "<group>"; };
-		CDB3491D1746F758000003CA /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
-		CDB3491E1746F758000003CA /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
-		CDB3491F1746F758000003CA /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
-		CDB349201746F758000003CA /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
-		CDB349211746F758000003CA /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWrapController.h; sourceTree = "<group>"; };
-		CDB349221746F758000003CA /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
+		CDBD37FF17521EC2000A9F58 /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
+		CDBD380017521EC2000A9F58 /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
+		CDBD380117521EC2000A9F58 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
+		CDBD380217521EC2000A9F58 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
+		CDBD380317521EC2000A9F58 /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWrapController.h; sourceTree = "<group>"; };
+		CDBD380417521EC2000A9F58 /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
 		CDC6DEAD17408DFF004B9C78 /* button_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_done.png; path = Assets/button_done.png; sourceTree = "<group>"; };
 		CDC6DEAE17408DFF004B9C78 /* button_done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_done@2x.png"; path = "Assets/button_done@2x.png"; sourceTree = "<group>"; };
 		CDD056C7174FCCC7000E0477 /* NoContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoContentController.h; sourceTree = "<group>"; };
@@ -1092,7 +1092,7 @@
 				FA2B47500F7E1DA30074064A /* Base64 */,
 				FAAFAE291161DAA5009A6B4C /* HKHelperKit */,
 				599FF0E810D5DDC1004476B8 /* JSON */,
-				CDB3491C1746F758000003CA /* ViewDeck */,
+				CDBD37FE17521EC2000A9F58 /* ViewDeck */,
 				CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */,
 				CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */,
 				CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */,
@@ -1194,18 +1194,18 @@
 			path = Classes/AFNetworking;
 			sourceTree = "<group>";
 		};
-		CDB3491C1746F758000003CA /* ViewDeck */ = {
+		CDBD37FE17521EC2000A9F58 /* ViewDeck */ = {
 			isa = PBXGroup;
 			children = (
-				CDB3491D1746F758000003CA /* IISideController.h */,
-				CDB3491E1746F758000003CA /* IISideController.m */,
-				CDB3491F1746F758000003CA /* IIViewDeckController.h */,
-				CDB349201746F758000003CA /* IIViewDeckController.m */,
-				CDB349211746F758000003CA /* IIWrapController.h */,
-				CDB349221746F758000003CA /* IIWrapController.m */,
+				CDBD37FF17521EC2000A9F58 /* IISideController.h */,
+				CDBD380017521EC2000A9F58 /* IISideController.m */,
+				CDBD380117521EC2000A9F58 /* IIViewDeckController.h */,
+				CDBD380217521EC2000A9F58 /* IIViewDeckController.m */,
+				CDBD380317521EC2000A9F58 /* IIWrapController.h */,
+				CDBD380417521EC2000A9F58 /* IIWrapController.m */,
 			);
 			name = ViewDeck;
-			path = "../../Xcode Libraries/ViewDeck/ViewDeck";
+			path = Classes/ViewDeck;
 			sourceTree = "<group>";
 		};
 		CDD056C2174FCAC6000E0477 /* iPad */ = {
@@ -2174,9 +2174,6 @@
 				CD1804C9162211810094A3F1 /* GoogleChromeActivity.m in Sources */,
 				CD1804D1162338F90094A3F1 /* AppleSafariActivity.m in Sources */,
 				CDA01B211731A31D00E24A28 /* ReviewThreadViewController.m in Sources */,
-				CDB349231746F758000003CA /* IISideController.m in Sources */,
-				CDB349251746F758000003CA /* IIViewDeckController.m in Sources */,
-				CDB349271746F758000003CA /* IIWrapController.m in Sources */,
 				CD76FFF4174C734B00B378E6 /* AFHTTPClient.m in Sources */,
 				CD76FFF6174C734B00B378E6 /* AFHTTPRequestOperation.m in Sources */,
 				CD76FFF8174C734B00B378E6 /* AFImageRequestOperation.m in Sources */,
@@ -2188,6 +2185,9 @@
 				CD760004174C734B00B378E6 /* UIImageView+AFNetworking.m in Sources */,
 				CDD056C9174FCCC8000E0477 /* NoContentController.m in Sources */,
 				CDD056D0174FD043000E0477 /* CustomBadge.m in Sources */,
+				CDBD380517521EC2000A9F58 /* IISideController.m in Sources */,
+				CDBD380717521EC2000A9F58 /* IIViewDeckController.m in Sources */,
+				CDBD380917521EC2000A9F58 /* IIWrapController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2261,9 +2261,6 @@
 				CDA1181A16C1DC6600CE1375 /* GoogleChromeActivity.m in Sources */,
 				CDA1181B16C1DC6600CE1375 /* AppleSafariActivity.m in Sources */,
 				CDA01B221731A31D00E24A28 /* ReviewThreadViewController.m in Sources */,
-				CDB349241746F758000003CA /* IISideController.m in Sources */,
-				CDB349261746F758000003CA /* IIViewDeckController.m in Sources */,
-				CDB349281746F758000003CA /* IIWrapController.m in Sources */,
 				CD76FFF5174C734B00B378E6 /* AFHTTPClient.m in Sources */,
 				CD76FFF7174C734B00B378E6 /* AFHTTPRequestOperation.m in Sources */,
 				CD76FFF9174C734B00B378E6 /* AFImageRequestOperation.m in Sources */,
@@ -2275,6 +2272,9 @@
 				CD760005174C734B00B378E6 /* UIImageView+AFNetworking.m in Sources */,
 				CDD056CA174FCCC8000E0477 /* NoContentController.m in Sources */,
 				CDD056D1174FD043000E0477 /* CustomBadge.m in Sources */,
+				CDBD380617521EC2000A9F58 /* IISideController.m in Sources */,
+				CDBD380817521EC2000A9F58 /* IIViewDeckController.m in Sources */,
+				CDBD380A17521EC2000A9F58 /* IIWrapController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
