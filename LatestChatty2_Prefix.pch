@@ -6,4 +6,6 @@
   #import <Foundation/Foundation.h>
   #import <UIKit/UIKit.h>
   #import "HKHelperKit.h"
+  #import <SystemConfiguration/SystemConfiguration.h>
+  #import <MobileCoreServices/MobileCoreServices.h>
 #endif
