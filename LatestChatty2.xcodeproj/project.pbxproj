@@ -767,7 +767,7 @@
 		CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewThreadViewController.m; sourceTree = "<group>"; };
 		CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewThreadViewController.xib; sourceTree = "<group>"; };
 		CDA01B261733714300E24A28 /* ReviewPost.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ReviewPost.html; sourceTree = "<group>"; };
-		CDA1182816C1DC6600CE1375 /* LatestChatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChattyBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA1182916C1DC6600CE1375 /* Info beta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info beta.plist"; path = "/Users/patrick/Documents/latest-chatty-2/latest-chatty-2/Info beta.plist"; sourceTree = "<absolute>"; };
 		CDB348CC174573C0000003CA /* TimerDotQuarterBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotQuarterBlue@2x.png"; path = "Assets/TimerDotQuarterBlue@2x.png"; sourceTree = "<group>"; };
 		CDB348CD174573C0000003CA /* TimerDotHalfBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotHalfBlue@2x.png"; path = "Assets/TimerDotHalfBlue@2x.png"; sourceTree = "<group>"; };
@@ -1068,7 +1068,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* LatestChatty.app */,
-				CDA1182816C1DC6600CE1375 /* LatestChatty.app */,
+				CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1618,7 +1618,7 @@
 			);
 			name = "LatestChatty2 beta";
 			productName = LatestChatty2;
-			productReference = CDA1182816C1DC6600CE1375 /* LatestChatty.app */;
+			productReference = CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2380,7 +2380,7 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = LatestChatty;
+				PRODUCT_NAME = LatestChattyBeta;
 			};
 			name = Debug;
 		};
@@ -2394,7 +2394,7 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = LatestChatty;
+				PRODUCT_NAME = LatestChattyBeta;
 			};
 			name = Release;
 		};
@@ -2408,7 +2408,7 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = LatestChatty;
+				PRODUCT_NAME = LatestChattyBeta;
 			};
 			name = Distribution;
 		};
