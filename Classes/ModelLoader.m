@@ -7,7 +7,6 @@
 //
 
 #import "ModelLoader.h"
-#include "LatestChatty2AppDelegate.h"
 
 @implementation ModelLoader
 

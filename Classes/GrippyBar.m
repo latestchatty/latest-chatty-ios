@@ -7,8 +7,6 @@
 //
 
 #import "GrippyBar.h"
-#import "LatestChatty2AppDelegate.h"
-
 
 @implementation GrippyBar
 

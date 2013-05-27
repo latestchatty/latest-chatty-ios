@@ -6,10 +6,8 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "TableCellFromNib.h"
 #import "Message.h"
-
 
 @interface MessageCell : TableCellFromNib {
   Message *message;

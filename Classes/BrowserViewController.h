@@ -6,9 +6,6 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "HKHelperKit.h"
-
 @interface BrowserViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
     NSURLRequest *request;
     

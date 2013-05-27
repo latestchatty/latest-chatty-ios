@@ -8,7 +8,6 @@
 
 #import "MessageCell.h"
 
-
 @implementation MessageCell
 
 @synthesize message, previewLabel, subjectLabel, dateLabel;

@@ -6,8 +6,6 @@
 //
 //
 
-#import <UIKit/UIKit.h>
-
 @interface AppleSafariActivity : UIActivity
 
 @property (nonatomic, retain) NSURL *url;

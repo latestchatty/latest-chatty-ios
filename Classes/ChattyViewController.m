@@ -7,7 +7,6 @@
 //
 
 #import "ChattyViewController.h"
-#import "LatestChatty2AppDelegate.h"
 #import "PullToRefreshView.h"
 
 #include "ThreadViewController.h"

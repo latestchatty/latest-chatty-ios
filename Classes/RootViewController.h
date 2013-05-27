@@ -6,8 +6,6 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "HKHelperKit.h"
 #import "RootCell.h"
 
 #import "Model.h"

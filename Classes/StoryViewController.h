@@ -6,7 +6,6 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Story.h"
 #import "ChattyViewController.h"
 #import "StringTemplate.h"

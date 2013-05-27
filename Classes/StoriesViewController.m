@@ -7,7 +7,6 @@
 //
 
 #import "StoriesViewController.h"
-#import "LatestChatty2AppDelegate.h"
 
 @implementation StoriesViewController
 

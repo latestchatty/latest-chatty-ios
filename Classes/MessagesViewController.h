@@ -6,7 +6,6 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "ModelListViewController.h"
 #import "MessageCell.h"
 #import "Message.h"

@@ -6,9 +6,7 @@
 //  Copyright __MyCompanyName__ 2009. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "StringAdditions.h"
-
 #import "RootViewController.h"
 #import "StoriesViewController.h"
 #import "SettingsViewController.h"
@@ -42,6 +40,8 @@
 - (IIViewDeckController*)generateControllerStack;
 
 + (LatestChatty2AppDelegate*)delegate;
++ (NSUInteger)supportedInterfaceOrientationsWithController:(UIViewController*)controller;
++ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation withController:(UIViewController*)controller;
 
 - (BOOL)reloadSavedState;
 

@@ -6,8 +6,6 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @protocol GrippyBarDelegate <NSObject>
 
 - (void)grippyBarDidSwipeUp;

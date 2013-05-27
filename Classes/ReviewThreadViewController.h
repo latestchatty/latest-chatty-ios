@@ -5,8 +5,6 @@
 //  Created by Patrick Crager on 5/2/13.
 //
 
-#import <UIKit/UIKit.h>
-//#import "ModelListViewController.h"
 #import "Post.h"
 
 @interface ReviewThreadViewController : UIViewController <UIWebViewDelegate> {

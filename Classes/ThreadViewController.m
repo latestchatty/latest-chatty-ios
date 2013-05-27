@@ -7,7 +7,6 @@
 //
 
 #import "ThreadViewController.h"
-#include "LatestChatty2AppDelegate.h"
 
 @implementation ThreadViewController
 
@@ -840,6 +839,14 @@
             [theActionSheet showInView:self.navigationController.view];
         }
     }
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return [LatestChatty2AppDelegate supportedInterfaceOrientationsWithController:self];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation withController:self];
 }
 
 #pragma mark Cleanup

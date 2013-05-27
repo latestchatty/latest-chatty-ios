@@ -6,7 +6,6 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Message.h"
 
 @interface SendMessageViewController : UIViewController <UITextFieldDelegate> {

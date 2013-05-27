@@ -6,7 +6,6 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Message.h"
 #import "StringTemplate.h"
 #import "BrowserViewController.h"

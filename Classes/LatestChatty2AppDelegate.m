@@ -6,7 +6,6 @@
 //    Copyright __MyCompanyName__ 2009. All rights reserved.
 //
 
-#import "LatestChatty2AppDelegate.h"
 #import "StringTemplate.h"
 #import "Mod.h"
 #import "NoContentController.h"
@@ -111,16 +110,6 @@
     if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
         [defaults removeObjectForKey:@"savedState"];
     }        
-    
-    if ([self isPadDevice]) {
-        [self setupInterfaceForPadWithOptions:launchOptions];
-    } else {
-        [self setupInterfaceForPhoneWithOptions:launchOptions];
-    }
-
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];    
-    
-    [window makeKeyAndVisible];
 
     // Settings defaults
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -146,6 +135,16 @@
                                      nil];
     [defaults registerDefaults:defaultSettings];
 
+    if ([self isPadDevice]) {
+        [self setupInterfaceForPadWithOptions:launchOptions];
+    } else {
+        [self setupInterfaceForPhoneWithOptions:launchOptions];
+    }
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    
+    [window makeKeyAndVisible];
+    
     // Modified requestBody and request URL for May 2013 Shacknews login changes
     if([defaults boolForKey:@"modTools"]==YES){
         //Mods need cookies
@@ -493,6 +492,45 @@
     [[UINavigationBar appearance] setTitleTextAttributes:titleAttributes];    
     [[UIBarButtonItem appearance] setTitleTextAttributes:buttonAttributes
                                                 forState:UIControlStateNormal];
+}
+
+#pragma Rotation
+
++ (NSUInteger)supportedInterfaceOrientationsWithController:(UIViewController*)controller {
+    // allow landscape setting on
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            // iPad can rotate to any interface
+            return UIInterfaceOrientationMaskAll;
+        } else {
+            // iPhone can rotate to any interface except portrait upside down
+            return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscapeLeft|UIInterfaceOrientationMaskLandscapeRight;
+        }
+    } else {
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            // iPad can rotate to any portrait interface
+            return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskPortraitUpsideDown;
+        } else {
+            // iPhone can rotate to only regular portrait
+            return UIInterfaceOrientationMaskPortrait;
+        }
+    }
+}
+
++ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation withController:(UIViewController*)controller {
+    // never allow portrait upside down for iPhone
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice] && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        return NO;
+    }
+    
+    // allow landscape setting is on, allow rotation
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
+        return YES;
+    } else {
+        // allow landscape setting is off, allow rotation if the orientation isn't landscape
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation))return NO;
+        return YES;
+    }
 }
 
 - (void)dealloc {

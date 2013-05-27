@@ -7,9 +7,6 @@
 //
 
 #import "SearchResultsViewController.h"
-#import "UIViewController+HelperKit.h"
-
-#import "LatestChatty2AppDelegate.h"
 
 @implementation SearchResultsViewController
 

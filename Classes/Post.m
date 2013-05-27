@@ -8,8 +8,6 @@
 
 #import "Post.h"
 
-#import "LatestChatty2AppDelegate.h"
-
 static NSMutableDictionary *categoryColorMapping;
 static NSMutableDictionary *expirationColorMapping;
 

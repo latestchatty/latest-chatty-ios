@@ -7,7 +7,6 @@
 //
 
 #import "Message.h"
-#include "LatestChatty2AppDelegate.h"
 
 @implementation Message
 

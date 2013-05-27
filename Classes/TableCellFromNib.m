@@ -7,7 +7,6 @@
 //
 
 #import "TableCellFromNib.h"
-#import "LatestChatty2AppDelegate.h"
 
 @implementation TableCellFromNib
 

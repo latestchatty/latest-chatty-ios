@@ -8,8 +8,6 @@
 
 #import "ReplyCell.h"
 
-#define INDENDATION 15.0
-
 @implementation ReplyCell
 
 @synthesize post, isThreadStarter;

@@ -6,8 +6,6 @@
 //
 //
 
-#import <UIKit/UIKit.h>
-
 @interface GoogleChromeActivity : UIActivity
 
 @property (nonatomic, retain) NSURL *url;

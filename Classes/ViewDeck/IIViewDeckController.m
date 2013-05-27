@@ -1015,31 +1015,12 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-    //original ViewDeck
-    //if (self.centerController)
-    //    return [self.centerController supportedInterfaceOrientations];
-    
-    //return [super supportedInterfaceOrientations];
-
-    // allow landscape setting on
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            // iPad can rotate to any interface
-            return UIInterfaceOrientationMaskAll;
-        } else {
-            // iPhone can rotate to any interface except portrait upside down
-            return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscapeLeft|UIInterfaceOrientationMaskLandscapeRight;
-        }
-    } else {
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            // iPad can rotate to any portrait interface
-            return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskPortraitUpsideDown;
-        } else {
-            // iPhone can rotate to only regular portrait
-            return UIInterfaceOrientationMaskPortrait;
-        }
-    }
+    return [LatestChatty2AppDelegate supportedInterfaceOrientationsWithController:self.centerController];
 }
+
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+//    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation withController:self];
+//}
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     if (self.centerController)
