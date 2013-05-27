@@ -479,11 +479,12 @@
     // Give text in buttons gray coloring with text shadowing
     // Done style buttons will get styled here, but it gets overridden in the view controller for any view that uses Done style buttons
     // Should probably make these attributes a dictionary category since it is used other places
-    NSDictionary *buttonAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:194.0/255.0 alpha:1.0],UITextAttributeTextColor,
-                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset,
-                                nil];
+    NSDictionary *buttonAttributes =
+        [NSDictionary dictionaryWithObjectsAndKeys:
+         [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:194.0/255.0 alpha:1.0],UITextAttributeTextColor,
+         [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
+         [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset,
+         nil];
     // Give the navigation bar title text text shadowing
     NSDictionary *titleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                      [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
@@ -496,7 +497,11 @@
 
 #pragma Rotation
 
-+ (NSUInteger)supportedInterfaceOrientationsWithController:(UIViewController*)controller {
++ (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
++ (NSUInteger)supportedInterfaceOrientations {
     // allow landscape setting on
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -517,7 +522,7 @@
     }
 }
 
-+ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation withController:(UIViewController*)controller {
++ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // never allow portrait upside down for iPhone
     if (![[LatestChatty2AppDelegate delegate] isPadDevice] && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         return NO;

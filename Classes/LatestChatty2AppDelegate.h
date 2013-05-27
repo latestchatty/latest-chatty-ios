@@ -40,8 +40,9 @@
 - (IIViewDeckController*)generateControllerStack;
 
 + (LatestChatty2AppDelegate*)delegate;
-+ (NSUInteger)supportedInterfaceOrientationsWithController:(UIViewController*)controller;
-+ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation withController:(UIViewController*)controller;
++ (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation;
++ (NSUInteger)supportedInterfaceOrientations;
++ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 - (BOOL)reloadSavedState;
 
