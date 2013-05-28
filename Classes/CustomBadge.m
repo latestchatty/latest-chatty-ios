@@ -212,8 +212,8 @@
 	
 	
     CGContextBeginPath(context);
-    //Patch-e: modified lineSize from default 2 to 1, frame was too thick out of the box
-	CGFloat lineSize = 1;
+    //Patch-e: modified lineSize from default 2 to 1.5, frame was too thick out of the box
+	CGFloat lineSize = 1.5;
 	if(self.badgeScaleFactor>1) {
 		lineSize += self.badgeScaleFactor*0.25;
 	}
