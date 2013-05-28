@@ -62,11 +62,12 @@
     
     // For iPad with top toolbar
     if (mainToolbar) {
-        // Add a spinner between the nav arrows
+        // Add a spinner after refresh button
         UIBarButtonItem *spinnerItem = [[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease];
+        [spinnerItem setWidth:44.0];
         NSMutableArray *items = [NSMutableArray arrayWithArray:mainToolbar.items];
         //[items insertObject:spinnerItem atIndex:[items count]-1];
-        [items insertObject:spinnerItem atIndex:1];
+        [items insertObject:spinnerItem atIndex:3];
         
         // Remove action button when using this controller for Shack[LOL]
         if (isShackLOL) {
