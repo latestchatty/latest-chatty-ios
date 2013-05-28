@@ -99,6 +99,7 @@
             [self.messagesSpinner release];
             
             // set number of unread messages in badge of cell
+            messageCount = 9;
             [cell setBadgeWithNumber:messageCount];
             
             break;
