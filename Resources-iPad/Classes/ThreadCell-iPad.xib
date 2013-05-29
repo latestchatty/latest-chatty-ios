@@ -85,7 +85,6 @@
 								<string key="NSFrame">{{210, 69}, {105, 21}}</string>
 								<reference key="NSSuperview" ref="417762082"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -112,7 +111,7 @@
 							<object class="IBUILabel" id="848766296">
 								<reference key="NSNextResponder" ref="417762082"/>
 								<int key="NSvFlags">294</int>
-								<string key="NSFrame">{{11, 0}, {221, 21}}</string>
+								<string key="NSFrame">{{11, 1}, {221, 21}}</string>
 								<reference key="NSSuperview" ref="417762082"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="857965291"/>
@@ -194,7 +193,6 @@
 								<string key="NSFrame">{{303, 6}, {12, 12}}</string>
 								<reference key="NSSuperview" ref="417762082"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentMode">4</int>
@@ -238,7 +236,6 @@
 				<string key="NSFrameSize">{320, 120}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<bool key="IBUIUserInteractionEnabled">NO</bool>
