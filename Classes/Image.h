@@ -9,7 +9,6 @@
 #import "Model.h"
 
 #import "NSStringAdditions.h"
-#import "StringAdditions.h"
 
 @class Image;
 

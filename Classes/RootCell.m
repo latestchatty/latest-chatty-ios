@@ -22,7 +22,7 @@
   
     self.textLabel.font = [UIFont boldSystemFontOfSize:24];
     self.textLabel.textColor = [UIColor whiteColor];
-    self.textLabel.shadowColor = [UIColor blackColor];
+    self.textLabel.shadowColor = [UIColor lcTextShadowColor];
     self.textLabel.shadowOffset = CGSizeMake(0, -1);
   
     UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];

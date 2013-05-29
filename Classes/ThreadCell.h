@@ -20,9 +20,6 @@
 	IBOutlet UILabel *replyCount;
 	IBOutlet UIView  *categoryStripe;
 	IBOutlet UIImageView *timerIcon;
-	IBOutlet UILabel *newPostCount;
-//    IBOutlet UIView  *expirationStripe;
-//    IBOutlet UIImageView *newPostsIcon;    
 }
 
 @property (assign) NSUInteger storyId;

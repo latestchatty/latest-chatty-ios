@@ -48,13 +48,8 @@
                                                                          style:UIBarButtonItemStyleDone
                                                                         target:self
                                                                         action:@selector(sendPost)];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor whiteColor],UITextAttributeTextColor,
-                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-                                UITextAttributeTextShadowOffset,
-                                nil];
-    [submitPostButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+
+    [submitPostButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
 	self.navigationItem.rightBarButtonItem = submitPostButton;
 	[submitPostButton release];
 	

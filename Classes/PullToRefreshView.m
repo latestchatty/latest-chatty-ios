@@ -28,9 +28,9 @@
 
 #import "PullToRefreshView.h"
 
-#define STATUS_TEXT_COLOR       [UIColor colorWithRed:119.0/255.0 green:197.0/255.0 blue:254.0/255.0 alpha:1.000]
+#define STATUS_TEXT_COLOR       [UIColor lcBlueColor]
 #define LAST_UPDATED_TEXT_COLOR [UIColor whiteColor]
-#define BACKGROUND_COLOR        [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.000]
+#define BACKGROUND_COLOR        [UIColor lcSeparatorColor]
 #define FLIP_ANIMATION_DURATION 0.18f
 
 
@@ -74,8 +74,8 @@
 		lastUpdatedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		lastUpdatedLabel.font = [UIFont systemFontOfSize:12.0f];
 		lastUpdatedLabel.textColor = LAST_UPDATED_TEXT_COLOR;
-		//lastUpdatedLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-		//lastUpdatedLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
+		lastUpdatedLabel.shadowColor = [UIColor lcTextShadowColor];
+		lastUpdatedLabel.shadowOffset = CGSizeMake(0.0, -1.0);
 		lastUpdatedLabel.backgroundColor = [UIColor clearColor];
 		lastUpdatedLabel.textAlignment = UITextAlignmentCenter;
 		[self addSubview:lastUpdatedLabel];
@@ -84,8 +84,8 @@
 		statusLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		statusLabel.font = [UIFont boldSystemFontOfSize:13.0f];
 		statusLabel.textColor = STATUS_TEXT_COLOR;
-		//statusLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-		//statusLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
+		statusLabel.shadowColor = [UIColor lcTextShadowColor];
+		statusLabel.shadowOffset = CGSizeMake(0.0, -1.0);
 		statusLabel.backgroundColor = [UIColor clearColor];
 		statusLabel.textAlignment = UITextAlignmentCenter;
 		[self addSubview:statusLabel];

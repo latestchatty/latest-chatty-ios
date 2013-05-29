@@ -7,7 +7,6 @@
 //
 
 #import "Model.h"
-#import "StringAdditions.h"
 #import "RegexKitLite.h"
 
 @interface Message : Model {

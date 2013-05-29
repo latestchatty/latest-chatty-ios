@@ -381,6 +381,10 @@
 
 // Custom appearance settings for UIKit items
 - (void)customizeAppearance {
+//    [self.window.layer setCornerRadius:20.0];
+//    [self.window.layer setMasksToBounds:YES];
+//    self.window.layer.opaque = NO;
+    
     // Same nav bar background image for all orientations, landscape resizes into smaller iPhone landscape nav bar
     UIImage *backgroundImage =
     [[UIImage imageNamed:@"navbar_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
@@ -476,22 +480,12 @@
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
     }
     
+    // Give the navigation bar title text text shadowing
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary]];
+    
     // Give text in buttons gray coloring with text shadowing
     // Done style buttons will get styled here, but it gets overridden in the view controller for any view that uses Done style buttons
-    // Should probably make these attributes a dictionary category since it is used other places
-    NSDictionary *buttonAttributes =
-        [NSDictionary dictionaryWithObjectsAndKeys:
-         [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:194.0/255.0 alpha:1.0],UITextAttributeTextColor,
-         [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-         [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset,
-         nil];
-    // Give the navigation bar title text text shadowing
-    NSDictionary *titleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-                                     [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],UITextAttributeTextShadowOffset,
-                                     nil];
-    [[UINavigationBar appearance] setTitleTextAttributes:titleAttributes];    
-    [[UIBarButtonItem appearance] setTitleTextAttributes:buttonAttributes
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary grayTextAttributesDictionary]
                                                 forState:UIControlStateNormal];
 }
 

@@ -9,7 +9,6 @@
 #import "Post.h"
 
 static NSMutableDictionary *categoryColorMapping;
-static NSMutableDictionary *expirationColorMapping;
 
 @implementation Post
 
@@ -37,16 +36,11 @@ static NSMutableDictionary *expirationColorMapping;
 + (void)initialize {
     categoryColorMapping = [[NSMutableDictionary alloc] init];
     [categoryColorMapping setObject:[UIColor clearColor] forKey:@"ontopic"];
-    [categoryColorMapping setObject:[UIColor colorWithRed:27.0/255.0 green:110.0/255.0 blue:151.0/255.0 alpha:1.0] forKey:@"informative"];
-    [categoryColorMapping setObject:[UIColor colorWithRed:103.0/255.0 green:104.0/255.0 blue:110.0/255.0 alpha:1.0] forKey:@"offtopic"];
-    [categoryColorMapping setObject:[UIColor colorWithRed:27.0/255.0 green:103.0/255.0 blue:50.0/255.0 alpha:1.0] forKey:@"stupid"];
-    [categoryColorMapping setObject:[UIColor colorWithRed:151.0/255.0 green:100.0/255.0 blue:29.0/255.0 alpha:1.0] forKey:@"political"];
-    [categoryColorMapping setObject:[UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:1.0] forKey:@"nws"];
-    
-    expirationColorMapping = [[NSMutableDictionary alloc] init];
-    [expirationColorMapping setObject:[UIColor colorWithRed:39.0/255.0 green:77.0/255.0 blue:53.0/255.0 alpha:1.0] forKey:@"level1"];
-    [expirationColorMapping setObject:[UIColor colorWithRed:101.0/255.0 green:76.0/255.0 blue:42.0/255.0 alpha:1.0] forKey:@"level2"];
-    [expirationColorMapping setObject:[UIColor colorWithRed:92.0/255.0 green:47.0/255.0 blue:49.0/255.0 alpha:1.0] forKey:@"level3"];
+    [categoryColorMapping setObject:[UIColor lcInformativeColor] forKey:@"informative"];
+    [categoryColorMapping setObject:[UIColor lcOffTopicColor] forKey:@"offtopic"];
+    [categoryColorMapping setObject:[UIColor lcStupidColor] forKey:@"stupid"];
+    [categoryColorMapping setObject:[UIColor lcPoliticalColor] forKey:@"political"];
+    [categoryColorMapping setObject:[UIColor lcNotWorkSafeColor] forKey:@"nws"];
 }
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName {
@@ -65,21 +59,13 @@ static NSMutableDictionary *expirationColorMapping;
         return [UIColor clearColor];
     }
     
-//    if (hours < 9) {
-//        color = [expirationColorMapping objectForKey:@"level1"];
-//    } else if (hours < 16) {
-//        color = [expirationColorMapping objectForKey:@"level2"];
-//    } else {
-//        color = [expirationColorMapping objectForKey:@"level3"];
-//    }
-    
     if (hours >= 18) {
-        color = [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:0.50];
+        color = [UIColor lcPostExpiredColor];
     } else {
-        color = [UIColor colorWithRed:151.0/255.0 green:154.0/255.0 blue:161.0/255.0 alpha:0.50];
+        color = [UIColor lcPostExpirationColor];
     }
     
-    return color ? color : [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+    return color ? color : [UIColor clearColor];
 }
 
 // Return a float on a scale of 0 - 100 according to an 18 hour post date expiration

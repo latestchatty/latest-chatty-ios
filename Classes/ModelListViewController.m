@@ -18,7 +18,7 @@
   [super viewDidLoad];
   
   loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-  loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+  loadingView.backgroundColor = [UIColor lcOverlayColor];
   loadingView.userInteractionEnabled = NO;
   loadingView.alpha = 0.0;
   loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

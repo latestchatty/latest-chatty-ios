@@ -20,7 +20,7 @@
         usernameField.placeholder = @"Enter Username";
         usernameField.returnKeyType = UIReturnKeyNext;
         usernameField.keyboardType = UIKeyboardTypeEmailAddress;
-        usernameField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
+        usernameField.textColor = [UIColor lcAuthorColor];
         
         passwordField = [[self generateTextFieldWithKey:@"password"] retain];
         passwordField.placeholder = @"Enter Password";
@@ -36,7 +36,7 @@
         picsUsernameField.placeholder = @"Enter Username";
         picsUsernameField.returnKeyType = UIReturnKeyNext;
         picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
-        picsUsernameField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
+        picsUsernameField.textColor = [UIColor lcAuthorColor];
         
         picsPasswordField = [[self generateTextFieldWithKey:@"picsPassword"] retain];
         picsPasswordField.placeholder = @"Enter Password";
@@ -201,13 +201,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor whiteColor],UITextAttributeTextColor,
-                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-                                UITextAttributeTextShadowOffset,
-                                nil];
-    
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
                                                                        style:UIBarButtonItemStyleBordered
@@ -221,32 +214,29 @@
                                                                           target:self
                                                                           action:@selector(save)];
 
-        [saveDoneButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+        [saveDoneButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
         
         self.navigationItem.rightBarButtonItem = saveDoneButton;
 
         [saveDoneButton release];
     } else {
-        [saveButton setTitleTextAttributes:attributes forState:UIControlStateNormal];   
+        [saveButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
     }
     
-    [tableView setSeparatorColor:[UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0]];
+    [tableView setSeparatorColor:[UIColor lcSeparatorColor]];
     [tableView setBackgroundView:nil];
     [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
     [tableView setBackgroundColor:[UIColor clearColor]];
     
     // iOS 6 allows more built-in customization of switch/slider than iOS 5
     // They won't look the same without subclassing UISwitch, do we care?
-    UIColor *blueColor = [UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0];
-    UIColor *darkGrayColor = [UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0];
-    UIColor *darkerGrayColor = [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
-        [[UISwitch appearance] setTintColor:darkerGrayColor];
-        [[UISlider appearance] setThumbTintColor:darkGrayColor];
+        [[UISwitch appearance] setTintColor:[UIColor lcSwitchOffColor]];
+        [[UISlider appearance] setThumbTintColor:[UIColor lcSliderThumbColor]];
     }
-    [[UISwitch appearance] setOnTintColor:blueColor];
-    [[UISlider appearance] setMinimumTrackTintColor:blueColor];
-    [[UISlider appearance] setMaximumTrackTintColor:darkGrayColor];
+    [[UISwitch appearance] setOnTintColor:[UIColor lcSwitchOnColor]];
+    [[UISlider appearance] setMinimumTrackTintColor:[UIColor lcSwitchOnColor]];
+    [[UISlider appearance] setMaximumTrackTintColor:[UIColor lcSliderThumbColor]];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -336,8 +326,8 @@
     
     [titleLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
     [titleLabel setText:[self titleForHeaderInSection:section]];
-    [titleLabel setTextColor:[UIColor colorWithRed:121.0/255.0 green:122.0/255.0 blue:128.0/255.0 alpha:1.0]];
-    [titleLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5]];
+    [titleLabel setTextColor:[UIColor lcGroupedTitleColor]];
+    [titleLabel setShadowColor:[UIColor lcTextShadowColor]];
     [titleLabel setShadowOffset:CGSizeMake(0, -1.0)];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
 
@@ -353,11 +343,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
-    [cell setBackgroundColor:[UIColor colorWithRed:47.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0]];
+    [cell setBackgroundColor:[UIColor lcGroupedCellColor]];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
-    [cell.textLabel setTextColor:[UIColor colorWithRed:172.0/255.0 green:172.0/255.0 blue:173.0/255.0 alpha:1.0]];
-    [cell.textLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5]];
+    [cell.textLabel setTextColor:[UIColor lcGroupedCellLabelColor]];
+    [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
     
 	// username/password/server text entry fields

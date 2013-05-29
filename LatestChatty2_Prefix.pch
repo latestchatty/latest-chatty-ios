@@ -9,4 +9,5 @@
   #import <MobileCoreServices/MobileCoreServices.h>
   #import "HKHelperKit.h"
   #import "LatestChatty2AppDelegate.h"
+  #import "Categories.h"
 #endif

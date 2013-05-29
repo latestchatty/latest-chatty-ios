@@ -23,13 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor whiteColor],UITextAttributeTextColor,
-                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-                                UITextAttributeTextShadowOffset,
-                                nil];
-    [doneButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    [doneButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
 
     [self placePostInWebView:self.rootPost];
 }

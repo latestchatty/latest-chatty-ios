@@ -7,7 +7,6 @@
 //
 
 #import "Model.h"
-#import "StringAdditions.h"
 
 @interface Story : Model {
   NSString *title;

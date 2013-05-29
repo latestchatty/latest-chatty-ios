@@ -31,7 +31,7 @@
 	date.text         = [Post formatDate:rootPost.date];
 	
 	NSString* newPostText = nil;
-	if( rootPost.newReplies ){
+	if (rootPost.newReplies) {
 		newPostText = [NSString stringWithFormat:@"+%d", rootPost.newReplies];
 		replyCount.text = [NSString stringWithFormat:@"%i (%@)", rootPost.replyCount, newPostText];
 	} else {
@@ -64,16 +64,13 @@
     }
     
     if (foundParticipant) {
-        replyCount.textColor = [UIColor colorWithRed:116.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:1.0];
+        replyCount.textColor = [UIColor lcBlueColor];
     } else {
-        replyCount.textColor = [UIColor colorWithRed:176.0/255.0 green:180.0/255.0 blue:184.0/255.0 alpha:1.0];
+        replyCount.textColor = [UIColor lcLightGrayTextColor];
     }
     
     // Choose which timer icon to show based on post date and participation indication
     timerIcon.image = [Post imageForPostExpiration:rootPost.date withParticipant:foundParticipant];
-	
-	// Show new post icon
-    //newPostsIcon.hidden = !rootPost.newPost;
 }
 
 - (BOOL)showCount {

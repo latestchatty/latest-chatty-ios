@@ -34,6 +34,8 @@
 		A27EAB8511728E260072EB59 /* Pushpin-Inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */; };
 		CD028A0017337E05001E63B9 /* ReviewThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */; };
 		CD028A0117337E05001E63B9 /* ReviewThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */; };
+		CD13D78D1754DB1A00539A23 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = CD13D78C1754DB1A00539A23 /* Categories.m */; };
+		CD13D78E1754DB1A00539A23 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = CD13D78C1754DB1A00539A23 /* Categories.m */; };
 		CD1804C9162211810094A3F1 /* GoogleChromeActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */; };
 		CD1804D1162338F90094A3F1 /* AppleSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */; };
 		CD20565E174540A9003AF4FA /* ReplyIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = CD205654174540A9003AF4FA /* ReplyIcon.24.png */; };
@@ -186,8 +188,6 @@
 		CD7C24711754669100D90942 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C246D1754669000D90942 /* PullToRefreshView.m */; };
 		CD7C24761754672000D90942 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24731754671E00D90942 /* RegexKitLite.m */; };
 		CD7C24771754672000D90942 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24731754671E00D90942 /* RegexKitLite.m */; };
-		CD7C24781754672000D90942 /* StringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24751754671F00D90942 /* StringAdditions.m */; };
-		CD7C24791754672000D90942 /* StringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24751754671F00D90942 /* StringAdditions.m */; };
 		CD7C247B1754674300D90942 /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7C247A1754674100D90942 /* StoriesViewController.xib */; };
 		CD7C247C1754674300D90942 /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7C247A1754674100D90942 /* StoriesViewController.xib */; };
 		CD7C24831754689100D90942 /* Message.html in Resources */ = {isa = PBXBuildFile; fileRef = CD7C247D1754689100D90942 /* Message.html */; };
@@ -664,6 +664,8 @@
 		A27EAB8211728E260072EB59 /* Pushpin-Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pushpin-Active.png"; path = "Assets/Pushpin-Active.png"; sourceTree = "<group>"; };
 		A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pushpin-Inactive.png"; path = "Assets/Pushpin-Inactive.png"; sourceTree = "<group>"; };
 		CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ReviewThreadViewController-iPad.xib"; path = "../Resources-iPad/Classes/ReviewThreadViewController-iPad.xib"; sourceTree = "<group>"; };
+		CD13D78B1754DB1A00539A23 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Categories.h; path = Classes/Categories.h; sourceTree = "<group>"; };
+		CD13D78C1754DB1A00539A23 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Categories.m; path = Classes/Categories.m; sourceTree = "<group>"; };
 		CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleChromeActivity.h; path = Classes/GoogleChromeActivity.h; sourceTree = "<group>"; };
 		CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleChromeActivity.m; path = Classes/GoogleChromeActivity.m; sourceTree = "<group>"; };
 		CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleSafariActivity.h; path = Classes/AppleSafariActivity.h; sourceTree = "<group>"; };
@@ -777,8 +779,6 @@
 		CD7C246D1754669000D90942 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullToRefreshView.m; path = Classes/PullToRefreshView.m; sourceTree = "<group>"; };
 		CD7C24721754671D00D90942 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = Classes/RegexKitLite.h; sourceTree = "<group>"; };
 		CD7C24731754671E00D90942 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = Classes/RegexKitLite.m; sourceTree = "<group>"; };
-		CD7C24741754671F00D90942 /* StringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringAdditions.h; path = Classes/StringAdditions.h; sourceTree = "<group>"; };
-		CD7C24751754671F00D90942 /* StringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringAdditions.m; path = Classes/StringAdditions.m; sourceTree = "<group>"; };
 		CD7C247A1754674100D90942 /* StoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoriesViewController.xib; sourceTree = "<group>"; };
 		CD7C247D1754689100D90942 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Message.html; path = Templates/Message.html; sourceTree = "<group>"; };
 		CD7C247E1754689100D90942 /* Post.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Post.html; path = Templates/Post.html; sourceTree = "<group>"; };
@@ -1097,6 +1097,8 @@
 				CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */,
 				CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */,
 				CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */,
+				CD13D78B1754DB1A00539A23 /* Categories.h */,
+				CD13D78C1754DB1A00539A23 /* Categories.m */,
 				CDD056CE174FD042000E0477 /* CustomBadge.h */,
 				CDD056CF174FD043000E0477 /* CustomBadge.m */,
 				CD7C245E1754655900D90942 /* HTMLEscaper.h */,
@@ -1108,8 +1110,6 @@
 				CD7C246D1754669000D90942 /* PullToRefreshView.m */,
 				CD7C24721754671D00D90942 /* RegexKitLite.h */,
 				CD7C24731754671E00D90942 /* RegexKitLite.m */,
-				CD7C24741754671F00D90942 /* StringAdditions.h */,
-				CD7C24751754671F00D90942 /* StringAdditions.m */,
 				FABA5DC00F718086008EEE3A /* StringTemplate.h */,
 				FABA5DC10F718086008EEE3A /* StringTemplate.m */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -2188,7 +2188,7 @@
 				CD7C246E1754669100D90942 /* PinnedThreadsLoader.m in Sources */,
 				CD7C24701754669100D90942 /* PullToRefreshView.m in Sources */,
 				CD7C24761754672000D90942 /* RegexKitLite.m in Sources */,
-				CD7C24781754672000D90942 /* StringAdditions.m in Sources */,
+				CD13D78D1754DB1A00539A23 /* Categories.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2275,7 +2275,7 @@
 				CD7C246F1754669100D90942 /* PinnedThreadsLoader.m in Sources */,
 				CD7C24711754669100D90942 /* PullToRefreshView.m in Sources */,
 				CD7C24771754672000D90942 /* RegexKitLite.m in Sources */,
-				CD7C24791754672000D90942 /* StringAdditions.m in Sources */,
+				CD13D78E1754DB1A00539A23 /* Categories.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

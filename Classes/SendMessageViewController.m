@@ -36,13 +36,8 @@
                                                                    style:UIBarButtonItemStyleDone
                                                                   target:self
                                                                   action:@selector(sendMessage)];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor whiteColor],UITextAttributeTextColor,
-                                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5],UITextAttributeTextShadowColor,
-                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-                                UITextAttributeTextShadowOffset,
-                                nil];
-    [sendButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+
+    [sendButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
 	self.navigationItem.rightBarButtonItem = sendButton;
 	[sendButton release];
     

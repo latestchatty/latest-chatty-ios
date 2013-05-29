@@ -43,13 +43,10 @@
         fieldRect = CGRectMake(110, 7, inputTable.frame.size.width - 120, 21);
     }
     
-    [inputTable setSeparatorColor:[UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0]];
-    
+    [inputTable setSeparatorColor:[UIColor lcSeparatorColor]];
     [inputTable setBackgroundView:nil];
     [inputTable setBackgroundView:[[[UIView alloc] init] autorelease]];
-
-    inputTable.backgroundColor = [UIColor clearColor];
-    segmentedBar.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+    [inputTable setBackgroundColor:[UIColor clearColor]];
     
     termsField = [[UITextField alloc] initWithFrame:fieldRect];
     termsField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -206,7 +203,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     
-    cell.backgroundColor = [UIColor colorWithRed:47.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
+    cell.backgroundColor = [UIColor lcGroupedCellColor];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -223,8 +220,8 @@
     prompt.font = [UIFont boldSystemFontOfSize:16.0];
     prompt.textAlignment = UITextAlignmentRight;
     prompt.backgroundColor = [UIColor clearColor];
-    prompt.textColor = [UIColor colorWithRed:172.0/255.0 green:172.0/255.0 blue:173.0/255.0 alpha:1.0];
-    prompt.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    prompt.textColor = [UIColor lcGroupedCellLabelColor];
+    prompt.shadowColor = [UIColor lcTextShadowColor];
     [prompt setShadowOffset:CGSizeMake(0, -1.0)];
     [cell addSubview:prompt];
     
@@ -236,11 +233,11 @@
     }
     if (indexPath.row == 1) {
         textField = authorField;
-        textField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
+        textField.textColor = [UIColor lcAuthorColor];
     }
     if (indexPath.row == 2) {
         textField = parentAuthorField;
-        textField.textColor = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
+        textField.textColor = [UIColor lcAuthorColor];
     }
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
