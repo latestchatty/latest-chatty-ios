@@ -1270,7 +1270,6 @@
 				FAA5BA721110DE7F0007C34C /* StoriesViewController-iPad.xib */,
 				FAA5BA761110DE7F0007C34C /* StoryViewController-iPad.xib */,
 				FA04877911640D7000290D2D /* ThreadViewController-iPad.xib */,
-				FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -1317,6 +1316,7 @@
 				FA4123070F8FE09E002E1978 /* RootViewController.xib */,
 				FA9C3ED30F9CED010022A739 /* SearchViewController.h */,
 				FA9C3ED40F9CED010022A739 /* SearchViewController.m */,
+				FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */,
 				FACD9A7A0F9E2F33009D9A15 /* SearchResultsViewController.h */,
 				FACD9A7B0F9E2F33009D9A15 /* SearchResultsViewController.m */,
 				FACD9A7D0F9E2F49009D9A15 /* SearchResultsViewController.xib */,
