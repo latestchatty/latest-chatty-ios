@@ -102,7 +102,7 @@
 }
 
 - (UITextField *)generateTextFieldWithKey:(NSString *)key {
-	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 20)];
+	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 21)];
 
 	textField.returnKeyType = UIReturnKeyNext;
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -367,7 +367,6 @@
 				cell.accessoryView = serverField;
 				cell.textLabel.text = @"API Server:";
 				break;
-				
 		}
 	}
     

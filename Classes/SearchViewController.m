@@ -38,9 +38,9 @@
     
     CGRect fieldRect;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        fieldRect = CGRectMake(150, 7, inputTable.frame.size.width - 220, 21);
+        fieldRect = CGRectMake(150, 7, inputTable.frame.size.width - 220, 20);
     } else {
-        fieldRect = CGRectMake(110, 7, inputTable.frame.size.width - 120, 21);
+        fieldRect = CGRectMake(110, 7, inputTable.frame.size.width - 120, 20);
     }
     
     [inputTable setSeparatorColor:[UIColor lcSeparatorColor]];
@@ -213,7 +213,7 @@
     cell.accessoryView = lockImage;
     
     CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 40 : 0;
-    UILabel *prompt = [UILabel viewWithFrame:CGRectMake(leftEdge, 4, 85, 31)];
+    UILabel *prompt = [UILabel viewWithFrame:CGRectMake(leftEdge, 7, 85, 22)];
     if (indexPath.row == 0) prompt.text = @"Terms:";
     if (indexPath.row == 1) prompt.text = @"Author:";
     if (indexPath.row == 2) prompt.text = @"Parent:";
@@ -241,7 +241,7 @@
     }
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        textField.frameWidth = cell.frameWidth - 200;
+        textField.frameWidth = cell.frameWidth - 195;
     } else {
         textField.frameWidth = cell.frameWidth - 120;
     }

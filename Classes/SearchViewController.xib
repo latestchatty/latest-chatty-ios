@@ -40,7 +40,7 @@
 					<object class="IBUISegmentedControl" id="109439082">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{5, 5}, {310, 30}}</string>
+						<string key="NSFrame">{{10, 5}, {300, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="564523010"/>
@@ -110,7 +110,7 @@
 					<object class="IBUIButton" id="322096806">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{10, 152}, {300, 44}}</string>
+						<string key="NSFrame">{{10, 154}, {300, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
