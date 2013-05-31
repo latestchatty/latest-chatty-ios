@@ -385,12 +385,21 @@
 //    [self.window.layer setMasksToBounds:YES];
 //    self.window.layer.opaque = NO;
     
-    // Same nav bar background image for all orientations, landscape resizes into smaller iPhone landscape nav bar
-    UIImage *backgroundImage =
-    [[UIImage imageNamed:@"navbar_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-    [[UINavigationBar appearance] setBackgroundImage:backgroundImage
-                                       forBarMetrics:UIBarMetricsDefault];
-    [[UIToolbar appearance] setBackgroundImage:backgroundImage
+    // Same navbar/toolbar background image for all orientations
+    UIImage *navbarBackgroundImage =
+    [[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
+    UIImage *toolbarBackgroundImage =
+    [[UIImage imageNamed:@"toolbar_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [[UINavigationBar appearance] setBackgroundImage:toolbarBackgroundImage
+                                           forBarMetrics:UIBarMetricsDefault];
+    } else {
+        [[UINavigationBar appearance] setBackgroundImage:navbarBackgroundImage
+                                           forBarMetrics:UIBarMetricsDefault];
+    }
+    
+    [[UIToolbar appearance] setBackgroundImage:toolbarBackgroundImage
                             forToolbarPosition:UIToolbarPositionAny
                                     barMetrics:UIBarMetricsDefault];
     
