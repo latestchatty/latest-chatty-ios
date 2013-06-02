@@ -206,6 +206,7 @@
             } else {
                 self.viewDeckController.centerController = [[UINavigationController alloc] initWithRootViewController:viewController];
                 [self.viewDeckController toggleLeftView];
+                [tableView deselectRowAtIndexPath:indexPath animated:YES];
             }
         }
     }
