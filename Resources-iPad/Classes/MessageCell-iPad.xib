@@ -47,6 +47,7 @@
 								<string key="NSFrame">{{10, 43}, {224, 41}}</string>
 								<reference key="NSSuperview" ref="367749367"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -144,7 +145,7 @@
 								<string key="NSFrame">{{9, 1}, {105, 21}}</string>
 								<reference key="NSSuperview" ref="367749367"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="193868052"/>
+								<reference key="NSNextKeyView" ref="182827535"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -180,6 +181,20 @@
 									<bytes key="NSRGB">MC40NTQ5MDE5NjA4IDAuNzY4NjI3NDUxIDEAA</bytes>
 								</object>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+							</object>
+							<object class="IBUIView" id="182827535">
+								<reference key="NSNextResponder" ref="367749367"/>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrameSize">{240, 1}</string>
+								<reference key="NSSuperview" ref="367749367"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="193868052"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MSAwLjA4AA</bytes>
+								</object>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 						</array>
@@ -218,6 +233,7 @@
 				<string key="NSFrameSize">{240, 65}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -315,6 +331,7 @@
 							<reference ref="206793889"/>
 							<reference ref="498108180"/>
 							<reference ref="193868052"/>
+							<reference ref="182827535"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -348,6 +365,11 @@
 						<reference key="object" ref="498108180"/>
 						<reference key="parent" ref="459744165"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">24</int>
+						<reference key="object" ref="182827535"/>
+						<reference key="parent" ref="459744165"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -356,6 +378,7 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.CustomClassName">MessageCell</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -368,7 +391,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">23</int>
+			<int key="maxID">24</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
