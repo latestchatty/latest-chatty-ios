@@ -496,6 +496,18 @@
     // Done style buttons will get styled here, but it gets overridden in the view controller for any view that uses Done style buttons
     [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary grayTextAttributesDictionary]
                                                 forState:UIControlStateNormal];
+    
+    // iOS 6 allows more built-in customization of switch/slider than iOS 5
+    // They won't look the same without subclassing UISwitch, do we care?
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
+        [[UISwitch appearance] setTintColor:[UIColor lcSwitchOffColor]];
+        [[UISlider appearance] setThumbTintColor:[UIColor lcSliderThumbColor]];
+    }
+    [[UISwitch appearance] setOnTintColor:[UIColor lcSwitchOnColor]];
+    [[UISlider appearance] setMinimumTrackTintColor:[UIColor lcSwitchOnColor]];
+    [[UISlider appearance] setMaximumTrackTintColor:[UIColor lcSliderThumbColor]];
+    [[UIProgressView appearance] setProgressTintColor:[UIColor lcSwitchOnColor]];
+    [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderThumbColor]];
 }
 
 #pragma Rotation
