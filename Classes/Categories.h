@@ -25,10 +25,14 @@
 + (UIColor *)lcOverlayColor;
 
 // Table cell colors
++ (UIColor *)lcCellNormalColor;
++ (UIColor *)lcCellParticipantColor;
 + (UIColor *)lcGroupedCellColor;
 + (UIColor *)lcGroupedCellLabelColor;
 + (UIColor *)lcGroupedTitleColor;
 + (UIColor *)lcSeparatorColor;
++ (UIColor *)lcSelectionBlueColor;
++ (UIColor *)lcSelectionGrayColor;
 
 // Expiration colors
 + (UIColor *)lcPostExpirationColor;

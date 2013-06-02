@@ -64,6 +64,14 @@
 }
 
 // Table cell colors
++ (UIColor *)lcCellNormalColor {
+    return [UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcCellParticipantColor {
+    return [UIColor colorWithRed:32.0/255.0 green:92.0/255.0 blue:137.0/255.0 alpha:1.0];
+}
+
 + (UIColor *)lcGroupedCellColor {
     return [UIColor colorWithRed:47.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
 }
@@ -78,6 +86,14 @@
 
 + (UIColor *)lcSeparatorColor {
     return [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:0.8];
+}
+
++ (UIColor *)lcSelectionBlueColor {
+    return [UIColor colorWithRed:4.0/255.0 green:101.0/255.0 blue:147.0/255.0 alpha:1];
+}
+
++ (UIColor *)lcSelectionGrayColor {
+    return [UIColor colorWithRed:53.0/255.0 green:53.0/255.0 blue:57.0/255.0 alpha:1];
 }
 
 // Expiration colors

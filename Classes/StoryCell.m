@@ -14,25 +14,25 @@
 @synthesize chattyButton;
 
 + (CGFloat)cellHeight {
-  return 110.0;
+    return 110.0;
 }
 
 - (id)init {
-  self = [super initWithNibName:@"StoryCell" bundle:nil];
-  return self;
+    self = [super initWithNibName:@"StoryCell" bundle:nil];
+    return self;
 }
 
 - (void)layoutSubviews {
-  [super layoutSubviews];
-  title.text        = story.title;
-  preview.text      = story.preview;
-  timestamp.text    = [Story formatDate:story.date];
-  commentCount.text = [NSString stringWithFormat:@"%i", story.commentCount];
+    [super layoutSubviews];
+    title.text        = story.title;
+    preview.text      = story.preview;
+    timestamp.text    = [Story formatDate:story.date];
+    commentCount.text = [NSString stringWithFormat:@"%i", story.commentCount];
 }
 
 - (void)dealloc {
-  [story release];
-  [super dealloc];
+    [story release];
+    [super dealloc];
 }
 
 @end

@@ -31,6 +31,8 @@
     self.backgroundView = backgroundView;
     [backgroundView release];
     
+    [self.selectedBackgroundView setBackgroundColor:[UIColor lcSelectionGrayColor]];
+    
     // initial custom badge, add as subview to icon view
     self.badge = [CustomBadge customBadgeWithString:nil
                                     withStringColor:[UIColor whiteColor]
