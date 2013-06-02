@@ -43,7 +43,7 @@
         fieldRect = CGRectMake(110, 7, inputTable.frame.size.width - 120, 20);
     }
     
-    [inputTable setSeparatorColor:[UIColor lcSeparatorColor]];
+    [inputTable setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
     [inputTable setBackgroundView:nil];
     [inputTable setBackgroundView:[[[UIView alloc] init] autorelease]];
     [inputTable setBackgroundColor:[UIColor clearColor]];

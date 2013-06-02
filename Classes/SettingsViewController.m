@@ -223,7 +223,7 @@
         [saveButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
     }
     
-    [tableView setSeparatorColor:[UIColor lcSeparatorColor]];
+    [tableView setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
     [tableView setBackgroundView:nil];
     [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
     [tableView setBackgroundColor:[UIColor clearColor]];

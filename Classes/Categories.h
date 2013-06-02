@@ -30,6 +30,7 @@
 + (UIColor *)lcGroupedCellColor;
 + (UIColor *)lcGroupedCellLabelColor;
 + (UIColor *)lcGroupedTitleColor;
++ (UIColor *)lcGroupedSeparatorColor;
 + (UIColor *)lcSeparatorColor;
 + (UIColor *)lcSelectionBlueColor;
 + (UIColor *)lcSelectionGrayColor;
