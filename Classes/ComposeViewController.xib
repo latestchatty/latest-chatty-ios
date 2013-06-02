@@ -824,7 +824,7 @@
 						<reference key="IBUIShadowColor" ref="787472448"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">12</float>
-						<int key="IBUINumberOfLines">3</int>
+						<int key="IBUINumberOfLines">2</int>
 						<reference key="IBUIFontDescription" ref="536643084"/>
 						<reference key="IBUIFont" ref="545446991"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
