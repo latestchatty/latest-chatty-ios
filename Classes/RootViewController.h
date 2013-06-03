@@ -17,8 +17,8 @@
 #import "SearchViewController.h"
 
 @interface RootViewController : UITableViewController <ModelLoadingDelegate> {
-  ModelLoader *messageLoader;
-  NSUInteger messageCount;
+    ModelLoader *messageLoader;
+    NSUInteger messageCount;
 }
 
 @property (nonatomic, retain) UIActivityIndicatorView *messagesSpinner;

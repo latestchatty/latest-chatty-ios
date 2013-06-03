@@ -381,9 +381,9 @@
 
 // Custom appearance settings for UIKit items
 - (void)customizeAppearance {
-//    [self.window.layer setCornerRadius:20.0];
-//    [self.window.layer setMasksToBounds:YES];
-//    self.window.layer.opaque = NO;
+    // Set a corner radius around the whole app window
+    [self.window.layer setCornerRadius:7.0];
+    [self.window.layer setMasksToBounds:YES];
     
     // Same navbar/toolbar background image for all orientations
     UIImage *navbarBackgroundImage =

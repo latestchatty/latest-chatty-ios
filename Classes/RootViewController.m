@@ -39,6 +39,17 @@
     messageLoader = [[Message findAllWithDelegate:self] retain];
 }
 
+- (void)viewDidLoad {
+    // iPhone ViewDeck menu needs rounded corners to match the nav bar
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [self.view.layer setCornerRadius:7.0];
+        [self.view.layer setMasksToBounds:YES];
+    }
+    
+    // Maintain selection while view is still loaded
+    [self setClearsSelectionOnViewWillAppear:NO];
+}
+
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
     messageCount = 0;
     for (Message *message in models) {
@@ -46,7 +57,12 @@
     }
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
+    
+    //keep track if an index path had been selected, and reset it after the table is reloaded
+    NSIndexPath *selectedIndex = [self.tableView indexPathForSelectedRow];
     [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
     [self.messagesSpinner stopAnimating];
     
     [messageLoader release];
@@ -206,7 +222,6 @@
             } else {
                 self.viewDeckController.centerController = [[UINavigationController alloc] initWithRootViewController:viewController];
                 [self.viewDeckController toggleLeftView];
-                [tableView deselectRowAtIndexPath:indexPath animated:YES];
             }
         }
     }
