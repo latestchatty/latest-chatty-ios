@@ -24,12 +24,6 @@
     self.textLabel.textColor = [UIColor whiteColor];
     self.textLabel.shadowColor = [UIColor lcTextShadowColor];
     self.textLabel.shadowOffset = CGSizeMake(0, -1);
-  
-    UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
-    backgroundView.contentMode = UIViewContentModeScaleToFill;
-    backgroundView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.backgroundView = backgroundView;
-    [backgroundView release];
     
     // gray selection color only for iPhone ViewDeck menu, blue for iPad
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -47,8 +41,6 @@
                                          withShadow:NO];
     [self.iconImage addSubview:self.badge];
     [self.badge setHidden:YES];
-    
-    self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
   
     return self;
 }
