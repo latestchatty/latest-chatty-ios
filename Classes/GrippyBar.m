@@ -28,7 +28,7 @@
         [self addSubview:grippy];
         
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            orderByPostDateButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 138, 12, 46, 24)] autorelease];
+            orderByPostDateButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 138, 0, 46, 48)] autorelease];
             [orderByPostDateButton addTarget:self action:@selector(tappedOrderByPostDateButton) forControlEvents:UIControlEventTouchUpInside];
             [orderByPostDateButton setImage:[UIImage imageNamed:@"chrono.png"] forState:UIControlStateNormal];
             orderByPostDateButton.showsTouchWhenHighlighted = YES;
@@ -36,7 +36,7 @@
             orderByPostDateButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
             [self addSubview:orderByPostDateButton];
 			
-			UIButton *previousButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 92, 12, 46, 24)] autorelease];
+			UIButton *previousButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 92, 0, 46, 48)] autorelease];
             [previousButton addTarget:self action:@selector(tappedLeftButton) forControlEvents:UIControlEventTouchUpInside];
             [previousButton setImage:[UIImage imageNamed:@"left.png"] forState:UIControlStateNormal];
             previousButton.showsTouchWhenHighlighted = YES;
@@ -44,7 +44,7 @@
             previousButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
             [self addSubview:previousButton];
             
-            UIButton *nextButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 46, 12, 46, 24)] autorelease];
+            UIButton *nextButton = [[[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 46, 0, 46, 48)] autorelease];
             [nextButton addTarget:self action:@selector(tappedRightButton) forControlEvents:UIControlEventTouchUpInside];
             [nextButton setImage:[UIImage imageNamed:@"right.png"] forState:UIControlStateNormal];
             nextButton.showsTouchWhenHighlighted = YES;
@@ -52,7 +52,7 @@
             nextButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
             [self addSubview:nextButton];
             
-            UIButton *refreshButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 12, 46, 24)] autorelease];
+            UIButton *refreshButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 46, 48)] autorelease];
             [refreshButton addTarget:self action:@selector(tappedRefreshButton) forControlEvents:UIControlEventTouchUpInside];
             [refreshButton setImage:[UIImage imageNamed:@"RefreshIcon.png"] forState:UIControlStateNormal];
             refreshButton.showsTouchWhenHighlighted = YES;
@@ -60,7 +60,7 @@
             refreshButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
             [self addSubview:refreshButton];
             
-            UIButton *tagButton = [[[UIButton alloc] initWithFrame:CGRectMake(46, 12, 46, 24)] autorelease];
+            UIButton *tagButton = [[[UIButton alloc] initWithFrame:CGRectMake(46, 0, 46, 48)] autorelease];
             [tagButton addTarget:self action:@selector(tappedTagButton) forControlEvents:UIControlEventTouchUpInside];
             [tagButton setImage:[UIImage imageNamed:@"TagIcon.png"] forState:UIControlStateNormal];
             tagButton.showsTouchWhenHighlighted = YES;
@@ -71,7 +71,7 @@
         
         //Only needed for mods
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"modTools"]) {
-            UIButton *modButton = [[[UIButton alloc] initWithFrame:CGRectMake(92, 12, 46, 24)] autorelease];
+            UIButton *modButton = [[[UIButton alloc] initWithFrame:CGRectMake(92, 0, 46, 48)] autorelease];
             [modButton addTarget:self action:@selector(tappedModButton) forControlEvents:UIControlEventTouchUpInside];
             [modButton setImage:[UIImage imageNamed:@"ModGavel.png"] forState:UIControlStateNormal];
             modButton.showsTouchWhenHighlighted = YES;
