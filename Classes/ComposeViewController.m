@@ -334,7 +334,7 @@
 
 #pragma mark Tagging
 
-- (IBAction)showTagButtons {
+- (void)showTagButtons {
     tagView.hidden = NO;
     tagView.alpha = 0.0;
     tagView.transform = CGAffineTransformMakeScale(1.1, 1.1);
@@ -369,10 +369,7 @@
 	postContent.text = result;
 	
     [self closeTagView];
-    
-    // Reactivate the text view with the text still selected.
-	[postContent becomeFirstResponder];
-	[postContent setSelectedRange:NSMakeRange(selection.location + prefix.length, selection.length)];
+    [postContent setSelectedRange:NSMakeRange(selection.location + prefix.length, selection.length)];
 }
 
 - (IBAction)closeTagView {
@@ -385,6 +382,10 @@
                      completion:^(BOOL finished) {
                          tagView.hidden = YES;
                      }];
+    
+    // Reactivate the text view with the text still selected.
+	[postContent becomeFirstResponder];
+	[postContent setSelectedRange:NSMakeRange(selection.location, selection.length)];
 }
 
 #pragma mark Actions
