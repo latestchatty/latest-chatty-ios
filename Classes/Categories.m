@@ -173,3 +173,55 @@
 }
 
 @end
+
+@implementation UIImage(ImageAdditions)
+
++ (UIImage *)navbarBgImage {
+    return [[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
+}
+
++ (UIImage *)toolbarBgImage {
+    return [[UIImage imageNamed:@"toolbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+}
+
++ (UIImage *)backButtonImage {
+    return [[UIImage imageNamed:@"button_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+}
+
++ (UIImage *)backButtonHighlightImage {
+    return [[UIImage imageNamed:@"button_back_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+}
+
++ (UIImage *)backButtonLandscapeImage {
+    return [[UIImage imageNamed:@"button_back_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+}
+
++ (UIImage *)backButtonHighlightLandscapeImage {
+    return [[UIImage imageNamed:@"button_back_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+}
+
++ (UIImage *)barButtonNormalImage {
+    return [[UIImage imageNamed:@"button_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+}
+
++ (UIImage *)barButtonNormalHighlightImage {
+    return [[UIImage imageNamed:@"button_normal_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+}
+
++ (UIImage *)barButtonNormalLandscapeImage {
+    return [[UIImage imageNamed:@"button_normal_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+}
+
++ (UIImage *)barButtonNormalHighlightLandscapeImage {
+    return [[UIImage imageNamed:@"button_normal_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+}
+
++ (UIImage *)barButtonDoneImage {
+    return [[UIImage imageNamed:@"button_done"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+}
+
++ (UIImage *)barButtonDoneLandscapeImage {
+    return [[UIImage imageNamed:@"button_done_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+}
+
+@end

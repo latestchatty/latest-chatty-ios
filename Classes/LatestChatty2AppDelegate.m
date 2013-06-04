@@ -385,106 +385,78 @@
     [self.window.layer setCornerRadius:7.0];
     [self.window.layer setMasksToBounds:YES];
     
-    // Same navbar/toolbar background image for all orientations
-    UIImage *navbarBackgroundImage =
-    [[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
-    UIImage *toolbarBackgroundImage =
-    [[UIImage imageNamed:@"toolbar_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-    
+    // Same navbar/toolbar background image for all orientations    
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [[UINavigationBar appearance] setBackgroundImage:toolbarBackgroundImage
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage toolbarBgImage]
                                            forBarMetrics:UIBarMetricsDefault];
     } else {
-        [[UINavigationBar appearance] setBackgroundImage:navbarBackgroundImage
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage navbarBgImage]
                                            forBarMetrics:UIBarMetricsDefault];
     }
-    
-    [[UIToolbar appearance] setBackgroundImage:toolbarBackgroundImage
+    [[UIToolbar appearance] setBackgroundImage:[UIImage toolbarBgImage]
                             forToolbarPosition:UIToolbarPositionAny
                                     barMetrics:UIBarMetricsDefault];
     
     // Left button (back arrow) normal and highlight states
-    UIImage *backButtonImage =
-    [[UIImage imageNamed:@"button_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-    UIImage *backButtonHighlightImage =
-    [[UIImage imageNamed:@"button_back_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-    UIImage *backButtonLandscapeImage =
-    [[UIImage imageNamed:@"button_back_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-    UIImage *backButtonHighlightLanscapeImage =
-    [[UIImage imageNamed:@"button_back_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-    
-    // Back button state with landscape
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage
+    // Portrait back button states
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonImage]
                                                       forState:UIControlStateNormal
                                                     barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonHighlightImage
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonHighlightImage]
                                                       forState:UIControlStateHighlighted
                                                     barMetrics:UIBarMetricsDefault];
-    // Highlight back button state with landscape
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonLandscapeImage
+    // Landscape highlight back button states
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonLandscapeImage]
                                                       forState:UIControlStateNormal
                                                     barMetrics:UIBarMetricsLandscapePhone];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonHighlightLanscapeImage
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonHighlightLandscapeImage]
                                                       forState:UIControlStateHighlighted
                                                     barMetrics:UIBarMetricsLandscapePhone];
     
-    // Load all images for normal, highlight, and done style buttons along with their landscape counterparts
-    UIImage *barButtonNormalImage =
-    [[UIImage imageNamed:@"button_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    UIImage *barButtonNormalHighlightImage =
-    [[UIImage imageNamed:@"button_normal_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    UIImage *barButtonNormalLandscapeImage =
-    [[UIImage imageNamed:@"button_normal_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    UIImage *barButtonNormalHighlightLandscapeImage =
-    [[UIImage imageNamed:@"button_normal_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    UIImage *barButtonDoneImage =
-    [[UIImage imageNamed:@"button_done"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    UIImage *barButtonDoneLandscapeImage =
-    [[UIImage imageNamed:@"button_done_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    
+    // Load all images for normal, highlight, and done style buttons along with their landscape counterparts    
     // iOS 6 allows usage of appearance proxy to customize done and normal buttons independently
     // downside to the following is that iOS 5 will not have blue color done style buttons, do we care?
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
         // Normal button state with landscape
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalImage]
                                                                                             forState:UIControlStateNormal
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalLandscapeImage
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalLandscapeImage]
                                                                                             forState:UIControlStateNormal
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
         // Highlight normal button state with landscape
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalHighlightImage]
                                                                                             forState:UIControlStateHighlighted
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalHighlightLandscapeImage]
                                                                                             forState:UIControlStateHighlighted
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
         // Done button style (blue) with landscape
-        [[UIBarButtonItem appearance] setBackgroundImage:barButtonDoneImage
+        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonDoneImage]
                                                 forState:UIControlStateNormal
                                                    style:UIBarButtonItemStyleDone
                                               barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:barButtonDoneLandscapeImage
+        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonDoneLandscapeImage]
                                                 forState:UIControlStateNormal
                                                    style:UIBarButtonItemStyleDone
                                               barMetrics:UIBarMetricsLandscapePhone];
     } else { // iOS 5
         // Normal button state with landscape
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalImage
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalImage]
                                                                                             forState:UIControlStateNormal
                                                                                           barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalLandscapeImage
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalLandscapeImage]
                                                                                             forState:UIControlStateNormal
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
         // Highlight normal button state with landscape        
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightImage
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalHighlightImage]
                                                                                             forState:UIControlStateHighlighted
                                                                                           barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonNormalHighlightLandscapeImage
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalHighlightLandscapeImage]
                                                                                             forState:UIControlStateHighlighted
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
     }
