@@ -36,4 +36,7 @@
 - (void)tappedModButton;
 - (void)tappedOrderByPostDateButton;
 
+- (void)setOrderByPostDateWithValue:(BOOL)value;
+- (void)setOrderByPostDateButtonHighlight;
+
 @end

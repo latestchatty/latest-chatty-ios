@@ -69,7 +69,7 @@
             [self addSubview:tagButton];
         }
         
-        //Only needed for mods
+        // Only needed for mods
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"modTools"]) {
             UIButton *modButton = [[[UIButton alloc] initWithFrame:CGRectMake(92, 0, 46, 48)] autorelease];
             [modButton addTarget:self action:@selector(tappedModButton) forControlEvents:UIControlEventTouchUpInside];
@@ -131,8 +131,17 @@
 
 - (void)tappedOrderByPostDateButton {
 	isOrderByPostDate = !isOrderByPostDate;
-	orderByPostDateButton.alpha = isOrderByPostDate ? 1.0 : 0.5;
+    [self setOrderByPostDateButtonHighlight];
 	[delegate grippyBarDidTapOrderByPostDateButton];
+}
+
+- (void)setOrderByPostDateWithValue:(BOOL)value {
+    isOrderByPostDate = value;
+    [self setOrderByPostDateButtonHighlight];
+}
+
+- (void)setOrderByPostDateButtonHighlight {
+	orderByPostDateButton.alpha = isOrderByPostDate ? 1.0 : 0.5;
 }
 
 - (void)dealloc {

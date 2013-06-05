@@ -51,7 +51,7 @@
 - (IBAction)refresh:(id)sender {
     [super refresh:sender];
 
-    //dismiss tag action sheet if it is showing
+    // dismiss tag action sheet if it is showing
     if (theActionSheet) {
         [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
     }
@@ -76,7 +76,7 @@
     [loader release];
     loader = nil;
     
-    //Patch-E: for the latestchatty:// protocol launch, needed to check for an empty repliesArray here if a chatty URL launched the app that ulimately goes to a thread that falls outside of the user's set category filters
+    // Patch-E: for the latestchatty:// protocol launch, needed to check for an empty repliesArray here if a chatty URL launched the app that ulimately goes to a thread that falls outside of the user's set category filters
     if ([[rootPost repliesArray] count] > 0) {
         self.threadStarter = [[[rootPost repliesArray] objectAtIndex:0] author];
     }
@@ -174,7 +174,7 @@
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     
-    // Fill in emtpy web view
+    // Fill in empty web view
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
@@ -184,15 +184,25 @@
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
     }
     
-    //initialize scoll position property
+    // initialize scoll position property
     self.scrollPosition = CGPointMake(0, 0);
     
-    //initialize swipe gesture
+    // initialize swipe gesture
 //    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
 //    [swipe setDirection:UISwipeGestureRecognizerDirectionRight];
 //    swipe.delegate = self;
 //    [self.tableView addGestureRecognizer:swipe];
 //    [swipe release];
+    
+    // Use the persisted orderByPostDate option to set the button in the grippybar
+    orderByPostDate = [[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"];
+    if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
+        orderByPostDateButton.tintColor = orderByPostDate ? nil : [UIColor lcStupidColor];
+    }
+    else {
+        [grippyBar setOrderByPostDateWithValue:orderByPostDate];
+    }
     
     [self resetLayout:NO];
 }
@@ -212,15 +222,15 @@
     self.toolbar.frame = self.navigationController.navigationBar.frame;
     [self.view setNeedsLayout];
     
-    //if there is a saved scroll position, animate the scroll to it and reinitialize the ivar
+    // if there is a saved scroll position, animate the scroll to it and reinitialize the ivar
     if (self.scrollPosition.y > 0) {
         [postView.scrollView setContentOffset:self.scrollPosition animated:YES];
         self.scrollPosition = CGPointMake(0, 0);
     }
     
-    //long press gesture only for iPhone now
+    // long press gesture only for iPhone now
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        //initialize long press gesture
+        // initialize long press gesture
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
         longPress.minimumPressDuration = 1.0; //seconds
         longPress.delegate = self;
@@ -230,8 +240,8 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    //since I am adding the longpress gesture recognizer to the navigation bar, we need to remove it from the bar when this view
-    //disappears, viewDidAppear will recreate the longpress gesture
+    // since I am adding the longpress gesture recognizer to the navigation bar, we need to remove it from the bar when this view
+    // disappears, viewDidAppear will recreate the longpress gesture
     for (UIGestureRecognizer *recognizer in self.navigationController.navigationBar.gestureRecognizers) {
         [self.navigationController.navigationBar removeGestureRecognizer:recognizer];
     }
@@ -242,7 +252,7 @@
 }
 
 - (IBAction)tappedReplyButton {
-    //dismiss tag action sheet if it is showing
+    // dismiss tag action sheet if it is showing
     if (theActionSheet) {
         [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
     }
@@ -428,7 +438,7 @@
     [htmlTemplate setString:post.author forKey:@"author"];
     [htmlTemplate setString:[NSString stringWithFormat:@"%i", post.modelId] forKey:@"postId"];
 
-    //set the expiration stripe's background color and size in the HTML template
+    // set the expiration stripe's background color and size in the HTML template
 //    NSLog(@"%@", [NSString hexFromUIColor:[Post colorForPostExpiration:post.date]]);
 //    NSLog(@"%@", [NSString rgbaFromUIColor:[Post colorForPostExpiration:post.date]]);
 //    NSLog(@"%@", [NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]]);
@@ -495,19 +505,19 @@
             
             if (isYouTubeURL) {
                 if (!embedYoutube) {
-                    //don't embed, open Youtube URL on some external app that opens Youtube URLs
+                    // don't embed, open Youtube URL on some external app that opens Youtube URLs
                     [[UIApplication sharedApplication] openURL:[request URL]];
                     return NO;
                 }
             } else {
-                //open current URL in Safari (not guaranteed to open in Safari, could be a iTunes/App Store URL that opens in an external app, most of the time the URL will get handled by Safari
+                // open current URL in Safari (not guaranteed to open in Safari, could be a iTunes/App Store URL that opens in an external app, most of the time the URL will get handled by Safari
                 if (useSafari) {
                     [[UIApplication sharedApplication] openURL:[request URL]];
                     return NO;
                 }
-                //open current URL in Chrome
+                // open current URL in Chrome
                 if (useChrome) {
-                    //replace http,https:// with googlechrome://
+                    // replace http,https:// with googlechrome://
                     NSURL *chromeURL = [appDelegate urlAsChromeScheme:[request URL]];
                     if (chromeURL != nil) {
                         [[UIApplication sharedApplication] openURL:chromeURL];
@@ -520,7 +530,7 @@
 
             viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
         }
-        //save scroll position of web view before pushing view controller
+        // save scroll position of web view before pushing view controller
         self.scrollPosition = aWebView.scrollView.contentOffset;
         
         [self.navigationController pushViewController:viewController animated:YES];
@@ -617,17 +627,17 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-//Patch-E: fixed the iPad issue where if you tap the tag button numerous times, many action sheet popovers are created
-//the tag action sheet popover would stay visible when tapping the refresh thread and compose reply buttons, fixed that issue too
-//leff the tag action sheet popover stay in view when the clock/previous reply/next reply buttons are tapped
+// Patch-E: fixed the iPad issue where if you tap the tag button numerous times, many action sheet popovers are created
+// the tag action sheet popover would stay visible when tapping the refresh thread and compose reply buttons, fixed that issue too
+// leff the tag action sheet popover stay in view when the clock/previous reply/next reply buttons are tapped
 - (IBAction)tag {
-    //check to see if tag action sheet is already showing (isn't nil), dismiss it if so
+    // check to see if tag action sheet is already showing (isn't nil), dismiss it if so
     if (theActionSheet) {
         [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
         theActionSheet = nil;
         return;
     }
-    //keep track of the action sheet
+    // keep track of the action sheet
     theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Tag this Post"
                                                         delegate:self
                                                cancelButtonTitle:@"Cancel"
@@ -646,10 +656,20 @@
     theActionSheet = nil;
 }
 
-- (IBAction)toggleOrderByPostDate {        
+- (IBAction)toggleOrderByPostDate {
+    if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         orderByPostDate = !orderByPostDate;
-        if([[LatestChatty2AppDelegate delegate] isPadDevice])
-                orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
+//        orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
+        orderByPostDateButton.tintColor = orderByPostDate ? nil : [UIColor lcSelectionGrayColor];
+    }
+    else {
+        orderByPostDate = !orderByPostDate;
+        [grippyBar setOrderByPostDateButtonHighlight];
+    }
+    
+    // Persist the orderByPostDate toggle option
+    [[NSUserDefaults standardUserDefaults] setBool:orderByPostDate forKey:@"orderByPostDate"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (int)nextRowByTimeLevel:(int)currentRow {
@@ -715,7 +735,7 @@
 }
 
 - (void)grippyBarDidTapOrderByPostDateButton {
-        [self toggleOrderByPostDate];
+    [self toggleOrderByPostDate];
 }
 
 - (void)grippyBarDidTapRightButton {
@@ -769,18 +789,18 @@
     } else if ([[actionSheet title] isEqualToString:@"Tag this Post"]) { //tagging
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
     }
-    else { //long pressing
+    else { // long pressing
         if (buttonIndex == 0) {
-            //"Reply to this Post"
-            //fire the reply button method to do a reply to the long pressed post
+            // "Reply to this Post"
+            // fire the reply button method to do a reply to the long pressed post
             [self tappedReplyButton];
         } else if (buttonIndex == 1) {
-            //"Reply to root post"
-            //set the selected row to the 0th row in the table view
+            // "Reply to root post"
+            // set the selected row to the 0th row in the table view
             NSIndexPath *rootPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [self.tableView selectRowAtIndexPath:rootPath animated:YES scrollPosition:UITableViewScrollPositionTop];
             [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:rootPath];
-            //fire the reply button method to do a reply to on the now selected root post
+            // fire the reply button method to do a reply to on the now selected root post
             [self tappedReplyButton];
         }
     }
@@ -788,37 +808,37 @@
 
 #pragma mark Gesture Recognizers
 
-//monitor gesture touches
+// monitor gesture touches
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    //if gesture is swipe kind, let it pass through
+    // if gesture is swipe kind, let it pass through
     if ([gestureRecognizer.class isSubclassOfClass:[UISwipeGestureRecognizer class]]) return YES;
     
-    //if gesture is long press (on the navigation bar), only let it pass through if the press is on the reply button
+    // if gesture is long press (on the navigation bar), only let it pass through if the press is on the reply button
     if ([gestureRecognizer.class isSubclassOfClass:[UILongPressGestureRecognizer class]]) {
-        //this will be faulty logic if there is ever another button on the nav bar other than the reply button,
-        //the back button is not included in this because its view's class is not a subclass of UIControl
+        // this will be faulty logic if there is ever another button on the nav bar other than the reply button,
+        // the back button is not included in this because its view's class is not a subclass of UIControl
         if ([[[touch view] class] isSubclassOfClass:[UIControl class]]) return YES;
     }
     return NO;
 }
 
-//- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer {
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-    //only fire on the intial long press detection
+    // only fire on the intial long press detection
     if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
-        //grab the long press point
+        // grab the long press point
         CGPoint longPressPoint = [gestureRecognizer locationInView:self.tableView];
         
-        //standard action sheet code
+        // standard action sheet code
         if (theActionSheet) {
             [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
             theActionSheet = nil;
             return;
         }
-        //keep track of the action sheet
+        // keep track of the action sheet
         theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Reply"
                                                       delegate:self
                                              cancelButtonTitle:@"Cancel"
@@ -827,15 +847,15 @@
         [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            //make an rect out of the long press point and another point offset by 1 in both directions
+            // make an rect out of the long press point and another point offset by 1 in both directions
             CGRect rowRect = CGRectMake(MIN(longPressPoint.x, longPressPoint.x+1),
                                         MIN(longPressPoint.y, longPressPoint.y+1),
                                         fabs(longPressPoint.x - longPressPoint.x+1),
                                         fabs(longPressPoint.y - longPressPoint.y+1));
-            //popover the action sheet from that rect in the table view
+            // popover the action sheet from that rect in the table view
             [theActionSheet showFromRect:rowRect inView:self.tableView animated:YES];
         } else {
-            //show standard style action sheet on iPhone
+            // show standard style action sheet on iPhone
             [theActionSheet showInView:self.navigationController.view];
         }
     }
