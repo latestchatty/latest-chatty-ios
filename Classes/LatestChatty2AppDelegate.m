@@ -92,7 +92,6 @@
     [deckController setElastic:NO];
     [deckController setPanningMode:IIViewDeckFullViewPanning];
     [deckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose];
-    [deckController setCenterViewCornerRadius:7.0f];
     
     return deckController;
 }
