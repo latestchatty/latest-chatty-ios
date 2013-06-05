@@ -21,6 +21,7 @@
         usernameField.returnKeyType = UIReturnKeyNext;
         usernameField.keyboardType = UIKeyboardTypeEmailAddress;
         usernameField.textColor = [UIColor lcAuthorColor];
+        usernameField.font = [UIFont boldSystemFontOfSize:16.0];
         
         passwordField = [[self generateTextFieldWithKey:@"password"] retain];
         passwordField.placeholder = @"Enter Password";
@@ -37,6 +38,7 @@
         picsUsernameField.returnKeyType = UIReturnKeyNext;
         picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
         picsUsernameField.textColor = [UIColor lcAuthorColor];
+        picsUsernameField.font = [UIFont boldSystemFontOfSize:16.0];
         
         picsPasswordField = [[self generateTextFieldWithKey:@"picsPassword"] retain];
         picsPasswordField.placeholder = @"Enter Password";

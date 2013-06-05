@@ -41,10 +41,10 @@
 	// Set background to a light color if the user is the root poster
 	UIImageView *background = (UIImageView *)self.backgroundView;
 	if ([rootPost.author.lowercaseString isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"].lowercaseString]) {
-		author.font = [UIFont boldSystemFontOfSize:12.0];
+//		author.font = [UIFont boldSystemFontOfSize:12.0];
 		background.image = [UIImage imageNamed:@"CellBackgroundLight.png"];
 	} else {
-		author.font = [UIFont systemFontOfSize:12.0];
+//		author.font = [UIFont systemFontOfSize:12.0];
 		background.image = [UIImage imageNamed:@"CellBackground.png"];
 	}
 	
