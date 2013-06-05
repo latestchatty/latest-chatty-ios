@@ -42,7 +42,7 @@
 - (void)viewDidLoad {
     // iPhone ViewDeck menu needs rounded corners to match the nav bar
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [self.view.layer setCornerRadius:7.0];
+        [self.view.layer setCornerRadius:7.0f];
         [self.view.layer setMasksToBounds:YES];
     }
     

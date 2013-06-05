@@ -88,8 +88,11 @@
                                                                                     leftViewController:leftController];
     // Set navigation type, left size, no elasticity
     [deckController setNavigationControllerBehavior:IIViewDeckNavigationControllerIntegrated];
-    [deckController setLeftSize:255];
+    [deckController setLeftSize:255.0f];
     [deckController setElastic:NO];
+    [deckController setPanningMode:IIViewDeckFullViewPanning];
+    [deckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose];
+    [deckController setCenterViewCornerRadius:7.0f];
     
     return deckController;
 }
@@ -131,6 +134,7 @@
                                      [NSNumber numberWithBool:NO],  @"postCategory.nws",
                                      [NSNumber numberWithInt:0],    @"lastRefresh",
                                      [NSNumber numberWithInt:1],    @"grippyBarPosition",
+                                     [NSNumber numberWithBool:NO],  @"orderByPostDate",
                                      [NSMutableArray array],        @"pinnedPosts",
                                      nil];
     [defaults registerDefaults:defaultSettings];
@@ -382,7 +386,7 @@
 // Custom appearance settings for UIKit items
 - (void)customizeAppearance {
     // Set a corner radius around the whole app window
-    [self.window.layer setCornerRadius:7.0];
+    [self.window.layer setCornerRadius:7.0f];
     [self.window.layer setMasksToBounds:YES];
     
     // Same navbar/toolbar background image for all orientations    
