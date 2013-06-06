@@ -17,10 +17,9 @@ div.author,
 div.author a {
   float: left;
   font-size: 10pt;
-  font-weight: bold;
-  color: rgb(243,231,181);
+  color: rgb(245,228,157);
   text-decoration: none;
-  -webkit-tap-highlight-color: rgba(243,231,181,0.5);
+  -webkit-tap-highlight-color: rgba(245,228,157,0.5);
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
 }
 div.date,

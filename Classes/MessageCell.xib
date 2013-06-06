@@ -47,7 +47,6 @@
 								<string key="NSFrame">{{9, 40}, {304, 41}}</string>
 								<reference key="NSSuperview" ref="367749367"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -159,7 +158,7 @@
 								<string key="IBUIText">SqueegyTBS</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC45NTI5NDExNzY1IDAuOTA1ODgyMzUyOSAwLjcwOTgwMzkyMTYAA</bytes>
+									<bytes key="NSRGB">MC45NjA3ODQzMTM3IDAuODk0MTE3NjQ3MSAwLjYxNTY4NjI3NDUAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<object class="NSColor" key="IBUIShadowColor">

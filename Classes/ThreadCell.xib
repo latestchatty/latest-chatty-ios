@@ -126,7 +126,7 @@
 								<string key="IBUIText">SqueegyTBS</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC45NTI5NDExNzY1IDAuOTA1ODgyMzUyOSAwLjcwOTgwMzkyMTYAA</bytes>
+									<bytes key="NSRGB">MC45NjA3ODQzMTM3IDAuODk0MTE3NjQ3MSAwLjYxNTY4NjI3NDUAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<object class="NSColor" key="IBUIShadowColor">
@@ -134,12 +134,12 @@
 									<bytes key="NSRGB">MCAwIDAgMC41AA</bytes>
 								</object>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="95626953">
-									<int key="type">2</int>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<int key="type">1</int>
 									<double key="pointSize">12</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="45571169">
-									<string key="NSName">Helvetica-Bold</string>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica</string>
 									<double key="NSSize">12</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -166,8 +166,15 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">2</int>
-								<reference key="IBUIFontDescription" ref="95626953"/>
-								<reference key="IBUIFont" ref="45571169"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<int key="type">2</int>
+									<double key="pointSize">12</double>
+								</object>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">12</double>
+									<int key="NSfFlags">16</int>
+								</object>
 							</object>
 							<object class="IBUIView" id="534118400">
 								<reference key="NSNextResponder" ref="417762082"/>
@@ -189,7 +196,6 @@
 								<string key="NSFrame">{{303, 6}, {12, 12}}</string>
 								<reference key="NSSuperview" ref="417762082"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentMode">4</int>
@@ -250,7 +256,6 @@
 				<string key="NSFrameSize">{320, 120}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<bool key="IBUIUserInteractionEnabled">NO</bool>

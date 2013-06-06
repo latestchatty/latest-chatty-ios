@@ -40,7 +40,7 @@
 
 // Common colors
 + (UIColor *)lcAuthorColor {
-    return [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:245.0/255.0 green:228.0/255.0 blue:157.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcBlueColor {

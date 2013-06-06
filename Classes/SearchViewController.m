@@ -239,7 +239,6 @@
     }
     if (indexPath.row == 1 || indexPath.row == 2) {
         textField.textColor = [UIColor lcAuthorColor];
-        textField.font = [UIFont boldSystemFontOfSize:16.0];
     }
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
