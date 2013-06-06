@@ -465,7 +465,7 @@
     }
     
     // Give the navigation bar title text text shadowing
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary titleTextAttributesDictionary]];
     
     // Give text in buttons gray coloring with text shadowing
     // Done style buttons will get styled here, but it gets overridden in the view controller for any view that uses Done style buttons

@@ -55,6 +55,7 @@
 
 @interface NSDictionary(DictionaryAdditions)
 
++ (NSDictionary *)titleTextAttributesDictionary;
 + (NSDictionary *)whiteTextAttributesDictionary;
 + (NSDictionary *)grayTextAttributesDictionary;
 + (NSDictionary *)textShadowAttributesDictionary;

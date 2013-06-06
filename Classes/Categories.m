@@ -149,6 +149,14 @@
 
 @implementation NSDictionary (DictionaryAdditions)
 
++ (NSDictionary *)titleTextAttributesDictionary {
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            [UIColor whiteColor],UITextAttributeTextColor,
+            [UIColor lcTextShadowColor],UITextAttributeTextShadowColor,
+            [NSValue valueWithUIOffset:UIOffsetMake(0.0, -1.0)],UITextAttributeTextShadowOffset,
+            nil];
+}
+
 + (NSDictionary *)whiteTextAttributesDictionary {
     return [NSDictionary dictionaryWithObjectsAndKeys:
             [UIColor whiteColor],UITextAttributeTextColor,
