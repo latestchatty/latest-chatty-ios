@@ -66,6 +66,7 @@
 
 // Bar backgrounds
 + (UIImage *)navbarBgImage;
++ (UIImage *)navbarBgLandscapeImage;
 + (UIImage *)toolbarBgImage;
 
 // Navbar buttons

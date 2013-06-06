@@ -388,14 +388,18 @@
     [self.window.layer setCornerRadius:7.0f];
     [self.window.layer setMasksToBounds:YES];
     
-    // Same navbar/toolbar background image for all orientations    
+    // Same navbar background for all iPad orientations
+    // iPhone has dedicated landscape asset
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage toolbarBgImage]
                                            forBarMetrics:UIBarMetricsDefault];
     } else {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage navbarBgImage]
                                            forBarMetrics:UIBarMetricsDefault];
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage navbarBgLandscapeImage]
+                                           forBarMetrics:UIBarMetricsLandscapePhone];
     }
+    // Same toolbar background image for all orientations    
     [[UIToolbar appearance] setBackgroundImage:[UIImage toolbarBgImage]
                             forToolbarPosition:UIToolbarPositionAny
                                     barMetrics:UIBarMetricsDefault];

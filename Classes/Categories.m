@@ -188,6 +188,10 @@
     return [[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
 }
 
++ (UIImage *)navbarBgLandscapeImage {
+    return [[UIImage imageNamed:@"navbar_bg_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
+}
+
 + (UIImage *)toolbarBgImage {
     return [[UIImage imageNamed:@"toolbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 }
