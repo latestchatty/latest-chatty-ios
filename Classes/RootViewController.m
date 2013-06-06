@@ -44,6 +44,9 @@
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [self.view.layer setCornerRadius:7.0f];
         [self.view.layer setMasksToBounds:YES];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
     
     // Maintain selection while view is still loaded

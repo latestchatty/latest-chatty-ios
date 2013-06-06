@@ -48,12 +48,18 @@
 - (void)layoutSubviews {
     titleLabel.text = self.title;
   
-    if ([self.title isEqualToString:@"LatestChatty"])
+    if ([self.title isEqualToString:@"LatestChatty"]) {
         self.iconImage.image = [UIImage imageNamed:@"LatestChatIcon.48.png"];
-    else if ([self.title hasPrefix:@"Messages"])
+        self.iconImage.highlightedImage = [UIImage imageNamed:@"LatestChatIcon.48-Active.png"];
+    }
+    else if ([self.title hasPrefix:@"Messages"]) {
         self.iconImage.image = [UIImage imageNamed:@"MessagesIcon.48.png"];
-    else
+        self.iconImage.highlightedImage = [UIImage imageNamed:@"MessagesIcon.48-Active.png"];
+    }
+    else {
         self.iconImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@Icon.48.png", self.title]];
+        self.iconImage.highlightedImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@Icon.48-Active.png", self.title]];
+    }
 }
 
 - (void)setBadgeWithNumber:(int)badgeNumber {
