@@ -27,7 +27,15 @@
     
     // gray selection color only for iPhone ViewDeck menu, blue for iPad
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [self.selectedBackgroundView setBackgroundColor:[UIColor lcSelectionGrayColor]];   
+//        [self.selectedBackgroundView setBackgroundColor:[UIColor lcSelectionGrayColor]];
+        
+        UIImageView *selectionView = [[UIImageView alloc] initWithFrame:self.bounds];
+        selectionView.contentMode = UIViewContentModeScaleToFill;
+        selectionView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        selectionView.backgroundColor = [UIColor lcSelectionGrayColor];
+        self.selectedBackgroundView = selectionView;
+        [selectionView release];
+
     }
     
     // initial custom badge, add as subview to icon view

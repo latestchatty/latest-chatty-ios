@@ -23,12 +23,12 @@
     self = (TableCellFromNib *)cellFactory.view;
     [self retain];
     
-    UIImageView *selectionView = [[UIImageView alloc] initWithFrame:self.bounds];
-    selectionView.contentMode = UIViewContentModeScaleToFill;
-    selectionView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    selectionView.backgroundColor = [UIColor lcSelectionBlueColor];
-    self.selectedBackgroundView = selectionView;
-    [selectionView release];
+//    UIImageView *selectionView = [[UIImageView alloc] initWithFrame:self.bounds];
+//    selectionView.contentMode = UIViewContentModeScaleToFill;
+//    selectionView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    selectionView.backgroundColor = [UIColor lcSelectionBlueColor];
+//    self.selectedBackgroundView = selectionView;
+//    [selectionView release];
 
     return self;
 }
