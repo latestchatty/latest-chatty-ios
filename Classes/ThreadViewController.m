@@ -822,7 +822,8 @@
     // if gesture is panning kind (ViewDeck uses panning to bring out menu)
     if ([gestureRecognizer.class isSubclassOfClass:[UIPanGestureRecognizer class]]) {
         // and if gesture is on the replies table, cancel it to allow the swipe gesture through
-        if ([touch.view.superview isKindOfClass:[UITableViewCell class]]) {
+        if ([touch.view.superview isKindOfClass:[UITableViewCell class]] ||
+            [touch.view isKindOfClass:[UITableView class]]) {
             return NO;
         }
         return YES;
