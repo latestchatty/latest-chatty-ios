@@ -46,7 +46,6 @@
 								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{10, 0}, {173, 30}}</string>
 								<reference key="NSSuperview" ref="516869169"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="531102701"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -83,7 +82,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{15, 10}, {10, 10}}</string>
 								<reference key="NSSuperview" ref="516869169"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="782252366"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -100,7 +98,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{5, 10}, {10, 10}}</string>
 								<reference key="NSSuperview" ref="516869169"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="673771474"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -118,7 +115,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 6}, {2, 18}}</string>
 								<reference key="NSSuperview" ref="516869169"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="777534242"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -132,7 +128,6 @@
 								<int key="NSvFlags">289</int>
 								<string key="NSFrame">{{190, 0}, {120, 30}}</string>
 								<reference key="NSSuperview" ref="516869169"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -159,7 +154,6 @@
 						</array>
 						<string key="NSFrameSize">{320, 29}</string>
 						<reference key="NSSuperview" ref="994827299"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="255665146"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -174,7 +168,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 30}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="516869169"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -316,62 +309,14 @@
 			<nil key="sourceID"/>
 			<int key="maxID">23</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">ReplyCell</string>
-					<string key="superclassName">TableCellFromNib</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="blueBullet">UIImageView</string>
-						<string key="categoryStripe">UIView</string>
-						<string key="grayBullet">UIImageView</string>
-						<string key="preview">UILabel</string>
-						<string key="usernameLabel">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="blueBullet">
-							<string key="name">blueBullet</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="categoryStripe">
-							<string key="name">categoryStripe</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="grayBullet">
-							<string key="name">grayBullet</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="preview">
-							<string key="name">preview</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="usernameLabel">
-							<string key="name">usernameLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ReplyCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">TableCellFromNib</string>
-					<string key="superclassName">UITableViewCell</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/TableCellFromNib.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="BlueBullet.png">{10, 10}</string>
-			<string key="GrayBullet.png">{10, 10}</string>
+			<string key="BlueBullet.png">{6, 6}</string>
+			<string key="GrayBullet.png">{6, 6}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
