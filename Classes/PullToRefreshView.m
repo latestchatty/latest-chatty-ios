@@ -94,7 +94,11 @@
         //Patch-E: anchored the arrowImage 5 points from the left, the previous value of 25 caused the arrow to be over top of the
         //pull-to-refresh text and last updated label on the iPad in portrait orientation
 		//arrowImage.frame = CGRectMake(25.0f, frame.size.height - 60.0f, 24.0f, 52.0f);
-        arrowImage.frame = CGRectMake(5.0f, frame.size.height - 45.0f, 25.0f, 30.0f);
+        CGFloat arrowImageLeftEdge = 22.0f;
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            arrowImageLeftEdge = 2.0f;
+        }
+        arrowImage.frame = CGRectMake(arrowImageLeftEdge, frame.size.height - 45.0f, 25.0f, 30.0f);
 		arrowImage.contentsGravity = kCAGravityResizeAspect;
 		arrowImage.contents = (id) [UIImage imageNamed:@"arrow"].CGImage;
         
