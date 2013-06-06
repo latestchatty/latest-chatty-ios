@@ -69,7 +69,7 @@
 }
 
 + (UIColor *)lcCellParticipantColor {
-    return [UIColor colorWithRed:32.0/255.0 green:92.0/255.0 blue:137.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:40.0/255.0 green:59.0/255.0 blue:82.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcGroupedCellColor {
