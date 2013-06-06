@@ -45,7 +45,7 @@
                                      withBadgeFrame:YES
                                 withBadgeFrameColor:[UIColor whiteColor]
                                           withScale:1.0
-                                        withShining:YES
+                                        withShining:NO
                                          withShadow:NO];
     [self.iconImage addSubview:self.badge];
     [self.badge setHidden:YES];
