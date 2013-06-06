@@ -197,12 +197,17 @@
     // Use the persisted orderByPostDate option to set the button in the grippybar
     orderByPostDate = [[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"];
     if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
         orderByPostDateButton.tintColor = orderByPostDate ? nil : [UIColor lcStupidColor];
     }
     else {
         [grippyBar setOrderByPostDateWithValue:orderByPostDate];
     }
+    
+    UIImageView *background = [UIImageView viewWithImage:[UIImage imageNamed:@"DropShadow.png"]];
+    background.frame = CGRectMake(0, 36, self.tableView.frame.size.width, 16);
+    background.alpha = 0.75;
+    background.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [grippyBar addSubview:background];
     
     [self resetLayout:NO];
 }
@@ -400,9 +405,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)aTableView viewForHeaderInSection:(NSInteger)section {
-    UIImageView *background = [UIImageView viewWithImage:[UIImage imageNamed:@"DropShadow.png"]];
-    background.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 16);
-    background.alpha = 0.75;
+    UIView  *background = [[[UIView alloc] init] autorelease];
     return background;
 }
 
