@@ -16,7 +16,7 @@
         self.contentMode = UIViewContentModeCenter;
         
         UIImageView *backgroundView = [UIImageView viewWithImage:[UIImage imageNamed:@"GrippyBarBackground.png"]];
-        backgroundView.frame = CGRectMake(0, 12, self.frame.size.width, 24);
+        backgroundView.frame = CGRectMake(0, 12, self.frame.size.width, 25);
         backgroundView.contentMode = UIViewContentModeScaleToFill;
         backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self addSubview:backgroundView];
