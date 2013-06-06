@@ -177,8 +177,8 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="516869169"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MC4yAA</bytes>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC4xMDk4MDM5MjE2IDAuMTA5ODAzOTIxNiAwLjExNzY0NzA1ODgAA</bytes>
 				</object>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
