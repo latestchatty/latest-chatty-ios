@@ -55,8 +55,13 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">RefreshIcon.24.png</string>
 								</object>
+								<double key="IBUIImageInsets.top">0.0</double>
+								<double key="IBUIImageInsets.bottom">2</double>
+								<double key="IBUIImageInsets.left">0.0</double>
+								<double key="IBUIImageInsets.right">0.0</double>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<float key="IBUIWidth">32</float>
+								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="108519244"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="598537589">
@@ -70,8 +75,13 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">left.png</string>
 								</object>
+								<double key="IBUIImageInsets.top">0.0</double>
+								<double key="IBUIImageInsets.bottom">2</double>
+								<double key="IBUIImageInsets.left">0.0</double>
+								<double key="IBUIImageInsets.right">0.0</double>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<float key="IBUIWidth">32</float>
+								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="108519244"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="616536365">
@@ -80,8 +90,13 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">right.png</string>
 								</object>
+								<double key="IBUIImageInsets.top">0.0</double>
+								<double key="IBUIImageInsets.bottom">2</double>
+								<double key="IBUIImageInsets.left">0.0</double>
+								<double key="IBUIImageInsets.right">0.0</double>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<float key="IBUIWidth">32</float>
+								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="108519244"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="1022119285">
@@ -90,13 +105,17 @@
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="942508141">
-								<bool key="IBUIEnabled">NO</bool>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">ShareIcon.24.png</string>
 								</object>
+								<double key="IBUIImageInsets.top">0.0</double>
+								<double key="IBUIImageInsets.bottom">2</double>
+								<double key="IBUIImageInsets.left">0.0</double>
+								<double key="IBUIImageInsets.right">0.0</double>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<float key="IBUIWidth">32</float>
+								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="108519244"/>
 							</object>
 						</array>
@@ -121,10 +140,11 @@
 					</object>
 					<object class="IBUIActivityIndicatorView" id="131395908">
 						<reference key="NSNextResponder" ref="39516868"/>
-						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{150, 384}, {20, 20}}</string>
+						<int key="NSvFlags">264</int>
+						<string key="NSFrame">{{70, 384}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="39516868"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -353,7 +373,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">56</int>
+			<int key="maxID">58</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

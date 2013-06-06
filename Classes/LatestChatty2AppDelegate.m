@@ -425,29 +425,29 @@
     // downside to the following is that iOS 5 will not have blue color done style buttons, do we care?
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
         // Normal button state with landscape
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalImage]
+        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalImage]
                                                                                             forState:UIControlStateNormal
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalLandscapeImage]
+        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalLandscapeImage]
                                                                                             forState:UIControlStateNormal
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
         // Highlight normal button state with landscape
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalHighlightImage]
+        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalHighlightImage]
                                                                                             forState:UIControlStateHighlighted
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalHighlightLandscapeImage]
+        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalHighlightLandscapeImage]
                                                                                             forState:UIControlStateHighlighted
                                                                                                style:UIBarButtonItemStyleBordered
                                                                                           barMetrics:UIBarMetricsLandscapePhone];
         // Done button style (blue) with landscape
-        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonDoneImage]
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonDoneImage]
                                                 forState:UIControlStateNormal
                                                    style:UIBarButtonItemStyleDone
                                               barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonDoneLandscapeImage]
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonDoneLandscapeImage]
                                                 forState:UIControlStateNormal
                                                    style:UIBarButtonItemStyleDone
                                               barMetrics:UIBarMetricsLandscapePhone];
