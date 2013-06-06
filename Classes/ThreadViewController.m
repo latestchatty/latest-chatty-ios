@@ -188,11 +188,11 @@
     self.scrollPosition = CGPointMake(0, 0);
     
     // initialize swipe gesture
-//    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-//    [swipe setDirection:UISwipeGestureRecognizerDirectionRight];
-//    swipe.delegate = self;
-//    [self.tableView addGestureRecognizer:swipe];
-//    [swipe release];
+    UISwipeGestureRecognizer *backToChattySwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [backToChattySwipe setDirection:UISwipeGestureRecognizerDirectionRight];
+    backToChattySwipe.delegate = self;
+    [self.tableView addGestureRecognizer:backToChattySwipe];
+    [backToChattySwipe release];
     
     // Use the persisted orderByPostDate option to set the button in the grippybar
     orderByPostDate = [[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"];
@@ -242,6 +242,9 @@
         [self.navigationController.navigationBar addGestureRecognizer:longPress];
         [longPress release];
     }
+    
+    // set the panning gesture delegate to this controller to monitor whether the panning should occur
+    [self.viewDeckController setPanningGestureDelegate:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -250,6 +253,9 @@
     for (UIGestureRecognizer *recognizer in self.navigationController.navigationBar.gestureRecognizers) {
         [self.navigationController.navigationBar removeGestureRecognizer:recognizer];
     }
+    
+    // remove the panning gesture delegate from this controller when the view goes away
+    [self.viewDeckController setPanningGestureDelegate:nil];
 }
 
 - (void)tappedDoneButton {
@@ -813,6 +819,15 @@
 
 // monitor gesture touches
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    // if gesture is panning kind (ViewDeck uses panning to bring out menu)
+    if ([gestureRecognizer.class isSubclassOfClass:[UIPanGestureRecognizer class]]) {
+        // and if gesture is on the replies table, cancel it to allow the swipe gesture through
+        if ([touch.view.superview isKindOfClass:[UITableViewCell class]]) {
+            return NO;
+        }
+        return YES;
+    }
+
     // if gesture is swipe kind, let it pass through
     if ([gestureRecognizer.class isSubclassOfClass:[UISwipeGestureRecognizer class]]) return YES;
     
@@ -820,8 +835,9 @@
     if ([gestureRecognizer.class isSubclassOfClass:[UILongPressGestureRecognizer class]]) {
         // this will be faulty logic if there is ever another button on the nav bar other than the reply button,
         // the back button is not included in this because its view's class is not a subclass of UIControl
-        if ([[[touch view] class] isSubclassOfClass:[UIControl class]]) return YES;
+        if ([[touch.view class] isSubclassOfClass:[UIControl class]]) return YES;
     }
+
     return NO;
 }
 
