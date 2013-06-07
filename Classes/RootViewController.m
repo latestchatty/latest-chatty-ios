@@ -108,14 +108,15 @@
             cell.title = @"Messages";
             
             // add activity spinner to messages cell that starts spinning when messages are loading and stops when the messages call has finished
-            [self setMessagesSpinner:[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-            int center = [cell iconImage].frameHeight / 2; //vertical center
-            CGFloat spinnerSize = 25.0f;
-            
-            // place spinner on top of messages icon
-            [self.messagesSpinner setFrame:CGRectMake(center - spinnerSize / 2, center - spinnerSize / 2, spinnerSize, spinnerSize)];
-            [[cell iconImage] addSubview:self.messagesSpinner];
-            [self.messagesSpinner release];
+            if (self.messagesSpinner == nil) {
+                [self setMessagesSpinner:[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+                int center = [cell iconImage].frameHeight / 2; //vertical center
+                CGFloat spinnerSize = 25.0f;
+                
+                // place spinner on top of messages icon
+                [self.messagesSpinner setFrame:CGRectMake(center - spinnerSize / 2, center - spinnerSize / 2, spinnerSize, spinnerSize)];
+                [[cell iconImage] addSubview:self.messagesSpinner];
+            }
             
             // set number of unread messages in badge of cell
             //messageCount = 9;
