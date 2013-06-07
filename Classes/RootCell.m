@@ -24,19 +24,13 @@
     self.textLabel.textColor = [UIColor whiteColor];
     self.textLabel.shadowColor = [UIColor lcTextShadowColor];
     self.textLabel.shadowOffset = CGSizeMake(0, -1);
-    
-    // gray selection color only for iPhone ViewDeck menu, blue for iPad
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        [self.selectedBackgroundView setBackgroundColor:[UIColor lcSelectionGrayColor]];
-        
-        UIImageView *selectionView = [[UIImageView alloc] initWithFrame:self.bounds];
-        selectionView.contentMode = UIViewContentModeScaleToFill;
-        selectionView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        selectionView.backgroundColor = [UIColor lcSelectionGrayColor];
-        self.selectedBackgroundView = selectionView;
-        [selectionView release];
 
-    }
+    UIImageView *selectionView = [[UIImageView alloc] initWithFrame:self.bounds];
+    selectionView.contentMode = UIViewContentModeScaleToFill;
+    selectionView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    selectionView.backgroundColor = [UIColor lcSelectionGrayColor];
+    self.selectedBackgroundView = selectionView;
+    [selectionView release];
     
     // initial custom badge, add as subview to icon view
     self.badge = [CustomBadge customBadgeWithString:nil
