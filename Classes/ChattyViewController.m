@@ -330,8 +330,15 @@
 		
 		return cell;
 	} else {
-		UITableViewCell *cell                = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        
         UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        
+        UIView *cellTopStroke = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frameWidth, 1)] autorelease];
+        cellTopStroke.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        cellTopStroke.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.08f];
+        
+        [cell.contentView addSubview:cellTopStroke];
         [cell.contentView addSubview:cellSpinner];
         
         [cellSpinner setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
