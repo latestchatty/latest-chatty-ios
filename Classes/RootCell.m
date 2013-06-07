@@ -25,9 +25,8 @@
     self.textLabel.shadowColor = [UIColor lcTextShadowColor];
     self.textLabel.shadowOffset = CGSizeMake(0, -1);
 
-    UIImageView *selectionView = [[UIImageView alloc] initWithFrame:self.bounds];
-    selectionView.contentMode = UIViewContentModeScaleToFill;
-    selectionView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    // create a custom selection view with a gray color and has a height 1 pt less so that the black stroke view at the bottom of the cell is still visible
+    UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frameX, self.frameY, self.frameWidth, self.frameHeight-1)];
     selectionView.backgroundColor = [UIColor lcSelectionGrayColor];
     self.selectedBackgroundView = selectionView;
     [selectionView release];
