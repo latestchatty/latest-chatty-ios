@@ -34,6 +34,7 @@
 + (UIColor *)lcSeparatorColor;
 + (UIColor *)lcSelectionBlueColor;
 + (UIColor *)lcSelectionGrayColor;
++ (UIColor *)lcTableBackgroundColor;
 
 // Expiration colors
 + (UIColor *)lcPostExpirationColor;

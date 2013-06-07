@@ -89,7 +89,7 @@
 }
 
 + (UIColor *)lcSeparatorColor {
-    return [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:0.8];
+    return [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.25];
 }
 
 + (UIColor *)lcSelectionBlueColor {
@@ -98,6 +98,10 @@
 
 + (UIColor *)lcSelectionGrayColor {
     return [UIColor colorWithRed:53.0/255.0 green:53.0/255.0 blue:57.0/255.0 alpha:1];
+}
+
++ (UIColor *)lcTableBackgroundColor {
+    return [UIColor colorWithRed:47.0/255.0 green:47.0/255.0 blue:50.0/255.0 alpha:1.0];
 }
 
 // Expiration colors

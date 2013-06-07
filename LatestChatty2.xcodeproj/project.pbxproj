@@ -483,6 +483,10 @@
 		CDF1BE0917603BDE00D6B1AE /* navbar_bg_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BE0617603BDE00D6B1AE /* navbar_bg_landscape.png */; };
 		CDF1BE0A17603BDE00D6B1AE /* navbar_bg_landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BE0717603BDE00D6B1AE /* navbar_bg_landscape@2x.png */; };
 		CDF1BE0B17603BDE00D6B1AE /* navbar_bg_landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BE0717603BDE00D6B1AE /* navbar_bg_landscape@2x.png */; };
+		CDF1BE0E17615A2600D6B1AE /* PullToRefreshBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BE0C17615A2600D6B1AE /* PullToRefreshBackground.png */; };
+		CDF1BE0F17615A2600D6B1AE /* PullToRefreshBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BE0C17615A2600D6B1AE /* PullToRefreshBackground.png */; };
+		CDF1BE1017615A2600D6B1AE /* PullToRefreshBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BE0D17615A2600D6B1AE /* PullToRefreshBackground@2x.png */; };
+		CDF1BE1117615A2600D6B1AE /* PullToRefreshBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BE0D17615A2600D6B1AE /* PullToRefreshBackground@2x.png */; };
 		CDFA3D4E17414D5C0083C9D5 /* button_back_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D4A17414D5C0083C9D5 /* button_back_highlight.png */; };
 		CDFA3D4F17414D5C0083C9D5 /* button_back_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D4A17414D5C0083C9D5 /* button_back_highlight.png */; };
 		CDFA3D5017414D5C0083C9D5 /* button_back_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D4B17414D5C0083C9D5 /* button_back_highlight@2x.png */; };
@@ -898,6 +902,8 @@
 		CDF1BDFD1760350800D6B1AE /* Shack[lol]Icon.48-Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Shack[lol]Icon.48-Active@2x.png"; path = "Assets/Shack[lol]Icon.48-Active@2x.png"; sourceTree = "<group>"; };
 		CDF1BE0617603BDE00D6B1AE /* navbar_bg_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navbar_bg_landscape.png; path = Assets/navbar_bg_landscape.png; sourceTree = "<group>"; };
 		CDF1BE0717603BDE00D6B1AE /* navbar_bg_landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar_bg_landscape@2x.png"; path = "Assets/navbar_bg_landscape@2x.png"; sourceTree = "<group>"; };
+		CDF1BE0C17615A2600D6B1AE /* PullToRefreshBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PullToRefreshBackground.png; path = Assets/PullToRefreshBackground.png; sourceTree = "<group>"; };
+		CDF1BE0D17615A2600D6B1AE /* PullToRefreshBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PullToRefreshBackground@2x.png"; path = "Assets/PullToRefreshBackground@2x.png"; sourceTree = "<group>"; };
 		CDFA3D4A17414D5C0083C9D5 /* button_back_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_back_highlight.png; path = Assets/button_back_highlight.png; sourceTree = "<group>"; };
 		CDFA3D4B17414D5C0083C9D5 /* button_back_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_back_highlight@2x.png"; path = "Assets/button_back_highlight@2x.png"; sourceTree = "<group>"; };
 		CDFA3D4C17414D5C0083C9D5 /* button_normal_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_normal_highlight.png; path = Assets/button_normal_highlight.png; sourceTree = "<group>"; };
@@ -1632,6 +1638,8 @@
 				CDB348D2174573C0000003CA /* TimerDotHalf@2x.png */,
 				CDB348D3174573C0000003CA /* TimerDotThreeQuarter@2x.png */,
 				CDB348D4174573C0000003CA /* TimerDotFull@2x.png */,
+				CDF1BE0C17615A2600D6B1AE /* PullToRefreshBackground.png */,
+				CDF1BE0D17615A2600D6B1AE /* PullToRefreshBackground@2x.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -1954,6 +1962,8 @@
 				CDF1BE041760350800D6B1AE /* Shack[lol]Icon.48-Active@2x.png in Resources */,
 				CDF1BE0817603BDE00D6B1AE /* navbar_bg_landscape.png in Resources */,
 				CDF1BE0A17603BDE00D6B1AE /* navbar_bg_landscape@2x.png in Resources */,
+				CDF1BE0E17615A2600D6B1AE /* PullToRefreshBackground.png in Resources */,
+				CDF1BE1017615A2600D6B1AE /* PullToRefreshBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2195,6 +2205,8 @@
 				CDF1BE051760350800D6B1AE /* Shack[lol]Icon.48-Active@2x.png in Resources */,
 				CDF1BE0917603BDE00D6B1AE /* navbar_bg_landscape.png in Resources */,
 				CDF1BE0B17603BDE00D6B1AE /* navbar_bg_landscape@2x.png in Resources */,
+				CDF1BE0F17615A2600D6B1AE /* PullToRefreshBackground.png in Resources */,
+				CDF1BE1117615A2600D6B1AE /* PullToRefreshBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
