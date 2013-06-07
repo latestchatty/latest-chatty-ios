@@ -30,7 +30,7 @@
 
 #define STATUS_TEXT_COLOR       [UIColor lcBlueColor]
 #define LAST_UPDATED_TEXT_COLOR [UIColor whiteColor]
-#define BACKGROUND_COLOR        [UIColor lcSeparatorColor]
+#define BACKGROUND_COLOR        [UIColor lcTableBackgroundColor]
 #define FLIP_ANIMATION_DURATION 0.18f
 
 
@@ -70,6 +70,15 @@
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = BACKGROUND_COLOR;
         
+//        UIImage *background = [[UIImage imageNamed:@"PullToRefreshBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,0,0,0) resizingMode:UIImageResizingModeStretch];
+//        [self addSubview:background];
+        
+        UIImageView *backgroundView = [UIImageView viewWithImage:[UIImage imageNamed:@"PullToRefreshBackground"]];
+        backgroundView.frame = CGRectMake(0, self.frame.size.height - 70.0f, frame.size.width, 70.0f);
+        backgroundView.contentMode = UIViewContentModeScaleToFill;
+        backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        [self addSubview:backgroundView];
+        
 		lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
 		lastUpdatedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		lastUpdatedLabel.font = [UIFont systemFontOfSize:12.0f];
@@ -91,9 +100,8 @@
 		[self addSubview:statusLabel];
         
 		arrowImage = [[CALayer alloc] init];
-        //Patch-E: anchored the arrowImage 5 points from the left, the previous value of 25 caused the arrow to be over top of the
-        //pull-to-refresh text and last updated label on the iPad in portrait orientation
 		//arrowImage.frame = CGRectMake(25.0f, frame.size.height - 60.0f, 24.0f, 52.0f);
+        // modified left edge of frame for the arrow depending on iPad or not, centered it better on iPhone between screen edge and last updated label
         CGFloat arrowImageLeftEdge = 22.0f;
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             arrowImageLeftEdge = 2.0f;
