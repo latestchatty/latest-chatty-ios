@@ -449,11 +449,11 @@
 		CDD056CA174FCCC8000E0477 /* NoContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056C8174FCCC8000E0477 /* NoContentController.m */; };
 		CDD056D0174FD043000E0477 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056CF174FD043000E0477 /* CustomBadge.m */; };
 		CDD056D1174FD043000E0477 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056CF174FD043000E0477 /* CustomBadge.m */; };
-		CDF1BDDC175EEDC200D6B1AE /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD7175EEDC200D6B1AE /* IISideController.m */; };
+		CDF1BDDC175EEDC200D6B1AE /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD7175EEDC200D6B1AE /* IISideController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDF1BDDD175EEDC200D6B1AE /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD7175EEDC200D6B1AE /* IISideController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CDF1BDDE175EEDC200D6B1AE /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD9175EEDC200D6B1AE /* IIViewDeckController.m */; };
+		CDF1BDDE175EEDC200D6B1AE /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD9175EEDC200D6B1AE /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDF1BDDF175EEDC200D6B1AE /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD9175EEDC200D6B1AE /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CDF1BDE0175EEDC200D6B1AE /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDDB175EEDC200D6B1AE /* IIWrapController.m */; };
+		CDF1BDE0175EEDC200D6B1AE /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDDB175EEDC200D6B1AE /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDF1BDE1175EEDC200D6B1AE /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDDB175EEDC200D6B1AE /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDF1BDE41760314400D6B1AE /* LatestChatIcon.48-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BDE21760314400D6B1AE /* LatestChatIcon.48-Active.png */; };
 		CDF1BDE51760314400D6B1AE /* LatestChatIcon.48-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BDE21760314400D6B1AE /* LatestChatIcon.48-Active.png */; };
