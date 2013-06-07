@@ -197,7 +197,7 @@
     // Use the persisted orderByPostDate option to set the button in the grippybar
     orderByPostDate = [[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"];
     if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        orderByPostDateButton.tintColor = orderByPostDate ? nil : [UIColor lcStupidColor];
+        orderByPostDateButton.tintColor = orderByPostDate ? nil : [UIColor lcSelectionGrayColor];
     }
     else {
         [grippyBar setOrderByPostDateWithValue:orderByPostDate];
