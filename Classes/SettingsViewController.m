@@ -189,11 +189,7 @@
 }
 
 - (void)resignAndToggle {
-    [usernameField resignFirstResponder];
-    [passwordField resignFirstResponder];
-    [serverField resignFirstResponder];
-    [picsUsernameField resignFirstResponder];
-    [picsPasswordField resignFirstResponder];
+    [[self view] endEditing:YES];
     
     [self.viewDeckController toggleLeftView];
 }

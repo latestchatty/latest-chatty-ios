@@ -113,10 +113,7 @@
 }
 
 - (void)resignAndToggle {
-    // Resign all three text fields from first responder status and toggle the left deck view controller
-    [termsField resignFirstResponder];
-    [authorField resignFirstResponder];
-    [parentAuthorField resignFirstResponder];
+    [[self view] endEditing:YES];
     
     [self.viewDeckController toggleLeftView];
 }
