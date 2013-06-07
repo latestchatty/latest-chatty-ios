@@ -43,7 +43,7 @@
 						<reference key="NSWindow"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xODQzMTM3MjU1IDAuMTg0MzEzNzI1NSAwLjE5NjA3ODQzMTQAA</bytes>
+							<bytes key="NSRGB">MC4xNTY4NjI3NDUxIDAuMTU2ODYyNzQ1MSAwLjE2ODYyNzQ1MQA</bytes>
 						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -60,7 +60,7 @@
 						<int key="IBUISeparatorStyle">1</int>
 						<object class="NSColor" key="IBUISeparatorColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xODQzMTM3MjU1IDAuMTg0MzEzNzI1NSAwLjE5NjA3ODQzMTQgMC41AA</bytes>
+							<bytes key="NSRGB">MC4xNTY4NjI3NDUxIDAuMTU2ODYyNzQ1MSAwLjE2ODYyNzQ1MSAwLjgAA</bytes>
 						</object>
 						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
