@@ -451,7 +451,7 @@
 //    NSLog(@"%@", [NSString hexFromUIColor:[Post colorForPostExpiration:post.date]]);
 //    NSLog(@"%@", [NSString rgbaFromUIColor:[Post colorForPostExpiration:post.date]]);
 //    NSLog(@"%@", [NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]]);
-    [htmlTemplate setString:[NSString rgbaFromUIColor:[Post colorForPostExpiration:post.date]] forKey:@"expirationColor"];
+    [htmlTemplate setString:[NSString rgbaFromUIColor:[Post colorForPostExpiration:post.date withCategory:post.category]] forKey:@"expirationColor"];
     [htmlTemplate setString:[NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]] forKey:@"expirationSize"];
     
     NSString *body = [self postBodyWithYoutubeWidgets:post.body];

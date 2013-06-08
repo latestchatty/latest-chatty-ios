@@ -9,6 +9,7 @@
 #import "Post.h"
 
 static NSMutableDictionary *categoryColorMapping;
+static NSMutableDictionary *expirationColorMapping;
 
 @implementation Post
 
@@ -41,6 +42,15 @@ static NSMutableDictionary *categoryColorMapping;
     [categoryColorMapping setObject:[UIColor lcStupidColor] forKey:@"stupid"];
     [categoryColorMapping setObject:[UIColor lcPoliticalColor] forKey:@"political"];
     [categoryColorMapping setObject:[UIColor lcNotWorkSafeColor] forKey:@"nws"];
+    
+    expirationColorMapping = [[NSMutableDictionary alloc] init];
+    [expirationColorMapping setObject:[UIColor lcExpiredColor] forKey:@"expired"];
+    [expirationColorMapping setObject:[UIColor lcExpirationOnTopicColor] forKey:@"ontopic"];
+    [expirationColorMapping setObject:[UIColor lcExpirationInformativeColor] forKey:@"informative"];
+    [expirationColorMapping setObject:[UIColor lcExpirationOffTopicColor] forKey:@"offtopic"];
+    [expirationColorMapping setObject:[UIColor lcExpirationStupidColor] forKey:@"stupid"];
+    [expirationColorMapping setObject:[UIColor lcExpirationPoliticalColor] forKey:@"political"];
+    [expirationColorMapping setObject:[UIColor lcExpirationNotWorkSafeColor] forKey:@"nws"];
 }
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName {
@@ -49,7 +59,7 @@ static NSMutableDictionary *categoryColorMapping;
 }
 
 // Return a color according to an 18 hour post date expiration
-+ (UIColor *)colorForPostExpiration:(NSDate *)date {
++ (UIColor *)colorForPostExpiration:(NSDate *)date withCategory:(NSString *)categoryName {
     UIColor *color;
     
     NSTimeInterval ti = [date timeIntervalSinceNow];
@@ -60,9 +70,9 @@ static NSMutableDictionary *categoryColorMapping;
     }
     
     if (hours >= 18) {
-        color = [UIColor lcPostExpiredColor];
+        color = [expirationColorMapping objectForKey:@"expired"];
     } else {
-        color = [UIColor lcPostExpirationColor];
+        color = [expirationColorMapping objectForKey:categoryName];
     }
     
     return color ? color : [UIColor clearColor];
@@ -384,7 +394,7 @@ static NSMutableDictionary *categoryColorMapping;
 }
 
 - (UIColor *)expirationColor {
-    return [[self class] colorForPostExpiration:self.date];
+    return [[self class] colorForPostExpiration:self.date withCategory:self.category];
 }
 
 - (BOOL)visible {

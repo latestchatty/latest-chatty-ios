@@ -36,9 +36,14 @@
 + (UIColor *)lcSelectionGrayColor;
 + (UIColor *)lcTableBackgroundColor;
 
-// Expiration colors
-+ (UIColor *)lcPostExpirationColor;
-+ (UIColor *)lcPostExpiredColor;
+// Post expiration progress colors
++ (UIColor *)lcExpiredColor;
++ (UIColor *)lcExpirationOnTopicColor;
++ (UIColor *)lcExpirationInformativeColor;
++ (UIColor *)lcExpirationOffTopicColor;
++ (UIColor *)lcExpirationStupidColor;
++ (UIColor *)lcExpirationPoliticalColor;
++ (UIColor *)lcExpirationNotWorkSafeColor;
 
 // Category colors
 + (UIColor *)lcInformativeColor;

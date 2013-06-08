@@ -43,7 +43,7 @@
     [htmlTemplate setString:post.author forKey:@"author"];
 
     //set the expiration stripe's background color and size in the HTML template
-    [htmlTemplate setString:[NSString rgbaFromUIColor:[Post colorForPostExpiration:post.date]] forKey:@"expirationColor"];
+    [htmlTemplate setString:[NSString rgbaFromUIColor:[Post colorForPostExpiration:post.date withCategory:post.category]] forKey:@"expirationColor"];
     [htmlTemplate setString:[NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]] forKey:@"expirationSize"];
 
     [htmlTemplate setString:post.body forKey:@"body"];

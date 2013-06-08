@@ -56,7 +56,7 @@
 @property (assign) BOOL pinned;
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName;
-+ (UIColor *)colorForPostExpiration:(NSDate *)date;
++ (UIColor *)colorForPostExpiration:(NSDate *)date withCategory:(NSString *)categoryName;
 + (CGFloat)sizeForPostExpiration:(NSDate *)date;
 + (UIImage *)imageForPostExpiration:(NSDate *)date withParticipant:(BOOL)hasParticipant;
 

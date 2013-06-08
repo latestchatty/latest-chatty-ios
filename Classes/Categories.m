@@ -104,13 +104,33 @@
     return [UIColor colorWithRed:47.0/255.0 green:47.0/255.0 blue:50.0/255.0 alpha:1.0];
 }
 
-// Expiration colors
-+ (UIColor *)lcPostExpirationColor {
-    return [UIColor colorWithRed:151.0/255.0 green:154.0/255.0 blue:161.0/255.0 alpha:0.50];
+// Post expiration progress colors
++ (UIColor *)lcExpiredColor {
+    return [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:0.50];
 }
 
-+ (UIColor *)lcPostExpiredColor {
-    return [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:0.50];
++ (UIColor *)lcExpirationOnTopicColor {
+    return [UIColor colorWithRed:78.0/255.0 green:79.0/255.0 blue:83.0/255.0 alpha:0.50];
+}
+
++ (UIColor *)lcExpirationInformativeColor {
+    return [UIColor colorWithRed:6.0/255.0 green:82.0/255.0 blue:112.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcExpirationOffTopicColor {
+    return [UIColor colorWithRed:126.0/255.0 green:127.0/255.0 blue:130.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcExpirationStupidColor {
+    return [UIColor colorWithRed:10.0/255.0 green:80.0/255.0 blue:43.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcExpirationPoliticalColor {
+    return [UIColor colorWithRed:116.0/255.0 green:77.0/255.0 blue:34.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcExpirationNotWorkSafeColor {
+    return [UIColor colorWithRed:104.0/255.0 green:28.0/255.0 blue:31.0/255.0 alpha:1.0];
 }
 
 // Category colors
