@@ -59,9 +59,9 @@
         if (message.unread) messageCount++;
     }
     
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
+//    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     
-    //keep track if an index path had been selected, and reset it after the table is reloaded
+    // keep track if an index path had been selected, and reset it after the table is reloaded
     NSIndexPath *selectedIndex = [self.tableView indexPathForSelectedRow];
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
