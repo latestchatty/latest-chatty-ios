@@ -170,10 +170,10 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIBarStyle">1</int>
 						<array class="NSMutableArray" key="IBUIItems">
-							<object class="IBUIBarButtonItem" id="108130307">
+							<object class="IBUIBarButtonItem" id="30274924">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">TagIcon.png</string>
+									<string key="NSResourceName">RefreshIcon.png</string>
 								</object>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<float key="IBUIWidth">44</float>
@@ -184,10 +184,10 @@
 								<reference key="IBUIToolbar" ref="133727155"/>
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
-							<object class="IBUIBarButtonItem" id="30274924">
+							<object class="IBUIBarButtonItem" id="108130307">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">RefreshIcon.24.png</string>
+									<string key="NSResourceName">TagIcon.png</string>
 								</object>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<float key="IBUIWidth">44</float>
@@ -500,16 +500,16 @@
 						<int key="objectID">67</int>
 						<reference key="object" ref="133727155"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="108130307"/>
 							<reference ref="696156103"/>
 							<reference ref="243486225"/>
 							<reference ref="175537488"/>
-							<reference ref="30274924"/>
 							<reference ref="940797705"/>
 							<reference ref="304756173"/>
 							<reference ref="184644671"/>
 							<reference ref="457422172"/>
 							<reference ref="533258268"/>
+							<reference ref="30274924"/>
+							<reference ref="108130307"/>
 							<reference ref="783391781"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
@@ -765,7 +765,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="Pushpin-Inactive.png">{32, 32}</string>
-			<string key="RefreshIcon.24.png">{24, 24}</string>
+			<string key="RefreshIcon.png">{24, 24}</string>
 			<string key="ReplyIcon.24.png">{24, 24}</string>
 			<string key="TagIcon.png">{24, 24}</string>
 			<string key="chrono.png">{24, 24}</string>
