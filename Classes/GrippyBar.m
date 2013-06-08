@@ -71,12 +71,18 @@
         
         // Only needed for mods
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"modTools"]) {
-            UIButton *modButton = [[[UIButton alloc] initWithFrame:CGRectMake(92, 0, 46, 48)] autorelease];
+            CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 0 : 92;
+            UIButton *modButton = [[[UIButton alloc] initWithFrame:CGRectMake(leftEdge, 0, 46, 48)] autorelease];
             [modButton addTarget:self action:@selector(tappedModButton) forControlEvents:UIControlEventTouchUpInside];
             [modButton setImage:[UIImage imageNamed:@"ModGavel.png"] forState:UIControlStateNormal];
             modButton.showsTouchWhenHighlighted = YES;
             modButton.alpha = 0.5;
-            modButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                modButton.autoresizingMask = UIViewAutoresizingNone;
+            } else {
+                modButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+            }
+
             [self addSubview:modButton];
         }
         
