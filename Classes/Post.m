@@ -62,18 +62,22 @@ static NSMutableDictionary *expirationColorMapping;
 + (UIColor *)colorForPostExpiration:(NSDate *)date withCategory:(NSString *)categoryName {
     UIColor *color;
     
-    NSTimeInterval ti = [date timeIntervalSinceNow];
-    NSInteger hours = (ti / 3600) * -1;
+    // removed special color for expired posts, just letting the category color through now
+    // but didn't want to remove this logic in case it's used in the future
+//    NSTimeInterval ti = [date timeIntervalSinceNow];
+//    NSInteger hours = (ti / 3600) * -1;
+//    
+//    if (ti == 0) {
+//        return [UIColor clearColor];
+//    }
     
-    if (ti == 0) {
-        return [UIColor clearColor];
-    }
+//    if (hours >= 18) {
+//        color = [expirationColorMapping objectForKey:@"expired"];
+//    } else {
+//        color = [expirationColorMapping objectForKey:categoryName];
+//    }
     
-    if (hours >= 18) {
-        color = [expirationColorMapping objectForKey:@"expired"];
-    } else {
-        color = [expirationColorMapping objectForKey:categoryName];
-    }
+    color = [expirationColorMapping objectForKey:categoryName];
     
     return color ? color : [UIColor clearColor];
 }
