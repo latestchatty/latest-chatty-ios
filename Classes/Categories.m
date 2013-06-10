@@ -154,6 +154,27 @@
     return [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:1.0];
 }
 
+// Reply text colors
++ (UIColor *)lcReplyLevel1Color {
+    return [UIColor colorWithRed:218.0/255.0 green:225.0/255.0 blue:229.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcReplyLevel2Color {
+    return [UIColor colorWithRed:194.0/255.0 green:200.0/255.0 blue:204.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcReplyLevel3Color {
+    return [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:189.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcReplyLevel4Color {
+    return [UIColor colorWithRed:157.0/255.0 green:163.0/255.0 blue:166.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcReplyLevel5Color {
+    return [UIColor colorWithRed:150.0/255.0 green:155.0/255.0 blue:158.0/255.0 alpha:1.0];
+}
+
 // Settings colors
 + (UIColor *)lcSwitchOnColor {
     return [UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0];
@@ -166,8 +187,6 @@
 + (UIColor *)lcSliderThumbColor {
     return [UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0];
 }
-
-//[UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0]
 
 @end
 

@@ -52,6 +52,13 @@
 + (UIColor *)lcPoliticalColor;
 + (UIColor *)lcNotWorkSafeColor;
 
+// Reply text colors
++ (UIColor *)lcReplyLevel1Color;
++ (UIColor *)lcReplyLevel2Color;
++ (UIColor *)lcReplyLevel3Color;
++ (UIColor *)lcReplyLevel4Color;
++ (UIColor *)lcReplyLevel5Color;
+
 // Settings colors
 + (UIColor *)lcSwitchOnColor;
 + (UIColor *)lcSwitchOffColor;

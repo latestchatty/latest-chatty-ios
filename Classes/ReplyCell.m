@@ -25,6 +25,9 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    // Set the highlight text color to white
+    preview.highlightedTextColor = [UIColor whiteColor];
+    
     // Set the cell text
     preview.text = post.preview;
     
@@ -44,18 +47,58 @@
     
     preview.frame = CGRectMake(indentation, 0, previewWidth, self.frame.size.height);
     
-    // Choose a text color based on time level of the post
-    if (post.timeLevel >= 4) {
-        grayBullet.alpha = 0.2;
-    } else {
-        grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
-    }
+//    // Choose a text color based on time level of the post
+//    if (post.timeLevel >= 4) {
+//        grayBullet.alpha = 0.2;
+//    } else {
+//        grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+//    }
     
-    // Set latest to bold
-    if (post.timeLevel == 0) {
-        preview.font = [UIFont boldSystemFontOfSize:14];
-    } else {
-        preview.font = [UIFont systemFontOfSize:14];
+    /* RGB values
+     0  255,255,255
+     1  218,225,229
+     2  194,200,204
+     3  183,187,189
+     4  157,163,166
+     >5 150,155,158
+     */
+    
+    // Set preview text label color by reply order
+    // Top 5 most recent posts increase in white level until fully white with the most recent reply
+    // Modify alpha of non-participant bullet to match the preview text color
+    NSLog(@"timeLevel: %i", post.timeLevel);
+    switch (post.timeLevel) {
+        case 0:
+            grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+            // Set latest to bold
+            preview.font = [UIFont boldSystemFontOfSize:14];
+            preview.textColor = [UIColor whiteColor];
+            break;
+        case 1:
+            grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+            preview.font = [UIFont systemFontOfSize:14];
+            preview.textColor = [UIColor lcReplyLevel1Color];
+            break;
+        case 2:
+            grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+            preview.font = [UIFont systemFontOfSize:14];
+            preview.textColor = [UIColor lcReplyLevel2Color];
+            break;
+        case 3:
+            grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+            preview.font = [UIFont systemFontOfSize:14];
+            preview.textColor = [UIColor lcReplyLevel3Color];
+            break;
+        case 4:
+            grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+            preview.font = [UIFont systemFontOfSize:14];
+            preview.textColor = [UIColor lcReplyLevel4Color];
+            break;            
+        default:
+            grayBullet.alpha = 0.4;
+            preview.font = [UIFont systemFontOfSize:14];
+            preview.textColor = [UIColor lcReplyLevel5Color];
+            break;
     }
     
     // Only show blue bullet if this is my post.
