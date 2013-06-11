@@ -66,7 +66,6 @@
     // Set preview text label color by reply order
     // Top 5 most recent posts increase in white level until fully white with the most recent reply
     // Modify alpha of non-participant bullet to match the preview text color
-    NSLog(@"timeLevel: %i", post.timeLevel);
     switch (post.timeLevel) {
         case 0:
             grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
