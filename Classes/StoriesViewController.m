@@ -50,6 +50,8 @@
 //    self.navigationItem.rightBarButtonItem = latestChattyButton;
 //    [latestChattyButton release];
     
+    self.tableView.hidden = YES;
+    
     pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
     [pull setDelegate:self];
     [self.tableView addSubview:pull];
@@ -74,6 +76,8 @@
     [super didFinishLoadingAllModels:models otherData:otherData];
     
     self.title = @"Stories";
+    
+    self.tableView.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {

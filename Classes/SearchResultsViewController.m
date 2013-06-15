@@ -32,6 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refresh:self];
+    
+    self.tableView.hidden = YES;
 
     pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
     [pull setDelegate:self];
@@ -72,6 +74,8 @@
 		// Refresh the table
 		[self.tableView reloadData];
 	}
+    
+    self.tableView.hidden = NO;
 }
 
 #pragma mark Table view methods

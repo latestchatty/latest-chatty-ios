@@ -50,6 +50,8 @@
     composeButton.enabled = NO;
     self.navigationItem.rightBarButtonItem = composeButton;
     
+    self.tableView.hidden = YES;
+    
     pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
     [pull setDelegate:self];
     [self.tableView addSubview:pull];
@@ -88,6 +90,7 @@
     
     self.title = @"Messages";
     self.navigationItem.rightBarButtonItem.enabled = YES;
+    self.tableView.hidden = NO;
 }
 
 - (void)didFailToLoadModels {
