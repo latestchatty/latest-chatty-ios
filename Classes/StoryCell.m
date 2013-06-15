@@ -28,6 +28,10 @@
     preview.text      = story.preview;
     timestamp.text    = [Story formatDate:story.date];
     commentCount.text = [NSString stringWithFormat:@"%i", story.commentCount];
+    
+    // force white text color on highlight
+    preview.highlightedTextColor = [UIColor whiteColor];
+    timestamp.highlightedTextColor = [UIColor whiteColor];
 }
 
 - (void)dealloc {

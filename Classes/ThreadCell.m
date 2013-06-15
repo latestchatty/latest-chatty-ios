@@ -29,6 +29,10 @@
 	author.text       = rootPost.author;
 	preview.text      = rootPost.preview;
 	date.text         = [Post formatDate:rootPost.date];
+    
+    // force white text color on highlight
+    date.highlightedTextColor = [UIColor whiteColor];
+    replyCount.highlightedTextColor = [UIColor whiteColor];
 	
 	NSString* newPostText = nil;
 	if (rootPost.newReplies) {
