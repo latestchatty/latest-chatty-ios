@@ -94,7 +94,7 @@
             preview.textColor = [UIColor lcReplyLevel4Color];
             break;            
         default:
-            grayBullet.alpha = 0.4;
+            grayBullet.alpha = 0.2;
             preview.font = [UIFont systemFontOfSize:14];
             preview.textColor = [UIColor lcReplyLevel5Color];
             break;
