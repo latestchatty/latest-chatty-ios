@@ -288,11 +288,11 @@
             
             // Create a dictionary to convert controller type strings to class objects
             NSMutableDictionary *controllerClassLookup = [NSMutableDictionary dictionary];
-            [controllerClassLookup setObject:[RootViewController class]        forKey:@"Root"];
+            [controllerClassLookup setObject:[RootViewController class]    forKey:@"Root"];
             [controllerClassLookup setObject:[StoriesViewController class] forKey:@"Stories"];
-            [controllerClassLookup setObject:[StoryViewController class]     forKey:@"Story"];
-            [controllerClassLookup setObject:[ChattyViewController class]    forKey:@"Chatty"];
-            [controllerClassLookup setObject:[ThreadViewController class]    forKey:@"Thread"];
+            [controllerClassLookup setObject:[StoryViewController class]   forKey:@"Story"];
+            [controllerClassLookup setObject:[ChattyViewController class]  forKey:@"Chatty"];
+            [controllerClassLookup setObject:[ThreadViewController class]  forKey:@"Thread"];
             [controllerClassLookup setObject:[BrowserViewController class] forKey:@"Browser"];
             
             for (NSDictionary *dictionary in controllerDictionaries) {
