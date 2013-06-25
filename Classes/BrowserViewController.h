@@ -17,6 +17,7 @@
     UIBarButtonItem *actionButton;
     UIToolbar *bottomToolbar;
     BOOL isShackLOL;
+    BOOL isCredits;
     
     UIActionSheet *theActionSheet;
     UIPopoverController *popoverController;
@@ -31,9 +32,13 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
 @property (nonatomic, retain) IBOutlet UIToolbar *bottomToolbar;
 @property (nonatomic, assign) BOOL isShackLOL;
+@property (nonatomic, assign) BOOL isCredits;
 
 - (id)initWithRequest:(NSURLRequest *)request;
-- (id)initWithRequest:(NSURLRequest *)request title:(NSString*)title isForShackLOL:(BOOL)isForShackLOL;
+- (id)initWithRequest:(NSURLRequest *)request
+                title:(NSString*)title
+        isForShackLOL:(BOOL)isForShackLOL
+           isForCredits:(BOOL)isForCredits;
 
 - (IBAction)action:(id)sender;
 - (IBAction)refreshWebView:(id)sender;

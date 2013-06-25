@@ -255,7 +255,7 @@
 #pragma mark Table View Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 4;
+	return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -274,6 +274,10 @@
 		case 3:
 			return 5;
 			break;
+            
+        case 4:
+            return 1;
+            break;
 			
 		default:
 			return 0;
@@ -298,6 +302,10 @@
 		case 3:
 			return @"Post Categories";
 			break;
+        
+        case 4:
+            return @"About";
+            break;
 			
 		default:
 			return 0;
@@ -455,8 +463,31 @@
 				break;
 		}
 	}
+    
+    if (indexPath.section == 4) {
+        UIButton *creditsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [creditsButton setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
+
+        [creditsButton setFrame:CGRectMake(0, 0, 90, 30)];
+        [creditsButton setTitle:@"View" forState:UIControlStateNormal];
+        [creditsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        creditsButton.titleLabel.shadowColor = [UIColor lcTextShadowColor];
+        creditsButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
+        
+        [creditsButton addTarget:self action:@selector(pushCreditsView) forControlEvents:UIControlEventTouchUpInside];
+
+        cell.accessoryView = creditsButton;
+        cell.textLabel.text = @"Credits:";
+    }
 
 	return [cell autorelease];
+}
+
+- (void)pushCreditsView {
+    NSString *urlString = @"http://mccrager.com/latestchatty/credits";
+    UIViewController *viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]] title:@"Credits" isForShackLOL:NO isForCredits:YES] autorelease];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

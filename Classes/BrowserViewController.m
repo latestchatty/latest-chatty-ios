@@ -13,7 +13,7 @@
 @implementation BrowserViewController
 
 @synthesize request;
-@synthesize webView, backButton, forwardButton, spinner, mainToolbar, actionButton, bottomToolbar, isShackLOL;
+@synthesize webView, backButton, forwardButton, spinner, mainToolbar, actionButton, bottomToolbar, isShackLOL, isCredits;
 
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
@@ -23,13 +23,17 @@
 }
 
 //Patch-E: new constructor to support Shack[LOL]-tergration. Overrides the title and if the web view is to point to the Shack[LOL] site, a menu button is created that fires the lolMenu selector.
-- (id)initWithRequest:(NSURLRequest*)_request title:(NSString*)title isForShackLOL:(BOOL)isForShackLOL {
+- (id)initWithRequest:(NSURLRequest*)_request
+                title:(NSString*)title
+        isForShackLOL:(BOOL)isForShackLOL
+           isForCredits:(BOOL)isForCredits {
     self = [super initWithNib];
     self.request = _request;
     self.title = title;
     self.isShackLOL = isForShackLOL;
+    self.isCredits = isForCredits;
  
-    if (self.isShackLOL) {
+    if (isForShackLOL) {
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
                                                                            style:UIBarButtonItemStyleBordered
