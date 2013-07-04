@@ -75,6 +75,13 @@
 		[self.tableView reloadData];
 	}
     
+    if (self.posts.count == 0) {
+        [UIAlertView showSimpleAlertWithTitle:@"Search"
+                                      message:@"No results found for entered criteria."];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
     self.tableView.hidden = NO;
 }
 

@@ -90,6 +90,13 @@
     
     self.title = @"Messages";
     self.navigationItem.rightBarButtonItem.enabled = YES;
+    
+    if (self.messages.count == 0) {
+        [UIAlertView showSimpleAlertWithTitle:@"Messages"
+                                      message:@"No messages found."];
+        return;
+    }
+    
     self.tableView.hidden = NO;
 }
 
