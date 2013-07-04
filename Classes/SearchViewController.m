@@ -200,6 +200,7 @@
         // title label properties
         [btn setTitle:searchTitle forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 6.0, 0, 6.0)];        
         CGFloat titleFontSize = 15.0f;
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             titleFontSize += 3.0f;
@@ -207,7 +208,10 @@
         [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:titleFontSize]];
         [btn.titleLabel setShadowColor:[UIColor lcTextShadowColor]];
         [btn.titleLabel setShadowOffset:CGSizeMake(0, -1)];
-        
+        [btn.titleLabel setMinimumFontSize:10.0f];
+        [btn.titleLabel setAdjustsFontSizeToFitWidth:YES];
+        [btn.titleLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
+
         // send a message to a new search receiver that uses the custom properties on the subclassed button
         [btn addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
         
