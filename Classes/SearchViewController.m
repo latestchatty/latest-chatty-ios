@@ -8,6 +8,8 @@
 
 #import "SearchViewController.h"
 
+#import "RecentSearchButton.h"
+
 @implementation SearchViewController
 
 - (id)initWithNib {
@@ -109,7 +111,18 @@
     //moved call to modeChanged in viewDidLoad so that it only ever gets called on view load instead of everytime
     //the view appears, was causing a crash on iPhone landscape when scrolled down, did a search, and hit back to
     //bring search back into view
+    segmentedBar.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"searchSegmented"];
     [self modeChanged];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    // resize the scroll view on rotation
+    [self sizeRecentSearchScrollView];
+}
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    // scroll the scroll view to the top on rotation
+    [recentSearchScrollView setContentOffset:CGPointZero animated:NO];
 }
 
 - (void)resignAndToggle {
@@ -118,7 +131,119 @@
     [self.viewDeckController toggleLeftView];
 }
 
+- (void)showRecentSearchView {
+    // resign first responder from all inputs
+    [[self view] endEditing:YES];
+    
+    // show the recent search view
+    [recentSearchView setFrame:self.view.frame];
+    CGFloat yFrameOffset = 40.0f;
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        yFrameOffset += 15.0f;
+    }
+    [recentSearchView setFrameY:yFrameOffset];
+    [recentSearchView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [self.view addSubview:recentSearchView];
+    
+    for (UIView *subview in [recentSearchScrollView subviews]) {
+        [subview removeFromSuperview];
+    }
+    
+    // get the recent searches array
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *recentSearches = [NSMutableArray arrayWithArray:[defaults objectForKey:@"recentSearches"]];
+    
+    CGFloat yButtonOffset = 10.0f;
+    CGFloat buttonHeight = 44.0f;
+    // loop over the recent searches dictionary array in reverse
+    for (NSDictionary *dict in [[recentSearches reverseObjectEnumerator] allObjects]) {
+        // generate a button for each recent search
+        RecentSearchButton *btn = [RecentSearchButton buttonWithType:UIButtonTypeCustom];
+        
+        // grab the data for this recent search 
+        NSString *terms = [NSString stringWithString:[dict valueForKey:@"term"]];
+        NSString *author = [NSString stringWithString:[dict valueForKey:@"author"]];
+        NSString *parent = [NSString stringWithString:[dict valueForKey:@"parent"]];
+        
+        // pass the data to properties on the subclassed button
+        [btn setSearchTerms:terms];
+        [btn setSearchAuthor:author];
+        [btn setSearchParentAuthor:parent];
+
+        // craft the title for the button based on the search
+        NSMutableString *combinedTitle = [[[NSMutableString alloc] init] autorelease];
+        
+        // some ugly string manip concat to achieve: "Terms: term | Author: author | Parent: parent"
+        // for the button title
+        BOOL hasTerms = NO;
+        if ([terms length] > 0) {
+            [combinedTitle appendFormat:@"Terms: %@", terms];
+            hasTerms = YES;
+        }
+        BOOL hasAuthor = NO;
+        if ([author length] > 0) {
+            [combinedTitle appendFormat:@"%@Author: %@", (hasTerms ? @" | " : @""), author];
+            hasAuthor = YES;
+        }
+        if ([parent length] > 0) {
+            [combinedTitle appendFormat:@"%@Parent: %@", (hasTerms || hasAuthor ? @" | " : @""), parent];
+        }
+        
+        // set title of button to the search input text
+        NSString *searchTitle = [NSString stringWithFormat:@"%@", combinedTitle];
+        
+        // background and frame properties
+        [btn setBackgroundImage:[[UIImage imageNamed:@"BlueButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forState:UIControlStateNormal];
+        [btn setFrame:CGRectMake(segmentedBar.frameX, yButtonOffset, segmentedBar.frameWidth, buttonHeight)];
+        [btn setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        
+        // title label properties
+        [btn setTitle:searchTitle forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        CGFloat titleFontSize = 15.0f;
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            titleFontSize += 3.0f;
+        }
+        [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:titleFontSize]];
+        [btn.titleLabel setShadowColor:[UIColor lcTextShadowColor]];
+        [btn.titleLabel setShadowOffset:CGSizeMake(0, -1)];
+        
+        // send a message to a new search receiver that uses the custom properties on the subclassed button
+        [btn addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
+        
+        // add button to view
+        [recentSearchScrollView addSubview:btn];
+        
+        yButtonOffset += buttonHeight + 10.0f;
+    }
+    [self sizeRecentSearchScrollView];
+}
+
+- (void)sizeRecentSearchScrollView {
+    // loop over the scroll view's subviews to total up their height and offset for the scroll view's content height
+    CGFloat scrollViewHeight = 0.0f;
+    for (UIView *view in recentSearchScrollView.subviews){
+        if (scrollViewHeight < view.frame.origin.y + view.frame.size.height)
+            scrollViewHeight = view.frame.origin.y + view.frame.size.height;
+    }
+    [recentSearchScrollView setContentSize:CGSizeMake(recentSearchView.frameWidth, scrollViewHeight + recentSearchView.frameY + 20.0f)];
+}
+
 - (IBAction)modeChanged {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:segmentedBar.selectedSegmentIndex forKey:@"searchSegmented"];
+    [defaults synchronize];
+    
+    // if is the recent segmented control, show the view else remove it from the superview and let the
+    // reset of the segemented control logic fire
+    if (segmentedBar.selectedSegmentIndex == 4) {
+        [self showRecentSearchView];
+        [recentSearchScrollView setContentOffset:CGPointZero animated:YES];
+        return;
+    } else {
+        [recentSearchView removeFromSuperview];
+    }
+    
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     NSArray *fields = [NSArray arrayWithObjects:termsField, authorField, parentAuthorField, nil];
     for (UITextField *field in fields) {
@@ -132,6 +257,7 @@
     }
     
     UITextField *usernameField = nil;
+    BOOL isCustom = NO;
     
     switch (segmentedBar.selectedSegmentIndex) {
         case 0:
@@ -146,15 +272,21 @@
             usernameField = parentAuthorField;
             break;
             
+        case 3:
+            isCustom = YES;
+            break;
+
         default:
             break;
     }
     
-    if (usernameField) {
+    if (usernameField || isCustom) {
         for (UITextField *field in fields) {
             field.text = @"";
         }
-        
+    }
+    
+    if (usernameField) {
         usernameField.text = username;
         usernameField.enabled = NO;
         usernameField.clearButtonMode = UITextFieldViewModeNever;
@@ -175,7 +307,36 @@
     }
 }
 
+// new search function uses properties from subclassed button to pass on to search results vc init
+- (void)search:(RecentSearchButton*)sender {
+    // create the search results controller and push it
+    SearchResultsViewController *viewController = [[[SearchResultsViewController alloc] initWithTerms:sender.searchTerms
+                                                                                               author:sender.searchAuthor
+                                                                                         parentAuthor:sender.searchParentAuthor] autorelease];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
 - (IBAction)search {
+    // save this search in a dictionary and add it to the recent searches array
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *recentSearches = [NSMutableArray arrayWithArray:[defaults objectForKey:@"recentSearches"]];
+    NSDictionary *searchDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        termsField.text, @"term",
+                                        authorField.text, @"author",
+                                        parentAuthorField.text, @"parent",
+                                        nil];
+    
+    // allowing a max of 10 most recent searches
+    if (recentSearches.count == 10) {
+        [recentSearches removeObjectsInRange:NSMakeRange(0, 1)];
+    }
+    
+    // add the search dictionary and sync
+    [recentSearches addObject:searchDictionary];
+    [defaults setObject:recentSearches forKey:@"recentSearches"];
+    [defaults synchronize];
+    
+    // create the search results controller and push it
     SearchResultsViewController *viewController = [[[SearchResultsViewController alloc] initWithTerms:termsField.text
                                                                                                author:authorField.text
                                                                                          parentAuthor:parentAuthorField.text] autorelease];
@@ -266,7 +427,19 @@
     [parentAuthorField release];
     [inputTable release];
     [segmentedBar release];
+    [recentSearchView release];
+    [searchTerms release];
+    [searchAuthor release];
+    [searchParentAuthor release];
+    [recentSearchScrollView release];
     [super dealloc];
 }
 
+- (void)viewDidUnload {
+    [recentSearchView release];
+    recentSearchView = nil;
+    [recentSearchScrollView release];
+    recentSearchScrollView = nil;
+    [super viewDidUnload];
+}
 @end

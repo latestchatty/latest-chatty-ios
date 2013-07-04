@@ -487,6 +487,8 @@
 		CDF1BE0F17615A2600D6B1AE /* PullToRefreshBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BE0C17615A2600D6B1AE /* PullToRefreshBackground.png */; };
 		CDF1BE1017615A2600D6B1AE /* PullToRefreshBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BE0D17615A2600D6B1AE /* PullToRefreshBackground@2x.png */; };
 		CDF1BE1117615A2600D6B1AE /* PullToRefreshBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF1BE0D17615A2600D6B1AE /* PullToRefreshBackground@2x.png */; };
+		CDF4F8E2177FE83500143015 /* RecentSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F8E1177FE83500143015 /* RecentSearchButton.m */; };
+		CDF4F8E3177FE83500143015 /* RecentSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F8E1177FE83500143015 /* RecentSearchButton.m */; };
 		CDFA3D4E17414D5C0083C9D5 /* button_back_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D4A17414D5C0083C9D5 /* button_back_highlight.png */; };
 		CDFA3D4F17414D5C0083C9D5 /* button_back_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D4A17414D5C0083C9D5 /* button_back_highlight.png */; };
 		CDFA3D5017414D5C0083C9D5 /* button_back_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D4B17414D5C0083C9D5 /* button_back_highlight@2x.png */; };
@@ -904,6 +906,8 @@
 		CDF1BE0717603BDE00D6B1AE /* navbar_bg_landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar_bg_landscape@2x.png"; path = "Assets/navbar_bg_landscape@2x.png"; sourceTree = "<group>"; };
 		CDF1BE0C17615A2600D6B1AE /* PullToRefreshBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PullToRefreshBackground.png; path = Assets/PullToRefreshBackground.png; sourceTree = "<group>"; };
 		CDF1BE0D17615A2600D6B1AE /* PullToRefreshBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PullToRefreshBackground@2x.png"; path = "Assets/PullToRefreshBackground@2x.png"; sourceTree = "<group>"; };
+		CDF4F8E0177FE83500143015 /* RecentSearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentSearchButton.h; sourceTree = "<group>"; };
+		CDF4F8E1177FE83500143015 /* RecentSearchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentSearchButton.m; sourceTree = "<group>"; };
 		CDFA3D4A17414D5C0083C9D5 /* button_back_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_back_highlight.png; path = Assets/button_back_highlight.png; sourceTree = "<group>"; };
 		CDFA3D4B17414D5C0083C9D5 /* button_back_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_back_highlight@2x.png"; path = "Assets/button_back_highlight@2x.png"; sourceTree = "<group>"; };
 		CDFA3D4C17414D5C0083C9D5 /* button_normal_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_normal_highlight.png; path = Assets/button_normal_highlight.png; sourceTree = "<group>"; };
@@ -1445,6 +1449,8 @@
 				FAA5BA751110DE7F0007C34C /* ThreadCell-iPad.xib */,
 				FA5FCE8B0F6F7B6A00878F27 /* TableCellFromNib.h */,
 				FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */,
+				CDF4F8E0177FE83500143015 /* RecentSearchButton.h */,
+				CDF4F8E1177FE83500143015 /* RecentSearchButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2297,6 +2303,7 @@
 				CDF1BDDC175EEDC200D6B1AE /* IISideController.m in Sources */,
 				CDF1BDDE175EEDC200D6B1AE /* IIViewDeckController.m in Sources */,
 				CDF1BDE0175EEDC200D6B1AE /* IIWrapController.m in Sources */,
+				CDF4F8E2177FE83500143015 /* RecentSearchButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2384,6 +2391,7 @@
 				CDF1BDDD175EEDC200D6B1AE /* IISideController.m in Sources */,
 				CDF1BDDF175EEDC200D6B1AE /* IIViewDeckController.m in Sources */,
 				CDF1BDE1175EEDC200D6B1AE /* IIWrapController.m in Sources */,
+				CDF4F8E3177FE83500143015 /* RecentSearchButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

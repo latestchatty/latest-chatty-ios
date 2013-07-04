@@ -134,7 +134,9 @@
                                      [NSNumber numberWithInt:0],    @"lastRefresh",
                                      [NSNumber numberWithInt:1],    @"grippyBarPosition",
                                      [NSNumber numberWithBool:NO],  @"orderByPostDate",
+                                     [NSNumber numberWithInt:0],    @"searchSegmented",
                                      [NSMutableArray array],        @"pinnedPosts",
+                                     [NSMutableArray array],        @"recentSearches",
                                      nil];
     [defaults registerDefaults:defaultSettings];
 
