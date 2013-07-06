@@ -321,24 +321,50 @@
 }
 
 - (IBAction)search {
-    // save this search in a dictionary and add it to the recent searches array
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *recentSearches = [NSMutableArray arrayWithArray:[defaults objectForKey:@"recentSearches"]];
-    NSDictionary *searchDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        termsField.text, @"term",
-                                        authorField.text, @"author",
-                                        parentAuthorField.text, @"parent",
-                                        nil];
-    
-    // allowing a max of 10 most recent searches
-    if (recentSearches.count == 10) {
-        [recentSearches removeObjectsInRange:NSMakeRange(0, 1)];
+    // let's only save searches that a user added input to and weren't standard posts/vanity/replies searches
+    BOOL saveSearch = NO;
+    switch (segmentedBar.selectedSegmentIndex) {
+        case 0:
+            if (termsField.text.length > 0 || parentAuthorField.text.length > 0) saveSearch = YES;
+            break;
+            
+        case 1:
+            if (authorField.text.length > 0 || parentAuthorField.text.length > 0) saveSearch = YES;
+            break;
+            
+        case 2:
+            if (termsField.text.length > 0 || authorField.text.length > 0) saveSearch = YES;
+            break;
+            
+        case 3:
+            // custom segment will always be saved in recent searches
+            saveSearch = YES;
+            break;
+            
+        default:
+            break;
     }
     
-    // add the search dictionary and sync
-    [recentSearches addObject:searchDictionary];
-    [defaults setObject:recentSearches forKey:@"recentSearches"];
-    [defaults synchronize];
+    if (saveSearch) {
+        // save this search in a dictionary and add it to the recent searches array
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *recentSearches = [NSMutableArray arrayWithArray:[defaults objectForKey:@"recentSearches"]];
+        NSDictionary *searchDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                            termsField.text, @"term",
+                                            authorField.text, @"author",
+                                            parentAuthorField.text, @"parent",
+                                            nil];
+        
+        // allowing a max of 10 most recent searches
+        if (recentSearches.count == 10) {
+            [recentSearches removeObjectsInRange:NSMakeRange(0, 1)];
+        }
+        
+        // add the search dictionary and sync
+        [recentSearches addObject:searchDictionary];
+        [defaults setObject:recentSearches forKey:@"recentSearches"];
+        [defaults synchronize];
+    }
     
     // create the search results controller and push it
     SearchResultsViewController *viewController = [[[SearchResultsViewController alloc] initWithTerms:termsField.text
