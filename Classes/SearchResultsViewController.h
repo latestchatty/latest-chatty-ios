@@ -16,15 +16,18 @@
 #import "ThreadCell.h"
 #import "PullToRefreshView.h"
 
-@interface SearchResultsViewController : ModelListViewController<PullToRefreshViewDelegate> {
-  NSArray *posts;
-  
-  NSString *terms;
-  NSString *author;
-  NSString *parentAuthor;
+@interface SearchResultsViewController : ModelListViewController <PullToRefreshViewDelegate> {
+    NSArray *posts;
+
+    NSString *terms;
+    NSString *author;
+    NSString *parentAuthor;
+
+    NSUInteger currentPage;
+    NSUInteger lastPage;
     
-  NSUInteger currentPage;
-  NSUInteger lastPage;
+    BOOL modelFinished;
+    BOOL viewDidAppearFinished;
 }
 
 @property (retain) NSArray *posts;

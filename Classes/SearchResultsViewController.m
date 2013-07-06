@@ -20,7 +20,7 @@
     terms = [searchTerms retain];
     author = [searchAuthor retain];
     parentAuthor = [searchParentAuthor retain];
-    
+
     return self;
 }
 
@@ -39,6 +39,20 @@
     [pull setDelegate:self];
     [self.tableView addSubview:pull];
     [pull finishedLoading];
+}
+
+// handled popping back to search view when no results in both viewDidAppear and in didFinishLoadingAllModels
+// because popping back to the search view immediately after the model finished with no results
+// could sometimes occur before viewDidAppear fired causing a bad visual bug and warning in console
+// capturing which finishes first and eval'ing that along with 0 results to let either method pop back
+- (void)viewDidAppear:(BOOL)animated {
+    if (modelFinished && self.posts.count == 0) {
+        [UIAlertView showSimpleAlertWithTitle:@"Search" message:@"No results found for entered criteria."];
+        [self.navigationController popViewControllerAnimated:YES];
+//        NSLog(@"popping back from viewDidAppear");
+    }
+    
+    viewDidAppearFinished = YES;
 }
 
 - (void)refresh:(id)sender {
@@ -75,10 +89,12 @@
 		[self.tableView reloadData];
 	}
     
-    if (self.posts.count == 0) {
-        [UIAlertView showSimpleAlertWithTitle:@"Search"
-                                      message:@"No results found for entered criteria."];
+    modelFinished = YES;
+    
+    if (viewDidAppearFinished && self.posts.count == 0) {
+        [UIAlertView showSimpleAlertWithTitle:@"Search" message:@"No results found for entered criteria."];
         [self.navigationController popViewControllerAnimated:YES];
+//        NSLog(@"popping back from didFinishLoadingAllModels");
         return;
     }
     
