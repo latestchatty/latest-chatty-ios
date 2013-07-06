@@ -17,11 +17,11 @@
 
 @class ThreadViewController;
 
-@interface ChattyViewController : ModelListViewController <PullToRefreshViewDelegate, UISplitViewControllerDelegate, UINavigationControllerDelegate> {
+@interface ChattyViewController : ModelListViewController <PullToRefreshViewDelegate, UISplitViewControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate> {
     ThreadViewController *threadController;
     
     NSUInteger storyId;
-    NSArray *threads;
+    NSMutableArray *threads;
 
     NSIndexPath *indexPathToSelect;
     NSUInteger currentPage;
@@ -32,7 +32,7 @@
 @property (nonatomic, retain) PullToRefreshView *pull;
 
 @property (assign) NSUInteger storyId;
-@property (retain) NSArray *threads;
+@property (retain) NSMutableArray *threads;
 
 + (ChattyViewController*)chattyControllerWithLatest;
 + (ChattyViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId;

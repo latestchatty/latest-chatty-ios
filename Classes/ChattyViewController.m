@@ -206,10 +206,11 @@
     
 	if (page <= 1) {
 		if (hasPosts) self.storyId = [[models objectAtIndex:0] storyId];
-		self.threads = models;
+        self.threads = [self removeCollapsedThreadsFromArray:models];
 	} else {
         NSMutableArray *mutableThreadsArray = [NSMutableArray arrayWithArray:self.threads];
         NSArray *newThreads = [self removeDuplicateThreadsFromArray:models];
+        newThreads = [self removeCollapsedThreadsFromArray:newThreads];
         [mutableThreadsArray addObjectsFromArray:newThreads];
         self.threads = mutableThreadsArray;
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
@@ -278,6 +279,12 @@
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:threadController];
     }
     
+    if (self.threads.count == 0) {
+        [UIAlertView showSimpleAlertWithTitle:@"LatestChatty"
+                                      message:@"There was an error loading the chatty. Please try again."];
+        return;
+    }
+    
     self.tableView.hidden = NO;
 }
 
@@ -297,6 +304,27 @@
     }];
     
     [mutableThreads removeObjectsAtIndexes:duplicateIndexes];
+    return mutableThreads;
+}
+
+- (NSMutableArray*)removeCollapsedThreadsFromArray:(NSArray*)threadArray {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSMutableArray *mutableThreads = [NSMutableArray arrayWithArray:threadArray];
+    NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
+
+    NSIndexSet *collapseIndexes = [mutableThreads indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        Post *thread = (Post*)obj;
+        
+        for (NSNumber *collapsedThread in collapsedThreads) {
+            if (thread.modelId == [collapsedThread integerValue]) {
+                return YES;
+            }
+        }
+        return NO;
+    }];
+    
+    [mutableThreads removeObjectsAtIndexes:collapseIndexes];
     return mutableThreads;
 }
 
@@ -328,6 +356,13 @@
 		cell.storyId = storyId;
 		cell.rootPost = [threads objectAtIndex:indexPath.row];
 		
+        // initialize long press gesture
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+        longPress.minimumPressDuration = 2.0; //seconds
+        longPress.delegate = self;
+        [cell addGestureRecognizer:longPress];
+        [longPress release];
+        
 		return cell;
 	} else {
 		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
@@ -350,6 +385,42 @@
 	}
 	
 	return nil;
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+    // only fire on the intial long press detection
+    if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
+        // grab the long press point
+        CGPoint longPressPoint = [gestureRecognizer locationInView:self.tableView];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:longPressPoint];
+        if (indexPath == nil) {
+            //NSLog(@"long press on table view but not on a row");
+        }
+        else {
+            //NSLog(@"long press on table view at row %d", indexPath.row);
+         
+            // get reference to this thread being long pressed
+            Post *thread = [threads objectAtIndex:indexPath.row];
+            // remove this thread from the threads model and animate it out of the table
+            [self.threads removeObject:thread];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+            
+            // save thread's id to collapsed posts array
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
+
+            // allowing a max of 50 collapsed threads, clear the whole array once that threshold occurs
+            if (collapsedThreads.count > 50) {
+                [collapsedThreads removeAllObjects];
+            }
+
+            // add the collapsed thread id and sync
+            [collapsedThreads addObject:[NSNumber numberWithInt:thread.modelId]];
+            [defaults setObject:collapsedThreads forKey:@"collapsedThreads"];
+            [defaults synchronize];
+        }
+    }
 }
 
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
