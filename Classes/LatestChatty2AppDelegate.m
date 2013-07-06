@@ -136,6 +136,7 @@
                                      [NSNumber numberWithBool:NO],  @"orderByPostDate",
                                      [NSNumber numberWithInt:0],    @"searchSegmented",
                                      [NSMutableArray array],        @"pinnedPosts",
+                                     [NSMutableArray array],        @"collapsedThreads",
                                      [NSMutableArray array],        @"recentSearches",
                                      nil];
     [defaults registerDefaults:defaultSettings];
