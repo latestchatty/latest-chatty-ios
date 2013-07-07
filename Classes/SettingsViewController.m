@@ -205,19 +205,22 @@
         self.navigationItem.leftBarButtonItem = menuButton;
         [menuButton release];
         
-        UIBarButtonItem *saveDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
-                                                                           style:UIBarButtonItemStyleDone
-                                                                          target:self
-                                                                          action:@selector(save)];
-
-        [saveDoneButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
-        
-        self.navigationItem.rightBarButtonItem = saveDoneButton;
-
-        [saveDoneButton release];
-    } else {
-        [saveButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
+//        UIBarButtonItem *saveDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+//                                                                           style:UIBarButtonItemStyleDone
+//                                                                          target:self
+//                                                                          action:@selector(save)];
+//
+//        [saveDoneButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
+//        
+//        self.navigationItem.rightBarButtonItem = saveDoneButton;
+//
+//        [saveDoneButton release];
     }
+//    else {
+//        [saveButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
+//    }
+    
+    [saveButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
     
     [tableView setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
     [tableView setBackgroundView:nil];
@@ -475,7 +478,7 @@
         creditsButton.titleLabel.shadowColor = [UIColor lcTextShadowColor];
         creditsButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
         
-        [creditsButton addTarget:self action:@selector(pushCreditsView) forControlEvents:UIControlEventTouchUpInside];
+        [creditsButton addTarget:self action:@selector(openCredits) forControlEvents:UIControlEventTouchUpInside];
 
         cell.accessoryView = creditsButton;
         cell.textLabel.text = @"Credits:";
@@ -484,10 +487,27 @@
 	return [cell autorelease];
 }
 
-- (void)pushCreditsView {
-    NSString *urlString = @"http://mccrager.com/latestchatty/credits";
-    UIViewController *viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]] title:@"Credits" isForShackLOL:NO isForCredits:YES] autorelease];
-    [self.navigationController pushViewController:viewController animated:YES];
+- (void)openCredits {
+    NSURL *url = [NSURL URLWithString:@"http://mccrager.com/latestchatty/credits"];
+    [[UIApplication sharedApplication] openURL:url];
+    
+    BOOL useSafari = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafari"];
+    BOOL useChrome = [[NSUserDefaults standardUserDefaults] boolForKey:@"useChrome"];
+    
+    //open current URL in Safari (not guaranteed to open in Safari, could be a iTunes/App Store URL that opens in an external app, most of the time the URL will get handled by Safari
+    if (useSafari) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    //open current URL in Chrome
+    if (useChrome) {
+        //replace http,https:// with googlechrome://
+        NSURL *chromeURL = [[LatestChatty2AppDelegate delegate] urlAsChromeScheme:url];
+        if (chromeURL != nil) {
+            [[UIApplication sharedApplication] openURL:chromeURL];
+            
+            chromeURL = nil;
+        }
+    }
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
