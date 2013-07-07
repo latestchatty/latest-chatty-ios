@@ -11,6 +11,8 @@
 
 @implementation RootViewController
 
+@synthesize selectedIndex;
+
 - (id)init {
     self = [super initWithNib];
     self.title = @"Home";
@@ -45,8 +47,9 @@
         [self.view.layer setCornerRadius:7.0f];
         [self.view.layer setMasksToBounds:YES];
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        // initialize the index path to chatty row
+        [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
+        [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
     
     // Maintain selection while view is still loaded
@@ -59,12 +62,11 @@
         if (message.unread) messageCount++;
     }
     
-//    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     
     // keep track if an index path had been selected, and reset it after the table is reloaded
-    NSIndexPath *selectedIndex = [self.tableView indexPathForSelectedRow];
     [self.tableView reloadData];
-    [self.tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
     
     [self.messagesSpinner stopAnimating];
     
@@ -153,6 +155,11 @@
     BOOL modal = NO;
     NSString *urlString;
     
+    // save the index path selection if this isn't settings
+    if (indexPath.row != 5) {
+        [self setSelectedIndex:indexPath];
+    }
+    
     switch (indexPath.row) {
         case 0:
             viewController = [StoriesViewController controllerWithNib];
@@ -191,20 +198,25 @@
             break;
             
         case 5:
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) modal = YES;
+            modal = YES;
             viewController = [SettingsViewController controllerWithNib];
+
+            // use the saved index path to re-select the previous index since settings selection should not persist as a modal
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [self.tableView selectRowAtIndexPath:self.selectedIndex animated:YES scrollPosition:UITableViewScrollPositionNone];
+            
             break;
             
-        case 6:
-            urlString = [NSString stringWithFormat:@"http://%@/about", [Model host]];
-            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]] autorelease];
-            
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
-                [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
-                viewController = nil;
-            }
-            break;
+//        case 6:
+//            urlString = [NSString stringWithFormat:@"http://%@/about", [Model host]];
+//            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]] autorelease];
+//            
+//            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
+//                [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
+//                viewController = nil;
+//            }
+//            break;
             
         default:
             [NSException raise:@"too many rows" format:@"This table can only have 6 cells!"];
@@ -218,7 +230,8 @@
 				viewController.modalPresentationStyle = UIModalPresentationFormSheet;
 				[appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
 			} else {
-				[self.navigationController presentModalViewController:viewController animated:YES];
+                [self.viewDeckController toggleLeftView];
+                [self.viewDeckController presentModalViewController:viewController animated:YES];
             }
         } else {
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -232,6 +245,8 @@
 }
 
 - (void)dealloc {
+    self.selectedIndex = nil;
+    
     [messageLoader release];
     [super dealloc];
 }

@@ -19,8 +19,10 @@
 @interface RootViewController : UITableViewController <ModelLoadingDelegate> {
     ModelLoader *messageLoader;
     NSUInteger messageCount;
+    NSIndexPath *selectedIndex;
 }
 
 @property (nonatomic, retain) UIActivityIndicatorView *messagesSpinner;
+@property (nonatomic, retain) NSIndexPath *selectedIndex;
 
 @end
