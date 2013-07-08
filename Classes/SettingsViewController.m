@@ -279,7 +279,7 @@
 			break;
             
         case 4:
-            return 1;
+            return 2;
             break;
 			
 		default:
@@ -468,46 +468,57 @@
 	}
     
     if (indexPath.section == 4) {
-        UIButton *creditsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [creditsButton setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
-
-        [creditsButton setFrame:CGRectMake(0, 0, 90, 30)];
-        [creditsButton setTitle:@"View" forState:UIControlStateNormal];
-        [creditsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
-        creditsButton.titleLabel.shadowColor = [UIColor lcTextShadowColor];
-        creditsButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
-        
-        [creditsButton addTarget:self action:@selector(openCredits) forControlEvents:UIControlEventTouchUpInside];
-
-        cell.accessoryView = creditsButton;
-        cell.textLabel.text = @"Credits:";
+        switch (indexPath.row) {
+			case 0:
+                [button setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
+                
+                [button setFrame:CGRectMake(0, 0, 90, 30)];
+                [button setTitle:@"View" forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                
+                button.titleLabel.shadowColor = [UIColor lcTextShadowColor];
+                button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+                
+                [button addTarget:self action:@selector(openCredits) forControlEvents:UIControlEventTouchUpInside];
+                
+                cell.accessoryView = button;
+                cell.textLabel.text = @"Credits:";
+                
+                break;
+			case 1:
+                [button setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
+                
+                [button setFrame:CGRectMake(0, 0, 90, 30)];
+                [button setTitle:@"View" forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                
+                button.titleLabel.shadowColor = [UIColor lcTextShadowColor];
+                button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+                
+                [button addTarget:self action:@selector(openLicenses) forControlEvents:UIControlEventTouchUpInside];
+                
+                cell.accessoryView = button;
+                cell.textLabel.text = @"Licenses:";
+                
+                break;
+        }
     }
 
 	return [cell autorelease];
 }
 
 - (void)openCredits {
-    NSURL *url = [NSURL URLWithString:@"http://mccrager.com/latestchatty/credits"];
-    [[UIApplication sharedApplication] openURL:url];
-    
-    BOOL useSafari = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafari"];
-    BOOL useChrome = [[NSUserDefaults standardUserDefaults] boolForKey:@"useChrome"];
-    
-    //open current URL in Safari (not guaranteed to open in Safari, could be a iTunes/App Store URL that opens in an external app, most of the time the URL will get handled by Safari
-    if (useSafari) {
-        [[UIApplication sharedApplication] openURL:url];
-    }
-    //open current URL in Chrome
-    if (useChrome) {
-        //replace http,https:// with googlechrome://
-        NSURL *chromeURL = [[LatestChatty2AppDelegate delegate] urlAsChromeScheme:url];
-        if (chromeURL != nil) {
-            [[UIApplication sharedApplication] openURL:chromeURL];
-            
-            chromeURL = nil;
-        }
-    }
+    [self dismissViewControllerAnimated:NO completion:^{
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForCredits" object:nil];
+    }];
+}
+
+- (void)openLicenses {
+    [self dismissViewControllerAnimated:NO completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForLicenses" object:nil];
+    }];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
