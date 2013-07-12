@@ -6,6 +6,7 @@
 //    Copyright __MyCompanyName__ 2009. All rights reserved.
 //
 
+#import "LatestChatty2AppDelegate.h"
 #import "StringTemplate.h"
 #import "Mod.h"
 #import "NoContentController.h"
@@ -177,30 +178,7 @@
 //        }
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForCredits) name:@"PushBrowserForCredits" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
-    
     return YES;
-}
-
-- (void)pushBrowserForCredits {
-    NSString *urlString = @"http://mccrager.com/latestchatty/credits";
-    UIViewController *viewController =
-        [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
-                                                  title:@"Credits"
-                                          isForShackLOL:NO
-                                           isForCredits:YES] autorelease];
-    [self.navigationController pushViewController:viewController animated:YES];
-}
-
-- (void)pushBrowserForLicenses {
-    NSString *urlString = @"http://mccrager.com/latestchatty/licenses";
-    UIViewController *viewController =
-    [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
-                                              title:@"Licenses"
-                                      isForShackLOL:NO
-                                       isForCredits:YES] autorelease];
-    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

@@ -54,6 +54,38 @@
     
     // Maintain selection while view is still loaded
     [self setClearsSelectionOnViewWillAppear:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForCredits) name:@"PushBrowserForCredits" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
+}
+
+- (void)pushBrowserForCredits {
+    NSString *urlString = @"http://mccrager.com/latestchatty/credits";
+    UIViewController *viewController =
+    [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+                                              title:@"Credits"
+                                      isForShackLOL:NO
+                                       isForCredits:YES] autorelease];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
+    } else {
+        [(UINavigationController*)self.viewDeckController.centerController pushViewController:viewController animated:YES];
+    }
+}
+
+- (void)pushBrowserForLicenses {
+    NSString *urlString = @"http://mccrager.com/latestchatty/licenses";
+    UIViewController *viewController =
+    [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+                                              title:@"Licenses"
+                                      isForShackLOL:NO
+                                       isForCredits:YES] autorelease];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
+    } else {
+        [(UINavigationController*)self.viewDeckController.centerController pushViewController:viewController animated:YES];
+    }
+
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
