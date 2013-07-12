@@ -30,6 +30,7 @@
     commentCount.text = [NSString stringWithFormat:@"%i", story.commentCount];
     
     // force white text color on highlight
+    title.highlightedTextColor = [UIColor whiteColor];
     preview.highlightedTextColor = [UIColor whiteColor];
     timestamp.highlightedTextColor = [UIColor whiteColor];
 }

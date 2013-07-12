@@ -31,6 +31,7 @@
 	date.text         = [Post formatDate:rootPost.date];
     
     // force white text color on highlight
+    author.highlightedTextColor = [UIColor whiteColor];
     date.highlightedTextColor = [UIColor whiteColor];
     replyCount.highlightedTextColor = [UIColor whiteColor];
 	

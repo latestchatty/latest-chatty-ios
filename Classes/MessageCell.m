@@ -29,6 +29,11 @@
     subjectLabel.text = message.subject;
     previewLabel.text = message.preview;
     newStripe.hidden = !message.unread;
+    
+    // force white text color on highlight
+    fromLabel.highlightedTextColor = [UIColor whiteColor];
+    dateLabel.highlightedTextColor = [UIColor whiteColor];
+    subjectLabel.highlightedTextColor = [UIColor whiteColor];
 }
 
 - (void)dealloc {
