@@ -316,8 +316,8 @@
     NSIndexSet *collapseIndexes = [mutableThreads indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         Post *thread = (Post*)obj;
         
-        for (NSNumber *collapsedThread in collapsedThreads) {
-            if (thread.modelId == [collapsedThread integerValue]) {
+        for (NSNumber *collapsedThreadId in collapsedThreads) {
+            if (thread.modelId == [collapsedThreadId integerValue]) {
                 return YES;
             }
         }
