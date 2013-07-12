@@ -73,31 +73,7 @@
         //[items insertObject:spinnerItem atIndex:[items count]-1];
         [items insertObject:spinnerItem atIndex:3];
         
-        // Remove action button when using this controller for Shack[LOL]
-        if (isShackLOL) {
-//            for(int i = 0; i < mainToolbar.items.count; i++) {
-//                UIBarButtonItem *item = (UIBarButtonItem *)[items objectAtIndex:i];
-//                if([item isEqual:actionButton]) {
-//                    [items removeObjectAtIndex:i];
-//                }
-//            }
-            // Hardcoded for now to remove the last button in the item list (the action/share button)
-            [items removeObjectAtIndex:[items count]-1];
-        }
         mainToolbar.items = items;
-    }
-
-    // For iPhone with bottom toolbar
-    // Remove action button when using this controller for Shack[LOL]
-    if (bottomToolbar && isShackLOL) {
-        NSMutableArray *items = [NSMutableArray arrayWithArray:bottomToolbar.items];
-        for(int i = 0; i < bottomToolbar.items.count; i++) {
-            UIBarButtonItem *item = (UIBarButtonItem *)[items objectAtIndex:i];
-            if([item isEqual:actionButton]) {
-                 [items removeObjectAtIndex:i];
-            }
-        }
-        bottomToolbar.items = items;
     }
     
     [webView loadRequest:request];
