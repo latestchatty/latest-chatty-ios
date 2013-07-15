@@ -82,7 +82,7 @@
     [centerController setTitle:@"Loading..."];
     
     // Initialize the navigation controller with the center (chatty) controller
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:centerController];
+    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:centerController] autorelease];
     
     // Create the deck controller with the left and center
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController

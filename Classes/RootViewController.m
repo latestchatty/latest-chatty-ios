@@ -220,7 +220,10 @@
             //Patch-E: added new menu item for Shack[LOL]-tergration! Passes user= on the URL to allow lol'ing within the web view on the Shack[LOL] site. Uses new BrowserViewController constructor.
         case 4:
             urlString = [[NSString stringWithFormat:@"http://lol.lmnopc.com?lc_webview=1&user=%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]] title:@"Shack[lol]" isForShackLOL:YES isForCredits:NO] autorelease];
+            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+                                                                       title:@"Shack[lol]"
+                                                               isForShackLOL:YES
+                                                                isForCredits:NO] autorelease];
             
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
@@ -269,7 +272,7 @@
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 [self.navigationController pushViewController:viewController animated:YES];
             } else {
-                self.viewDeckController.centerController = [[UINavigationController alloc] initWithRootViewController:viewController];
+                self.viewDeckController.centerController = [[[UINavigationController alloc] initWithRootViewController:viewController] autorelease];
                 [self.viewDeckController toggleLeftView];
             }
         }
