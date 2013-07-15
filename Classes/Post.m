@@ -111,7 +111,7 @@ static NSMutableDictionary *expirationColorMapping;
     
     UIImage *timerDotImage;
     if (hours >= 18.0f) {
-        timerDotImage = [UIImage imageNamed:[NSString stringWithFormat:[timerDots valueForKey:@"empty"], participantModifier]];
+        timerDotImage = [UIImage imageNamed:[NSString stringWithFormat:[timerDots valueForKey:@"empty"], @""]];
     } else if (hours > 13.5f) {
         timerDotImage = [UIImage imageNamed:[NSString stringWithFormat:[timerDots valueForKey:@"quarter"], participantModifier]];
     } else if (hours > 9.0f) {
