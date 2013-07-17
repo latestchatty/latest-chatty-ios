@@ -261,7 +261,7 @@
     UIProgressView* progressBar = nil;
 	
     [self.view addSubview:activityView];
-	
+    
     if (!progressViewType) {
 		activityText.text = @"Posting comment...";
 		spinner.hidden = NO;
@@ -271,6 +271,7 @@
 		activityText.text = @"Uploading image...";
 		spinner.hidden = YES;
 		uploadBar.hidden = NO;
+        uploadBar.progress = 0;
 		progressBar = uploadBar;
 	}
 	
