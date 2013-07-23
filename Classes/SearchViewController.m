@@ -339,7 +339,6 @@
         case 3:
             // custom segment will always be saved in recent searches but only if at least one field has characters
             if (termsField.text.length > 0 || authorField.text.length > 0 || parentAuthorField.text.length > 0) saveSearch = YES;
-            saveSearch = NO;
             break;
             
         default:
