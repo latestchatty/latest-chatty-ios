@@ -26,6 +26,8 @@
     NSIndexPath *indexPathToSelect;
     NSUInteger currentPage;
     NSUInteger lastPage;
+    
+    BOOL shouldCollapse;
 }
 
 @property (nonatomic, retain) ThreadViewController *threadController;

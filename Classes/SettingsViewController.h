@@ -20,7 +20,8 @@
     UISwitch    *picsResizeSwitch;
     UISlider    *picsQualitySlider;
     UILabel     *picsQualityLabel;
-  
+
+    UISwitch    *collapseSwitch;
     UISwitch    *landscapeSwitch;
     UISwitch    *youtubeSwitch;
     UISwitch    *safariSwitch;

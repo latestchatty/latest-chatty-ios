@@ -122,6 +122,8 @@
     
     self.tableView.hidden = YES;
     
+    shouldCollapse = [[NSUserDefaults standardUserDefaults] boolForKey:@"collapse"];
+    
 // Patch-E: removed refresh button from iPad right toolbar, pull to refresh makes this obsolete
 // no longer need iPad specific code for >1 buttons in the right toolbar
 //    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -158,6 +160,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [tableView reloadData];
+    shouldCollapse = [[NSUserDefaults standardUserDefaults] boolForKey:@"collapse"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -206,11 +209,17 @@
     
 	if (page <= 1) {
 		if (hasPosts) self.storyId = [[models objectAtIndex:0] storyId];
-        self.threads = [self removeCollapsedThreadsFromArray:models];
+        if (shouldCollapse) {
+            self.threads = [self removeCollapsedThreadsFromArray:models];
+        } else {
+            self.threads = [NSMutableArray arrayWithArray:models];
+        }
 	} else {
         NSMutableArray *mutableThreadsArray = [NSMutableArray arrayWithArray:self.threads];
         NSArray *newThreads = [self removeDuplicateThreadsFromArray:models];
-        newThreads = [self removeCollapsedThreadsFromArray:newThreads];
+        if (shouldCollapse) {
+            newThreads = [self removeCollapsedThreadsFromArray:newThreads];
+        }
         [mutableThreadsArray addObjectsFromArray:newThreads];
         self.threads = mutableThreadsArray;
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
@@ -316,8 +325,9 @@
     NSIndexSet *collapseIndexes = [mutableThreads indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         Post *thread = (Post*)obj;
         
-        for (NSNumber *collapsedThreadId in collapsedThreads) {
-            if (thread.modelId == [collapsedThreadId integerValue]) {
+        for (NSDictionary *collapsedThreadDict in collapsedThreads) {
+//            if (thread.modelId == [collapsedThreadId integerValue]) {
+            if (thread.modelId == [[collapsedThreadDict objectForKey:@"modelId"] integerValue]) {
                 return YES;
             }
         }
@@ -356,12 +366,14 @@
 		cell.storyId = storyId;
 		cell.rootPost = [threads objectAtIndex:indexPath.row];
 		
-        // initialize long press gesture
-        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-        longPress.minimumPressDuration = 2.0; //seconds
-        longPress.delegate = self;
-        [cell addGestureRecognizer:longPress];
-        [longPress release];
+        if (shouldCollapse) {
+            // initialize long press gesture for super collapse
+            UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+            longPress.minimumPressDuration = 2.0; //seconds
+            longPress.delegate = self;
+            [cell addGestureRecognizer:longPress];
+            [longPress release];
+        }
         
 		return cell;
 	} else {
@@ -406,17 +418,16 @@
             [self.threads removeObject:thread];
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
             
-            // save thread's id to collapsed posts array
+            // access defaults and collapsedThreads array from user defaults
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
-
-            // allowing a max of 50 collapsed threads, clear the whole array once that threshold occurs
-            if (collapsedThreads.count > 50) {
-                [collapsedThreads removeAllObjects];
-            }
-
-            // add the collapsed thread id and sync
-            [collapsedThreads addObject:[NSNumber numberWithInt:thread.modelId]];
+            
+            // create dictionary from collapsed thread's id/date, add to array and sync
+            NSDictionary *collapsedThreadDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                 [NSNumber numberWithInteger:thread.modelId], @"modelId",
+                                                 thread.date, @"date",
+                                                 nil];
+            [collapsedThreads addObject:collapsedThreadDict];
             [defaults setObject:collapsedThreads forKey:@"collapsedThreads"];
             [defaults synchronize];
         }

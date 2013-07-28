@@ -119,6 +119,7 @@
                                      @"",                           @"username",
                                      @"",                           @"password",
                                      @"shackapi.stonedonkey.com",   @"server",
+                                     [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:YES], @"embedYoutube",
                                      //[NSNumber numberWithBool:NO],  @"push.messages",
@@ -177,6 +178,29 @@
 //            NSLog(@"%@", cookie.description);
 //        }
     }
+    
+    // Self-clearing the collapsedThreads array based on date of each collapsed thread.
+    // Keep threads collapsed only if they haven't expired yet from the chatty.
+    // Should be more efficient to create a new array of threads to keep rather than the inverse
+    // of creating an array of threads to remove with [collapsedThreads removeObjectsInArray:array].
+    NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
+    NSMutableArray *collapsedThreadsToKeep = [NSMutableArray array];
+    
+    // loop over collapsedThread dictionaries in array
+    for (NSDictionary *collapsedThreadDict in collapsedThreads) {
+        // build time interval from now to original post date of collapsed thread
+        NSTimeInterval ti = [[collapsedThreadDict objectForKey:@"date" ] timeIntervalSinceNow];
+        NSInteger hours = (ti / 3600) * -1;
+        
+        // if collapsed thread hasn't expired, add dictionary collapsedThreadsToKeep array
+        if (hours < 18) {
+            //NSLog(@"keeping thread collapsed: %@", collapsedThreadDict);
+            [collapsedThreadsToKeep addObject:collapsedThreadDict];
+        }
+    }
+    // update collapsedThreads array and sync user defaults
+    [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
+    [defaults synchronize];
     
     return YES;
 }

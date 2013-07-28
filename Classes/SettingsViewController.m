@@ -43,13 +43,14 @@
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
         
-        landscapeSwitch  = [[self generateSwitchWithKey:@"landscape"] retain];
+        collapseSwitch     = [[self generateSwitchWithKey:@"collapse"] retain];
+        landscapeSwitch    = [[self generateSwitchWithKey:@"landscape"] retain];
         picsResizeSwitch   = [[self generateSwitchWithKey:@"picsResize"] retain];
         picsQualitySlider  = [[self generateSliderWithKey:@"picsQuality"] retain];
         youtubeSwitch      = [[self generateSwitchWithKey:@"embedYoutube"] retain];
         chromeSwitch       = [[self generateSwitchWithKey:@"useChrome"] retain];
         safariSwitch       = [[self generateSwitchWithKey:@"useSafari"] retain];
-        pushMessagesSwitch = [[self generateSwitchWithKey:@"push.messages"] retain];
+//        pushMessagesSwitch = [[self generateSwitchWithKey:@"push.messages"] retain];
         modToolsSwitch     = [[self generateSwitchWithKey:@"modTools"] retain];
         
         interestingSwitch  = [[self generateSwitchWithKey:@"postCategory.informative"] retain];
@@ -138,20 +139,21 @@
 	[defaults setObject:passwordField.text      forKey:@"password"];
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
+	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
 	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
     [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
     [defaults setFloat:picsQualitySlider.value  forKey:@"picsQuality"];
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
     [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
     [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
-	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
 	
-	if (pushMessagesSwitch.on) {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-    } else {
-        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
-    }
+//	if (pushMessagesSwitch.on) {
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+//    } else {
+//        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+//    }
     
 	NSString *serverAddress = serverField.text;
 	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
@@ -271,7 +273,7 @@
             break;
 			
 		case 2:
-			return 5;
+			return 6;
 			break;
 			
 		case 3:
@@ -397,21 +399,26 @@
 	if (indexPath.section == 2) {
 		switch (indexPath.row) {
 			case 0:
+				cell.accessoryView = collapseSwitch;
+				cell.textLabel.text = @"Allow Collapse:";
+				break;
+			
+            case 1:
 				cell.accessoryView = landscapeSwitch;
 				cell.textLabel.text = @"Allow Landscape:";
 				break;
                 
-			case 1:
+			case 2:
 				cell.accessoryView = youtubeSwitch;
 				cell.textLabel.text = @"Embed YouTube:";
 				break;
                 
-            case 2:
+            case 3:
 				cell.accessoryView = safariSwitch;
 				cell.textLabel.text = @"Use Safari:";
 				break;
                 
-			case 3:
+			case 4:
 				cell.accessoryView = chromeSwitch;
 				cell.textLabel.text = @"Use Chrome:";
 				break;
@@ -421,7 +428,7 @@
 //				cell.textLabel.text = @"Push Messages:";
 //				break;
             
-			case 4:
+			case 5:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Mod Tools:";
 				break;
@@ -535,11 +542,12 @@
     [picsResizeSwitch release];
     [picsQualitySlider release];
 	
+    [collapseSwitch release];
 	[landscapeSwitch release];
     [safariSwitch release];
 	[youtubeSwitch release];
 	[chromeSwitch release];
-	[pushMessagesSwitch release];
+//	[pushMessagesSwitch release];
 	
 	[interestingSwitch release];
 	[offtopicSwitch release];
