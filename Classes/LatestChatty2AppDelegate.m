@@ -140,6 +140,7 @@
                                      [NSMutableArray array],        @"pinnedPosts",
                                      [NSMutableArray array],        @"collapsedThreads",
                                      [NSMutableArray array],        @"recentSearches",
+                                     [NSNumber numberWithBool:NO],  @"darkMode",                                     
                                      nil];
     [defaults registerDefaults:defaultSettings];
 

@@ -68,33 +68,33 @@
     // Modify alpha of non-participant bullet to match the preview text color
     switch (post.timeLevel) {
         case 0:
-            grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+            grayBullet.alpha = 1.0;
             // Set latest to bold
             preview.font = [UIFont boldSystemFontOfSize:14];
             preview.textColor = [UIColor whiteColor];
             break;
         case 1:
-            grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+            grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
             preview.font = [UIFont systemFontOfSize:14];
             preview.textColor = [UIColor lcReplyLevel1Color];
             break;
         case 2:
-            grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+            grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
             preview.font = [UIFont systemFontOfSize:14];
             preview.textColor = [UIColor lcReplyLevel2Color];
             break;
         case 3:
-            grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+            grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
             preview.font = [UIFont systemFontOfSize:14];
             preview.textColor = [UIColor lcReplyLevel3Color];
             break;
         case 4:
-            grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
+            grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
             preview.font = [UIFont systemFontOfSize:14];
             preview.textColor = [UIColor lcReplyLevel4Color];
             break;            
         default:
-            grayBullet.alpha = 0.2;
+            grayBullet.alpha = 0.25;
             preview.font = [UIFont systemFontOfSize:14];
             preview.textColor = [UIColor lcReplyLevel5Color];
             break;

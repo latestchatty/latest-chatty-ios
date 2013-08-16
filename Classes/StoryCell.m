@@ -33,6 +33,13 @@
     title.highlightedTextColor = [UIColor whiteColor];
     preview.highlightedTextColor = [UIColor whiteColor];
     timestamp.highlightedTextColor = [UIColor whiteColor];
+    
+	UIImageView *background = (UIImageView *)self.backgroundView;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+        background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
+    } else {
+        background.image = [UIImage imageNamed:@"CellBackground.png"];
+    }
 }
 
 - (void)dealloc {

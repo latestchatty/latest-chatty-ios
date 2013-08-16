@@ -30,7 +30,7 @@
 
 #define STATUS_TEXT_COLOR       [UIColor lcBlueColor]
 #define LAST_UPDATED_TEXT_COLOR [UIColor whiteColor]
-#define BACKGROUND_COLOR        [UIColor lcTableBackgroundColor]
+#define BACKGROUND_COLOR        [UIColor lcPullToRefreshBackgroundColor]
 #define FLIP_ANIMATION_DURATION 0.18f
 
 

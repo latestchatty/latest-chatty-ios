@@ -89,18 +89,38 @@
 }
 
 + (UIColor *)lcSeparatorColor {
-    return [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.25];
+    return [UIColor colorWithRed:40.0/255.0 green:41.0/255.0 blue:44.0/255.0 alpha:0.8];
+}
+
++ (UIColor *)lcSeparatorDarkColor {
+    return [UIColor colorWithRed:28.0/255.0 green:28.0/255.0 blue:30.0/255.0 alpha:0.8];
 }
 
 + (UIColor *)lcSelectionBlueColor {
-    return [UIColor colorWithRed:4.0/255.0 green:101.0/255.0 blue:147.0/255.0 alpha:1];
+    return [UIColor colorWithRed:4.0/255.0 green:101.0/255.0 blue:147.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcSelectionGrayColor {
-    return [UIColor colorWithRed:53.0/255.0 green:53.0/255.0 blue:57.0/255.0 alpha:1];
+    return [UIColor colorWithRed:53.0/255.0 green:53.0/255.0 blue:57.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcTableBackgroundColor {
+    return [UIColor colorWithRed:40.0/255.0 green:41.0/255.0 blue:44.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcTableBackgroundDarkColor {
+    return [UIColor colorWithRed:28.0/255.0 green:28.0/255.0 blue:30.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcRepliesTableBackgroundColor {
+    return [UIColor colorWithRed:28.0/255.0 green:28.0/255.0 blue:30.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)lcRepliesTableBackgroundDarkColor {
+    return [UIColor blackColor];
+}
+
++ (UIColor *)lcPullToRefreshBackgroundColor {
     return [UIColor colorWithRed:47.0/255.0 green:47.0/255.0 blue:50.0/255.0 alpha:1.0];
 }
 
@@ -156,23 +176,23 @@
 
 // Reply text colors
 + (UIColor *)lcReplyLevel1Color {
-    return [UIColor colorWithRed:218.0/255.0 green:225.0/255.0 blue:229.0/255.0 alpha:1.0];
+    return [UIColor colorWithWhite:255.0 alpha:0.95];
 }
 
 + (UIColor *)lcReplyLevel2Color {
-    return [UIColor colorWithRed:194.0/255.0 green:200.0/255.0 blue:204.0/255.0 alpha:1.0];
+    return [UIColor colorWithWhite:255.0 alpha:0.90];
 }
 
 + (UIColor *)lcReplyLevel3Color {
-    return [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:189.0/255.0 alpha:1.0];
+    return [UIColor colorWithWhite:255.0 alpha:0.85];
 }
 
 + (UIColor *)lcReplyLevel4Color {
-    return [UIColor colorWithRed:157.0/255.0 green:163.0/255.0 blue:166.0/255.0 alpha:1.0];
+    return [UIColor colorWithWhite:255.0 alpha:0.80];
 }
 
 + (UIColor *)lcReplyLevel5Color {
-    return [UIColor colorWithRed:150.0/255.0 green:155.0/255.0 blue:158.0/255.0 alpha:1.0];
+    return [UIColor colorWithWhite:255.0 alpha:0.75];
 }
 
 // Settings colors

@@ -43,14 +43,20 @@
         replyCount.text = [NSString stringWithFormat:@"%i", rootPost.replyCount];
     }
 	
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
 	// Set background to a light color if the user is the root poster
 	UIImageView *background = (UIImageView *)self.backgroundView;
-	if ([rootPost.author.lowercaseString isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"].lowercaseString]) {
+	if ([rootPost.author.lowercaseString isEqualToString:[defaults stringForKey:@"username"].lowercaseString]) {
 //		author.font = [UIFont boldSystemFontOfSize:12.0];
 		background.image = [UIImage imageNamed:@"CellBackgroundLight.png"];
 	} else {
 //		author.font = [UIFont systemFontOfSize:12.0];
-		background.image = [UIImage imageNamed:@"CellBackground.png"];
+        if ([defaults boolForKey:@"darkMode"]) {
+            background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
+        } else {
+            background.image = [UIImage imageNamed:@"CellBackground.png"];            
+        }
 	}
 	
 	// Set side color stripe for the post category
@@ -59,7 +65,7 @@
 	// Detect participation
     BOOL foundParticipant = NO;
 	for (NSDictionary *participant in rootPost.participants) {
-		NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"].lowercaseString;
+		NSString *username = [defaults stringForKey:@"username"].lowercaseString;
         NSString *participantName = [participant objectForKey:@"username"];
         participantName = participantName.lowercaseString;
         

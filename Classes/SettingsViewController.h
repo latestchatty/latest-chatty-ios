@@ -21,6 +21,7 @@
     UISlider    *picsQualitySlider;
     UILabel     *picsQualityLabel;
 
+    UISwitch    *darkModeSwitch;
     UISwitch    *collapseSwitch;
     UISwitch    *landscapeSwitch;
     UISwitch    *youtubeSwitch;

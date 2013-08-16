@@ -41,6 +41,18 @@
     [pull finishedLoading];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
+        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
+    } else {
+        self.tableView.separatorColor = [UIColor lcSeparatorColor];
+        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
+    }
+}
+
 // handled popping back to search view when no results in both viewDidAppear and in didFinishLoadingAllModels
 // because popping back to the search view immediately after the model finished with no results
 // could sometimes occur before viewDidAppear fired causing a bad visual bug and warning in console

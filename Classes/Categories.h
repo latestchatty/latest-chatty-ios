@@ -32,9 +32,14 @@
 + (UIColor *)lcGroupedTitleColor;
 + (UIColor *)lcGroupedSeparatorColor;
 + (UIColor *)lcSeparatorColor;
++ (UIColor *)lcSeparatorDarkColor;
 + (UIColor *)lcSelectionBlueColor;
 + (UIColor *)lcSelectionGrayColor;
 + (UIColor *)lcTableBackgroundColor;
++ (UIColor *)lcTableBackgroundDarkColor;
++ (UIColor *)lcRepliesTableBackgroundColor;
++ (UIColor *)lcRepliesTableBackgroundDarkColor;
++ (UIColor *)lcPullToRefreshBackgroundColor;
 
 // Post expiration progress colors
 + (UIColor *)lcExpiredColor;

@@ -160,7 +160,18 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [tableView reloadData];
-    shouldCollapse = [[NSUserDefaults standardUserDefaults] boolForKey:@"collapse"];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    shouldCollapse = [defaults boolForKey:@"collapse"];
+    
+    if ([defaults boolForKey:@"darkMode"]) {
+        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
+        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
+    } else {
+        self.tableView.separatorColor = [UIColor lcSeparatorColor];
+        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

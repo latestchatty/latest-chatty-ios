@@ -219,6 +219,12 @@
         self.leftToolbar.userInteractionEnabled = YES;
     }
     [self resetLayout:NO];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundDarkColor];
+    } else {
+        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundColor];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

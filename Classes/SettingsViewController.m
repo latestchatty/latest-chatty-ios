@@ -42,7 +42,8 @@
         picsPasswordField.placeholder = @"Enter Password";
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
-        
+
+        darkModeSwitch     = [[self generateSwitchWithKey:@"darkMode"] retain];
         collapseSwitch     = [[self generateSwitchWithKey:@"collapse"] retain];
         landscapeSwitch    = [[self generateSwitchWithKey:@"landscape"] retain];
         picsResizeSwitch   = [[self generateSwitchWithKey:@"picsResize"] retain];
@@ -139,6 +140,7 @@
 	[defaults setObject:passwordField.text      forKey:@"password"];
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
+	[defaults setBool:darkModeSwitch.on         forKey:@"darkMode"];
 	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
 	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
     [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
@@ -273,7 +275,7 @@
             break;
 			
 		case 2:
-			return 6;
+			return 7;
 			break;
 			
 		case 3:
@@ -399,26 +401,31 @@
 	if (indexPath.section == 2) {
 		switch (indexPath.row) {
 			case 0:
+				cell.accessoryView = darkModeSwitch;
+				cell.textLabel.text = @"Dark Mode:";
+				break;
+			
+            case 1:
 				cell.accessoryView = collapseSwitch;
 				cell.textLabel.text = @"Allow Collapse:";
 				break;
 			
-            case 1:
+            case 2:
 				cell.accessoryView = landscapeSwitch;
 				cell.textLabel.text = @"Allow Landscape:";
 				break;
                 
-			case 2:
+			case 3:
 				cell.accessoryView = youtubeSwitch;
 				cell.textLabel.text = @"Embed YouTube:";
 				break;
                 
-            case 3:
+            case 4:
 				cell.accessoryView = safariSwitch;
 				cell.textLabel.text = @"Use Safari:";
 				break;
                 
-			case 4:
+			case 5:
 				cell.accessoryView = chromeSwitch;
 				cell.textLabel.text = @"Use Chrome:";
 				break;
@@ -428,7 +435,7 @@
 //				cell.textLabel.text = @"Push Messages:";
 //				break;
             
-			case 5:
+			case 6:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Mod Tools:";
 				break;
@@ -542,6 +549,7 @@
     [picsResizeSwitch release];
     [picsQualitySlider release];
 	
+    [darkModeSwitch release];
     [collapseSwitch release];
 	[landscapeSwitch release];
     [safariSwitch release];
