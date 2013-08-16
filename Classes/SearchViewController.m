@@ -189,29 +189,8 @@
             [combinedTitle appendFormat:@"%@Parent: %@", (hasTerms || hasAuthor ? @" | " : @""), parent];
         }
         
-        // set title of button to the search input text
-        NSString *searchTitle = [NSString stringWithFormat:@"%@", combinedTitle];
+        [self applyButtonSettings:btn buttonTitle:[NSString stringWithFormat:@"%@", combinedTitle] buttonOffset:yButtonOffset buttonHeight:buttonHeight];
         
-        // background and frame properties
-        [btn setBackgroundImage:[[UIImage imageNamed:@"BlueButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forState:UIControlStateNormal];
-        [btn setFrame:CGRectMake(segmentedBar.frameX, yButtonOffset, segmentedBar.frameWidth, buttonHeight)];
-        [btn setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-        
-        // title label properties
-        [btn setTitle:searchTitle forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 6.0, 0, 6.0)];        
-        CGFloat titleFontSize = 15.0f;
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            titleFontSize += 3.0f;
-        }
-        [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:titleFontSize]];
-        [btn.titleLabel setShadowColor:[UIColor lcTextShadowColor]];
-        [btn.titleLabel setShadowOffset:CGSizeMake(0, -1)];
-        [btn.titleLabel setMinimumFontSize:10.0f];
-        [btn.titleLabel setAdjustsFontSizeToFitWidth:YES];
-        [btn.titleLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
-
         // send a message to a new search receiver that uses the custom properties on the subclassed button
         [btn addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -220,7 +199,44 @@
         
         yButtonOffset += buttonHeight + 10.0f;
     }
+    
+    // add clear recent search button at the end
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self applyButtonSettings:btn buttonTitle:@"Clear Recent Searches" buttonOffset:yButtonOffset buttonHeight:buttonHeight];
+    // add touch event to send a message that clears the recent search array
+    // or modify button title to indicate search history is empty
+    if ([recentSearches count] > 0) {
+        [btn addTarget:self action:@selector(clearRecentSearches:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [btn setTitle:@"Recent Searches is empty" forState:UIControlStateNormal];
+    }
+    [recentSearchScrollView addSubview:btn];
+    
     [self sizeRecentSearchScrollView];
+}
+
+- (void)applyButtonSettings:(UIButton*)btn buttonTitle:(NSString*)title
+               buttonOffset:(CGFloat)yButtonOffset
+               buttonHeight:(CGFloat)buttonHeight {
+    // background and frame properties
+    [btn setBackgroundImage:[[UIImage imageNamed:@"BlueButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forState:UIControlStateNormal];
+    [btn setFrame:CGRectMake(segmentedBar.frameX, yButtonOffset, segmentedBar.frameWidth, buttonHeight)];
+    [btn setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    
+    // title label properties
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 6.0, 0, 6.0)];
+    CGFloat titleFontSize = 15.0f;
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        titleFontSize += 3.0f;
+    }
+    [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:titleFontSize]];
+    [btn.titleLabel setShadowColor:[UIColor lcTextShadowColor]];
+    [btn.titleLabel setShadowOffset:CGSizeMake(0, -1)];
+    [btn.titleLabel setMinimumFontSize:10.0f];
+    [btn.titleLabel setAdjustsFontSizeToFitWidth:YES];
+    [btn.titleLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
 }
 
 - (void)sizeRecentSearchScrollView {
@@ -376,6 +392,19 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self search];
     return NO;
+}
+
+- (void)clearRecentSearches:(id)sender {
+    // clear the recent searches array and stuff back in user defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *recentSearches = [NSMutableArray arrayWithArray:[defaults objectForKey:@"recentSearches"]];
+    [recentSearches removeAllObjects];
+    
+    [defaults setObject:recentSearches forKey:@"recentSearches"];
+    [defaults synchronize];
+
+    // call modeChanged as an easy way of updating the UI after clearing the recent searches
+    [self modeChanged];
 }
 
 #pragma mark TableView Methods
