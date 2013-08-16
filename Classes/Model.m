@@ -115,9 +115,11 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
     NSArray *modelDataArray = dataObject;
     NSMutableArray *models = [NSMutableArray arrayWithCapacity:[modelDataArray count]];
     for (NSDictionary *dictionary in modelDataArray) {
-        Model *model = [[self alloc] initWithDictionary:dictionary];
-        [models addObject:model];
-        [model release];
+        if ([dictionary isKindOfClass:[NSDictionary class]]) {
+            Model *model = [[self alloc] initWithDictionary:dictionary];
+            [models addObject:model];
+            [model release];
+        }
     }
     return models;
 }

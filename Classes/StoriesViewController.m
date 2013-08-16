@@ -58,6 +58,18 @@
     [pull finishedLoading];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
+        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
+    } else {
+        self.tableView.separatorColor = [UIColor lcSeparatorColor];
+        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
+    }
+}
+
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
     NSLog(@"Pull?");
     [self refresh:self];
@@ -76,6 +88,19 @@
     [super didFinishLoadingAllModels:models otherData:otherData];
     
     self.title = @"Stories";
+    
+    if (self.stories.count == 0) {
+        BOOL isWinChatty = [[[NSUserDefaults standardUserDefaults] stringForKey:@"server"] containsString:@"winchatty"];
+        if (isWinChatty) {
+            [UIAlertView showSimpleAlertWithTitle:@"LatestChatty"
+                                          message:@"There was an error loading stories. Stories are currently not supported with the winchatty API."];
+        } else {
+            [UIAlertView showSimpleAlertWithTitle:@"LatestChatty"
+                                          message:@"There was an error loading stories. Please try again."];
+        }
+        
+        return;
+    }
     
     self.tableView.hidden = NO;
 }
