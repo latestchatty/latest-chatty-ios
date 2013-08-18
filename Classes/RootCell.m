@@ -36,7 +36,7 @@
                                     withStringColor:[UIColor whiteColor]
                                      withInsetColor:[UIColor redColor]
                                      withBadgeFrame:YES
-                                withBadgeFrameColor:[UIColor whiteColor]
+                                withBadgeFrameColor:[UIColor clearColor]
                                           withScale:1.0
                                         withShining:NO
                                          withShadow:NO];

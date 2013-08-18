@@ -93,7 +93,7 @@
 - (void) autoBadgeSizeWithString:(NSString *)badgeString {
 	CGSize retValue;
 	CGFloat rectWidth, rectHeight;
-	CGSize stringSize = [badgeString sizeWithFont:[UIFont boldSystemFontOfSize:12]];
+	CGSize stringSize = [badgeString sizeWithFont:[UIFont systemFontOfSize:12]];
 	CGFloat flexSpace;
 	if ([badgeString length]>=2) {
 		flexSpace = [badgeString length];
@@ -245,7 +245,7 @@
 		if ([self.badgeText length]<2) {
 			sizeOfFont += sizeOfFont*0.20;
 		}
-		UIFont *textFont = [UIFont boldSystemFontOfSize:sizeOfFont];
+		UIFont *textFont = [UIFont systemFontOfSize:sizeOfFont];
 		CGSize textSize = [self.badgeText sizeWithFont:textFont];
 		[self.badgeText drawAtPoint:CGPointMake((rect.size.width/2-textSize.width/2), (rect.size.height/2-textSize.height/2)) withFont:textFont];
 	}
