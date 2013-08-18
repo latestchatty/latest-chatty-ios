@@ -444,7 +444,13 @@
 	
 	// Post category toggles
 	if (indexPath.section == 3) {
-		UIView *categoryColor = [[[UIView alloc] initWithFrame:CGRectMake(18, 9, 6, 28)] autorelease];
+        CGFloat categoryXOffset;
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            categoryXOffset = 36;
+        } else {
+            categoryXOffset = 18;
+        }
+        UIView *categoryColor = [[[UIView alloc] initWithFrame:CGRectMake(categoryXOffset, 9, 6, 28)] autorelease];
 		[cell addSubview:categoryColor];
 		
 		switch (indexPath.row) {
