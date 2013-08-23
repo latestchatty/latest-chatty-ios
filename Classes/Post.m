@@ -96,6 +96,10 @@ static NSMutableDictionary *expirationColorMapping;
 
 // Return an image according to an 18 hour post date expiration, participant modifier alters the image used
 + (UIImage *)imageForPostExpiration:(NSDate *)date withParticipant:(BOOL)hasParticipant {
+    if (!date) {
+        return [UIImage imageNamed:@"TimerDotEmpty"];
+    }
+    
     NSTimeInterval ti = [date timeIntervalSinceNow];
     CGFloat hours = (ti / 3600) * -1;
     
