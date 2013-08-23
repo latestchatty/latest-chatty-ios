@@ -299,6 +299,9 @@
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/onearticle.x/\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/onearticle.x/(\\d+)" capture:1] intValue];
         viewController = [[[StoryViewController alloc] initWithStoryId:targetStoryId] autorelease];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/article/.*\\?id=\\d+"]) {
+        NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/article/.*\\?id=(\\d+)" capture:1] intValue];
+        viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/article/\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/article/(\\d+)" capture:1] intValue];
         viewController = [[[StoryViewController alloc] initWithStoryId:targetStoryId] autorelease];
