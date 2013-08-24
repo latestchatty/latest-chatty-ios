@@ -19,6 +19,7 @@
     BOOL postingWarningAlertView;
 }
 
+@property (retain, nonatomic) NSString *recipientString;
 @property (retain, nonatomic) UITextField *recipient;
 @property (retain, nonatomic) UITextField *subject;
 @property (retain, nonatomic) UITextView *body;
@@ -27,5 +28,7 @@
 - (void)setupReply:(Message*)message;
 - (void)makeMessage;
 - (void)sendMessage;
+
+- (id)initWithRecipient:(NSString *)aRecipient;
 
 @end

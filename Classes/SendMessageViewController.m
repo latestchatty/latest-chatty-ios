@@ -20,6 +20,14 @@
     return self;
 }
 
+- (id)initWithRecipient:(NSString *)aRecipient {
+    self = [self initWithNib];
+
+    self.recipientString = aRecipient;
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -40,8 +48,15 @@
     [sendButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
 	self.navigationItem.rightBarButtonItem = sendButton;
 	[sendButton release];
-    
-    [self.recipient becomeFirstResponder];
+
+    // if we initialized with a recipient, place it in the recipient text field and give first responder to the next field (subject)
+    // otherwise give first responder to the recipient field
+    if (self.recipientString) {
+        [self.recipient setText:self.recipientString];
+        [self.subject becomeFirstResponder];
+    } else {
+        [self.recipient becomeFirstResponder];
+    }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
 }
@@ -234,6 +249,7 @@
     self.body = nil;
     self.recipient = nil;
     self.subject = nil;
+    self.recipientString = nil;
     
     [activityView release];
 	[spinner release];

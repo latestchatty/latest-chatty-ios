@@ -8,6 +8,8 @@
 
 #import "ThreadViewController.h"
 
+#import "SendMessageViewController.h"
+
 @implementation ThreadViewController
 
 @synthesize threadId;
@@ -504,8 +506,16 @@
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        // author name tapped, show action sheet to search for posts or shackmessage
+        // still using the oldschool shacknews profile URI pattern here
+        // probably not a good idea but the shack is probably never bringing back profiles at this point so whatevs
+        if ([[[request URL] absoluteString] isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
+            //present action sheet 
+            [self showAuthorActions];
+            return NO;
+        }
+
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
-        
         UIViewController *viewController = [appDelegate viewControllerForURL:[request URL]];
         
         // No special controller, handle the URL.
@@ -667,6 +677,29 @@
     }
 }
 
+- (void)showAuthorActions {
+    // check to see if tag action sheet is already showing (isn't nil), dismiss it if so
+    if (theActionSheet) {
+        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+        theActionSheet = nil;
+        return;
+    }
+    // keep track of the action sheet
+    theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Author Actions"
+                                                  delegate:self
+                                         cancelButtonTitle:@"Cancel"
+                                    destructiveButtonTitle:nil
+                                         otherButtonTitles:@"Search for Posts", @"Shackmessage", nil] autorelease];
+    [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        // just place the actionsheet in the middle of the screen rather than whatever horrible code would result from trying to position it to the point to the author name inside postView
+        [theActionSheet showInView:postView];
+    } else {
+        [theActionSheet showInView:self.navigationController.view];
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     theActionSheet = nil;
 }
@@ -803,6 +836,24 @@
         }
     } else if ([[actionSheet title] isEqualToString:@"Tag this Post"]) { //tagging
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
+    } else if ([[actionSheet title] isEqualToString:@"Author Actions"]) { //author actions
+        NSString *author = [post author];
+        UIViewController *viewController;
+        
+        // do a search for this author's posts
+        if (buttonIndex == 0) {
+            // reconstruct the profile URL as a string here instead of trying to pass it along or persist some other way
+            // encode the author
+            NSString *profilePath = [[NSString stringWithFormat:@"http://www.shacknews.com/profile/%@", author] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            viewController = [[LatestChatty2AppDelegate delegate] viewControllerForURL:[NSURL URLWithString:profilePath]];
+        }
+        // start a shackmessage with this author as the recipient
+        if (buttonIndex == 1) {
+            viewController = [[[SendMessageViewController alloc] initWithRecipient:author] autorelease];
+        }
+        
+        // push the resulting view controller
+        [self.navigationController pushViewController:viewController animated:YES];
     }
     else { // long pressing
         if (buttonIndex == 0) {
