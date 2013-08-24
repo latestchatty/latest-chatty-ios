@@ -689,7 +689,7 @@
                                                   delegate:self
                                          cancelButtonTitle:@"Cancel"
                                     destructiveButtonTitle:nil
-                                         otherButtonTitles:@"Search for Posts", @"Shackmessage", nil] autorelease];
+                                         otherButtonTitles:@"Search for Posts", @"Send a Message", nil] autorelease];
     [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
