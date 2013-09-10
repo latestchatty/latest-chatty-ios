@@ -14,7 +14,7 @@
 @synthesize title, iconImage, badge;
 
 + (CGFloat)cellHeight {
-    return 68;
+    return 69;
 }
 
 - (id)init {

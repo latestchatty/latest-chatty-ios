@@ -12,36 +12,50 @@
 
 @synthesize tableView;
 
+//TODO: scrolling hide bars
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+//    if (scrollView.contentOffset.y < lastOffset.y) {
+//        [[self navigationController] setNavigationBarHidden:YES animated:YES];
+//    } else {
+//        [[self navigationController] setNavigationBarHidden:NO animated:YES];
+//    }
+//}
+//
+//- (void)scrollViewDid:(UIScrollView *)scrollView {
+//    NSLog(@"in here");
+//    lastOffset = scrollView.contentOffset;
+//}
+
 # pragma mark View Notifications
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  
-  loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-  loadingView.backgroundColor = [UIColor lcOverlayColor];
-  loadingView.userInteractionEnabled = NO;
-  loadingView.alpha = 0.0;
-  loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  
-  UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-  [spinner startAnimating];
-  spinner.contentMode = UIViewContentModeCenter;
-  spinner.frame = CGRectMake(0, 0, self.view.frame.size.width -1, self.view.frame.size.height / 2.0 -1);
-  spinner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  [loadingView addSubview:spinner];
-  [spinner release];
-  
-  [self.view addSubview:loadingView];
+    [super viewDidLoad];
+    
+    loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    loadingView.backgroundColor = [UIColor lcOverlayColor];
+    loadingView.userInteractionEnabled = NO;
+    loadingView.alpha = 0.0;
+    loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [spinner startAnimating];
+    spinner.contentMode = UIViewContentModeCenter;
+    spinner.frame = CGRectMake(0, 0, self.view.frame.size.width -1, self.view.frame.size.height / 1.5 -1);
+    spinner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [loadingView addSubview:spinner];
+    [spinner release];
+
+    [self.view addSubview:loadingView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  [self.tableView flashScrollIndicators];
+    [super viewDidAppear:animated];
+    [self.tableView flashScrollIndicators];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -55,44 +69,47 @@
 # pragma mark Actions
 
 - (IBAction)refresh:(id)sender {
-  [loader cancel];
-  [loader release];
-  [self showLoadingSpinner];
+    [loader cancel];
+    [loader release];
+
+    if (![sender isKindOfClass:[UIRefreshControl class]]) {
+      [self showLoadingSpinner];
+    }
 }
 
 #pragma mark Loading Spinner
 
 - (void)showLoadingSpinner {
-  loadingView.alpha = 0.0;
-  [UIView beginAnimations:@"LoadingViewFadeIn" context:nil];
-  loadingView.alpha = 1.0;
-  [UIView commitAnimations];
+    loadingView.alpha = 0.0;
+    [UIView beginAnimations:@"LoadingViewFadeIn" context:nil];
+    loadingView.alpha = 1.0;
+    [UIView commitAnimations];
 }
 
 - (void)hideLoadingSpinner {
-  [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
-  loadingView.alpha = 0.0;
-  [UIView commitAnimations];
+    [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
+    loadingView.alpha = 0.0;
+    [UIView commitAnimations];
 }
 
 - (BOOL)loading {
-  return loadingView.alpha > 0;
+    return loadingView.alpha > 0;
 }
 
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+    return 1;
 }
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 0;
+    return 0;
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  // Override this method
+    // Override this method
     return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
 }
 
@@ -100,42 +117,43 @@
 
 // Fade in table cells
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
-  [self hideLoadingSpinner];
+    [self hideLoadingSpinner];
   
-  // Create cells
-  [self.tableView reloadData];
-  
-  // Fade them in
-  for (UITableViewCell *cell in [self.tableView visibleCells]) {
-    cell.alpha = 0.0;
-    [UIView beginAnimations:[NSString stringWithFormat:@"FadeInStoriesTable_%@", [cell description]] context:nil];
-    cell.alpha = 1.0;
-    [UIView commitAnimations];
-  }
+    // Create cells
+    [self.tableView reloadData];
+
+    // Fade them in
+    for (UITableViewCell *cell in [self.tableView visibleCells]) {
+        cell.alpha = 0.0;
+        [UIView beginAnimations:[NSString stringWithFormat:@"FadeInStoriesTable_%@", [cell description]] context:nil];
+        cell.alpha = 1.0;
+        [UIView commitAnimations];
+    }
 }
 
 - (void)didFinishLoadingModel:(id)aModel otherData:(id)otherData {
-  [self didFinishLoadingAllModels:nil otherData:otherData];
+    [self didFinishLoadingAllModels:nil otherData:otherData];
 }
 
 - (void)didFailToLoadModels {
-  [loader release];
-  loader = nil;
-  [self hideLoadingSpinner];
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+    [loader release];
+    loader = nil;
+    [self hideLoadingSpinner];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                   message:@"I could not connect to the server. Check your internet connection or you server address in your settings. Or try again later."
                                                  delegate:nil
                                         cancelButtonTitle:@"OK"
                                         otherButtonTitles:nil];
-  [alert show];
-  [alert release];
+    [alert show];
+    [alert release];
 }
 
 #pragma mark Cleanup
 
 - (void)dealloc {
-  [loader release];
-  [loadingView release];
+    [loader release];
+    [loadingView release];
+    
     self.tableView = nil;
     [super dealloc];
 }

@@ -93,7 +93,9 @@
 - (void) autoBadgeSizeWithString:(NSString *)badgeString {
 	CGSize retValue;
 	CGFloat rectWidth, rectHeight;
-	CGSize stringSize = [badgeString sizeWithFont:[UIFont systemFontOfSize:12]];
+    //iOS7
+//	CGSize stringSize = [badgeString sizeWithFont:[UIFont systemFontOfSize:12]];
+    CGSize stringSize = [badgeString sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]}];
 	CGFloat flexSpace;
 	if ([badgeString length]>=2) {
 		flexSpace = [badgeString length];
@@ -157,7 +159,6 @@
     CGContextFillPath(context);
 
 	CGContextRestoreGState(context);
-
 }
 
 // Draws the Badge Shine with Quartz
@@ -246,8 +247,10 @@
 			sizeOfFont += sizeOfFont*0.20;
 		}
 		UIFont *textFont = [UIFont systemFontOfSize:sizeOfFont];
-		CGSize textSize = [self.badgeText sizeWithFont:textFont];
-		[self.badgeText drawAtPoint:CGPointMake((rect.size.width/2-textSize.width/2), (rect.size.height/2-textSize.height/2)) withFont:textFont];
+
+        CGSize textSize = [self.badgeText sizeWithAttributes:@{NSFontAttributeName:textFont}];
+		[self.badgeText drawAtPoint:CGPointMake((rect.size.width/2-textSize.width/2), (rect.size.height/2-textSize.height/2)-1)
+                     withAttributes:@{NSFontAttributeName:textFont,NSForegroundColorAttributeName:badgeTextColor}];
 	}
 }
 

@@ -6,6 +6,7 @@ body {
   background: rgb(0,0,0);
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 11pt;
+  font-weight: 300;
   color: white;
 }
 
@@ -46,7 +47,7 @@ body.review div.body a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 div.expiration {
-    box-shadow: inset 0px 1px rgba(255,255,255,0.08);
+    /*box-shadow: inset 0px 1px rgba(255,255,255,0.08);*/
     height: 5px;
     left: 0;
     margin-bottom: 2px;
@@ -112,6 +113,7 @@ h1.story-title {
   clear: both;
   color: rgb(116,196,255);
   font-size: 150%;
+  font-weight: 300;
   margin: 0;
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
 }

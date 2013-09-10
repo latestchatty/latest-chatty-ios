@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 4/15/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "MessageViewController.h"
@@ -63,9 +63,9 @@
 }
 
 - (void)reply {
-    SendMessageViewController *sendMessageViewController = [SendMessageViewController controllerWithNib];
+    SendMessageViewController *sendMessageViewController = [[[SendMessageViewController alloc] initWithMessage:message] autorelease];
 	[self.navigationController pushViewController:sendMessageViewController animated:YES];
-    [sendMessageViewController setupReply:message];
+//    [sendMessageViewController setupReply:message];
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

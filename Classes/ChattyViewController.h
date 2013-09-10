@@ -3,10 +3,9 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/17/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
-#import "PullToRefreshView.h"
 #import "ModelListViewController.h"
 #import "Story.h"
 #import "Post.h"
@@ -17,7 +16,7 @@
 
 @class ThreadViewController;
 
-@interface ChattyViewController : ModelListViewController <PullToRefreshViewDelegate, UISplitViewControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate> {
+@interface ChattyViewController : ModelListViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate> {
     ThreadViewController *threadController;
     
     NSUInteger storyId;
@@ -31,10 +30,9 @@
 }
 
 @property (nonatomic, retain) ThreadViewController *threadController;
-@property (nonatomic, retain) PullToRefreshView *pull;
-
-@property (assign) NSUInteger storyId;
-@property (retain) NSMutableArray *threads;
+@property (nonatomic, retain) NSMutableArray *threads;
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
+@property (nonatomic, assign) NSUInteger storyId;
 
 + (ChattyViewController*)chattyControllerWithLatest;
 + (ChattyViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId;

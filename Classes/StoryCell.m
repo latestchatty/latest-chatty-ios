@@ -19,6 +19,7 @@
 
 - (id)init {
     self = [super initWithNibName:@"StoryCell" bundle:nil];
+    
     return self;
 }
 

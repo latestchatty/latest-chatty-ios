@@ -3,16 +3,17 @@
 //  LatestChatty2
 //
 //  Created by Chris Syversen on 2/2/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010. All rights reserved.
 //
 
 #import "SendMessageViewController.h"
+
 #import "Message.h"
 #import "NoContentController.h"
 
 @implementation SendMessageViewController
 
-@synthesize body, recipient, subject;
+@synthesize body, recipient, subject, message;
 
 - (id)initWithNib {
     self = [super initWithNib];
@@ -22,8 +23,19 @@
 
 - (id)initWithRecipient:(NSString *)aRecipient {
     self = [self initWithNib];
-
+    
     self.recipientString = aRecipient;
+    
+    return self;
+}
+
+- (id)initWithMessage:(Message *)aMessage {
+    self = [self initWithNib];
+    
+    self.message = aMessage;
+    self.recipientString = aMessage.from;
+    self.subjectString = aMessage.subject;
+    self.bodyString = aMessage.body;
     
     return self;
 }
@@ -33,54 +45,53 @@
     
     scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
     
-//	UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send"
-//                                                                   style:UIBarButtonItemStyleDone
-//                                                                  target:self
-//                                                                  action:@selector(sendMessage)];
-//	self.navigationItem.rightBarButtonItem = sendButton;
-//    [sendButton release];
-    
 	UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send"
                                                                    style:UIBarButtonItemStyleDone
                                                                   target:self
                                                                   action:@selector(sendMessage)];
-
-    [sendButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
+    [sendButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
 	self.navigationItem.rightBarButtonItem = sendButton;
 	[sendButton release];
 
-    // if we initialized with a recipient, place it in the recipient text field and give first responder to the next field (subject)
-    // otherwise give first responder to the recipient field
-    if (self.recipientString) {
-        [self.recipient setText:self.recipientString];
+    [self.recipient setText:self.recipientString];
+    [self.subject setText:self.subjectString];
+    [self.body setText:self.bodyString];
+    
+    if (self.bodyString) {
+        [self setupReply];
+        [self.body becomeFirstResponder];
+    } else if (self.recipientString) {
         [self.subject becomeFirstResponder];
     } else {
         [self.recipient becomeFirstResponder];
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
+    
+    // iOS7
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
-    CGFloat screenHeight = screenSize.height;
-    CGFloat screenWidth = screenSize.width;
-    
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIInterfaceOrientation orientation = self.interfaceOrientation;
-        
-        if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
-        } else {
-            if ( screenHeight > 480 ) {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
-            }
-            else {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
-            }
-        }
-    }
+//    CGRect screenBound = [[UIScreen mainScreen] bounds];
+//    CGSize screenSize = screenBound.size;
+//    CGFloat screenHeight = screenSize.height;
+//    CGFloat screenWidth = screenSize.width;
+//    
+//    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        UIInterfaceOrientation orientation = self.interfaceOrientation;
+//        
+//        if (UIInterfaceOrientationIsLandscape(orientation)) {
+//            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
+//        } else {
+//            if ( screenHeight > 480 ) {
+//                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
+//            }
+//            else {
+//                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
+//            }
+//        }
+//    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -89,31 +100,31 @@
 
 //Patch-E: implemented fix for text view being underneath the keyboard in landscape, sets coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        CGRect screenBound = [[UIScreen mainScreen] bounds];
-        CGSize screenSize = screenBound.size;
-        CGFloat screenWidth = screenSize.width;
-        CGFloat screenHeight = screenSize.height;
-        
-        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
-            //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
-            if (body.frame.size.width > 320) {
-                return;
-            }
-            
-            //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
-            if ( screenHeight > 480 ) {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
-            }
-            else {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
-            }
-        } else {
-            //iPhone landscape activated
-            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
-        }
-    }
-    
+//    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        CGRect screenBound = [[UIScreen mainScreen] bounds];
+//        CGSize screenSize = screenBound.size;
+//        CGFloat screenWidth = screenSize.width;
+//        CGFloat screenHeight = screenSize.height;
+//        
+//        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
+//            //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
+//            if (body.frame.size.width > 320) {
+//                return;
+//            }
+//            
+//            //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
+//            if ( screenHeight > 480 ) {
+//                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
+//            }
+//            else {
+//                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
+//            }
+//        } else {
+//            //iPhone landscape activated
+//            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
+//        }
+//    }
+//    
     scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
 }
 
@@ -123,11 +134,6 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
-- (void)viewDidUnload {
-    [scrollView release];
-    scrollView = nil;
 }
 
 #pragma mark Text Field Delegate
@@ -144,7 +150,7 @@
 
 #pragma mark Setup and Message Send
 
-- (void)setupReply:(Message*)message {
+- (void)setupReply {
 //    body.text = [message.body stringByReplacingOccurrencesOfRegex:@"<br.*?>" withString:@"\n"];
     body.text = [NSString stringWithFormat:@"On %@ %@ wrote:\n\n%@", [Message formatDate:message.date], message.from, message.body];
     body.text = [NSString stringWithFormat:@"\n\n--------------------\n\n%@", [body.text stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""]];
@@ -192,7 +198,7 @@
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     self.navigationController.view.userInteractionEnabled = NO;
     
-    //Patch-E: see [ComposeViewController makePost] for explanation, same GCD blocks used there
+    // See [ComposeViewController makePost] for explanation, same GCD blocks used there
     dispatch_async(dispatch_get_main_queue(), ^{
         BOOL success = [Message createWithTo:recipient.text subject:subject.text body:body.text];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -250,10 +256,18 @@
     self.recipient = nil;
     self.subject = nil;
     self.recipientString = nil;
+    self.subjectString = nil;
+    self.bodyString = nil;
+    self.message = nil;
     
     [activityView release];
+    activityView = nil;
+    
 	[spinner release];
+    spinner = nil;
+    
     [scrollView release];
+    scrollView = nil;
     
     [super dealloc];
 }

@@ -150,7 +150,9 @@
         [self setupInterfaceForPhoneWithOptions:launchOptions];
     }
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    //iOS7
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [window makeKeyAndVisible];
     
@@ -406,118 +408,41 @@
     if ([self isPadDevice]) {
         [self.contentNavigationController pushViewController:viewController animated:YES];
     } else {
-        [self.navigationController dismissModalViewControllerAnimated:YES];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         [self.navigationController pushViewController:viewController animated:YES];
     }
     
     return YES;
 }
 
-#pragma mark - Customizations
+#pragma mark - Appearance customizations
 
 // Custom appearance settings for UIKit items
 - (void)customizeAppearance {
     // Set a corner radius around the whole app window
     [self.window.layer setCornerRadius:7.0f];
     [self.window.layer setMasksToBounds:YES];
+
+    //iOS7 tinting
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIToolbar appearance] setBarTintColor:[UIColor blackColor]];
     
-    // Same navbar background for all iPad orientations
-    // iPhone has dedicated landscape asset
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage toolbarBgImage]
-                                           forBarMetrics:UIBarMetricsDefault];
-    } else {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage navbarBgImage]
-                                           forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage navbarBgLandscapeImage]
-                                           forBarMetrics:UIBarMetricsLandscapePhone];
-    }
-    // Same toolbar background image for all orientations    
-    [[UIToolbar appearance] setBackgroundImage:[UIImage toolbarBgImage]
-                            forToolbarPosition:UIToolbarPositionAny
-                                    barMetrics:UIBarMetricsDefault];
-    
-    // Left button (back arrow) normal and highlight states
-    // Portrait back button states
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonImage]
-                                                      forState:UIControlStateNormal
-                                                    barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonHighlightImage]
-                                                      forState:UIControlStateHighlighted
-                                                    barMetrics:UIBarMetricsDefault];
-    // Landscape highlight back button states
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonLandscapeImage]
-                                                      forState:UIControlStateNormal
-                                                    barMetrics:UIBarMetricsLandscapePhone];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonHighlightLandscapeImage]
-                                                      forState:UIControlStateHighlighted
-                                                    barMetrics:UIBarMetricsLandscapePhone];
-    
-    // Load all images for normal, highlight, and done style buttons along with their landscape counterparts    
-    // iOS 6 allows usage of appearance proxy to customize done and normal buttons independently
-    // downside to the following is that iOS 5 will not have blue color done style buttons, do we care?
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
-        // Normal button state with landscape
-        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalImage]
-                                                                                            forState:UIControlStateNormal
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalLandscapeImage]
-                                                                                            forState:UIControlStateNormal
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
-        // Highlight normal button state with landscape
-        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalHighlightImage]
-                                                                                            forState:UIControlStateHighlighted
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalHighlightLandscapeImage]
-                                                                                            forState:UIControlStateHighlighted
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
-        // Done button style (blue) with landscape
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonDoneImage]
-                                                forState:UIControlStateNormal
-                                                   style:UIBarButtonItemStyleDone
-                                              barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonDoneLandscapeImage]
-                                                forState:UIControlStateNormal
-                                                   style:UIBarButtonItemStyleDone
-                                              barMetrics:UIBarMetricsLandscapePhone];
-    } else { // iOS 5
-        // Normal button state with landscape
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalImage]
-                                                                                            forState:UIControlStateNormal
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalLandscapeImage]
-                                                                                            forState:UIControlStateNormal
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
-        // Highlight normal button state with landscape        
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalHighlightImage]
-                                                                                            forState:UIControlStateHighlighted
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalHighlightLandscapeImage]
-                                                                                            forState:UIControlStateHighlighted
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
-    }
-    
-    // Give the navigation bar title text text shadowing
+    // Give the navigation bar title text shadowing
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary titleTextAttributesDictionary]];
     
-    // Give text in buttons gray coloring with text shadowing
-    // Done style buttons will get styled here, but it gets overridden in the view controller for any view that uses Done style buttons
-    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary grayTextAttributesDictionary]
-                                                forState:UIControlStateNormal];
-    
-    // iOS 6 allows more built-in customization of switch/slider than iOS 5
-    // They won't look the same without subclassing UISwitch, do we care?
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
-        [[UISwitch appearance] setTintColor:[UIColor lcSwitchOffColor]];
-        [[UISlider appearance] setThumbTintColor:[UIColor lcSliderThumbColor]];
-    }
+//    // Give text in buttons blue coloring
+//    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
+//                                                forState:UIControlStateNormal];
+
     [[UISwitch appearance] setOnTintColor:[UIColor lcSwitchOnColor]];
+    [[UISwitch appearance] setTintColor:[UIColor lcSwitchOffColor]];
+
+    [[UISlider appearance] setThumbTintColor:[UIColor lcSliderThumbColor]];
     [[UISlider appearance] setMinimumTrackTintColor:[UIColor lcSwitchOnColor]];
     [[UISlider appearance] setMaximumTrackTintColor:[UIColor lcSliderThumbColor]];
+    
     [[UIProgressView appearance] setProgressTintColor:[UIColor lcSwitchOnColor]];
     [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderThumbColor]];
 }

@@ -14,9 +14,8 @@
 #import "Post.h"
 
 #import "ThreadCell.h"
-#import "PullToRefreshView.h"
 
-@interface SearchResultsViewController : ModelListViewController <PullToRefreshViewDelegate> {
+@interface SearchResultsViewController : ModelListViewController {
     NSArray *posts;
 
     NSString *terms;
@@ -31,7 +30,7 @@
 }
 
 @property (retain) NSArray *posts;
-@property (nonatomic, retain) PullToRefreshView *pull;
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
 
 - (id)initWithTerms:(NSString *)terms author:(NSString *)author parentAuthor:(NSString *)parentAuthor;
 

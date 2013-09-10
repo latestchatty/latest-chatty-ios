@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 4/10/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "RootViewController.h"
@@ -11,7 +11,7 @@
 
 @implementation RootViewController
 
-@synthesize selectedIndex;
+@synthesize selectedIndex, messagesSpinner;
 
 - (id)init {
     self = [super initWithNib];
@@ -57,6 +57,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForCredits) name:@"PushBrowserForCredits" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
+    
+    // iOS7
+    [self.tableView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
 }
 
 - (void)pushBrowserForCredits {
@@ -153,7 +156,7 @@
             }
             
             // set number of unread messages in badge of cell
-            //messageCount = 9;
+            //messageCount = 9; // for testing
             [cell setBadgeWithNumber:messageCount];
             
             break;
@@ -217,8 +220,8 @@
             }
             break;
             
-            //Patch-E: added new menu item for Shack[LOL]-tergration! Passes user= on the URL to allow lol'ing within the web view on the Shack[LOL] site. Uses new BrowserViewController constructor.
         case 4:
+            // Pass user= on the URL for Shack[LOL] in Browser web view.
             urlString = [[NSString stringWithFormat:@"http://lol.lmnopc.com?lc_webview=1&user=%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
             viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                                                        title:@"Shack[lol]"
@@ -242,17 +245,6 @@
             
             break;
             
-//        case 6:
-//            urlString = [NSString stringWithFormat:@"http://%@/about", [Model host]];
-//            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]] autorelease];
-//            
-//            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
-//                [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
-//                viewController = nil;
-//            }
-//            break;
-            
         default:
             [NSException raise:@"too many rows" format:@"This table can only have 6 cells!"];
             break;
@@ -263,10 +255,10 @@
 			if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
 				viewController.modalPresentationStyle = UIModalPresentationFormSheet;
-				[appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
+                [appDelegate.slideOutViewController presentViewController:viewController animated:YES completion:nil];
 			} else {
                 [self.viewDeckController toggleLeftView];
-                [self.viewDeckController presentModalViewController:viewController animated:YES];
+                [self.viewDeckController presentViewController:viewController animated:YES completion:nil];
             }
         } else {
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -281,8 +273,8 @@
 
 - (void)dealloc {
     self.selectedIndex = nil;
+    self.messagesSpinner = nil;
     
-    [messageLoader release];
     [super dealloc];
 }
 

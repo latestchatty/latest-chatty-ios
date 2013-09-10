@@ -23,13 +23,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [doneButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
+    //iOS7
+    [doneButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
+    [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
+//    [self setEdgesForExtendedLayout:UIRectEdgeNone];
 
     [self placePostInWebView:self.rootPost];
 }
 
 - (IBAction)dismiss {
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PostContentBecomeFirstResponder" object:nil];
 }
 
@@ -64,6 +67,14 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+        [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
+    } else {
+        [postView.scrollView setContentInset:UIEdgeInsetsMake(52.0, 0, 0, 0)];
+    }
 }
 
 #pragma mark Cleanup

@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/16/09.
-//  Copyright __MyCompanyName__ 2009. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "ModelListViewController.h"
@@ -18,14 +18,13 @@
 #import "ChattyViewController.h"
 #import "StoryViewController.h"
 #import "SettingsViewController.h"
-#import "PullToRefreshView.h"
 
-@interface StoriesViewController : ModelListViewController <PullToRefreshViewDelegate> {
-  NSArray *stories;
+@interface StoriesViewController : ModelListViewController {
+    NSArray *stories;
 }
 
-@property (retain) NSArray *stories;
-@property (nonatomic, retain) PullToRefreshView *pull;
+@property (nonatomic, retain) NSArray *stories;
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)stateDictionary;

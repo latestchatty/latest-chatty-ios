@@ -10,9 +10,10 @@
 #import "ModelLoader.h"
 
 @interface ModelListViewController : UIViewController <ModelLoadingDelegate, UITableViewDelegate, UITableViewDataSource> {
-  ModelLoader *loader;
-  UIView *loadingView;
-  IBOutlet UITableView *tableView;
+    ModelLoader *loader;
+    UIView *loadingView;
+    IBOutlet UITableView *tableView;
+    CGPoint lastOffset;
 }
 
 @property (retain) UITableView *tableView;

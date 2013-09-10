@@ -17,29 +17,29 @@
         self.title = @"Settings";
         
         usernameField = [[self generateTextFieldWithKey:@"username"] retain];
-        usernameField.placeholder = @"Enter Username";
+        usernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Username" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         usernameField.returnKeyType = UIReturnKeyNext;
         usernameField.keyboardType = UIKeyboardTypeEmailAddress;
         usernameField.textColor = [UIColor lcAuthorColor];
         
         passwordField = [[self generateTextFieldWithKey:@"password"] retain];
-        passwordField.placeholder = @"Enter Password";
+        passwordField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Password" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         passwordField.secureTextEntry = YES;
         passwordField.returnKeyType = UIReturnKeyDone;
         
         serverField = [[self generateTextFieldWithKey:@"server"] retain];
-        serverField.placeholder = @"shackapi.stonedonkey.com";
+        serverField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"shackapi.stonedonkey.com" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
         
         picsUsernameField = [[self generateTextFieldWithKey:@"picsUsername"] retain];
-        picsUsernameField.placeholder = @"Enter Username";
+        picsUsernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Username" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         picsUsernameField.returnKeyType = UIReturnKeyNext;
         picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
         picsUsernameField.textColor = [UIColor lcAuthorColor];
         
         picsPasswordField = [[self generateTextFieldWithKey:@"picsPassword"] retain];
-        picsPasswordField.placeholder = @"Enter Password";
+        picsPasswordField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Password" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
 
@@ -113,6 +113,7 @@
 	textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:key];
     textField.textColor = [UIColor whiteColor];
     textField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
 	
 	return [textField autorelease];
 }
@@ -174,7 +175,7 @@
 - (IBAction)dismiss:(id)sender {
     [self saveSettings];
 	
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)save {
@@ -224,7 +225,9 @@
 //        [saveButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
 //    }
     
-    [saveButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
+    //iOS7
+    [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
+    [tableView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
     
     [tableView setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
     [tableView setBackgroundView:nil];
@@ -295,23 +298,23 @@
 - (NSString *)titleForHeaderInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
-			return @"Shacknews.com Account";
+			return @"SHACKNEWS.COM ACCOUNT";
 			break;
         
         case 1:
-            return @"ChattyPics.com Account";
+            return @"CHATTYPICS.COM ACCOUNT";
             break;
 			
 		case 2:
-			return @"Preferences";
+			return @"PREFERENCES";
 			break;
 			
 		case 3:
-			return @"Post Categories";
+			return @"POST CATEGORIES";
 			break;
         
         case 4:
-            return @"About";
+            return @"ABOUT";
             break;
 			
 		default:
@@ -323,13 +326,13 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // Generate a custom view with a label for each section
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 44)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 280, 44)];
     
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+    [titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:12]];
     [titleLabel setText:[self titleForHeaderInSection:section]];
     [titleLabel setTextColor:[UIColor lcGroupedTitleColor]];
-    [titleLabel setShadowColor:[UIColor lcTextShadowColor]];
-    [titleLabel setShadowOffset:CGSizeMake(0, -1.0)];
+//    [titleLabel setShadowColor:[UIColor lcTextShadowColor]];
+//    [titleLabel setShadowOffset:CGSizeMake(0, -1.0)];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
 
     [titleView addSubview:titleLabel];
@@ -350,6 +353,7 @@
     [cell.textLabel setTextColor:[UIColor lcGroupedCellLabelColor]];
     [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
+    [cell.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
     
 	// username/password/server text entry fields
 	if (indexPath.section == 0) {
@@ -450,7 +454,7 @@
         } else {
             categoryXOffset = 18;
         }
-        UIView *categoryColor = [[[UIView alloc] initWithFrame:CGRectMake(categoryXOffset, 9, 6, 28)] autorelease];
+        UIView *categoryColor = [[[UIView alloc] initWithFrame:CGRectMake(categoryXOffset, 9, 4, 28)] autorelease];
 		[cell addSubview:categoryColor];
 		
 		switch (indexPath.row) {
@@ -492,14 +496,15 @@
         
         switch (indexPath.row) {
 			case 0:
-                [button setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
+//                [button setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
                 
-                [button setFrame:CGRectMake(0, 0, 90, 30)];
+                [button setFrame:CGRectMake(0, 0, 50, 30)];
                 [button setTitle:@"View" forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor lcIOS7BlueColor] forState:UIControlStateNormal];
                 
-                button.titleLabel.shadowColor = [UIColor lcTextShadowColor];
-                button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+//                button.titleLabel.shadowColor = [UIColor lcTextShadowColor];
+//                button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+                button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
                 
                 [button addTarget:self action:@selector(openCredits) forControlEvents:UIControlEventTouchUpInside];
                 
@@ -508,14 +513,15 @@
                 
                 break;
 			case 1:
-                [button setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
+//                [button setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
                 
-                [button setFrame:CGRectMake(0, 0, 90, 30)];
+                [button setFrame:CGRectMake(0, 0, 50, 30)];
                 [button setTitle:@"View" forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor lcIOS7BlueColor] forState:UIControlStateNormal];
                 
-                button.titleLabel.shadowColor = [UIColor lcTextShadowColor];
-                button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+//                button.titleLabel.shadowColor = [UIColor lcTextShadowColor];
+//                button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+                button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
                 
                 [button addTarget:self action:@selector(openLicenses) forControlEvents:UIControlEventTouchUpInside];
                 

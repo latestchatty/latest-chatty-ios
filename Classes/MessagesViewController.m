@@ -3,15 +3,16 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 4/10/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "MessagesViewController.h"
+
 #import "SendMessageViewController.h"
 
 @implementation MessagesViewController
 
-@synthesize messages, pull;
+@synthesize messages, refreshControl;
 
 - (id)initWithNib {
     self = [super initWithNib];
@@ -32,8 +33,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self refresh:self];
-    
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
                                                                        style:UIBarButtonItemStyleBordered
@@ -43,6 +42,15 @@
         [menuButton release];
     }
     
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isPresent] || ![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isPresent]) {
+        [UIAlertView showSimpleAlertWithTitle:@"Not Logged In" message:@"Please head back to the main menu and tap \"Settings\" to set your Shacknews.com username and password"];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
+    [self refresh:self.refreshControl];
+    
     UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"PenIcon.24.png"]
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:self
@@ -51,11 +59,15 @@
     self.navigationItem.rightBarButtonItem = composeButton;
     
     self.tableView.hidden = YES;
+
+    // new native pull to refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                       action:@selector(refresh:)
+             forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setTintColor:[UIColor lightGrayColor]];
     
-    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
-    [pull setDelegate:self];
-    [self.tableView addSubview:pull];
-    [pull finishedLoading];
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -80,14 +92,8 @@
     }
 }
 
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
-    NSLog(@"Pull?");
-    [self refresh:self];
-    [pull finishedLoading];
-}
-
 - (void)refresh:(id)sender {
-    [super refresh:self];
+    [super refresh:sender];
     loader = [[Message findAllWithDelegate:self] retain];
 }
 
@@ -102,6 +108,8 @@
     
     self.title = @"Messages";
     self.navigationItem.rightBarButtonItem.enabled = YES;
+    
+    [self.refreshControl endRefreshing];
     
     if (self.messages.count == 0) {
         [UIAlertView showSimpleAlertWithTitle:@"Messages"
@@ -154,8 +162,11 @@
 }
 
 - (void)dealloc {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
     self.messages = nil;
-    [pull release];
+    self.refreshControl = nil;
+    
     [super dealloc];
 }
 

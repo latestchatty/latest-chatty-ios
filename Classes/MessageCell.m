@@ -13,11 +13,12 @@
 @synthesize message, previewLabel, subjectLabel, dateLabel;
 
 + (CGFloat)cellHeight {
-	return 85.0;
+	return 80.0;
 }
 
 - (id)init {
     self = [super initWithNibName:@"MessageCell" bundle:nil];
+    
     return self;
 }
 

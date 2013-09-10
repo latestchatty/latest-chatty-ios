@@ -14,11 +14,12 @@
 @synthesize rootPost;
 
 + (CGFloat)cellHeight {
-	return 65.0;
+	return 69.0;
 }
 
 - (id)init {
 	self = [super initWithNibName:@"ThreadCell" bundle:nil];
+    
 	return self;
 }
 

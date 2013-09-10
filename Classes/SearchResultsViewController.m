@@ -10,8 +10,7 @@
 
 @implementation SearchResultsViewController
 
-@synthesize posts;
-@synthesize pull;
+@synthesize posts, refreshControl;
 
 - (id)initWithTerms:(NSString *)searchTerms author:(NSString *)searchAuthor parentAuthor:(NSString *)searchParentAuthor {
     self = [super initWithNib];
@@ -24,21 +23,20 @@
     return self;
 }
 
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
-    [self refresh:self];
-    [pull finishedLoading];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self refresh:self];
+    [self refresh:self.refreshControl];
     
     self.tableView.hidden = YES;
 
-    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
-    [pull setDelegate:self];
-    [self.tableView addSubview:pull];
-    [pull finishedLoading];
+    // new native pull to refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                            action:@selector(refresh:)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setTintColor:[UIColor lightGrayColor]];
+    
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,10 +90,18 @@
   
     // Override super method so there is no fade if we are loading a second page.
 	if (currentPage <= 1) {
+        if ([self.refreshControl isRefreshing]) {
+            [self.refreshControl endRefreshing];
+        }
+        
 		[super didFinishLoadingAllModels:models otherData:otherData];
 	} else {
-		// Hide the loader
-		[self hideLoadingSpinner];
+        if ([self.refreshControl isRefreshing]) {
+            [self.refreshControl endRefreshing];
+        } else {
+            // Hide the loader
+            [self hideLoadingSpinner];
+        }
 		
 		// Refresh the table
 		[self.tableView reloadData];
@@ -148,6 +154,11 @@
         }
         
         UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [cell setBackgroundColor:[UIColor clearColor]];
+        UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(cell.frameX, cell.frameY, cell.frameWidth, cell.frameHeight-1)];
+        selectionView.backgroundColor = [UIColor clearColor];
+        cell.selectedBackgroundView = selectionView;
+        [selectionView release];
         
         UIView *cellTopStroke = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frameWidth, 1)] autorelease];
         cellTopStroke.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -196,11 +207,15 @@
 }
 
 - (void)dealloc {
-    self.posts = nil;
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
     [terms release];
     [author release];
     [parentAuthor release];
-    [pull release];
+    [refreshControl release];
+    
+    self.posts = nil;
+    
     [super dealloc];
 }
 

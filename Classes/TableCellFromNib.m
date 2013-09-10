@@ -23,12 +23,18 @@
     self = (TableCellFromNib *)cellFactory.view;
     [self retain];
     
-//    UIImageView *selectionView = [[UIImageView alloc] initWithFrame:self.bounds];
-//    selectionView.contentMode = UIViewContentModeScaleToFill;
-//    selectionView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    selectionView.backgroundColor = [UIColor lcSelectionBlueColor];
-//    self.selectedBackgroundView = selectionView;
-//    [selectionView release];
+    // create a custom selection view with a blue color
+    if ([nibName containsString:@"Root"]) {
+        UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frameX, self.frameY, self.frameWidth, self.frameHeight-1)];
+        selectionView.backgroundColor = [UIColor lcSelectionGrayColor];
+        self.selectedBackgroundView = selectionView;
+        [selectionView release];
+    } else {
+        UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frameX, self.frameY, self.frameWidth, self.frameHeight)];
+        selectionView.backgroundColor = [UIColor lcSelectionBlueColor];
+        self.selectedBackgroundView = selectionView;
+        [selectionView release];
+    }
 
     return self;
 }

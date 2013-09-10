@@ -3,14 +3,14 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/16/09.
-//    Copyright __MyCompanyName__ 2009. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "StoriesViewController.h"
 
 @implementation StoriesViewController
 
-@synthesize stories, pull;
+@synthesize stories, refreshControl;
 
 - (id)initWithNib {
     if (self = [super initWithNib]) {
@@ -21,7 +21,9 @@
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
     [self init];
+    
     self.stories = [dictionary objectForKey:@"stories"];
+    
     return self;
 }
 
@@ -32,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (stories == nil || [stories count] == 0) [self refresh:self];
+    if (stories == nil || [stories count] == 0) [self refresh:self.refreshControl];
     
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
@@ -52,10 +54,14 @@
     
     self.tableView.hidden = YES;
     
-    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
-    [pull setDelegate:self];
-    [self.tableView addSubview:pull];
-    [pull finishedLoading];
+    // replaced open source pull-to-refresh with native SDK refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                            action:@selector(refresh:)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setTintColor:[UIColor lightGrayColor]];
+    
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -68,12 +74,6 @@
         self.tableView.separatorColor = [UIColor lcSeparatorColor];
         self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
     }
-}
-
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
-    NSLog(@"Pull?");
-    [self refresh:self];
-    [pull finishedLoading];
 }
 
 - (void)refresh:(id)sender {
@@ -89,6 +89,8 @@
     
     self.title = @"Stories";
     
+    [self.refreshControl endRefreshing];
+    
     if (self.stories.count == 0) {
         BOOL isWinChatty = [[[NSUserDefaults standardUserDefaults] stringForKey:@"server"] containsString:@"winchatty"];
         if (isWinChatty) {
@@ -103,10 +105,6 @@
     }
     
     self.tableView.hidden = NO;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark Table view methods
@@ -147,19 +145,19 @@
     }
 }
 
-- (IBAction)tappedChattyButton:(id)sender {
-    NSIndexPath *indexPath;
-    for (StoryCell *cell in [self.tableView visibleCells]) {
-        if (cell.chattyButton == sender) {
-            indexPath = [self.tableView indexPathForCell:cell];
-        }
-    }
-
-    Story *story = [stories objectAtIndex:indexPath.row];
-    UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
-//    UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:29061947];
-    [self.navigationController pushViewController:viewController animated:YES];
-}
+//- (IBAction)tappedChattyButton:(id)sender {
+//    NSIndexPath *indexPath;
+//    for (StoryCell *cell in [self.tableView visibleCells]) {
+//        if (cell.chattyButton == sender) {
+//            indexPath = [self.tableView indexPathForCell:cell];
+//        }
+//    }
+//
+//    Story *story = [stories objectAtIndex:indexPath.row];
+//    UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
+//    //UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:29061947]; // for testing
+//    [self.navigationController pushViewController:viewController animated:YES];
+//}
 
 //- (IBAction)tappedLatestChattyButton {
 //    ChattyViewController *viewController = [ChattyViewController chattyControllerWithLatest];
@@ -167,8 +165,11 @@
 //}
 
 - (void)dealloc {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
     self.stories = nil;
-    [pull release];
+    self.refreshControl = nil;
+
     [super dealloc];
 }
 

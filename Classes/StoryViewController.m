@@ -3,27 +3,30 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/18/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "StoryViewController.h"
 
 @implementation StoryViewController
 
-@synthesize story, storyLoader;
-@synthesize content;
+@synthesize storyLoader, story, content;
 
 - (id)initWithStoryId:(NSUInteger)aStoryId {
     self = [super initWithNib];
+    
     storyId = aStoryId;
     self.title = @"Loading...";
+    
     return self;
 }
 
 - (id)initWithStory:(Story *)aStory {
     self = [self initWithNib];
+    
     self.story = aStory;
     self.title = story.title;
+    
     return self;
 }
 
@@ -41,6 +44,7 @@
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
     self.story = model;
     self.storyLoader = nil;
+    
     [self displayStory];
 }
 
@@ -71,6 +75,16 @@
     [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return [LatestChatty2AppDelegate supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+#pragma mark Actions
+
 - (void)displayStory {
     self.title = story.title;
     
@@ -93,14 +107,6 @@
     //}
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
-    return [LatestChatty2AppDelegate supportedInterfaceOrientations];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
 - (void)loadChatty {
     ChattyViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -109,6 +115,8 @@
         [self.navigationController pushViewController:viewController animated:YES];
     }
 }
+
+#pragma mark Web view methods
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
@@ -163,14 +171,15 @@
 }
 
 - (void)dealloc {
-    content.delegate = nil;
+    [storyLoader cancel];
+    
     [content stopLoading];
+    content.delegate = nil;
+
+    self.storyLoader = nil;
+    self.story = nil;
     self.content = nil;
     
-    [storyLoader cancel];
-    self.storyLoader = nil;
-    
-    self.story = nil;
     [super dealloc];
 }
 

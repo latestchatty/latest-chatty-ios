@@ -10,8 +10,7 @@
 
 @implementation ComposeViewController
 
-@synthesize storyId;
-@synthesize post;
+@synthesize storyId, post;
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost {
 	self = [super initWithNib];
@@ -48,8 +47,8 @@
                                                                          style:UIBarButtonItemStyleDone
                                                                         target:self
                                                                         action:@selector(sendPost)];
-
-    [submitPostButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
+    [submitPostButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
+                                    forState:UIControlStateNormal];
 	self.navigationItem.rightBarButtonItem = submitPostButton;
 	[submitPostButton release];
 	
@@ -70,8 +69,9 @@
     }
 	[postContent becomeFirstResponder];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postContentBecomeFirstResponder:) name:@"PostContentBecomeFirstResponder" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(postContentBecomeFirstResponder:) name:@"PostContentBecomeFirstResponder"
+                                               object:nil];
     
     // Append inner tag view to hidden tag view container
     [tagView addSubview:innerTagView];
@@ -83,6 +83,9 @@
     // Add a style item to the text selection menu
     UIMenuController *menu = [UIMenuController sharedMenuController];
     menu.menuItems = [NSArray arrayWithObject:[[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)] autorelease]];
+    
+    // iOS7 testing
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
 }
 
 - (void)styleSelection {
@@ -113,28 +116,28 @@
 
 //Patch-E: implemented fix for text view being underneath the keyboard when view appears in landscape on iPhone. Also for iPhone, resizing postContent text view and the parent view containing all shack tag buttons before the view appears based on Retina 4" or non-Retina 4" screen.
 - (void)viewWillAppear:(BOOL)animated {
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
-    CGFloat screenHeight = screenSize.height;
-    CGFloat screenWidth = screenSize.width;
-    
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIInterfaceOrientation orientation = self.interfaceOrientation;
-        
-        if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-            [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
-        } else {
-            if ( screenHeight > 480 ) {
-                [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
-            }
-            else {
-                [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
-            }
-        }
-    }
+//    CGRect screenBound = [[UIScreen mainScreen] bounds];
+//    CGSize screenSize = screenBound.size;
+//    CGFloat screenHeight = screenSize.height;
+//    CGFloat screenWidth = screenSize.width;
+//    
+//    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        UIInterfaceOrientation orientation = self.interfaceOrientation;
+//        
+//        if (UIInterfaceOrientationIsLandscape(orientation)) {
+//            [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
+//            [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
+//        } else {
+//            if ( screenHeight > 480 ) {
+//                [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
+//                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
+//            }
+//            else {
+//                [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
+//                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
+//            }
+//        }
+//    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -184,33 +187,33 @@
 
 //Patch-E: implemented fix for text view being underneath the keyboard in landscape, sets coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        CGRect screenBound = [[UIScreen mainScreen] bounds];
-        CGSize screenSize = screenBound.size;
-        CGFloat screenWidth = screenSize.width;
-        CGFloat screenHeight = screenSize.height;
-            
-        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
-            //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
-            if (postContent.frame.size.width > 320) {
-                return;
-            }
-            
-            //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
-            if ( screenHeight > 480 ) {
-                [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
-            }
-            else {
-                [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
-            }
-        } else {
-            //iPhone landscape activated
-            [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-            [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
-        }
-    }
+//    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        CGRect screenBound = [[UIScreen mainScreen] bounds];
+//        CGSize screenSize = screenBound.size;
+//        CGFloat screenWidth = screenSize.width;
+//        CGFloat screenHeight = screenSize.height;
+//            
+//        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
+//            //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
+//            if (postContent.frame.size.width > 320) {
+//                return;
+//            }
+//            
+//            //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
+//            if ( screenHeight > 480 ) {
+//                [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
+//                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
+//            }
+//            else {
+//                [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
+//                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
+//            }
+//        } else {
+//            //iPhone landscape activated
+//            [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
+//            [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
+//        }
+//    }
 }
 
 #pragma mark Image Handling
@@ -248,7 +251,7 @@
                              permittedArrowDirections:UIPopoverArrowDirectionAny
                                              animated:YES];
         } else {
-            [self presentModalViewController:imagePicker animated:YES];			
+            [self presentViewController:imagePicker animated:YES completion:nil];
 		}
 	}
 }

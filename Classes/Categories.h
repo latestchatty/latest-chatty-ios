@@ -23,6 +23,7 @@
 + (UIColor *)lcDarkGrayTextColor;
 + (UIColor *)lcTextShadowColor;
 + (UIColor *)lcOverlayColor;
++ (UIColor *)lcIOS7BlueColor;
 
 // Table cell colors
 + (UIColor *)lcCellNormalColor;
@@ -75,28 +76,29 @@
 
 + (NSDictionary *)titleTextAttributesDictionary;
 + (NSDictionary *)whiteTextAttributesDictionary;
++ (NSDictionary *)blueTextAttributesDictionary;
 + (NSDictionary *)grayTextAttributesDictionary;
 + (NSDictionary *)textShadowAttributesDictionary;
 
 @end
 
-@interface UIImage(ImageAdditions)
+//@interface UIImage(ImageAdditions)
 
-// Bar backgrounds
-+ (UIImage *)navbarBgImage;
-+ (UIImage *)navbarBgLandscapeImage;
-+ (UIImage *)toolbarBgImage;
+//// Bar backgrounds
+//+ (UIImage *)navbarBgImage;
+//+ (UIImage *)navbarBgLandscapeImage;
+//+ (UIImage *)toolbarBgImage;
+//
+//// Navbar buttons
+//+ (UIImage *)backButtonImage;
+//+ (UIImage *)backButtonHighlightImage;
+//+ (UIImage *)backButtonLandscapeImage;
+//+ (UIImage *)backButtonHighlightLandscapeImage;
+//+ (UIImage *)barButtonNormalImage;
+//+ (UIImage *)barButtonNormalHighlightImage;
+//+ (UIImage *)barButtonNormalLandscapeImage;
+//+ (UIImage *)barButtonNormalHighlightLandscapeImage;
+//+ (UIImage *)barButtonDoneImage;
+//+ (UIImage *)barButtonDoneLandscapeImage;
 
-// Navbar buttons
-+ (UIImage *)backButtonImage;
-+ (UIImage *)backButtonHighlightImage;
-+ (UIImage *)backButtonLandscapeImage;
-+ (UIImage *)backButtonHighlightLandscapeImage;
-+ (UIImage *)barButtonNormalImage;
-+ (UIImage *)barButtonNormalHighlightImage;
-+ (UIImage *)barButtonNormalLandscapeImage;
-+ (UIImage *)barButtonNormalHighlightLandscapeImage;
-+ (UIImage *)barButtonDoneImage;
-+ (UIImage *)barButtonDoneLandscapeImage;
-
-@end
+//@end

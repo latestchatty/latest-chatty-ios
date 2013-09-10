@@ -3,11 +3,10 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/17/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "ChattyViewController.h"
-#import "PullToRefreshView.h"
 
 #include "ThreadViewController.h"
 #include "NoContentController.h"
@@ -20,10 +19,7 @@
 
 @implementation ChattyViewController
 
-@synthesize threadController;
-@synthesize storyId;
-@synthesize threads;
-@synthesize pull;
+@synthesize threadController, storyId, threads, refreshControl;
 
 + (ChattyViewController*)chattyControllerWithLatest {
     return [self chattyControllerWithStoryId:0];
@@ -31,12 +27,6 @@
 
 + (ChattyViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId {//
     return [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
-}
-
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
-    NSLog(@"Pull?");
-    [self refresh:self];
-    [pull finishedLoading];
 }
 
 - (id)initWithLatestChatty {
@@ -48,7 +38,6 @@
     self.storyId = aStoryId;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         self.threadController = [[[ThreadViewController alloc] initWithThreadId:0] autorelease];
-        //threadController.navigationItem.leftBarButtonItem = [LatestChatty2AppDelegate delegate].contentNavigationController.topViewController.navigationItem.leftBarButtonItem;
     }
 
     self.title = @"Loading...";
@@ -96,10 +85,9 @@
     [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = self;
 	
 	if (threads == nil || [threads count] == 0) {
-		[self refresh:self];
+		[self refresh:self.refreshControl];
 	} else {
 		[self.tableView reloadData];
-		if (indexPathToSelect) [self.tableView selectRowAtIndexPath:indexPathToSelect animated:NO scrollPosition:UITableViewScrollPositionTop];
 	}
 
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -124,37 +112,18 @@
     
     shouldCollapse = [[NSUserDefaults standardUserDefaults] boolForKey:@"collapse"];
     
-// Patch-E: removed refresh button from iPad right toolbar, pull to refresh makes this obsolete
-// no longer need iPad specific code for >1 buttons in the right toolbar
-//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        UIToolbar *rightToolbar = [UIToolbar viewWithFrame:self.navigationController.navigationBar.bounds];
-//        rightToolbar.tintColor = self.navigationController.navigationBar.tintColor;
-//        rightToolbar.frameWidth = 70;
-//        rightToolbar.items = [NSArray arrayWithObjects:
-//                              [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemCompose target:self action:@selector(tappedComposeButton)],
-//                              [UIBarButtonItem itemWithSystemType:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)],
-//                              nil];
-//        self.navigationItem.rightBarButtonItem = composeButton;
-//    } else {
-//        self.navigationItem.rightBarButtonItem = composeButton;
-//    }
+    // replaced open source pull-to-refresh with native SDK refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                            action:@selector(refresh:)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setTintColor:[UIColor lightGrayColor]];
     
-//    UILabel *titleLabel = [UILabel viewWithFrame:self.navigationController.navigationBar.frame];
-//    titleLabel.font = [UIFont boldSystemFontOfSize:14];
-//    titleLabel.textColor = [UIColor whiteColor];
-//    titleLabel.numberOfLines = 2;
-//    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    titleLabel.opaque = NO;
-//    titleLabel.backgroundColor = [UIColor clearColor];
-//    titleLabel.shadowColor = [UIColor blackColor];
-//    titleLabel.textAlignment = UITextAlignmentCenter;
-//    titleLabel.text = self.title;
-//    self.navigationItem.titleView = titleLabel;
+    [self.tableView addSubview:self.refreshControl];
     
-    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
-    [pull setDelegate:self];
-    [self.tableView addSubview:pull];
-    [pull finishedLoading];
+    // iOS7 testing
+//    [self setEdgesForExtendedLayout:UIRectEdgeLeft|UIRectEdgeRight|UIRectEdgeBottom];
+//    [tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -184,19 +153,8 @@
 		[threadController resetLayout:YES];
 }
 
-- (void)tappedComposeButton {
-    ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:nil] autorelease];
-    
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
-    } else {
-        [self.navigationController pushViewController:viewController animated:YES];
-    }
-}
-
 - (void)refresh:(id)sender {
-	[super refresh:self];
+	[super refresh:sender];
 	currentPage = 1;
 	
 	if (storyId > 0) {
@@ -271,18 +229,21 @@
 
     // Override super method so there is no fade if we are loading a second page.
 	if (page <= 1) {
+        if ([self.refreshControl isRefreshing]) {
+            [self.refreshControl endRefreshing];
+        }
+        
 		[super didFinishLoadingAllModels:models otherData:otherData];
 	} else {
-		// Hide the loader
-		[self hideLoadingSpinner];
+        if ([self.refreshControl isRefreshing]) {
+            [self.refreshControl endRefreshing];
+        } else {
+            // Hide the loader
+            [self hideLoadingSpinner];
+        }
 		
 		// Refresh the table
 		[self.tableView reloadData];
-		
-        // Removed "scroll to top of first thread on next page" behavior with infinite scrolling.
-		// Scroll the table so that the first thread from the next page is at the top of the screen
-		//NSUInteger firstThreadIndex = [self.threads indexOfObject:[models objectAtIndex:0]];
-		//[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:firstThreadIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 	}
 	
 	// Record this refresh
@@ -327,6 +288,7 @@
     return mutableThreads;
 }
 
+// Filter any collapsed threads out.
 - (NSMutableArray*)removeCollapsedThreadsFromArray:(NSArray*)threadArray {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
@@ -337,7 +299,6 @@
         Post *thread = (Post*)obj;
         
         for (NSDictionary *collapsedThreadDict in collapsedThreads) {
-//            if (thread.modelId == [collapsedThreadId integerValue]) {
             if (thread.modelId == [[collapsedThreadDict objectForKey:@"modelId"] integerValue]) {
                 return YES;
             }
@@ -347,6 +308,54 @@
     
     [mutableThreads removeObjectsAtIndexes:collapseIndexes];
     return mutableThreads;
+}
+
+#pragma mark Actions
+
+- (void)tappedComposeButton {
+    ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:nil] autorelease];
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
+    } else {
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+    // only fire on the intial long press detection
+    if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
+        // grab the long press point
+        CGPoint longPressPoint = [gestureRecognizer locationInView:self.tableView];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:longPressPoint];
+        if (indexPath == nil) {
+            //NSLog(@"long press on table view but not on a row");
+        }
+        else {
+            //NSLog(@"long press on table view at row %d", indexPath.row);
+            
+            // get reference to this thread being long pressed
+            Post *thread = [threads objectAtIndex:indexPath.row];
+            // remove this thread from the threads model and animate it out of the table
+            [self.threads removeObject:thread];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+            
+            // access defaults and collapsedThreads array from user defaults
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
+            
+            // create dictionary from collapsed thread's id/date, add to array and sync
+            NSDictionary *collapsedThreadDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                 [NSNumber numberWithInteger:thread.modelId], @"modelId",
+                                                 thread.date, @"date",
+                                                 nil];
+            [collapsedThreads addObject:collapsedThreadDict];
+            [defaults setObject:collapsedThreads forKey:@"collapsedThreads"];
+            [defaults synchronize];
+        }
+    }
 }
 
 #pragma mark Table view methods
@@ -385,10 +394,15 @@
             [cell addGestureRecognizer:longPress];
             [longPress release];
         }
-        
+
 		return cell;
 	} else {
 		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        [cell setBackgroundColor:[UIColor clearColor]];
+        UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(cell.frameX, cell.frameY, cell.frameWidth, cell.frameHeight-1)];
+        selectionView.backgroundColor = [UIColor clearColor];
+        cell.selectedBackgroundView = selectionView;
+        [selectionView release];
         
         UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         
@@ -408,41 +422,6 @@
 	}
 	
 	return nil;
-}
-
--(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-    // only fire on the intial long press detection
-    if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
-        // grab the long press point
-        CGPoint longPressPoint = [gestureRecognizer locationInView:self.tableView];
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:longPressPoint];
-        if (indexPath == nil) {
-            //NSLog(@"long press on table view but not on a row");
-        }
-        else {
-            //NSLog(@"long press on table view at row %d", indexPath.row);
-         
-            // get reference to this thread being long pressed
-            Post *thread = [threads objectAtIndex:indexPath.row];
-            // remove this thread from the threads model and animate it out of the table
-            [self.threads removeObject:thread];
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-            
-            // access defaults and collapsedThreads array from user defaults
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
-            
-            // create dictionary from collapsed thread's id/date, add to array and sync
-            NSDictionary *collapsedThreadDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                 [NSNumber numberWithInteger:thread.modelId], @"modelId",
-                                                 thread.date, @"date",
-                                                 nil];
-            [collapsedThreads addObject:collapsedThreadDict];
-            [defaults setObject:collapsedThreads forKey:@"collapsedThreads"];
-            [defaults synchronize];
-        }
-    }
 }
 
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -481,15 +460,20 @@
 
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    
     [loader cancel];
     
 	if ([LatestChatty2AppDelegate delegate] != nil && [LatestChatty2AppDelegate delegate].contentNavigationController != nil) {
         [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = nil;
     }
+
+    [indexPathToSelect release];
+    indexPathToSelect = nil;
     
     self.threadController = nil;
 	self.threads = nil;
-    [pull release];
+    self.refreshControl = nil;
+
     [super dealloc];
 }
 

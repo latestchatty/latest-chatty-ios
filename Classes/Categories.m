@@ -63,6 +63,10 @@
     return [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
 }
 
++ (UIColor *)lcIOS7BlueColor {
+    return [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0];
+}
+
 // Table cell colors
 + (UIColor *)lcCellNormalColor {
     return [UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0];
@@ -97,7 +101,8 @@
 }
 
 + (UIColor *)lcSelectionBlueColor {
-    return [UIColor colorWithRed:4.0/255.0 green:101.0/255.0 blue:147.0/255.0 alpha:1.0];
+//    return [UIColor colorWithRed:4.0/255.0 green:101.0/255.0 blue:147.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcSelectionGrayColor {
@@ -213,90 +218,98 @@
 @implementation NSDictionary (DictionaryAdditions)
 
 + (NSDictionary *)titleTextAttributesDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            [UIColor whiteColor],UITextAttributeTextColor,
-            [UIColor lcTextShadowColor],UITextAttributeTextShadowColor,
-            [NSValue valueWithUIOffset:UIOffsetMake(0.0, -1.0)],UITextAttributeTextShadowOffset,
-            nil];
+//    NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+//    [shadow setShadowColor:[UIColor lcTextShadowColor]];
+//    [shadow setShadowOffset:CGSizeMake(0.0, -1.0)];
+    
+    return @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+//             NSShadowAttributeName:shadow};
 }
 
 + (NSDictionary *)whiteTextAttributesDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            [UIColor whiteColor],UITextAttributeTextColor,
-            [UIColor lcTextShadowColor],UITextAttributeTextShadowColor,
-            [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)],UITextAttributeTextShadowOffset,
-            nil];
+    NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+    [shadow setShadowColor:[UIColor lcTextShadowColor]];
+    [shadow setShadowOffset:CGSizeMake(0.0, 1.0)];
+    
+    return @{NSForegroundColorAttributeName:[UIColor whiteColor],
+             NSShadowAttributeName:shadow};
+}
+
++ (NSDictionary *)blueTextAttributesDictionary {
+    return @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0]};
 }
 
 + (NSDictionary *)grayTextAttributesDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            [UIColor lcDarkGrayTextColor],UITextAttributeTextColor,
-            [UIColor lcTextShadowColor],UITextAttributeTextShadowColor,
-            [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)],UITextAttributeTextShadowOffset,
-            nil];
+    NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+    [shadow setShadowColor:[UIColor lcTextShadowColor]];
+    [shadow setShadowOffset:CGSizeMake(0.0, 1.0)];
+    
+    return @{NSForegroundColorAttributeName:[UIColor lcDarkGrayTextColor],
+             NSShadowAttributeName:shadow};
 }
 
 + (NSDictionary *)textShadowAttributesDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            [UIColor lcTextShadowColor],UITextAttributeTextShadowColor,
-            [NSValue valueWithUIOffset:UIOffsetMake(0.0, -1.0)],UITextAttributeTextShadowOffset,
-            nil];
+    NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+    [shadow setShadowColor:[UIColor lcTextShadowColor]];
+    [shadow setShadowOffset:CGSizeMake(0.0, -1.0)];
+    
+    return @{NSShadowAttributeName:shadow};
 }
 
 @end
 
-@implementation UIImage(ImageAdditions)
+//@implementation UIImage(ImageAdditions)
 
-+ (UIImage *)navbarBgImage {
-    return [[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
-}
+//+ (UIImage *)navbarBgImage {
+//    return [[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
+//}
+//
+//+ (UIImage *)navbarBgLandscapeImage {
+//    return [[UIImage imageNamed:@"navbar_bg_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
+//}
+//
+//+ (UIImage *)toolbarBgImage {
+//    return [[UIImage imageNamed:@"toolbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+//}
+//
+//+ (UIImage *)backButtonImage {
+//    return [[UIImage imageNamed:@"button_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+//}
+//
+//+ (UIImage *)backButtonHighlightImage {
+//    return [[UIImage imageNamed:@"button_back_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+//}
+//
+//+ (UIImage *)backButtonLandscapeImage {
+//    return [[UIImage imageNamed:@"button_back_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+//}
+//
+//+ (UIImage *)backButtonHighlightLandscapeImage {
+//    return [[UIImage imageNamed:@"button_back_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+//}
+//
+//+ (UIImage *)barButtonNormalImage {
+//    return [[UIImage imageNamed:@"button_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+//}
+//
+//+ (UIImage *)barButtonNormalHighlightImage {
+//    return [[UIImage imageNamed:@"button_normal_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+//}
+//
+//+ (UIImage *)barButtonNormalLandscapeImage {
+//    return [[UIImage imageNamed:@"button_normal_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+//}
+//
+//+ (UIImage *)barButtonNormalHighlightLandscapeImage {
+//    return [[UIImage imageNamed:@"button_normal_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+//}
+//
+//+ (UIImage *)barButtonDoneImage {
+//    return [[UIImage imageNamed:@"button_done"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+//}
+//
+//+ (UIImage *)barButtonDoneLandscapeImage {
+//    return [[UIImage imageNamed:@"button_done_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+//}
 
-+ (UIImage *)navbarBgLandscapeImage {
-    return [[UIImage imageNamed:@"navbar_bg_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
-}
-
-+ (UIImage *)toolbarBgImage {
-    return [[UIImage imageNamed:@"toolbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-}
-
-+ (UIImage *)backButtonImage {
-    return [[UIImage imageNamed:@"button_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-}
-
-+ (UIImage *)backButtonHighlightImage {
-    return [[UIImage imageNamed:@"button_back_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-}
-
-+ (UIImage *)backButtonLandscapeImage {
-    return [[UIImage imageNamed:@"button_back_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-}
-
-+ (UIImage *)backButtonHighlightLandscapeImage {
-    return [[UIImage imageNamed:@"button_back_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-}
-
-+ (UIImage *)barButtonNormalImage {
-    return [[UIImage imageNamed:@"button_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-+ (UIImage *)barButtonNormalHighlightImage {
-    return [[UIImage imageNamed:@"button_normal_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-+ (UIImage *)barButtonNormalLandscapeImage {
-    return [[UIImage imageNamed:@"button_normal_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-+ (UIImage *)barButtonNormalHighlightLandscapeImage {
-    return [[UIImage imageNamed:@"button_normal_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-+ (UIImage *)barButtonDoneImage {
-    return [[UIImage imageNamed:@"button_done"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-+ (UIImage *)barButtonDoneLandscapeImage {
-    return [[UIImage imageNamed:@"button_done_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-@end
+//@end

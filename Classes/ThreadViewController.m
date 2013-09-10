@@ -10,13 +10,11 @@
 
 #import "SendMessageViewController.h"
 
+#import "MBProgressHUD.h"
+
 @implementation ThreadViewController
 
-@synthesize threadId;
-@synthesize rootPost;
-@synthesize threadStarter;
-@synthesize selectedIndexPath;
-@synthesize toolbar, leftToolbar;
+@synthesize threadId, rootPost, threadStarter, selectedIndexPath, toolbar, leftToolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
         self = [super initWithNib];
@@ -189,12 +187,12 @@
     // initialize scoll position property
     self.scrollPosition = CGPointMake(0, 0);
     
-    // initialize swipe gesture
-    UISwipeGestureRecognizer *backToChattySwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-    [backToChattySwipe setDirection:UISwipeGestureRecognizerDirectionRight];
-    backToChattySwipe.delegate = self;
-    [self.tableView addGestureRecognizer:backToChattySwipe];
-    [backToChattySwipe release];
+//    // initialize swipe gesture
+//    UISwipeGestureRecognizer *backToChattySwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+//    [backToChattySwipe setDirection:UISwipeGestureRecognizerDirectionRight];
+//    backToChattySwipe.delegate = self;
+//    [self.tableView addGestureRecognizer:backToChattySwipe];
+//    [backToChattySwipe release];
     
     // Use the persisted orderByPostDate option to set the button in the grippybar
     orderByPostDate = [[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"];
@@ -212,6 +210,18 @@
     [grippyBar addSubview:background];
     
     [self resetLayout:NO];
+    
+    //iOS7
+    [self setEdgesForExtendedLayout:UIRectEdgeBottom|UIRectEdgeLeft|UIRectEdgeRight];
+//    UIInterfaceOrientation orientation = self.interfaceOrientation;
+    
+//    if (UIInterfaceOrientationIsLandscape(orientation)) {
+//        [postView.scrollView setContentInset:UIEdgeInsetsMake(52.0, 0, 0, 0)];
+////        [tableView setContentInset:UIEdgeInsetsMake(-52.0, 0, 0, 0)];
+//    } else {
+//        [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
+////        [tableView setContentInset:UIEdgeInsetsMake(-64.0, 0, 0, 0)];
+//    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -234,7 +244,7 @@
     
     self.toolbar.frame = self.navigationController.navigationBar.frame;
     [self.view setNeedsLayout];
-    
+
     // if there is a saved scroll position, animate the scroll to it and reinitialize the ivar
     if (self.scrollPosition.y > 0) {
         [postView.scrollView setContentOffset:self.scrollPosition animated:YES];
@@ -267,7 +277,7 @@
 }
 
 - (void)tappedDoneButton {
-    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)tappedReplyButton {
@@ -286,6 +296,16 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
     [self resetLayout:YES];
 }
+
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+//    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+//        [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
+//        [tableView setContentInset:UIEdgeInsetsMake(-10, 0, 0, 0)];
+//    } else {
+//        [postView.scrollView setContentInset:UIEdgeInsetsMake(52.0, 0, 0, 0)];
+//        [tableView setContentInset:UIEdgeInsetsMake(10.0, 0, 0, 0)];
+//    }
+//}
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {        
@@ -834,8 +854,24 @@
                 post.category = [actionSheet buttonTitleAtIndex:buttonIndex];
                 [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
         }
+        
+        //show tagged HUD message for 2 seconds
+        NSTimeInterval theTimeInterval = 2;
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:MBProgressHUDModeText];
+        [hud setLabelText:@"Modded!"];
+        [hud setColor:[UIColor lcTableBackgroundColor]];
+        [hud hide:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Tag this Post"]) { //tagging
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
+        
+        //show tagged HUD message for 2 seconds
+        NSTimeInterval theTimeInterval = 2;
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:MBProgressHUDModeText];
+        [hud setLabelText:@"Tagged!"];
+        [hud setColor:[UIColor lcTableBackgroundColor]];
+        [hud hide:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Author Actions"]) { //author actions
         NSString *author = [post author];
         UIViewController *viewController;

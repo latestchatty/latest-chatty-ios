@@ -3,17 +3,17 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/26/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "BrowserViewController.h"
+
 #import "GoogleChromeActivity.h"
 #import "AppleSafariActivity.h"
 
 @implementation BrowserViewController
 
-@synthesize request;
-@synthesize webView, backButton, forwardButton, spinner, mainToolbar, actionButton, bottomToolbar, isShackLOL, isCredits;
+@synthesize request, webView, backButton, forwardButton, spinner, mainToolbar, actionButton, bottomToolbar, isShackLOL, isCredits;
 
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
@@ -22,7 +22,6 @@
     return self;
 }
 
-//Patch-E: new constructor to support Shack[LOL]-tergration. Overrides the title and if the web view is to point to the Shack[LOL] site, a menu button is created that fires the lolMenu selector.
 - (id)initWithRequest:(NSURLRequest*)_request
                 title:(NSString*)title
         isForShackLOL:(BOOL)isForShackLOL
@@ -43,12 +42,14 @@
             [menuButton release];
         }
         
-        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"[lol]"
-                                                                          style:UIBarButtonItemStyleBordered
+        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+                                                                          style:UIBarButtonItemStyleDone
                                                                          target:self
                                                                          action:@selector(lolMenu)];
         [lolMenuButton setEnabled:NO];
-        
+        [lolMenuButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
+                                     forState:UIControlStateNormal];
+     
         [self.navigationItem setRightBarButtonItem:lolMenuButton];
         
         [lolMenuButton release];
@@ -77,6 +78,9 @@
     }
     
     [webView loadRequest:request];
+    
+    //iOS7
+    [webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 44.0, 0)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
