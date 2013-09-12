@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/16/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "StoryCell.h"
@@ -44,7 +44,14 @@
 }
 
 - (void)dealloc {
-    [story release];
+    self.story = nil;
+    
+    [title release];
+    [preview release];
+    [timestamp release];
+    [commentCount release];
+    [chattyButton release];
+
     [super dealloc];
 }
 

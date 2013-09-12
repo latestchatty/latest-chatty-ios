@@ -22,13 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //iOS7
-    [doneButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
-    [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
-//    [self setEdgesForExtendedLayout:UIRectEdgeNone];
 
     [self placePostInWebView:self.rootPost];
+    
+    [doneButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
+    [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
 }
 
 - (IBAction)dismiss {
@@ -80,10 +78,14 @@
 #pragma mark Cleanup
 
 - (void)dealloc {
-    NSLog(@"ReviewThreadViewController dealloc");
-    self.rootPost = nil;
-    
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
+    [postViewContainer release];
+    [postView release];
     [doneButton release];
+    
+    self.rootPost = nil;
+
     [super dealloc];
 }
 

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface HTMLEscaper : NSObject <NSXMLParserDelegate> {
-  NSMutableString *resultString;
+    NSMutableString *resultString;
 }
 
 @property (retain) NSMutableString* resultString;

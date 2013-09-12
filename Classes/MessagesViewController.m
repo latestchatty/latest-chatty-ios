@@ -22,14 +22,6 @@
     return self;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
-    return [LatestChatty2AppDelegate supportedInterfaceOrientations];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -80,6 +72,14 @@
         self.tableView.separatorColor = [UIColor lcSeparatorColor];
         self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
     }
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return [LatestChatty2AppDelegate supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 - (void)composeMessage {

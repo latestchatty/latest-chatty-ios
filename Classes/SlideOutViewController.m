@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Kyle Eli on 4/8/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010. All rights reserved.
 //
 
 #import "SlideOutViewController.h"
@@ -11,27 +11,6 @@
 @implementation SlideOutViewController
 
 @synthesize isCollapsed;
-
-- (void)searchLoaded:(NSObject*)sender {
-    if(isCollapsed) return;
-    [self tabTouched];
-}
-
-- (void)composeAppeared:(NSObject*)sender {
-    if (isCollapsed) {
-        collapsedToCompose = NO;
-        return;
-    }
-    
-    collapsedToCompose = YES;
-    [self tabTouched];
-}
-
-- (void)composeDisappeared:(NSObject*)sender {
-    if (!collapsedToCompose) return;
-    collapsedToCompose = NO;    
-    [self tabTouched];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,18 +35,25 @@
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)searchLoaded:(NSObject*)sender {
+    if(isCollapsed) return;
+    [self tabTouched];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
+- (void)composeAppeared:(NSObject*)sender {
+    if (isCollapsed) {
+        collapsedToCompose = NO;
+        return;
+    }
+    
+    collapsedToCompose = YES;
+    [self tabTouched];
 }
 
-- (void)dealloc {
-    [navigationController release];
-    [contentNavigationController release];
-    [super dealloc];
+- (void)composeDisappeared:(NSObject*)sender {
+    if (!collapsedToCompose) return;
+    collapsedToCompose = NO;
+    [self tabTouched];
 }
 
 - (CGSize)availableSizeForOrientation:(UIInterfaceOrientation)orientation {
@@ -145,6 +131,15 @@
     [self updateViewsForOrientation:[self interfaceOrientation]];
     [self updateContentLayoutIfNecessary];
     [UIView commitAnimations];
+}
+
+- (void)dealloc {
+    [navigationController release];
+    [contentNavigationController release];
+    [tabButton release];
+    [divider release];
+    
+    [super dealloc];
 }
 
 @end

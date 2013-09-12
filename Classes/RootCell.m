@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 4/10/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "RootCell.h"
@@ -24,12 +24,6 @@
     self.textLabel.textColor = [UIColor whiteColor];
     self.textLabel.shadowColor = [UIColor lcTextShadowColor];
     self.textLabel.shadowOffset = CGSizeMake(0, -1);
-
-    // create a custom selection view with a gray color and has a height 1 pt less so that the black stroke view at the bottom of the cell is still visible
-    UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frameX, self.frameY, self.frameWidth, self.frameHeight-1)];
-    selectionView.backgroundColor = [UIColor lcSelectionGrayColor];
-    self.selectedBackgroundView = selectionView;
-    [selectionView release];
     
     // initial custom badge, add as subview to icon view
     self.badge = [CustomBadge customBadgeWithString:nil
@@ -81,10 +75,12 @@
 }
 
 - (void)dealloc {
-    [title release];
     [titleLabel release];
-    [iconImage release];
-    [badge release];
+    
+    self.title = nil;
+    self.badge = nil;
+    self.iconImage = nil;
+    
     [super dealloc];
 }
 

@@ -23,15 +23,14 @@
     IBOutlet UILabel *parentPostAuthor;
 	IBOutlet UILabel *parentPostPreview;
 	IBOutlet UITextView *postContent;
+    IBOutlet UIButton *imageButton;
     IBOutlet UIView *tagView;
     IBOutlet UIView *innerTagView;
 	
-	IBOutlet UIView* activityView;
-	IBOutlet UILabel* activityText;
-	IBOutlet UIActivityIndicatorView* spinner;
-	IBOutlet UIProgressView* uploadBar;
-    
-    IBOutlet UIButton *imageButton;
+	IBOutlet UIView *activityView;
+	IBOutlet UILabel *activityText;
+	IBOutlet UIActivityIndicatorView *spinner;
+	IBOutlet UIProgressView *uploadBar;
     
     NSRange selection;
     
@@ -43,7 +42,7 @@
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost;
 - (void)makePost;
-- (UIProgressView*)showActivityIndicator:(BOOL)progressViewType;
+- (UIProgressView *)showActivityIndicator:(BOOL)progressViewType;
 
 - (IBAction)showImagePicker;
 - (IBAction)tag:(id)sender;

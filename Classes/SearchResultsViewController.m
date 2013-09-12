@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 4/21/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "SearchResultsViewController.h"
@@ -29,7 +29,7 @@
     
     self.tableView.hidden = YES;
 
-    // new native pull to refresh control
+    // replaced open source pull-to-refresh with native SDK refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self
                             action:@selector(refresh:)
@@ -212,9 +212,9 @@
     [terms release];
     [author release];
     [parentAuthor release];
-    [refreshControl release];
     
     self.posts = nil;
+    self.refreshControl = nil;
     
     [super dealloc];
 }

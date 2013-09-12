@@ -66,9 +66,10 @@
 
 - (void)dealloc {
     self.title = nil;
-    [preview release];
-    [body release];
-    [date release];
+    self.preview = nil;
+    self.body = nil;
+    self.date = nil;
+    
     [super dealloc];
 }
 

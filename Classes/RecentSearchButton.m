@@ -11,9 +11,9 @@
 @implementation RecentSearchButton
 
 - (void)dealloc {
-    [self.searchTerms release];
-    [self.searchAuthor release];
-    [self.searchParentAuthor release];
+    self.searchTerms = nil;
+    self.searchAuthor = nil;
+    self.searchParentAuthor = nil;
     
     [super dealloc];
 }

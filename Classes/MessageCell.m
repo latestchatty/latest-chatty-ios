@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 4/11/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "MessageCell.h"
@@ -46,9 +46,12 @@
 
 - (void)dealloc {
     self.message = nil;
-    self.previewLabel = nil;
     self.subjectLabel = nil;
     self.dateLabel = nil;
+    self.previewLabel = nil;
+    
+    [newStripe release];
+    
     [super dealloc];
 }
 

@@ -3,20 +3,20 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/23/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "ModelLoadingDelegate.h"
 #import "JSON.h"
 
 @interface ModelLoader : NSObject {
-  NSString *urlString;
-  NSURLConnection *connection;
-  NSMutableData *downloadedData;
-  id<DataLoadingDelegate> dataDelegate;
-  id<ModelLoadingDelegate> modelDelegate;
-  
-  BOOL plural;
+    NSString *urlString;
+    NSURLConnection *connection;
+    NSMutableData *downloadedData;
+    id<DataLoadingDelegate> dataDelegate;
+    id<ModelLoadingDelegate> modelDelegate;
+
+    BOOL plural;
 }
 
 @property (assign) BOOL plural;

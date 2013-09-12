@@ -6,8 +6,6 @@
 //
 //
 
-#import <UIKit/UIKit.h>
-
 @interface RecentSearchButton : UIButton
 
 @property (nonatomic, retain) NSString *searchTerms;

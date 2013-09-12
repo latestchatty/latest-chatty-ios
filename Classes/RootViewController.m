@@ -272,8 +272,10 @@
 }
 
 - (void)dealloc {
-    self.selectedIndex = nil;
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
     self.messagesSpinner = nil;
+    self.selectedIndex = nil;
     
     [super dealloc];
 }

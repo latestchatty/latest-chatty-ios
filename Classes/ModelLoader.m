@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/23/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "ModelLoader.h"
@@ -108,9 +108,9 @@
     NSLog(@"ModelLoader release!");
     
     [self cancel];
-    [connection release];
     
     [urlString release];
+    [connection release];
     [downloadedData release];
     [dataDelegate release];
     [modelDelegate release];

@@ -3,11 +3,11 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/18/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 @interface StringTemplate : NSObject {
-  NSString *result;
+    NSString *result;
 }
 
 @property (copy) NSString *result;

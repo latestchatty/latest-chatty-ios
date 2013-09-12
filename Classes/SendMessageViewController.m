@@ -56,14 +56,8 @@
     [self.recipient setText:self.recipientString];
     [self.subject setText:self.subjectString];
     [self.body setText:self.bodyString];
-    
     if (self.bodyString) {
         [self setupReply];
-        [self.body becomeFirstResponder];
-    } else if (self.recipientString) {
-        [self.subject becomeFirstResponder];
-    } else {
-        [self.recipient becomeFirstResponder];
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
@@ -73,58 +67,68 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//    CGRect screenBound = [[UIScreen mainScreen] bounds];
-//    CGSize screenSize = screenBound.size;
-//    CGFloat screenHeight = screenSize.height;
-//    CGFloat screenWidth = screenSize.width;
-//    
-//    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        UIInterfaceOrientation orientation = self.interfaceOrientation;
-//        
-//        if (UIInterfaceOrientationIsLandscape(orientation)) {
-//            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
-//        } else {
-//            if ( screenHeight > 480 ) {
-//                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
-//            }
-//            else {
-//                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
-//            }
-//        }
-//    }
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    CGFloat screenHeight = screenSize.height;
+    CGFloat screenWidth = screenSize.width;
+    
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIInterfaceOrientation orientation = self.interfaceOrientation;
+        
+        if (UIInterfaceOrientationIsLandscape(orientation)) {
+            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
+        } else {
+            if ( screenHeight > 480 ) {
+                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
+            }
+            else {
+                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
+            }
+        }
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    if (self.bodyString) {
+        [self.body becomeFirstResponder];
+    } else if (self.recipientString) {
+        [self.subject becomeFirstResponder];
+    } else {
+        [self.recipient becomeFirstResponder];
+    }
+}
+
 //Patch-E: implemented fix for text view being underneath the keyboard in landscape, sets coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-//    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        CGRect screenBound = [[UIScreen mainScreen] bounds];
-//        CGSize screenSize = screenBound.size;
-//        CGFloat screenWidth = screenSize.width;
-//        CGFloat screenHeight = screenSize.height;
-//        
-//        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
-//            //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
-//            if (body.frame.size.width > 320) {
-//                return;
-//            }
-//            
-//            //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
-//            if ( screenHeight > 480 ) {
-//                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
-//            }
-//            else {
-//                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
-//            }
-//        } else {
-//            //iPhone landscape activated
-//            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
-//        }
-//    }
-//    
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        CGRect screenBound = [[UIScreen mainScreen] bounds];
+        CGSize screenSize = screenBound.size;
+        CGFloat screenWidth = screenSize.width;
+        CGFloat screenHeight = screenSize.height;
+        
+        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
+            //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
+            if (body.frame.size.width > 320) {
+                return;
+            }
+            
+            //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
+            if ( screenHeight > 480 ) {
+                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
+            }
+            else {
+                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
+            }
+        } else {
+            //iPhone landscape activated
+            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
+        }
+    }
+    
     scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
 }
 
@@ -139,7 +143,6 @@
 #pragma mark Text Field Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSLog(@"fired");
     if (textField == recipient) {
         [subject becomeFirstResponder];
     } else if (textField == subject) {
@@ -158,7 +161,6 @@
     recipient.text = message.from;
     subject.text = [NSString stringWithFormat:@"Re: %@", message.subject];
     
-    [body becomeFirstResponder];
     body.selectedRange = NSRangeFromString(@"0");
 }
 
@@ -252,22 +254,19 @@
 #pragma mark Cleanup
 
 - (void)dealloc {
-    self.body = nil;
-    self.recipient = nil;
-    self.subject = nil;
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    self.message = nil;
     self.recipientString = nil;
     self.subjectString = nil;
     self.bodyString = nil;
-    self.message = nil;
-    
-    [activityView release];
-    activityView = nil;
-    
-	[spinner release];
-    spinner = nil;
-    
+    self.recipient = nil;
+    self.subject = nil;
+    self.body = nil;
+
     [scrollView release];
-    scrollView = nil;
+    [activityView release];
+	[spinner release];
     
     [super dealloc];
 }

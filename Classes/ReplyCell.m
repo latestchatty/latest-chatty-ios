@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/24/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "ReplyCell.h"
@@ -117,7 +117,14 @@
 }
 
 - (void)dealloc {
+    [preview release];
+    [usernameLabel release];
+    [blueBullet release];
+    [grayBullet release];
+    [categoryStripe release];
+    
     self.post = nil;
+    
     [super dealloc];
 }
 

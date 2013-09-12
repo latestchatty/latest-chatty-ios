@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/24/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "GrippyBar.h"
@@ -29,6 +29,11 @@
 //        grippy.contentMode = UIViewContentModeCenter;
 //        grippy.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 //        [self addSubview:grippy];
+        
+        UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                                     action:@selector(handlePan:)];
+        [self addGestureRecognizer:panGesture];
+        [panGesture release];
         
         BOOL modToolsEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"modTools"];
         
@@ -101,29 +106,40 @@
     return self;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    isDragging = YES;
-    initialTouchPoint = [[touches anyObject] locationInView:self.superview];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (isDragging) {
-        CGPoint currentPoint = [[touches anyObject] locationInView:self.superview];
-        CGPoint distance = CGPointMake(currentPoint.x - initialTouchPoint.x, currentPoint.y - initialTouchPoint.y);
-        
-        if (distance.y > 0) {
+- (void)handlePan:(UIPanGestureRecognizer *)sender {
+    if ([sender state] == UIGestureRecognizerStateEnded) {
+        CGPoint translatedPoint = [sender translationInView:self];
+        if (translatedPoint.y > 0) {
             [delegate grippyBarDidSwipeDown];
-            isDragging = NO;
-        } else if (distance.y < 0) {
+        } else if (translatedPoint.y < 0) {
             [delegate grippyBarDidSwipeUp];
-            isDragging = NO;
         }
     }
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    isDragging = NO;
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    isDragging = YES;
+//    initialTouchPoint = [[touches anyObject] locationInView:self.superview];
+//}
+//
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+//    if (isDragging) {
+//        CGPoint currentPoint = [[touches anyObject] locationInView:self.superview];
+//        CGPoint distance = CGPointMake(currentPoint.x - initialTouchPoint.x, currentPoint.y - initialTouchPoint.y);
+//        
+//        if (distance.y > 0) {
+//            [delegate grippyBarDidSwipeDown];
+//            isDragging = NO;
+//        } else if (distance.y < 0) {
+//            [delegate grippyBarDidSwipeUp];
+//            isDragging = NO;
+//        }
+//    }
+//}
+//
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//    isDragging = NO;
+//}
 
 - (void)tappedLeftButton {
     [delegate grippyBarDidTapLeftButton];
@@ -161,6 +177,8 @@
 }
 
 - (void)dealloc {
+    [orderByPostDateButton release];
+    
     [super dealloc];
 }
 

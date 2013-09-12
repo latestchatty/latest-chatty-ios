@@ -1,9 +1,9 @@
 //
-//    BrowserViewController.m
-//    LatestChatty2
+//  BrowserViewController.m
+//  LatestChatty2
 //
-//    Created by Alex Wayne on 3/26/09.
-//    Copyright 2009. All rights reserved.
+//  Created by Alex Wayne on 3/26/09.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "BrowserViewController.h"
@@ -222,6 +222,13 @@
     }
 }
 
+- (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
+    if (popoverController == pc) {
+        [popoverController release];
+        popoverController = nil;
+    }
+}
+
 - (void)copyURL {
     [[UIPasteboard generalPasteboard] setString:[[webView.request URL] absoluteString]];
 }
@@ -254,8 +261,10 @@
 }
 
 - (void)dealloc {
-    NSLog(@"BrowserViewController dealloc");
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
     self.request = nil;
+    
     [webView loadHTMLString:@"<div></div>" baseURL:nil];
     if (webView.loading) {
         [webView stopLoading];
@@ -268,6 +277,8 @@
     self.spinner = nil;
     self.mainToolbar = nil;
     self.actionButton = nil;
+    self.bottomToolbar = nil;
+    
     [super dealloc];
 }
 

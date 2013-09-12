@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/17/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "Post.h"
@@ -106,7 +106,7 @@ static NSMutableDictionary *expirationColorMapping;
     NSString *participantModifier = @"";
     if (hasParticipant) participantModifier = @"Blue";
     
-    NSMutableDictionary *timerDots = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *timerDots = [[[NSMutableDictionary alloc] init] autorelease];
     [timerDots setValue:@"TimerDotEmpty%@"        forKey:@"empty"];
     [timerDots setValue:@"TimerDotQuarter%@"      forKey:@"quarter"];
     [timerDots setValue:@"TimerDotHalf%@"         forKey:@"half"];
@@ -424,12 +424,15 @@ static NSMutableDictionary *expirationColorMapping;
 - (void)dealloc {
     self.author     = nil;
     self.preview    = nil;
-    self.body         = nil;
-    self.date         = nil;
+    self.body       = nil;
+    self.date       = nil;
+    self.category   = nil;
+    
     self.participants = nil;
     self.replies    = nil;
-    self.category = nil;
+    
     [flatReplies release];
+    
     [super dealloc];
 }
 

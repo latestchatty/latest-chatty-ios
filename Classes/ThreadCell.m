@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/18/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "ThreadCell.h"
@@ -94,7 +94,15 @@
 }
 
 - (void)dealloc {
-	self.rootPost = nil;
+	[author release];
+    [date release];
+    [preview release];
+    [replyCount release];
+    [categoryStripe release];
+    [timerIcon release];
+    
+    self.rootPost = nil;
+    
 	[super dealloc];
 }
 

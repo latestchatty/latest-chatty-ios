@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/24/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "ThreadViewController.h"
@@ -404,11 +404,18 @@
     self.threadId = _threadId;
     [self refresh:nil];
  
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                if (popoverController != nil) {
-                        [popoverController dismissPopoverAnimated:YES];
-                }
-        }    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        if (popoverController != nil) {
+            [popoverController dismissPopoverAnimated:YES];
+        }
+    }
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
+    if (popoverController == pc) {
+        [popoverController release];
+        popoverController = nil;
+    }
 }
 
 #pragma mark -
@@ -985,13 +992,20 @@
 #pragma mark Cleanup
 
 - (void)dealloc {
-    NSLog(@"ThreadViewController dealloc");
-    [rootPost release];
-    [selectedIndexPath release];
-    
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
+    self.rootPost = nil;
     self.threadStarter = nil;
+    self.selectedIndexPath = nil;
     self.toolbar = nil;
     self.leftToolbar = nil;
+    
+    [postViewContainer release];
+    [postView release];
+    [grippyBar release];
+    [orderByPostDateButton release];
+    [threadPinButton release];
+    [tagButton release];
     
     [super dealloc];
 }

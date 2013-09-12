@@ -12,9 +12,11 @@
 	IBOutlet UITextField *recipient;
 	IBOutlet UITextField *subject;
 	IBOutlet UITextView *body;
+    
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIView *activityView;
     IBOutlet UIActivityIndicatorView *spinner;
+    
     BOOL postingWarningAlertView;
 }
 

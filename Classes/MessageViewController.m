@@ -65,7 +65,6 @@
 - (void)reply {
     SendMessageViewController *sendMessageViewController = [[[SendMessageViewController alloc] initWithMessage:message] autorelease];
 	[self.navigationController pushViewController:sendMessageViewController animated:YES];
-//    [sendMessageViewController setupReply:message];
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -129,7 +128,12 @@
 }
 
 - (void)dealloc {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
     self.message = nil;
+    
+    [message release];
+    
     [super dealloc];
 }
 

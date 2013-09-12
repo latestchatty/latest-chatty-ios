@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/25/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "SettingsViewController.h"
@@ -68,39 +68,20 @@
 	return self;
 }
 
-- (void)handlePicsQualitySlider:(UISlider *)slider {
-    picsQualityLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(slider.value*100)];
-}
-
--(void)handleSafariSwitch {
-    if (safariSwitch.on) {
-        [chromeSwitch setOn:NO animated:YES];
-    }
-}
-
--(void)handleChromeSwitch {
-    if (![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
-         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Google Chrome"
-                                                             message:@"App not found on device, install it first to use this option."
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil];
-        [chromeSwitch setOn:NO animated:YES];
-        [alertView show];
-        [alertView release];
-    }
-    
-    if (chromeSwitch.on) {
-        [safariSwitch setOn:NO animated:YES];
-    }
-}
-
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
 	return [self init];
 }
 
 - (NSDictionary *)stateDictionary {
 	return [NSDictionary dictionaryWithObject:@"Settings" forKey:@"type"];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [usernameField resignFirstResponder];
+    [passwordField resignFirstResponder];
+    [serverField resignFirstResponder];
+    [picsUsernameField resignFirstResponder];
+    [picsPasswordField resignFirstResponder];
 }
 
 - (UITextField *)generateTextFieldWithKey:(NSString *)key {
@@ -135,6 +116,99 @@
 	return [slider autorelease];
 }
 
+- (void)resignAndToggle {
+    [[self view] endEditing:YES];
+    
+    [self.viewDeckController toggleLeftView];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(resignAndToggle)];
+        self.navigationItem.leftBarButtonItem = menuButton;
+        [menuButton release];
+    }
+    
+    [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
+    
+    [tableView setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
+    [tableView setBackgroundView:nil];
+    [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
+    [tableView setBackgroundColor:[UIColor clearColor]];
+    [tableView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return [LatestChatty2AppDelegate supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+#pragma mark Text Field Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	if (textField == usernameField) {
+		[passwordField becomeFirstResponder];
+	} else if (textField == passwordField) {
+		[passwordField resignFirstResponder];
+	} else if (textField == serverField) {
+		[serverField resignFirstResponder];
+	} else if (textField == picsUsernameField) {
+        [picsPasswordField becomeFirstResponder];
+    } else if (textField == picsPasswordField) {
+        [picsPasswordField resignFirstResponder];
+    }
+	return NO;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+	return NO;
+}
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField {
+    //scroll the tapped text field into view so that it's never under the keyboard on focus
+    UITableViewCell *cell = (UITableViewCell *) [[textField superview] superview];
+    [tableView scrollToRowAtIndexPath:[tableView indexPathForCell:cell]
+                     atScrollPosition:UITableViewScrollPositionTop
+                             animated:YES];
+}
+
+#pragma mark Actions
+
+- (void)handlePicsQualitySlider:(UISlider *)slider {
+    picsQualityLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(slider.value*100)];
+}
+
+-(void)handleSafariSwitch {
+    if (safariSwitch.on) {
+        [chromeSwitch setOn:NO animated:YES];
+    }
+}
+
+-(void)handleChromeSwitch {
+    if (![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Google Chrome"
+                                                            message:@"App not found on device, install it first to use this option."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [chromeSwitch setOn:NO animated:YES];
+        [alertView show];
+        [alertView release];
+    }
+    
+    if (chromeSwitch.on) {
+        [safariSwitch setOn:NO animated:YES];
+    }
+}
+
 -(void)saveSettings {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:usernameField.text      forKey:@"username"];
@@ -149,14 +223,14 @@
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
     [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
     [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
-//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+    //	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
 	
-//	if (pushMessagesSwitch.on) {
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-//    } else {
-//        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
-//    }
+    //	if (pushMessagesSwitch.on) {
+    //        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+    //    } else {
+    //        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    //    }
     
 	NSString *serverAddress = serverField.text;
 	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
@@ -190,79 +264,22 @@
     [UIAlertView showSimpleAlertWithTitle:@"Settings"
                                   message:@"Saved!"];
     
-    [self.viewDeckController toggleLeftView];   
-}
-
-- (void)resignAndToggle {
-    [[self view] endEditing:YES];
-    
     [self.viewDeckController toggleLeftView];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
-                                                                       style:UIBarButtonItemStyleBordered
-                                                                      target:self
-                                                                      action:@selector(resignAndToggle)];
-        self.navigationItem.leftBarButtonItem = menuButton;
-        [menuButton release];
-        
-//        UIBarButtonItem *saveDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
-//                                                                           style:UIBarButtonItemStyleDone
-//                                                                          target:self
-//                                                                          action:@selector(save)];
-//
-//        [saveDoneButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
-//        
-//        self.navigationItem.rightBarButtonItem = saveDoneButton;
-//
-//        [saveDoneButton release];
-    }
-//    else {
-//        [saveButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
-//    }
-    
-    //iOS7
-    [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
-    [tableView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
-    
-    [tableView setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
-    [tableView setBackgroundView:nil];
-    [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
-    [tableView setBackgroundColor:[UIColor clearColor]];
+- (void)openCredits {
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForCredits" object:nil];
+    }];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
-    return [LatestChatty2AppDelegate supportedInterfaceOrientations];
+- (void)openLicenses {
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForLicenses" object:nil];
+    }];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	if (textField == usernameField) {
-		[passwordField becomeFirstResponder];
-	} else if (textField == passwordField) {
-		[passwordField resignFirstResponder];
-	} else if (textField == serverField) {
-		[serverField resignFirstResponder];
-	} else if (textField == picsUsernameField) {
-        [picsPasswordField becomeFirstResponder];
-    } else if (textField == picsPasswordField) {
-        [picsPasswordField resignFirstResponder];
-    }
-	return NO;
-}
-
-- (BOOL)textFieldShouldClear:(UITextField *)textField {
-	return NO;
-}
-
-#pragma mark Table View Delegate Methods
+#pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 5;
@@ -496,15 +513,11 @@
         
         switch (indexPath.row) {
 			case 0:
-//                [button setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
-                
                 [button setFrame:CGRectMake(0, 0, 50, 30)];
                 [button setTitle:@"View" forState:UIControlStateNormal];
                 [button setTitleColor:[UIColor lcIOS7BlueColor] forState:UIControlStateNormal];
-                
-//                button.titleLabel.shadowColor = [UIColor lcTextShadowColor];
-//                button.titleLabel.shadowOffset = CGSizeMake(0, -1);
-                button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+
+                [button.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]];
                 
                 [button addTarget:self action:@selector(openCredits) forControlEvents:UIControlEventTouchUpInside];
                 
@@ -513,15 +526,11 @@
                 
                 break;
 			case 1:
-//                [button setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
-                
                 [button setFrame:CGRectMake(0, 0, 50, 30)];
                 [button setTitle:@"View" forState:UIControlStateNormal];
                 [button setTitleColor:[UIColor lcIOS7BlueColor] forState:UIControlStateNormal];
                 
-//                button.titleLabel.shadowColor = [UIColor lcTextShadowColor];
-//                button.titleLabel.shadowOffset = CGSizeMake(0, -1);
-                button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+                [button.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]];
                 
                 [button addTarget:self action:@selector(openLicenses) forControlEvents:UIControlEventTouchUpInside];
                 
@@ -535,23 +544,13 @@
 	return [cell autorelease];
 }
 
-- (void)openCredits {
-    [self dismissViewControllerAnimated:YES completion:^{
-       [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForCredits" object:nil];
-    }];
-}
-
-- (void)openLicenses {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForLicenses" object:nil];
-    }];
-}
-
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	return nil;
 }
 
 - (void)dealloc {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
 	[usernameField release];
 	[passwordField release];
 	[serverField release];
@@ -564,10 +563,11 @@
     [darkModeSwitch release];
     [collapseSwitch release];
 	[landscapeSwitch release];
-    [safariSwitch release];
 	[youtubeSwitch release];
+    [safariSwitch release];
 	[chromeSwitch release];
-//	[pushMessagesSwitch release];
+	[pushMessagesSwitch release];
+    [modToolsSwitch release];
 	
 	[interestingSwitch release];
 	[offtopicSwitch release];
@@ -576,6 +576,9 @@
 	[nwsSwitch release];
 	
     [saveButton release];
+    
+//    [tableView release];
+    
 	[super dealloc];
 }
 
