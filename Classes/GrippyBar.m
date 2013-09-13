@@ -30,6 +30,7 @@
 //        grippy.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 //        [self addSubview:grippy];
         
+        // add pan gesture to handle moving the bar up/down when swiping up/down anywhere on the bar (including within buttons)
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                      action:@selector(handlePan:)];
         [self addGestureRecognizer:panGesture];
@@ -107,8 +108,10 @@
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)sender {
+    // only activate when pan gesture ends, get the direction it went and handle appropriately
     if ([sender state] == UIGestureRecognizerStateEnded) {
         CGPoint translatedPoint = [sender translationInView:self];
+        
         if (translatedPoint.y > 0) {
             [delegate grippyBarDidSwipeDown];
         } else if (translatedPoint.y < 0) {

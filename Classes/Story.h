@@ -3,17 +3,17 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/16/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "Model.h"
 
 @interface Story : Model {
-  NSString *title;
-  NSString *preview;
-  NSString *body;
-  NSDate   *date;
-  NSUInteger commentCount;
+    NSString *title;
+    NSString *preview;
+    NSString *body;
+    NSDate   *date;
+    NSUInteger commentCount;
 }
 
 @property (copy) NSString *title;

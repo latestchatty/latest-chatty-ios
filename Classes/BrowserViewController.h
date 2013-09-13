@@ -6,7 +6,7 @@
 //  Copyright 2009. All rights reserved.
 //
 
-@interface BrowserViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
+@interface BrowserViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate> {
     NSURLRequest *request;
     
     UIWebView *webView;

@@ -13,24 +13,13 @@ static NSMutableDictionary *expirationColorMapping;
 
 @implementation Post
 
-@synthesize author;
-@synthesize preview;
-@synthesize body;
-@synthesize date;
-@synthesize replyCount;
-@synthesize category;
+@synthesize author, preview, body, date, replyCount, category;
 
-@synthesize storyId;
-@synthesize parentPostId;
-@synthesize lastReplyId;
+@synthesize storyId, parentPostId, lastReplyId;
 
-@synthesize participants;
-@synthesize replies;
-@synthesize depth;
+@synthesize participants, replies, depth;
 
-@synthesize timeLevel;
-@synthesize newPost;
-@synthesize pinned;
+@synthesize timeLevel, newPost, pinned;
 
 @synthesize newReplies;
 

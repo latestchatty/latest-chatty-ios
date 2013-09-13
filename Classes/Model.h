@@ -12,7 +12,7 @@
 #import "RegexKitLite.h"
 
 @interface Model : NSObject <NSCoding> {
-  NSUInteger modelId;
+    NSUInteger modelId;
 }
 
 @property (readonly) NSUInteger modelId;

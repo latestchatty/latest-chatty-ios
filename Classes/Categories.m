@@ -101,8 +101,7 @@
 }
 
 + (UIColor *)lcSelectionBlueColor {
-//    return [UIColor colorWithRed:4.0/255.0 green:101.0/255.0 blue:147.0/255.0 alpha:1.0];
-    return [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0];
+    return [UIColor lcIOS7BlueColor];
 }
 
 + (UIColor *)lcSelectionGrayColor {
@@ -236,16 +235,16 @@
 }
 
 + (NSDictionary *)blueTextAttributesDictionary {
-    return @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0]};
+    return @{NSForegroundColorAttributeName:[UIColor lcIOS7BlueColor]};
 }
 
 + (NSDictionary *)grayTextAttributesDictionary {
-    NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
-    [shadow setShadowColor:[UIColor lcTextShadowColor]];
-    [shadow setShadowOffset:CGSizeMake(0.0, 1.0)];
+//    NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+//    [shadow setShadowColor:[UIColor lcTextShadowColor]];
+//    [shadow setShadowOffset:CGSizeMake(0.0, 1.0)];
     
-    return @{NSForegroundColorAttributeName:[UIColor lcDarkGrayTextColor],
-             NSShadowAttributeName:shadow};
+    return @{NSForegroundColorAttributeName:[UIColor lcDarkGrayTextColor]};
+//             NSShadowAttributeName:shadow};
 }
 
 + (NSDictionary *)textShadowAttributesDictionary {

@@ -10,12 +10,12 @@
 #import "RegexKitLite.h"
 
 @interface Message : Model {
-  NSString *from;
-  NSString *to;
-  NSString *subject;
-  NSString *body;
-  NSDate   *date;
-  BOOL unread;
+    NSString *from;
+    NSString *to;
+    NSString *subject;
+    NSString *body;
+    NSDate   *date;
+    BOOL unread;
 }
 
 @property (copy) NSString *from;

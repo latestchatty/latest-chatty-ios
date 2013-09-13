@@ -12,15 +12,15 @@
 
 #pragma mark NSCoding Support
 
-- (id)initWithCoder:(NSCoder*)decoder {
-    NSData *data = [decoder decodeObjectForKey:@"HKUIImageNSCodingDataKey"];
-    return [self initWithData:data];
-}
-
-- (void)encodeWithCoder:(NSCoder*)encoder {
-    NSData *data = UIImagePNGRepresentation(self);
-    [encoder encodeObject:data forKey:@"HKUIImageNSCodingDataKey"];
-}
+//- (id)initWithCoder:(NSCoder*)decoder {
+//    NSData *data = [decoder decodeObjectForKey:@"HKUIImageNSCodingDataKey"];
+//    return [self initWithData:data];
+//}
+//
+//- (void)encodeWithCoder:(NSCoder*)encoder {
+//    NSData *data = UIImagePNGRepresentation(self);
+//    [encoder encodeObject:data forKey:@"HKUIImageNSCodingDataKey"];
+//}
 
 
 #pragma mark Image Manipulation

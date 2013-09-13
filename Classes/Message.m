@@ -10,12 +10,7 @@
 
 @implementation Message
 
-@synthesize from;
-@synthesize to;
-@synthesize subject;
-@synthesize body;
-@synthesize date;
-@synthesize unread;
+@synthesize from, to, subject, body, date, unread;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate {
     return [self loadAllFromUrl:@"/messages" delegate:delegate];

@@ -76,12 +76,34 @@
 	return [NSDictionary dictionaryWithObject:@"Settings" forKey:@"type"];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(resignAndToggle)];
+        self.navigationItem.leftBarButtonItem = menuButton;
+        [menuButton release];
+    }
+    
+    [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
+    
+    [tableView setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
+    [tableView setBackgroundView:nil];
+    [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
+    [tableView setBackgroundColor:[UIColor clearColor]];
+    [tableView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
+}
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [usernameField resignFirstResponder];
-    [passwordField resignFirstResponder];
-    [serverField resignFirstResponder];
-    [picsUsernameField resignFirstResponder];
-    [picsPasswordField resignFirstResponder];
+//    [usernameField resignFirstResponder];
+//    [passwordField resignFirstResponder];
+//    [serverField resignFirstResponder];
+//    [picsUsernameField resignFirstResponder];
+//    [picsPasswordField resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 - (UITextField *)generateTextFieldWithKey:(NSString *)key {
@@ -120,27 +142,6 @@
     [[self view] endEditing:YES];
     
     [self.viewDeckController toggleLeftView];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
-                                                                       style:UIBarButtonItemStyleBordered
-                                                                      target:self
-                                                                      action:@selector(resignAndToggle)];
-        self.navigationItem.leftBarButtonItem = menuButton;
-        [menuButton release];
-    }
-    
-    [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
-    
-    [tableView setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
-    [tableView setBackgroundView:nil];
-    [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
-    [tableView setBackgroundColor:[UIColor clearColor]];
-    [tableView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -255,11 +256,12 @@
 - (void)save {
     [self saveSettings];
     
-    [usernameField resignFirstResponder];
-    [passwordField resignFirstResponder];
-    [serverField resignFirstResponder];
-    [picsUsernameField resignFirstResponder];
-    [picsPasswordField resignFirstResponder];
+//    [usernameField resignFirstResponder];
+//    [passwordField resignFirstResponder];
+//    [serverField resignFirstResponder];
+//    [picsUsernameField resignFirstResponder];
+//    [picsPasswordField resignFirstResponder];
+    [self.view endEditing:YES];
     
     [UIAlertView showSimpleAlertWithTitle:@"Settings"
                                   message:@"Saved!"];

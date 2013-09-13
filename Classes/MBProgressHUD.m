@@ -522,10 +522,11 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		totalSize.height += kPadding;
 	}
 
-	CGFloat remainingHeight = bounds.size.height - totalSize.height - kPadding - 4 * margin; 
-	CGSize maxSize = CGSizeMake(maxWidth, remainingHeight);
-	CGSize detailsLabelSize = [detailsLabel.text sizeWithFont:detailsLabel.font 
-								constrainedToSize:maxSize lineBreakMode:detailsLabel.lineBreakMode];
+//	CGFloat remainingHeight = bounds.size.height - totalSize.height - kPadding - 4 * margin; 
+//	CGSize maxSize = CGSizeMake(maxWidth, remainingHeight);
+//	CGSize detailsLabelSize = [detailsLabel.text sizeWithFont:detailsLabel.font
+//								constrainedToSize:maxSize lineBreakMode:detailsLabel.lineBreakMode];
+	CGSize detailsLabelSize = [detailsLabel.text boundingRectWithSize:[detailsLabel.text sizeWithAttributes:@{NSFontAttributeName:label.font}] options:NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
 	totalSize.width = MAX(totalSize.width, detailsLabelSize.width);
 	totalSize.height += detailsLabelSize.height;
 	if (detailsLabelSize.height > 0.f && (indicatorF.size.height > 0.f || labelSize.height > 0.f)) {

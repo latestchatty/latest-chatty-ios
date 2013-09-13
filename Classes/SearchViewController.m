@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 4/20/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "SearchViewController.h"
@@ -15,6 +15,30 @@
 - (id)initWithNib {
     if (self = [super initWithNib]) {
         self.title = @"Search";
+        
+        termsField = [[UITextField alloc] initWithFrame:CGRectZero];
+        termsField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        termsField.borderStyle = UITextBorderStyleNone;
+        termsField.returnKeyType = UIReturnKeySearch;
+        termsField.clearButtonMode = UITextFieldViewModeAlways;
+        termsField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        termsField.delegate = self;
+        
+        authorField = [[UITextField alloc] initWithFrame:CGRectZero];
+        authorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        authorField.borderStyle = UITextBorderStyleNone;
+        authorField.returnKeyType = UIReturnKeySearch;
+        authorField.clearButtonMode = UITextFieldViewModeAlways;
+        authorField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        authorField.delegate = self;
+        
+        parentAuthorField = [[UITextField alloc] initWithFrame:CGRectZero];
+        parentAuthorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        parentAuthorField.borderStyle = UITextBorderStyleNone;
+        parentAuthorField.returnKeyType = UIReturnKeySearch;
+        parentAuthorField.clearButtonMode = UITextFieldViewModeAlways;
+        parentAuthorField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        parentAuthorField.delegate = self;
     }
     return self;
 }
@@ -39,72 +63,10 @@
 //	self.navigationItem.rightBarButtonItem = searchButton;
 //	[searchButton release];
     
-    CGRect fieldRect;
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        fieldRect = CGRectMake(150, 7, inputTable.frame.size.width - 220, 20);
-    } else {
-        fieldRect = CGRectMake(110, 7, inputTable.frame.size.width - 120, 20);
-    }
-    
     [inputTable setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
     [inputTable setBackgroundView:nil];
     [inputTable setBackgroundView:[[[UIView alloc] init] autorelease]];
     [inputTable setBackgroundColor:[UIColor clearColor]];
-    
-    termsField = [[UITextField alloc] initWithFrame:fieldRect];
-    termsField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    termsField.borderStyle = UITextBorderStyleNone;
-    termsField.returnKeyType = UIReturnKeySearch;
-    termsField.clearButtonMode = UITextFieldViewModeAlways;
-    termsField.delegate = self;
-    
-    authorField = [[UITextField alloc] initWithFrame:fieldRect];
-    authorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    authorField.borderStyle = UITextBorderStyleNone;
-    authorField.returnKeyType = UIReturnKeySearch;
-    authorField.clearButtonMode = UITextFieldViewModeAlways;
-    authorField.delegate = self;
-    
-    parentAuthorField = [[UITextField alloc] initWithFrame:fieldRect];
-    parentAuthorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    parentAuthorField.borderStyle = UITextBorderStyleNone;
-    parentAuthorField.returnKeyType = UIReturnKeySearch;
-    parentAuthorField.clearButtonMode = UITextFieldViewModeAlways;
-    parentAuthorField.delegate = self;
-    
-    //iOS7
-//    // Set the appearance of the segemented control
-//    // Rounded edges
-//    UIImage *segmentSelected =
-//    [[UIImage imageNamed:@"segcontrol_sel.png"]
-//     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
-//    UIImage *segmentUnselected =
-//    [[UIImage imageNamed:@"segcontrol_uns.png"]
-//     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
-//    
-//    [segmentedBar setBackgroundImage:segmentUnselected
-//                            forState:UIControlStateNormal
-//                          barMetrics:UIBarMetricsDefault];
-//    [segmentedBar setBackgroundImage:segmentSelected
-//                            forState:UIControlStateSelected
-//                          barMetrics:UIBarMetricsDefault];
-//    // Various inner states
-//    UIImage *segmentSelectedUnselected = [UIImage imageNamed:@"segcontrol_sel-uns.png"];
-//    UIImage *segUnselectedSelected = [UIImage imageNamed:@"segcontrol_uns-sel.png"];
-//    UIImage *segmentUnselectedUnselected = [UIImage imageNamed:@"segcontrol_uns-uns.png"];
-//    
-//    [segmentedBar setDividerImage:segmentUnselectedUnselected
-//              forLeftSegmentState:UIControlStateNormal
-//                rightSegmentState:UIControlStateNormal
-//                       barMetrics:UIBarMetricsDefault];
-//    [segmentedBar setDividerImage:segmentSelectedUnselected
-//              forLeftSegmentState:UIControlStateSelected
-//                rightSegmentState:UIControlStateNormal
-//                       barMetrics:UIBarMetricsDefault];
-//    [segmentedBar setDividerImage:segUnselectedSelected
-//              forLeftSegmentState:UIControlStateNormal
-//                rightSegmentState:UIControlStateSelected
-//                       barMetrics:UIBarMetricsDefault];
     
     [inputTable reloadData];
     
@@ -213,7 +175,8 @@
     if ([recentSearches count] > 0) {
         [btn addTarget:self action:@selector(clearRecentSearches:) forControlEvents:UIControlEventTouchUpInside];
     } else {
-        [btn setTitle:@"Recent Searches is empty" forState:UIControlStateNormal];
+        [btn setTitle:@"Recent Searches is empty" forState:UIControlStateDisabled];
+        [btn setEnabled:NO];
     }
     [recentSearchScrollView addSubview:btn];
     
@@ -224,21 +187,24 @@
                buttonOffset:(CGFloat)yButtonOffset
                buttonHeight:(CGFloat)buttonHeight {
     // background and frame properties
-    [btn setBackgroundImage:[[UIImage imageNamed:@"BlueButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forState:UIControlStateNormal];
+//    [btn setBackgroundImage:[[UIImage imageNamed:@"BlueButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forState:UIControlStateNormal];
     [btn setFrame:CGRectMake(segmentedBar.frameX, yButtonOffset, segmentedBar.frameWidth, buttonHeight)];
     [btn setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
     // title label properties
     [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor lcIOS7BlueColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor lcDarkGrayTextColor] forState:UIControlStateDisabled];
+    [btn setTitleColor:[UIColor lcDarkGrayTextColor] forState:UIControlStateHighlighted];
     [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 6.0, 0, 6.0)];
     CGFloat titleFontSize = 15.0f;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         titleFontSize += 3.0f;
     }
-    [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:titleFontSize]];
-    [btn.titleLabel setShadowColor:[UIColor lcTextShadowColor]];
-    [btn.titleLabel setShadowOffset:CGSizeMake(0, -1)];
+
+    [btn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]];
+//    [btn.titleLabel setShadowColor:[UIColor lcTextShadowColor]];
+//    [btn.titleLabel setShadowOffset:CGSizeMake(0, -1)];
     //iOS7
     [btn.titleLabel setMinimumScaleFactor:10.0f];
     [btn.titleLabel setAdjustsFontSizeToFitWidth:YES];
@@ -316,7 +282,7 @@
         usernameField.text = username;
         usernameField.enabled = NO;
         usernameField.clearButtonMode = UITextFieldViewModeNever;
-//        [(UITableViewCell *)usernameField.superview accessoryView].hidden = NO;
+        [(UITableViewCell *)usernameField.superview.superview.superview accessoryView].hidden = NO;
     }
     
     //Patch-E: always keeping focus in one of the text fields upon segemented control mode change, made the search button under the table view unecessary for iPhone, removed from iPhone xib and programmatically create one on the top right of navigation bar. Always scrolling the text field with focus into view on iPhone.
@@ -413,7 +379,7 @@
     [self modeChanged];
 }
 
-#pragma mark TableView Methods
+#pragma mark Table View Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -423,53 +389,55 @@
     return 3;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 1;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
     cell.backgroundColor = [UIColor lcGroupedCellColor];
+	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.textLabel setTextColor:[UIColor lcGroupedCellLabelColor]];
+    [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
+    [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
+    [cell.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
     
     UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
     lockImage.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     lockImage.hidden = YES;
     cell.accessoryView = lockImage;
     
-    CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 40 : 0;
-    UILabel *prompt = [UILabel viewWithFrame:CGRectMake(leftEdge, 7, 85, 22)];
-    if (indexPath.row == 0) prompt.text = @"Terms:";
-    if (indexPath.row == 1) prompt.text = @"Author:";
-    if (indexPath.row == 2) prompt.text = @"Parent:";
-    prompt.font = [UIFont boldSystemFontOfSize:17.0];
-    prompt.textAlignment = NSTextAlignmentRight;
-    prompt.backgroundColor = [UIColor clearColor];
-    prompt.textColor = [UIColor lcGroupedCellLabelColor];
-    prompt.shadowColor = [UIColor lcTextShadowColor];
-    [prompt setShadowOffset:CGSizeMake(0, -1.0)];
-    [cell addSubview:prompt];
-    
-    UITextField *textField = nil;
-    
-    if (indexPath.row == 0) {
-        textField = termsField;
-        textField.textColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 1) {
-        textField = authorField;
-    }
-    if (indexPath.row == 2) {
-        textField = parentAuthorField;
-    }
-    if (indexPath.row == 1 || indexPath.row == 2) {
-        textField.textColor = [UIColor lcAuthorColor];
-    }
-    
+    CGRect fieldRect;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        textField.frameWidth = cell.frameWidth - 195;
+        fieldRect = CGRectMake(80, 12, 264, 20);
     } else {
-        textField.frameWidth = cell.frameWidth - 120;
+        fieldRect = CGRectMake(80, 12, 264, 20);
     }
-    [cell addSubview:textField];
+    
+    switch (indexPath.row) {
+        case 0:
+            [cell.contentView addSubview:termsField];
+            termsField.textColor = [UIColor whiteColor];
+            [termsField setFrame:fieldRect];
+            cell.textLabel.text = @"Terms:";
+            break;
+            
+        case 1:
+            [cell.contentView addSubview:authorField];
+            authorField.textColor = [UIColor lcAuthorColor];
+            [authorField setFrame:fieldRect];
+            cell.textLabel.text = @"Author:";
+            break;
+            
+        case 2:
+            [cell.contentView addSubview:parentAuthorField];
+            parentAuthorField.textColor = [UIColor lcAuthorColor];
+            [parentAuthorField setFrame:fieldRect];
+            cell.textLabel.text = @"Parent:";
+            break;
+    }
     
     return cell;
 }
@@ -489,27 +457,20 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [termsField release];
-    [authorField release];
-    [parentAuthorField release];
     [inputTable release];
     [segmentedBar release];
     [recentSearchView release];
+    [recentSearchScrollView release];
+    
+    [termsField release];
+    [authorField release];
+    [parentAuthorField release];
+    
     [searchTerms release];
     [searchAuthor release];
     [searchParentAuthor release];
-    [recentSearchScrollView release];
     
     [super dealloc];
 }
 
-- (void)viewDidUnload {
-    [recentSearchView release];
-    [recentSearchScrollView release];
-    
-    recentSearchView = nil;
-    recentSearchScrollView = nil;
-    
-    [super viewDidUnload];
-}
 @end

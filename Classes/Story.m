@@ -3,18 +3,14 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/16/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "Story.h"
 
 @implementation Story
 
-@synthesize title;
-@synthesize preview;
-@synthesize body;
-@synthesize date;
-@synthesize commentCount;
+@synthesize title, preview, body, date, commentCount;
 
 - (id)initWithCoder:(NSCoder *)coder {
     [super initWithCoder:coder];

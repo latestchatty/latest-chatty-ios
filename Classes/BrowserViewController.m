@@ -49,6 +49,8 @@
         [lolMenuButton setEnabled:NO];
         [lolMenuButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
                                      forState:UIControlStateNormal];
+        [lolMenuButton setTitleTextAttributes:[NSDictionary grayTextAttributesDictionary]
+                                     forState:UIControlStateDisabled];
      
         [self.navigationItem setRightBarButtonItem:lolMenuButton];
         
@@ -79,16 +81,56 @@
     
     [webView loadRequest:request];
     
+    // Add pan gesture to detect velocity of panning webview to hide/show bars
+    UIPanGestureRecognizer* panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [self.view addGestureRecognizer:panGesture];
+    panGesture.delegate = self;
+    panGesture.cancelsTouchesInView = NO;
+    [panGesture release];
+    
     //iOS7
     [webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 44.0, 0)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if ([[LatestChatty2AppDelegate delegate] isPadDevice] && self.navigationController) {
-        mainToolbar.tintColor = self.navigationController.navigationBar.tintColor;
+//        mainToolbar.tintColor = self.navigationController.navigationBar.tintColor;
         self.navigationItem.titleView = self.mainToolbar;
         webView.frame = self.view.bounds;
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [bottomToolbar setHidden:NO];
+    [[self navigationController] setNavigationBarHidden:NO animated:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+- (void)handlePan:(UIPanGestureRecognizer *)sender {
+    CGPoint velocity = [sender velocityInView:self.view];
+    
+    // only activate on first touch and a semi-flick velocity
+    if (sender.state == UIGestureRecognizerStateBegan && ABS(velocity.y) > 300) {
+        CGPoint translatedPoint = [sender translationInView:self.view];
+        if (translatedPoint.y > 0) {
+            [bottomToolbar setHidden:NO];
+            [[self navigationController] setNavigationBarHidden:NO animated:YES];
+            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+        } else if (translatedPoint.y < 0) {
+            [bottomToolbar setHidden:YES];
+            [[self navigationController] setNavigationBarHidden:YES animated:YES];
+            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+        }
+    }
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return YES;
+}
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return YES;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
