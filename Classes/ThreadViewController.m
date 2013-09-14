@@ -863,7 +863,7 @@
         }
         
         //show tagged HUD message for 2 seconds
-        NSTimeInterval theTimeInterval = 2;
+        NSTimeInterval theTimeInterval = 1;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Modded!"];
@@ -873,7 +873,7 @@
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
         
         //show tagged HUD message for 2 seconds
-        NSTimeInterval theTimeInterval = 2;
+        NSTimeInterval theTimeInterval = 1;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Tagged!"];

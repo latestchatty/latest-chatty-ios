@@ -8,6 +8,8 @@
 
 #import "ModelListViewController.h"
 
+#import "MBProgressHUD.h"
+
 @implementation ModelListViewController
 
 @synthesize tableView;
@@ -40,7 +42,7 @@
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [spinner startAnimating];
     spinner.contentMode = UIViewContentModeCenter;
-    spinner.frame = CGRectMake(0, 0, self.view.frame.size.width -1, self.view.frame.size.height / 1.5 -1);
+    spinner.frame = CGRectMake(0, 0, self.view.frame.size.width -1, self.view.frame.size.height / 2.0 -1);
     spinner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [loadingView addSubview:spinner];
     [spinner release];
@@ -84,12 +86,22 @@
     [UIView beginAnimations:@"LoadingViewFadeIn" context:nil];
     loadingView.alpha = 1.0;
     [UIView commitAnimations];
+    
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [hud setLabelText:@"Loading..."];
+//    [hud setDimBackground:YES];
+//    [hud setColor:[UIColor lcTableBackgroundColor]];
+//    if ([self isKindOfClass:[ThreadViewController class]]) {
+//        [hud setYOffset:-44];
+//    }
 }
 
 - (void)hideLoadingSpinner {
     [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
     loadingView.alpha = 0.0;
     [UIView commitAnimations];
+    
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (BOOL)loading {

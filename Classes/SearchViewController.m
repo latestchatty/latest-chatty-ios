@@ -194,7 +194,7 @@
     // title label properties
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor lcIOS7BlueColor] forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor lcDarkGrayTextColor] forState:UIControlStateDisabled];
+    [btn setTitleColor:[UIColor lcTableBackgroundColor] forState:UIControlStateDisabled];
     [btn setTitleColor:[UIColor lcDarkGrayTextColor] forState:UIControlStateHighlighted];
     [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 6.0, 0, 6.0)];
     CGFloat titleFontSize = 15.0f;

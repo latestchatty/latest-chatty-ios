@@ -247,6 +247,15 @@
 //             NSShadowAttributeName:shadow};
 }
 
++ (NSDictionary *)darkGrayTextAttributesDictionary {
+    //    NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+    //    [shadow setShadowColor:[UIColor lcTextShadowColor]];
+    //    [shadow setShadowOffset:CGSizeMake(0.0, 1.0)];
+    
+    return @{NSForegroundColorAttributeName:[UIColor lcTableBackgroundColor]};
+    //             NSShadowAttributeName:shadow};
+}
+
 + (NSDictionary *)textShadowAttributesDictionary {
     NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
     [shadow setShadowColor:[UIColor lcTextShadowColor]];

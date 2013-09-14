@@ -49,7 +49,7 @@
         [lolMenuButton setEnabled:NO];
         [lolMenuButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
                                      forState:UIControlStateNormal];
-        [lolMenuButton setTitleTextAttributes:[NSDictionary grayTextAttributesDictionary]
+        [lolMenuButton setTitleTextAttributes:[NSDictionary darkGrayTextAttributesDictionary]
                                      forState:UIControlStateDisabled];
      
         [self.navigationItem setRightBarButtonItem:lolMenuButton];
@@ -112,12 +112,16 @@
     // only activate on first touch and a semi-flick velocity
     if (sender.state == UIGestureRecognizerStateBegan && ABS(velocity.y) > 300) {
         CGPoint translatedPoint = [sender translationInView:self.view];
-        if (translatedPoint.y > 0) {
+        if (translatedPoint.y > 0 && self.navigationController.navigationBarHidden) {
+            NSLog(@"showing");
             [bottomToolbar setHidden:NO];
+//            [[self navigationController] setToolbarHidden:NO animated:YES];
             [[self navigationController] setNavigationBarHidden:NO animated:YES];
             [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-        } else if (translatedPoint.y < 0) {
+        } else if (translatedPoint.y < 0 && !self.navigationController.navigationBarHidden) {
+            NSLog(@"hiding");
             [bottomToolbar setHidden:YES];
+//            [[self navigationController] setToolbarHidden:YES animated:YES];
             [[self navigationController] setNavigationBarHidden:YES animated:YES];
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
         }
