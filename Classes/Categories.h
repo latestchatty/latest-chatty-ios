@@ -79,7 +79,6 @@
 + (NSDictionary *)whiteTextAttributesDictionary;
 + (NSDictionary *)blueTextAttributesDictionary;
 + (NSDictionary *)grayTextAttributesDictionary;
-+ (NSDictionary *)darkGrayTextAttributesDictionary;
 + (NSDictionary *)textShadowAttributesDictionary;
 
 @end

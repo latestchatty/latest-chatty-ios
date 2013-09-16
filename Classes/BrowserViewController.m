@@ -42,15 +42,13 @@
             [menuButton release];
         }
         
-        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                           style:UIBarButtonItemStyleDone
                                                                          target:self
                                                                          action:@selector(lolMenu)];
         [lolMenuButton setEnabled:NO];
         [lolMenuButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
                                      forState:UIControlStateNormal];
-        [lolMenuButton setTitleTextAttributes:[NSDictionary darkGrayTextAttributesDictionary]
-                                     forState:UIControlStateDisabled];
      
         [self.navigationItem setRightBarButtonItem:lolMenuButton];
         
@@ -115,7 +113,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:bottomToolbar cache:YES];
     CGRect bottomToolbarFrame = bottomToolbar.frame;
-    bottomToolbarFrame.origin.y = bottomToolbarFrame.origin.y + bottomToolbar.frameHeight;
+    bottomToolbarFrame.origin.y = bottomToolbarFrame.origin.y + (bottomToolbar.frameHeight+1);
     bottomToolbar.frame = bottomToolbarFrame;
     [UIView commitAnimations];
     
@@ -134,7 +132,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:bottomToolbar cache:YES];
     CGRect bottomToolbarFrame = bottomToolbar.frame;
-    bottomToolbarFrame.origin.y = bottomToolbarFrame.origin.y - bottomToolbar.frameHeight;
+    bottomToolbarFrame.origin.y = bottomToolbarFrame.origin.y - (bottomToolbar.frameHeight+1);
     bottomToolbar.frame = bottomToolbarFrame;
     [UIView commitAnimations];
     
@@ -180,6 +178,7 @@
 
     if (self.navigationItem.rightBarButtonItem != nil) {
         [self.navigationItem.rightBarButtonItem setEnabled:YES];
+        [self.navigationItem.rightBarButtonItem setTitle:@"Menu"];
     }
     
     [self.actionButton setEnabled:YES];
