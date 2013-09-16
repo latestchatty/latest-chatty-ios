@@ -101,9 +101,45 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [bottomToolbar setHidden:NO];
-    [[self navigationController] setNavigationBarHidden:NO animated:NO];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [self showBars];
+}
+
+// Hide the status bar and navigation bar with the built-in animation method
+// Hiding the bottom bar with manual animation because setToolbarHidden:animated: on the navigation controller was acting strange
+- (void)hideBars {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+
+    [UIView beginAnimations:@"hideBottomToolbar" context:nil];
+    [UIView setAnimationDuration:0.25];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:bottomToolbar cache:YES];
+    CGRect bottomToolbarFrame = bottomToolbar.frame;
+    bottomToolbarFrame.origin.y = bottomToolbarFrame.origin.y + bottomToolbar.frameHeight;
+    bottomToolbar.frame = bottomToolbarFrame;
+    [UIView commitAnimations];
+    
+    // need to handle the webview's content inset as well
+    [webView.scrollView setContentInset:UIEdgeInsetsZero];
+}
+
+// Show the status bar and navigation bar with the built-in animation method
+// Showing the bottom bar with manual animation because setToolbarHidden:animated: on the navigation controller was acting strange
+- (void)showBars {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
+    [UIView beginAnimations:@"showBottomToolbar" context:nil];
+    [UIView setAnimationDuration:0.25];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:bottomToolbar cache:YES];
+    CGRect bottomToolbarFrame = bottomToolbar.frame;
+    bottomToolbarFrame.origin.y = bottomToolbarFrame.origin.y - bottomToolbar.frameHeight;
+    bottomToolbar.frame = bottomToolbarFrame;
+    [UIView commitAnimations];
+    
+    // need to handle the webview's content inset as well
+    [webView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 44.0, 0)];
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)sender {
@@ -113,17 +149,9 @@
     if (sender.state == UIGestureRecognizerStateBegan && ABS(velocity.y) > 300) {
         CGPoint translatedPoint = [sender translationInView:self.view];
         if (translatedPoint.y > 0 && self.navigationController.navigationBarHidden) {
-            NSLog(@"showing");
-            [bottomToolbar setHidden:NO];
-//            [[self navigationController] setToolbarHidden:NO animated:YES];
-            [[self navigationController] setNavigationBarHidden:NO animated:YES];
-            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+            [self showBars];
         } else if (translatedPoint.y < 0 && !self.navigationController.navigationBarHidden) {
-            NSLog(@"hiding");
-            [bottomToolbar setHidden:YES];
-//            [[self navigationController] setToolbarHidden:YES animated:YES];
-            [[self navigationController] setNavigationBarHidden:YES animated:YES];
-            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+            [self hideBars];
         }
     }
 }
