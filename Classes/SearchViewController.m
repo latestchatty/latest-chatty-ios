@@ -55,13 +55,13 @@
         [menuButton release];
     }
     
-//    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithTitle:@"Search"
-//                                                                     style:UIBarButtonItemStyleDone
-//                                                                    target:self
-//                                                                    action:@selector(search)];
-//    [searchButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
-//	self.navigationItem.rightBarButtonItem = searchButton;
-//	[searchButton release];
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
+                                                                     style:UIBarButtonItemStyleDone
+                                                                    target:self
+                                                                    action:@selector(search)];
+    [searchButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
+	self.navigationItem.rightBarButtonItem = searchButton;
+	[searchButton release];
     
     [inputTable setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
     [inputTable setBackgroundView:nil];
@@ -231,9 +231,18 @@
     if (segmentedBar.selectedSegmentIndex == 4) {
         [self showRecentSearchView];
         [recentSearchScrollView setContentOffset:CGPointZero animated:YES];
+        
+        // disable and hide the top right search
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.navigationItem.rightBarButtonItem.title = @"";
+        
         return;
     } else {
         [recentSearchView removeFromSuperview];
+        
+        // enable and show the top right search
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.navigationItem.rightBarButtonItem.title = @"Submit";
     }
     
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
@@ -406,7 +415,6 @@
     
     UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
     lockImage.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
-    lockImage.hidden = YES;
     cell.accessoryView = lockImage;
     
     CGRect fieldRect;
