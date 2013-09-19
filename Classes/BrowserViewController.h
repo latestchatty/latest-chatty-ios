@@ -12,7 +12,7 @@
     UIWebView *webView;
     UIBarButtonItem *backButton;
     UIBarButtonItem *forwardButton;
-    UIActivityIndicatorView *spinner;
+//    UIActivityIndicatorView *spinner;
     UIToolbar *mainToolbar;
     UIBarButtonItem *actionButton;
     UIToolbar *bottomToolbar;
@@ -27,7 +27,7 @@
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *forwardButton;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
+//@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, retain) IBOutlet UIToolbar *mainToolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
 @property (nonatomic, retain) IBOutlet UIToolbar *bottomToolbar;

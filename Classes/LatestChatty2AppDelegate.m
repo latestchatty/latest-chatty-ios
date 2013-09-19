@@ -140,7 +140,8 @@
                                      [NSMutableArray array],        @"pinnedPosts",
                                      [NSMutableArray array],        @"collapsedThreads",
                                      [NSMutableArray array],        @"recentSearches",
-                                     [NSNumber numberWithBool:NO],  @"darkMode",                                     
+                                     [NSNumber numberWithBool:NO],  @"darkMode",
+                                     [NSNumber numberWithBool:NO],  @"superSecretFartMode",
                                      nil];
     [defaults registerDefaults:defaultSettings];
 

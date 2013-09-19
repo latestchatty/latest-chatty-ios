@@ -81,8 +81,6 @@
                      }];
                      // Success block
                      [uploadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-                         
                          // Process response
                          // regex will fail if there's a second underscore anywhere in the URL, but that shouldn't happen...
                          NSString *regEx = @"http://chattypics\\.com/files/iPhoneUpload_[^_]+\\.jpg";
@@ -93,7 +91,6 @@
                          
                          // Failure block
                      } failure:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                          // Pass nil to selector so that it handles the error
                          [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:nil waitUntilDone:YES];
                      }];
@@ -105,7 +102,6 @@
                      // We currently aren't telling the user if they couldn't log in successfully
                      // Would need to parse the response for successful login indication in the login success block
                      
-                     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                      // Pass nil to selector so that it handles the error
                      [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:nil waitUntilDone:YES];
                  }];

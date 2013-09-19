@@ -264,9 +264,9 @@ static NSMutableDictionary *expirationColorMapping;
     NSHTTPURLResponse *response;
     NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]];
     
-    NSLog(@"Creating Post with Request body: %@", requestBody);
-    NSLog(@"Server responded: %@", responseBody);
-    NSLog(@"response statusCode: %d", [response statusCode]);
+//    NSLog(@"Creating Post with Request body: %@", requestBody);
+//    NSLog(@"Server responded: %@", responseBody);
+//    NSLog(@"response statusCode: %d", [response statusCode]);
     
     // Handle login failed
     if ([responseBody isEqualToString:@"error_login_failed"]) {

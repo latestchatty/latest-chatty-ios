@@ -62,6 +62,14 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
     
+    if (self.bodyString) {
+        [self.body becomeFirstResponder];
+    } else if (self.recipientString) {
+        [self.subject becomeFirstResponder];
+    } else {
+        [self.recipient becomeFirstResponder];
+    }
+    
     // iOS7
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
 }
@@ -90,16 +98,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    if (self.bodyString) {
-        [self.body becomeFirstResponder];
-    } else if (self.recipientString) {
-        [self.subject becomeFirstResponder];
-    } else {
-        [self.recipient becomeFirstResponder];
-    }
 }
 
 //Patch-E: implemented fix for text view being underneath the keyboard in landscape, sets coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
@@ -188,17 +186,18 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     
-	[self hideActivtyIndicator];
+	[self hideActivityIndicator];
 }
 
 - (void)sendFailure {
 	self.navigationController.view.userInteractionEnabled = YES;
-	[self hideActivtyIndicator];
+	[self hideActivityIndicator];
 }
 
 - (void)makeMessage {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     self.navigationController.view.userInteractionEnabled = NO;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // See [ComposeViewController makePost] for explanation, same GCD blocks used there
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -209,6 +208,7 @@
             } else {
                 [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
             }
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         });
     });
 
@@ -244,11 +244,13 @@
 	[self.view addSubview:activityView];
     spinner.hidden = NO;
     [spinner startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
-- (void)hideActivtyIndicator {
+- (void)hideActivityIndicator {
 	[activityView removeFromSuperview];
 	[spinner stopAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 #pragma mark Cleanup

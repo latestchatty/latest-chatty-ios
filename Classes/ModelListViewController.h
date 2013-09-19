@@ -9,11 +9,15 @@
 #import "ModelLoadingDelegate.h"
 #import "ModelLoader.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 @interface ModelListViewController : UIViewController <ModelLoadingDelegate, UITableViewDelegate, UITableViewDataSource> {
     ModelLoader *loader;
     UIView *loadingView;
     IBOutlet UITableView *tableView;
     CGPoint lastOffset;
+    AVAudioPlayer *fartSound;
+    SystemSoundID fartSound1;
 }
 
 @property (retain) UITableView *tableView;

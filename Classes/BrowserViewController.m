@@ -13,7 +13,7 @@
 
 @implementation BrowserViewController
 
-@synthesize request, webView, backButton, forwardButton, spinner, mainToolbar, actionButton, bottomToolbar, isShackLOL, isCredits;
+@synthesize request, webView, backButton, forwardButton, mainToolbar, actionButton, bottomToolbar, isShackLOL, isCredits;//, spinner;
 
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
@@ -61,21 +61,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        self.spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-    }
+//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        self.spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+//    }
     
-    // For iPad with top toolbar
-    if (mainToolbar) {
-        // Add a spinner after refresh button
-        UIBarButtonItem *spinnerItem = [[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease];
-        [spinnerItem setWidth:44.0];
-        NSMutableArray *items = [NSMutableArray arrayWithArray:mainToolbar.items];
-        //[items insertObject:spinnerItem atIndex:[items count]-1];
-        [items insertObject:spinnerItem atIndex:3];
-        
-        mainToolbar.items = items;
-    }
+//    // For iPad with top toolbar
+//    if (mainToolbar) {
+//        // Add a spinner after refresh button
+//        UIBarButtonItem *spinnerItem = [[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease];
+//        [spinnerItem setWidth:44.0];
+//        NSMutableArray *items = [NSMutableArray arrayWithArray:mainToolbar.items];
+//        //[items insertObject:spinnerItem atIndex:[items count]-1];
+//        [items insertObject:spinnerItem atIndex:3];
+//        
+//        mainToolbar.items = items;
+//    }
     
     [webView loadRequest:request];
     
@@ -119,6 +119,8 @@
     
     // need to handle the webview's content inset as well
     [webView.scrollView setContentInset:UIEdgeInsetsZero];
+    
+//    [self.spinner setColor:[UIColor clearColor]];
 }
 
 // Show the status bar and navigation bar with the built-in animation method
@@ -138,6 +140,8 @@
     
     // need to handle the webview's content inset as well
     [webView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 44.0, 0)];
+    
+//    [self.spinner setColor:[UIColor whiteColor]];
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)sender {
@@ -164,11 +168,13 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [spinner startAnimating];
+//    [spinner startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
-    [spinner stopAnimating];
+//    [spinner stopAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     backButton.enabled = webView.canGoBack;
     forwardButton.enabled = webView.canGoForward;
 
@@ -347,7 +353,7 @@
     self.webView = nil;
     self.backButton = nil;
     self.forwardButton = nil;
-    self.spinner = nil;
+//    self.spinner = nil;
     self.mainToolbar = nil;
     self.actionButton = nil;
     self.bottomToolbar = nil;

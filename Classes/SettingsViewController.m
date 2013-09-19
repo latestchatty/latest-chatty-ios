@@ -115,7 +115,7 @@
 	textField.delegate = self;
 	textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:key];
     textField.textColor = [UIColor whiteColor];
-    textField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    textField.keyboardAppearance = UIKeyboardAppearanceDark;
     textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
 	
 	return [textField autorelease];
@@ -181,7 +181,35 @@
                              animated:YES];
 }
 
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
 #pragma mark Actions
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (motion == UIEventSubtypeMotionShake) {
+        [UIAlertView showWithTitle:@"Super Secret Fart Mode"
+                           message:@"Allow the farts?"
+                          delegate:self
+                 cancelButtonTitle:@"No!"
+                 otherButtonTitles:@"Yes!", nil];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+	if ([[alertView title] isEqualToString:@"Super Secret Fart Mode"]) {
+        BOOL allowFarts = NO;
+        if (buttonIndex == 1)  {
+            allowFarts = YES;
+        }
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:allowFarts forKey:@"superSecretFartMode"];
+        [defaults synchronize];
+        
+        NSLog(@"saving farts");
+    }
+}
 
 - (void)handlePicsQualitySlider:(UISlider *)slider {
     picsQualityLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(slider.value*100)];

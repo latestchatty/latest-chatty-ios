@@ -20,7 +20,6 @@
         termsField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         termsField.borderStyle = UITextBorderStyleNone;
         termsField.returnKeyType = UIReturnKeySearch;
-        termsField.clearButtonMode = UITextFieldViewModeAlways;
         termsField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
         termsField.delegate = self;
         
@@ -28,7 +27,6 @@
         authorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         authorField.borderStyle = UITextBorderStyleNone;
         authorField.returnKeyType = UIReturnKeySearch;
-        authorField.clearButtonMode = UITextFieldViewModeAlways;
         authorField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
         authorField.delegate = self;
         
@@ -36,7 +34,6 @@
         parentAuthorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         parentAuthorField.borderStyle = UITextBorderStyleNone;
         parentAuthorField.returnKeyType = UIReturnKeySearch;
-        parentAuthorField.clearButtonMode = UITextFieldViewModeAlways;
         parentAuthorField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
         parentAuthorField.delegate = self;
     }
@@ -250,7 +247,7 @@
     for (UITextField *field in fields) {
         field.enabled = YES;
         field.clearButtonMode = UITextFieldViewModeAlways;
-        [field setKeyboardAppearance:UIKeyboardAppearanceAlert];
+        [field setKeyboardAppearance:UIKeyboardAppearanceDark];
     }
     
     for (UITableViewCell *cell in [inputTable visibleCells]) {        
@@ -414,8 +411,9 @@
     [cell.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
     
     UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
-    lockImage.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+    lockImage.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     cell.accessoryView = lockImage;
+//    [cell addSubview:lockImage];
     
     CGRect fieldRect;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {

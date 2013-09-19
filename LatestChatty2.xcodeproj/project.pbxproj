@@ -33,6 +33,7 @@
 		CD028A0117337E05001E63B9 /* ReviewThreadViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */; };
 		CD1328D217DD7912009A5AE3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */; };
 		CD1328D317DD7912009A5AE3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */; };
+		CD13747B17EA90A0002A2551 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD13747A17EA90A0002A2551 /* AVFoundation.framework */; };
 		CD13D78D1754DB1A00539A23 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = CD13D78C1754DB1A00539A23 /* Categories.m */; };
 		CD13D78E1754DB1A00539A23 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = CD13D78C1754DB1A00539A23 /* Categories.m */; };
 		CD1804C9162211810094A3F1 /* GoogleChromeActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */; };
@@ -99,6 +100,24 @@
 		CD43CFEB1744809F00165FF3 /* Clear.24.png in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE81744809F00165FF3 /* Clear.24.png */; };
 		CD43CFEC1744809F00165FF3 /* Clear.24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE91744809F00165FF3 /* Clear.24@2x.png */; };
 		CD43CFED1744809F00165FF3 /* Clear.24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE91744809F00165FF3 /* Clear.24@2x.png */; };
+		CD48680F17EB5B430071F3D7 /* Fart1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680617EB5B430071F3D7 /* Fart1.mp3 */; };
+		CD48681017EB5B430071F3D7 /* Fart1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680617EB5B430071F3D7 /* Fart1.mp3 */; };
+		CD48681117EB5B430071F3D7 /* Fart2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680717EB5B430071F3D7 /* Fart2.mp3 */; };
+		CD48681217EB5B430071F3D7 /* Fart2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680717EB5B430071F3D7 /* Fart2.mp3 */; };
+		CD48681317EB5B430071F3D7 /* Fart3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680817EB5B430071F3D7 /* Fart3.mp3 */; };
+		CD48681417EB5B430071F3D7 /* Fart3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680817EB5B430071F3D7 /* Fart3.mp3 */; };
+		CD48681517EB5B430071F3D7 /* Fart4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680917EB5B430071F3D7 /* Fart4.mp3 */; };
+		CD48681617EB5B430071F3D7 /* Fart4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680917EB5B430071F3D7 /* Fart4.mp3 */; };
+		CD48681717EB5B430071F3D7 /* Fart5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680A17EB5B430071F3D7 /* Fart5.mp3 */; };
+		CD48681817EB5B430071F3D7 /* Fart5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680A17EB5B430071F3D7 /* Fart5.mp3 */; };
+		CD48681917EB5B430071F3D7 /* Fart6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680B17EB5B430071F3D7 /* Fart6.mp3 */; };
+		CD48681A17EB5B430071F3D7 /* Fart6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680B17EB5B430071F3D7 /* Fart6.mp3 */; };
+		CD48681B17EB5B430071F3D7 /* Fart7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680C17EB5B430071F3D7 /* Fart7.mp3 */; };
+		CD48681C17EB5B430071F3D7 /* Fart7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680C17EB5B430071F3D7 /* Fart7.mp3 */; };
+		CD48681D17EB5B430071F3D7 /* Fart8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680D17EB5B430071F3D7 /* Fart8.mp3 */; };
+		CD48681E17EB5B430071F3D7 /* Fart8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680D17EB5B430071F3D7 /* Fart8.mp3 */; };
+		CD48681F17EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
+		CD48682017EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
 		CD760000174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760001174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760002174C734B00B378E6 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFF1174C734B00B378E6 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -588,6 +607,8 @@
 		CD0289FF17337E05001E63B9 /* ReviewThreadViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ReviewThreadViewController-iPad.xib"; path = "../Resources-iPad/Classes/ReviewThreadViewController-iPad.xib"; sourceTree = "<group>"; };
 		CD1328D017DD7912009A5AE3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Classes/MBProgressHUD.h; sourceTree = "<group>"; };
 		CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Classes/MBProgressHUD.m; sourceTree = "<group>"; };
+		CD13747A17EA90A0002A2551 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CD13748217EAA4EE002A2551 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CD13D78B1754DB1A00539A23 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Categories.h; path = Classes/Categories.h; sourceTree = "<group>"; };
 		CD13D78C1754DB1A00539A23 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Categories.m; path = Classes/Categories.m; sourceTree = "<group>"; };
 		CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleChromeActivity.h; path = Classes/GoogleChromeActivity.h; sourceTree = "<group>"; };
@@ -625,6 +646,15 @@
 		CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		CD43CFE81744809F00165FF3 /* Clear.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Clear.24.png; path = Assets/Clear.24.png; sourceTree = "<group>"; };
 		CD43CFE91744809F00165FF3 /* Clear.24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Clear.24@2x.png"; path = "Assets/Clear.24@2x.png"; sourceTree = "<group>"; };
+		CD48680617EB5B430071F3D7 /* Fart1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart1.mp3; path = Assets/Fart1.mp3; sourceTree = "<group>"; };
+		CD48680717EB5B430071F3D7 /* Fart2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart2.mp3; path = Assets/Fart2.mp3; sourceTree = "<group>"; };
+		CD48680817EB5B430071F3D7 /* Fart3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart3.mp3; path = Assets/Fart3.mp3; sourceTree = "<group>"; };
+		CD48680917EB5B430071F3D7 /* Fart4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart4.mp3; path = Assets/Fart4.mp3; sourceTree = "<group>"; };
+		CD48680A17EB5B430071F3D7 /* Fart5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart5.mp3; path = Assets/Fart5.mp3; sourceTree = "<group>"; };
+		CD48680B17EB5B430071F3D7 /* Fart6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart6.mp3; path = Assets/Fart6.mp3; sourceTree = "<group>"; };
+		CD48680C17EB5B430071F3D7 /* Fart7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart7.mp3; path = Assets/Fart7.mp3; sourceTree = "<group>"; };
+		CD48680D17EB5B430071F3D7 /* Fart8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart8.mp3; path = Assets/Fart8.mp3; sourceTree = "<group>"; };
+		CD48680E17EB5B430071F3D7 /* Fart9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart9.mp3; path = Assets/Fart9.mp3; sourceTree = "<group>"; };
 		CD76FFE1174C734B00B378E6 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		CD76FFE2174C734B00B378E6 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		CD76FFE3174C734B00B378E6 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -927,6 +957,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD13747B17EA90A0002A2551 /* AVFoundation.framework in Frameworks */,
 				CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */,
 				CDA1181F16C1DC6600CE1375 /* CoreGraphics.framework in Frameworks */,
 				CDA1181D16C1DC6600CE1375 /* Foundation.framework in Frameworks */,
@@ -1023,6 +1054,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD13748217EAA4EE002A2551 /* AudioToolbox.framework */,
+				CD13747A17EA90A0002A2551 /* AVFoundation.framework */,
 				5907C5AC10A69A0A0028D630 /* CFNetwork.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -1289,6 +1322,15 @@
 		FA5FD0480F70149500878F27 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CD48680617EB5B430071F3D7 /* Fart1.mp3 */,
+				CD48680717EB5B430071F3D7 /* Fart2.mp3 */,
+				CD48680817EB5B430071F3D7 /* Fart3.mp3 */,
+				CD48680917EB5B430071F3D7 /* Fart4.mp3 */,
+				CD48680A17EB5B430071F3D7 /* Fart5.mp3 */,
+				CD48680B17EB5B430071F3D7 /* Fart6.mp3 */,
+				CD48680C17EB5B430071F3D7 /* Fart7.mp3 */,
+				CD48680D17EB5B430071F3D7 /* Fart8.mp3 */,
+				CD48680E17EB5B430071F3D7 /* Fart9.mp3 */,
 				CDDE5BC517D4C1720036CA42 /* Images.xcassets */,
 				CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */,
 				CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */,
@@ -1525,6 +1567,7 @@
 				FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */,
 				FAD29A610F796452006E14A2 /* DropShadow.png in Resources */,
 				FA87BD6B0F7AE97F0044898C /* SettingsViewController.xib in Resources */,
+				CD48681317EB5B430071F3D7 /* Fart3.mp3 in Resources */,
 				FA87BE1C0F7B0A9E0044898C /* CellBackgroundLight.png in Resources */,
 				FA87BE8A0F7B18C60044898C /* NavButtonTags.png in Resources */,
 				FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */,
@@ -1565,6 +1608,7 @@
 				FA04878511640D9F00290D2D /* MessageViewController-iPad.xib in Resources */,
 				FA04878611640D9F00290D2D /* MessagesViewController-iPad.xib in Resources */,
 				FA04878711640DA000290D2D /* MessageCell-iPad.xib in Resources */,
+				CD48680F17EB5B430071F3D7 /* Fart1.mp3 in Resources */,
 				FA04878911640DA100290D2D /* ComposeViewController-iPad.xib in Resources */,
 				FA04878A11640DA200290D2D /* ChattyViewController-iPad.xib in Resources */,
 				FA04878B11640DA300290D2D /* BrowserViewController-iPad.xib in Resources */,
@@ -1573,9 +1617,11 @@
 				A254B843116FFE9A001534FF /* MenuBorder.png in Resources */,
 				A27EA5CE1170F0520072EB59 /* chrono.png in Resources */,
 				A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */,
+				CD48681917EB5B430071F3D7 /* Fart6.mp3 in Resources */,
 				A27EAB8411728E260072EB59 /* Pushpin-Active.png in Resources */,
 				A27EAB8511728E260072EB59 /* Pushpin-Inactive.png in Resources */,
 				FAE438C81173FAA5000263F7 /* MenuBorderOut.png in Resources */,
+				CD48681D17EB5B430071F3D7 /* Fart8.mp3 in Resources */,
 				FA689DEF11D2EA680088CF3D /* BlueBullet@2x.png in Resources */,
 				FA689DF311D2EAE20088CF3D /* GrayBullet@2x.png in Resources */,
 				FA689DF911D2EB840088CF3D /* NewPostBullet@2x.png in Resources */,
@@ -1600,11 +1646,13 @@
 				CD8BA2CE16306B4B00ED5C5E /* left@2x.png in Resources */,
 				CD8BA2CF16306B4B00ED5C5E /* right.png in Resources */,
 				CD8BA2D016306B4B00ED5C5E /* right@2x.png in Resources */,
+				CD48681B17EB5B430071F3D7 /* Fart7.mp3 in Resources */,
 				CD8BA2D216306B5A00ED5C5E /* SearchIcon.48@2x.png in Resources */,
 				CD8BA2D416306B6200ED5C5E /* SettingsIcon.48@2x.png in Resources */,
 				CD8BA2D616306B6900ED5C5E /* StoriesIcon.48@2x.png in Resources */,
 				CD8BA2D816306BF700ED5C5E /* Camera.png in Resources */,
 				CD8CF263164189950041AA5B /* Camera@2x.png in Resources */,
+				CD48681717EB5B430071F3D7 /* Fart5.mp3 in Resources */,
 				CDA01B181730A87800E24A28 /* BlueButton@2x.png in Resources */,
 				CDA01B1D1730AD5B00E24A28 /* Lock.16@2x.png in Resources */,
 				CDA01B241731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
@@ -1627,6 +1675,7 @@
 				CD235A28173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */,
 				CDC6DEAF17408DFF004B9C78 /* button_done.png in Resources */,
 				CDC6DEB117408DFF004B9C78 /* button_done@2x.png in Resources */,
+				CD48681517EB5B430071F3D7 /* Fart4.mp3 in Resources */,
 				CDFA3D5817417AB90083C9D5 /* LatestChatIcon.48.png in Resources */,
 				CDFA3D5A17417AB90083C9D5 /* LatestChatIcon.48@2x.png in Resources */,
 				CDFA3D5E174183C80083C9D5 /* MenuIcon.24.png in Resources */,
@@ -1656,6 +1705,7 @@
 				CDB348D5174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */,
 				CDB348D7174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */,
 				CDB348D9174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */,
+				CD48681F17EB5B430071F3D7 /* Fart9.mp3 in Resources */,
 				CDB348DB174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */,
 				CDB348DD174573C0000003CA /* TimerDotEmpty@2x.png in Resources */,
 				CDB348DF174573C0000003CA /* TimerDotQuarter@2x.png in Resources */,
@@ -1676,6 +1726,7 @@
 				CD7C24851754689100D90942 /* Post.html in Resources */,
 				CD7C24871754689100D90942 /* ReviewPost.html in Resources */,
 				CD7C24891754689100D90942 /* Story.html in Resources */,
+				CD48681117EB5B430071F3D7 /* Fart2.mp3 in Resources */,
 				CD7C248B1754689100D90942 /* Stylesheet.css in Resources */,
 				CD7C248D1754689100D90942 /* Youtube.html in Resources */,
 				CD7C24901754695800D90942 /* NoContentController-iPad.xib in Resources */,
@@ -1710,8 +1761,10 @@
 				CDA1175916C1DC6600CE1375 /* ThreadViewController.xib in Resources */,
 				CDA1175A16C1DC6600CE1375 /* ReplyCell.xib in Resources */,
 				CDA1175D16C1DC6600CE1375 /* DropShadow.png in Resources */,
+				CD48681A17EB5B430071F3D7 /* Fart6.mp3 in Resources */,
 				CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */,
 				CDA1175F16C1DC6600CE1375 /* CellBackgroundLight.png in Resources */,
+				CD48682017EB5B430071F3D7 /* Fart9.mp3 in Resources */,
 				CDA1176716C1DC6600CE1375 /* NavButtonTags.png in Resources */,
 				CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */,
 				CDA1176A16C1DC6600CE1375 /* BlueBullet.png in Resources */,
@@ -1731,6 +1784,7 @@
 				CDA1177B16C1DC6600CE1375 /* SearchViewController.xib in Resources */,
 				CDA1177C16C1DC6600CE1375 /* GrayButton.png in Resources */,
 				CDA1177D16C1DC6600CE1375 /* GrayButtonPressed.png in Resources */,
+				CD48681617EB5B430071F3D7 /* Fart4.mp3 in Resources */,
 				CDA1177E16C1DC6600CE1375 /* BlueButton.png in Resources */,
 				CDA1178016C1DC6600CE1375 /* Lock.16.png in Resources */,
 				CDA1178116C1DC6600CE1375 /* SearchResultsViewController.xib in Resources */,
@@ -1753,6 +1807,7 @@
 				CDA1179416C1DC6600CE1375 /* MessageCell-iPad.xib in Resources */,
 				CDA1179516C1DC6600CE1375 /* ComposeViewController-iPad.xib in Resources */,
 				CDA1179616C1DC6600CE1375 /* ChattyViewController-iPad.xib in Resources */,
+				CD48681017EB5B430071F3D7 /* Fart1.mp3 in Resources */,
 				CDA1179716C1DC6600CE1375 /* BrowserViewController-iPad.xib in Resources */,
 				CDA1179916C1DC6600CE1375 /* SendMessageViewController.xib in Resources */,
 				CDA1179A16C1DC6600CE1375 /* SendMessageViewController-iPad.xib in Resources */,
@@ -1817,6 +1872,7 @@
 				CDFA3D5917417AB90083C9D5 /* LatestChatIcon.48.png in Resources */,
 				CDFA3D5B17417AB90083C9D5 /* LatestChatIcon.48@2x.png in Resources */,
 				CDFA3D5F174183C80083C9D5 /* MenuIcon.24.png in Resources */,
+				CD48681C17EB5B430071F3D7 /* Fart7.mp3 in Resources */,
 				CDFA3D61174183C80083C9D5 /* MenuIcon.24@2x.png in Resources */,
 				CDFA3D671741A8010083C9D5 /* CircleButton.png in Resources */,
 				CDFA3D691741A8010083C9D5 /* CircleButton@2x.png in Resources */,
@@ -1824,6 +1880,7 @@
 				CDFA3D6D1741A8010083C9D5 /* CircleButtonPushed@2x.png in Resources */,
 				CDFA3D8E17429F660083C9D5 /* NavButtonTags@2x.png in Resources */,
 				CDFA3D981743122A0083C9D5 /* button_done_landscape.png in Resources */,
+				CD48681217EB5B430071F3D7 /* Fart2.mp3 in Resources */,
 				CDFA3D9A1743122A0083C9D5 /* button_done_landscape@2x.png in Resources */,
 				CDFA3D9E174335D10083C9D5 /* BlueBulletThread.png in Resources */,
 				CDFA3DA0174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */,
@@ -1835,6 +1892,7 @@
 				CD205663174540A9003AF4FA /* RefreshIcon.24.png in Resources */,
 				CD205665174540A9003AF4FA /* ShareIcon.24.png in Resources */,
 				CD205667174540A9003AF4FA /* PenIcon.24.png in Resources */,
+				CD48681817EB5B430071F3D7 /* Fart5.mp3 in Resources */,
 				CD205669174540A9003AF4FA /* PinIcon.24@2x.png in Resources */,
 				CD20566B174540A9003AF4FA /* ReplyIcon.24@2x.png in Resources */,
 				CD20566D174540A9003AF4FA /* RefreshIcon.24@2x.png in Resources */,
@@ -1853,6 +1911,7 @@
 				CDB348F31745745F000003CA /* TimerDotHalfBlue.png in Resources */,
 				CDB348F51745745F000003CA /* TimerDotThreeQuarterBlue.png in Resources */,
 				CDB348F71745745F000003CA /* TimerDotFullBlue.png in Resources */,
+				CD48681E17EB5B430071F3D7 /* Fart8.mp3 in Resources */,
 				CDB348F91745745F000003CA /* TimerDotEmpty.png in Resources */,
 				CDB348FB1745745F000003CA /* TimerDotQuarter.png in Resources */,
 				CDB348FD1745745F000003CA /* TimerDotHalf.png in Resources */,
@@ -1876,6 +1935,7 @@
 				CDF1BDF71760344000D6B1AE /* SearchIcon.48-Active.png in Resources */,
 				CDF1BDF91760344000D6B1AE /* SearchIcon.48-Active@2x.png in Resources */,
 				CDF1BDFF1760350800D6B1AE /* SettingsIcon.48-Active.png in Resources */,
+				CD48681417EB5B430071F3D7 /* Fart3.mp3 in Resources */,
 				CDF1BE011760350800D6B1AE /* SettingsIcon.48-Active@2x.png in Resources */,
 				CDF1BE031760350800D6B1AE /* Shack[lol]Icon.48-Active.png in Resources */,
 				CDF1BE051760350800D6B1AE /* Shack[lol]Icon.48-Active@2x.png in Resources */,

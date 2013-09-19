@@ -23,10 +23,6 @@
 //    }
 //}
 //
-//- (void)scrollViewDid:(UIScrollView *)scrollView {
-//    NSLog(@"in here");
-//    lastOffset = scrollView.contentOffset;
-//}
 
 # pragma mark View Notifications
 
@@ -48,6 +44,16 @@
     [spinner release];
 
     [self.view addSubview:loadingView];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"superSecretFartMode"]) {
+        int randomFartNumber = rand() % (10 - 1) + 1;
+        NSLog(@"Playing Fart #%i, don't forget to wipe!", randomFartNumber);
+        NSURL *soundURL = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"Fart%i", randomFartNumber]
+                                                  withExtension:@"mp3"];
+        fartSound = [[AVAudioPlayer alloc]
+                     initWithContentsOfURL:soundURL error:nil];
+        [fartSound play];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,6 +64,11 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView flashScrollIndicators];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if ([fartSound isPlaying])
+        [fartSound stop];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -71,37 +82,42 @@
 # pragma mark Actions
 
 - (IBAction)refresh:(id)sender {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     [loader cancel];
     [loader release];
 
     if (![sender isKindOfClass:[UIRefreshControl class]]) {
       [self showLoadingSpinner];
     }
+    
 }
 
 #pragma mark Loading Spinner
 
 - (void)showLoadingSpinner {
-    loadingView.alpha = 0.0;
-    [UIView beginAnimations:@"LoadingViewFadeIn" context:nil];
-    loadingView.alpha = 1.0;
-    [UIView commitAnimations];
+//    loadingView.alpha = 0.0;
+//    [UIView beginAnimations:@"LoadingViewFadeIn" context:nil];
+//    loadingView.alpha = 1.0;
+//    [UIView commitAnimations];
     
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    [hud setLabelText:@"Loading..."];
-//    [hud setDimBackground:YES];
-//    [hud setColor:[UIColor lcTableBackgroundColor]];
-//    if ([self isKindOfClass:[ThreadViewController class]]) {
-//        [hud setYOffset:-44];
-//    }
+    [hud setDimBackground:YES];
+    [hud setColor:[UIColor colorWithRed:40.0/255.0 green:41.0/255.0 blue:44.0/255.0 alpha:0.75]];
+    if ([self isKindOfClass:[ThreadViewController class]]) {
+        [hud setYOffset:-40];
+    }
 }
 
 - (void)hideLoadingSpinner {
-    [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
-    loadingView.alpha = 0.0;
-    [UIView commitAnimations];
+//    [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
+//    loadingView.alpha = 0.0;
+//    [UIView commitAnimations];
     
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (BOOL)loading {
@@ -165,6 +181,7 @@
 - (void)dealloc {
     [loader release];
     [loadingView release];
+    [fartSound release];
     
     self.tableView = nil;
     

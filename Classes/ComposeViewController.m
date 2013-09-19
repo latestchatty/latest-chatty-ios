@@ -83,6 +83,8 @@
     UIMenuController *menu = [UIMenuController sharedMenuController];
     menu.menuItems = [NSArray arrayWithObject:[[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)] autorelease]];
     
+    [postContent becomeFirstResponder];
+
     // iOS7 testing
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
 }
@@ -105,8 +107,6 @@
                  cancelButtonTitle:@"OK"
                  otherButtonTitles:@"Rules", @"Hide", nil];
 	}
-    
-    [postContent becomeFirstResponder];
 }
 
 //Patch-E: implemented fix for text view being underneath the keyboard when view appears in landscape on iPhone. Also for iPhone, resizing postContent text view and the parent view containing all shack tag buttons before the view appears based on Retina 4" or non-Retina 4" screen.
@@ -258,6 +258,8 @@
 }
 
 - (UIProgressView*)showActivityIndicator:(BOOL)progressViewType {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
 	CGRect frame = self.view.frame;
 	frame.origin = CGPointZero;
 	activityView.frame = frame;
@@ -270,7 +272,7 @@
 		activityText.text = @"Posting comment...";
 		spinner.hidden = NO;
 		[spinner startAnimating];
-		uploadBar.hidden = YES; 
+		uploadBar.hidden = YES;
 	} else {
 		activityText.text = @"Uploading image...";
 		spinner.hidden = YES;
@@ -282,14 +284,15 @@
 	return progressBar;
 }
 
-- (void)hideActivtyIndicator {
+- (void)hideActivityIndicator {
 	[activityView removeFromSuperview];
 	[spinner stopAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)image:(Image*)image sendComplete:(NSString*)url {
 	postContent.text = [postContent.text stringByAppendingString:url];
-	[self hideActivtyIndicator];
+	[self hideActivityIndicator];
 	[postContent becomeFirstResponder];
 }
 
@@ -297,7 +300,7 @@
     [UIAlertView showSimpleAlertWithTitle:@"Upload Failed"
                                   message:@"Sorry but there was an error uploading your photo. Be sure you have set a valid ChattyPics.com username and password."
                               buttonTitle:@"Oopsie"];
-	[self hideActivtyIndicator];
+	[self hideActivityIndicator];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker
@@ -402,7 +405,7 @@
 	[lastController refresh:self];
 	[self.navigationController popViewControllerAnimated:YES];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
-	[self hideActivtyIndicator];
+	[self hideActivityIndicator];
 }
 
 - (void)postFailure {
@@ -410,7 +413,7 @@
 //    [UIAlertView showSimpleAlertWithTitle:@"Post Failure"
 //                                  message:@"There seems to have been an issue making the post. Try again!"
 //                              buttonTitle:@"Bummer"];
-	[self hideActivtyIndicator];
+	[self hideActivityIndicator];
 }
 
 - (void)makePost {
