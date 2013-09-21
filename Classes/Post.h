@@ -8,7 +8,6 @@
 
 #import "Model.h"
 #import "ModelLoader.h"
-#import "RegexKitLite.h"
 
 @interface Post : Model {
 	NSString *author;

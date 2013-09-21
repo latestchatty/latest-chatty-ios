@@ -12,7 +12,6 @@
 #import "Mod.h"
 #import "ReplyCell.h"
 #import "StringTemplate.h"
-#import "RegexKitLite.h"
 #import "GrippyBar.h"
 #import "ComposeViewController.h"
 #import "BrowserViewController.h"

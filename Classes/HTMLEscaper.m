@@ -7,7 +7,6 @@
 //
 
 #import "HTMLEscaper.h"
-#import "RegexKitLite.h"
 
 @implementation HTMLEscaper
 
@@ -35,11 +34,6 @@
 
     [xmlParse release];
     return resultString;
-}
-
-- (void)dealloc {
-    [resultString autorelease];
-    [super dealloc];
 }
 
 @end

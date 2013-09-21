@@ -7,7 +7,6 @@
 //
 
 #import "Model.h"
-#import "RegexKitLite.h"
 
 @interface Message : Model {
     NSString *from;

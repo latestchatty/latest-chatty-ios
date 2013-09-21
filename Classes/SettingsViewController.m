@@ -7,7 +7,6 @@
 //
 
 #import "SettingsViewController.h"
-#import "RegexKitLite.h"
 
 @implementation SettingsViewController
 
