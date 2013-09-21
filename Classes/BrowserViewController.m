@@ -110,7 +110,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:bottomToolbar cache:YES];
     CGRect bottomToolbarFrame = bottomToolbar.frame;
-    bottomToolbarFrame.origin.y = bottomToolbarFrame.origin.y + (bottomToolbar.frameHeight+1);
+    bottomToolbarFrame.origin.y = self.view.frameHeight + bottomToolbar.frameHeight;
     bottomToolbar.frame = bottomToolbarFrame;
     [UIView commitAnimations];
     
@@ -131,7 +131,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:bottomToolbar cache:YES];
     CGRect bottomToolbarFrame = bottomToolbar.frame;
-    bottomToolbarFrame.origin.y = bottomToolbarFrame.origin.y - (bottomToolbar.frameHeight+1);
+    bottomToolbarFrame.origin.y = self.view.frameHeight - bottomToolbar.frameHeight;
     bottomToolbar.frame = bottomToolbarFrame;
     [UIView commitAnimations];
     
