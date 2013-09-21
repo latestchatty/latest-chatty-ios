@@ -17,25 +17,8 @@
         self.title = @"Search";
         
         termsField = [[UITextField alloc] initWithFrame:CGRectZero];
-        termsField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        termsField.borderStyle = UITextBorderStyleNone;
-        termsField.returnKeyType = UIReturnKeySearch;
-        termsField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-        termsField.delegate = self;
-        
         authorField = [[UITextField alloc] initWithFrame:CGRectZero];
-        authorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        authorField.borderStyle = UITextBorderStyleNone;
-        authorField.returnKeyType = UIReturnKeySearch;
-        authorField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-        authorField.delegate = self;
-        
         parentAuthorField = [[UITextField alloc] initWithFrame:CGRectZero];
-        parentAuthorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        parentAuthorField.borderStyle = UITextBorderStyleNone;
-        parentAuthorField.returnKeyType = UIReturnKeySearch;
-        parentAuthorField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-        parentAuthorField.delegate = self;
     }
     return self;
 }
@@ -245,7 +228,12 @@
     for (UITextField *field in fields) {
         field.enabled = YES;
         field.clearButtonMode = UITextFieldViewModeAlways;
-        [field setKeyboardAppearance:UIKeyboardAppearanceDark];
+        field.keyboardAppearance = UIKeyboardAppearanceDark;
+        field.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        field.borderStyle = UITextBorderStyleNone;
+        field.returnKeyType = UIReturnKeySearch;
+        field.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        field.delegate = self;
     }
     
     for (UITableViewCell *cell in [inputTable visibleCells]) {        
