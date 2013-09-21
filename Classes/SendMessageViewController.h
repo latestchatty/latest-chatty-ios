@@ -20,13 +20,13 @@
     BOOL postingWarningAlertView;
 }
 
-@property (retain, nonatomic) Message *message;
-@property (retain, nonatomic) NSString *recipientString;
-@property (retain, nonatomic) NSString *subjectString;
-@property (retain, nonatomic) NSString *bodyString;
-@property (retain, nonatomic) UITextField *recipient;
-@property (retain, nonatomic) UITextField *subject;
-@property (retain, nonatomic) UITextView *body;
+@property (strong, nonatomic) Message *message;
+@property (strong, nonatomic) NSString *recipientString;
+@property (strong, nonatomic) NSString *subjectString;
+@property (strong, nonatomic) NSString *bodyString;
+@property (strong, nonatomic) UITextField *recipient;
+@property (strong, nonatomic) UITextField *subject;
+@property (strong, nonatomic) UITextView *body;
 
 - (void)showActivityIndicator;
 - (void)setupReply;

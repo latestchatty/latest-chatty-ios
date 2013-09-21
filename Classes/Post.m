@@ -95,7 +95,7 @@ static NSMutableDictionary *expirationColorMapping;
     NSString *participantModifier = @"";
     if (hasParticipant) participantModifier = @"Blue";
     
-    NSMutableDictionary *timerDots = [[[NSMutableDictionary alloc] init] autorelease];
+    NSMutableDictionary *timerDots = [[NSMutableDictionary alloc] init];
     [timerDots setValue:@"TimerDotEmpty%@"        forKey:@"empty"];
     [timerDots setValue:@"TimerDotQuarter%@"      forKey:@"quarter"];
     [timerDots setValue:@"TimerDotHalf%@"         forKey:@"half"];
@@ -119,7 +119,7 @@ static NSMutableDictionary *expirationColorMapping;
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
-    [super initWithCoder:coder];
+    if (!(self = [super initWithCoder:coder])) return nil;
     
     self.author         = [coder decodeObjectForKey:@"author"];
     self.preview        = [coder decodeObjectForKey:@"preview"];
@@ -242,7 +242,7 @@ static NSMutableDictionary *expirationColorMapping;
 + (BOOL)createWithBody:(NSString *)body parentId:(NSUInteger)parentId storyId:(NSUInteger)storyId {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/post/", server]]];
     
@@ -301,7 +301,7 @@ static NSMutableDictionary *expirationColorMapping;
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
-    [super initWithDictionary:dictionary];
+    if (!(self = [super initWithDictionary:dictionary])) return nil;
     
     self.author     = [[dictionary objectForKey:@"author"] stringByUnescapingHTML];
     self.preview    = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
@@ -332,7 +332,7 @@ static NSMutableDictionary *expirationColorMapping;
         NSInteger newDepth = [[dictionary objectForKey:@"depth"] intValue];
         [replyDictionary setObject:[NSNumber numberWithInt:newDepth + 1] forKey:@"depth"];
         
-        Post *reply = [[[Post alloc] initWithDictionary:replyDictionary] autorelease];
+        Post *reply = [[Post alloc] initWithDictionary:replyDictionary];
         [replies addObject:reply];
     }
  
@@ -410,19 +410,5 @@ static NSMutableDictionary *expirationColorMapping;
     return isOnTopic || isAllowed;
 }
 
-- (void)dealloc {
-    self.author     = nil;
-    self.preview    = nil;
-    self.body       = nil;
-    self.date       = nil;
-    self.category   = nil;
-    
-    self.participants = nil;
-    self.replies    = nil;
-    
-    [flatReplies release];
-    
-    [super dealloc];
-}
 
 @end

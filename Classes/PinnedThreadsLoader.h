@@ -18,8 +18,8 @@
     NSUInteger loadingPageId;
 }
 
-@property (nonatomic, retain) NSMutableArray *pinnedThreadsToLoad;
-@property (nonatomic, retain) id<ModelLoadingDelegate> loadingFor;
+@property (nonatomic, strong) NSMutableArray *pinnedThreadsToLoad;
+@property (nonatomic, strong) id<ModelLoadingDelegate> loadingFor;
 @property (nonatomic, assign) NSUInteger loadingStoryId;
 
 + (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId for:(id<ModelLoadingDelegate>)delegate;

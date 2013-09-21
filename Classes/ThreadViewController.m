@@ -57,7 +57,7 @@
     }
     
     if (threadId > 0) {
-        loader = [[Post findThreadWithId:threadId delegate:self] retain];
+        loader = [Post findThreadWithId:threadId delegate:self];
         
         highlightMyPost = NO;
         if ([sender isKindOfClass:[ComposeViewController class]]) highlightMyPost = YES;        
@@ -73,7 +73,6 @@
     }
     
     self.rootPost = (Post *)model;
-    [loader release];
     loader = nil;
     
     // Patch-E: for the latestchatty:// protocol launch, needed to check for an empty repliesArray here if a chatty URL launched the app that ulimately goes to a thread that falls outside of the user's set category filters
@@ -258,7 +257,6 @@
         longPress.minimumPressDuration = 1.0; //seconds
         longPress.delegate = self;
         [self.navigationController.navigationBar addGestureRecognizer:longPress];
-        [longPress release];
     }
     
     // set the panning gesture delegate to this controller to monitor whether the panning should occur
@@ -288,7 +286,7 @@
     
     Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
     
-    ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:post] autorelease];
+    ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:post];
     [self.navigationController pushViewController:viewController animated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
 }
@@ -318,7 +316,7 @@
 - (void)pinThread:(NSUInteger)postId {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
-    NSMutableArray *updatedPinnedThreads = [[[NSMutableArray alloc] initWithArray:pinnedThreads] autorelease];    
+    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] initWithArray:pinnedThreads];    
     
     for (NSNumber *pinnedThread in updatedPinnedThreads) {
         if ([pinnedThread unsignedIntValue] == postId) {
@@ -335,7 +333,7 @@
 - (void)unPinThread:(NSUInteger)postId {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
-    NSMutableArray *updatedPinnedThreads = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] init];
     
     for (NSNumber *pinnedId in pinnedThreads)
         if([pinnedId unsignedIntValue] != postId)
@@ -413,7 +411,6 @@
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
     if (popoverController == pc) {
-        [popoverController release];
         popoverController = nil;
     }
 }
@@ -436,7 +433,7 @@
     
     ReplyCell *cell = (ReplyCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[ReplyCell alloc] init] autorelease];
+        cell = [[ReplyCell alloc] init];
     }
     
     cell.post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
@@ -446,7 +443,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)aTableView viewForHeaderInSection:(NSInteger)section {
-    UIView  *background = [[[UIView alloc] init] autorelease];
+    UIView  *background = [[UIView alloc] init];
     return background;
 }
 
@@ -580,7 +577,7 @@
                 }
             }
 
-            viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
+            viewController = [[BrowserViewController alloc] initWithRequest:request];
         }
         // save scroll position of web view before pushing view controller
         self.scrollPosition = aWebView.scrollView.contentOffset;
@@ -690,11 +687,11 @@
         return;
     }
     // keep track of the action sheet
-    theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Tag this Post"
+    theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
                                                         delegate:self
                                                cancelButtonTitle:@"Cancel"
                                           destructiveButtonTitle:nil
-                                               otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", @"UGH", nil] autorelease];
+                                               otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", @"UGH", nil];
     [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -712,11 +709,11 @@
         return;
     }
     // keep track of the action sheet
-    theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Author Actions"
+    theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Author Actions"
                                                   delegate:self
                                          cancelButtonTitle:@"Cancel"
                                     destructiveButtonTitle:nil
-                                         otherButtonTitles:@"Search for Posts", @"Send a Message", nil] autorelease];
+                                         otherButtonTitles:@"Search for Posts", @"Send a Message", nil];
     [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -830,11 +827,11 @@
 }
 
 -(void)grippyBarDidTapModButton {
-    UIActionSheet *modActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Mod this Post"
+    UIActionSheet *modActionSheet = [[UIActionSheet alloc] initWithTitle:@"Mod this Post"
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"stupid", @"offtopic", @"nws", @"political", @"informative", @"nuked", @"ontopic", nil] autorelease];
+                                                        otherButtonTitles:@"stupid", @"offtopic", @"nws", @"political", @"informative", @"nuked", @"ontopic", nil];
     [modActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     [modActionSheet showInView:self.view];
 }
@@ -894,7 +891,7 @@
         }
         // start a shackmessage with this author as the recipient
         if (buttonIndex == 1) {
-            viewController = [[[SendMessageViewController alloc] initWithRecipient:author] autorelease];
+            viewController = [[SendMessageViewController alloc] initWithRecipient:author];
         }
         
         // push the resulting view controller
@@ -961,11 +958,11 @@
             return;
         }
         // keep track of the action sheet
-        theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Reply"
+        theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Reply"
                                                       delegate:self
                                              cancelButtonTitle:@"Cancel"
                                         destructiveButtonTitle:nil
-                                             otherButtonTitles:@"Reply to this post", @"Reply to root post", nil] autorelease];
+                                             otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
         [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -996,20 +993,8 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
 
-    self.rootPost = nil;
-    self.threadStarter = nil;
-    self.selectedIndexPath = nil;
-    self.toolbar = nil;
-    self.leftToolbar = nil;
     
-    [postViewContainer release];
-    [postView release];
-    [grippyBar release];
-    [orderByPostDateButton release];
-    [threadPinButton release];
-    [tagButton release];
     
-    [super dealloc];
 }
 
 @end

@@ -44,15 +44,5 @@
     }
 }
 
-- (void)dealloc {
-    self.message = nil;
-    self.subjectLabel = nil;
-    self.dateLabel = nil;
-    self.previewLabel = nil;
-    
-    [newStripe release];
-    
-    [super dealloc];
-}
 
 @end

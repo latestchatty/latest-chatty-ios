@@ -26,7 +26,7 @@
 }
 
 + (ChattyViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId {//
-    return [[[ChattyViewController alloc] initWithStoryId:aStoryId] autorelease];
+    return [[ChattyViewController alloc] initWithStoryId:aStoryId];
 }
 
 - (id)initWithLatestChatty {
@@ -37,7 +37,7 @@
 	self = [super initWithNib];
     self.storyId = aStoryId;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        self.threadController = [[[ThreadViewController alloc] initWithThreadId:0] autorelease];
+        self.threadController = [[ThreadViewController alloc] initWithThreadId:0];
     }
 
     self.title = @"Loading...";
@@ -54,7 +54,7 @@
 		lastPage =     [[dictionary objectForKey:@"lastPage"] intValue];
 		currentPage =  [[dictionary objectForKey:@"currentPage"] intValue];
 		
-		indexPathToSelect = [[dictionary objectForKey:@"selectedIndexPath"] retain];
+		indexPathToSelect = [dictionary objectForKey:@"selectedIndexPath"];
 	}
 	return self;
 }
@@ -96,7 +96,6 @@
                                                                       target:self.viewDeckController
                                                                       action:@selector(toggleLeftView)];
         self.navigationItem.leftBarButtonItem = menuButton;
-        [menuButton release];
     }
 	
     UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"PenIcon.24.png"]
@@ -106,7 +105,6 @@
     self.navigationItem.rightBarButtonItem = composeButton;
     
 	composeButton.enabled = (self.storyId > 0);
-    [composeButton release];
     
     self.tableView.hidden = YES;
     
@@ -158,9 +156,9 @@
 	currentPage = 1;
 	
 	if (storyId > 0) {
-        loader = [[Post findAllWithStoryId:self.storyId delegate:self] retain];        
+        loader = [Post findAllWithStoryId:self.storyId delegate:self];        
     } else {
-        loader = [[Post findAllInLatestChattyWithDelegate:self] retain];
+        loader = [Post findAllInLatestChattyWithDelegate:self];
     }
     
 //    if (storyId > 0) {
@@ -220,7 +218,6 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	
 	[self.tableView reloadData];
-	[loader release];
 	loader = nil;
 	
 	NSDictionary *dataDictionary = (NSDictionary *)otherData;
@@ -313,7 +310,7 @@
 #pragma mark Actions
 
 - (void)tappedComposeButton {
-    ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:nil] autorelease];
+    ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
@@ -375,7 +372,7 @@
 	if (indexPath.row < [threads count]) {
 		ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:@"ThreadCell"];
 		if (cell == nil) {
-			cell = [[[ThreadCell alloc] init] autorelease];
+			cell = [[ThreadCell alloc] init];
 		}
 		
 		// Set up the cell...
@@ -392,21 +389,19 @@
             longPress.minimumPressDuration = 2.0; //seconds
             longPress.delegate = self;
             [cell addGestureRecognizer:longPress];
-            [longPress release];
         }
 
 		return cell;
 	} else {
-		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+		UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
         [cell setBackgroundColor:[UIColor clearColor]];
         UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(cell.frameX, cell.frameY, cell.frameWidth, cell.frameHeight-1)];
         selectionView.backgroundColor = [UIColor clearColor];
         cell.selectedBackgroundView = selectionView;
-        [selectionView release];
         
         UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         
-        UIView *cellTopStroke = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frameWidth, 1)] autorelease];
+        UIView *cellTopStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frameWidth, 1)];
         cellTopStroke.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         cellTopStroke.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.08f];
         
@@ -417,7 +412,6 @@
         [cellSpinner setCenter:cell.contentView.center];
         [cellSpinner startAnimating];
         
-        [cellSpinner release];   
 		return cell;
 	}
 	
@@ -434,7 +428,7 @@
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             [threadController refreshWithThreadId:thread.modelId];
         } else {
-            [self.navigationController pushViewController:[[[ThreadViewController alloc] initWithThreadId:thread.modelId] autorelease] animated:YES];
+            [self.navigationController pushViewController:[[ThreadViewController alloc] initWithThreadId:thread.modelId] animated:YES];
         }
         
         thread.newReplies = 0;
@@ -453,9 +447,8 @@
 
 -(void)loadMorePosts {
     [loader cancel];
-    [loader release];
     currentPage++;
-    loader = [[Post findAllWithStoryId:storyId pageNumber:currentPage delegate:self] retain];
+    loader = [Post findAllWithStoryId:storyId pageNumber:currentPage delegate:self];
 }
 
 - (void)dealloc {
@@ -467,14 +460,9 @@
         [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = nil;
     }
 
-    [indexPathToSelect release];
     indexPathToSelect = nil;
     
-    self.threadController = nil;
-	self.threads = nil;
-    self.refreshControl = nil;
 
-    [super dealloc];
 }
 
 @end

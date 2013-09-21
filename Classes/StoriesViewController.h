@@ -23,8 +23,8 @@
     NSArray *stories;
 }
 
-@property (nonatomic, retain) NSArray *stories;
-@property (nonatomic, retain) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSArray *stories;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)stateDictionary;

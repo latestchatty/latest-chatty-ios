@@ -15,8 +15,8 @@
     NSMutableArray *messages;
 }
 
-@property (retain) NSMutableArray *messages;
-@property (nonatomic, retain) UIRefreshControl *refreshControl;
+@property (strong) NSMutableArray *messages;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 - (void)composeMessage;
 

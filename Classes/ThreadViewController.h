@@ -46,11 +46,11 @@
 }
 
 @property (nonatomic, assign) NSUInteger threadId;
-@property (retain) Post *rootPost;
+@property (strong) Post *rootPost;
 @property (nonatomic, copy) NSString *threadStarter;
-@property (retain) NSIndexPath *selectedIndexPath;
-@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, retain) IBOutlet UIToolbar *leftToolbar;
+@property (strong) NSIndexPath *selectedIndexPath;
+@property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, strong) IBOutlet UIToolbar *leftToolbar;
 @property (nonatomic, assign) CGPoint scrollPosition;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;

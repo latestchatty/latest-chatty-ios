@@ -20,10 +20,10 @@
 
 @interface Image : NSObject {
 	UIImage *image;
-	NSObject<ImageSendingDelegate>* delegate;
+	NSObject<ImageSendingDelegate>* __weak delegate;
 }
-@property (assign,nonatomic) NSObject<ImageSendingDelegate>* delegate;
-@property (retain) UIImage *image;
+@property (weak,nonatomic) NSObject<ImageSendingDelegate>* delegate;
+@property (strong) UIImage *image;
 
 - (id)initWithImage:(UIImage *)anImage;
 - (void)autoRotate:(NSUInteger)maxDimension scale:(BOOL)shouldScale;

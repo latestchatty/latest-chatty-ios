@@ -15,49 +15,49 @@
 	if (self) {
         self.title = @"Settings";
         
-        usernameField = [[self generateTextFieldWithKey:@"username"] retain];
+        usernameField = [self generateTextFieldWithKey:@"username"];
         usernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Username" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         usernameField.returnKeyType = UIReturnKeyNext;
         usernameField.keyboardType = UIKeyboardTypeEmailAddress;
         usernameField.textColor = [UIColor lcAuthorColor];
         
-        passwordField = [[self generateTextFieldWithKey:@"password"] retain];
+        passwordField = [self generateTextFieldWithKey:@"password"];
         passwordField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Password" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         passwordField.secureTextEntry = YES;
         passwordField.returnKeyType = UIReturnKeyDone;
         
-        serverField = [[self generateTextFieldWithKey:@"server"] retain];
+        serverField = [self generateTextFieldWithKey:@"server"];
         serverField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"shackapi.stonedonkey.com" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
         
-        picsUsernameField = [[self generateTextFieldWithKey:@"picsUsername"] retain];
+        picsUsernameField = [self generateTextFieldWithKey:@"picsUsername"];
         picsUsernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Username" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         picsUsernameField.returnKeyType = UIReturnKeyNext;
         picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
         picsUsernameField.textColor = [UIColor lcAuthorColor];
         
-        picsPasswordField = [[self generateTextFieldWithKey:@"picsPassword"] retain];
+        picsPasswordField = [self generateTextFieldWithKey:@"picsPassword"];
         picsPasswordField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Password" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
 
-        darkModeSwitch     = [[self generateSwitchWithKey:@"darkMode"] retain];
-        collapseSwitch     = [[self generateSwitchWithKey:@"collapse"] retain];
-        landscapeSwitch    = [[self generateSwitchWithKey:@"landscape"] retain];
-        picsResizeSwitch   = [[self generateSwitchWithKey:@"picsResize"] retain];
-        picsQualitySlider  = [[self generateSliderWithKey:@"picsQuality"] retain];
-        youtubeSwitch      = [[self generateSwitchWithKey:@"embedYoutube"] retain];
-        chromeSwitch       = [[self generateSwitchWithKey:@"useChrome"] retain];
-        safariSwitch       = [[self generateSwitchWithKey:@"useSafari"] retain];
+        darkModeSwitch     = [self generateSwitchWithKey:@"darkMode"];
+        collapseSwitch     = [self generateSwitchWithKey:@"collapse"];
+        landscapeSwitch    = [self generateSwitchWithKey:@"landscape"];
+        picsResizeSwitch   = [self generateSwitchWithKey:@"picsResize"];
+        picsQualitySlider  = [self generateSliderWithKey:@"picsQuality"];
+        youtubeSwitch      = [self generateSwitchWithKey:@"embedYoutube"];
+        chromeSwitch       = [self generateSwitchWithKey:@"useChrome"];
+        safariSwitch       = [self generateSwitchWithKey:@"useSafari"];
 //        pushMessagesSwitch = [[self generateSwitchWithKey:@"push.messages"] retain];
-        modToolsSwitch     = [[self generateSwitchWithKey:@"modTools"] retain];
+        modToolsSwitch     = [self generateSwitchWithKey:@"modTools"];
         
-        interestingSwitch  = [[self generateSwitchWithKey:@"postCategory.informative"] retain];
-        offtopicSwitch     = [[self generateSwitchWithKey:@"postCategory.offtopic"] retain];
-        randomSwitch       = [[self generateSwitchWithKey:@"postCategory.stupid"] retain];
-        politicsSwitch     = [[self generateSwitchWithKey:@"postCategory.political"] retain];
-        nwsSwitch          = [[self generateSwitchWithKey:@"postCategory.nws"] retain];
+        interestingSwitch  = [self generateSwitchWithKey:@"postCategory.informative"];
+        offtopicSwitch     = [self generateSwitchWithKey:@"postCategory.offtopic"];
+        randomSwitch       = [self generateSwitchWithKey:@"postCategory.stupid"];
+        politicsSwitch     = [self generateSwitchWithKey:@"postCategory.political"];
+        nwsSwitch          = [self generateSwitchWithKey:@"postCategory.nws"];
 
         [picsQualitySlider addTarget:self action:@selector(handlePicsQualitySlider:) forControlEvents:UIControlEventValueChanged];
         [safariSwitch addTarget:self action:@selector(handleSafariSwitch) forControlEvents:UIControlEventValueChanged];
@@ -84,14 +84,13 @@
                                                                       target:self
                                                                       action:@selector(resignAndToggle)];
         self.navigationItem.leftBarButtonItem = menuButton;
-        [menuButton release];
     }
     
     [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
     
     [tableView setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
     [tableView setBackgroundView:nil];
-    [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
+    [tableView setBackgroundView:[[UIView alloc] init]];
     [tableView setBackgroundColor:[UIColor clearColor]];
     [tableView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
 }
@@ -117,14 +116,14 @@
     textField.keyboardAppearance = UIKeyboardAppearanceDark;
     textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
 	
-	return [textField autorelease];
+	return textField;
 }
 
 - (UISwitch *)generateSwitchWithKey:(NSString *)key {
 	UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
 	toggle.on = [[NSUserDefaults standardUserDefaults] boolForKey:key];
     
-	return [toggle autorelease];
+	return toggle;
 }
 
 - (UISlider *)generateSliderWithKey:(NSString *)key {
@@ -134,7 +133,7 @@
     slider.minimumValue = 0.10f;
     slider.minimumValue = 0.10f;
     
-	return [slider autorelease];
+	return slider;
 }
 
 - (void)resignAndToggle {
@@ -229,7 +228,6 @@
                                                   otherButtonTitles:nil];
         [chromeSwitch setOn:NO animated:YES];
         [alertView show];
-        [alertView release];
     }
     
     if (chromeSwitch.on) {
@@ -500,7 +498,7 @@
         } else {
             categoryXOffset = 18;
         }
-        UIView *categoryColor = [[[UIView alloc] initWithFrame:CGRectMake(categoryXOffset, 9, 4, 28)] autorelease];
+        UIView *categoryColor = [[UIView alloc] initWithFrame:CGRectMake(categoryXOffset, 9, 4, 28)];
 		[cell addSubview:categoryColor];
 		
 		switch (indexPath.row) {
@@ -570,7 +568,7 @@
         }
     }
 
-	return [cell autorelease];
+	return cell;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -580,35 +578,13 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-	[usernameField release];
-	[passwordField release];
-	[serverField release];
     
-    [picsUsernameField release];
-    [picsPasswordField release];
-    [picsResizeSwitch release];
-    [picsQualitySlider release];
 	
-    [darkModeSwitch release];
-    [collapseSwitch release];
-	[landscapeSwitch release];
-	[youtubeSwitch release];
-    [safariSwitch release];
-	[chromeSwitch release];
-	[pushMessagesSwitch release];
-    [modToolsSwitch release];
 	
-	[interestingSwitch release];
-	[offtopicSwitch release];
-	[randomSwitch release];
-	[politicsSwitch release];
-	[nwsSwitch release];
 	
-    [saveButton release];
     
 //    [tableView release];
     
-	[super dealloc];
 }
 
 @end

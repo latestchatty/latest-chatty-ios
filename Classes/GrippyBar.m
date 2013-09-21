@@ -22,7 +22,6 @@
 //        backgroundView.contentMode = UIViewContentModeScaleToFill;
         backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self addSubview:backgroundView];
-        [backgroundView release];
         
 //        UIImageView *grippy = [UIImageView viewWithImage:[UIImage imageNamed:@"GrippyBar.png"]];
 //        grippy.frame = CGRectMake(0, 0, self.frame.size.width, 48);
@@ -34,12 +33,11 @@
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                      action:@selector(handlePan:)];
         [self addGestureRecognizer:panGesture];
-        [panGesture release];
         
         BOOL modToolsEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"modTools"];
         
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            UIButton *refreshButton = [[[UIButton alloc] initWithFrame:CGRectMake(10, 2, 44, 44)] autorelease];
+            UIButton *refreshButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 2, 44, 44)];
             [refreshButton addTarget:self action:@selector(tappedRefreshButton) forControlEvents:UIControlEventTouchUpInside];
             [refreshButton setImage:[UIImage imageNamed:@"RefreshIcon.png"] forState:UIControlStateNormal];
             refreshButton.showsTouchWhenHighlighted = YES;
@@ -47,7 +45,7 @@
             refreshButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
             [self addSubview:refreshButton];
             
-            UIButton *tagButton = [[[UIButton alloc] initWithFrame:CGRectMake(refreshButton.frameX+refreshButton.frameWidth+20, 2, 44, 44)] autorelease];
+            UIButton *tagButton = [[UIButton alloc] initWithFrame:CGRectMake(refreshButton.frameX+refreshButton.frameWidth+20, 2, 44, 44)];
             [tagButton addTarget:self action:@selector(tappedTagButton) forControlEvents:UIControlEventTouchUpInside];
             [tagButton setImage:[UIImage imageNamed:@"TagIcon.png"] forState:UIControlStateNormal];
             tagButton.showsTouchWhenHighlighted = YES;
@@ -55,7 +53,7 @@
             tagButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
             [self addSubview:tagButton];
             
-            orderByPostDateButton = [[[UIButton alloc] initWithFrame:CGRectMake(tagButton.frameX+tagButton.frameWidth+20, 2, 44, 44)] autorelease];
+            orderByPostDateButton = [[UIButton alloc] initWithFrame:CGRectMake(tagButton.frameX+tagButton.frameWidth+20, 2, 44, 44)];
             [orderByPostDateButton addTarget:self action:@selector(tappedOrderByPostDateButton) forControlEvents:UIControlEventTouchUpInside];
             [orderByPostDateButton setImage:[UIImage imageNamed:@"chrono.png"] forState:UIControlStateNormal];
             orderByPostDateButton.showsTouchWhenHighlighted = YES;
@@ -63,7 +61,7 @@
             orderByPostDateButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
             [self addSubview:orderByPostDateButton];
 			
-			UIButton *previousButton = [[[UIButton alloc] initWithFrame:CGRectMake(orderByPostDateButton.frameX+orderByPostDateButton.frameWidth+20, 2, 44, 44)] autorelease];
+			UIButton *previousButton = [[UIButton alloc] initWithFrame:CGRectMake(orderByPostDateButton.frameX+orderByPostDateButton.frameWidth+20, 2, 44, 44)];
             [previousButton addTarget:self action:@selector(tappedLeftButton) forControlEvents:UIControlEventTouchUpInside];
             [previousButton setImage:[UIImage imageNamed:@"left.png"] forState:UIControlStateNormal];
             previousButton.showsTouchWhenHighlighted = YES;
@@ -71,7 +69,7 @@
             previousButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
             [self addSubview:previousButton];
             
-            UIButton *nextButton = [[[UIButton alloc] initWithFrame:CGRectMake(previousButton.frameX+previousButton.frameWidth+20, 2, 44, 44)] autorelease];
+            UIButton *nextButton = [[UIButton alloc] initWithFrame:CGRectMake(previousButton.frameX+previousButton.frameWidth+20, 2, 44, 44)];
             [nextButton addTarget:self action:@selector(tappedRightButton) forControlEvents:UIControlEventTouchUpInside];
             [nextButton setImage:[UIImage imageNamed:@"right.png"] forState:UIControlStateNormal];
             nextButton.showsTouchWhenHighlighted = YES;
@@ -88,7 +86,7 @@
         // Only needed for mods
         if (modToolsEnabled) {
             CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 0 : 88;
-            UIButton *modButton = [[[UIButton alloc] initWithFrame:CGRectMake(leftEdge, 2, 44, 44)] autorelease];
+            UIButton *modButton = [[UIButton alloc] initWithFrame:CGRectMake(leftEdge, 2, 44, 44)];
             [modButton addTarget:self action:@selector(tappedModButton) forControlEvents:UIControlEventTouchUpInside];
             [modButton setImage:[UIImage imageNamed:@"ModGavel.png"] forState:UIControlStateNormal];
             modButton.showsTouchWhenHighlighted = YES;
@@ -179,10 +177,5 @@
 	orderByPostDateButton.alpha = isOrderByPostDate ? 1.0 : 0.5;
 }
 
-- (void)dealloc {
-    [orderByPostDateButton release];
-    
-    [super dealloc];
-}
 
 @end

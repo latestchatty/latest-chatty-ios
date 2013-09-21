@@ -29,9 +29,9 @@
     BOOL shouldCollapse;
 }
 
-@property (nonatomic, retain) ThreadViewController *threadController;
-@property (nonatomic, retain) NSMutableArray *threads;
-@property (nonatomic, retain) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) ThreadViewController *threadController;
+@property (nonatomic, strong) NSMutableArray *threads;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, assign) NSUInteger storyId;
 
 + (ChattyViewController*)chattyControllerWithLatest;

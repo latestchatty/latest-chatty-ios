@@ -18,8 +18,8 @@
 }
 
 @property (copy) NSString *title;
-@property (retain, nonatomic) CustomBadge *badge;
-@property (retain, nonatomic) IBOutlet UIImageView *iconImage;
+@property (strong, nonatomic) CustomBadge *badge;
+@property (strong, nonatomic) IBOutlet UIImageView *iconImage;
 
 - (void)setBadgeWithNumber:(int)badgeNumber;
 

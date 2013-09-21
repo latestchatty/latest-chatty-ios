@@ -13,7 +13,7 @@
 @synthesize title, preview, body, date, commentCount;
 
 - (id)initWithCoder:(NSCoder *)coder {
-    [super initWithCoder:coder];
+    if (!(self = [super initWithCoder:coder])) return nil;
     
     self.title   = [coder decodeObjectForKey:@"title"];
     self.preview = [coder decodeObjectForKey:@"preview"];
@@ -34,7 +34,7 @@
 }
 
 + (NSString *)formatDate:(NSDate *)date {
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d hh:mm a"];
     return [formatter stringFromDate:date];
 }
@@ -49,7 +49,7 @@
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
-    [super initWithDictionary:dictionary];
+    if (!(self = [super initWithDictionary:dictionary])) return nil;
     
     self.title   = [[dictionary objectForKey:@"name"] stringByUnescapingHTML];
     self.preview = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
@@ -60,13 +60,5 @@
     return self;
 }
 
-- (void)dealloc {
-    self.title = nil;
-    self.preview = nil;
-    self.body = nil;
-    self.date = nil;
-    
-    [super dealloc];
-}
 
 @end

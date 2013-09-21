@@ -82,7 +82,7 @@
     [centerController setTitle:@"Loading..."];
     
     // Initialize the navigation controller with the center (chatty) controller
-    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:centerController] autorelease];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:centerController];
     
     // Create the deck controller with the left and center
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController
@@ -164,7 +164,7 @@
         NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
         //NSString *requestBody = [NSString stringWithFormat:@"email=%@&password=%@&login=login", usernameString, passwordString];
         NSString *requestBody = [NSString stringWithFormat:@"get_fields%%5B%%5D=result&user-identifier=%@&supplied-pass=%@&remember-login=1", usernameString, passwordString];        
-        NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 
         //[request setURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
         [request setURL:[NSURL URLWithString:@"https://www.shacknews.com/account/signin"]];
@@ -286,28 +286,28 @@
     
     if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?id=(\\d+)" capture:1] intValue];
-        viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
+        viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?story=(\\d+)" capture:1] intValue];
-        viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
+        viewController = [[ChattyViewController alloc] initWithStoryId:targetStoryId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
         NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/profile/(.*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-        viewController = [[[SearchResultsViewController alloc] initWithTerms:@"" author:profileName parentAuthor:@""] autorelease];
+        viewController = [[SearchResultsViewController alloc] initWithTerms:@"" author:profileName parentAuthor:@""];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?id=(\\d+)" capture:1] intValue];
-        viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
+        viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?story=(\\d+)" capture:1] intValue];
-        viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
+        viewController = [[ChattyViewController alloc] initWithStoryId:targetStoryId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/onearticle.x/\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/onearticle.x/(\\d+)" capture:1] intValue];
-        viewController = [[[StoryViewController alloc] initWithStoryId:targetStoryId] autorelease];
+        viewController = [[StoryViewController alloc] initWithStoryId:targetStoryId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/article/.*\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/article/.*\\?id=(\\d+)" capture:1] intValue];
-        viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
+        viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/article/\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/article/(\\d+)" capture:1] intValue];
-        viewController = [[[StoryViewController alloc] initWithStoryId:targetStoryId] autorelease];
+        viewController = [[StoryViewController alloc] initWithStoryId:targetStoryId];
     }
 
     return viewController;
@@ -339,7 +339,6 @@
                 if (class) {
                     id viewController = [[class alloc] initWithStateDictionary:dictionary];
                     [navigationController pushViewController:viewController animated:NO];
-                    [viewController release];
                 } else {
                     NSLog(@"No known view controller for the type: %@", controllerName);
                     return NO;
@@ -491,12 +490,5 @@
     }
 }
 
-- (void)dealloc {
-    self.navigationController = nil;
-    self.window = nil;
-    self.contentNavigationController = nil;
-    self.slideOutViewController = nil;
-    [super dealloc];
-}
 
 @end

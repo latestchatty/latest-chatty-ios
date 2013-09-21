@@ -63,7 +63,7 @@
 }
 
 - (void)reply {
-    SendMessageViewController *sendMessageViewController = [[[SendMessageViewController alloc] initWithMessage:message] autorelease];
+    SendMessageViewController *sendMessageViewController = [[SendMessageViewController alloc] initWithMessage:message];
 	[self.navigationController pushViewController:sendMessageViewController animated:YES];
 }
 
@@ -108,7 +108,7 @@
                 }
             }
             
-            viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
+            viewController = [[BrowserViewController alloc] initWithRequest:request];
         }
         
         [self.navigationController pushViewController:viewController animated:YES];
@@ -130,11 +130,8 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    self.message = nil;
     
-    [message release];
     
-    [super dealloc];
 }
 
 @end

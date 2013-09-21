@@ -22,7 +22,7 @@
     NSIndexPath *selectedIndex;
 }
 
-@property (nonatomic, retain) UIActivityIndicatorView *messagesSpinner;
-@property (nonatomic, retain) NSIndexPath *selectedIndex;
+@property (nonatomic, strong) UIActivityIndicatorView *messagesSpinner;
+@property (nonatomic, strong) NSIndexPath *selectedIndex;
 
 @end

@@ -19,7 +19,7 @@
 }
 
 + (id)controllerWithNib {
-    return [[[self alloc] initWithNib] autorelease];
+    return [[self alloc] initWithNib];
 }
 
 + (id)controllerWithNibName:(NSString*)nibNameOrNil {
@@ -27,7 +27,7 @@
 }
 
 + (id)controllerWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)bundle {
-    return [[[self alloc] initWithNibName:nibNameOrNil bundle:bundle] autorelease];
+    return [[self alloc] initWithNibName:nibNameOrNil bundle:bundle];
 }
 
 - (id)initWithNibName:(NSString *)name {

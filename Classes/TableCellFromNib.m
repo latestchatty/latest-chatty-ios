@@ -19,21 +19,18 @@
         nibName = [nibName stringByAppendingString:@"-iPad"];
     }
     
-    UIViewController *cellFactory = [[[UIViewController alloc] initWithNibName:nibName bundle:nibBundleOrNil] autorelease];
+    UIViewController *cellFactory = [[UIViewController alloc] initWithNibName:nibName bundle:nibBundleOrNil];
     self = (TableCellFromNib *)cellFactory.view;
-    [self retain];
     
     // create a custom selection view with a blue color
     if ([nibName containsString:@"Root"]) {
         UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frameX, self.frameY, self.frameWidth, self.frameHeight-1)];
         selectionView.backgroundColor = [UIColor lcSelectionGrayColor];
         self.selectedBackgroundView = selectionView;
-        [selectionView release];
     } else {
         UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frameX, self.frameY, self.frameWidth, self.frameHeight)];
         selectionView.backgroundColor = [UIColor lcSelectionBlueColor];
         self.selectedBackgroundView = selectionView;
-        [selectionView release];
     }
 
     return self;

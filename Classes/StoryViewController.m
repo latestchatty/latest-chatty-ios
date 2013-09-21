@@ -64,7 +64,7 @@
     self.storyLoader = [Story findById:storyId delegate:self];
     
     NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
-    StringTemplate *htmlTemplate = [[[StringTemplate alloc] initWithTemplateName:@"Story.html"] autorelease];
+    StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:@"" forKey:@"date"];
@@ -94,7 +94,7 @@
     //if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
     //    [content loadRequest:[NSURLRequest requestWithURLString:baseUrlString]];
     //} else {
-    StringTemplate *htmlTemplate = [[[StringTemplate alloc] initWithTemplateName:@"Story.html"] autorelease];
+    StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
     
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
@@ -159,7 +159,7 @@
                 }
             }
             
-            viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
+            viewController = [[BrowserViewController alloc] initWithRequest:request];
         }
         
         [self.navigationController pushViewController:viewController animated:YES];
@@ -176,11 +176,7 @@
     [content stopLoading];
     content.delegate = nil;
 
-    self.storyLoader = nil;
-    self.story = nil;
-    self.content = nil;
     
-    [super dealloc];
 }
 
 @end

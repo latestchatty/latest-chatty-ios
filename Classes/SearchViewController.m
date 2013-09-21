@@ -49,7 +49,6 @@
                                                                       target:self
                                                                       action:@selector(resignAndToggle)];
         self.navigationItem.leftBarButtonItem = menuButton;
-        [menuButton release];
     }
     
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
@@ -58,11 +57,10 @@
                                                                     action:@selector(search)];
     [searchButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
 	self.navigationItem.rightBarButtonItem = searchButton;
-	[searchButton release];
     
     [inputTable setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
     [inputTable setBackgroundView:nil];
-    [inputTable setBackgroundView:[[[UIView alloc] init] autorelease]];
+    [inputTable setBackgroundView:[[UIView alloc] init]];
     [inputTable setBackgroundColor:[UIColor clearColor]];
     
     [inputTable reloadData];
@@ -135,7 +133,7 @@
         [btn setSearchParentAuthor:parent];
 
         // craft the title for the button based on the search
-        NSMutableString *combinedTitle = [[[NSMutableString alloc] init] autorelease];
+        NSMutableString *combinedTitle = [[NSMutableString alloc] init];
         
         // some ugly string manip concat to achieve: "Terms: term | Author: author | Parent: parent"
         // for the button title
@@ -332,9 +330,9 @@
     [defaults synchronize];
     
     // create the search results controller and push it
-    SearchResultsViewController *viewController = [[[SearchResultsViewController alloc] initWithTerms:sender.searchTerms
+    SearchResultsViewController *viewController = [[SearchResultsViewController alloc] initWithTerms:sender.searchTerms
                                                                                                author:sender.searchAuthor
-                                                                                         parentAuthor:sender.searchParentAuthor] autorelease];
+                                                                                         parentAuthor:sender.searchParentAuthor];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -385,9 +383,9 @@
     }
     
     // create the search results controller and push it
-    SearchResultsViewController *viewController = [[[SearchResultsViewController alloc] initWithTerms:termsField.text
+    SearchResultsViewController *viewController = [[SearchResultsViewController alloc] initWithTerms:termsField.text
                                                                                                author:authorField.text
-                                                                                         parentAuthor:parentAuthorField.text] autorelease];
+                                                                                         parentAuthor:parentAuthorField.text];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -487,20 +485,9 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [inputTable release];
-    [segmentedBar release];
-    [recentSearchView release];
-    [recentSearchScrollView release];
     
-    [termsField release];
-    [authorField release];
-    [parentAuthorField release];
     
-    [searchTerms release];
-    [searchAuthor release];
-    [searchParentAuthor release];
     
-    [super dealloc];
 }
 
 @end

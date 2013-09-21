@@ -13,7 +13,7 @@
 @synthesize resultString;
 
 - (id)init {
-    [super init];
+    if (!(self = [super init])) return nil;
   
     resultString = [[NSMutableString alloc] init];
 
@@ -32,7 +32,6 @@
     [xmlParse setDelegate:self];
     [xmlParse parse];
 
-    [xmlParse release];
     return resultString;
 }
 

@@ -16,9 +16,9 @@
     self = [super initWithNib];
     
     self.title = @"Search Results";
-    terms = [searchTerms retain];
-    author = [searchAuthor retain];
-    parentAuthor = [searchParentAuthor retain];
+    terms = searchTerms;
+    author = searchAuthor;
+    parentAuthor = searchParentAuthor;
 
     return self;
 }
@@ -69,7 +69,7 @@
     [super refresh:sender];
 
     currentPage = 1;
-    loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self] retain];
+    loader = [Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self];
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {    
@@ -85,7 +85,6 @@
     lastPage = [[otherData objectForKey:@"lastPage"] intValue];
 
 	[self.tableView reloadData];
-	[loader release];
 	loader = nil;
   
     // Override super method so there is no fade if we are loading a second page.
@@ -135,7 +134,7 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < [posts count]) {
         ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:@"ThreadCell"];
-        if (cell == nil) cell = [[[ThreadCell alloc] init] autorelease];
+        if (cell == nil) cell = [[ThreadCell alloc] init];
         
         // Set up the cell...
         Post *post = [posts objectAtIndex:indexPath.row];
@@ -145,7 +144,7 @@
         
         return cell;
 	} else {
-		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:self.tableView.frame] autorelease];
+		UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:self.tableView.frame];
         
         //checking posts count for 0, and returning a blank cell if it is
         //without this a cell is allocated with a spinner in it while the view is loading initially
@@ -158,9 +157,8 @@
         UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(cell.frameX, cell.frameY, cell.frameWidth, cell.frameHeight-1)];
         selectionView.backgroundColor = [UIColor clearColor];
         cell.selectedBackgroundView = selectionView;
-        [selectionView release];
         
-        UIView *cellTopStroke = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frameWidth, 1)] autorelease];
+        UIView *cellTopStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frameWidth, 1)];
         cellTopStroke.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         cellTopStroke.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.08f];
         
@@ -171,7 +169,6 @@
         [cellSpinner setCenter:cell.contentView.center];
         [cellSpinner startAnimating];
         
-        [cellSpinner release];
 		return cell;
 	}
 	
@@ -192,10 +189,9 @@
 
 -(void)loadMorePosts {
     [loader cancel];
-    [loader release];
     
     currentPage++;
-    loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self] retain];
+    loader = [Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -203,20 +199,13 @@
     
     ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:post.modelId];
     [self.navigationController pushViewController:viewController animated:YES];
-    [viewController release];
 }
 
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [terms release];
-    [author release];
-    [parentAuthor release];
     
-    self.posts = nil;
-    self.refreshControl = nil;
     
-    [super dealloc];
 }
 
 @end

@@ -50,14 +50,12 @@
     [submitPostButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
                                     forState:UIControlStateNormal];
 	self.navigationItem.rightBarButtonItem = submitPostButton;
-	[submitPostButton release];
 	
     UITapGestureRecognizer *previewTapRecognizer = [[UITapGestureRecognizer alloc]
                                                           initWithTarget:self
                                                           action:@selector(previewLabelTap:)];
     [previewTapRecognizer setNumberOfTapsRequired:1];
     [parentPostPreview addGestureRecognizer:previewTapRecognizer];
-    [previewTapRecognizer release];
 
     composeLabel.text = @"Compose:";
     parentPostAuthor.text = @"";
@@ -81,7 +79,7 @@
 
     // Add a style item to the text selection menu
     UIMenuController *menu = [UIMenuController sharedMenuController];
-    menu.menuItems = [NSArray arrayWithObject:[[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)] autorelease]];
+    menu.menuItems = [NSArray arrayWithObject:[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)]];
     
     [postContent becomeFirstResponder];
 
@@ -136,7 +134,6 @@
             NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
 			BrowserViewController *controller = [[BrowserViewController alloc] initWithRequest:rulesPageRequest];
 			[[self navigationController] pushViewController:controller animated:YES];
-			[controller release];            
 		} else {
             [self showActivityIndicator:NO];
 			[postContent resignFirstResponder];
@@ -149,7 +146,7 @@
 
 - (void)previewLabelTap:(UITapGestureRecognizer *)recognizer {
     if (self.post) {
-        ReviewThreadViewController *reviewController = [[[ReviewThreadViewController alloc] initWithPost:self.post] autorelease];
+        ReviewThreadViewController *reviewController = [[ReviewThreadViewController alloc] initWithPost:self.post];
         
         reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -217,11 +214,11 @@
 
 - (IBAction)showImagePicker {
 	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-		UIActionSheet *dialog = [[[UIActionSheet alloc] initWithTitle:@"Upload Image"
+		UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Upload Image"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Camera", @"Library", nil] autorelease];
+                                                    otherButtonTitles:@"Camera", @"Library", nil];
         [dialog setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
 		dialog.destructiveButtonIndex = -1;
         [dialog showInView:self.view];
@@ -236,7 +233,7 @@
 		if (buttonIndex == 0) sourceType = UIImagePickerControllerSourceTypeCamera;
 		if (buttonIndex == 1) sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		
-		UIImagePickerController *imagePicker = [[[UIImagePickerController alloc] init] autorelease];
+		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
         
@@ -305,7 +302,7 @@
 {
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 	[postContent resignFirstResponder];
-	Image *image = [[[Image alloc] initWithImage:anImage] autorelease];
+	Image *image = [[Image alloc] initWithImage:anImage];
 	image.delegate = self;
 	
 	UIProgressView* progressBar = [self showActivityIndicator:YES];
@@ -332,7 +329,6 @@
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
     if (popoverController == pc) {
-        [popoverController release];
         popoverController = nil;
     }
 }
@@ -355,7 +351,7 @@
 - (IBAction)tag:(id)sender {
 	NSString *tag = [tagLookup objectForKey:[(UIButton *)sender currentTitle]];
     
-    NSMutableString *result = [[postContent.text mutableCopy] autorelease];
+    NSMutableString *result = [postContent.text mutableCopy];
     
     // No selection, just slap the tag on the end.
     if (selection.location == NSNotFound) {
@@ -413,8 +409,8 @@
 }
 
 - (void)makePost {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	self.navigationController.view.userInteractionEnabled = NO;
+    @autoreleasepool {
+		self.navigationController.view.userInteractionEnabled = NO;
     
     //Patch-E: wrapped existing code in GCD blocks to avoid UIKit on background thread issues that were causing status/nav bar flashing and the console warning:
     //"Obtaining the web lock from a thread other than the main thread or the web thread. UIKit should not be called from a secondary thread."
@@ -432,8 +428,8 @@
         });
     });
     
-	postingWarningAlertView = NO;
-	[pool release];
+		postingWarningAlertView = NO;
+	}
 }
 
 - (void)sendPost {
@@ -454,26 +450,12 @@
     // Remove special style item from text selection menu
     [UIMenuController sharedMenuController].menuItems = nil;
 	
-    self.post = nil;
     
-    [tagLookup release];
     
-    [composeLabel release];
-    [parentPostAuthor release];
-	[parentPostPreview release];
-	[postContent release];
-    [imageButton release];
-    [tagView release];
-    [innerTagView release];
 	
-	[activityView release];
-	[activityText release];
-	[spinner release];
-	[uploadBar release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-	[super dealloc];
 }
 
 @end

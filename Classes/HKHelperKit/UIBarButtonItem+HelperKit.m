@@ -18,15 +18,15 @@
 }
 
 + (UIBarButtonItem*)itemWithSystemType:(UIBarButtonSystemItem)itemType target:(id)target action:(SEL)action  {
-    return [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:itemType target:target action:action] autorelease];
+    return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:itemType target:target action:action];
 }
 
 + (UIBarButtonItem*)itemWithTitle:(NSString*)title style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action {
-    return [[[UIBarButtonItem alloc] initWithTitle:title style:style target:target action:action] autorelease];
+    return [[UIBarButtonItem alloc] initWithTitle:title style:style target:target action:action];
 }
 
 + (UIBarButtonItem*)itemWithImage:(UIImage*)image style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action {
-    return [[[UIBarButtonItem alloc] initWithImage:image style:style target:target action:action] autorelease];
+    return [[UIBarButtonItem alloc] initWithImage:image style:style target:target action:action];
 }
 
 + (UIBarButtonItem*)flexibleSpace {

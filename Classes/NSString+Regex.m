@@ -37,4 +37,8 @@
     return nil;
 }
 
+- (instancetype)stringByMatching:(NSString *)regex {
+    return [self stringByMatching:regex capture:0];
+}
+
 @end

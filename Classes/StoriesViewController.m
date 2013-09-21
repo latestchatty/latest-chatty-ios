@@ -20,7 +20,7 @@
 }
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
-    [self init];
+    if (!(self = [self init])) return nil;
     
     self.stories = [dictionary objectForKey:@"stories"];
     
@@ -42,7 +42,6 @@
                                                                       target:self.viewDeckController
                                                                       action:@selector(toggleLeftView)];
         self.navigationItem.leftBarButtonItem = menuButton;
-        [menuButton release];
     }
     
 //    UIBarButtonItem *latestChattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
@@ -78,12 +77,11 @@
 
 - (void)refresh:(id)sender {
     [super refresh:sender];
-    loader = [[Story findAllWithDelegate:self] retain];
+    loader = [Story findAllWithDelegate:self];
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
     self.stories = models;
-    [loader release];
     loader = nil;
     [super didFinishLoadingAllModels:models otherData:otherData];
     
@@ -122,7 +120,7 @@
     
     StoryCell *cell = (StoryCell *)[aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[StoryCell alloc] init] autorelease];
+        cell = [[StoryCell alloc] init];
         [cell.chattyButton addTarget:self action:@selector(tappedChattyButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -136,7 +134,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Story *story = [stories objectAtIndex:indexPath.row];
-    StoryViewController *viewController = [[[StoryViewController alloc] initWithStoryId:story.modelId] autorelease];
+    StoryViewController *viewController = [[StoryViewController alloc] initWithStoryId:story.modelId];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
@@ -167,10 +165,7 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
 
-    self.stories = nil;
-    self.refreshControl = nil;
 
-    [super dealloc];
 }
 
 @end

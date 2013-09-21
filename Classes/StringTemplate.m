@@ -13,12 +13,13 @@
 @synthesize result;
 
 + (StringTemplate*)templateWithName:(NSString*)name {
-    return [[[StringTemplate alloc] initWithTemplateName:name] autorelease];
+    return [[StringTemplate alloc] initWithTemplateName:name];
 }
 
 - (id)initWithTemplateName:(NSString *)templateName {
-    [self init];
-    self.result = [NSString stringFromResource:templateName];
+    if (self = [super init]) {
+        self.result = [NSString stringFromResource:templateName];
+    }
     return self;
 }
 
@@ -28,9 +29,5 @@
     self.result = [self.result stringByReplacingOccurrencesOfString:findString withString:string];
 }
 
-- (void)dealloc {
-  self.result = nil;
-  [super dealloc];
-}
 
 @end

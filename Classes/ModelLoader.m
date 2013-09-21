@@ -16,12 +16,12 @@
              dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
             modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate
 {    
-    [super init];
+    if (!(self = [super init])) return nil;
     
     self.plural = NO;
     
-    dataDelegate  = [aDataDelegate retain];
-    modelDelegate = [aModelDelegate retain];
+    dataDelegate  = aDataDelegate;
+    modelDelegate = aModelDelegate;
     urlString     = [aUrlString copy];
     
     NSLog(@"Loading URL: %@", urlString);
@@ -39,7 +39,7 @@
                  dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
                 modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate
 {
-    [self initWithObjectAtURL:aUrlString dataDelegate:aDataDelegate modelDelegate:aModelDelegate];
+    if (!(self = [self initWithObjectAtURL:aUrlString dataDelegate:aDataDelegate modelDelegate:aModelDelegate])) return nil;
     self.plural = YES;
     return self;
 }
@@ -62,8 +62,8 @@
     NSLog(@"Done Loading from URL: %@", urlString);
     
     // Parse the response string
-    NSString *dataString = [[[NSString alloc] initWithData:downloadedData encoding:NSUTF8StringEncoding] autorelease];
-    if (!dataString) dataString = [[[NSString alloc] initWithData:downloadedData encoding:NSASCIIStringEncoding] autorelease];
+    NSString *dataString = [[NSString alloc] initWithData:downloadedData encoding:NSUTF8StringEncoding];
+    if (!dataString) dataString = [[NSString alloc] initWithData:downloadedData encoding:NSASCIIStringEncoding];
     
     id dataObject = [dataString JSONValue];
     
@@ -97,10 +97,8 @@
 - (void)cancel {
     [connection cancel];
     
-    [dataDelegate release];
     dataDelegate = nil;
     
-    [modelDelegate release];
     modelDelegate = nil;
 }
 
@@ -109,12 +107,6 @@
     
     [self cancel];
     
-    [urlString release];
-    [connection release];
-    [downloadedData release];
-    [dataDelegate release];
-    [modelDelegate release];
-    [super dealloc];
 }
 
 @end

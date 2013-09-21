@@ -51,7 +51,6 @@
                                                                   action:@selector(sendMessage)];
     [sendButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
 	self.navigationItem.rightBarButtonItem = sendButton;
-	[sendButton release];
 
     [self.recipient setText:self.recipientString];
     [self.subject setText:self.subjectString];
@@ -197,25 +196,25 @@
 }
 
 - (void)makeMessage {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    self.navigationController.view.userInteractionEnabled = NO;
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
-    // See [ComposeViewController makePost] for explanation, same GCD blocks used there
-    dispatch_async(dispatch_get_main_queue(), ^{
-        BOOL success = [Message createWithTo:recipient.text subject:subject.text body:body.text];
+    @autoreleasepool {
+        self.navigationController.view.userInteractionEnabled = NO;
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
+        // See [ComposeViewController makePost] for explanation, same GCD blocks used there
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (success) {
-                [self performSelectorOnMainThread:@selector(sendSuccess) withObject:nil waitUntilDone:NO];
-            } else {
-                [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
-            }
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            BOOL success = [Message createWithTo:recipient.text subject:subject.text body:body.text];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    [self performSelectorOnMainThread:@selector(sendSuccess) withObject:nil waitUntilDone:NO];
+                } else {
+                    [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
+                }
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            });
         });
-    });
 
-    postingWarningAlertView = NO;
-    [pool release];
+        postingWarningAlertView = NO;
+    }
 }
 
 - (void)sendMessage {
@@ -260,21 +259,11 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    self.message = nil;
-    self.recipientString = nil;
-    self.subjectString = nil;
-    self.bodyString = nil;
-    self.recipient = nil;
-    self.subject = nil;
-    self.body = nil;
 
 //    [scrollView release];
-    [activityView release];
-	[spinner release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];    
     
-    [super dealloc];
 }
 
 @end

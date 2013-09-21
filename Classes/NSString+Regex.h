@@ -13,5 +13,5 @@
 - (instancetype)stringByReplacingOccurrencesOfRegex:(NSString *)regex withString:(NSString *)string;
 - (BOOL)isMatchedByRegex:(NSString *)regex;
 - (instancetype)stringByMatching:(NSString *)regex capture:(NSInteger)capture;
-
+- (instancetype)stringByMatching:(NSString *)regex;
 @end

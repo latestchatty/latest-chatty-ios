@@ -12,7 +12,7 @@
     NSMutableString *resultString;
 }
 
-@property (retain) NSMutableString* resultString;
+@property (strong) NSMutableString* resultString;
 
 - (NSString*)unescapeEntitiesInString:(NSString*)inputString;
 

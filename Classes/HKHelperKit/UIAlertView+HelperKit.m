@@ -16,11 +16,11 @@
 }
 
 + (void)showSimpleAlertWithTitle:(NSString*)title message:(NSString*)message buttonTitle:(NSString*)buttonTitle {
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:title
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                      message:message
                                                     delegate:nil
                                            cancelButtonTitle:@"OK"
-                                           otherButtonTitles:nil] autorelease];
+                                           otherButtonTitles:nil];
     [alert show];
 }
 
@@ -30,11 +30,11 @@
     cancelButtonTitle:(NSString *)cancelButtonTitle
     otherButtonTitles:(NSString *)otherButtonTitles, ...
 {
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:title
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                      message:message
                                                     delegate:delegate
                                            cancelButtonTitle:cancelButtonTitle
-                                           otherButtonTitles:otherButtonTitles, nil] autorelease];
+                                           otherButtonTitles:otherButtonTitles, nil];
     
     // Add a button for each string after the first in the otherButtonTitles nil terminated list
     va_list args;

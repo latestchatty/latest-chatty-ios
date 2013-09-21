@@ -22,7 +22,7 @@
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
-    [super initWithDictionary:dictionary];
+    if (!(self = [super initWithDictionary:dictionary])) return nil;
 
     self.from     = [dictionary objectForKey:@"from"]/* stringByUnescapingHTML]*/;
     self.subject  = [dictionary objectForKey:@"subject"]/* stringByUnescapingHTML]*/;
@@ -59,7 +59,7 @@
 + (BOOL)createWithTo:(NSString *)to subject:(NSString *)subject body:(NSString *)body {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/messages/send/", server]]];
     
@@ -115,13 +115,5 @@
     }
 }
 
-- (void)dealloc {
-    self.from = nil;
-    self.to = nil;
-    self.subject =nil;
-    self.body = nil;
-    self.date = nil;
-    [super dealloc];
-}
 
 @end
