@@ -74,14 +74,5 @@
     if (badgeNumber > 0) [self.badge setHidden:NO];
 }
 
-- (void)dealloc {
-    [titleLabel release];
-    
-    self.title = nil;
-    self.badge = nil;
-    self.iconImage = nil;
-    
-    [super dealloc];
-}
 
 @end

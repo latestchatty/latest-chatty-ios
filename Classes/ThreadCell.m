@@ -93,17 +93,5 @@
 	replyCount.hidden = !shouldShowCount;
 }
 
-- (void)dealloc {
-	[author release];
-    [date release];
-    [preview release];
-    [replyCount release];
-    [categoryStripe release];
-    [timerIcon release];
-    
-    self.rootPost = nil;
-    
-	[super dealloc];
-}
 
 @end

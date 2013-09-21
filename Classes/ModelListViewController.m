@@ -41,7 +41,6 @@
     spinner.frame = CGRectMake(0, 0, self.view.frame.size.width -1, self.view.frame.size.height / 2.0 -1);
     spinner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [loadingView addSubview:spinner];
-    [spinner release];
 
     [self.view addSubview:loadingView];
     
@@ -85,7 +84,6 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     [loader cancel];
-    [loader release];
 
     if (![sender isKindOfClass:[UIRefreshControl class]]) {
       [self showLoadingSpinner];
@@ -138,7 +136,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Override this method
-    return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    return [[UITableViewCell alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark Data Loading Callbacks
@@ -164,7 +162,6 @@
 }
 
 - (void)didFailToLoadModels {
-    [loader release];
     loader = nil;
     [self hideLoadingSpinner];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
@@ -173,19 +170,9 @@
                                         cancelButtonTitle:@"OK"
                                         otherButtonTitles:nil];
     [alert show];
-    [alert release];
 }
 
 #pragma mark Cleanup
 
-- (void)dealloc {
-    [loader release];
-    [loadingView release];
-    [fartSound release];
-    
-    self.tableView = nil;
-    
-    [super dealloc];
-}
 
 @end

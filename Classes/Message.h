@@ -7,7 +7,6 @@
 //
 
 #import "Model.h"
-#import "RegexKitLite.h"
 
 @interface Message : Model {
     NSString *from;
@@ -22,9 +21,9 @@
 @property (copy) NSString *to;
 @property (copy) NSString *subject;
 @property (copy) NSString *body;
-@property (retain) NSDate *date;
+@property (strong) NSDate *date;
 @property (assign) BOOL unread;
-@property (readonly) NSString *preview;
+@property (weak, readonly) NSString *preview;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
 

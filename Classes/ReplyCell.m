@@ -116,16 +116,5 @@
     }
 }
 
-- (void)dealloc {
-    [preview release];
-    [usernameLabel release];
-    [blueBullet release];
-    [grayBullet release];
-    [categoryStripe release];
-    
-    self.post = nil;
-    
-    [super dealloc];
-}
 
 @end

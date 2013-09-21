@@ -43,16 +43,5 @@
     }
 }
 
-- (void)dealloc {
-    self.story = nil;
-    
-    [title release];
-    [preview release];
-    [timestamp release];
-    [commentCount release];
-    [chattyButton release];
-
-    [super dealloc];
-}
 
 @end

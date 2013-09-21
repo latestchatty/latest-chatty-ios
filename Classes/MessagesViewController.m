@@ -31,7 +31,6 @@
                                                                       target:self.viewDeckController
                                                                       action:@selector(toggleLeftView)];
         self.navigationItem.leftBarButtonItem = menuButton;
-        [menuButton release];
     }
     
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isPresent] || ![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isPresent]) {
@@ -94,14 +93,13 @@
 
 - (void)refresh:(id)sender {
     [super refresh:sender];
-    loader = [[Message findAllWithDelegate:self] retain];
+    loader = [Message findAllWithDelegate:self];
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
     self.messages = [NSMutableArray arrayWithArray:models];
     [self.tableView reloadData];
     
-    [loader release];
     loader = nil;
     
     [super didFinishLoadingAllModels:models otherData:otherData];
@@ -141,7 +139,7 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageCell *cell = (MessageCell*)[tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
     if (cell == nil) {
-        cell = [[[MessageCell alloc] init] autorelease];
+        cell = [[MessageCell alloc] init];
     }
 	
     cell.message = [messages objectAtIndex:indexPath.row];
@@ -152,7 +150,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Message *message = [messages objectAtIndex:indexPath.row];
     [message markRead];
-    MessageViewController *viewController = [[[MessageViewController alloc] initWithMesage:message] autorelease];
+    MessageViewController *viewController = [[MessageViewController alloc] initWithMesage:message];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
@@ -164,10 +162,7 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    self.messages = nil;
-    self.refreshControl = nil;
     
-    [super dealloc];
 }
 
 @end

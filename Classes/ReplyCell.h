@@ -21,7 +21,7 @@
     IBOutlet UIView      *categoryStripe;
 }
 
-@property (nonatomic, retain) Post *post;
+@property (nonatomic, strong) Post *post;
 @property (nonatomic, assign) BOOL isThreadStarter;
 
 @end

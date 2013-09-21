@@ -23,6 +23,8 @@
 		599FF0F910D5DDC1004476B8 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F110D5DDC1004476B8 /* SBJsonBase.m */; };
 		599FF0FA10D5DDC1004476B8 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F310D5DDC1004476B8 /* SBJsonParser.m */; };
 		599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */; };
+		59EC55B417EDF56600F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
+		59EC55B517EDF56700F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
 		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		A27EA5CE1170F0520072EB59 /* chrono.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA5CD1170F0520072EB59 /* chrono.png */; };
@@ -178,8 +180,6 @@
 		CD7C24691754661300D90942 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24651754661300D90942 /* NSStringAdditions.m */; };
 		CD7C246E1754669100D90942 /* PinnedThreadsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C246B1754668E00D90942 /* PinnedThreadsLoader.m */; };
 		CD7C246F1754669100D90942 /* PinnedThreadsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C246B1754668E00D90942 /* PinnedThreadsLoader.m */; };
-		CD7C24761754672000D90942 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24731754671E00D90942 /* RegexKitLite.m */; };
-		CD7C24771754672000D90942 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24731754671E00D90942 /* RegexKitLite.m */; };
 		CD7C247B1754674300D90942 /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7C247A1754674100D90942 /* StoriesViewController.xib */; };
 		CD7C247C1754674300D90942 /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7C247A1754674100D90942 /* StoriesViewController.xib */; };
 		CD7C24831754689100D90942 /* Message.html in Resources */ = {isa = PBXBuildFile; fileRef = CD7C247D1754689100D90942 /* Message.html */; };
@@ -593,6 +593,8 @@
 		599FF0F310D5DDC1004476B8 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		599FF0F410D5DDC1004476B8 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		59EC55B017EDF29C00F513A9 /* NSString+Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Regex.h"; path = "Classes/NSString+Regex.h"; sourceTree = "<group>"; };
+		59EC55B117EDF29C00F513A9 /* NSString+Regex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Regex.m"; path = "Classes/NSString+Regex.m"; sourceTree = "<group>"; };
 		61BB54EC1151A42A00BFB041 /* SendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageViewController.h; sourceTree = "<group>"; };
 		61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageViewController.m; sourceTree = "<group>"; };
 		61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageViewController.xib; sourceTree = "<group>"; };
@@ -717,8 +719,6 @@
 		CD7C24651754661300D90942 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSStringAdditions.m; path = Classes/NSStringAdditions.m; sourceTree = "<group>"; };
 		CD7C246A1754668D00D90942 /* PinnedThreadsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PinnedThreadsLoader.h; path = Classes/PinnedThreadsLoader.h; sourceTree = "<group>"; };
 		CD7C246B1754668E00D90942 /* PinnedThreadsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PinnedThreadsLoader.m; path = Classes/PinnedThreadsLoader.m; sourceTree = "<group>"; };
-		CD7C24721754671D00D90942 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = Classes/RegexKitLite.h; sourceTree = "<group>"; };
-		CD7C24731754671E00D90942 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = Classes/RegexKitLite.m; sourceTree = "<group>"; };
 		CD7C247A1754674100D90942 /* StoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoriesViewController.xib; sourceTree = "<group>"; };
 		CD7C247D1754689100D90942 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Message.html; path = Templates/Message.html; sourceTree = "<group>"; };
 		CD7C247E1754689100D90942 /* Post.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Post.html; path = Templates/Post.html; sourceTree = "<group>"; };
@@ -1008,6 +1008,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				59EC55AF17EDF27900F513A9 /* Regex */,
 				CD76FFE0174C734B00B378E6 /* AFNetworking */,
 				FA2B47500F7E1DA30074064A /* Base64 */,
 				CD7C24181754653900D90942 /* HKHelperKit */,
@@ -1028,8 +1029,6 @@
 				FA5FCD1C0F6F63AC00878F27 /* ModelLoadingDelegate.h */,
 				CD7C246A1754668D00D90942 /* PinnedThreadsLoader.h */,
 				CD7C246B1754668E00D90942 /* PinnedThreadsLoader.m */,
-				CD7C24721754671D00D90942 /* RegexKitLite.h */,
-				CD7C24731754671E00D90942 /* RegexKitLite.m */,
 				FABA5DC00F718086008EEE3A /* StringTemplate.h */,
 				FABA5DC10F718086008EEE3A /* StringTemplate.m */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -1087,6 +1086,15 @@
 			);
 			name = JSON;
 			path = Classes/JSON;
+			sourceTree = "<group>";
+		};
+		59EC55AF17EDF27900F513A9 /* Regex */ = {
+			isa = PBXGroup;
+			children = (
+				59EC55B017EDF29C00F513A9 /* NSString+Regex.h */,
+				59EC55B117EDF29C00F513A9 /* NSString+Regex.m */,
+			);
+			name = Regex;
 			sourceTree = "<group>";
 		};
 		CD76FFE0174C734B00B378E6 /* AFNetworking */ = {
@@ -1526,7 +1534,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					CDA1174C16C1DC6600CE1375 = {
-						DevelopmentTeam = JA9LQCT6NB;
+						DevelopmentTeam = 5K5S487H9Y;
 					};
 				};
 			};
@@ -1957,6 +1965,7 @@
 				FA5FCDAC0F6F6FDF00878F27 /* Story.m in Sources */,
 				FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */,
 				FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */,
+				59EC55B417EDF56600F513A9 /* NSString+Regex.m in Sources */,
 				FA04800D0F70BD0500F752A6 /* Post.m in Sources */,
 				FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */,
 				FA6EDD6F0F70DA0400AAF4E4 /* ThreadCell.m in Sources */,
@@ -2025,7 +2034,6 @@
 				CD7C24661754661300D90942 /* NSDataAdditions.m in Sources */,
 				CD7C24681754661300D90942 /* NSStringAdditions.m in Sources */,
 				CD7C246E1754669100D90942 /* PinnedThreadsLoader.m in Sources */,
-				CD7C24761754672000D90942 /* RegexKitLite.m in Sources */,
 				CD13D78D1754DB1A00539A23 /* Categories.m in Sources */,
 				CDF1BDDC175EEDC200D6B1AE /* IISideController.m in Sources */,
 				CDF1BDDE175EEDC200D6B1AE /* IIViewDeckController.m in Sources */,
@@ -2045,6 +2053,7 @@
 				CDA117D316C1DC6600CE1375 /* Story.m in Sources */,
 				CDA117D416C1DC6600CE1375 /* TableCellFromNib.m in Sources */,
 				CDA117D516C1DC6600CE1375 /* StoryCell.m in Sources */,
+				59EC55B517EDF56700F513A9 /* NSString+Regex.m in Sources */,
 				CDA117D616C1DC6600CE1375 /* Post.m in Sources */,
 				CDA117D716C1DC6600CE1375 /* ChattyViewController.m in Sources */,
 				CDA117D816C1DC6600CE1375 /* ThreadCell.m in Sources */,
@@ -2113,7 +2122,6 @@
 				CD7C24671754661300D90942 /* NSDataAdditions.m in Sources */,
 				CD7C24691754661300D90942 /* NSStringAdditions.m in Sources */,
 				CD7C246F1754669100D90942 /* PinnedThreadsLoader.m in Sources */,
-				CD7C24771754672000D90942 /* RegexKitLite.m in Sources */,
 				CD13D78E1754DB1A00539A23 /* Categories.m in Sources */,
 				CDF1BDDD175EEDC200D6B1AE /* IISideController.m in Sources */,
 				CDF1BDDF175EEDC200D6B1AE /* IIViewDeckController.m in Sources */,
@@ -2158,6 +2166,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
@@ -2184,6 +2193,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
@@ -2213,8 +2223,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Crager (8PFR8T22V6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Crager (8PFR8T22V6)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2224,6 +2235,7 @@
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = LatestChattyBeta;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2233,8 +2245,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Patrick Crager";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Patrick Crager";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2242,6 +2255,7 @@
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = LatestChattyBeta;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -2251,8 +2265,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Patrick Crager";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Patrick Crager";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2260,12 +2275,14 @@
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = LatestChattyBeta;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Distribution;
 		};
 		FADDB5410F81548500DF3650 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",

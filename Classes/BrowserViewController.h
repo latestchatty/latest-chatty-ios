@@ -23,14 +23,14 @@
     UIPopoverController *popoverController;
 }
 
-@property (nonatomic, retain) NSURLRequest *request;
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *forwardButton;
+@property (nonatomic, strong) NSURLRequest *request;
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *backButton;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *forwardButton;
 //@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
-@property (nonatomic, retain) IBOutlet UIToolbar *mainToolbar;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
-@property (nonatomic, retain) IBOutlet UIToolbar *bottomToolbar;
+@property (nonatomic, strong) IBOutlet UIToolbar *mainToolbar;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *actionButton;
+@property (nonatomic, strong) IBOutlet UIToolbar *bottomToolbar;
 @property (nonatomic, assign) BOOL isShackLOL;
 @property (nonatomic, assign) BOOL isCredits;
 

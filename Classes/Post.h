@@ -8,7 +8,6 @@
 
 #import "Model.h"
 #import "ModelLoader.h"
-#import "RegexKitLite.h"
 
 @interface Post : Model {
 	NSString *author;
@@ -38,15 +37,15 @@
 @property (copy) NSDate *date;
 @property (readonly) NSUInteger replyCount;
 @property (copy) NSString *category;
-@property (readonly) UIColor *categoryColor;
-@property (readonly) UIColor *expirationColor;
+@property (weak, readonly) UIColor *categoryColor;
+@property (weak, readonly) UIColor *expirationColor;
 
 @property (readonly) NSUInteger storyId;
 @property (readonly) NSUInteger parentPostId;
 @property (readonly) NSUInteger lastReplyId;
 
-@property (retain) NSMutableArray *participants;
-@property (retain) NSMutableArray *replies;
+@property (strong) NSMutableArray *participants;
+@property (strong) NSMutableArray *replies;
 @property (assign) NSInteger depth;
 
 @property (assign) NSUInteger timeLevel;

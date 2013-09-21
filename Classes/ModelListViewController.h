@@ -20,7 +20,7 @@
     SystemSoundID fartSound1;
 }
 
-@property (retain) UITableView *tableView;
+@property (strong) UITableView *tableView;
 @property (readonly) BOOL loading;
 
 - (void)showLoadingSpinner;

@@ -23,7 +23,7 @@
 }
 
 @property (assign) NSUInteger storyId;
-@property (retain) Post *rootPost;
+@property (strong) Post *rootPost;
 @property (assign) BOOL showCount;
 
 @end

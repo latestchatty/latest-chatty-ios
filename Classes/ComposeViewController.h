@@ -38,7 +38,7 @@
 }
 
 @property (assign) NSInteger storyId;
-@property (retain) Post *post;
+@property (strong) Post *post;
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost;
 - (void)makePost;

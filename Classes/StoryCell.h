@@ -16,11 +16,11 @@
     IBOutlet UILabel *preview;
     IBOutlet UILabel *timestamp;
     IBOutlet UILabel *commentCount;
-    IBOutlet UIButton *chattyButton;
+    IBOutlet UIButton *__weak chattyButton;
 }
 
-@property (retain) Story *story;
-@property (readonly) UIButton *chattyButton;
+@property (strong) Story *story;
+@property (weak, readonly) UIButton *chattyButton;
 
 + (CGFloat)cellHeight;
 

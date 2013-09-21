@@ -96,8 +96,8 @@
 }
 
 - (void)addNavigationController:(UINavigationController *)navigation contentNavigationController:(UINavigationController *)content {
-    navigationController = [navigation retain];
-    contentNavigationController = [content retain];
+    navigationController = navigation;
+    contentNavigationController = content;
     
     [navigationController viewWillAppear:NO];
     [self.view addSubview:navigationController.view];
@@ -134,14 +134,9 @@
 }
 
 - (void)dealloc {
-    [navigationController release];
-    [contentNavigationController release];
-    [tabButton release];
-    [divider release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [super dealloc];
 }
 
 @end

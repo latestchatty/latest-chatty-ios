@@ -12,7 +12,7 @@
 @implementation UINavigationController (HelperKit)
 
 + (id)controllerWithRootController:(UIViewController*)controller {
-    return [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+    return [[UINavigationController alloc] initWithRootViewController:controller];
 }
 
 - (UIViewController*)backViewController {

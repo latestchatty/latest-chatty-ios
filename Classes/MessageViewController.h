@@ -15,7 +15,7 @@
     IBOutlet UIWebView *webView;
 }
 
-@property (retain) Message *message;
+@property (strong) Message *message;
 
 - (id)initWithMesage:(Message *)aMessage;
 

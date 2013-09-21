@@ -39,7 +39,6 @@
                                                                           target:self.viewDeckController
                                                                           action:@selector(toggleLeftView)];
             self.navigationItem.leftBarButtonItem = menuButton;
-            [menuButton release];
         }
         
         UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@""
@@ -52,7 +51,6 @@
      
         [self.navigationItem setRightBarButtonItem:lolMenuButton];
         
-        [lolMenuButton release];
     }
     
     return self;
@@ -84,7 +82,6 @@
     [self.view addGestureRecognizer:panGesture];
     panGesture.delegate = self;
     panGesture.cancelsTouchesInView = NO;
-    [panGesture release];
     
     //iOS7
     [webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 44.0, 0)];
@@ -245,8 +242,8 @@
     //use iOS 6 ActivityViewController functionality if available
     if ([UIActivityViewController class]) {
         //load custom activities
-        AppleSafariActivity *safariActivity = [[[AppleSafariActivity alloc] init] autorelease];
-        GoogleChromeActivity *chromeActivity = [[[GoogleChromeActivity alloc] init] autorelease];
+        AppleSafariActivity *safariActivity = [[AppleSafariActivity alloc] init];
+        GoogleChromeActivity *chromeActivity = [[GoogleChromeActivity alloc] init];
         
         NSArray *activityItems = @[[webView.request URL]];
         
@@ -269,7 +266,6 @@
             [self presentViewController:activityViewController animated:YES completion:nil];
         }
         
-        [activityViewController release];
     }
     //fallback to ActionSheets for pre-iOS 6
     else {
@@ -280,11 +276,11 @@
             return;
         }
         //keep track of the action sheet
-        theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Options"
+        theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Options"
                                                       delegate:self
                                              cancelButtonTitle:nil
                                         destructiveButtonTitle:nil
-                                             otherButtonTitles:nil] autorelease];
+                                             otherButtonTitles:nil];
         [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         
         [theActionSheet addButtonWithTitle:@"Copy URL"];
@@ -310,7 +306,6 @@
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
     if (popoverController == pc) {
-        [popoverController release];
         popoverController = nil;
     }
 }
@@ -349,7 +344,6 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    self.request = nil;
     
     [webView loadHTMLString:@"<div></div>" baseURL:nil];
     if (webView.loading) {
@@ -357,15 +351,8 @@
     }
     webView.delegate = nil;
 
-    self.webView = nil;
-    self.backButton = nil;
-    self.forwardButton = nil;
 //    self.spinner = nil;
-    self.mainToolbar = nil;
-    self.actionButton = nil;
-    self.bottomToolbar = nil;
     
-    [super dealloc];
 }
 
 @end

@@ -50,10 +50,5 @@
     [self activityDidFinish:YES];
 }
 
-- (void)dealloc {
-    self.url = nil;
-    
-    [super dealloc];
-}
 
 @end

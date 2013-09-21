@@ -41,7 +41,7 @@
 }
 
 + (NSString*)stringWithData:(NSData*)data encoding:(NSStringEncoding)encoding {
-    return [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
+    return [[NSString alloc] initWithData:data encoding:encoding];
 }
 
 - (NSData*)data {
@@ -52,7 +52,7 @@
 #pragma mark Escaping
 
 - (NSString*)stringByPercentEscapingCharacters:(NSString*)characters {
-    return [(NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, (CFStringRef)characters, kCFStringEncodingUTF8) autorelease];
+    return (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, (CFStringRef)characters, kCFStringEncodingUTF8));
 }
 
 - (NSString*)stringByEscapingURL {
@@ -60,7 +60,7 @@
 }
 
 - (NSString*)stringByUnescapingURL {
-    return [(NSString*)CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)self, CFSTR("")) autorelease];
+    return (NSString*)CFBridgingRelease(CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)self, CFSTR("")));
 }
 
 @end

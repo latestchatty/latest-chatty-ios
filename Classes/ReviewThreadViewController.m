@@ -80,13 +80,8 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
 
-    [postViewContainer release];
-    [postView release];
-    [doneButton release];
     
-    self.rootPost = nil;
 
-    [super dealloc];
 }
 
 @end

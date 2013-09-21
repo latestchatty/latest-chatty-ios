@@ -19,9 +19,9 @@
   IBOutlet UIView  *newStripe;
 }
 
-@property (retain) Message *message;
-@property (nonatomic, retain) UILabel *subjectLabel;
-@property (nonatomic, retain) UILabel *dateLabel;
-@property (nonatomic, retain) UILabel *previewLabel;
+@property (strong) Message *message;
+@property (nonatomic, strong) UILabel *subjectLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *previewLabel;
 
 @end

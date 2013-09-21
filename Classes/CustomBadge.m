@@ -111,7 +111,7 @@
 
 // Creates a Badge with a given Text 
 + (CustomBadge*) customBadgeWithString:(NSString *)badgeString {
-	return [[[self alloc] initWithString:badgeString withScale:1.0 withShining:YES] autorelease];
+	return [[self alloc] initWithString:badgeString withScale:1.0 withShining:YES];
 }
 
 
@@ -125,14 +125,14 @@
                            withShining:(BOOL)shining
                             withShadow:(BOOL)shadow
 {
-	return [[[self alloc] initWithString:badgeString
+	return [[self alloc] initWithString:badgeString
                          withStringColor:stringColor
                           withInsetColor:insetColor
                           withBadgeFrame:badgeFrameYesNo
                      withBadgeFrameColor:frameColor
                                withScale:scale
                              withShining:shining
-                              withShadow:shadow] autorelease];
+                              withShadow:shadow];
 }
 
 // Draws the Badge with Quartz
@@ -254,12 +254,5 @@
 	}
 }
 
-- (void)dealloc {
-	[badgeText release];
-	[badgeTextColor release];
-	[badgeInsetColor release];
-	[badgeFrameColor release];	
-    [super dealloc];
-}
 
 @end

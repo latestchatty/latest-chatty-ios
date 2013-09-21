@@ -29,8 +29,8 @@
     BOOL viewDidAppearFinished;
 }
 
-@property (nonatomic, retain) NSArray *posts;
-@property (nonatomic, retain) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSArray *posts;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 - (id)initWithTerms:(NSString *)terms author:(NSString *)author parentAuthor:(NSString *)parentAuthor;
 

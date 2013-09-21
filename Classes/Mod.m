@@ -49,9 +49,9 @@
 		NSMutableURLRequest *request;
 		
         //NSLog(@"Moderating post with URL: %@", url);
-		request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]
+		request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]
 												cachePolicy:NSURLRequestReloadIgnoringCacheData 
-											timeoutInterval:60] autorelease];
+											timeoutInterval:60];
         [NSURLConnection connectionWithRequest:request delegate:nil];    
 
 	}

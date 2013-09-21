@@ -18,8 +18,5 @@
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 @end

@@ -16,7 +16,7 @@
 @synthesize image, delegate;
 
 - (id)initWithImage:(UIImage *)anImage {
-	[super init];
+	if (!(self = [super init])) return nil;
 	self.image = anImage;
 	return self;
 }
@@ -67,7 +67,7 @@
                          [formData appendPartWithFileData:imageData name:@"userfile[]" fileName:@"iPhoneUpload.jpg" mimeType:@"image/jpeg"];
                      }];
                      
-                     AFHTTPRequestOperation *uploadOperation = [[[AFHTTPRequestOperation alloc] initWithRequest:uploadRequest] autorelease];
+                     AFHTTPRequestOperation *uploadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:uploadRequest];
                      // Async upload blocks
                      // Progress block
                      [uploadOperation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
@@ -214,9 +214,5 @@
 	self.image = imageCopy;
 }
 
-- (void)dealloc {
-    self.image = nil;
-    [super dealloc];
-}
 
 @end

@@ -10,4 +10,5 @@
   #import "HKHelperKit.h"
   #import "LatestChatty2AppDelegate.h"
   #import "Categories.h"
+  #import "NSString+Regex.h"
 #endif

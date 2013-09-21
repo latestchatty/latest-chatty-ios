@@ -15,7 +15,6 @@
 - (NSString *)stringByUnescapingHTML {
     HTMLEscaper *escaper = [[HTMLEscaper alloc] init];
     NSString *unescapedString = [escaper unescapeEntitiesInString:self];
-    [escaper release];
     
     return unescapedString;
 }
@@ -230,7 +229,7 @@
 }
 
 + (NSDictionary *)whiteTextAttributesDictionary {
-    NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+    NSShadow *shadow = [[NSShadow alloc] init];
     [shadow setShadowColor:[UIColor lcTextShadowColor]];
     [shadow setShadowOffset:CGSizeMake(0.0, 1.0)];
     
@@ -252,7 +251,7 @@
 }
 
 + (NSDictionary *)textShadowAttributesDictionary {
-    NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+    NSShadow *shadow = [[NSShadow alloc] init];
     [shadow setShadowColor:[UIColor lcTextShadowColor]];
     [shadow setShadowOffset:CGSizeMake(0.0, -1.0)];
     

@@ -38,7 +38,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.messagesSpinner startAnimating];
-    messageLoader = [[Message findAllWithDelegate:self] retain];
+    messageLoader = [Message findAllWithDelegate:self];
 }
 
 - (void)viewDidLoad {
@@ -65,10 +65,10 @@
 - (void)pushBrowserForCredits {
     NSString *urlString = @"http://mccrager.com/latestchatty/credits";
     UIViewController *viewController =
-    [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+    [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                               title:@"Credits"
                                       isForShackLOL:NO
-                                       isForCredits:YES] autorelease];
+                                       isForCredits:YES];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
@@ -79,10 +79,10 @@
 - (void)pushBrowserForLicenses {
     NSString *urlString = @"http://mccrager.com/latestchatty/licenses";
     UIViewController *viewController =
-    [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+    [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                               title:@"Licenses"
                                       isForShackLOL:NO
-                                       isForCredits:YES] autorelease];
+                                       isForCredits:YES];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
@@ -105,7 +105,6 @@
     
     [self.messagesSpinner stopAnimating];
     
-    [messageLoader release];
     messageLoader = nil;
 }
 
@@ -129,7 +128,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RootCell *cell = (RootCell *)[tableView dequeueReusableCellWithIdentifier:@"RootCell"];
     if (cell == nil) {
-        cell = [[[RootCell alloc] init] autorelease];
+        cell = [[RootCell alloc] init];
     }
     
     switch (indexPath.row) {
@@ -223,10 +222,10 @@
         case 4:
             // Pass user= on the URL for Shack[LOL] in Browser web view.
             urlString = [[NSString stringWithFormat:@"http://lol.lmnopc.com?lc_webview=1&user=%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+            viewController = [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                                                        title:@"Shack[lol]"
                                                                isForShackLOL:YES
-                                                                isForCredits:NO] autorelease];
+                                                                isForCredits:NO];
             
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
@@ -264,7 +263,7 @@
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 [self.navigationController pushViewController:viewController animated:YES];
             } else {
-                self.viewDeckController.centerController = [[[UINavigationController alloc] initWithRootViewController:viewController] autorelease];
+                self.viewDeckController.centerController = [[UINavigationController alloc] initWithRootViewController:viewController];
                 [self.viewDeckController toggleLeftView];
             }
         }
@@ -274,12 +273,9 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    self.messagesSpinner = nil;
-    self.selectedIndex = nil;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [super dealloc];
 }
 
 @end

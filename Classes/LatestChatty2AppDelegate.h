@@ -27,14 +27,14 @@
 	SlideOutViewController *slideOutViewController;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UINavigationController *navigationController;
 
-@property (nonatomic, retain) IBOutlet SlideOutViewController *slideOutViewController;
-@property (nonatomic, retain) IBOutlet UINavigationController *contentNavigationController;
+@property (nonatomic, strong) IBOutlet SlideOutViewController *slideOutViewController;
+@property (nonatomic, strong) IBOutlet UINavigationController *contentNavigationController;
 
-@property (retain, nonatomic) UIViewController *centerController;
-@property (retain, nonatomic) UIViewController *leftController;
+@property (strong, nonatomic) UIViewController *centerController;
+@property (strong, nonatomic) UIViewController *leftController;
 
 - (IIViewDeckController*)generateControllerStack;
 
