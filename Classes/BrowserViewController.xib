@@ -10,7 +10,6 @@
                 <outlet property="backButton" destination="31" id="38"/>
                 <outlet property="bottomToolbar" destination="26" id="47"/>
                 <outlet property="forwardButton" destination="30" id="37"/>
-                <outlet property="spinner" destination="24" id="44"/>
                 <outlet property="view" destination="23" id="34"/>
                 <outlet property="webView" destination="25" id="35"/>
             </connections>
@@ -61,10 +60,6 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
         </view>
-        <activityIndicatorView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="white" id="24">
-            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-        </activityIndicatorView>
     </objects>
     <resources>
         <image name="RefreshIcon.24.png" width="24" height="24"/>

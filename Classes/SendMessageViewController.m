@@ -43,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
+//    scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
     
 	UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send"
                                                                    style:UIBarButtonItemStyleDone
@@ -70,64 +70,26 @@
         [self.recipient becomeFirstResponder];
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:@"UIKeyboardWillShowNotification"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:@"UIKeyboardDidHideNotification"
+                                               object:nil];
+    
     // iOS7
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
-    CGFloat screenHeight = screenSize.height;
-    CGFloat screenWidth = screenSize.width;
-    
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIInterfaceOrientation orientation = self.interfaceOrientation;
-        
-        if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
-        } else {
-            if ( screenHeight > 480 ) {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
-            }
-            else {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
-            }
-        }
-    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
 }
 
-//Patch-E: implemented fix for text view being underneath the keyboard in landscape, sets coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        CGRect screenBound = [[UIScreen mainScreen] bounds];
-        CGSize screenSize = screenBound.size;
-        CGFloat screenWidth = screenSize.width;
-        CGFloat screenHeight = screenSize.height;
-        
-        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
-            //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
-            if (body.frame.size.width > 320) {
-                return;
-            }
-            
-            //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
-            if ( screenHeight > 480 ) {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 220)];
-            }
-            else {
-                [body setFrame:CGRectMake(0, 68, screenWidth, 133)];
-            }
-        } else {
-            //iPhone landscape activated
-            [body setFrame:CGRectMake(0, 43, screenHeight, 63)];
-        }
-    }
-    
-    scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
+//    scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -136,6 +98,46 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+#pragma mark Keyboard notifications
+
+- (void)keyboardWillShow:(NSNotification *)note {
+    NSDictionary *userInfo = [note userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIInterfaceOrientation orientation = self.interfaceOrientation;
+    
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        [UIView animateWithDuration:0.3 animations:^{
+            body.frameHeight = body.frameHeight - kbSize.width;
+        }];
+    } else {
+        [UIView animateWithDuration:0.3 animations:^{
+            body.frameHeight = body.frameHeight - kbSize.height;
+        }];
+    }
+    NSLog(@"frameHeight: %f", body.frameHeight);
+    NSLog(@"frameWidth: %f", body.frameWidth);
+    NSLog(@"frameX: %f", body.frameX);
+    NSLog(@"frameY: %f", body.frameY);
+}
+
+- (void)keyboardDidHide:(NSNotification *)note {
+    NSDictionary *userInfo = [note userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIInterfaceOrientation orientation = self.interfaceOrientation;
+    
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        [UIView animateWithDuration:0.3 animations:^{
+            body.frameHeight = body.frameHeight + kbSize.width;
+        }];
+    } else {
+        [UIView animateWithDuration:0.3 animations:^{
+            body.frameHeight = body.frameHeight + kbSize.height;
+        }];
+    }
 }
 
 #pragma mark Text Field Delegate
@@ -217,7 +219,7 @@
 }
 
 - (void)sendMessage {
-    [body becomeFirstResponder];
+//    [body becomeFirstResponder];
     [body resignFirstResponder];
     
     postingWarningAlertView = YES;
@@ -266,9 +268,11 @@
     self.subject = nil;
     self.body = nil;
 
-    [scrollView release];
+//    [scrollView release];
     [activityView release];
 	[spinner release];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];    
     
     [super dealloc];
 }

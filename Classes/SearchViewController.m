@@ -307,6 +307,30 @@
 
 // new search function uses properties from subclassed button to pass on to search results vc init
 - (void)search:(RecentSearchButton*)sender {
+    // make a dictionary out of the recent search that was just tapped
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *searchDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      sender.searchTerms, @"term",
+                                      sender.searchAuthor, @"author",
+                                      sender.searchParentAuthor, @"parent",
+                                      nil];
+	// get all of the recent searches
+	NSMutableArray *recentSearches = [NSMutableArray arrayWithArray:[defaults objectForKey:@"recentSearches"]];
+    // filter the recent searches array to remove the recent search that was tapped
+    NSMutableArray *filteredRecentSearches = [NSMutableArray array];
+	for (NSDictionary *recentSearch in recentSearches) {
+        NSLog(@"recentSearch: %@", recentSearch);
+        if (![recentSearch isEqual:searchDictionary]) {
+            NSLog(@"searchDictionary: %@", searchDictionary);
+            [filteredRecentSearches addObject:recentSearch];
+        }
+	}
+    // add the recent search back to the filtered search array so that it has "bubbled" to the top
+    [filteredRecentSearches addObject:searchDictionary];
+    // persis the new recent searches array back to user defaults
+    [defaults setObject:filteredRecentSearches forKey:@"recentSearches"];
+    [defaults synchronize];
+    
     // create the search results controller and push it
     SearchResultsViewController *viewController = [[[SearchResultsViewController alloc] initWithTerms:sender.searchTerms
                                                                                                author:sender.searchAuthor

@@ -103,10 +103,10 @@
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    [hud setLabelText:@"Loading..."];
-    [hud setDimBackground:YES];
-    [hud setColor:[UIColor colorWithRed:40.0/255.0 green:41.0/255.0 blue:44.0/255.0 alpha:0.75]];
+//    [hud setDimBackground:YES];
+    [hud setColor:[UIColor lcTableBackgroundColor]];
     if ([self isKindOfClass:[ThreadViewController class]]) {
-        [hud setYOffset:-40];
+        [hud setYOffset:-33];
     }
 }
 

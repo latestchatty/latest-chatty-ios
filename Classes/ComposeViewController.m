@@ -85,7 +85,17 @@
     
     [postContent becomeFirstResponder];
 
-    // iOS7 testing
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:@"UIKeyboardWillShowNotification"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:@"UIKeyboardDidHideNotification"
+                                               object:nil];
+    
+    // iOS7
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
 }
 
@@ -107,32 +117,6 @@
                  cancelButtonTitle:@"OK"
                  otherButtonTitles:@"Rules", @"Hide", nil];
 	}
-}
-
-//Patch-E: implemented fix for text view being underneath the keyboard when view appears in landscape on iPhone. Also for iPhone, resizing postContent text view and the parent view containing all shack tag buttons before the view appears based on Retina 4" or non-Retina 4" screen.
-- (void)viewWillAppear:(BOOL)animated {
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
-    CGFloat screenHeight = screenSize.height;
-    CGFloat screenWidth = screenSize.width;
-    
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIInterfaceOrientation orientation = self.interfaceOrientation;
-        
-        if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-            [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
-        } else {
-            if ( screenHeight > 480 ) {
-                [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
-            }
-            else {
-                [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
-            }
-        }
-    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -186,38 +170,50 @@
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
-//Patch-E: implemented fix for text view being underneath the keyboard in landscape, sets coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        CGRect screenBound = [[UIScreen mainScreen] bounds];
-        CGSize screenSize = screenBound.size;
-        CGFloat screenWidth = screenSize.width;
-        CGFloat screenHeight = screenSize.height;
-            
-        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
-            //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
-            if (postContent.frame.size.width > 320) {
-                return;
-            }
-            
-            //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
-            if ( screenHeight > 480 ) {
-                [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
-            }
-            else {
-                [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
-            }
-        } else {
-            //iPhone landscape activated
-            [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-            [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
-        }
+#pragma mark Keyboard notifications
+
+- (void)keyboardWillShow:(NSNotification *)note {
+    NSDictionary *userInfo = [note userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIInterfaceOrientation orientation = self.interfaceOrientation;
+    
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        [UIView animateWithDuration:0.3 animations:^{
+            postContent.frameHeight = postContent.frameHeight - kbSize.width;
+        }];
+    } else {
+        [UIView animateWithDuration:0.3 animations:^{
+            postContent.frameHeight = postContent.frameHeight - kbSize.height;
+        }];
+    }
+}
+
+- (void)keyboardDidHide:(NSNotification *)note {
+    NSDictionary *userInfo = [note userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIInterfaceOrientation orientation = self.interfaceOrientation;
+    
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        [UIView animateWithDuration:0.3 animations:^{
+            postContent.frameHeight = postContent.frameHeight + kbSize.width;
+        }];
+    } else {
+        [UIView animateWithDuration:0.3 animations:^{
+            postContent.frameHeight = postContent.frameHeight + kbSize.height;
+        }];
     }
 }
 
 #pragma mark Image Handling
+
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    [viewController setNeedsStatusBarAppearanceUpdate];
+}
 
 - (IBAction)showImagePicker {
 	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -441,7 +437,7 @@
 }
 
 - (void)sendPost {
-    [postContent becomeFirstResponder];
+//    [postContent becomeFirstResponder];
     [postContent resignFirstResponder];
     
     postingWarningAlertView = YES;
@@ -474,6 +470,8 @@
 	[activityText release];
 	[spinner release];
 	[uploadBar release];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 	[super dealloc];
 }

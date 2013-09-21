@@ -277,6 +277,8 @@
     self.messagesSpinner = nil;
     self.selectedIndex = nil;
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [super dealloc];
 }
 

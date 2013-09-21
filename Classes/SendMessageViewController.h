@@ -13,7 +13,7 @@
 	IBOutlet UITextField *subject;
 	IBOutlet UITextView *body;
     
-    IBOutlet UIScrollView *scrollView;
+//    IBOutlet UIScrollView *scrollView;
     IBOutlet UIView *activityView;
     IBOutlet UIActivityIndicatorView *spinner;
     
