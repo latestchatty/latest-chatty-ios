@@ -105,8 +105,8 @@
 //    [hud setLabelText:@"Loading..."];
 //    [hud setDimBackground:YES];
     [hud setColor:[UIColor lcTableBackgroundColor]];
-    if ([self isKindOfClass:[ThreadViewController class]]) {
-        [hud setYOffset:-33];
+    if (![self isKindOfClass:[ThreadViewController class]]) {
+        [hud setYOffset:+33];
     }
 }
 
