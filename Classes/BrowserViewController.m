@@ -18,7 +18,7 @@
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
     self.request = _request;
-    self.title = @"Browser";
+    self.title = @"Loading...";
     return self;
 }
 
@@ -28,7 +28,9 @@
            isForCredits:(BOOL)isForCredits {
     self = [super initWithNib];
     self.request = _request;
-    self.title = title;
+    if (title != nil) {
+        self.title = title;   
+    }
     self.isShackLOL = isForShackLOL;
     self.isCredits = isForCredits;
  
@@ -185,6 +187,14 @@
     }
     
     [self.actionButton setEnabled:YES];
+    
+    NSString *docTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if (docTitle.length > 0) {
+        self.title = docTitle;
+    } else {
+        self.title = @"Browser";
+    }
+
 }
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error {
