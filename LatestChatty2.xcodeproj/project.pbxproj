@@ -699,6 +699,7 @@
 		CD7ADD1317EF180E00B4C886 /* StoryCell-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "StoryCell-iPad.xib"; path = "iPad/StoryCell-iPad.xib"; sourceTree = "<group>"; };
 		CD7ADD1417EF180E00B4C886 /* ThreadCell-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ThreadCell-iPad.xib"; path = "iPad/ThreadCell-iPad.xib"; sourceTree = "<group>"; };
 		CD7ADD1F17EF19F300B4C886 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Assets/Images.xcassets; sourceTree = "<group>"; };
+		CD7ADD2317EF488F00B4C886 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		CD7C24191754653B00D90942 /* CGRect+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGRect+HelperKit.h"; sourceTree = "<group>"; };
 		CD7C241A1754653B00D90942 /* CGRect+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGRect+HelperKit.m"; sourceTree = "<group>"; };
 		CD7C241B1754653B00D90942 /* HKHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKHelperKit.h; sourceTree = "<group>"; };
@@ -1048,6 +1049,7 @@
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				CDDE5BE517DC37AC0036CA42 /* Info beta.plist */,
+				CD7ADD2317EF488F00B4C886 /* README.md */,
 				FA2260520F8EE251002F77DD /* Settings.bundle */,
 			);
 			name = Resources;
@@ -1498,6 +1500,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "LatestChatty2" */;
 			buildPhases = (
+				CDC8BC9417EF7681007B25C6 /* ShellScript */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -1515,6 +1518,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDA1182416C1DC6600CE1375 /* Build configuration list for PBXNativeTarget "LatestChatty2 beta" */;
 			buildPhases = (
+				CD7ADD2417EF575700B4C886 /* ShellScript */,
 				CDA1174D16C1DC6600CE1375 /* Resources */,
 				CDA117CE16C1DC6600CE1375 /* Sources */,
 				CDA1181C16C1DC6600CE1375 /* Frameworks */,
@@ -1956,6 +1960,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CD7ADD2417EF575700B4C886 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=`/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$SRCROOT/Info beta.plist\"`\n/usr/libexec/PlistBuddy $SRCROOT/Settings.bundle/Root.plist -c \"set PreferenceSpecifiers:1:DefaultValue $version\"";
+		};
+		CDC8BC9417EF7681007B25C6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=`/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$SRCROOT/Info.plist\"`\n/usr/libexec/PlistBuddy $SRCROOT/Settings.bundle/Root.plist -c \"set PreferenceSpecifiers:1:DefaultValue $version\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
