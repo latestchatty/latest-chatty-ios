@@ -40,7 +40,7 @@
     [self.view addSubview:loadingView];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"superSecretFartMode"]) {
-        int randomFartNumber = rand() % (10 - 1) + 1;
+        int randomFartNumber = arc4random() % 9 + 1;
         NSLog(@"Playing Fart #%i, don't forget to wipe!", randomFartNumber);
         NSURL *soundURL = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"Fart%i", randomFartNumber]
                                                   withExtension:@"mp3"];
