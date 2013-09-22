@@ -6,7 +6,6 @@
 //  Copyright 2009. All rights reserved.
 //
 
-#import "JSON.h"
 #import "ModelLoadingDelegate.h"
 #import "ModelLoader.h"
 
