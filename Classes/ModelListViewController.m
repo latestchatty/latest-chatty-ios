@@ -14,16 +14,6 @@
 
 @synthesize tableView;
 
-//TODO: scrolling hide bars
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    if (scrollView.contentOffset.y < lastOffset.y) {
-//        [[self navigationController] setNavigationBarHidden:YES animated:YES];
-//    } else {
-//        [[self navigationController] setNavigationBarHidden:NO animated:YES];
-//    }
-//}
-//
-
 # pragma mark View Notifications
 
 - (void)viewDidLoad {
@@ -34,12 +24,17 @@
     loadingView.userInteractionEnabled = NO;
     loadingView.alpha = 0.0;
     loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [spinner startAnimating];
     spinner.contentMode = UIViewContentModeCenter;
-    spinner.frame = CGRectMake(0, 0, self.view.frame.size.width -1, self.view.frame.size.height / 2.0 -1);
-    spinner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    CGFloat offset = 0.0;
+    if (![self isKindOfClass:[ThreadViewController class]]) {
+        offset = 50;
+    }
+
+    spinner.frame = CGRectMake(0, offset, self.view.frame.size.width, self.view.frame.size.height / 2.0);
+    spinner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     [loadingView addSubview:spinner];
 
     [self.view addSubview:loadingView];
@@ -94,28 +89,28 @@
 #pragma mark Loading Spinner
 
 - (void)showLoadingSpinner {
-//    loadingView.alpha = 0.0;
-//    [UIView beginAnimations:@"LoadingViewFadeIn" context:nil];
-//    loadingView.alpha = 1.0;
-//    [UIView commitAnimations];
+    loadingView.alpha = 0.0;
+    [UIView beginAnimations:@"LoadingViewFadeIn" context:nil];
+    loadingView.alpha = 1.0;
+    [UIView commitAnimations];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    [hud setLabelText:@"Loading..."];
 //    [hud setDimBackground:YES];
-    [hud setColor:[UIColor lcTableBackgroundColor]];
-    if (![self isKindOfClass:[ThreadViewController class]]) {
-        [hud setYOffset:+33];
-    }
+//    [hud setColor:[UIColor lcTableBackgroundColor]];
+//    if (![self isKindOfClass:[ThreadViewController class]]) {
+//        [hud setYOffset:+33];
+//    }
 }
 
 - (void)hideLoadingSpinner {
-//    [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
-//    loadingView.alpha = 0.0;
-//    [UIView commitAnimations];
+    [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
+    loadingView.alpha = 0.0;
+    [UIView commitAnimations];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (BOOL)loading {
@@ -171,8 +166,5 @@
                                         otherButtonTitles:nil];
     [alert show];
 }
-
-#pragma mark Cleanup
-
 
 @end

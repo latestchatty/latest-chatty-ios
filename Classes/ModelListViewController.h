@@ -14,6 +14,7 @@
 @interface ModelListViewController : UIViewController <ModelLoadingDelegate, UITableViewDelegate, UITableViewDataSource> {
     ModelLoader *loader;
     UIView *loadingView;
+    UIActivityIndicatorView *spinner;
     IBOutlet UITableView *tableView;
     CGPoint lastOffset;
     AVAudioPlayer *fartSound;
