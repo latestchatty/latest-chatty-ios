@@ -62,10 +62,8 @@
     NSLog(@"Done Loading from URL: %@", urlString);
     
     // Parse the response string
-    NSString *dataString = [[NSString alloc] initWithData:downloadedData encoding:NSUTF8StringEncoding];
-    if (!dataString) dataString = [[NSString alloc] initWithData:downloadedData encoding:NSASCIIStringEncoding];
     
-    id dataObject = [dataString JSONValue];
+    id dataObject = [NSJSONSerialization JSONObjectWithData:downloadedData options:0 error:nil];
     
     id otherData = [dataDelegate otherDataForResponseData:dataObject];
     

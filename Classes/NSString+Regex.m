@@ -31,8 +31,11 @@
     if (err) return nil;
     
     NSArray *matches = [ex matchesInString:self options:0 range:NSMakeRange(0, self.length)];
-    if ([matches count] > capture) {
-        return matches[capture];
+    if ([matches count]) {
+        NSTextCheckingResult *result = [matches lastObject];
+        if (result.numberOfRanges > capture) {
+            return [self substringWithRange:[result rangeAtIndex:capture]];
+        }
     }
     return nil;
 }

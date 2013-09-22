@@ -328,11 +328,12 @@ static NSMutableDictionary *expirationColorMapping;
     }
     
     self.replies = [NSMutableArray array];
-    for (NSMutableDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
+    for (NSDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
+        NSMutableDictionary *replyDictionaryMutable = [replyDictionary mutableCopy];
         NSInteger newDepth = [[dictionary objectForKey:@"depth"] intValue];
-        [replyDictionary setObject:[NSNumber numberWithInt:newDepth + 1] forKey:@"depth"];
+        [replyDictionaryMutable setObject:[NSNumber numberWithInt:newDepth + 1] forKey:@"depth"];
         
-        Post *reply = [[Post alloc] initWithDictionary:replyDictionary];
+        Post *reply = [[Post alloc] initWithDictionary:replyDictionaryMutable];
         [replies addObject:reply];
     }
  

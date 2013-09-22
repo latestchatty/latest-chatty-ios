@@ -17,12 +17,6 @@
 		5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		5907C5B710A69A190028D630 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5B610A69A190028D630 /* libz.dylib */; };
-		599FF0F610D5DDC1004476B8 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0EB10D5DDC1004476B8 /* NSObject+SBJSON.m */; };
-		599FF0F710D5DDC1004476B8 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0ED10D5DDC1004476B8 /* NSString+SBJSON.m */; };
-		599FF0F810D5DDC1004476B8 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0EF10D5DDC1004476B8 /* SBJSON.m */; };
-		599FF0F910D5DDC1004476B8 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F110D5DDC1004476B8 /* SBJsonBase.m */; };
-		599FF0FA10D5DDC1004476B8 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F310D5DDC1004476B8 /* SBJsonParser.m */; };
-		599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */; };
 		59EC55B417EDF56600F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
 		59EC55B517EDF56700F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
@@ -369,12 +363,6 @@
 		CDA117EF16C1DC6600CE1375 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD4EB500F96797900E74FED /* MessageViewController.m */; };
 		CDA117F016C1DC6600CE1375 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C3ED40F9CED010022A739 /* SearchViewController.m */; };
 		CDA117F116C1DC6600CE1375 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACD9A7B0F9E2F33009D9A15 /* SearchResultsViewController.m */; };
-		CDA117FC16C1DC6600CE1375 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0EB10D5DDC1004476B8 /* NSObject+SBJSON.m */; };
-		CDA117FD16C1DC6600CE1375 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0ED10D5DDC1004476B8 /* NSString+SBJSON.m */; };
-		CDA117FE16C1DC6600CE1375 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0EF10D5DDC1004476B8 /* SBJSON.m */; };
-		CDA117FF16C1DC6600CE1375 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F110D5DDC1004476B8 /* SBJsonBase.m */; };
-		CDA1180016C1DC6600CE1375 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F310D5DDC1004476B8 /* SBJsonParser.m */; };
-		CDA1180116C1DC6600CE1375 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */; };
 		CDA1180216C1DC6600CE1375 /* Mod.m in Sources */ = {isa = PBXBuildFile; fileRef = FA08ADB2112B40E800B89890 /* Mod.m */; };
 		CDA1181616C1DC6600CE1375 /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */; };
 		CDA1181716C1DC6600CE1375 /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
@@ -582,19 +570,6 @@
 		5907C5AC10A69A0A0028D630 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5907C5B610A69A190028D630 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		599FF0E910D5DDC1004476B8 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		599FF0EA10D5DDC1004476B8 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
-		599FF0EB10D5DDC1004476B8 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
-		599FF0EC10D5DDC1004476B8 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
-		599FF0ED10D5DDC1004476B8 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
-		599FF0EE10D5DDC1004476B8 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
-		599FF0EF10D5DDC1004476B8 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
-		599FF0F010D5DDC1004476B8 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
-		599FF0F110D5DDC1004476B8 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
-		599FF0F210D5DDC1004476B8 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		599FF0F310D5DDC1004476B8 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
-		599FF0F410D5DDC1004476B8 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		59EC55B017EDF29C00F513A9 /* NSString+Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Regex.h"; path = "Classes/NSString+Regex.h"; sourceTree = "<group>"; };
 		59EC55B117EDF29C00F513A9 /* NSString+Regex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Regex.m"; path = "Classes/NSString+Regex.m"; sourceTree = "<group>"; };
 		61BB54EC1151A42A00BFB041 /* SendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageViewController.h; sourceTree = "<group>"; };
@@ -1016,7 +991,6 @@
 				CD76FFE0174C734B00B378E6 /* AFNetworking */,
 				FA2B47500F7E1DA30074064A /* Base64 */,
 				CD7C24181754653900D90942 /* HKHelperKit */,
-				599FF0E810D5DDC1004476B8 /* JSON */,
 				CDBD37FE17521EC2000A9F58 /* ViewDeck */,
 				CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */,
 				CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */,
@@ -1070,27 +1044,6 @@
 				5907C5B610A69A190028D630 /* libz.dylib */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		599FF0E810D5DDC1004476B8 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				599FF0E910D5DDC1004476B8 /* JSON.h */,
-				599FF0EA10D5DDC1004476B8 /* NSObject+SBJSON.h */,
-				599FF0EB10D5DDC1004476B8 /* NSObject+SBJSON.m */,
-				599FF0EC10D5DDC1004476B8 /* NSString+SBJSON.h */,
-				599FF0ED10D5DDC1004476B8 /* NSString+SBJSON.m */,
-				599FF0EE10D5DDC1004476B8 /* SBJSON.h */,
-				599FF0EF10D5DDC1004476B8 /* SBJSON.m */,
-				599FF0F010D5DDC1004476B8 /* SBJsonBase.h */,
-				599FF0F110D5DDC1004476B8 /* SBJsonBase.m */,
-				599FF0F210D5DDC1004476B8 /* SBJsonParser.h */,
-				599FF0F310D5DDC1004476B8 /* SBJsonParser.m */,
-				599FF0F410D5DDC1004476B8 /* SBJsonWriter.h */,
-				599FF0F510D5DDC1004476B8 /* SBJsonWriter.m */,
-			);
-			name = JSON;
-			path = Classes/JSON;
 			sourceTree = "<group>";
 		};
 		59EC55AF17EDF27900F513A9 /* Regex */ = {
@@ -2026,12 +1979,6 @@
 				FAD4EB510F96797900E74FED /* MessageViewController.m in Sources */,
 				FA9C3ED50F9CED010022A739 /* SearchViewController.m in Sources */,
 				FACD9A7C0F9E2F33009D9A15 /* SearchResultsViewController.m in Sources */,
-				599FF0F610D5DDC1004476B8 /* NSObject+SBJSON.m in Sources */,
-				599FF0F710D5DDC1004476B8 /* NSString+SBJSON.m in Sources */,
-				599FF0F810D5DDC1004476B8 /* SBJSON.m in Sources */,
-				599FF0F910D5DDC1004476B8 /* SBJsonBase.m in Sources */,
-				599FF0FA10D5DDC1004476B8 /* SBJsonParser.m in Sources */,
-				599FF0FB10D5DDC1004476B8 /* SBJsonWriter.m in Sources */,
 				FA08ADB3112B40E800B89890 /* Mod.m in Sources */,
 				FA04878E11640DA800290D2D /* SendMessageViewController.m in Sources */,
 				A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */,
@@ -2114,12 +2061,6 @@
 				CDA117EF16C1DC6600CE1375 /* MessageViewController.m in Sources */,
 				CDA117F016C1DC6600CE1375 /* SearchViewController.m in Sources */,
 				CDA117F116C1DC6600CE1375 /* SearchResultsViewController.m in Sources */,
-				CDA117FC16C1DC6600CE1375 /* NSObject+SBJSON.m in Sources */,
-				CDA117FD16C1DC6600CE1375 /* NSString+SBJSON.m in Sources */,
-				CDA117FE16C1DC6600CE1375 /* SBJSON.m in Sources */,
-				CDA117FF16C1DC6600CE1375 /* SBJsonBase.m in Sources */,
-				CDA1180016C1DC6600CE1375 /* SBJsonParser.m in Sources */,
-				CDA1180116C1DC6600CE1375 /* SBJsonWriter.m in Sources */,
 				CDA1180216C1DC6600CE1375 /* Mod.m in Sources */,
 				CDA1181616C1DC6600CE1375 /* SendMessageViewController.m in Sources */,
 				CDA1181716C1DC6600CE1375 /* SlideOutViewController.m in Sources */,
