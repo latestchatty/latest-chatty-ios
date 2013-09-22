@@ -178,6 +178,9 @@
 		CD7ADD1C17EF180E00B4C886 /* StoryCell-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADD1317EF180E00B4C886 /* StoryCell-iPad.xib */; };
 		CD7ADD1D17EF180E00B4C886 /* ThreadCell-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADD1417EF180E00B4C886 /* ThreadCell-iPad.xib */; };
 		CD7ADD1E17EF180E00B4C886 /* ThreadCell-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADD1417EF180E00B4C886 /* ThreadCell-iPad.xib */; };
+		CD7ADD2017EF19F300B4C886 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADD1F17EF19F300B4C886 /* Images.xcassets */; };
+		CD7ADD2117EF19F300B4C886 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADD1F17EF19F300B4C886 /* Images.xcassets */; };
+		CD7ADD2217EF434200B4C886 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD13747A17EA90A0002A2551 /* AVFoundation.framework */; };
 		CD7C243C1754653B00D90942 /* CGRect+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C241A1754653B00D90942 /* CGRect+HelperKit.m */; };
 		CD7C243D1754653B00D90942 /* CGRect+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C241A1754653B00D90942 /* CGRect+HelperKit.m */; };
 		CD7C243E1754653B00D90942 /* NSBundle+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C241D1754653B00D90942 /* NSBundle+HelperKit.m */; };
@@ -427,7 +430,6 @@
 		CDD056CA174FCCC8000E0477 /* NoContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056C8174FCCC8000E0477 /* NoContentController.m */; };
 		CDD056D0174FD043000E0477 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056CF174FD043000E0477 /* CustomBadge.m */; };
 		CDD056D1174FD043000E0477 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056CF174FD043000E0477 /* CustomBadge.m */; };
-		CDDE5BC617D4C1720036CA42 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDDE5BC517D4C1720036CA42 /* Images.xcassets */; };
 		CDF1BDDC175EEDC200D6B1AE /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD7175EEDC200D6B1AE /* IISideController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDF1BDDD175EEDC200D6B1AE /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD7175EEDC200D6B1AE /* IISideController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDF1BDDE175EEDC200D6B1AE /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD9175EEDC200D6B1AE /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -696,6 +698,7 @@
 		CD7ADD1217EF180E00B4C886 /* RootCell-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "RootCell-iPad.xib"; path = "iPad/RootCell-iPad.xib"; sourceTree = "<group>"; };
 		CD7ADD1317EF180E00B4C886 /* StoryCell-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "StoryCell-iPad.xib"; path = "iPad/StoryCell-iPad.xib"; sourceTree = "<group>"; };
 		CD7ADD1417EF180E00B4C886 /* ThreadCell-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ThreadCell-iPad.xib"; path = "iPad/ThreadCell-iPad.xib"; sourceTree = "<group>"; };
+		CD7ADD1F17EF19F300B4C886 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Assets/Images.xcassets; sourceTree = "<group>"; };
 		CD7C24191754653B00D90942 /* CGRect+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGRect+HelperKit.h"; sourceTree = "<group>"; };
 		CD7C241A1754653B00D90942 /* CGRect+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGRect+HelperKit.m"; sourceTree = "<group>"; };
 		CD7C241B1754653B00D90942 /* HKHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKHelperKit.h; sourceTree = "<group>"; };
@@ -796,7 +799,6 @@
 		CDD056C8174FCCC8000E0477 /* NoContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoContentController.m; sourceTree = "<group>"; };
 		CDD056CE174FD042000E0477 /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomBadge.h; path = Classes/CustomBadge.h; sourceTree = "<group>"; };
 		CDD056CF174FD043000E0477 /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomBadge.m; path = Classes/CustomBadge.m; sourceTree = "<group>"; };
-		CDDE5BC517D4C1720036CA42 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "LatestChatty2 beta/Images.xcassets"; sourceTree = "<group>"; };
 		CDDE5BE517DC37AC0036CA42 /* Info beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info beta.plist"; sourceTree = "<group>"; };
 		CDF1BDD6175EEDC200D6B1AE /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
 		CDF1BDD7175EEDC200D6B1AE /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
@@ -942,6 +944,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD7ADD2217EF434200B4C886 /* AVFoundation.framework in Frameworks */,
 				5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -1339,7 +1342,7 @@
 				CD48680C17EB5B430071F3D7 /* Fart7.mp3 */,
 				CD48680D17EB5B430071F3D7 /* Fart8.mp3 */,
 				CD48680E17EB5B430071F3D7 /* Fart9.mp3 */,
-				CDDE5BC517D4C1720036CA42 /* Images.xcassets */,
+				CD7ADD1F17EF19F300B4C886 /* Images.xcassets */,
 				CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */,
 				CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */,
 				CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */,
@@ -1534,7 +1537,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					CDA1174C16C1DC6600CE1375 = {
-						DevelopmentTeam = 5K5S487H9Y;
+						DevelopmentTeam = JA9LQCT6NB;
 					};
 				};
 			};
@@ -1573,6 +1576,7 @@
 				CD7ADD0A17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */,
 				FA6EDE670F70EE1500AAF4E4 /* ChatIcon.24.png in Resources */,
 				FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */,
+				CD7ADD2017EF19F300B4C886 /* Images.xcassets in Resources */,
 				FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */,
 				FAD29A610F796452006E14A2 /* DropShadow.png in Resources */,
 				FA87BD6B0F7AE97F0044898C /* SettingsViewController.xib in Resources */,
@@ -1817,7 +1821,6 @@
 				CD7ADCFD17EF17FA00B4C886 /* ReviewThreadViewController-iPad.xib in Resources */,
 				CDA117A616C1DC6600CE1375 /* GrayBullet@2x.png in Resources */,
 				CDA117A716C1DC6600CE1375 /* NewPostBullet@2x.png in Resources */,
-				CDDE5BC617D4C1720036CA42 /* Images.xcassets in Resources */,
 				CDA117B016C1DC6600CE1375 /* MessagesIcon.48@2x.png in Resources */,
 				CDA117B116C1DC6600CE1375 /* RefreshIcon@2x.png in Resources */,
 				CDA117B216C1DC6600CE1375 /* TagIcon@2x.png in Resources */,
@@ -1850,6 +1853,7 @@
 				CDA01B191730A87800E24A28 /* BlueButton@2x.png in Resources */,
 				CDA01B1E1730AD5B00E24A28 /* Lock.16@2x.png in Resources */,
 				CDA01B251731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
+				CD7ADD2117EF19F300B4C886 /* Images.xcassets in Resources */,
 				CD2359F71739D5EA0078423B /* Button.png in Resources */,
 				CD2359F91739D5EA0078423B /* Button@2x.png in Resources */,
 				CD2359FF1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */,
@@ -2137,6 +2141,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2144,7 +2152,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Debug;
@@ -2153,12 +2161,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Release;
@@ -2166,6 +2178,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2193,7 +2206,8 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
@@ -2282,8 +2296,9 @@
 		FADDB5410F81548500DF3650 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../Library/Frameworks",
 					"$(inherited)",
@@ -2310,12 +2325,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Distribution;

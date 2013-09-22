@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3.2.0</string>
+	<string>3.3.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<false/>
 	<key>NSMainNibFile</key>
@@ -52,5 +52,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
