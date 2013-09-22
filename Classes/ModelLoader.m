@@ -100,11 +100,12 @@
     modelDelegate = nil;
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
     NSLog(@"ModelLoader release!");
     
     [self cancel];
-    
 }
 
 @end

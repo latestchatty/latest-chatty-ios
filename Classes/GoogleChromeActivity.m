@@ -62,5 +62,4 @@
     [self activityDidFinish:YES];
 }
 
-
 @end

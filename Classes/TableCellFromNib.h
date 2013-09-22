@@ -6,9 +6,7 @@
 //  Copyright 2009. All rights reserved.
 //
 
-@interface TableCellFromNib : UITableViewCell {
-
-}
+@interface TableCellFromNib : UITableViewCell {}
 
 + (CGFloat)cellHeight;
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundleOrNil;

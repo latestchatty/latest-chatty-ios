@@ -93,5 +93,4 @@
 	replyCount.hidden = !shouldShowCount;
 }
 
-
 @end

@@ -177,5 +177,4 @@
 	orderByPostDateButton.alpha = isOrderByPostDate ? 1.0 : 0.5;
 }
 
-
 @end

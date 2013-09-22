@@ -170,13 +170,13 @@
     return YES;
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
     [storyLoader cancel];
     
     [content stopLoading];
     content.delegate = nil;
-
-    
 }
 
 @end

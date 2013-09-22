@@ -17,25 +17,8 @@
         self.title = @"Search";
         
         termsField = [[UITextField alloc] initWithFrame:CGRectZero];
-        termsField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        termsField.borderStyle = UITextBorderStyleNone;
-        termsField.returnKeyType = UIReturnKeySearch;
-        termsField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-        termsField.delegate = self;
-        
         authorField = [[UITextField alloc] initWithFrame:CGRectZero];
-        authorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        authorField.borderStyle = UITextBorderStyleNone;
-        authorField.returnKeyType = UIReturnKeySearch;
-        authorField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-        authorField.delegate = self;
-        
         parentAuthorField = [[UITextField alloc] initWithFrame:CGRectZero];
-        parentAuthorField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        parentAuthorField.borderStyle = UITextBorderStyleNone;
-        parentAuthorField.returnKeyType = UIReturnKeySearch;
-        parentAuthorField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-        parentAuthorField.delegate = self;
     }
     return self;
 }
@@ -245,7 +228,12 @@
     for (UITextField *field in fields) {
         field.enabled = YES;
         field.clearButtonMode = UITextFieldViewModeAlways;
-        [field setKeyboardAppearance:UIKeyboardAppearanceDark];
+        field.keyboardAppearance = UIKeyboardAppearanceDark;
+        field.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        field.borderStyle = UITextBorderStyleNone;
+        field.returnKeyType = UIReturnKeySearch;
+        field.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        field.delegate = self;
     }
     
     for (UITableViewCell *cell in [inputTable visibleCells]) {        
@@ -431,11 +419,9 @@
     [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
     [cell.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
-    
+
     UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
-    lockImage.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    cell.accessoryView = lockImage;
-//    [cell addSubview:lockImage];
+    lockImage.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     
     CGRect fieldRect;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -450,6 +436,11 @@
             termsField.textColor = [UIColor whiteColor];
             [termsField setFrame:fieldRect];
             cell.textLabel.text = @"Terms:";
+            
+            if (termsField.enabled) {
+                lockImage.hidden = YES;
+            }
+            
             break;
             
         case 1:
@@ -457,6 +448,11 @@
             authorField.textColor = [UIColor lcAuthorColor];
             [authorField setFrame:fieldRect];
             cell.textLabel.text = @"Author:";
+            
+            if (authorField.enabled) {
+                lockImage.hidden = YES;
+            }
+            
             break;
             
         case 2:
@@ -464,8 +460,15 @@
             parentAuthorField.textColor = [UIColor lcAuthorColor];
             [parentAuthorField setFrame:fieldRect];
             cell.textLabel.text = @"Parent:";
+            
+            if (parentAuthorField.enabled) {
+                lockImage.hidden = YES;
+            }
+            
             break;
     }
+    
+    cell.accessoryView = lockImage;
     
     return cell;
 }
@@ -482,12 +485,10 @@
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
-    
-    
-    
 }
 
 @end

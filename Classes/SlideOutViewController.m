@@ -133,10 +133,10 @@
     [UIView commitAnimations];
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
 }
 
 @end

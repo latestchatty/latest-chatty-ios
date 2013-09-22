@@ -259,11 +259,7 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-
-//    [scrollView release];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];    
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

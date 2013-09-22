@@ -18,7 +18,7 @@
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
     self.request = _request;
-    self.title = @"Browser";
+    self.title = @"Loading...";
     return self;
 }
 
@@ -28,7 +28,7 @@
            isForCredits:(BOOL)isForCredits {
     self = [super initWithNib];
     self.request = _request;
-    self.title = title;
+    self.title = (title != nil ? title : @"Loading...");
     self.isShackLOL = isForShackLOL;
     self.isCredits = isForCredits;
  
@@ -110,7 +110,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:bottomToolbar cache:YES];
     CGRect bottomToolbarFrame = bottomToolbar.frame;
-    bottomToolbarFrame.origin.y = bottomToolbarFrame.origin.y + (bottomToolbar.frameHeight+1);
+    bottomToolbarFrame.origin.y = self.view.frameHeight + bottomToolbar.frameHeight;
     bottomToolbar.frame = bottomToolbarFrame;
     [UIView commitAnimations];
     
@@ -131,7 +131,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:bottomToolbar cache:YES];
     CGRect bottomToolbarFrame = bottomToolbar.frame;
-    bottomToolbarFrame.origin.y = bottomToolbarFrame.origin.y - (bottomToolbar.frameHeight+1);
+    bottomToolbarFrame.origin.y = self.view.frameHeight - bottomToolbar.frameHeight;
     bottomToolbar.frame = bottomToolbarFrame;
     [UIView commitAnimations];
     
@@ -185,6 +185,14 @@
     }
     
     [self.actionButton setEnabled:YES];
+    
+    NSString *docTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if (docTitle.length > 0) {
+        self.title = docTitle;
+    } else {
+        self.title = @"Browser";
+    }
+
 }
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error {
@@ -341,9 +349,10 @@
     }
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
     
     [webView loadHTMLString:@"<div></div>" baseURL:nil];
     if (webView.loading) {

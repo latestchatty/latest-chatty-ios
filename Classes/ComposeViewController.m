@@ -444,18 +444,15 @@
              otherButtonTitles:@"Send", nil];
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
 
     // Remove special style item from text selection menu
     [UIMenuController sharedMenuController].menuItems = nil;
 	
-    
-    
-	
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
 }
 
 @end
