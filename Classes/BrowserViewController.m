@@ -351,9 +351,10 @@
     }
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
     
     [webView loadHTMLString:@"<div></div>" baseURL:nil];
     if (webView.loading) {

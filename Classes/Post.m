@@ -410,5 +410,4 @@ static NSMutableDictionary *expirationColorMapping;
     return isOnTopic || isAllowed;
 }
 
-
 @end

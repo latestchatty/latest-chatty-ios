@@ -10,5 +10,4 @@
 
 @implementation RecentSearchButton
 
-
 @end

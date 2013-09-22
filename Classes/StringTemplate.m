@@ -29,5 +29,4 @@
     self.result = [self.result stringByReplacingOccurrencesOfString:findString withString:string];
 }
 
-
 @end

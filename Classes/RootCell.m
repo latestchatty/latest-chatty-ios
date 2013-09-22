@@ -74,5 +74,4 @@
     if (badgeNumber > 0) [self.badge setHidden:NO];
 }
 
-
 @end
