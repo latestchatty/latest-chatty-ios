@@ -28,9 +28,7 @@
            isForCredits:(BOOL)isForCredits {
     self = [super initWithNib];
     self.request = _request;
-    if (title != nil) {
-        self.title = title;   
-    }
+    self.title = (title != nil ? title : @"Loading...");
     self.isShackLOL = isForShackLOL;
     self.isCredits = isForCredits;
  
