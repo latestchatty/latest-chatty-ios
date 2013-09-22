@@ -24,23 +24,11 @@
 }
 
 - (void)setupInterfaceForPhoneWithOptions:(NSDictionary *)launchOptions {
-//    if (![self reloadSavedState]) {
-//        // Add the root view controller
-//        RootViewController *viewController = [RootViewController controllerWithNib];
+//    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
+//        // Tapped a messge push's view button
+//        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
 //        [navigationController pushViewController:viewController animated:NO];
 //    }
-////    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
-////        // Tapped a messge push's view button
-////        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
-////        [navigationController pushViewController:viewController animated:NO];
-////    }
-    
-//    // Style the navigation bar
-//    navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-
-//    // Configure and show the window
-//    window.backgroundColor = [UIColor blackColor];
-//    window.rootViewController = navigationController;
     
     // Create and assign the left and center controllers
     IIViewDeckController* deckController = [self generateControllerStack];
@@ -75,6 +63,12 @@
 }
 
 - (IIViewDeckController*)generateControllerStack {
+//    if (![self reloadSavedState]) {
+//        // Add the root view controller
+//        RootViewController *viewController = [RootViewController controllerWithNib];
+//        [navigationController pushViewController:viewController animated:NO];
+//    }
+    
     // Left controller
     RootViewController* leftController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
     // Center controller
@@ -142,6 +136,7 @@
                                      [NSMutableArray array],        @"recentSearches",
                                      [NSNumber numberWithBool:NO],  @"darkMode",
                                      [NSNumber numberWithBool:NO],  @"superSecretFartMode",
+                                     [NSNumber numberWithBool:YES],  @"saveSearches",
                                      nil];
     [defaults registerDefaults:defaultSettings];
 

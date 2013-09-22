@@ -361,7 +361,6 @@
     webView.delegate = nil;
 
 //    self.spinner = nil;
-    
 }
 
 @end
