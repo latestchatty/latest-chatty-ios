@@ -419,11 +419,9 @@
     [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
     [cell.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
-    
+
     UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
-    lockImage.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    cell.accessoryView = lockImage;
-//    [cell addSubview:lockImage];
+    lockImage.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     
     CGRect fieldRect;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -438,6 +436,11 @@
             termsField.textColor = [UIColor whiteColor];
             [termsField setFrame:fieldRect];
             cell.textLabel.text = @"Terms:";
+            
+            if (termsField.enabled) {
+                lockImage.hidden = YES;
+            }
+            
             break;
             
         case 1:
@@ -445,6 +448,11 @@
             authorField.textColor = [UIColor lcAuthorColor];
             [authorField setFrame:fieldRect];
             cell.textLabel.text = @"Author:";
+            
+            if (authorField.enabled) {
+                lockImage.hidden = YES;
+            }
+            
             break;
             
         case 2:
@@ -452,8 +460,15 @@
             parentAuthorField.textColor = [UIColor lcAuthorColor];
             [parentAuthorField setFrame:fieldRect];
             cell.textLabel.text = @"Parent:";
+            
+            if (parentAuthorField.enabled) {
+                lockImage.hidden = YES;
+            }
+            
             break;
     }
+    
+    cell.accessoryView = lockImage;
     
     return cell;
 }
