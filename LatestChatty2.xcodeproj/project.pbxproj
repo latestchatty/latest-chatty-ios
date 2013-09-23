@@ -987,10 +987,10 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				59EC55AF17EDF27900F513A9 /* Regex */,
 				CD76FFE0174C734B00B378E6 /* AFNetworking */,
 				FA2B47500F7E1DA30074064A /* Base64 */,
 				CD7C24181754653900D90942 /* HKHelperKit */,
+				59EC55AF17EDF27900F513A9 /* Regex */,
 				CDBD37FE17521EC2000A9F58 /* ViewDeck */,
 				CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */,
 				CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */,
