@@ -136,7 +136,7 @@
                                      [NSMutableArray array],        @"recentSearches",
                                      [NSNumber numberWithBool:NO],  @"darkMode",
                                      [NSNumber numberWithBool:NO],  @"superSecretFartMode",
-                                     [NSNumber numberWithBool:YES],  @"saveSearches",
+                                     [NSNumber numberWithBool:YES], @"saveSearches",
                                      nil];
     [defaults registerDefaults:defaultSettings];
 

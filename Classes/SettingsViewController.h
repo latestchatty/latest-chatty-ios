@@ -21,13 +21,14 @@
     UISlider    *picsQualitySlider;
     UILabel     *picsQualityLabel;
 
+    UISwitch    *saveSearchesSwitch;
     UISwitch    *darkModeSwitch;
     UISwitch    *collapseSwitch;
     UISwitch    *landscapeSwitch;
     UISwitch    *youtubeSwitch;
     UISwitch    *safariSwitch;
     UISwitch    *chromeSwitch;
-    UISwitch    *pushMessagesSwitch;
+//    UISwitch    *pushMessagesSwitch;
     UISwitch    *modToolsSwitch;
   
     UISwitch    *interestingSwitch;

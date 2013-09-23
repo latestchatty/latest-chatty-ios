@@ -349,9 +349,11 @@
             break;
     }
     
-    if (saveSearch) {
+    // only save the search if matched criteria in the switch statement and the user is allowing searches to be saved
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL userSaveSearchesSetting = [defaults boolForKey:@"saveSearches"];
+    if (saveSearch && userSaveSearchesSetting) {
         // save this search in a dictionary and add it to the recent searches array
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSMutableArray *recentSearches = [NSMutableArray arrayWithArray:[defaults objectForKey:@"recentSearches"]];
         NSDictionary *searchDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                             termsField.text, @"term",

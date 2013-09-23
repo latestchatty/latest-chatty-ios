@@ -42,6 +42,7 @@
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
 
+        saveSearchesSwitch = [self generateSwitchWithKey:@"saveSearches"];
         darkModeSwitch     = [self generateSwitchWithKey:@"darkMode"];
         collapseSwitch     = [self generateSwitchWithKey:@"collapse"];
         landscapeSwitch    = [self generateSwitchWithKey:@"landscape"];
@@ -241,6 +242,7 @@
 	[defaults setObject:passwordField.text      forKey:@"password"];
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
+	[defaults setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
 	[defaults setBool:darkModeSwitch.on         forKey:@"darkMode"];
 	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
 	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
@@ -322,7 +324,7 @@
             break;
 			
 		case 2:
-			return 7;
+			return 8;
 			break;
 			
 		case 3:
@@ -449,31 +451,36 @@
 	if (indexPath.section == 2) {
 		switch (indexPath.row) {
 			case 0:
+				cell.accessoryView = saveSearchesSwitch;
+				cell.textLabel.text = @"Save Searches:";
+				break;
+                
+			case 1:
 				cell.accessoryView = darkModeSwitch;
 				cell.textLabel.text = @"Dark Mode:";
 				break;
 			
-            case 1:
+            case 2:
 				cell.accessoryView = collapseSwitch;
 				cell.textLabel.text = @"Allow Collapse:";
 				break;
 			
-            case 2:
+            case 3:
 				cell.accessoryView = landscapeSwitch;
 				cell.textLabel.text = @"Allow Landscape:";
 				break;
                 
-			case 3:
+			case 4:
 				cell.accessoryView = youtubeSwitch;
 				cell.textLabel.text = @"Embed YouTube:";
 				break;
                 
-            case 4:
+            case 5:
 				cell.accessoryView = safariSwitch;
 				cell.textLabel.text = @"Use Safari:";
 				break;
                 
-			case 5:
+			case 6:
 				cell.accessoryView = chromeSwitch;
 				cell.textLabel.text = @"Use Chrome:";
 				break;
@@ -483,7 +490,7 @@
 //				cell.textLabel.text = @"Push Messages:";
 //				break;
             
-			case 6:
+			case 7:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Mod Tools:";
 				break;
