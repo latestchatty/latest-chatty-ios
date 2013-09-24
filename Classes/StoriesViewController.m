@@ -66,13 +66,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
-    } else {
-        self.tableView.separatorColor = [UIColor lcSeparatorColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
-    }
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
+//    } else {
+//        self.tableView.separatorColor = [UIColor lcSeparatorColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
+//    }
 }
 
 - (void)refresh:(id)sender {

@@ -25,8 +25,8 @@
                         <nil key="highlightedColor"/>
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Mar 23, 2009 10:15AM" lineBreakMode="tailTruncation" minimumFontSize="8" id="8">
-                        <rect key="frame" x="210" y="69" width="105" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Mar 23, 2009 10:15AM" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="8">
+                        <rect key="frame" x="195" y="69" width="120" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.69019607839999997" green="0.70588235290000001" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>

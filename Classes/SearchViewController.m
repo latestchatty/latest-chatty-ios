@@ -180,7 +180,7 @@
         titleFontSize += 3.0f;
     }
 
-    [btn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]];
+    [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
 //    [btn.titleLabel setShadowColor:[UIColor lcTextShadowColor]];
 //    [btn.titleLabel setShadowOffset:CGSizeMake(0, -1)];
     //iOS7
@@ -232,7 +232,7 @@
         field.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         field.borderStyle = UITextBorderStyleNone;
         field.returnKeyType = UIReturnKeySearch;
-        field.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        field.font = [UIFont systemFontOfSize:16];
         field.delegate = self;
     }
     
@@ -414,13 +414,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
-    cell.backgroundColor = [UIColor lcGroupedCellColor];
+    [cell setBackgroundColor:[UIColor lcGroupedCellColor]];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     [cell.textLabel setTextColor:[UIColor lcGroupedCellLabelColor]];
     [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
-    [cell.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
 
     UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
     lockImage.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;

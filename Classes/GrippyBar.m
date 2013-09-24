@@ -15,19 +15,10 @@
     if (self) {
         self.contentMode = UIViewContentModeCenter;
         
-//        UIImageView *backgroundView = [UIImageView viewWithImage:[UIImage imageNamed:@"GrippyBarBackground.png"]];
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 12, self.frame.size.width, 25)];
-//        [backgroundView setBackgroundColor:[UIColor colorWithRed:85.0/255.0 green:85.0/255.0 blue:87.0/255.0 alpha:1.0]];
         [backgroundView setBackgroundColor:[UIColor lcTableBackgroundColor]];
-//        backgroundView.contentMode = UIViewContentModeScaleToFill;
         backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self addSubview:backgroundView];
-        
-//        UIImageView *grippy = [UIImageView viewWithImage:[UIImage imageNamed:@"GrippyBar.png"]];
-//        grippy.frame = CGRectMake(0, 0, self.frame.size.width, 48);
-//        grippy.contentMode = UIViewContentModeCenter;
-//        grippy.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-//        [self addSubview:grippy];
         
         // add pan gesture to handle moving the bar up/down when swiping up/down anywhere on the bar (including within buttons)
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
@@ -117,30 +108,6 @@
         }
     }
 }
-
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    isDragging = YES;
-//    initialTouchPoint = [[touches anyObject] locationInView:self.superview];
-//}
-//
-//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-//    if (isDragging) {
-//        CGPoint currentPoint = [[touches anyObject] locationInView:self.superview];
-//        CGPoint distance = CGPointMake(currentPoint.x - initialTouchPoint.x, currentPoint.y - initialTouchPoint.y);
-//        
-//        if (distance.y > 0) {
-//            [delegate grippyBarDidSwipeDown];
-//            isDragging = NO;
-//        } else if (distance.y < 0) {
-//            [delegate grippyBarDidSwipeUp];
-//            isDragging = NO;
-//        }
-//    }
-//}
-//
-//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//    isDragging = NO;
-//}
 
 - (void)tappedLeftButton {
     [delegate grippyBarDidTapLeftButton];

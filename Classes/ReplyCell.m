@@ -36,9 +36,9 @@
     usernameLabel.text = post.author;
     
     if (isThreadStarter) {
-        usernameLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:usernameLabel.font.pointSize];
+        usernameLabel.font = [UIFont boldSystemFontOfSize:usernameLabel.font.pointSize];
     } else {
-        usernameLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:usernameLabel.font.pointSize];
+        usernameLabel.font = [UIFont systemFontOfSize:usernameLabel.font.pointSize];
     }
     
     // Set the indentation depth
@@ -62,32 +62,32 @@
         case 0:
             grayBullet.alpha = 1.0;
             // Set latest to bold
-            preview.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:preview.font.pointSize];
+            preview.font = [UIFont boldSystemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor whiteColor];
             break;
         case 1:
             grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
-            preview.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:preview.font.pointSize];
+            preview.font = [UIFont systemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor lcReplyLevel1Color];
             break;
         case 2:
             grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
-            preview.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:preview.font.pointSize];
+            preview.font = [UIFont systemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor lcReplyLevel2Color];
             break;
         case 3:
             grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
-            preview.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:preview.font.pointSize];
+            preview.font = [UIFont systemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor lcReplyLevel3Color];
             break;
         case 4:
             grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
-            preview.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:preview.font.pointSize];
+            preview.font = [UIFont systemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor lcReplyLevel4Color];
             break;            
         default:
             grayBullet.alpha = 0.25;
-            preview.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:preview.font.pointSize];
+            preview.font = [UIFont systemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor lcReplyLevel5Color];
             break;
     }
@@ -109,11 +109,11 @@
     categoryStripe.frame = CGRectMake(indentation - 3, categoryStripe.frame.origin.y,
                                       categoryStripe.frame.size.width, categoryStripe.frame.size.height);
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        self.backgroundColor = [UIColor lcRepliesTableBackgroundDarkColor];
-    } else {
-        self.backgroundColor = [UIColor lcRepliesTableBackgroundColor];
-    }
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        self.backgroundColor = [UIColor lcRepliesTableBackgroundDarkColor];
+//    } else {
+//        self.backgroundColor = [UIColor lcRepliesTableBackgroundColor];
+//    }
 }
 
 @end

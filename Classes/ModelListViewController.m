@@ -134,6 +134,10 @@
     return [[UITableViewCell alloc] initWithFrame:CGRectZero];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
+}
+
 #pragma mark Data Loading Callbacks
 
 // Fade in table cells

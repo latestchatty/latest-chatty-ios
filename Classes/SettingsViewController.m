@@ -43,7 +43,7 @@
         picsPasswordField.returnKeyType = UIReturnKeyDone;
 
         saveSearchesSwitch = [self generateSwitchWithKey:@"saveSearches"];
-        darkModeSwitch     = [self generateSwitchWithKey:@"darkMode"];
+//        darkModeSwitch     = [self generateSwitchWithKey:@"darkMode"];
         collapseSwitch     = [self generateSwitchWithKey:@"collapse"];
         landscapeSwitch    = [self generateSwitchWithKey:@"landscape"];
         picsResizeSwitch   = [self generateSwitchWithKey:@"picsResize"];
@@ -106,7 +106,7 @@
 }
 
 - (UITextField *)generateTextFieldWithKey:(NSString *)key {
-	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 21)];
+	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 22)];
 
 	textField.returnKeyType = UIReturnKeyNext;
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -115,7 +115,7 @@
 	textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:key];
     textField.textColor = [UIColor whiteColor];
     textField.keyboardAppearance = UIKeyboardAppearanceDark;
-    textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+    textField.font = [UIFont systemFontOfSize:16];
 	
 	return textField;
 }
@@ -243,7 +243,7 @@
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
 	[defaults setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
-	[defaults setBool:darkModeSwitch.on         forKey:@"darkMode"];
+//	[defaults setBool:darkModeSwitch.on         forKey:@"darkMode"];
 	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
 	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
     [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
@@ -324,7 +324,7 @@
             break;
 			
 		case 2:
-			return 8;
+			return 7;
 			break;
 			
 		case 3:
@@ -374,7 +374,7 @@
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 280, 44)];
     
-    [titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:12]];
+    [titleLabel setFont:[UIFont systemFontOfSize:12]];
     [titleLabel setText:[self titleForHeaderInSection:section]];
     [titleLabel setTextColor:[UIColor lcGroupedTitleColor]];
 //    [titleLabel setShadowColor:[UIColor lcTextShadowColor]];
@@ -390,6 +390,10 @@
     return 44;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
@@ -399,7 +403,7 @@
     [cell.textLabel setTextColor:[UIColor lcGroupedCellLabelColor]];
     [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
-    [cell.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
     
 	// username/password/server text entry fields
 	if (indexPath.section == 0) {
@@ -450,29 +454,29 @@
 	// Preference toggles
 	if (indexPath.section == 2) {
 		switch (indexPath.row) {
-			case 0:
-				cell.accessoryView = saveSearchesSwitch;
-				cell.textLabel.text = @"Save Searches:";
-				break;
-                
-			case 1:
-				cell.accessoryView = darkModeSwitch;
-				cell.textLabel.text = @"Dark Mode:";
-				break;
-			
-            case 2:
+            case 0:
 				cell.accessoryView = collapseSwitch;
 				cell.textLabel.text = @"Allow Collapse:";
 				break;
-			
-            case 3:
+                
+            case 1:
 				cell.accessoryView = landscapeSwitch;
 				cell.textLabel.text = @"Allow Landscape:";
 				break;
                 
-			case 4:
+			case 2:
 				cell.accessoryView = youtubeSwitch;
 				cell.textLabel.text = @"Embed YouTube:";
+				break;
+                
+			case 3:
+				cell.accessoryView = modToolsSwitch;
+				cell.textLabel.text = @"Mod Tools:";
+				break;
+                
+			case 4:
+				cell.accessoryView = saveSearchesSwitch;
+				cell.textLabel.text = @"Save Searches:";
 				break;
                 
             case 5:
@@ -485,15 +489,15 @@
 				cell.textLabel.text = @"Use Chrome:";
 				break;
 				
+//			case 1:
+//				cell.accessoryView = darkModeSwitch;
+//				cell.textLabel.text = @"Dark Mode:";
+//				break;
+                
 //			case 3:
 //				cell.accessoryView = pushMessagesSwitch;
 //				cell.textLabel.text = @"Push Messages:";
 //				break;
-            
-			case 7:
-				cell.accessoryView = modToolsSwitch;
-				cell.textLabel.text = @"Mod Tools:";
-				break;
 		}
 	}
 	
@@ -514,26 +518,25 @@
 				cell.textLabel.text = @"  Interesting:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"informative"];
 				break;
-				
+                
 			case 1:
 				cell.accessoryView = offtopicSwitch;
 				cell.textLabel.text = @"  Off Topic:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"offtopic"];
 				break;
-				
+                
 			case 2:
-				cell.accessoryView = randomSwitch;
-				cell.textLabel.text = @"  Stupid:";
-				categoryColor.backgroundColor = [Post colorForPostCategory:@"stupid"];
-				break;
-				
-			case 3:
 				cell.accessoryView = politicsSwitch;
 				cell.textLabel.text = @"  Politics / Religion:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"political"];
 				break;
 				
-				
+			case 3:
+				cell.accessoryView = randomSwitch;
+				cell.textLabel.text = @"  Stupid:";
+				categoryColor.backgroundColor = [Post colorForPostCategory:@"stupid"];
+				break;
+                
 			case 4:
 				cell.accessoryView = nwsSwitch;
 				cell.textLabel.text = @"  NWS:";
@@ -551,7 +554,7 @@
                 [button setTitle:@"View" forState:UIControlStateNormal];
                 [button setTitleColor:[UIColor lcIOS7BlueColor] forState:UIControlStateNormal];
 
-                [button.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]];
+                [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
                 
                 [button addTarget:self action:@selector(openCredits) forControlEvents:UIControlEventTouchUpInside];
                 
@@ -564,7 +567,7 @@
                 [button setTitle:@"View" forState:UIControlStateNormal];
                 [button setTitleColor:[UIColor lcIOS7BlueColor] forState:UIControlStateNormal];
                 
-                [button.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]];
+                [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
                 
                 [button addTarget:self action:@selector(openLicenses) forControlEvents:UIControlEventTouchUpInside];
                 

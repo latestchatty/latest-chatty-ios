@@ -25,7 +25,7 @@
     // create a custom selection view with a blue color
     if ([nibName containsString:@"Root"]) {
         UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frameX, self.frameY, self.frameWidth, self.frameHeight-1)];
-        selectionView.backgroundColor = [UIColor lcSelectionGrayColor];
+//        selectionView.backgroundColor = [UIColor lcSelectionGrayColor];
         self.selectedBackgroundView = selectionView;
     } else {
         UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frameX, self.frameY, self.frameWidth, self.frameHeight)];

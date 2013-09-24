@@ -14,7 +14,7 @@
 @synthesize rootPost;
 
 + (CGFloat)cellHeight {
-	return 69.0;
+	return 70.0;
 }
 
 - (id)init {
@@ -43,21 +43,23 @@
 	} else {
         replyCount.text = [NSString stringWithFormat:@"%i", rootPost.replyCount];
     }
-	
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
 	// Set background to a light color if the user is the root poster
-	UIImageView *background = (UIImageView *)self.backgroundView;
+//	UIImageView *background = (UIImageView *)self.backgroundView;
 	if ([rootPost.author.lowercaseString isEqualToString:[defaults stringForKey:@"username"].lowercaseString]) {
 //		author.font = [UIFont boldSystemFontOfSize:12.0];
-		background.image = [UIImage imageNamed:@"CellBackgroundLight.png"];
+//		background.image = [UIImage imageNamed:@"CellBackgroundLight.png"];
+        self.backgroundColor = [UIColor lcCellParticipantColor];
 	} else {
 //		author.font = [UIFont systemFontOfSize:12.0];
-        if ([defaults boolForKey:@"darkMode"]) {
-            background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
-        } else {
-            background.image = [UIImage imageNamed:@"CellBackground.png"];            
-        }
+//        if ([defaults boolForKey:@"darkMode"]) {
+//            background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
+//        } else {
+//            background.image = [UIImage imageNamed:@"CellBackground.png"];            
+//        }
+        self.backgroundColor = [UIColor lcCellNormalColor];
 	}
 	
 	// Set side color stripe for the post category

@@ -81,7 +81,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+    
     [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = self;
 	
 	if (threads == nil || [threads count] == 0) {
@@ -118,10 +118,6 @@
     [self.refreshControl setTintColor:[UIColor lightGrayColor]];
     
     [self.tableView addSubview:self.refreshControl];
-    
-    // iOS7 testing
-//    [self setEdgesForExtendedLayout:UIRectEdgeLeft|UIRectEdgeRight|UIRectEdgeBottom];
-//    [tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -132,13 +128,13 @@
     
     shouldCollapse = [defaults boolForKey:@"collapse"];
     
-    if ([defaults boolForKey:@"darkMode"]) {
-        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
-    } else {
-        self.tableView.separatorColor = [UIColor lcSeparatorColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
-    }
+//    if ([defaults boolForKey:@"darkMode"]) {
+//        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
+//    } else {
+//        self.tableView.separatorColor = [UIColor lcSeparatorColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -395,22 +391,17 @@
 	} else {
 		UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
         [cell setBackgroundColor:[UIColor clearColor]];
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 10000, 0, 0)];
+        
         UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(cell.frameX, cell.frameY, cell.frameWidth, cell.frameHeight-1)];
         selectionView.backgroundColor = [UIColor clearColor];
         cell.selectedBackgroundView = selectionView;
         
         UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        
-        UIView *cellTopStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frameWidth, 1)];
-        cellTopStroke.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        cellTopStroke.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.08f];
-        
-        [cell.contentView addSubview:cellTopStroke];
-        [cell.contentView addSubview:cellSpinner];
-        
         [cellSpinner setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
         [cellSpinner setCenter:cell.contentView.center];
         [cellSpinner startAnimating];
+        [cell.contentView addSubview:cellSpinner];
         
 		return cell;
 	}

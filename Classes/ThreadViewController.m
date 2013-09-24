@@ -211,7 +211,7 @@
     [self resetLayout:NO];
     
     //iOS7
-    [self setEdgesForExtendedLayout:UIRectEdgeBottom|UIRectEdgeLeft|UIRectEdgeRight];
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
 //    UIInterfaceOrientation orientation = self.interfaceOrientation;
     
 //    if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -865,7 +865,7 @@
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Modded!"];
         [hud setColor:[UIColor lcTableBackgroundColor]];
-        [hud setYOffset:-33];
+//        [hud setYOffset:-33];
         [hud hide:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Tag this Post"]) { //tagging
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
@@ -876,7 +876,7 @@
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Tagged!"];
         [hud setColor:[UIColor lcTableBackgroundColor]];
-        [hud setYOffset:-33];
+//        [hud setYOffset:-33];
         [hud hide:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Author Actions"]) { //author actions
         NSString *author = [post author];

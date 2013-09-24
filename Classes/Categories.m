@@ -72,11 +72,11 @@
 
 // Table cell colors
 + (UIColor *)lcCellNormalColor {
-    return [UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:32.0/255.0 green:32.0/255.0 blue:36.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcCellParticipantColor {
-    return [UIColor colorWithRed:40.0/255.0 green:59.0/255.0 blue:82.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:24.0/255.0 green:39.0/255.0 blue:49.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcGroupedCellColor {

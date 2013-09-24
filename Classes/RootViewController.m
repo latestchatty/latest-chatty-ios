@@ -59,7 +59,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
     
     // iOS7
-    [self.tableView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(40.0, 0, 0, 0)];
 }
 
 - (void)pushBrowserForCredits {
@@ -114,6 +114,10 @@
 }
 
 #pragma mark Table view methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

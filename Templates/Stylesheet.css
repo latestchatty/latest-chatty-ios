@@ -6,7 +6,7 @@ body {
   background: rgb(0,0,0);
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: 300;
+  /*font-weight: 300;*/
   color: white;
 }
 
@@ -109,6 +109,10 @@ div.youtube-widget a {
    Stories
 */
 
+#story, #message {
+  background: rgb(29,29,32);
+}
+
 h1.story-title {
   clear: both;
   color: rgb(116,196,255);
@@ -123,12 +127,13 @@ div.focalbox {
   padding: 10px;
   text-align: center;
   -webkit-border-radius: 20px;
-  margin: 10px 0;
+  margin: 10px;
 }
 
 div.focalbox img {
-  margin: 10px;
+  margin: 10px auto;
   border: 2px solid #888;
+  display: block;
 }
 
 div#video #embedswf {
@@ -137,6 +142,11 @@ div#video #embedswf {
 
 div.story-content img,
 div.story-content iframe { max-width: 100%; }
+
+#story div.date,
+#story div.date a {
+  float: none;
+}
 
 /*
    iPad-only media queries

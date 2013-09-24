@@ -36,12 +36,12 @@
     dateLabel.highlightedTextColor = [UIColor whiteColor];
     subjectLabel.highlightedTextColor = [UIColor whiteColor];
     
-	UIImageView *background = (UIImageView *)self.backgroundView;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
-    } else {
-        background.image = [UIImage imageNamed:@"CellBackground.png"];
-    }
+//	UIImageView *background = (UIImageView *)self.backgroundView;
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
+//    } else {
+//        background.image = [UIImage imageNamed:@"CellBackground.png"];
+//    }
 }
 
 @end

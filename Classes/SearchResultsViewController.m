@@ -42,13 +42,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
-    } else {
-        self.tableView.separatorColor = [UIColor lcSeparatorColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
-    }
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
+//    } else {
+//        self.tableView.separatorColor = [UIColor lcSeparatorColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
+//    }
 }
 
 // handled popping back to search view when no results in both viewDidAppear and in didFinishLoadingAllModels
@@ -152,22 +152,18 @@
             return cell;
         }
         
-        UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [cell setBackgroundColor:[UIColor clearColor]];
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 10000, 0, 0)];
+        
         UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(cell.frameX, cell.frameY, cell.frameWidth, cell.frameHeight-1)];
         selectionView.backgroundColor = [UIColor clearColor];
         cell.selectedBackgroundView = selectionView;
         
-        UIView *cellTopStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frameWidth, 1)];
-        cellTopStroke.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        cellTopStroke.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.08f];
-        
-        [cell.contentView addSubview:cellTopStroke];
-        [cell.contentView addSubview:cellSpinner];
-        
+        UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [cellSpinner setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
         [cellSpinner setCenter:cell.contentView.center];
         [cellSpinner startAnimating];
+        [cell.contentView addSubview:cellSpinner];
         
 		return cell;
 	}
