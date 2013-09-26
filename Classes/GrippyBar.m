@@ -30,7 +30,7 @@
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             UIButton *refreshButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 2, 44, 44)];
             [refreshButton addTarget:self action:@selector(tappedRefreshButton) forControlEvents:UIControlEventTouchUpInside];
-            [refreshButton setImage:[UIImage imageNamed:@"RefreshIcon.png"] forState:UIControlStateNormal];
+            [refreshButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Refresh.png"] forState:UIControlStateNormal];
             refreshButton.showsTouchWhenHighlighted = YES;
             refreshButton.alpha = 0.5;
             refreshButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
@@ -38,7 +38,7 @@
             
             UIButton *tagButton = [[UIButton alloc] initWithFrame:CGRectMake(refreshButton.frameX+refreshButton.frameWidth+20, 2, 44, 44)];
             [tagButton addTarget:self action:@selector(tappedTagButton) forControlEvents:UIControlEventTouchUpInside];
-            [tagButton setImage:[UIImage imageNamed:@"TagIcon.png"] forState:UIControlStateNormal];
+            [tagButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Tag.png"] forState:UIControlStateNormal];
             tagButton.showsTouchWhenHighlighted = YES;
             tagButton.alpha = 0.5;
             tagButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
@@ -46,7 +46,7 @@
             
             orderByPostDateButton = [[UIButton alloc] initWithFrame:CGRectMake(tagButton.frameX+tagButton.frameWidth+20, 2, 44, 44)];
             [orderByPostDateButton addTarget:self action:@selector(tappedOrderByPostDateButton) forControlEvents:UIControlEventTouchUpInside];
-            [orderByPostDateButton setImage:[UIImage imageNamed:@"chrono.png"] forState:UIControlStateNormal];
+            [orderByPostDateButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Timer.png"] forState:UIControlStateNormal];
             orderByPostDateButton.showsTouchWhenHighlighted = YES;
             orderByPostDateButton.alpha = 0.5;
             orderByPostDateButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
@@ -54,7 +54,7 @@
 			
 			UIButton *previousButton = [[UIButton alloc] initWithFrame:CGRectMake(orderByPostDateButton.frameX+orderByPostDateButton.frameWidth+20, 2, 44, 44)];
             [previousButton addTarget:self action:@selector(tappedLeftButton) forControlEvents:UIControlEventTouchUpInside];
-            [previousButton setImage:[UIImage imageNamed:@"left.png"] forState:UIControlStateNormal];
+            [previousButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Previous.png"] forState:UIControlStateNormal];
             previousButton.showsTouchWhenHighlighted = YES;
             previousButton.alpha = 0.5;
             previousButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
@@ -62,7 +62,7 @@
             
             UIButton *nextButton = [[UIButton alloc] initWithFrame:CGRectMake(previousButton.frameX+previousButton.frameWidth+20, 2, 44, 44)];
             [nextButton addTarget:self action:@selector(tappedRightButton) forControlEvents:UIControlEventTouchUpInside];
-            [nextButton setImage:[UIImage imageNamed:@"right.png"] forState:UIControlStateNormal];
+            [nextButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Next.png"] forState:UIControlStateNormal];
             nextButton.showsTouchWhenHighlighted = YES;
             nextButton.alpha = 0.5;
             nextButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
@@ -79,7 +79,7 @@
             CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 0 : 88;
             UIButton *modButton = [[UIButton alloc] initWithFrame:CGRectMake(leftEdge, 2, 44, 44)];
             [modButton addTarget:self action:@selector(tappedModButton) forControlEvents:UIControlEventTouchUpInside];
-            [modButton setImage:[UIImage imageNamed:@"ModGavel.png"] forState:UIControlStateNormal];
+            [modButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Mods.png"] forState:UIControlStateNormal];
             modButton.showsTouchWhenHighlighted = YES;
             modButton.alpha = 0.5;
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {

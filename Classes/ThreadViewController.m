@@ -165,7 +165,7 @@
         self.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
         self.navigationItem.titleView = self.toolbar;
     } else {
-        UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReplyIcon.24.png"]
+        UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-Reply.png"]
                                                                         style:UIBarButtonItemStyleBordered
                                                                        target:self
                                                                        action:@selector(tappedReplyButton)];

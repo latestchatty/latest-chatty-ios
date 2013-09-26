@@ -18,15 +18,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Post preview... Post preview... Post preview... Post preview... Post preview... Post preview... Post preview... " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9">
-                        <rect key="frame" x="8" y="14" width="305" height="42"/>
+                        <rect key="frame" x="8" y="22" width="305" height="42"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Mar 23, 2009 10:15AM" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="8">
-                        <rect key="frame" x="193" y="49" width="120" height="20"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Mar 23, 2009 10:15AM" lineBreakMode="tailTruncation" minimumFontSize="8" id="8">
+                        <rect key="frame" x="133" y="2" width="105" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.69019607839999997" green="0.70588235290000001" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,7 +34,7 @@
                         <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="SqueegyTBS" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="18">
-                        <rect key="frame" x="8" y="0.0" width="221" height="20"/>
+                        <rect key="frame" x="8" y="2" width="117" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.96078431369999995" green="0.89411764709999997" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,7 +42,7 @@
                         <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="1234" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="7">
-                        <rect key="frame" x="240" y="0.0" width="60" height="20"/>
+                        <rect key="frame" x="240" y="2" width="60" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <color key="textColor" red="0.69019607839999997" green="0.70588235290000001" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,7 +50,7 @@
                         <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                     </label>
                     <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="center" image="TimerDotFull.png" id="23">
-                        <rect key="frame" x="301" y="1" width="12" height="20"/>
+                        <rect key="frame" x="301" y="3" width="12" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="21" userLabel="Category Stripe">

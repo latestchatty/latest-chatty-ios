@@ -143,6 +143,7 @@ typedef void (^IIViewDeckControllerBounceBlock) (IIViewDeckController *controlle
 @property (nonatomic, retain) IBOutlet UIViewController* topController;
 @property (nonatomic, retain) IBOutlet UIViewController* bottomController;
 @property (nonatomic, readonly, assign) UIViewController* slidingController;
+@property (nonatomic, retain) UIView *topBar;
 
 @property (nonatomic, retain) IBOutlet UIView* panningView;
 @property (nonatomic, ii_weak_property) __ii_weak id<UIGestureRecognizerDelegate> panningGestureDelegate;

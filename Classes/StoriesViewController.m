@@ -37,7 +37,7 @@
     if (stories == nil || [stories count] == 0) [self refresh:self.refreshControl];
     
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self.viewDeckController
                                                                       action:@selector(toggleLeftView)];
@@ -143,19 +143,19 @@
     }
 }
 
-//- (IBAction)tappedChattyButton:(id)sender {
-//    NSIndexPath *indexPath;
-//    for (StoryCell *cell in [self.tableView visibleCells]) {
-//        if (cell.chattyButton == sender) {
-//            indexPath = [self.tableView indexPathForCell:cell];
-//        }
-//    }
-//
-//    Story *story = [stories objectAtIndex:indexPath.row];
-//    UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
-//    //UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:29061947]; // for testing
-//    [self.navigationController pushViewController:viewController animated:YES];
-//}
+- (IBAction)tappedChattyButton:(id)sender {
+    NSIndexPath *indexPath;
+    for (StoryCell *cell in [self.tableView visibleCells]) {
+        if (cell.chattyButton == sender) {
+            indexPath = [self.tableView indexPathForCell:cell];
+        }
+    }
+
+    Story *story = [stories objectAtIndex:indexPath.row];
+    UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
+    //UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:29061947]; // for testing
+    [self.navigationController pushViewController:viewController animated:YES];
+}
 
 //- (IBAction)tappedLatestChattyButton {
 //    ChattyViewController *viewController = [ChattyViewController chattyControllerWithLatest];

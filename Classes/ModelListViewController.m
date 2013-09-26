@@ -26,6 +26,7 @@
     loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.color = [UIColor lightGrayColor];
     [spinner startAnimating];
     spinner.contentMode = UIViewContentModeCenter;
     CGFloat offset = 0.0;

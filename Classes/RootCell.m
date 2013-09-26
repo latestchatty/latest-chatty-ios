@@ -44,16 +44,16 @@
     titleLabel.text = self.title;
   
     if ([self.title isEqualToString:@"LatestChatty"]) {
-        self.iconImage.image = [UIImage imageNamed:@"LatestChatIcon.48.png"];
-        self.iconImage.highlightedImage = [UIImage imageNamed:@"LatestChatIcon.48-Active.png"];
+        self.iconImage.image = [UIImage imageNamed:@"Chatty-Inactive.png"];
+        self.iconImage.highlightedImage = [UIImage imageNamed:@"Chatty-Active.png"];
     }
     else if ([self.title hasPrefix:@"Messages"]) {
-        self.iconImage.image = [UIImage imageNamed:@"MessagesIcon.48.png"];
-        self.iconImage.highlightedImage = [UIImage imageNamed:@"MessagesIcon.48-Active.png"];
+        self.iconImage.image = [UIImage imageNamed:@"Messages-Inactive.png"];
+        self.iconImage.highlightedImage = [UIImage imageNamed:@"Messages-Active.png"];
     }
     else {
-        self.iconImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@Icon.48.png", self.title]];
-        self.iconImage.highlightedImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@Icon.48-Active.png", self.title]];
+        self.iconImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-Inactive.png", self.title]];
+        self.iconImage.highlightedImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@-Active.png", self.title]];
     }
 }
 

@@ -31,24 +31,24 @@
                     <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
-                        <barButtonItem image="RefreshIcon.24.png" width="32" id="53">
+                        <barButtonItem image="Thread-Toolbar-Refresh.png" width="24" id="53">
                             <connections>
                                 <action selector="refreshWebView:" destination="-1" id="56"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="52"/>
-                        <barButtonItem enabled="NO" image="left.png" width="32" id="31">
+                        <barButtonItem enabled="NO" image="Thread-Toolbar-Previous.png" width="24" id="31">
                             <connections>
                                 <action selector="goBack" destination="25" id="33"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem enabled="NO" image="right.png" width="32" id="30">
+                        <barButtonItem enabled="NO" image="Thread-Toolbar-Next.png" width="24" id="30">
                             <connections>
                                 <action selector="goForward" destination="25" id="32"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="28"/>
-                        <barButtonItem image="ShareIcon.24.png" width="32" id="29">
+                        <barButtonItem style="plain" systemItem="action" id="29">
                             <connections>
                                 <action selector="action:" destination="-1" id="48"/>
                             </connections>
@@ -61,9 +61,8 @@
         </view>
     </objects>
     <resources>
-        <image name="RefreshIcon.24.png" width="24" height="24"/>
-        <image name="ShareIcon.24.png" width="24" height="24"/>
-        <image name="left.png" width="24" height="24"/>
-        <image name="right.png" width="24" height="24"/>
+        <image name="Thread-Toolbar-Next.png" width="13" height="13"/>
+        <image name="Thread-Toolbar-Previous.png" width="13" height="13"/>
+        <image name="Thread-Toolbar-Refresh.png" width="14" height="16"/>
     </resources>
 </document>

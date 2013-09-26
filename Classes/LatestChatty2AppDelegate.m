@@ -415,8 +415,8 @@
 // Custom appearance settings for UIKit items
 - (void)customizeAppearance {
     // Set a corner radius around the whole app window
-    [self.window.layer setCornerRadius:7.0f];
-    [self.window.layer setMasksToBounds:YES];
+//    [self.window.layer setCornerRadius:7.0f];
+//    [self.window.layer setMasksToBounds:YES];
 
     //iOS7 tinting
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];

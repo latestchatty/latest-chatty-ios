@@ -351,6 +351,10 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 - (id)initWithCenterViewController:(UIViewController*)centerController leftViewController:(UIViewController*)leftController {
     if ((self = [self initWithCenterViewController:centerController])) {
         self.leftController = leftController;
+        self.topBar = [UIView viewWithFrame:CGRectMake(0, 0, 320, 20)];
+        [self.topBar setBackgroundColor:[UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0]];
+        [self.topBar setAlpha:0.0];
+        [self.view addSubview:self.topBar];
     }
     return self;
 }
@@ -1441,6 +1445,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
             [self controllerForSide:side].view.hidden = NO;
             [self setSlidingFrameForOffset:[self ledgeOffsetForSide:side] forOrientation:IIViewDeckOffsetOrientationFromIIViewDeckSide(side)];
             [self centerViewHidden];
+            [self.topBar setAlpha:1.0];
         } completion:^(BOOL finished) {
             [self enableUserInteraction];
             [self setAccessibilityForCenterTapper]; // update since the frame and the frame's intersection with the window will have changed
@@ -1542,6 +1547,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
     [UIView animateWithDuration:duration delay:0 options:options animations:^{
         [self setSlidingFrameForOffset:0 forOrientation:IIViewDeckOffsetOrientationFromIIViewDeckSide(side)];
         [self centerViewVisible];
+        [self.topBar setAlpha:0.0];
     } completion:^(BOOL finished) {
         [self hideAppropriateSideViews];
         [self enableUserInteraction];
@@ -3134,6 +3140,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 #pragma mark - Shadow
 
 - (void)restoreShadowToSlidingView {
+    return;
     UIView* shadowedView = self.slidingControllerView;
     if (!shadowedView) return;
     
@@ -3145,6 +3152,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (void)applyShadowToSlidingViewAnimated:(BOOL)animated {
+    return;
     UIView* shadowedView = self.slidingControllerView;
     if (!shadowedView) return;
     

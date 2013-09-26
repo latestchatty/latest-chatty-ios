@@ -162,6 +162,7 @@
         UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [cellSpinner setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
         [cellSpinner setCenter:cell.contentView.center];
+        [cellSpinner setColor:[UIColor lightGrayColor]];        
         [cellSpinner startAnimating];
         [cell.contentView addSubview:cellSpinner];
         

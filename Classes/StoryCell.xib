@@ -41,26 +41,24 @@
                         <nil key="highlightedColor"/>
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </label>
-                    <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="23">
-                        <rect key="frame" x="263" y="24" width="50" height="50"/>
+                    <button clearsContextBeforeDrawing="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="23">
+                        <rect key="frame" x="267" y="32" width="37" height="41"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <state key="normal" title="1234" image="ChatIcon.48.png">
-                            <color key="titleColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="1234" image="Story-Comment-Count.png">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </state>
-                        <state key="disabled" title="1234" image="ChatIcon.48.png"/>
-                        <state key="selected" title="1234" image="ChatIcon.48.png"/>
-                        <state key="highlighted" title="1234" image="ChatIcon.48.png">
-                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="disabled" title="1234" image="Story-Comment-Count.png"/>
+                        <state key="selected" title="1234" image="Story-Comment-Count.png"/>
+                        <state key="highlighted" title="1234" image="Story-Comment-Count.png">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="456" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="12" id="19">
-                        <rect key="frame" x="268" y="32" width="38" height="30"/>
+                        <rect key="frame" x="265" y="34" width="38" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.52549019610000003" green="0.52941176469999995" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </label>
@@ -77,6 +75,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ChatIcon.48.png" width="48" height="48"/>
+        <image name="Story-Comment-Count.png" width="34" height="34"/>
     </resources>
 </document>

@@ -91,14 +91,14 @@
 	}
 
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self.viewDeckController
                                                                       action:@selector(toggleLeftView)];
         self.navigationItem.leftBarButtonItem = menuButton;
     }
 	
-    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"PenIcon.24.png"]
+    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-Compose.png"]
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:self
                                                                      action:@selector(tappedComposeButton)];
@@ -400,6 +400,7 @@
         UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [cellSpinner setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
         [cellSpinner setCenter:cell.contentView.center];
+        [cellSpinner setColor:[UIColor lightGrayColor]];
         [cellSpinner startAnimating];
         [cell.contentView addSubview:cellSpinner];
         

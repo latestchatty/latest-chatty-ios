@@ -44,8 +44,8 @@
 - (void)viewDidLoad {
     // iPhone ViewDeck menu needs rounded corners to match the nav bar
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [self.view.layer setCornerRadius:7.0f];
-        [self.view.layer setMasksToBounds:YES];
+//        [self.view.layer setCornerRadius:7.0f];
+//        [self.view.layer setMasksToBounds:YES];
         
         // initialize the index path to chatty row
         [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
@@ -149,7 +149,8 @@
             
             // add activity spinner to messages cell that starts spinning when messages are loading and stops when the messages call has finished
             if (self.messagesSpinner == nil) {
-                [self setMessagesSpinner:[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+                [self setMessagesSpinner:[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]];
+                [self.messagesSpinner setColor:[UIColor lightGrayColor]];
                 int center = [cell iconImage].frameHeight / 2; //vertical center
                 CGFloat spinnerSize = 25.0f;
                 
@@ -159,7 +160,7 @@
             }
             
             // set number of unread messages in badge of cell
-            //messageCount = 9; // for testing
+//            messageCount = 9; // for testing
             [cell setBadgeWithNumber:messageCount];
             
             break;
