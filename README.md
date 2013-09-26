@@ -4,11 +4,30 @@ latest-chatty-2
 iOS 7 Conversion / Semi-rewrite
 
 *Disclaimers/Known Issues:
-1. All of the original navigation/toolbar graphic assets are in place until we have some new graphics.
-2. Colors, fonts, etc. aren't finalized and I am trying out different things.
-3. iPad has not been touched yet at all, probably blows up completely there.
-4. The (x) to clear text fields on Search view isn't currently working.
-5. Still screwing around with an open source component to replace the loading overlays. Visible when loading a main section, loading a thread, or tagging a thread only for now.
+- Colors, fonts, etc. aren't finalized and I am trying out different things.
+- iPad has not been touched yet at all, probably blows up completely there.
+- The (x) to clear text fields on Search view isn't currently working.
+
+3.4.6
+====
+- New icons throughout, do not have replacement icons for Browser view bottom toolbar yet
+
+3.4.5
+====
+- UI darkened by default, dark mode removed (will be going farther with this to allow a white theme similar to stock iOS 7 apps)
+- Typography updated for less Helvetica Neue Light and more Helvetica Neue Regular (iOS 7 system font)
+- Project converted from manual reference counting to automatic reference counting (ARC) -- Thanks Yanks!
+- Removal of SBJSON dependency -- Thanks Yanks!
+- Removal of RegexKit dependency -- Thanks Yanks!
+- Testing out moving the thread timestamp to the bottom right of cell (like the iPad does), not certain this will remain
+- Recent Search saving is now controllable via a user setting
+- Settings preferences alphabetized
+- Potential bottom toolbar fix for Browser view when transitioning between full and non-full screen view mode
+- Browser view's title now displays "Loading..." while loading the external page, title becomes the HTML document's <title> after the page has finished loading
+- Better fart randomization
+- Search view usable with both orientations again
+- Build version added to iOS Settings.app app entry (working on that saved state user option there next)
+- Side menu just shows active state on icon instead of entire cell being highlighted now
 
 3.4.4
 ====
