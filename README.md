@@ -4,9 +4,10 @@ latest-chatty-2
 iOS 7 Conversion / Semi-rewrite
 
 *Disclaimers/Known Issues:
-- Colors, fonts, etc. aren't finalized and I am trying out different things.
+- Colors, fonts, etc. aren't finalized as I am trying out different things.
 - iPad has not been touched yet at all, probably blows up completely there.
 - The (x) to clear text fields on Search view isn't currently working.
+- The status bar background color change when menu is opened is not fully functional yet
 
 3.4.6
 ====
