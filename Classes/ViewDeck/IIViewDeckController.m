@@ -1418,6 +1418,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
     [UIView animateWithDuration:0.3 animations:^{
         [self.topBar setAlpha:1.0];
     }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ViewDeckOpened" object:nil];
     
     // if there's no controller or we're already open, just run the completion and say we're done.
     if (![self controllerForSide:side] || [self isSideOpen:side]) {
@@ -1534,6 +1535,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
     [UIView animateWithDuration:0.3 animations:^{
         [self.topBar setAlpha:0.0];
     }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ViewDeckClosed" object:nil];    
     
     if ([self isSideClosed:side]) {
         if (completed) completed(self, YES);

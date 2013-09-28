@@ -59,7 +59,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
     
     // iOS7
-    [self.tableView setContentInset:UIEdgeInsetsMake(40.0, 0, 0, 0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
 }
 
 - (void)pushBrowserForCredits {

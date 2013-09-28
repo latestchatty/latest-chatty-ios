@@ -13,7 +13,7 @@
 
 @implementation BrowserViewController
 
-@synthesize request, webView, backButton, forwardButton, mainToolbar, actionButton, bottomToolbar, isShackLOL, isCredits;//, spinner;
+@synthesize request, webView, backButton, forwardButton, mainToolbar, actionButton, bottomToolbar, isShackLOL, isCredits;
 
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
@@ -39,6 +39,9 @@
                                                                           target:self.viewDeckController
                                                                           action:@selector(toggleLeftView)];
             self.navigationItem.leftBarButtonItem = menuButton;
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuOpened:) name:@"ViewDeckOpened" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuClosed:) name:@"ViewDeckClosed" object:nil];
         }
         
         UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@""
@@ -50,7 +53,6 @@
                                      forState:UIControlStateNormal];
      
         [self.navigationItem setRightBarButtonItem:lolMenuButton];
-        
     }
     
     return self;
@@ -58,22 +60,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        self.spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-//    }
-    
-//    // For iPad with top toolbar
-//    if (mainToolbar) {
-//        // Add a spinner after refresh button
-//        UIBarButtonItem *spinnerItem = [[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease];
-//        [spinnerItem setWidth:44.0];
-//        NSMutableArray *items = [NSMutableArray arrayWithArray:mainToolbar.items];
-//        //[items insertObject:spinnerItem atIndex:[items count]-1];
-//        [items insertObject:spinnerItem atIndex:3];
-//        
-//        mainToolbar.items = items;
-//    }
     
     [webView loadRequest:request];
     
@@ -100,6 +86,14 @@
     [self showBars];
 }
 
+- (void)menuOpened:(id)sender {
+    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor lcIOS7BlueColor]];
+}
+
+- (void)menuClosed:(id)sender {
+    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
+}
+
 // Hide the status bar and navigation bar with the built-in animation method
 // Hiding the bottom bar with manual animation because setToolbarHidden:animated: on the navigation controller was acting strange
 - (void)hideBars {
@@ -114,8 +108,6 @@
     
     // need to handle the webview's content inset as well
 //    [webView.scrollView setContentInset:UIEdgeInsetsZero];
-    
-//    [self.spinner setColor:[UIColor clearColor]];
 }
 
 // Show the status bar and navigation bar with the built-in animation method
@@ -135,8 +127,6 @@
     
     // need to handle the webview's content inset as well
 //    [webView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 44.0, 0)];
-    
-//    [self.spinner setColor:[UIColor whiteColor]];
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)sender {
@@ -163,12 +153,10 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-//    [spinner startAnimating];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
-//    [spinner stopAnimating];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     backButton.enabled = webView.canGoBack;
     forwardButton.enabled = webView.canGoForward;
@@ -358,7 +346,7 @@
     }
     webView.delegate = nil;
 
-//    self.spinner = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
