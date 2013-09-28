@@ -81,6 +81,7 @@
     
     // iOS7
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

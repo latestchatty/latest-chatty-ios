@@ -40,6 +40,9 @@
     [htmlTemplate setString:message.body forKey:@"body"];
     
     [webView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://www.shacknews.com/messages"]];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)showWebView:(NSTimer*)theTimer {

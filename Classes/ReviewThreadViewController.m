@@ -27,6 +27,9 @@
     
     [doneButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
     [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (IBAction)dismiss {

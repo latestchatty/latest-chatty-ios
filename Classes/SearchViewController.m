@@ -56,8 +56,9 @@
     segmentedBar.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"searchSegmented"];
     [self modeChanged];
     
-    //iOS7
+    // iOS7
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -181,9 +182,6 @@
     }
 
     [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
-//    [btn.titleLabel setShadowColor:[UIColor lcTextShadowColor]];
-//    [btn.titleLabel setShadowOffset:CGSizeMake(0, -1)];
-    //iOS7
     [btn.titleLabel setMinimumScaleFactor:10.0f];
     [btn.titleLabel setAdjustsFontSizeToFitWidth:YES];
     [btn.titleLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];

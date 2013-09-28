@@ -94,6 +94,9 @@
     [tableView setBackgroundView:[[UIView alloc] init]];
     [tableView setBackgroundColor:[UIColor clearColor]];
     [tableView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

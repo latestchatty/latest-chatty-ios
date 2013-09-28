@@ -37,6 +37,9 @@
     [self.refreshControl setTintColor:[UIColor lightGrayColor]];
     
     [self.tableView addSubview:self.refreshControl];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -172,7 +175,9 @@
 	return nil;
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+-(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:_tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    
     //checking posts count for 0, and returning if it is
     //without this the view fires off the initial load request and a loadMorePosts, and continually fires loadMorePosts when a search doesn't results in any posts being returned
     if ([posts count] == 0) {

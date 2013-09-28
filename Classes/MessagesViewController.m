@@ -59,6 +59,9 @@
     [self.refreshControl setTintColor:[UIColor lightGrayColor]];
     
     [self.tableView addSubview:self.refreshControl];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -157,6 +160,10 @@
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
     }
+}
+
+-(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:_tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
 }
 
 #pragma mark Cleanup

@@ -95,6 +95,7 @@
     
     // iOS7
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -176,11 +177,11 @@
     UIInterfaceOrientation orientation = self.interfaceOrientation;
     
     if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             postContent.frameHeight = postContent.frameHeight - kbSize.width;
         }];
     } else {
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             postContent.frameHeight = postContent.frameHeight - kbSize.height;
         }];
     }
@@ -193,11 +194,11 @@
     UIInterfaceOrientation orientation = self.interfaceOrientation;
     
     if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             postContent.frameHeight = postContent.frameHeight + kbSize.width;
         }];
     } else {
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             postContent.frameHeight = postContent.frameHeight + kbSize.height;
         }];
     }
@@ -213,6 +214,7 @@
 }
 
 - (IBAction)showImagePicker {
+    [postContent resignFirstResponder];
 	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 		UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Upload Image"
                                                              delegate:self

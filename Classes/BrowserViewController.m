@@ -83,8 +83,9 @@
     panGesture.delegate = self;
     panGesture.cancelsTouchesInView = NO;
     
-    //iOS7
-    [webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 44.0, 0)];
+    // iOS7
+//    [webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 44.0, 0)];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -105,17 +106,14 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 
-    [UIView beginAnimations:@"hideBottomToolbar" context:nil];
-    [UIView setAnimationDuration:0.25];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:bottomToolbar cache:YES];
-    CGRect bottomToolbarFrame = bottomToolbar.frame;
-    bottomToolbarFrame.origin.y = self.view.frameHeight + bottomToolbar.frameHeight;
-    bottomToolbar.frame = bottomToolbarFrame;
-    [UIView commitAnimations];
+    [UIView animateWithDuration:0.25 animations:^{
+        CGRect bottomToolbarFrame = bottomToolbar.frame;
+        bottomToolbarFrame.origin.y = self.view.frameHeight + bottomToolbar.frameHeight;
+        bottomToolbar.frame = bottomToolbarFrame;
+    }];
     
     // need to handle the webview's content inset as well
-    [webView.scrollView setContentInset:UIEdgeInsetsZero];
+//    [webView.scrollView setContentInset:UIEdgeInsetsZero];
     
 //    [self.spinner setColor:[UIColor clearColor]];
 }
@@ -136,7 +134,7 @@
     [UIView commitAnimations];
     
     // need to handle the webview's content inset as well
-    [webView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 44.0, 0)];
+//    [webView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 44.0, 0)];
     
 //    [self.spinner setColor:[UIColor whiteColor]];
 }

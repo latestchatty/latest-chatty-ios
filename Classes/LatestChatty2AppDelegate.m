@@ -146,8 +146,7 @@
         [self setupInterfaceForPhoneWithOptions:launchOptions];
     }
     
-    //iOS7
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    // iOS7
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [window makeKeyAndVisible];
@@ -418,11 +417,11 @@
 //    [self.window.layer setCornerRadius:7.0f];
 //    [self.window.layer setMasksToBounds:YES];
 
-    //iOS7 tinting
+    // iOS7 tinting
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0]];
     [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
-    [[UIToolbar appearance] setBarTintColor:[UIColor blackColor]];
+    [[UIToolbar appearance] setBarTintColor:[UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0]];
     
     // Give the navigation bar title text shadowing
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary titleTextAttributesDictionary]];

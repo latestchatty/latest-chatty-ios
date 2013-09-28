@@ -61,6 +61,9 @@
     [self.refreshControl setTintColor:[UIColor lightGrayColor]];
     
     [self.tableView addSubview:self.refreshControl];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -130,8 +133,6 @@
     return (UITableViewCell *)cell;
 }
 
-#pragma mark Actions
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Story *story = [stories objectAtIndex:indexPath.row];
     StoryViewController *viewController = [[StoryViewController alloc] initWithStoryId:story.modelId];
@@ -142,6 +143,12 @@
         [self.navigationController pushViewController:viewController animated:YES];
     }
 }
+
+-(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:_tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+}
+
+#pragma mark Actions
 
 - (IBAction)tappedChattyButton:(id)sender {
     NSIndexPath *indexPath;

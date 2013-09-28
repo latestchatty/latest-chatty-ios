@@ -210,8 +210,10 @@
     
     [self resetLayout:NO];
     
-    //iOS7
+    // iOS7
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    self.navigationController.navigationBar.translucent = NO;
+    
 //    UIInterfaceOrientation orientation = self.interfaceOrientation;
     
 //    if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -231,11 +233,11 @@
     }
     [self resetLayout:NO];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundDarkColor];
-    } else {
-        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundColor];
-    }
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundDarkColor];
+//    } else {
+//        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundColor];
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -490,6 +492,10 @@
     
     [htmlTemplate setString:body forKey:@"body"];
     [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%i", rootPost.modelId]]];
+}
+
+-(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:_tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
 }
 
 - (NSString *)postBodyWithYoutubeWidgets:(NSString *)body {

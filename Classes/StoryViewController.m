@@ -73,6 +73,9 @@
     [htmlTemplate setString:@"" forKey:@"storyTitle"];
     
     [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

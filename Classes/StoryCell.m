@@ -34,6 +34,7 @@
     title.highlightedTextColor = [UIColor whiteColor];
     preview.highlightedTextColor = [UIColor whiteColor];
     timestamp.highlightedTextColor = [UIColor whiteColor];
+    commentCount.highlightedTextColor = [UIColor whiteColor];
     
 //	UIImageView *background = (UIImageView *)self.backgroundView;
 //    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {

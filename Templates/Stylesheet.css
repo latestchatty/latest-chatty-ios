@@ -26,11 +26,11 @@ div.author a {
 div.date,
 div.date a {
   font-size: 8pt;
-  color: rgb(176,180,184);
+  color: rgb(170,174,178);
   float: right;
   text-decoration: none;
   margin-top: 1px;
-  -webkit-tap-highlight-color: rgba(176,180,184,0.5);
+  -webkit-tap-highlight-color: rgba(170,174,178,0.5);
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);  
 }
 div.body {
@@ -110,7 +110,7 @@ div.youtube-widget a {
 */
 
 #story, #message {
-  background: rgb(29,29,32);
+  background: transparent;
 }
 
 h1.story-title {

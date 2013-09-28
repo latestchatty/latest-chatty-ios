@@ -112,7 +112,7 @@
 }
 
 + (UIColor *)lcTableBackgroundColor {
-    return [UIColor colorWithRed:40.0/255.0 green:41.0/255.0 blue:44.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:39.0/255.0 green:39.0/255.0 blue:43.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcTableBackgroundDarkColor {
