@@ -352,8 +352,10 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
     if ((self = [self initWithCenterViewController:centerController])) {
         self.leftController = leftController;
         self.topBar = [UIView viewWithFrame:CGRectMake(0, 0, 320, 20)];
-        [self.topBar setBackgroundColor:[UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0]];
+//        [self.topBar setBackgroundColor:[UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0]];
+        [self.topBar setBackgroundColor:[UIColor blackColor]];
         [self.topBar setAlpha:0.0];
+        [self.topBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [self.view addSubview:self.topBar];
     }
     return self;
@@ -1413,6 +1415,10 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (BOOL)openSideView:(IIViewDeckSide)side animated:(BOOL)animated duration:(NSTimeInterval)duration completion:(IIViewDeckControllerBlock)completed {
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.topBar setAlpha:1.0];
+    }];
+    
     // if there's no controller or we're already open, just run the completion and say we're done.
     if (![self controllerForSide:side] || [self isSideOpen:side]) {
         if (completed) completed(self, YES);
@@ -1445,7 +1451,6 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
             [self controllerForSide:side].view.hidden = NO;
             [self setSlidingFrameForOffset:[self ledgeOffsetForSide:side] forOrientation:IIViewDeckOffsetOrientationFromIIViewDeckSide(side)];
             [self centerViewHidden];
-            [self.topBar setAlpha:1.0];
         } completion:^(BOOL finished) {
             [self enableUserInteraction];
             [self setAccessibilityForCenterTapper]; // update since the frame and the frame's intersection with the window will have changed
@@ -1526,6 +1531,10 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (BOOL)closeSideView:(IIViewDeckSide)side animated:(BOOL)animated duration:(NSTimeInterval)duration completion:(IIViewDeckControllerBlock)completed {
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.topBar setAlpha:0.0];
+    }];
+    
     if ([self isSideClosed:side]) {
         if (completed) completed(self, YES);
         return YES;
@@ -1547,7 +1556,6 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
     [UIView animateWithDuration:duration delay:0 options:options animations:^{
         [self setSlidingFrameForOffset:0 forOrientation:IIViewDeckOffsetOrientationFromIIViewDeckSide(side)];
         [self centerViewVisible];
-        [self.topBar setAlpha:0.0];
     } completion:^(BOOL finished) {
         [self hideAppropriateSideViews];
         [self enableUserInteraction];
@@ -1633,7 +1641,8 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (BOOL)toggleLeftViewAnimated:(BOOL)animated completion:(IIViewDeckControllerBlock)completed {
-    if ([self isSideClosed:IIViewDeckLeftSide]) 
+    [self.view bringSubviewToFront:self.topBar];
+    if ([self isSideClosed:IIViewDeckLeftSide])
         return [self openLeftViewAnimated:animated completion:completed];
     else
         return [self closeLeftViewAnimated:animated completion:completed];
@@ -2538,6 +2547,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
     
     self.leftController.view.frame = [self getLeftParallax];
     self.rightController.view.frame = [self getRightParallax];
+    NSLog(@"this is calling");
 }
 
 - (CGRect) getLeftParallax {
@@ -2928,6 +2938,8 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 
 
 - (void)setCenterController:(UIViewController *)centerController {
+    [self.view bringSubviewToFront:self.topBar];
+    
     if (_centerController == centerController) return;
     
     void(^beforeBlock)(UIViewController* controller) = ^(UIViewController* controller){};
@@ -3140,7 +3152,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 #pragma mark - Shadow
 
 - (void)restoreShadowToSlidingView {
-    return;
+//    return;
     UIView* shadowedView = self.slidingControllerView;
     if (!shadowedView) return;
     
@@ -3152,7 +3164,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (void)applyShadowToSlidingViewAnimated:(BOOL)animated {
-    return;
+//    return;
     UIView* shadowedView = self.slidingControllerView;
     if (!shadowedView) return;
     
