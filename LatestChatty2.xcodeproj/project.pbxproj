@@ -344,6 +344,14 @@
 		CDB348FF1745745F000003CA /* TimerDotThreeQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */; };
 		CDB349001745745F000003CA /* TimerDotFull.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EF1745745F000003CA /* TimerDotFull.png */; };
 		CDB349011745745F000003CA /* TimerDotFull.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EF1745745F000003CA /* TimerDotFull.png */; };
+		CDC0E9BC17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
+		CDC0E9BD17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
+		CDC0E9BE17F6886D007D3738 /* Post-Indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */; };
+		CDC0E9BF17F6886D007D3738 /* Post-Indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */; };
+		CDC0E9C017F6886D007D3738 /* Post-Indicator-Reply.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9AA17F6886D007D3738 /* Post-Indicator-Reply.png */; };
+		CDC0E9C117F6886D007D3738 /* Post-Indicator-Reply.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9AA17F6886D007D3738 /* Post-Indicator-Reply.png */; };
+		CDC0E9C217F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9AB17F6886D007D3738 /* Post-Indicator-Reply@2x.png */; };
+		CDC0E9C317F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9AB17F6886D007D3738 /* Post-Indicator-Reply@2x.png */; };
 		CDD056C9174FCCC8000E0477 /* NoContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056C8174FCCC8000E0477 /* NoContentController.m */; };
 		CDD056CA174FCCC8000E0477 /* NoContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056C8174FCCC8000E0477 /* NoContentController.m */; };
 		CDD056D0174FD043000E0477 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD056CF174FD043000E0477 /* CustomBadge.m */; };
@@ -705,6 +713,10 @@
 		CDB348ED1745745F000003CA /* TimerDotHalf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotHalf.png; path = Assets/TimerDotHalf.png; sourceTree = "<group>"; };
 		CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotThreeQuarter.png; path = Assets/TimerDotThreeQuarter.png; sourceTree = "<group>"; };
 		CDB348EF1745745F000003CA /* TimerDotFull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotFull.png; path = Assets/TimerDotFull.png; sourceTree = "<group>"; };
+		CDC0E9A817F6886D007D3738 /* Post-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator.png"; path = "Assets/Post-Indicator.png"; sourceTree = "<group>"; };
+		CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator@2x.png"; path = "Assets/Post-Indicator@2x.png"; sourceTree = "<group>"; };
+		CDC0E9AA17F6886D007D3738 /* Post-Indicator-Reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-Reply.png"; path = "Assets/Post-Indicator-Reply.png"; sourceTree = "<group>"; };
+		CDC0E9AB17F6886D007D3738 /* Post-Indicator-Reply@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-Reply@2x.png"; path = "Assets/Post-Indicator-Reply@2x.png"; sourceTree = "<group>"; };
 		CDD056C7174FCCC7000E0477 /* NoContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoContentController.h; sourceTree = "<group>"; };
 		CDD056C8174FCCC8000E0477 /* NoContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoContentController.m; sourceTree = "<group>"; };
 		CDD056CE174FD042000E0477 /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomBadge.h; path = Classes/CustomBadge.h; sourceTree = "<group>"; };
@@ -1273,6 +1285,10 @@
 				CDDAC2BE17F44E78000FEC8A /* Chatty-Active.png */,
 				CDDAC2BB17F44E78000FEC8A /* Chatty-Inactive@2x.png */,
 				CDDAC2BC17F44E78000FEC8A /* Chatty-Inactive.png */,
+				CDC0E9A817F6886D007D3738 /* Post-Indicator.png */,
+				CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */,
+				CDC0E9AA17F6886D007D3738 /* Post-Indicator-Reply.png */,
+				CDC0E9AB17F6886D007D3738 /* Post-Indicator-Reply@2x.png */,
 				CD48680617EB5B430071F3D7 /* Fart1.mp3 */,
 				CD48680717EB5B430071F3D7 /* Fart2.mp3 */,
 				CD48680817EB5B430071F3D7 /* Fart3.mp3 */,
@@ -1458,6 +1474,7 @@
 				FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */,
 				CDDAC2C917F44E78000FEC8A /* Menu-Button-List.png in Resources */,
 				FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */,
+				CDC0E9BE17F6886D007D3738 /* Post-Indicator@2x.png in Resources */,
 				FA2B45910F7D96060074064A /* GrayBullet.png in Resources */,
 				FA2260530F8EE251002F77DD /* Settings.bundle in Resources */,
 				FA4122FE0F8FDDE9002E1978 /* RootCell.xib in Resources */,
@@ -1518,6 +1535,7 @@
 				CDDAC2BF17F44E78000FEC8A /* Menu-Button-Thread.png in Resources */,
 				CDDAC2C317F44E78000FEC8A /* Menu-Button-Reply@2x.png in Resources */,
 				CDA01B241731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
+				CDC0E9C217F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
 				CD2359F61739D5EA0078423B /* Button.png in Resources */,
 				CD7ADCF417EF17FA00B4C886 /* ComposeViewController-iPad.xib in Resources */,
 				CD2359F81739D5EA0078423B /* Button@2x.png in Resources */,
@@ -1564,6 +1582,7 @@
 				CD48681F17EB5B430071F3D7 /* Fart9.mp3 in Resources */,
 				CDB348DB174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */,
 				CDB348DD174573C0000003CA /* TimerDotEmpty@2x.png in Resources */,
+				CDC0E9C017F6886D007D3738 /* Post-Indicator-Reply.png in Resources */,
 				CD7ADD1D17EF180E00B4C886 /* ThreadCell-iPad.xib in Resources */,
 				CDB348DF174573C0000003CA /* TimerDotQuarter@2x.png in Resources */,
 				CDDAC2DD17F44E78000FEC8A /* Thread-Toolbar-Previous.png in Resources */,
@@ -1588,6 +1607,7 @@
 				CD7C247B1754674300D90942 /* StoriesViewController.xib in Resources */,
 				CDDAC31D17F44E78000FEC8A /* Chatty-Active.png in Resources */,
 				CD7C24831754689100D90942 /* Message.html in Resources */,
+				CDC0E9BC17F6886D007D3738 /* Post-Indicator.png in Resources */,
 				CDDAC2E717F44E78000FEC8A /* Take-Photo@2x.png in Resources */,
 				CDDAC2D717F44E78000FEC8A /* Thread-Toolbar-Refresh.png in Resources */,
 				CDDAC2C117F44E78000FEC8A /* Menu-Button-Thread@2x.png in Resources */,
@@ -1633,6 +1653,7 @@
 				CD7ADD1A17EF180E00B4C886 /* RootCell-iPad.xib in Resources */,
 				CDDAC2CA17F44E78000FEC8A /* Menu-Button-List.png in Resources */,
 				CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */,
+				CDC0E9BF17F6886D007D3738 /* Post-Indicator@2x.png in Resources */,
 				CDA1176A16C1DC6600CE1375 /* BlueBullet.png in Resources */,
 				CD7ADD1C17EF180E00B4C886 /* StoryCell-iPad.xib in Resources */,
 				CDA1176B16C1DC6600CE1375 /* GrayBullet.png in Resources */,
@@ -1693,6 +1714,7 @@
 				CDDAC2C017F44E78000FEC8A /* Menu-Button-Thread.png in Resources */,
 				CDDAC2C417F44E78000FEC8A /* Menu-Button-Reply@2x.png in Resources */,
 				CD7ADD2117EF19F300B4C886 /* Images.xcassets in Resources */,
+				CDC0E9C317F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
 				CD2359F71739D5EA0078423B /* Button.png in Resources */,
 				CD2359F91739D5EA0078423B /* Button@2x.png in Resources */,
 				CD2359FF1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */,
@@ -1739,6 +1761,7 @@
 				CD205669174540A9003AF4FA /* PinIcon.24@2x.png in Resources */,
 				CDB348D6174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */,
 				CDB348D8174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */,
+				CDC0E9C117F6886D007D3738 /* Post-Indicator-Reply.png in Resources */,
 				CDB348DA174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */,
 				CD7ADD0117EF17FA00B4C886 /* SearchResultsViewController-iPad.xib in Resources */,
 				CDDAC2DE17F44E78000FEC8A /* Thread-Toolbar-Previous.png in Resources */,
@@ -1763,6 +1786,7 @@
 				CD48681E17EB5B430071F3D7 /* Fart8.mp3 in Resources */,
 				CDDAC31E17F44E78000FEC8A /* Chatty-Active.png in Resources */,
 				CDB348F91745745F000003CA /* TimerDotEmpty.png in Resources */,
+				CDC0E9BD17F6886D007D3738 /* Post-Indicator.png in Resources */,
 				CDDAC2E817F44E78000FEC8A /* Take-Photo@2x.png in Resources */,
 				CDDAC2D817F44E78000FEC8A /* Thread-Toolbar-Refresh.png in Resources */,
 				CDDAC2C217F44E78000FEC8A /* Menu-Button-Thread@2x.png in Resources */,

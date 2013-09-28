@@ -25,11 +25,11 @@
                         <nil key="highlightedColor"/>
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </label>
-                    <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="center" image="BlueBullet.png" id="16">
+                    <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="center" image="Post-Indicator-Reply.png" id="16">
                         <rect key="frame" x="300" y="7" width="10" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="center" image="GrayBullet.png" id="17">
+                    <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="center" image="Post-Indicator.png" id="17">
                         <rect key="frame" x="290" y="7" width="10" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -50,7 +50,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="BlueBullet.png" width="6" height="6"/>
-        <image name="GrayBullet.png" width="6" height="6"/>
+        <image name="Post-Indicator-Reply.png" width="6" height="6"/>
+        <image name="Post-Indicator.png" width="6" height="6"/>
     </resources>
 </document>
