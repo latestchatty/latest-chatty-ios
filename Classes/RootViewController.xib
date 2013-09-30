@@ -13,7 +13,7 @@
         <tableView clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" id="3">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.050980392156862744" green="0.050980392156862744" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
             <color key="separatorColor" red="0.21568627450980393" green="0.21568627450980393" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
         </tableView>

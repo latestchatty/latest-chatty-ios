@@ -49,6 +49,10 @@
         // initialize the index path to chatty row
         [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
         [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+        
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:
+                                         [UIImage imageNamed:@"Sidebar-bg.png"]];
+        self.tableView.backgroundView.contentMode = UIViewContentModeTopLeft;
     }
     
     // Maintain selection while view is still loaded
@@ -58,7 +62,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
     
     // iOS7
-    [self.tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(40.0, 0, 0, 0)];
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
@@ -82,8 +86,6 @@
 - (BOOL)centerControllerHasMenuButton:(UINavigationController *)navController {
     NSArray *classesWithMenuButton = @[[BrowserViewController class], [ChattyViewController class], [MessagesViewController class], [SearchViewController class], [StoriesViewController class]];
     for (Class cls in classesWithMenuButton) {
-        NSLog(@"vc class: %@", [navController class]);
-        NSLog(@"cls class: %@", [cls class]);
         if ([navController.topViewController isKindOfClass:cls]) {
             return YES;
         }
