@@ -37,15 +37,14 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.messagesSpinner startAnimating];
-    messageLoader = [Message findAllWithDelegate:self];
+//    [self.messagesSpinner startAnimating];
+//    messageLoader = [Message findAllWithDelegate:self];
 }
 
 - (void)viewDidLoad {
-    // iPhone ViewDeck menu needs rounded corners to match the nav bar
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        [self.view.layer setCornerRadius:7.0f];
-//        [self.view.layer setMasksToBounds:YES];
+        // root view controller is delegate for view deck on iPhone
+        self.viewDeckController.delegate = self;
         
         // initialize the index path to chatty row
         [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
@@ -60,6 +59,36 @@
     
     // iOS7
     [self.tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
+}
+
+- (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    UINavigationController *centerNavigationController = (UINavigationController *)self.viewDeckController.centerController;
+    if ([self centerControllerHasMenuButton:centerNavigationController]) {
+        [UIView animateWithDuration:0.3 animations:^{
+            [centerNavigationController.topViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor lcIOS7BlueColor]];
+        }];
+    }
+}
+
+- (void)viewDeckController:(IIViewDeckController *)viewDeckController willCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    UINavigationController *centerNavigationController = (UINavigationController *)self.viewDeckController.centerController;
+    if ([self centerControllerHasMenuButton:centerNavigationController]) {
+        [UIView animateWithDuration:0.3 animations:^{
+            [centerNavigationController.topViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
+        }];
+    }
+}
+
+- (BOOL)centerControllerHasMenuButton:(UINavigationController *)navController {
+    NSArray *classesWithMenuButton = @[[BrowserViewController class], [ChattyViewController class], [MessagesViewController class], [SearchViewController class], [StoriesViewController class]];
+    for (Class cls in classesWithMenuButton) {
+        NSLog(@"vc class: %@", [navController class]);
+        NSLog(@"cls class: %@", [cls class]);
+        if ([navController.topViewController isKindOfClass:cls]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (void)pushBrowserForCredits {

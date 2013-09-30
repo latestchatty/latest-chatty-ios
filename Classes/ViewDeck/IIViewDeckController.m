@@ -352,7 +352,6 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
     if ((self = [self initWithCenterViewController:centerController])) {
         self.leftController = leftController;
         self.topBar = [UIView viewWithFrame:CGRectMake(0, 0, 320, 20)];
-//        [self.topBar setBackgroundColor:[UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0]];
         [self.topBar setBackgroundColor:[UIColor blackColor]];
         [self.topBar setAlpha:0.0];
         [self.topBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
@@ -1237,6 +1236,9 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 
     if ([self isSideClosed:viewDeckSide]) {
         [self performDelegate:@selector(viewDeckController:willOpenViewSide:animated:) side:viewDeckSide animated:animated];
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.topBar setAlpha:1.0];
+        }];
     }
 }
 
@@ -1255,6 +1257,9 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 
     if (![self isSideClosed:viewDeckSide]) {
         [self performDelegate:@selector(viewDeckController:willCloseViewSide:animated:) side:viewDeckSide animated:animated];
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.topBar setAlpha:0.0];
+        }];
     }
 }
 
@@ -1415,11 +1420,6 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (BOOL)openSideView:(IIViewDeckSide)side animated:(BOOL)animated duration:(NSTimeInterval)duration completion:(IIViewDeckControllerBlock)completed {
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.topBar setAlpha:1.0];
-    }];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ViewDeckOpened" object:nil];
-    
     // if there's no controller or we're already open, just run the completion and say we're done.
     if (![self controllerForSide:side] || [self isSideOpen:side]) {
         if (completed) completed(self, YES);
@@ -1532,11 +1532,6 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (BOOL)closeSideView:(IIViewDeckSide)side animated:(BOOL)animated duration:(NSTimeInterval)duration completion:(IIViewDeckControllerBlock)completed {
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.topBar setAlpha:0.0];
-    }];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ViewDeckClosed" object:nil];    
-    
     if ([self isSideClosed:side]) {
         if (completed) completed(self, YES);
         return YES;
@@ -2549,7 +2544,6 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
     
     self.leftController.view.frame = [self getLeftParallax];
     self.rightController.view.frame = [self getRightParallax];
-    NSLog(@"this is calling");
 }
 
 - (CGRect) getLeftParallax {

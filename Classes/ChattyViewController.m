@@ -121,8 +121,6 @@
     
     // iOS7
     self.navigationController.navigationBar.translucent = NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuOpened:) name:@"ViewDeckOpened" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuClosed:) name:@"ViewDeckClosed" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -145,14 +143,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [loader cancel];
-}
-
-- (void)menuOpened:(id)sender {
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor lcIOS7BlueColor]];
-}
-
-- (void)menuClosed:(id)sender {
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {

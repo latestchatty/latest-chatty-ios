@@ -15,8 +15,9 @@
 #import "ChattyViewController.h"
 #import "MessagesViewController.h"
 #import "SearchViewController.h"
+#import "IIViewDeckController.h"
 
-@interface RootViewController : UITableViewController <ModelLoadingDelegate> {
+@interface RootViewController : UITableViewController <ModelLoadingDelegate, IIViewDeckControllerDelegate> {
     ModelLoader *messageLoader;
     NSUInteger messageCount;
     NSIndexPath *selectedIndex;

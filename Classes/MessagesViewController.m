@@ -62,8 +62,6 @@
     
     // iOS7
     self.navigationController.navigationBar.translucent = NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuOpened:) name:@"ViewDeckOpened" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuClosed:) name:@"ViewDeckClosed" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -76,14 +74,6 @@
 //        self.tableView.separatorColor = [UIColor lcSeparatorColor];
 //        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
 //    }
-}
-
-- (void)menuOpened:(id)sender {
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor lcIOS7BlueColor]];
-}
-
-- (void)menuClosed:(id)sender {
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

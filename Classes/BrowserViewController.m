@@ -39,9 +39,6 @@
                                                                           target:self.viewDeckController
                                                                           action:@selector(toggleLeftView)];
             self.navigationItem.leftBarButtonItem = menuButton;
-            
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuOpened:) name:@"ViewDeckOpened" object:nil];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuClosed:) name:@"ViewDeckClosed" object:nil];
         }
         
         UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@""
@@ -84,14 +81,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self showBars];
-}
-
-- (void)menuOpened:(id)sender {
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor lcIOS7BlueColor]];
-}
-
-- (void)menuClosed:(id)sender {
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
 // Hide the status bar and navigation bar with the built-in animation method
