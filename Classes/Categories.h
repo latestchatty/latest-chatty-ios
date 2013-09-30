@@ -44,7 +44,6 @@
 + (UIColor *)lcPullToRefreshBackgroundColor;
 
 // Post expiration progress colors
-+ (UIColor *)lcExpiredColor;
 + (UIColor *)lcExpirationOnTopicColor;
 + (UIColor *)lcExpirationInformativeColor;
 + (UIColor *)lcExpirationOffTopicColor;

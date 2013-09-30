@@ -47,7 +47,7 @@
 }
 
 + (UIColor *)lcLightGrayTextColor {
-    return [UIColor colorWithRed:176.0/255.0 green:180.0/255.0 blue:184.0/255.0 alpha:1.0];
+    return [UIColor colorWithWhite:255.0/255.0 alpha:0.5];
 }
 
 + (UIColor *)lcDarkGrayTextColor {
@@ -96,7 +96,7 @@
 }
 
 + (UIColor *)lcSeparatorColor {
-    return [UIColor colorWithRed:40.0/255.0 green:41.0/255.0 blue:44.0/255.0 alpha:0.8];
+    return [UIColor colorWithWhite:255.0/255.0 alpha:0.1];
 }
 
 + (UIColor *)lcSeparatorDarkColor {
@@ -132,45 +132,41 @@
 }
 
 // Post expiration progress colors
-+ (UIColor *)lcExpiredColor {
-    return [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:0.50];
-}
-
 + (UIColor *)lcExpirationOnTopicColor {
-    return [UIColor colorWithRed:78.0/255.0 green:79.0/255.0 blue:83.0/255.0 alpha:0.50];
+    return [UIColor colorWithRed:78.0/255.0 green:79.0/255.0 blue:84.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcExpirationInformativeColor {
-    return [UIColor colorWithRed:6.0/255.0 green:82.0/255.0 blue:112.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:18.0/255.0 green:81.0/255.0 blue:115.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcExpirationOffTopicColor {
-    return [UIColor colorWithRed:126.0/255.0 green:127.0/255.0 blue:130.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:126.0/255.0 green:128.0/255.0 blue:131.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcExpirationStupidColor {
-    return [UIColor colorWithRed:10.0/255.0 green:80.0/255.0 blue:43.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:20.0/255.0 green:80.0/255.0 blue:37.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcExpirationPoliticalColor {
-    return [UIColor colorWithRed:116.0/255.0 green:77.0/255.0 blue:34.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:115.0/255.0 green:78.0/255.0 blue:24.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcExpirationNotWorkSafeColor {
-    return [UIColor colorWithRed:104.0/255.0 green:28.0/255.0 blue:31.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:102.0/255.0 green:29.0/255.0 blue:29.0/255.0 alpha:1.0];
 }
 
 // Category colors
 + (UIColor *)lcInformativeColor {
-    return [UIColor colorWithRed:27.0/255.0 green:110.0/255.0 blue:151.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:16.0/255.0 green:99.0/255.0 blue:140.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcOffTopicColor {
-    return [UIColor colorWithRed:103.0/255.0 green:104.0/255.0 blue:110.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:92.0/255.0 green:94.0/255.0 blue:98.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcStupidColor {
-    return [UIColor colorWithRed:27.0/255.0 green:103.0/255.0 blue:50.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:16.0/255.0 green:92.0/255.0 blue:39.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)lcPoliticalColor {
@@ -178,7 +174,7 @@
 }
 
 + (UIColor *)lcNotWorkSafeColor {
-    return [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:125.0/255.0 green:35.0/255.0 blue:36.0/255.0 alpha:1.0];
 }
 
 // Reply text colors

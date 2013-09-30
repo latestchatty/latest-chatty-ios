@@ -33,7 +33,6 @@ static NSMutableDictionary *expirationColorMapping;
     [categoryColorMapping setObject:[UIColor lcNotWorkSafeColor] forKey:@"nws"];
     
     expirationColorMapping = [[NSMutableDictionary alloc] init];
-    [expirationColorMapping setObject:[UIColor lcExpiredColor] forKey:@"expired"];
     [expirationColorMapping setObject:[UIColor lcExpirationOnTopicColor] forKey:@"ontopic"];
     [expirationColorMapping setObject:[UIColor lcExpirationInformativeColor] forKey:@"informative"];
     [expirationColorMapping setObject:[UIColor lcExpirationOffTopicColor] forKey:@"offtopic"];
