@@ -22,8 +22,6 @@
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
 		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
-		A27EAB8411728E260072EB59 /* Pushpin-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8211728E260072EB59 /* Pushpin-Active.png */; };
-		A27EAB8511728E260072EB59 /* Pushpin-Inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */; };
 		CD1328D217DD7912009A5AE3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */; };
 		CD1328D317DD7912009A5AE3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */; };
 		CD13747B17EA90A0002A2551 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD13747A17EA90A0002A2551 /* AVFoundation.framework */; };
@@ -237,8 +235,6 @@
 		CDA1175D16C1DC6600CE1375 /* DropShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A600F796452006E14A2 /* DropShadow.png */; };
 		CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */; };
 		CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */; };
-		CDA1176A16C1DC6600CE1375 /* BlueBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B458E0F7D95710074064A /* BlueBullet.png */; };
-		CDA1176B16C1DC6600CE1375 /* GrayBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B45900F7D96060074064A /* GrayBullet.png */; };
 		CDA1177016C1DC6600CE1375 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA2260520F8EE251002F77DD /* Settings.bundle */; };
 		CDA1177416C1DC6600CE1375 /* RootCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4122FD0F8FDDE9002E1978 /* RootCell.xib */; };
 		CDA1177516C1DC6600CE1375 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4123070F8FE09E002E1978 /* RootViewController.xib */; };
@@ -248,17 +244,11 @@
 		CDA1177B16C1DC6600CE1375 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */; };
 		CDA1178016C1DC6600CE1375 /* Lock.16.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2ECCC00F9D4FED00912BE4 /* Lock.16.png */; };
 		CDA1178116C1DC6600CE1375 /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACD9A7D0F9E2F49009D9A15 /* SearchResultsViewController.xib */; };
-		CDA1178216C1DC6600CE1375 /* NewPostBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */; };
 		CDA1178516C1DC6600CE1375 /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDE420F70EA6700AAF4E4 /* StoryViewController.xib */; };
 		CDA1179916C1DC6600CE1375 /* SendMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */; };
 		CDA1179D16C1DC6600CE1375 /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
 		CDA117A116C1DC6600CE1375 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
-		CDA117A216C1DC6600CE1375 /* Pushpin-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8211728E260072EB59 /* Pushpin-Active.png */; };
-		CDA117A316C1DC6600CE1375 /* Pushpin-Inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */; };
 		CDA117A416C1DC6600CE1375 /* MenuBorderOut.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE438C71173FAA5000263F7 /* MenuBorderOut.png */; };
-		CDA117A516C1DC6600CE1375 /* BlueBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DEE11D2EA680088CF3D /* BlueBullet@2x.png */; };
-		CDA117A616C1DC6600CE1375 /* GrayBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DF211D2EAE20088CF3D /* GrayBullet@2x.png */; };
-		CDA117A716C1DC6600CE1375 /* NewPostBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DF811D2EB840088CF3D /* NewPostBullet@2x.png */; };
 		CDA117BA16C1DC6600CE1375 /* AppleSafari-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */; };
 		CDA117BB16C1DC6600CE1375 /* AppleSafari-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */; };
 		CDA117BC16C1DC6600CE1375 /* AppleSafari-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */; };
@@ -464,10 +454,6 @@
 		CDF1BDE1175EEDC200D6B1AE /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDDB175EEDC200D6B1AE /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDF4F8E2177FE83500143015 /* RecentSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F8E1177FE83500143015 /* RecentSearchButton.m */; };
 		CDF4F8E3177FE83500143015 /* RecentSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F8E1177FE83500143015 /* RecentSearchButton.m */; };
-		CDFA3D9D174335D10083C9D5 /* BlueBulletThread.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D9B174335D00083C9D5 /* BlueBulletThread.png */; };
-		CDFA3D9E174335D10083C9D5 /* BlueBulletThread.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D9B174335D00083C9D5 /* BlueBulletThread.png */; };
-		CDFA3D9F174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D9C174335D10083C9D5 /* BlueBulletThread@2x.png */; };
-		CDFA3DA0174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA3D9C174335D10083C9D5 /* BlueBulletThread@2x.png */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA04878E11640DA800290D2D /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */; };
@@ -476,8 +462,6 @@
 		FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E7D660F787FEF00BAA55B /* ModelLoader.m */; };
 		FA2260530F8EE251002F77DD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA2260520F8EE251002F77DD /* Settings.bundle */; };
 		FA26AD080F80F85C00EB5FF0 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = FA26AD070F80F85C00EB5FF0 /* Tag.m */; };
-		FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B458E0F7D95710074064A /* BlueBullet.png */; };
-		FA2B45910F7D96060074064A /* GrayBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2B45900F7D96060074064A /* GrayBullet.png */; };
 		FA2B475C0F7E1DDB0074064A /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B475B0F7E1DDB0074064A /* Image.m */; };
 		FA2ECCC10F9D4FED00912BE4 /* Lock.16.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2ECCC00F9D4FED00912BE4 /* Lock.16.png */; };
 		FA4122FE0F8FDDE9002E1978 /* RootCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4122FD0F8FDDE9002E1978 /* RootCell.xib */; };
@@ -492,9 +476,6 @@
 		FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE8C0F6F7B6A00878F27 /* TableCellFromNib.m */; };
 		FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FCE920F6F7CA600878F27 /* StoryCell.m */; };
 		FA5FCE950F6F7CB600878F27 /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5FCE940F6F7CB600878F27 /* StoryCell.xib */; };
-		FA689DEF11D2EA680088CF3D /* BlueBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DEE11D2EA680088CF3D /* BlueBullet@2x.png */; };
-		FA689DF311D2EAE20088CF3D /* GrayBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DF211D2EAE20088CF3D /* GrayBullet@2x.png */; };
-		FA689DF911D2EB840088CF3D /* NewPostBullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA689DF811D2EB840088CF3D /* NewPostBullet@2x.png */; };
 		FA6EDD320F70D56B00AAF4E4 /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDD310F70D56B00AAF4E4 /* ChattyViewController.xib */; };
 		FA6EDD6A0F70D95A00AAF4E4 /* ThreadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EDD690F70D95A00AAF4E4 /* ThreadCell.xib */; };
 		FA6EDD6F0F70DA0400AAF4E4 /* ThreadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6EDD6E0F70DA0400AAF4E4 /* ThreadCell.m */; };
@@ -507,7 +488,6 @@
 		FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */; };
 		FA9C3ED00F9CEB1E0022A739 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */; };
 		FA9C3ED50F9CED010022A739 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C3ED40F9CED010022A739 /* SearchViewController.m */; };
-		FAA1E01E0FF2F3CE002714B6 /* NewPostBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */; };
 		FAA849980F78C29900026446 /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA849970F78C29900026446 /* ThreadViewController.m */; };
 		FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA849990F78C2B000026446 /* ThreadViewController.xib */; };
 		FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
@@ -550,8 +530,6 @@
 		A254B845116FFEB0001534FF /* SlideOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutViewController.h; sourceTree = "<group>"; };
 		A254B846116FFEB0001534FF /* SlideOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutViewController.m; sourceTree = "<group>"; };
 		A27EA7211171E60D0072EB59 /* SliderDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SliderDivider.png; path = Assets/SliderDivider.png; sourceTree = "<group>"; };
-		A27EAB8211728E260072EB59 /* Pushpin-Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pushpin-Active.png"; path = "Assets/Pushpin-Active.png"; sourceTree = "<group>"; };
-		A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pushpin-Inactive.png"; path = "Assets/Pushpin-Inactive.png"; sourceTree = "<group>"; };
 		CD1328D017DD7912009A5AE3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Classes/MBProgressHUD.h; sourceTree = "<group>"; };
 		CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Classes/MBProgressHUD.m; sourceTree = "<group>"; };
 		CD13747A17EA90A0002A2551 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -784,8 +762,6 @@
 		CDF1BDDB175EEDC200D6B1AE /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
 		CDF4F8E0177FE83500143015 /* RecentSearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentSearchButton.h; sourceTree = "<group>"; };
 		CDF4F8E1177FE83500143015 /* RecentSearchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentSearchButton.m; sourceTree = "<group>"; };
-		CDFA3D9B174335D00083C9D5 /* BlueBulletThread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueBulletThread.png; path = Assets/BlueBulletThread.png; sourceTree = "<group>"; };
-		CDFA3D9C174335D10083C9D5 /* BlueBulletThread@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BlueBulletThread@2x.png"; path = "Assets/BlueBulletThread@2x.png"; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
@@ -797,8 +773,6 @@
 		FA2260520F8EE251002F77DD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FA26AD060F80F85B00EB5FF0 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		FA26AD070F80F85C00EB5FF0 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		FA2B458E0F7D95710074064A /* BlueBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueBullet.png; path = Assets/BlueBullet.png; sourceTree = "<group>"; };
-		FA2B45900F7D96060074064A /* GrayBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrayBullet.png; path = Assets/GrayBullet.png; sourceTree = "<group>"; };
 		FA2B475A0F7E1DDB0074064A /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		FA2B475B0F7E1DDB0074064A /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		FA2ECCC00F9D4FED00912BE4 /* Lock.16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Lock.16.png; path = Assets/Lock.16.png; sourceTree = "<group>"; };
@@ -823,9 +797,6 @@
 		FA5FCE910F6F7CA600878F27 /* StoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryCell.h; sourceTree = "<group>"; };
 		FA5FCE920F6F7CA600878F27 /* StoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryCell.m; sourceTree = "<group>"; };
 		FA5FCE940F6F7CB600878F27 /* StoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryCell.xib; sourceTree = "<group>"; };
-		FA689DEE11D2EA680088CF3D /* BlueBullet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BlueBullet@2x.png"; path = "Assets/BlueBullet@2x.png"; sourceTree = "<group>"; };
-		FA689DF211D2EAE20088CF3D /* GrayBullet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GrayBullet@2x.png"; path = "Assets/GrayBullet@2x.png"; sourceTree = "<group>"; };
-		FA689DF811D2EB840088CF3D /* NewPostBullet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NewPostBullet@2x.png"; path = "Assets/NewPostBullet@2x.png"; sourceTree = "<group>"; };
 		FA6EDD310F70D56B00AAF4E4 /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattyViewController.xib; sourceTree = "<group>"; };
 		FA6EDD690F70D95A00AAF4E4 /* ThreadCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadCell.xib; sourceTree = "<group>"; };
 		FA6EDD6D0F70DA0400AAF4E4 /* ThreadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadCell.h; sourceTree = "<group>"; };
@@ -844,7 +815,6 @@
 		FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		FA9C3ED30F9CED010022A739 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		FA9C3ED40F9CED010022A739 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
-		FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NewPostBullet.png; path = Assets/NewPostBullet.png; sourceTree = "<group>"; };
 		FAA849960F78C29900026446 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
 		FAA849970F78C29900026446 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
 		FAA849990F78C2B000026446 /* ThreadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadViewController.xib; sourceTree = "<group>"; };
@@ -1315,19 +1285,9 @@
 				CD8BA2C016306A9D00ED5C5E /* GoogleChrome-Icon@2x.png */,
 				CD8BA2C116306A9E00ED5C5E /* GoogleChrome-Icon@2x~ipad.png */,
 				CD8BA2C216306A9E00ED5C5E /* GoogleChrome-Icon~ipad.png */,
-				A27EAB8211728E260072EB59 /* Pushpin-Active.png */,
-				A27EAB8311728E260072EB59 /* Pushpin-Inactive.png */,
 				A27EA7211171E60D0072EB59 /* SliderDivider.png */,
 				A254B841116FFE9A001534FF /* MenuBorder.png */,
 				FAE438C71173FAA5000263F7 /* MenuBorderOut.png */,
-				FA2B45900F7D96060074064A /* GrayBullet.png */,
-				FA689DF211D2EAE20088CF3D /* GrayBullet@2x.png */,
-				FA2B458E0F7D95710074064A /* BlueBullet.png */,
-				FA689DEE11D2EA680088CF3D /* BlueBullet@2x.png */,
-				CDFA3D9B174335D00083C9D5 /* BlueBulletThread.png */,
-				CDFA3D9C174335D10083C9D5 /* BlueBulletThread@2x.png */,
-				FAA1E01D0FF2F3CE002714B6 /* NewPostBullet.png */,
-				FA689DF811D2EB840088CF3D /* NewPostBullet@2x.png */,
 				FAD29A600F796452006E14A2 /* DropShadow.png */,
 				CD2359EA1739D5EA0078423B /* Button.png */,
 				CD2359EB1739D5EA0078423B /* Button@2x.png */,
@@ -1482,9 +1442,7 @@
 				CDDAC2F117F44E78000FEC8A /* Stories-Inactive.png in Resources */,
 				FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */,
 				CDDAC2C917F44E78000FEC8A /* Menu-Button-List.png in Resources */,
-				FA2B458F0F7D95710074064A /* BlueBullet.png in Resources */,
 				CDC0E9BE17F6886D007D3738 /* Post-Indicator@2x.png in Resources */,
-				FA2B45910F7D96060074064A /* GrayBullet.png in Resources */,
 				FA2260530F8EE251002F77DD /* Settings.bundle in Resources */,
 				FA4122FE0F8FDDE9002E1978 /* RootCell.xib in Resources */,
 				CDDAC2CF17F44E78000FEC8A /* Thread-Toolbar-Timer@2x.png in Resources */,
@@ -1503,7 +1461,6 @@
 				CDDAC30117F44E78000FEC8A /* Search-Inactive.png in Resources */,
 				FACD9A7E0F9E2F49009D9A15 /* SearchResultsViewController.xib in Resources */,
 				CDDAC2F717F44E78000FEC8A /* Settings-Inactive@2x.png in Resources */,
-				FAA1E01E0FF2F3CE002714B6 /* NewPostBullet.png in Resources */,
 				CD7ADD0C17EF17FA00B4C886 /* StoryViewController-iPad.xib in Resources */,
 				FA7A3436112F652700DCD653 /* StoryViewController.xib in Resources */,
 				CD7ADCF817EF17FA00B4C886 /* MessageViewController-iPad.xib in Resources */,
@@ -1514,16 +1471,11 @@
 				A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */,
 				CDDAC2D517F44E78000FEC8A /* Thread-Toolbar-Tag.png in Resources */,
 				CD48681917EB5B430071F3D7 /* Fart6.mp3 in Resources */,
-				A27EAB8411728E260072EB59 /* Pushpin-Active.png in Resources */,
 				CDDAC31317F44E78000FEC8A /* Shack[lol]-Active@2x.png in Resources */,
-				A27EAB8511728E260072EB59 /* Pushpin-Inactive.png in Resources */,
 				FAE438C81173FAA5000263F7 /* MenuBorderOut.png in Resources */,
 				CD48681D17EB5B430071F3D7 /* Fart8.mp3 in Resources */,
 				CDDAC2F517F44E78000FEC8A /* Stories-Active@2x.png in Resources */,
 				CDDAC2FF17F44E78000FEC8A /* Search-Inactive@2x.png in Resources */,
-				FA689DEF11D2EA680088CF3D /* BlueBullet@2x.png in Resources */,
-				FA689DF311D2EAE20088CF3D /* GrayBullet@2x.png in Resources */,
-				FA689DF911D2EB840088CF3D /* NewPostBullet@2x.png in Resources */,
 				CD7ADCF217EF17FA00B4C886 /* ChattyViewController-iPad.xib in Resources */,
 				CD7ADD1517EF180E00B4C886 /* MessageCell-iPad.xib in Resources */,
 				CD8BA2B916306A0900ED5C5E /* AppleSafari-Icon.png in Resources */,
@@ -1570,8 +1522,6 @@
 				CD235A26173AB4390078423B /* ButtonUnderlinePushed.png in Resources */,
 				CD235A28173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */,
 				CD48681517EB5B430071F3D7 /* Fart4.mp3 in Resources */,
-				CDFA3D9D174335D10083C9D5 /* BlueBulletThread.png in Resources */,
-				CDFA3D9F174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */,
 				CD43CFE61743B7AD00165FF3 /* ComposeViewController.xib in Resources */,
 				CDDAC2E117F44E78000FEC8A /* Thread-Toolbar-Next.png in Resources */,
 				CDDAC2C717F44E78000FEC8A /* Menu-Button-List@2x.png in Resources */,
@@ -1665,9 +1615,7 @@
 				CDDAC2CA17F44E78000FEC8A /* Menu-Button-List.png in Resources */,
 				CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */,
 				CDC0E9BF17F6886D007D3738 /* Post-Indicator@2x.png in Resources */,
-				CDA1176A16C1DC6600CE1375 /* BlueBullet.png in Resources */,
 				CD7ADD1C17EF180E00B4C886 /* StoryCell-iPad.xib in Resources */,
-				CDA1176B16C1DC6600CE1375 /* GrayBullet.png in Resources */,
 				CDDAC2D017F44E78000FEC8A /* Thread-Toolbar-Timer@2x.png in Resources */,
 				CDC0E9C917F91AEF007D3738 /* Sidebar-bg@2x.png in Resources */,
 				CDDAC30817F44E78000FEC8A /* Messages-Inactive@2x.png in Resources */,
@@ -1687,7 +1635,6 @@
 				CD48681617EB5B430071F3D7 /* Fart4.mp3 in Resources */,
 				CDA1178016C1DC6600CE1375 /* Lock.16.png in Resources */,
 				CDA1178116C1DC6600CE1375 /* SearchResultsViewController.xib in Resources */,
-				CDA1178216C1DC6600CE1375 /* NewPostBullet.png in Resources */,
 				CDA1178516C1DC6600CE1375 /* StoryViewController.xib in Resources */,
 				CD7ADCF117EF17FA00B4C886 /* BrowserViewController-iPad.xib in Resources */,
 				CD48681017EB5B430071F3D7 /* Fart1.mp3 in Resources */,
@@ -1695,16 +1642,11 @@
 				CDA1179D16C1DC6600CE1375 /* MenuBorder.png in Resources */,
 				CDDAC2D617F44E78000FEC8A /* Thread-Toolbar-Tag.png in Resources */,
 				CDA117A116C1DC6600CE1375 /* SliderDivider.png in Resources */,
-				CDA117A216C1DC6600CE1375 /* Pushpin-Active.png in Resources */,
 				CDDAC31417F44E78000FEC8A /* Shack[lol]-Active@2x.png in Resources */,
-				CDA117A316C1DC6600CE1375 /* Pushpin-Inactive.png in Resources */,
 				CDA117A416C1DC6600CE1375 /* MenuBorderOut.png in Resources */,
-				CDA117A516C1DC6600CE1375 /* BlueBullet@2x.png in Resources */,
 				CDDAC2F617F44E78000FEC8A /* Stories-Active@2x.png in Resources */,
 				CDDAC30017F44E78000FEC8A /* Search-Inactive@2x.png in Resources */,
 				CD7ADCFD17EF17FA00B4C886 /* ReviewThreadViewController-iPad.xib in Resources */,
-				CDA117A616C1DC6600CE1375 /* GrayBullet@2x.png in Resources */,
-				CDA117A716C1DC6600CE1375 /* NewPostBullet@2x.png in Resources */,
 				CD7ADCF517EF17FA00B4C886 /* ComposeViewController-iPad.xib in Resources */,
 				CD7ADD0D17EF17FA00B4C886 /* StoryViewController-iPad.xib in Resources */,
 				CDA117BA16C1DC6600CE1375 /* AppleSafari-Icon.png in Resources */,
@@ -1751,8 +1693,6 @@
 				CD7ADD0B17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */,
 				CD7ADCFB17EF17FA00B4C886 /* NoContentController-iPad.xib in Resources */,
 				CD48681217EB5B430071F3D7 /* Fart2.mp3 in Resources */,
-				CDFA3D9E174335D10083C9D5 /* BlueBulletThread.png in Resources */,
-				CDFA3DA0174335D10083C9D5 /* BlueBulletThread@2x.png in Resources */,
 				CD43CFE71743B7AD00165FF3 /* ComposeViewController.xib in Resources */,
 				CDDAC2E217F44E78000FEC8A /* Thread-Toolbar-Next.png in Resources */,
 				CDDAC2C817F44E78000FEC8A /* Menu-Button-List@2x.png in Resources */,
