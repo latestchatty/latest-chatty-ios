@@ -30,9 +30,10 @@
     [spinner startAnimating];
     spinner.contentMode = UIViewContentModeCenter;
     CGFloat offset = 0.0;
-    if (![self isKindOfClass:[ThreadViewController class]]) {
-        offset = 50;
-    }
+    // no longer needed with opaque nav bars
+//    if (![self isKindOfClass:[ThreadViewController class]]) {
+//        offset = 50;
+//    }
 
     spinner.frame = CGRectMake(0, offset, self.view.frame.size.width, self.view.frame.size.height / 2.0);
     spinner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
