@@ -121,6 +121,13 @@
     
     // iOS7
     self.navigationController.navigationBar.translucent = NO;
+    
+    //test bed
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:25];
+    localNotification.alertBody = @"Your alert message";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
