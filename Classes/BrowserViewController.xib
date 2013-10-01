@@ -31,19 +31,19 @@
                     <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
-                        <barButtonItem image="Thread-Toolbar-Refresh.png" width="24" id="53">
+                        <barButtonItem image="Web-Refresh.png" width="24" style="plain" id="53">
                             <connections>
                                 <action selector="refreshWebView:" destination="-1" id="56"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="6Nc-CZ-LCC"/>
-                        <barButtonItem enabled="NO" image="Thread-Toolbar-Previous.png" width="24" id="31">
+                        <barButtonItem enabled="NO" image="Web-Previous.png" width="24" style="plain" id="31">
                             <connections>
                                 <action selector="goBack" destination="25" id="33"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="T4a-Hc-kBI"/>
-                        <barButtonItem enabled="NO" image="Thread-Toolbar-Next.png" width="24" id="30">
+                        <barButtonItem enabled="NO" image="Web-Next.png" width="24" style="plain" id="30">
                             <connections>
                                 <action selector="goForward" destination="25" id="32"/>
                             </connections>
@@ -62,8 +62,8 @@
         </view>
     </objects>
     <resources>
-        <image name="Thread-Toolbar-Next.png" width="13" height="13"/>
-        <image name="Thread-Toolbar-Previous.png" width="13" height="13"/>
-        <image name="Thread-Toolbar-Refresh.png" width="14" height="16"/>
+        <image name="Web-Next.png" width="24" height="24"/>
+        <image name="Web-Previous.png" width="24" height="24"/>
+        <image name="Web-Refresh.png" width="24" height="24"/>
     </resources>
 </document>

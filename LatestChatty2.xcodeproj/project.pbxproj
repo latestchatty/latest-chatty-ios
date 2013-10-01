@@ -212,6 +212,22 @@
 		CD7C248C1754689100D90942 /* Stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = CD7C24811754689100D90942 /* Stylesheet.css */; };
 		CD7C248D1754689100D90942 /* Youtube.html in Resources */ = {isa = PBXBuildFile; fileRef = CD7C24821754689100D90942 /* Youtube.html */; };
 		CD7C248E1754689100D90942 /* Youtube.html in Resources */ = {isa = PBXBuildFile; fileRef = CD7C24821754689100D90942 /* Youtube.html */; };
+		CD7F2EAD17FA705300E7EAE3 /* Web-Next.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EA517FA705300E7EAE3 /* Web-Next.png */; };
+		CD7F2EAE17FA705300E7EAE3 /* Web-Next.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EA517FA705300E7EAE3 /* Web-Next.png */; };
+		CD7F2EAF17FA705300E7EAE3 /* Web-Next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EA617FA705300E7EAE3 /* Web-Next@2x.png */; };
+		CD7F2EB017FA705300E7EAE3 /* Web-Next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EA617FA705300E7EAE3 /* Web-Next@2x.png */; };
+		CD7F2EB117FA705300E7EAE3 /* Web-Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EA717FA705300E7EAE3 /* Web-Previous.png */; };
+		CD7F2EB217FA705300E7EAE3 /* Web-Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EA717FA705300E7EAE3 /* Web-Previous.png */; };
+		CD7F2EB317FA705300E7EAE3 /* Web-Previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EA817FA705300E7EAE3 /* Web-Previous@2x.png */; };
+		CD7F2EB417FA705300E7EAE3 /* Web-Previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EA817FA705300E7EAE3 /* Web-Previous@2x.png */; };
+		CD7F2EB517FA705300E7EAE3 /* Web-Refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EA917FA705300E7EAE3 /* Web-Refresh.png */; };
+		CD7F2EB617FA705300E7EAE3 /* Web-Refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EA917FA705300E7EAE3 /* Web-Refresh.png */; };
+		CD7F2EB717FA705300E7EAE3 /* Web-Refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EAA17FA705300E7EAE3 /* Web-Refresh@2x.png */; };
+		CD7F2EB817FA705300E7EAE3 /* Web-Refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EAA17FA705300E7EAE3 /* Web-Refresh@2x.png */; };
+		CD7F2EB917FA705300E7EAE3 /* Web-Share.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EAB17FA705300E7EAE3 /* Web-Share.png */; };
+		CD7F2EBA17FA705300E7EAE3 /* Web-Share.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EAB17FA705300E7EAE3 /* Web-Share.png */; };
+		CD7F2EBB17FA705300E7EAE3 /* Web-Share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EAC17FA705300E7EAE3 /* Web-Share@2x.png */; };
+		CD7F2EBC17FA705300E7EAE3 /* Web-Share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EAC17FA705300E7EAE3 /* Web-Share@2x.png */; };
 		CD8BA2B916306A0900ED5C5E /* AppleSafari-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */; };
 		CD8BA2BA16306A0900ED5C5E /* AppleSafari-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */; };
 		CD8BA2BB16306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */; };
@@ -664,6 +680,14 @@
 		CD7C24801754689100D90942 /* Story.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Story.html; path = Templates/Story.html; sourceTree = "<group>"; };
 		CD7C24811754689100D90942 /* Stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = Stylesheet.css; path = Templates/Stylesheet.css; sourceTree = "<group>"; };
 		CD7C24821754689100D90942 /* Youtube.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Youtube.html; path = Templates/Youtube.html; sourceTree = "<group>"; };
+		CD7F2EA517FA705300E7EAE3 /* Web-Next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Next.png"; path = "Assets/Web-Next.png"; sourceTree = "<group>"; };
+		CD7F2EA617FA705300E7EAE3 /* Web-Next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Next@2x.png"; path = "Assets/Web-Next@2x.png"; sourceTree = "<group>"; };
+		CD7F2EA717FA705300E7EAE3 /* Web-Previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Previous.png"; path = "Assets/Web-Previous.png"; sourceTree = "<group>"; };
+		CD7F2EA817FA705300E7EAE3 /* Web-Previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Previous@2x.png"; path = "Assets/Web-Previous@2x.png"; sourceTree = "<group>"; };
+		CD7F2EA917FA705300E7EAE3 /* Web-Refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Refresh.png"; path = "Assets/Web-Refresh.png"; sourceTree = "<group>"; };
+		CD7F2EAA17FA705300E7EAE3 /* Web-Refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Refresh@2x.png"; path = "Assets/Web-Refresh@2x.png"; sourceTree = "<group>"; };
+		CD7F2EAB17FA705300E7EAE3 /* Web-Share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Share.png"; path = "Assets/Web-Share.png"; sourceTree = "<group>"; };
+		CD7F2EAC17FA705300E7EAE3 /* Web-Share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Share@2x.png"; path = "Assets/Web-Share@2x.png"; sourceTree = "<group>"; };
 		CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon.png"; path = "Assets/AppleSafari-Icon.png"; sourceTree = "<group>"; };
 		CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon@2x.png"; path = "Assets/AppleSafari-Icon@2x.png"; sourceTree = "<group>"; };
 		CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon@2x~ipad.png"; path = "Assets/AppleSafari-Icon@2x~ipad.png"; sourceTree = "<group>"; };
@@ -1267,6 +1291,14 @@
 				CDC0E9AB17F6886D007D3738 /* Post-Indicator-Reply@2x.png */,
 				CDC0E9C417F91AEF007D3738 /* Sidebar-bg.png */,
 				CDC0E9C517F91AEF007D3738 /* Sidebar-bg@2x.png */,
+				CD7F2EA517FA705300E7EAE3 /* Web-Next.png */,
+				CD7F2EA617FA705300E7EAE3 /* Web-Next@2x.png */,
+				CD7F2EA717FA705300E7EAE3 /* Web-Previous.png */,
+				CD7F2EA817FA705300E7EAE3 /* Web-Previous@2x.png */,
+				CD7F2EA917FA705300E7EAE3 /* Web-Refresh.png */,
+				CD7F2EAA17FA705300E7EAE3 /* Web-Refresh@2x.png */,
+				CD7F2EAB17FA705300E7EAE3 /* Web-Share.png */,
+				CD7F2EAC17FA705300E7EAE3 /* Web-Share@2x.png */,
 				CD48680617EB5B430071F3D7 /* Fart1.mp3 */,
 				CD48680717EB5B430071F3D7 /* Fart2.mp3 */,
 				CD48680817EB5B430071F3D7 /* Fart3.mp3 */,
@@ -1430,6 +1462,7 @@
 				FA6EDD6A0F70D95A00AAF4E4 /* ThreadCell.xib in Resources */,
 				CD7ADD0A17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */,
 				CDDAC2D317F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png in Resources */,
+				CD7F2EB117FA705300E7EAE3 /* Web-Previous.png in Resources */,
 				FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */,
 				CD7ADD2017EF19F300B4C886 /* Images.xcassets in Resources */,
 				FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */,
@@ -1438,6 +1471,7 @@
 				CD48681317EB5B430071F3D7 /* Fart3.mp3 in Resources */,
 				CD7ADD1B17EF180E00B4C886 /* StoryCell-iPad.xib in Resources */,
 				CDC0E9C617F91AEF007D3738 /* Sidebar-bg.png in Resources */,
+				CD7F2EB717FA705300E7EAE3 /* Web-Refresh@2x.png in Resources */,
 				CD7ADD0417EF17FA00B4C886 /* SendMessageViewController-iPad.xib in Resources */,
 				CDDAC2F117F44E78000FEC8A /* Stories-Inactive.png in Resources */,
 				FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */,
@@ -1448,6 +1482,7 @@
 				CDDAC2CF17F44E78000FEC8A /* Thread-Toolbar-Timer@2x.png in Resources */,
 				CDC0E9C817F91AEF007D3738 /* Sidebar-bg@2x.png in Resources */,
 				CDDAC30717F44E78000FEC8A /* Messages-Inactive@2x.png in Resources */,
+				CD7F2EB517FA705300E7EAE3 /* Web-Refresh.png in Resources */,
 				FA4123080F8FE09E002E1978 /* RootViewController.xib in Resources */,
 				CDDAC2EF17F44E78000FEC8A /* Story-Comment-Count.png in Resources */,
 				CDDAC2DF17F44E78000FEC8A /* Thread-Toolbar-Next@2x.png in Resources */,
@@ -1476,6 +1511,7 @@
 				CD48681D17EB5B430071F3D7 /* Fart8.mp3 in Resources */,
 				CDDAC2F517F44E78000FEC8A /* Stories-Active@2x.png in Resources */,
 				CDDAC2FF17F44E78000FEC8A /* Search-Inactive@2x.png in Resources */,
+				CD7F2EAF17FA705300E7EAE3 /* Web-Next@2x.png in Resources */,
 				CD7ADCF217EF17FA00B4C886 /* ChattyViewController-iPad.xib in Resources */,
 				CD7ADD1517EF180E00B4C886 /* MessageCell-iPad.xib in Resources */,
 				CD8BA2B916306A0900ED5C5E /* AppleSafari-Icon.png in Resources */,
@@ -1487,6 +1523,7 @@
 				CD8BA2C316306A9E00ED5C5E /* GoogleChrome-Icon.png in Resources */,
 				CDDAC2E317F44E78000FEC8A /* Thread-Toolbar-Mods@2x.png in Resources */,
 				CD8BA2C416306A9E00ED5C5E /* GoogleChrome-Icon@2x.png in Resources */,
+				CD7F2EBB17FA705300E7EAE3 /* Web-Share@2x.png in Resources */,
 				CD8BA2C516306A9E00ED5C5E /* GoogleChrome-Icon@2x~ipad.png in Resources */,
 				CD8BA2C616306A9E00ED5C5E /* GoogleChrome-Icon~ipad.png in Resources */,
 				CD48681B17EB5B430071F3D7 /* Fart7.mp3 in Resources */,
@@ -1509,6 +1546,7 @@
 				CD235A021739D5EA0078423B /* ButtonPushed.png in Resources */,
 				CD235A041739D5EA0078423B /* ButtonPushed@2x.png in Resources */,
 				CDDAC31B17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
+				CD7F2EB917FA705300E7EAE3 /* Web-Share.png in Resources */,
 				CD235A061739D5EA0078423B /* ButtonStrike.png in Resources */,
 				CD235A081739D5EA0078423B /* ButtonStrike@2x.png in Resources */,
 				CD235A0A1739D5EA0078423B /* ButtonUnderline.png in Resources */,
@@ -1519,6 +1557,7 @@
 				CD235A20173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */,
 				CD235A22173AB4390078423B /* ButtonStrikePushed.png in Resources */,
 				CD235A24173AB4390078423B /* ButtonStrikePushed@2x.png in Resources */,
+				CD7F2EAD17FA705300E7EAE3 /* Web-Next.png in Resources */,
 				CD235A26173AB4390078423B /* ButtonUnderlinePushed.png in Resources */,
 				CD235A28173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */,
 				CD48681517EB5B430071F3D7 /* Fart4.mp3 in Resources */,
@@ -1573,6 +1612,7 @@
 				CDDAC2C117F44E78000FEC8A /* Menu-Button-Thread@2x.png in Resources */,
 				CD7C24851754689100D90942 /* Post.html in Resources */,
 				CD7C24871754689100D90942 /* ReviewPost.html in Resources */,
+				CD7F2EB317FA705300E7EAE3 /* Web-Previous@2x.png in Resources */,
 				CD7C24891754689100D90942 /* Story.html in Resources */,
 				CD48681117EB5B430071F3D7 /* Fart2.mp3 in Resources */,
 				CD7C248B1754689100D90942 /* Stylesheet.css in Resources */,
@@ -1601,6 +1641,7 @@
 				CD7ADD1617EF180E00B4C886 /* MessageCell-iPad.xib in Resources */,
 				CDA1175216C1DC6600CE1375 /* ChattyViewController.xib in Resources */,
 				CDDAC2D417F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png in Resources */,
+				CD7F2EB217FA705300E7EAE3 /* Web-Previous.png in Resources */,
 				CDA1175316C1DC6600CE1375 /* ThreadCell.xib in Resources */,
 				CD7ADD0317EF17FA00B4C886 /* SearchViewController-iPad.xib in Resources */,
 				CDA1175916C1DC6600CE1375 /* ThreadViewController.xib in Resources */,
@@ -1609,6 +1650,7 @@
 				CD48681A17EB5B430071F3D7 /* Fart6.mp3 in Resources */,
 				CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */,
 				CDC0E9C717F91AEF007D3738 /* Sidebar-bg.png in Resources */,
+				CD7F2EB817FA705300E7EAE3 /* Web-Refresh@2x.png in Resources */,
 				CD48682017EB5B430071F3D7 /* Fart9.mp3 in Resources */,
 				CDDAC2F217F44E78000FEC8A /* Stories-Inactive.png in Resources */,
 				CD7ADD1A17EF180E00B4C886 /* RootCell-iPad.xib in Resources */,
@@ -1619,6 +1661,7 @@
 				CDDAC2D017F44E78000FEC8A /* Thread-Toolbar-Timer@2x.png in Resources */,
 				CDC0E9C917F91AEF007D3738 /* Sidebar-bg@2x.png in Resources */,
 				CDDAC30817F44E78000FEC8A /* Messages-Inactive@2x.png in Resources */,
+				CD7F2EB617FA705300E7EAE3 /* Web-Refresh.png in Resources */,
 				CDA1177016C1DC6600CE1375 /* Settings.bundle in Resources */,
 				CDDAC2F017F44E78000FEC8A /* Story-Comment-Count.png in Resources */,
 				CDDAC2E017F44E78000FEC8A /* Thread-Toolbar-Next@2x.png in Resources */,
@@ -1647,6 +1690,7 @@
 				CDDAC2F617F44E78000FEC8A /* Stories-Active@2x.png in Resources */,
 				CDDAC30017F44E78000FEC8A /* Search-Inactive@2x.png in Resources */,
 				CD7ADCFD17EF17FA00B4C886 /* ReviewThreadViewController-iPad.xib in Resources */,
+				CD7F2EB017FA705300E7EAE3 /* Web-Next@2x.png in Resources */,
 				CD7ADCF517EF17FA00B4C886 /* ComposeViewController-iPad.xib in Resources */,
 				CD7ADD0D17EF17FA00B4C886 /* StoryViewController-iPad.xib in Resources */,
 				CDA117BA16C1DC6600CE1375 /* AppleSafari-Icon.png in Resources */,
@@ -1658,6 +1702,7 @@
 				CDA117BF16C1DC6600CE1375 /* GoogleChrome-Icon.png in Resources */,
 				CDDAC2E417F44E78000FEC8A /* Thread-Toolbar-Mods@2x.png in Resources */,
 				CDA117C016C1DC6600CE1375 /* GoogleChrome-Icon@2x.png in Resources */,
+				CD7F2EBC17FA705300E7EAE3 /* Web-Share@2x.png in Resources */,
 				CDA117C116C1DC6600CE1375 /* GoogleChrome-Icon@2x~ipad.png in Resources */,
 				CDA117C216C1DC6600CE1375 /* GoogleChrome-Icon~ipad.png in Resources */,
 				CD7ADD0F17EF17FA00B4C886 /* ThreadViewController-iPad.xib in Resources */,
@@ -1680,6 +1725,7 @@
 				CD235A091739D5EA0078423B /* ButtonStrike@2x.png in Resources */,
 				CD235A0B1739D5EA0078423B /* ButtonUnderline.png in Resources */,
 				CDDAC31C17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
+				CD7F2EBA17FA705300E7EAE3 /* Web-Share.png in Resources */,
 				CD235A0D1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */,
 				CD235A1F173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */,
 				CD235A21173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */,
@@ -1690,6 +1736,7 @@
 				CD235A29173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */,
 				CD7ADD0717EF17FA00B4C886 /* SettingsViewController-iPad.xib in Resources */,
 				CD48681C17EB5B430071F3D7 /* Fart7.mp3 in Resources */,
+				CD7F2EAE17FA705300E7EAE3 /* Web-Next.png in Resources */,
 				CD7ADD0B17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */,
 				CD7ADCFB17EF17FA00B4C886 /* NoContentController-iPad.xib in Resources */,
 				CD48681217EB5B430071F3D7 /* Fart2.mp3 in Resources */,
@@ -1744,6 +1791,7 @@
 				CDDAC2C217F44E78000FEC8A /* Menu-Button-Thread@2x.png in Resources */,
 				CDB348FB1745745F000003CA /* TimerDotQuarter.png in Resources */,
 				CDB348FD1745745F000003CA /* TimerDotHalf.png in Resources */,
+				CD7F2EB417FA705300E7EAE3 /* Web-Previous@2x.png in Resources */,
 				CDB348FF1745745F000003CA /* TimerDotThreeQuarter.png in Resources */,
 				CDB349011745745F000003CA /* TimerDotFull.png in Resources */,
 				CD7C247C1754674300D90942 /* StoriesViewController.xib in Resources */,
