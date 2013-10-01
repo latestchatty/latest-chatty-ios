@@ -8,8 +8,6 @@
 
 #import "ModelListViewController.h"
 
-#import "MBProgressHUD.h"
-
 @implementation ModelListViewController
 
 @synthesize tableView;
@@ -95,14 +93,6 @@
     [UIView beginAnimations:@"LoadingViewFadeIn" context:nil];
     loadingView.alpha = 1.0;
     [UIView commitAnimations];
-    
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [hud setLabelText:@"Loading..."];
-//    [hud setDimBackground:YES];
-//    [hud setColor:[UIColor lcTableBackgroundColor]];
-//    if (![self isKindOfClass:[ThreadViewController class]]) {
-//        [hud setYOffset:+33];
-//    }
 }
 
 - (void)hideLoadingSpinner {
@@ -111,8 +101,6 @@
     [UIView commitAnimations];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (BOOL)loading {
