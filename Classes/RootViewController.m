@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+
 #import "CustomBadge.h"
 
 @implementation RootViewController
@@ -37,8 +38,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    [self.messagesSpinner startAnimating];
-//    messageLoader = [Message findAllWithDelegate:self];
+    [self.messagesSpinner startAnimating];
+    messageLoader = [Message findAllWithDelegate:self];
 }
 
 - (void)viewDidLoad {
@@ -66,19 +67,17 @@
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
-    UINavigationController *centerNavigationController = (UINavigationController *)self.viewDeckController.centerController;
-    if ([self centerControllerHasMenuButton:centerNavigationController]) {
+    if ([self centerControllerHasMenuButton:[LatestChatty2AppDelegate delegate].navigationController]) {
         [UIView animateWithDuration:0.3 animations:^{
-            [centerNavigationController.topViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor lcIOS7BlueColor]];
+            [[LatestChatty2AppDelegate delegate].navigationController.topViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor lcIOS7BlueColor]];
         }];
     }
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
-    UINavigationController *centerNavigationController = (UINavigationController *)self.viewDeckController.centerController;
-    if ([self centerControllerHasMenuButton:centerNavigationController]) {
+    if ([self centerControllerHasMenuButton:[LatestChatty2AppDelegate delegate].navigationController]) {
         [UIView animateWithDuration:0.3 animations:^{
-            [centerNavigationController.topViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
+            [[LatestChatty2AppDelegate delegate].navigationController.topViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
         }];
     }
 }
@@ -103,7 +102,7 @@
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
-        [(UINavigationController*)self.viewDeckController.centerController pushViewController:viewController animated:YES];
+        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
     }
 }
 
@@ -117,7 +116,7 @@
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
-        [(UINavigationController*)self.viewDeckController.centerController pushViewController:viewController animated:YES];
+        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
     }
 
 }
@@ -179,7 +178,7 @@
             cell.title = @"Messages";
             
             // add activity spinner to messages cell that starts spinning when messages are loading and stops when the messages call has finished
-            if (self.messagesSpinner == nil) {
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice] && self.messagesSpinner == nil) {
                 [self setMessagesSpinner:[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]];
                 [self.messagesSpinner setColor:[UIColor lightGrayColor]];
                 int center = [cell iconImage].frameHeight / 2; //vertical center
@@ -300,6 +299,7 @@
                 [self.navigationController pushViewController:viewController animated:YES];
             } else {
                 self.viewDeckController.centerController = [[UINavigationController alloc] initWithRootViewController:viewController];
+                [LatestChatty2AppDelegate delegate].navigationController = (UINavigationController *)self.viewDeckController.centerController;
                 [self.viewDeckController toggleLeftView];
             }
         }
