@@ -26,7 +26,7 @@
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Story preview. Story preview. Story preview. Story preview. Story preview. Story preview. Story preview. Story preview. " lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" id="11">
-                        <rect key="frame" x="7" y="30" width="248" height="72"/>
+                        <rect key="frame" x="7" y="31" width="248" height="72"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,7 +34,7 @@
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Mar 3 10:15AM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="8" id="18">
-                        <rect key="frame" x="255" y="73" width="58" height="29"/>
+                        <rect key="frame" x="255" y="72" width="58" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>

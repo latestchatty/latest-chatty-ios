@@ -434,7 +434,7 @@
                     <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" text="Post preview... Post preview... Post preview... Post preview... Post preview... Post preview... Post preview... " lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="12" adjustsFontSizeToFit="NO" id="100">
-                    <rect key="frame" x="10" y="22" width="234" height="36"/>
+                    <rect key="frame" x="10" y="20" width="234" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.69019607843137254" green="0.70588235294117641" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
