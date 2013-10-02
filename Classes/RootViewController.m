@@ -69,17 +69,22 @@
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    // resign any showing keyboards
+    [[LatestChatty2AppDelegate delegate].navigationController.visibleViewController.view endEditing:YES];
+    
+    // color the menu button blue
     if ([self centerControllerHasMenuButton:[LatestChatty2AppDelegate delegate].navigationController]) {
         [UIView animateWithDuration:0.3 animations:^{
-            [[LatestChatty2AppDelegate delegate].navigationController.topViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor lcIOS7BlueColor]];
+            [[LatestChatty2AppDelegate delegate].navigationController.visibleViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor lcIOS7BlueColor]];
         }];
     }
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    // color the menu button back to white
     if ([self centerControllerHasMenuButton:[LatestChatty2AppDelegate delegate].navigationController]) {
         [UIView animateWithDuration:0.3 animations:^{
-            [[LatestChatty2AppDelegate delegate].navigationController.topViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
+            [[LatestChatty2AppDelegate delegate].navigationController.visibleViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
         }];
     }
 }
@@ -87,7 +92,7 @@
 - (BOOL)centerControllerHasMenuButton:(UINavigationController *)navController {
     NSArray *classesWithMenuButton = @[[BrowserViewController class], [ChattyViewController class], [MessagesViewController class], [SearchViewController class], [StoriesViewController class]];
     for (Class cls in classesWithMenuButton) {
-        if ([navController.topViewController isKindOfClass:cls]) {
+        if ([navController.visibleViewController isKindOfClass:cls]) {
             return YES;
         }
     }
