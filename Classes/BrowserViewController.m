@@ -328,11 +328,9 @@
 
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
-    [webView loadHTMLString:@"<div></div>" baseURL:nil];
-    if (webView.loading) {
-        [webView stopLoading];
-    }
+
+    [webView stopLoading];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
     webView.delegate = nil;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];

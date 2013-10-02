@@ -63,14 +63,9 @@
 }
 
 - (IIViewDeckController*)generateControllerStack {
-//    if (![self reloadSavedState]) {
-//        // Add the root view controller
-//        RootViewController *viewController = [RootViewController controllerWithNib];
-//        [navigationController pushViewController:viewController animated:NO];
-//    }
-    
     // Left controller
     RootViewController* leftController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    
     // Center controller
     ChattyViewController *centerController = [[ChattyViewController alloc] initWithNibName:@"ChattyViewController" bundle:nil];
     [centerController setTitle:@"Loading..."];
@@ -148,9 +143,6 @@
         [self setupInterfaceForPhoneWithOptions:launchOptions];
     }
     
-    // iOS7
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
     [window makeKeyAndVisible];
     
     // Modified requestBody and request URL for May 2013 Shacknews login changes
@@ -204,6 +196,14 @@
     
     return YES;
 }
+
+//- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+//    UIApplicationState state = [application applicationState];
+//    if (state == UIApplicationStateActive) {
+//        NSLog(@"adding toast");
+//        [self.navigationController.visibleViewController.view makeToast:notification.alertBody];
+//    }
+//}
 
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //    if ([userInfo objectForKey:@"message_id"]) {
@@ -415,30 +415,26 @@
 
 // Custom appearance settings for UIKit items
 - (void)customizeAppearance {
-    // Set a corner radius around the whole app window
-//    [self.window.layer setCornerRadius:7.0f];
-//    [self.window.layer setMasksToBounds:YES];
-
-    // iOS7 tinting
+    // status bar
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    // Give the navigation bar title text coloring & shadowing
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary titleTextAttributesDictionary]];
+    
+    // nav/toolbar tinting
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0]];
     [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
     [[UIToolbar appearance] setBarTintColor:[UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0]];
     
-    // Give the navigation bar title text shadowing
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary titleTextAttributesDictionary]];
-    
-//    // Give text in buttons blue coloring
-//    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
-//                                                forState:UIControlStateNormal];
-
+    // Settings controls appearance
     [[UISwitch appearance] setOnTintColor:[UIColor lcSwitchOnColor]];
     [[UISwitch appearance] setTintColor:[UIColor lcSwitchOffColor]];
-
     [[UISlider appearance] setThumbTintColor:[UIColor lcSliderThumbColor]];
     [[UISlider appearance] setMinimumTrackTintColor:[UIColor lcSwitchOnColor]];
     [[UISlider appearance] setMaximumTrackTintColor:[UIColor lcSliderThumbColor]];
     
+    // progress bar (uploading to chattypics)
     [[UIProgressView appearance] setProgressTintColor:[UIColor lcSwitchOnColor]];
     [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderThumbColor]];
 }

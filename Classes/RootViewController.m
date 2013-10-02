@@ -38,6 +38,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    // fetch messages
     [self.messagesSpinner startAnimating];
     messageLoader = [Message findAllWithDelegate:self];
 }
@@ -127,6 +129,12 @@
         if (message.unread) messageCount++;
     }
     
+//    if (messageCount > 0) {
+//        UILocalNotification *messagesNotification = [[UILocalNotification alloc] init];
+//        messagesNotification.alertBody = @"You have unread messages.";
+//        [[UIApplication sharedApplication] scheduleLocalNotification:messagesNotification];
+//    }
+    
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     
     // keep track if an index path had been selected, and reset it after the table is reloaded
@@ -172,6 +180,7 @@
             
         case 1:
             cell.title = @"LatestChatty";
+            [cell setBadgeWithNumber:0];
 			break;
             
         case 2:

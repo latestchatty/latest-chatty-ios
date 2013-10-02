@@ -59,6 +59,7 @@
 
 - (void)setBadgeWithNumber:(int)badgeNumber {
     [self.badge setHidden:YES];
+    if (badgeNumber <= 0) return;
     
     // modify left edge of badge frame depending on how many digits are in the unread message count
     float leftEdge = self.iconImage.frameWidth - 20;
@@ -71,7 +72,7 @@
     [self.badge autoBadgeSizeWithString:[NSString stringWithFormat:@"%i", badgeNumber]];
     
     //only show if the number is positive
-    if (badgeNumber > 0) [self.badge setHidden:NO];
+    [self.badge setHidden:NO];
 }
 
 @end
