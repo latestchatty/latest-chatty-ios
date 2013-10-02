@@ -117,10 +117,10 @@
             body.frameHeight = body.frameHeight - kbSize.height;
         }];
     }
-    NSLog(@"frameHeight: %f", body.frameHeight);
-    NSLog(@"frameWidth: %f", body.frameWidth);
-    NSLog(@"frameX: %f", body.frameX);
-    NSLog(@"frameY: %f", body.frameY);
+//    NSLog(@"frameHeight: %f", body.frameHeight);
+//    NSLog(@"frameWidth: %f", body.frameWidth);
+//    NSLog(@"frameX: %f", body.frameX);
+//    NSLog(@"frameY: %f", body.frameY);
 }
 
 - (void)keyboardDidHide:(NSNotification *)note {
