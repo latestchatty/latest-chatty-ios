@@ -4,10 +4,27 @@ latest-chatty-2
 iOS 7 Conversion / Semi-rewrite
 
 *Disclaimers/Known Issues:
-- Colors, fonts, etc. aren't finalized as I am trying out different things.
 - iPad has not been touched yet at all, probably blows up completely there.
 - The (x) to clear text fields on Search view isn't currently working.
-- The status bar background color change when menu is opened is not fully functional yet
+
+3.4.8
+====
+- Parallax effect added to side menu open/close action
+- Side menu is now the same width size regardless of orientation
+- Side menu now has a fixed background image
+- Revised the implementation of changing the color of the bar under status area & menu button color when side menu is open/closed with toggle or pan gesture, no longer a bug when panning menu completely closed
+- Post category bar and expiration bar color tweaks
+- Resolve alignment bug with loading spinner when loading a section from the side menu
+
+3.4.7
+====
+- Further updates to UI: coloring, images, etc.
+- Navigation/toolbars are now opaque
+- New launch image due to navigation bar change
+- Table cells now animate their opacity in slightly when they are scrolled into view
+- Opening the side menu now animates a black bar into view underneath the status text area
+- Top left menu button changes color when side menu is opened
+- Browser view bottom toolbar buttons evenly spaced apart
 
 3.4.6
 ====
