@@ -98,7 +98,7 @@
     self.navigationController.navigationBar.translucent = NO;
     
     // top separation bar
-    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frameY, 320, 1)];
     [topStroke setBackgroundColor:[UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
