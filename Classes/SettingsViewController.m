@@ -105,11 +105,6 @@
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    [usernameField resignFirstResponder];
-//    [passwordField resignFirstResponder];
-//    [serverField resignFirstResponder];
-//    [picsUsernameField resignFirstResponder];
-//    [picsPasswordField resignFirstResponder];
     [self.view endEditing:YES];
 }
 
