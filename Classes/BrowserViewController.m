@@ -70,7 +70,7 @@
     self.navigationController.navigationBar.translucent = NO;
     
     // top separation bar
-    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+     topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
     [topStroke setBackgroundColor:[UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
@@ -98,10 +98,11 @@
         CGRect bottomToolbarFrame = bottomToolbar.frame;
         bottomToolbarFrame.origin.y = self.view.frameHeight + bottomToolbar.frameHeight;
         bottomToolbar.frame = bottomToolbarFrame;
+        
+        CGRect topStrokeFrame = topStroke.frame;
+        topStrokeFrame.origin.y = -1;
+        topStroke.frame = topStrokeFrame;
     }];
-    
-    // need to handle the webview's content inset as well
-//    [webView.scrollView setContentInset:UIEdgeInsetsZero];
 }
 
 // Show the status bar and navigation bar with the built-in animation method
@@ -110,17 +111,15 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
-    [UIView beginAnimations:@"showBottomToolbar" context:nil];
-    [UIView setAnimationDuration:0.25];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:bottomToolbar cache:YES];
-    CGRect bottomToolbarFrame = bottomToolbar.frame;
-    bottomToolbarFrame.origin.y = self.view.frameHeight - bottomToolbar.frameHeight;
-    bottomToolbar.frame = bottomToolbarFrame;
-    [UIView commitAnimations];
-    
-    // need to handle the webview's content inset as well
-//    [webView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 44.0, 0)];
+    [UIView animateWithDuration:0.25 animations:^{
+        CGRect bottomToolbarFrame = bottomToolbar.frame;
+        bottomToolbarFrame.origin.y = self.view.frameHeight - bottomToolbar.frameHeight;
+        bottomToolbar.frame = bottomToolbarFrame;
+        
+        CGRect topStrokeFrame = topStroke.frame;
+        topStrokeFrame.origin.y = 0;
+        topStroke.frame = topStrokeFrame;
+    }];
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)sender {

@@ -8,11 +8,12 @@
 
 @interface BrowserViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate> {
     NSURLRequest *request;
-    
+
+    UIView *topStroke;
     UIWebView *webView;
     UIBarButtonItem *backButton;
     UIBarButtonItem *forwardButton;
-//    UIActivityIndicatorView *spinner;
+
     UIToolbar *mainToolbar;
     UIBarButtonItem *actionButton;
     UIToolbar *bottomToolbar;
@@ -27,7 +28,6 @@
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *backButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *forwardButton;
-//@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) IBOutlet UIToolbar *mainToolbar;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *actionButton;
 @property (nonatomic, strong) IBOutlet UIToolbar *bottomToolbar;
