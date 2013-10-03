@@ -186,13 +186,6 @@
     // initialize scoll position property
     self.scrollPosition = CGPointMake(0, 0);
     
-//    // initialize swipe gesture
-//    UISwipeGestureRecognizer *backToChattySwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-//    [backToChattySwipe setDirection:UISwipeGestureRecognizerDirectionRight];
-//    backToChattySwipe.delegate = self;
-//    [self.tableView addGestureRecognizer:backToChattySwipe];
-//    [backToChattySwipe release];
-    
     // Use the persisted orderByPostDate option to set the button in the grippybar
     orderByPostDate = [[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"];
     if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -211,18 +204,13 @@
     [self resetLayout:NO];
     
     // iOS7
-    [self setEdgesForExtendedLayout:UIRectEdgeNone];
     self.navigationController.navigationBar.translucent = NO;
     
-//    UIInterfaceOrientation orientation = self.interfaceOrientation;
-    
-//    if (UIInterfaceOrientationIsLandscape(orientation)) {
-//        [postView.scrollView setContentInset:UIEdgeInsetsMake(52.0, 0, 0, 0)];
-////        [tableView setContentInset:UIEdgeInsetsMake(-52.0, 0, 0, 0)];
-//    } else {
-//        [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
-////        [tableView setContentInset:UIEdgeInsetsMake(-64.0, 0, 0, 0)];
-//    }
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+    [topStroke setBackgroundColor:[UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -925,14 +913,7 @@
 // monitor gesture touches
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     // if gesture is panning kind (ViewDeck uses panning to bring out menu)
-    if ([gestureRecognizer.class isSubclassOfClass:[UIPanGestureRecognizer class]]) {
-        // and if gesture is on the replies table, cancel it to allow the swipe gesture through
-        if ([touch.view.superview isKindOfClass:[UITableViewCell class]] ||
-            [touch.view isKindOfClass:[UITableView class]]) {
-            return NO;
-        }
-        return YES;
-    }
+    if ([gestureRecognizer.class isSubclassOfClass:[UIPanGestureRecognizer class]]) return YES;
 
     // if gesture is swipe kind, let it pass through
     if ([gestureRecognizer.class isSubclassOfClass:[UISwipeGestureRecognizer class]]) return YES;
@@ -945,10 +926,6 @@
     }
 
     return NO;
-}
-
-- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {

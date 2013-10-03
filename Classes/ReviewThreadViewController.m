@@ -26,10 +26,15 @@
     [self placePostInWebView:self.rootPost];
     
     [doneButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
-    [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
     
     // iOS7
     self.navigationController.navigationBar.translucent = NO;
+    
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+    [topStroke setBackgroundColor:[UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
 }
 
 - (IBAction)dismiss {
