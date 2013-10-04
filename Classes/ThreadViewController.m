@@ -853,7 +853,7 @@
                 [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
         }
         
-        //show tagged HUD message for 2 seconds
+        //show mod HUD message
         NSTimeInterval theTimeInterval = 1;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
@@ -864,7 +864,7 @@
     } else if ([[actionSheet title] isEqualToString:@"Tag this Post"]) { //tagging
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
         
-        //show tagged HUD message for 2 seconds
+        //show tag HUD message
         NSTimeInterval theTimeInterval = 1;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
