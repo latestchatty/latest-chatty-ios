@@ -33,38 +33,6 @@
 		CD205661174540A9003AF4FA /* PinIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = CD205655174540A9003AF4FA /* PinIcon.24.png */; };
 		CD205668174540A9003AF4FA /* PinIcon.24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD205659174540A9003AF4FA /* PinIcon.24@2x.png */; };
 		CD205669174540A9003AF4FA /* PinIcon.24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD205659174540A9003AF4FA /* PinIcon.24@2x.png */; };
-		CD2359F61739D5EA0078423B /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EA1739D5EA0078423B /* Button.png */; };
-		CD2359F71739D5EA0078423B /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EA1739D5EA0078423B /* Button.png */; };
-		CD2359F81739D5EA0078423B /* Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EB1739D5EA0078423B /* Button@2x.png */; };
-		CD2359F91739D5EA0078423B /* Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EB1739D5EA0078423B /* Button@2x.png */; };
-		CD2359FE1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EE1739D5EA0078423B /* ButtonContentSpoiler.png */; };
-		CD2359FF1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EE1739D5EA0078423B /* ButtonContentSpoiler.png */; };
-		CD235A001739D5EA0078423B /* ButtonContentSpoiler@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EF1739D5EA0078423B /* ButtonContentSpoiler@2x.png */; };
-		CD235A011739D5EA0078423B /* ButtonContentSpoiler@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359EF1739D5EA0078423B /* ButtonContentSpoiler@2x.png */; };
-		CD235A021739D5EA0078423B /* ButtonPushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F01739D5EA0078423B /* ButtonPushed.png */; };
-		CD235A031739D5EA0078423B /* ButtonPushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F01739D5EA0078423B /* ButtonPushed.png */; };
-		CD235A041739D5EA0078423B /* ButtonPushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F11739D5EA0078423B /* ButtonPushed@2x.png */; };
-		CD235A051739D5EA0078423B /* ButtonPushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F11739D5EA0078423B /* ButtonPushed@2x.png */; };
-		CD235A061739D5EA0078423B /* ButtonStrike.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F21739D5EA0078423B /* ButtonStrike.png */; };
-		CD235A071739D5EA0078423B /* ButtonStrike.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F21739D5EA0078423B /* ButtonStrike.png */; };
-		CD235A081739D5EA0078423B /* ButtonStrike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F31739D5EA0078423B /* ButtonStrike@2x.png */; };
-		CD235A091739D5EA0078423B /* ButtonStrike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F31739D5EA0078423B /* ButtonStrike@2x.png */; };
-		CD235A0A1739D5EA0078423B /* ButtonUnderline.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F41739D5EA0078423B /* ButtonUnderline.png */; };
-		CD235A0B1739D5EA0078423B /* ButtonUnderline.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F41739D5EA0078423B /* ButtonUnderline.png */; };
-		CD235A0C1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F51739D5EA0078423B /* ButtonUnderline@2x.png */; };
-		CD235A0D1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2359F51739D5EA0078423B /* ButtonUnderline@2x.png */; };
-		CD235A1E173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */; };
-		CD235A1F173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */; };
-		CD235A20173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A15173AB4380078423B /* ButtonContentSpoilerPushed@2x.png */; };
-		CD235A21173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A15173AB4380078423B /* ButtonContentSpoilerPushed@2x.png */; };
-		CD235A22173AB4390078423B /* ButtonStrikePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A16173AB4390078423B /* ButtonStrikePushed.png */; };
-		CD235A23173AB4390078423B /* ButtonStrikePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A16173AB4390078423B /* ButtonStrikePushed.png */; };
-		CD235A24173AB4390078423B /* ButtonStrikePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A17173AB4390078423B /* ButtonStrikePushed@2x.png */; };
-		CD235A25173AB4390078423B /* ButtonStrikePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A17173AB4390078423B /* ButtonStrikePushed@2x.png */; };
-		CD235A26173AB4390078423B /* ButtonUnderlinePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A18173AB4390078423B /* ButtonUnderlinePushed.png */; };
-		CD235A27173AB4390078423B /* ButtonUnderlinePushed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A18173AB4390078423B /* ButtonUnderlinePushed.png */; };
-		CD235A28173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A19173AB4390078423B /* ButtonUnderlinePushed@2x.png */; };
-		CD235A29173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD235A19173AB4390078423B /* ButtonUnderlinePushed@2x.png */; };
 		CD235A4C173AFB920078423B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4B173AFB920078423B /* MobileCoreServices.framework */; };
 		CD235A4F173AFC000078423B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4B173AFB920078423B /* MobileCoreServices.framework */; };
 		CD235A52173B1F830078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
@@ -610,22 +578,6 @@
 		CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleSafariActivity.m; path = Classes/AppleSafariActivity.m; sourceTree = "<group>"; };
 		CD205655174540A9003AF4FA /* PinIcon.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PinIcon.24.png; path = Assets/PinIcon.24.png; sourceTree = "<group>"; };
 		CD205659174540A9003AF4FA /* PinIcon.24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PinIcon.24@2x.png"; path = "Assets/PinIcon.24@2x.png"; sourceTree = "<group>"; };
-		CD2359EA1739D5EA0078423B /* Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Button.png; path = Assets/Button.png; sourceTree = "<group>"; };
-		CD2359EB1739D5EA0078423B /* Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Button@2x.png"; path = "Assets/Button@2x.png"; sourceTree = "<group>"; };
-		CD2359EE1739D5EA0078423B /* ButtonContentSpoiler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonContentSpoiler.png; path = Assets/ButtonContentSpoiler.png; sourceTree = "<group>"; };
-		CD2359EF1739D5EA0078423B /* ButtonContentSpoiler@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonContentSpoiler@2x.png"; path = "Assets/ButtonContentSpoiler@2x.png"; sourceTree = "<group>"; };
-		CD2359F01739D5EA0078423B /* ButtonPushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonPushed.png; path = Assets/ButtonPushed.png; sourceTree = "<group>"; };
-		CD2359F11739D5EA0078423B /* ButtonPushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonPushed@2x.png"; path = "Assets/ButtonPushed@2x.png"; sourceTree = "<group>"; };
-		CD2359F21739D5EA0078423B /* ButtonStrike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonStrike.png; path = Assets/ButtonStrike.png; sourceTree = "<group>"; };
-		CD2359F31739D5EA0078423B /* ButtonStrike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonStrike@2x.png"; path = "Assets/ButtonStrike@2x.png"; sourceTree = "<group>"; };
-		CD2359F41739D5EA0078423B /* ButtonUnderline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonUnderline.png; path = Assets/ButtonUnderline.png; sourceTree = "<group>"; };
-		CD2359F51739D5EA0078423B /* ButtonUnderline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonUnderline@2x.png"; path = "Assets/ButtonUnderline@2x.png"; sourceTree = "<group>"; };
-		CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonContentSpoilerPushed.png; path = Assets/ButtonContentSpoilerPushed.png; sourceTree = "<group>"; };
-		CD235A15173AB4380078423B /* ButtonContentSpoilerPushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonContentSpoilerPushed@2x.png"; path = "Assets/ButtonContentSpoilerPushed@2x.png"; sourceTree = "<group>"; };
-		CD235A16173AB4390078423B /* ButtonStrikePushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonStrikePushed.png; path = Assets/ButtonStrikePushed.png; sourceTree = "<group>"; };
-		CD235A17173AB4390078423B /* ButtonStrikePushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonStrikePushed@2x.png"; path = "Assets/ButtonStrikePushed@2x.png"; sourceTree = "<group>"; };
-		CD235A18173AB4390078423B /* ButtonUnderlinePushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonUnderlinePushed.png; path = Assets/ButtonUnderlinePushed.png; sourceTree = "<group>"; };
-		CD235A19173AB4390078423B /* ButtonUnderlinePushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonUnderlinePushed@2x.png"; path = "Assets/ButtonUnderlinePushed@2x.png"; sourceTree = "<group>"; };
 		CD235A4B173AFB920078423B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CD235A51173B1F1A0078423B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
@@ -1425,22 +1377,6 @@
 				A254B841116FFE9A001534FF /* MenuBorder.png */,
 				FAE438C71173FAA5000263F7 /* MenuBorderOut.png */,
 				FAD29A600F796452006E14A2 /* DropShadow.png */,
-				CD2359EA1739D5EA0078423B /* Button.png */,
-				CD2359EB1739D5EA0078423B /* Button@2x.png */,
-				CD2359F01739D5EA0078423B /* ButtonPushed.png */,
-				CD2359F11739D5EA0078423B /* ButtonPushed@2x.png */,
-				CD2359EE1739D5EA0078423B /* ButtonContentSpoiler.png */,
-				CD2359EF1739D5EA0078423B /* ButtonContentSpoiler@2x.png */,
-				CD235A14173AB4380078423B /* ButtonContentSpoilerPushed.png */,
-				CD235A15173AB4380078423B /* ButtonContentSpoilerPushed@2x.png */,
-				CD2359F21739D5EA0078423B /* ButtonStrike.png */,
-				CD2359F31739D5EA0078423B /* ButtonStrike@2x.png */,
-				CD235A16173AB4390078423B /* ButtonStrikePushed.png */,
-				CD235A17173AB4390078423B /* ButtonStrikePushed@2x.png */,
-				CD2359F41739D5EA0078423B /* ButtonUnderline.png */,
-				CD2359F51739D5EA0078423B /* ButtonUnderline@2x.png */,
-				CD235A18173AB4390078423B /* ButtonUnderlinePushed.png */,
-				CD235A19173AB4390078423B /* ButtonUnderlinePushed@2x.png */,
 				FA2ECCC00F9D4FED00912BE4 /* Lock.16.png */,
 				CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */,
 				CD43CFE81744809F00165FF3 /* Clear.24.png */,
@@ -1645,40 +1581,24 @@
 				CD7F2F3517FE85BE00E7EAE3 /* Keyboard-Color-Olive.png in Resources */,
 				CDA01B241731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
 				CDC0E9C217F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
-				CD2359F61739D5EA0078423B /* Button.png in Resources */,
 				CD7F2F3F17FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */,
 				CD7F2F4B17FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png in Resources */,
 				CD7F2F5517FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */,
 				CD7ADCF417EF17FA00B4C886 /* ComposeViewController-iPad.xib in Resources */,
 				CD7F2F5917FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */,
-				CD2359F81739D5EA0078423B /* Button@2x.png in Resources */,
-				CD2359FE1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */,
 				CDDAC30F17F44E78000FEC8A /* Shack[lol]-Inactive@2x.png in Resources */,
 				CD7F2F3B17FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png in Resources */,
-				CD235A001739D5EA0078423B /* ButtonContentSpoiler@2x.png in Resources */,
 				CD7ADCFC17EF17FA00B4C886 /* ReviewThreadViewController-iPad.xib in Resources */,
 				CD7ADD1917EF180E00B4C886 /* RootCell-iPad.xib in Resources */,
 				CD7F2F4917FE85BE00E7EAE3 /* Keyboard-Normal-Code.png in Resources */,
 				CD7F2F3917FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */,
-				CD235A021739D5EA0078423B /* ButtonPushed.png in Resources */,
-				CD235A041739D5EA0078423B /* ButtonPushed@2x.png in Resources */,
 				CDDAC31B17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
 				CD7F2F4D17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
 				CD7F2EB917FA705300E7EAE3 /* Web-Share.png in Resources */,
-				CD235A061739D5EA0078423B /* ButtonStrike.png in Resources */,
-				CD235A081739D5EA0078423B /* ButtonStrike@2x.png in Resources */,
-				CD235A0A1739D5EA0078423B /* ButtonUnderline.png in Resources */,
-				CD235A0C1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */,
 				CD7F2F2F17FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
-				CD235A1E173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */,
 				CD7ADD0E17EF17FA00B4C886 /* ThreadViewController-iPad.xib in Resources */,
 				CDDAC2CD17F44E78000FEC8A /* Menu-Button-Compose.png in Resources */,
-				CD235A20173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */,
-				CD235A22173AB4390078423B /* ButtonStrikePushed.png in Resources */,
-				CD235A24173AB4390078423B /* ButtonStrikePushed@2x.png in Resources */,
 				CD7F2EAD17FA705300E7EAE3 /* Web-Next.png in Resources */,
-				CD235A26173AB4390078423B /* ButtonUnderlinePushed.png in Resources */,
-				CD235A28173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */,
 				CD48681517EB5B430071F3D7 /* Fart4.mp3 in Resources */,
 				CD43CFE61743B7AD00165FF3 /* ComposeViewController.xib in Resources */,
 				CDDAC2E117F44E78000FEC8A /* Thread-Toolbar-Next.png in Resources */,
@@ -1850,35 +1770,19 @@
 				CD7F2F3617FE85BE00E7EAE3 /* Keyboard-Color-Olive.png in Resources */,
 				CD7ADD2117EF19F300B4C886 /* Images.xcassets in Resources */,
 				CDC0E9C317F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
-				CD2359F71739D5EA0078423B /* Button.png in Resources */,
 				CD7F2F4017FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */,
 				CD7F2F4C17FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png in Resources */,
 				CD7F2F5617FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */,
-				CD2359F91739D5EA0078423B /* Button@2x.png in Resources */,
 				CD7F2F5A17FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */,
-				CD2359FF1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */,
-				CD235A011739D5EA0078423B /* ButtonContentSpoiler@2x.png in Resources */,
 				CDDAC31017F44E78000FEC8A /* Shack[lol]-Inactive@2x.png in Resources */,
 				CD7F2F3C17FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png in Resources */,
-				CD235A031739D5EA0078423B /* ButtonPushed.png in Resources */,
-				CD235A051739D5EA0078423B /* ButtonPushed@2x.png in Resources */,
-				CD235A071739D5EA0078423B /* ButtonStrike.png in Resources */,
 				CD7F2F4A17FE85BE00E7EAE3 /* Keyboard-Normal-Code.png in Resources */,
 				CD7F2F3A17FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */,
-				CD235A091739D5EA0078423B /* ButtonStrike@2x.png in Resources */,
-				CD235A0B1739D5EA0078423B /* ButtonUnderline.png in Resources */,
 				CDDAC31C17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
 				CD7F2F4E17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
 				CD7F2EBA17FA705300E7EAE3 /* Web-Share.png in Resources */,
-				CD235A0D1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */,
-				CD235A1F173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */,
-				CD235A21173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */,
-				CD235A23173AB4390078423B /* ButtonStrikePushed.png in Resources */,
 				CD7F2F3017FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
-				CD235A25173AB4390078423B /* ButtonStrikePushed@2x.png in Resources */,
-				CD235A27173AB4390078423B /* ButtonUnderlinePushed.png in Resources */,
 				CDDAC2CE17F44E78000FEC8A /* Menu-Button-Compose.png in Resources */,
-				CD235A29173AB4390078423B /* ButtonUnderlinePushed@2x.png in Resources */,
 				CD7ADD0717EF17FA00B4C886 /* SettingsViewController-iPad.xib in Resources */,
 				CD48681C17EB5B430071F3D7 /* Fart7.mp3 in Resources */,
 				CD7F2EAE17FA705300E7EAE3 /* Web-Next.png in Resources */,
