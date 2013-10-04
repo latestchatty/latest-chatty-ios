@@ -64,9 +64,8 @@
         [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
         [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
         
-        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:
-                                         [UIImage imageNamed:@"Sidebar-bg.png"]];
-        self.tableView.backgroundView.contentMode = UIViewContentModeTopLeft;
+        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Sidebar-bg.png"]];
+        self.tableView.backgroundView.contentMode = UIViewContentModeScaleToFill;
     }
     
     // Maintain selection while view is still loaded
