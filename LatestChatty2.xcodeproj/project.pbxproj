@@ -228,6 +228,58 @@
 		CD7F2EBA17FA705300E7EAE3 /* Web-Share.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EAB17FA705300E7EAE3 /* Web-Share.png */; };
 		CD7F2EBB17FA705300E7EAE3 /* Web-Share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EAC17FA705300E7EAE3 /* Web-Share@2x.png */; };
 		CD7F2EBC17FA705300E7EAE3 /* Web-Share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2EAC17FA705300E7EAE3 /* Web-Share@2x.png */; };
+		CD7F2F2917FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F0F17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal.png */; };
+		CD7F2F2A17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F0F17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal.png */; };
+		CD7F2F2B17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1017FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png */; };
+		CD7F2F2C17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1017FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png */; };
+		CD7F2F2D17FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1117FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal.png */; };
+		CD7F2F2E17FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1117FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal.png */; };
+		CD7F2F2F17FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1217FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png */; };
+		CD7F2F3017FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1217FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png */; };
+		CD7F2F3117FE85BE00E7EAE3 /* Keyboard-Color-Lime.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1317FE85BE00E7EAE3 /* Keyboard-Color-Lime.png */; };
+		CD7F2F3217FE85BE00E7EAE3 /* Keyboard-Color-Lime.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1317FE85BE00E7EAE3 /* Keyboard-Color-Lime.png */; };
+		CD7F2F3317FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1417FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png */; };
+		CD7F2F3417FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1417FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png */; };
+		CD7F2F3517FE85BE00E7EAE3 /* Keyboard-Color-Olive.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1517FE85BE00E7EAE3 /* Keyboard-Color-Olive.png */; };
+		CD7F2F3617FE85BE00E7EAE3 /* Keyboard-Color-Olive.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1517FE85BE00E7EAE3 /* Keyboard-Color-Olive.png */; };
+		CD7F2F3717FE85BE00E7EAE3 /* Keyboard-Color-Olive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1617FE85BE00E7EAE3 /* Keyboard-Color-Olive@2x.png */; };
+		CD7F2F3817FE85BE00E7EAE3 /* Keyboard-Color-Olive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1617FE85BE00E7EAE3 /* Keyboard-Color-Olive@2x.png */; };
+		CD7F2F3917FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1717FE85BE00E7EAE3 /* Keyboard-Color-Orange.png */; };
+		CD7F2F3A17FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1717FE85BE00E7EAE3 /* Keyboard-Color-Orange.png */; };
+		CD7F2F3B17FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1817FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png */; };
+		CD7F2F3C17FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1817FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png */; };
+		CD7F2F3D17FE85BE00E7EAE3 /* Keyboard-Color-Pink.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1917FE85BE00E7EAE3 /* Keyboard-Color-Pink.png */; };
+		CD7F2F3E17FE85BE00E7EAE3 /* Keyboard-Color-Pink.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1917FE85BE00E7EAE3 /* Keyboard-Color-Pink.png */; };
+		CD7F2F3F17FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1A17FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png */; };
+		CD7F2F4017FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1A17FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png */; };
+		CD7F2F4117FE85BE00E7EAE3 /* Keyboard-Color-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1B17FE85BE00E7EAE3 /* Keyboard-Color-Red.png */; };
+		CD7F2F4217FE85BE00E7EAE3 /* Keyboard-Color-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1B17FE85BE00E7EAE3 /* Keyboard-Color-Red.png */; };
+		CD7F2F4317FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1C17FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png */; };
+		CD7F2F4417FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1C17FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png */; };
+		CD7F2F4517FE85BE00E7EAE3 /* Keyboard-Color-Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1D17FE85BE00E7EAE3 /* Keyboard-Color-Yellow.png */; };
+		CD7F2F4617FE85BE00E7EAE3 /* Keyboard-Color-Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1D17FE85BE00E7EAE3 /* Keyboard-Color-Yellow.png */; };
+		CD7F2F4717FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1E17FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png */; };
+		CD7F2F4817FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1E17FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png */; };
+		CD7F2F4917FE85BE00E7EAE3 /* Keyboard-Normal-Code.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1F17FE85BE00E7EAE3 /* Keyboard-Normal-Code.png */; };
+		CD7F2F4A17FE85BE00E7EAE3 /* Keyboard-Normal-Code.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F1F17FE85BE00E7EAE3 /* Keyboard-Normal-Code.png */; };
+		CD7F2F4B17FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2017FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png */; };
+		CD7F2F4C17FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2017FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png */; };
+		CD7F2F4D17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2117FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png */; };
+		CD7F2F4E17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2117FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png */; };
+		CD7F2F4F17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2217FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png */; };
+		CD7F2F5017FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2217FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png */; };
+		CD7F2F5117FE85BE00E7EAE3 /* Keyboard-Normal-Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2317FE85BE00E7EAE3 /* Keyboard-Normal-Strike.png */; };
+		CD7F2F5217FE85BE00E7EAE3 /* Keyboard-Normal-Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2317FE85BE00E7EAE3 /* Keyboard-Normal-Strike.png */; };
+		CD7F2F5317FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2417FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png */; };
+		CD7F2F5417FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2417FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png */; };
+		CD7F2F5517FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2517FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png */; };
+		CD7F2F5617FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2517FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png */; };
+		CD7F2F5717FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2617FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png */; };
+		CD7F2F5817FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2617FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png */; };
+		CD7F2F5917FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2717FE85BE00E7EAE3 /* Keyboard-Normal.png */; };
+		CD7F2F5A17FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2717FE85BE00E7EAE3 /* Keyboard-Normal.png */; };
+		CD7F2F5B17FE85BE00E7EAE3 /* Keyboard-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */; };
+		CD7F2F5C17FE85BE00E7EAE3 /* Keyboard-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */; };
 		CD8BA2B916306A0900ED5C5E /* AppleSafari-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */; };
 		CD8BA2BA16306A0900ED5C5E /* AppleSafari-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */; };
 		CD8BA2BB16306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */; };
@@ -688,6 +740,32 @@
 		CD7F2EAA17FA705300E7EAE3 /* Web-Refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Refresh@2x.png"; path = "Assets/Web-Refresh@2x.png"; sourceTree = "<group>"; };
 		CD7F2EAB17FA705300E7EAE3 /* Web-Share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Share.png"; path = "Assets/Web-Share.png"; sourceTree = "<group>"; };
 		CD7F2EAC17FA705300E7EAE3 /* Web-Share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-Share@2x.png"; path = "Assets/Web-Share@2x.png"; sourceTree = "<group>"; };
+		CD7F2F0F17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Blue-Normal.png"; path = "Assets/Keyboard-Color-Blue-Normal.png"; sourceTree = "<group>"; };
+		CD7F2F1017FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Blue-Normal@2x.png"; path = "Assets/Keyboard-Color-Blue-Normal@2x.png"; sourceTree = "<group>"; };
+		CD7F2F1117FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Green-Normal.png"; path = "Assets/Keyboard-Color-Green-Normal.png"; sourceTree = "<group>"; };
+		CD7F2F1217FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Green-Normal@2x.png"; path = "Assets/Keyboard-Color-Green-Normal@2x.png"; sourceTree = "<group>"; };
+		CD7F2F1317FE85BE00E7EAE3 /* Keyboard-Color-Lime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Lime.png"; path = "Assets/Keyboard-Color-Lime.png"; sourceTree = "<group>"; };
+		CD7F2F1417FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Lime@2x.png"; path = "Assets/Keyboard-Color-Lime@2x.png"; sourceTree = "<group>"; };
+		CD7F2F1517FE85BE00E7EAE3 /* Keyboard-Color-Olive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Olive.png"; path = "Assets/Keyboard-Color-Olive.png"; sourceTree = "<group>"; };
+		CD7F2F1617FE85BE00E7EAE3 /* Keyboard-Color-Olive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Olive@2x.png"; path = "Assets/Keyboard-Color-Olive@2x.png"; sourceTree = "<group>"; };
+		CD7F2F1717FE85BE00E7EAE3 /* Keyboard-Color-Orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Orange.png"; path = "Assets/Keyboard-Color-Orange.png"; sourceTree = "<group>"; };
+		CD7F2F1817FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Orange@2x.png"; path = "Assets/Keyboard-Color-Orange@2x.png"; sourceTree = "<group>"; };
+		CD7F2F1917FE85BE00E7EAE3 /* Keyboard-Color-Pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Pink.png"; path = "Assets/Keyboard-Color-Pink.png"; sourceTree = "<group>"; };
+		CD7F2F1A17FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Pink@2x.png"; path = "Assets/Keyboard-Color-Pink@2x.png"; sourceTree = "<group>"; };
+		CD7F2F1B17FE85BE00E7EAE3 /* Keyboard-Color-Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Red.png"; path = "Assets/Keyboard-Color-Red.png"; sourceTree = "<group>"; };
+		CD7F2F1C17FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Red@2x.png"; path = "Assets/Keyboard-Color-Red@2x.png"; sourceTree = "<group>"; };
+		CD7F2F1D17FE85BE00E7EAE3 /* Keyboard-Color-Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Yellow.png"; path = "Assets/Keyboard-Color-Yellow.png"; sourceTree = "<group>"; };
+		CD7F2F1E17FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Color-Yellow@2x.png"; path = "Assets/Keyboard-Color-Yellow@2x.png"; sourceTree = "<group>"; };
+		CD7F2F1F17FE85BE00E7EAE3 /* Keyboard-Normal-Code.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal-Code.png"; path = "Assets/Keyboard-Normal-Code.png"; sourceTree = "<group>"; };
+		CD7F2F2017FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal-Code@2x.png"; path = "Assets/Keyboard-Normal-Code@2x.png"; sourceTree = "<group>"; };
+		CD7F2F2117FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal-Spoiler.png"; path = "Assets/Keyboard-Normal-Spoiler.png"; sourceTree = "<group>"; };
+		CD7F2F2217FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal-Spoiler@2x.png"; path = "Assets/Keyboard-Normal-Spoiler@2x.png"; sourceTree = "<group>"; };
+		CD7F2F2317FE85BE00E7EAE3 /* Keyboard-Normal-Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal-Strike.png"; path = "Assets/Keyboard-Normal-Strike.png"; sourceTree = "<group>"; };
+		CD7F2F2417FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal-Strike@2x.png"; path = "Assets/Keyboard-Normal-Strike@2x.png"; sourceTree = "<group>"; };
+		CD7F2F2517FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal-Underline.png"; path = "Assets/Keyboard-Normal-Underline.png"; sourceTree = "<group>"; };
+		CD7F2F2617FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal-Underline@2x.png"; path = "Assets/Keyboard-Normal-Underline@2x.png"; sourceTree = "<group>"; };
+		CD7F2F2717FE85BE00E7EAE3 /* Keyboard-Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal.png"; path = "Assets/Keyboard-Normal.png"; sourceTree = "<group>"; };
+		CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal@2x.png"; path = "Assets/Keyboard-Normal@2x.png"; sourceTree = "<group>"; };
 		CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon.png"; path = "Assets/AppleSafari-Icon.png"; sourceTree = "<group>"; };
 		CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon@2x.png"; path = "Assets/AppleSafari-Icon@2x.png"; sourceTree = "<group>"; };
 		CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon@2x~ipad.png"; path = "Assets/AppleSafari-Icon@2x~ipad.png"; sourceTree = "<group>"; };
@@ -1299,6 +1377,32 @@
 				CD7F2EAA17FA705300E7EAE3 /* Web-Refresh@2x.png */,
 				CD7F2EAB17FA705300E7EAE3 /* Web-Share.png */,
 				CD7F2EAC17FA705300E7EAE3 /* Web-Share@2x.png */,
+				CD7F2F0F17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal.png */,
+				CD7F2F1017FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png */,
+				CD7F2F1117FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal.png */,
+				CD7F2F1217FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png */,
+				CD7F2F1317FE85BE00E7EAE3 /* Keyboard-Color-Lime.png */,
+				CD7F2F1417FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png */,
+				CD7F2F1517FE85BE00E7EAE3 /* Keyboard-Color-Olive.png */,
+				CD7F2F1617FE85BE00E7EAE3 /* Keyboard-Color-Olive@2x.png */,
+				CD7F2F1717FE85BE00E7EAE3 /* Keyboard-Color-Orange.png */,
+				CD7F2F1817FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png */,
+				CD7F2F1917FE85BE00E7EAE3 /* Keyboard-Color-Pink.png */,
+				CD7F2F1A17FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png */,
+				CD7F2F1B17FE85BE00E7EAE3 /* Keyboard-Color-Red.png */,
+				CD7F2F1C17FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png */,
+				CD7F2F1D17FE85BE00E7EAE3 /* Keyboard-Color-Yellow.png */,
+				CD7F2F1E17FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png */,
+				CD7F2F1F17FE85BE00E7EAE3 /* Keyboard-Normal-Code.png */,
+				CD7F2F2017FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png */,
+				CD7F2F2117FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png */,
+				CD7F2F2217FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png */,
+				CD7F2F2317FE85BE00E7EAE3 /* Keyboard-Normal-Strike.png */,
+				CD7F2F2417FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png */,
+				CD7F2F2517FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png */,
+				CD7F2F2617FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png */,
+				CD7F2F2717FE85BE00E7EAE3 /* Keyboard-Normal.png */,
+				CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */,
 				CD48680617EB5B430071F3D7 /* Fart1.mp3 */,
 				CD48680717EB5B430071F3D7 /* Fart2.mp3 */,
 				CD48680817EB5B430071F3D7 /* Fart3.mp3 */,
@@ -1460,6 +1564,7 @@
 				FA5FCE950F6F7CB600878F27 /* StoryCell.xib in Resources */,
 				FA6EDD320F70D56B00AAF4E4 /* ChattyViewController.xib in Resources */,
 				FA6EDD6A0F70D95A00AAF4E4 /* ThreadCell.xib in Resources */,
+				CD7F2F3317FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png in Resources */,
 				CD7ADD0A17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */,
 				CDDAC2D317F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png in Resources */,
 				CD7F2EB117FA705300E7EAE3 /* Web-Previous.png in Resources */,
@@ -1485,7 +1590,9 @@
 				CD7F2EB517FA705300E7EAE3 /* Web-Refresh.png in Resources */,
 				FA4123080F8FE09E002E1978 /* RootViewController.xib in Resources */,
 				CDDAC2EF17F44E78000FEC8A /* Story-Comment-Count.png in Resources */,
+				CD7F2F2917FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal.png in Resources */,
 				CDDAC2DF17F44E78000FEC8A /* Thread-Toolbar-Next@2x.png in Resources */,
+				CD7F2F5317FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png in Resources */,
 				FA4124540F8FEFF1002E1978 /* MessagesViewController.xib in Resources */,
 				FA828B8C0F90901100B59FF8 /* MessageCell.xib in Resources */,
 				FAD4EB540F96798800E74FED /* MessageViewController.xib in Resources */,
@@ -1513,6 +1620,7 @@
 				CDDAC2FF17F44E78000FEC8A /* Search-Inactive@2x.png in Resources */,
 				CD7F2EAF17FA705300E7EAE3 /* Web-Next@2x.png in Resources */,
 				CD7ADCF217EF17FA00B4C886 /* ChattyViewController-iPad.xib in Resources */,
+				CD7F2F4717FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png in Resources */,
 				CD7ADD1517EF180E00B4C886 /* MessageCell-iPad.xib in Resources */,
 				CD8BA2B916306A0900ED5C5E /* AppleSafari-Icon.png in Resources */,
 				CDDAC31117F44E78000FEC8A /* Shack[lol]-Inactive.png in Resources */,
@@ -1531,26 +1639,37 @@
 				CDDAC30317F44E78000FEC8A /* Search-Active.png in Resources */,
 				CDDAC30D17F44E78000FEC8A /* Messages-Active.png in Resources */,
 				CDA01B1D1730AD5B00E24A28 /* Lock.16@2x.png in Resources */,
+				CD7F2F5117FE85BE00E7EAE3 /* Keyboard-Normal-Strike.png in Resources */,
 				CDDAC2BF17F44E78000FEC8A /* Menu-Button-Thread.png in Resources */,
 				CDDAC2C317F44E78000FEC8A /* Menu-Button-Reply@2x.png in Resources */,
+				CD7F2F3517FE85BE00E7EAE3 /* Keyboard-Color-Olive.png in Resources */,
 				CDA01B241731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
 				CDC0E9C217F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
 				CD2359F61739D5EA0078423B /* Button.png in Resources */,
+				CD7F2F3F17FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */,
+				CD7F2F4B17FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png in Resources */,
+				CD7F2F5517FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */,
 				CD7ADCF417EF17FA00B4C886 /* ComposeViewController-iPad.xib in Resources */,
+				CD7F2F5917FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */,
 				CD2359F81739D5EA0078423B /* Button@2x.png in Resources */,
 				CD2359FE1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */,
 				CDDAC30F17F44E78000FEC8A /* Shack[lol]-Inactive@2x.png in Resources */,
+				CD7F2F3B17FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png in Resources */,
 				CD235A001739D5EA0078423B /* ButtonContentSpoiler@2x.png in Resources */,
 				CD7ADCFC17EF17FA00B4C886 /* ReviewThreadViewController-iPad.xib in Resources */,
 				CD7ADD1917EF180E00B4C886 /* RootCell-iPad.xib in Resources */,
+				CD7F2F4917FE85BE00E7EAE3 /* Keyboard-Normal-Code.png in Resources */,
+				CD7F2F3917FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */,
 				CD235A021739D5EA0078423B /* ButtonPushed.png in Resources */,
 				CD235A041739D5EA0078423B /* ButtonPushed@2x.png in Resources */,
 				CDDAC31B17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
+				CD7F2F4D17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
 				CD7F2EB917FA705300E7EAE3 /* Web-Share.png in Resources */,
 				CD235A061739D5EA0078423B /* ButtonStrike.png in Resources */,
 				CD235A081739D5EA0078423B /* ButtonStrike@2x.png in Resources */,
 				CD235A0A1739D5EA0078423B /* ButtonUnderline.png in Resources */,
 				CD235A0C1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */,
+				CD7F2F2F17FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
 				CD235A1E173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */,
 				CD7ADD0E17EF17FA00B4C886 /* ThreadViewController-iPad.xib in Resources */,
 				CDDAC2CD17F44E78000FEC8A /* Menu-Button-Compose.png in Resources */,
@@ -1565,12 +1684,15 @@
 				CDDAC2E117F44E78000FEC8A /* Thread-Toolbar-Next.png in Resources */,
 				CDDAC2C717F44E78000FEC8A /* Menu-Button-List@2x.png in Resources */,
 				CD43CFEA1744809F00165FF3 /* Clear.24.png in Resources */,
+				CD7F2F3717FE85BE00E7EAE3 /* Keyboard-Color-Olive@2x.png in Resources */,
 				CD43CFEC1744809F00165FF3 /* Clear.24@2x.png in Resources */,
 				CDDAC2F917F44E78000FEC8A /* Settings-Inactive.png in Resources */,
 				CD205660174540A9003AF4FA /* PinIcon.24.png in Resources */,
 				CDDAC2FB17F44E78000FEC8A /* Settings-Active.png in Resources */,
+				CD7F2F3D17FE85BE00E7EAE3 /* Keyboard-Color-Pink.png in Resources */,
 				CD205668174540A9003AF4FA /* PinIcon.24@2x.png in Resources */,
 				CDB348D5174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */,
+				CD7F2F3117FE85BE00E7EAE3 /* Keyboard-Color-Lime.png in Resources */,
 				CDB348D7174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */,
 				CD7ADD0817EF17FA00B4C886 /* SlideOutViewController-iPad.xib in Resources */,
 				CDB348D9174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */,
@@ -1581,15 +1703,20 @@
 				CD48681F17EB5B430071F3D7 /* Fart9.mp3 in Resources */,
 				CDB348DB174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */,
 				CDB348DD174573C0000003CA /* TimerDotEmpty@2x.png in Resources */,
+				CD7F2F4317FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png in Resources */,
+				CD7F2F2B17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png in Resources */,
+				CD7F2F4F17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png in Resources */,
 				CDC0E9C017F6886D007D3738 /* Post-Indicator-Reply.png in Resources */,
 				CD7ADD1D17EF180E00B4C886 /* ThreadCell-iPad.xib in Resources */,
 				CDB348DF174573C0000003CA /* TimerDotQuarter@2x.png in Resources */,
 				CDDAC2DD17F44E78000FEC8A /* Thread-Toolbar-Previous.png in Resources */,
+				CD7F2F5B17FE85BE00E7EAE3 /* Keyboard-Normal@2x.png in Resources */,
 				CDDAC2D117F44E78000FEC8A /* Thread-Toolbar-Timer.png in Resources */,
 				CDDAC31917F44E78000FEC8A /* Chatty-Inactive.png in Resources */,
 				CDB348E1174573C0000003CA /* TimerDotHalf@2x.png in Resources */,
 				CDDAC2E517F44E78000FEC8A /* Thread-Toolbar-Mods.png in Resources */,
 				CDB348E3174573C0000003CA /* TimerDotThreeQuarter@2x.png in Resources */,
+				CD7F2F5717FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png in Resources */,
 				CDB348E5174573C0000003CA /* TimerDotFull@2x.png in Resources */,
 				CDB348F01745745F000003CA /* TimerDotQuarterBlue.png in Resources */,
 				CDB348F21745745F000003CA /* TimerDotHalfBlue.png in Resources */,
@@ -1611,6 +1738,7 @@
 				CDDAC2D717F44E78000FEC8A /* Thread-Toolbar-Refresh.png in Resources */,
 				CDDAC2C117F44E78000FEC8A /* Menu-Button-Thread@2x.png in Resources */,
 				CD7C24851754689100D90942 /* Post.html in Resources */,
+				CD7F2F4117FE85BE00E7EAE3 /* Keyboard-Color-Red.png in Resources */,
 				CD7C24871754689100D90942 /* ReviewPost.html in Resources */,
 				CD7F2EB317FA705300E7EAE3 /* Web-Previous@2x.png in Resources */,
 				CD7C24891754689100D90942 /* Story.html in Resources */,
@@ -1622,12 +1750,14 @@
 				CDDAC2EB17F44E78000FEC8A /* Story-Comment-Count@2x.png in Resources */,
 				CD7C248D1754689100D90942 /* Youtube.html in Resources */,
 				CDDAC31717F44E78000FEC8A /* Chatty-Inactive@2x.png in Resources */,
+				CD7F2F2D17FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal.png in Resources */,
 				CD7ADD0017EF17FA00B4C886 /* SearchResultsViewController-iPad.xib in Resources */,
 				CD7ADCF017EF17FA00B4C886 /* BrowserViewController-iPad.xib in Resources */,
 				CDDAC2ED17F44E78000FEC8A /* Stories-Inactive@2x.png in Resources */,
 				CDDAC2FD17F44E78000FEC8A /* Settings-Active@2x.png in Resources */,
 				CD7ADD1717EF180E00B4C886 /* ReplyCell-iPad.xib in Resources */,
 				CD7ADD0217EF17FA00B4C886 /* SearchViewController-iPad.xib in Resources */,
+				CD7F2F4517FE85BE00E7EAE3 /* Keyboard-Color-Yellow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1639,6 +1769,7 @@
 				CDA1174E16C1DC6600CE1375 /* MainWindow.xib in Resources */,
 				CDA1175016C1DC6600CE1375 /* StoryCell.xib in Resources */,
 				CD7ADD1617EF180E00B4C886 /* MessageCell-iPad.xib in Resources */,
+				CD7F2F3417FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png in Resources */,
 				CDA1175216C1DC6600CE1375 /* ChattyViewController.xib in Resources */,
 				CDDAC2D417F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png in Resources */,
 				CD7F2EB217FA705300E7EAE3 /* Web-Previous.png in Resources */,
@@ -1664,7 +1795,9 @@
 				CD7F2EB617FA705300E7EAE3 /* Web-Refresh.png in Resources */,
 				CDA1177016C1DC6600CE1375 /* Settings.bundle in Resources */,
 				CDDAC2F017F44E78000FEC8A /* Story-Comment-Count.png in Resources */,
+				CD7F2F2A17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal.png in Resources */,
 				CDDAC2E017F44E78000FEC8A /* Thread-Toolbar-Next@2x.png in Resources */,
+				CD7F2F5417FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png in Resources */,
 				CDA1177416C1DC6600CE1375 /* RootCell.xib in Resources */,
 				CDA1177516C1DC6600CE1375 /* RootViewController.xib in Resources */,
 				CDA1177816C1DC6600CE1375 /* MessagesViewController.xib in Resources */,
@@ -1692,6 +1825,7 @@
 				CD7ADCFD17EF17FA00B4C886 /* ReviewThreadViewController-iPad.xib in Resources */,
 				CD7F2EB017FA705300E7EAE3 /* Web-Next@2x.png in Resources */,
 				CD7ADCF517EF17FA00B4C886 /* ComposeViewController-iPad.xib in Resources */,
+				CD7F2F4817FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png in Resources */,
 				CD7ADD0D17EF17FA00B4C886 /* StoryViewController-iPad.xib in Resources */,
 				CDA117BA16C1DC6600CE1375 /* AppleSafari-Icon.png in Resources */,
 				CDDAC31217F44E78000FEC8A /* Shack[lol]-Inactive.png in Resources */,
@@ -1710,26 +1844,37 @@
 				CDDAC30417F44E78000FEC8A /* Search-Active.png in Resources */,
 				CDDAC30E17F44E78000FEC8A /* Messages-Active.png in Resources */,
 				CDA01B251731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
+				CD7F2F5217FE85BE00E7EAE3 /* Keyboard-Normal-Strike.png in Resources */,
 				CDDAC2C017F44E78000FEC8A /* Menu-Button-Thread.png in Resources */,
 				CDDAC2C417F44E78000FEC8A /* Menu-Button-Reply@2x.png in Resources */,
+				CD7F2F3617FE85BE00E7EAE3 /* Keyboard-Color-Olive.png in Resources */,
 				CD7ADD2117EF19F300B4C886 /* Images.xcassets in Resources */,
 				CDC0E9C317F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
 				CD2359F71739D5EA0078423B /* Button.png in Resources */,
+				CD7F2F4017FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */,
+				CD7F2F4C17FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png in Resources */,
+				CD7F2F5617FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */,
 				CD2359F91739D5EA0078423B /* Button@2x.png in Resources */,
+				CD7F2F5A17FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */,
 				CD2359FF1739D5EA0078423B /* ButtonContentSpoiler.png in Resources */,
 				CD235A011739D5EA0078423B /* ButtonContentSpoiler@2x.png in Resources */,
 				CDDAC31017F44E78000FEC8A /* Shack[lol]-Inactive@2x.png in Resources */,
+				CD7F2F3C17FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png in Resources */,
 				CD235A031739D5EA0078423B /* ButtonPushed.png in Resources */,
 				CD235A051739D5EA0078423B /* ButtonPushed@2x.png in Resources */,
 				CD235A071739D5EA0078423B /* ButtonStrike.png in Resources */,
+				CD7F2F4A17FE85BE00E7EAE3 /* Keyboard-Normal-Code.png in Resources */,
+				CD7F2F3A17FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */,
 				CD235A091739D5EA0078423B /* ButtonStrike@2x.png in Resources */,
 				CD235A0B1739D5EA0078423B /* ButtonUnderline.png in Resources */,
 				CDDAC31C17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
+				CD7F2F4E17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
 				CD7F2EBA17FA705300E7EAE3 /* Web-Share.png in Resources */,
 				CD235A0D1739D5EA0078423B /* ButtonUnderline@2x.png in Resources */,
 				CD235A1F173AB4390078423B /* ButtonContentSpoilerPushed.png in Resources */,
 				CD235A21173AB4390078423B /* ButtonContentSpoilerPushed@2x.png in Resources */,
 				CD235A23173AB4390078423B /* ButtonStrikePushed.png in Resources */,
+				CD7F2F3017FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
 				CD235A25173AB4390078423B /* ButtonStrikePushed@2x.png in Resources */,
 				CD235A27173AB4390078423B /* ButtonUnderlinePushed.png in Resources */,
 				CDDAC2CE17F44E78000FEC8A /* Menu-Button-Compose.png in Resources */,
@@ -1744,12 +1889,15 @@
 				CDDAC2E217F44E78000FEC8A /* Thread-Toolbar-Next.png in Resources */,
 				CDDAC2C817F44E78000FEC8A /* Menu-Button-List@2x.png in Resources */,
 				CD7ADD1E17EF180E00B4C886 /* ThreadCell-iPad.xib in Resources */,
+				CD7F2F3817FE85BE00E7EAE3 /* Keyboard-Color-Olive@2x.png in Resources */,
 				CD7ADD0517EF17FA00B4C886 /* SendMessageViewController-iPad.xib in Resources */,
 				CDDAC2FA17F44E78000FEC8A /* Settings-Inactive.png in Resources */,
 				CD43CFEB1744809F00165FF3 /* Clear.24.png in Resources */,
 				CDDAC2FC17F44E78000FEC8A /* Settings-Active.png in Resources */,
+				CD7F2F3E17FE85BE00E7EAE3 /* Keyboard-Color-Pink.png in Resources */,
 				CD43CFED1744809F00165FF3 /* Clear.24@2x.png in Resources */,
 				CD205661174540A9003AF4FA /* PinIcon.24.png in Resources */,
+				CD7F2F3217FE85BE00E7EAE3 /* Keyboard-Color-Lime.png in Resources */,
 				CD7ADCF917EF17FA00B4C886 /* MessageViewController-iPad.xib in Resources */,
 				CD7ADCF717EF17FA00B4C886 /* MessagesViewController-iPad.xib in Resources */,
 				CD7ADD0917EF17FA00B4C886 /* SlideOutViewController-iPad.xib in Resources */,
@@ -1760,15 +1908,20 @@
 				CD205669174540A9003AF4FA /* PinIcon.24@2x.png in Resources */,
 				CDB348D6174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */,
 				CDB348D8174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */,
+				CD7F2F4417FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png in Resources */,
+				CD7F2F2C17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png in Resources */,
+				CD7F2F5017FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png in Resources */,
 				CDC0E9C117F6886D007D3738 /* Post-Indicator-Reply.png in Resources */,
 				CDB348DA174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */,
 				CD7ADD0117EF17FA00B4C886 /* SearchResultsViewController-iPad.xib in Resources */,
 				CDDAC2DE17F44E78000FEC8A /* Thread-Toolbar-Previous.png in Resources */,
+				CD7F2F5C17FE85BE00E7EAE3 /* Keyboard-Normal@2x.png in Resources */,
 				CDDAC2D217F44E78000FEC8A /* Thread-Toolbar-Timer.png in Resources */,
 				CDDAC31A17F44E78000FEC8A /* Chatty-Inactive.png in Resources */,
 				CDB348DC174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */,
 				CDDAC2E617F44E78000FEC8A /* Thread-Toolbar-Mods.png in Resources */,
 				CDB348DE174573C0000003CA /* TimerDotEmpty@2x.png in Resources */,
+				CD7F2F5817FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png in Resources */,
 				CDB348E0174573C0000003CA /* TimerDotQuarter@2x.png in Resources */,
 				CDB348E2174573C0000003CA /* TimerDotHalf@2x.png in Resources */,
 				CD7ADCF317EF17FA00B4C886 /* ChattyViewController-iPad.xib in Resources */,
@@ -1790,6 +1943,7 @@
 				CDDAC2D817F44E78000FEC8A /* Thread-Toolbar-Refresh.png in Resources */,
 				CDDAC2C217F44E78000FEC8A /* Menu-Button-Thread@2x.png in Resources */,
 				CDB348FB1745745F000003CA /* TimerDotQuarter.png in Resources */,
+				CD7F2F4217FE85BE00E7EAE3 /* Keyboard-Color-Red.png in Resources */,
 				CDB348FD1745745F000003CA /* TimerDotHalf.png in Resources */,
 				CD7F2EB417FA705300E7EAE3 /* Web-Previous@2x.png in Resources */,
 				CDB348FF1745745F000003CA /* TimerDotThreeQuarter.png in Resources */,
@@ -1801,12 +1955,14 @@
 				CDDAC2EC17F44E78000FEC8A /* Story-Comment-Count@2x.png in Resources */,
 				CD7C24881754689100D90942 /* ReviewPost.html in Resources */,
 				CDDAC31817F44E78000FEC8A /* Chatty-Inactive@2x.png in Resources */,
+				CD7F2F2E17FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal.png in Resources */,
 				CD7C248A1754689100D90942 /* Story.html in Resources */,
 				CD7C248C1754689100D90942 /* Stylesheet.css in Resources */,
 				CDDAC2EE17F44E78000FEC8A /* Stories-Inactive@2x.png in Resources */,
 				CDDAC2FE17F44E78000FEC8A /* Settings-Active@2x.png in Resources */,
 				CD7C248E1754689100D90942 /* Youtube.html in Resources */,
 				CD48681417EB5B430071F3D7 /* Fart3.mp3 in Resources */,
+				CD7F2F4617FE85BE00E7EAE3 /* Keyboard-Color-Yellow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

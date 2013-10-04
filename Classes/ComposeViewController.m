@@ -72,10 +72,7 @@
     
     // Append inner tag view to hidden tag view container
     [tagView addSubview:innerTagView];
-    innerTagView.frame = CGRectMake((tagView.frame.size.width - innerTagView.frame.size.width) / 2.0,
-                                    (tagView.frame.size.height - innerTagView.frame.size.height) / 2.0,
-                                    innerTagView.frame.size.width,
-                                    innerTagView.frame.size.height);
+    [self sizeTagViewScrollView];
 
     // Add a style item to the text selection menu
     UIMenuController *menu = [UIMenuController sharedMenuController];
@@ -171,6 +168,21 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    // resize the scroll view on rotation
+    [self sizeTagViewScrollView];
+}
+
+- (void)sizeTagViewScrollView {
+    // loop over the scroll view's subviews to total up their height and offset for the scroll view's content height
+    CGFloat scrollViewHeight = 0.0f;
+    for (UIView *view in innerTagScrollView.subviews){
+        if (scrollViewHeight < view.frame.origin.y + view.frame.size.height)
+            scrollViewHeight = view.frame.origin.y + view.frame.size.height;
+    }
+    [innerTagScrollView setContentSize:CGSizeMake(innerTagScrollView.frameWidth, scrollViewHeight)];
 }
 
 #pragma mark Keyboard notifications

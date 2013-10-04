@@ -26,6 +26,7 @@
     IBOutlet UIButton *imageButton;
     IBOutlet UIView *tagView;
     IBOutlet UIView *innerTagView;
+    IBOutlet UIScrollView *innerTagScrollView;
 	
 	IBOutlet UIView *activityView;
 	IBOutlet UILabel *activityText;

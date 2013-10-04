@@ -285,18 +285,7 @@
     [self resetLayout:YES];
 }
 
-//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-//    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
-//        [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
-//        [tableView setContentInset:UIEdgeInsetsMake(-10, 0, 0, 0)];
-//    } else {
-//        [postView.scrollView setContentInset:UIEdgeInsetsMake(52.0, 0, 0, 0)];
-//        [tableView setContentInset:UIEdgeInsetsMake(10.0, 0, 0, 0)];
-//    }
-//}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{        
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {        
     // Reload the post to fit the new view sizes.
     [self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
