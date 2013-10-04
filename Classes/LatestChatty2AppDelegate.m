@@ -414,6 +414,21 @@
     return YES;
 }
 
+- (void)incrementNetworkActivityIndicator {
+    networkActivityIndicatorCount++;
+    
+    if (networkActivityIndicatorCount > 0) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    }
+}
+- (void)decrementNetworkActivityIndicator {
+    networkActivityIndicatorCount--;
+    
+    if (networkActivityIndicatorCount <= 0) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }
+}
+
 #pragma mark - Appearance customizations
 
 // Custom appearance settings for UIKit items

@@ -48,9 +48,10 @@
 //    NSLog(@"%f", interval);
     
     // only check for messages if it's been 5 minutes since the last check
-    if (interval == 0 || (interval * -1) > 30) {
+    if (interval == 0 || (interval * -1) > 60*5) {
         // fetch messages
         [self.messagesSpinner startAnimating];
+        [[LatestChatty2AppDelegate delegate] incrementNetworkActivityIndicator];
         messageLoader = [Message findAllWithDelegate:self];
     }
 }
@@ -157,6 +158,7 @@
     [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
     
     [self.messagesSpinner stopAnimating];
+    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
     
     messageLoader = nil;
     
@@ -169,6 +171,7 @@
 - (void)didFailToLoadModels {
     NSLog(@"Failed to load messages");
     [self.messagesSpinner stopAnimating];
+    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
 }
 
 #pragma mark Table view methods

@@ -270,7 +270,8 @@
 }
 
 - (UIProgressView*)showActivityIndicator:(BOOL)progressViewType {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [[LatestChatty2AppDelegate delegate] incrementNetworkActivityIndicator];
     
 	CGRect frame = self.view.frame;
 	frame.origin = CGPointZero;
@@ -299,7 +300,8 @@
 - (void)hideActivityIndicator {
 	[activityView removeFromSuperview];
 	[spinner stopAnimating];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
 }
 
 - (void)image:(Image*)image sendComplete:(NSString*)url {

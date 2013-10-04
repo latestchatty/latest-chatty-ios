@@ -204,7 +204,8 @@
 - (void)makeMessage {
     @autoreleasepool {
         self.navigationController.view.userInteractionEnabled = NO;
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [[LatestChatty2AppDelegate delegate] incrementNetworkActivityIndicator];
         
         // See [ComposeViewController makePost] for explanation, same GCD blocks used there
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -215,7 +216,8 @@
                 } else {
                     [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
                 }
-                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
             });
         });
 
@@ -251,13 +253,15 @@
 	[self.view addSubview:activityView];
     spinner.hidden = NO;
     [spinner startAnimating];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [[LatestChatty2AppDelegate delegate] incrementNetworkActivityIndicator];
 }
 
 - (void)hideActivityIndicator {
 	[activityView removeFromSuperview];
 	[spinner stopAnimating];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
 }
 
 #pragma mark Cleanup

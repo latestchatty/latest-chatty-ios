@@ -76,7 +76,8 @@
 # pragma mark Actions
 
 - (IBAction)refresh:(id)sender {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [[LatestChatty2AppDelegate delegate] incrementNetworkActivityIndicator];
     
     [loader cancel];
 
@@ -100,7 +101,8 @@
     loadingView.alpha = 0.0;
     [UIView commitAnimations];
     
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
 }
 
 - (BOOL)loading {
