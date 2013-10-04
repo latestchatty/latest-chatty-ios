@@ -33,7 +33,7 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
 #pragma mark Class Helpers
 
 + (NSString *)formatDate:(NSDate *)date; {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [LatestChatty2AppDelegate delegate].formatter;
     //Force the 12hr locale so dates appear on the 24hr guys
     [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
     [formatter setDateFormat:kDateFormat];
@@ -43,7 +43,7 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
 + (NSDate *)decodeDate:(NSString *)string {
     if ((id)string == [NSNull null]) return nil;
   
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [LatestChatty2AppDelegate delegate].formatter;
     //Force the 12hr locale so dates appear on the 24hr guys    
     [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
     [formatter setDateFormat:kParseDateFormat];

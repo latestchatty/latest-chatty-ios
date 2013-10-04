@@ -17,7 +17,8 @@
 @synthesize window,
             navigationController,
             contentNavigationController,
-            slideOutViewController;
+            slideOutViewController,
+            formatter;
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -91,6 +92,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self customizeAppearance];
 
+    self.formatter = [[NSDateFormatter alloc] init];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];

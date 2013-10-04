@@ -34,7 +34,7 @@
 }
 
 + (NSString *)formatDate:(NSDate *)date {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [LatestChatty2AppDelegate delegate].formatter;
     [formatter setDateFormat:@"MMM d hh:mm a"];
     return [formatter stringFromDate:date];
 }
