@@ -39,9 +39,20 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // fetch messages
-    [self.messagesSpinner startAnimating];
-    messageLoader = [Message findAllWithDelegate:self];
+    // only check for messages if it's been 5 minutes since the last check
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDate *lastMessageFetchDate = [defaults objectForKey:@"messageFetchDate"];
+    NSTimeInterval interval = [lastMessageFetchDate timeIntervalSinceDate:[NSDate date]];
+
+//    NSLog(@"%@", lastMessageFetchDate);
+//    NSLog(@"%f", interval);
+    
+    // only check for messages if it's been 5 minutes since the last check
+    if (interval == 0 || (interval * -1) > 30) {
+        // fetch messages
+        [self.messagesSpinner startAnimating];
+        messageLoader = [Message findAllWithDelegate:self];
+    }
 }
 
 - (void)viewDidLoad {
@@ -149,6 +160,11 @@
     [self.messagesSpinner stopAnimating];
     
     messageLoader = nil;
+    
+    // capture this successful messages fetch
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSDate date] forKey:@"messageFetchDate"];
+    [defaults synchronize];
 }
 
 - (void)didFailToLoadModels {

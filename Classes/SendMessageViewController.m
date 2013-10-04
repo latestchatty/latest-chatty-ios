@@ -186,10 +186,10 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];            
         }
     } else {
-        ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
-        if (lastController.class == [MessagesViewController class]) {
-            [lastController refresh:self];
-        }
+//        ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
+//        if (lastController.class == [MessagesViewController class]) {
+//            [lastController refresh:self];
+//        }
         [self.navigationController popViewControllerAnimated:YES];
     }
     
