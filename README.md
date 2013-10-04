@@ -7,6 +7,17 @@ iOS 7 Conversion / Semi-rewrite
 - iPad has not been touched yet at all, probably blows up completely there.
 - The (x) to clear text fields on Search view isn't currently working.
 
+3.4.9
+====
+- New icons in Browser view's bottom toolbar
+- Any showing keyboard is always dismissed when the side menu is toggled or panned open
+- Minor visual change to top navigation bars (white stroke added to bottom)
+- Launch image update due to navigation bar tweak
+- All various NSDateFormatter instances are now a singleton instance
+- App now checks for new shackmessages when the side menu is panned open if it's been 5 minutes since the last check
+- Side menu background now scales to fill height of menu
+- Visual redesign for the tagging interface while composing a post
+
 3.4.8
 ====
 - Parallax effect added to side menu open/close action
