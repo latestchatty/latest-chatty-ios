@@ -76,7 +76,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
     
     // iOS7
-    [self.tableView setContentInset:UIEdgeInsetsMake(40.0, 0, 0, 0)];
+    if ([[UIScreen mainScreen] bounds].size.height == 568) {
+        [self.tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
+    }
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
@@ -182,6 +184,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([[UIScreen mainScreen] bounds].size.height == 568) return 90;
+    return 80;
 }
 
 // Customize the number of rows in the table view.

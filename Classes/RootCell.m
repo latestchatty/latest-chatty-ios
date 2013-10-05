@@ -13,10 +13,6 @@
 
 @synthesize title, iconImage, badge;
 
-+ (CGFloat)cellHeight {
-    return 80;
-}
-
 - (id)init {
     self = [super initWithNibName:@"RootCell" bundle:nil];
   
