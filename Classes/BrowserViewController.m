@@ -86,6 +86,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self showBars];
+    
+    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
 }
 
 // Hide the status bar and navigation bar with the built-in animation method

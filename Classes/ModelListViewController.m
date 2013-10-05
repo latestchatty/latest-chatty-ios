@@ -76,9 +76,6 @@
 # pragma mark Actions
 
 - (IBAction)refresh:(id)sender {
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [[LatestChatty2AppDelegate delegate] incrementNetworkActivityIndicator];
-    
     [loader cancel];
 
     if (![sender isKindOfClass:[UIRefreshControl class]]) {
@@ -100,9 +97,6 @@
     [UIView beginAnimations:@"LoadingViewFadeOut" context:nil];
     loadingView.alpha = 0.0;
     [UIView commitAnimations];
-    
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
 }
 
 - (BOOL)loading {

@@ -426,6 +426,7 @@
     
     if (networkActivityIndicatorCount <= 0) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        networkActivityIndicatorCount = 0;
     }
 }
 

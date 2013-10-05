@@ -262,6 +262,8 @@
     
     // remove the panning gesture delegate from this controller when the view goes away
     [self.viewDeckController setPanningGestureDelegate:nil];
+    
+    [loader cancel];
 }
 
 - (void)tappedDoneButton {
