@@ -20,7 +20,7 @@
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate> {
     UIWindow *window;
     UINavigationController *navigationController;
-    int networkActivityIndicatorCount;
+    NSUInteger networkActivityIndicatorCount;
     
     // iPad
     UINavigationController *contentNavigationController;

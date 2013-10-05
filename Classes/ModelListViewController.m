@@ -38,16 +38,6 @@
     [loadingView addSubview:spinner];
 
     [self.view addSubview:loadingView];
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"superSecretFartMode"]) {
-        int randomFartNumber = arc4random() % 9 + 1;
-        NSLog(@"Playing Fart #%i, don't forget to wipe!", randomFartNumber);
-        NSURL *soundURL = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"Fart%i", randomFartNumber]
-                                                  withExtension:@"mp3"];
-        fartSound = [[AVAudioPlayer alloc]
-                     initWithContentsOfURL:soundURL error:nil];
-        [fartSound play];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -129,6 +119,22 @@
     [UIView animateWithDuration:0.1 animations:^{
         cell.alpha = 1.0;
     }];
+}
+
+#pragma mark Fart Scroll
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (![fartSound isPlaying]) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"superSecretFartMode"]) {
+            NSUInteger randomFartNumber = arc4random() % 9 + 1;
+//            NSLog(@"Playing Fart #%i, don't forget to wipe!", randomFartNumber);
+            NSURL *soundURL = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"Fart%i", randomFartNumber]
+                                                      withExtension:@"mp3"];
+            fartSound = [[AVAudioPlayer alloc]
+                         initWithContentsOfURL:soundURL error:nil];
+            [fartSound play];
+        }
+    }
 }
 
 #pragma mark Data Loading Callbacks
