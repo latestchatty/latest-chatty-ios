@@ -28,7 +28,7 @@
                     </connections>
                 </tableView>
                 <segmentedControl opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="38">
-                    <rect key="frame" x="10" y="11" width="301" height="30"/>
+                    <rect key="frame" x="10" y="10" width="301" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Posts"/>
