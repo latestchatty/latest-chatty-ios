@@ -71,7 +71,6 @@
     if (![sender isKindOfClass:[UIRefreshControl class]]) {
       [self showLoadingSpinner];
     }
-    
 }
 
 #pragma mark Loading Spinner
@@ -121,7 +120,7 @@
     }];
 }
 
-#pragma mark Fart Scroll
+#pragma mark Fart Mode
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
     if (![fartSound isPlaying]) {

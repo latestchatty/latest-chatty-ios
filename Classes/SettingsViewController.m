@@ -555,7 +555,7 @@
 			case 0:
                 [button setFrame:CGRectMake(0, 0, 50, 30)];
                 [button setTitle:@"View" forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor lcIOS7BlueColor] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
 
                 [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
                 
@@ -568,7 +568,7 @@
 			case 1:
                 [button setFrame:CGRectMake(0, 0, 50, 30)];
                 [button setTitle:@"View" forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor lcIOS7BlueColor] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
                 
                 [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
                 

@@ -42,10 +42,6 @@
     return [UIColor colorWithRed:245.0/255.0 green:228.0/255.0 blue:157.0/255.0 alpha:1.0];
 }
 
-+ (UIColor *)lcBlueColor {
-    return [UIColor colorWithRed:119.0/255.0 green:197.0/255.0 blue:254.0/255.0 alpha:1.0];
-}
-
 + (UIColor *)lcLightGrayTextColor {
     return [UIColor colorWithWhite:255.0/255.0 alpha:0.5];
 }
@@ -62,11 +58,11 @@
     return [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
 }
 
-+ (UIColor *)lcIOS7BlueColor {
++ (UIColor *)lcBlueColor {
     return [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0];
 }
 
-+ (UIColor *)lcIOS7BlueColorHighlight {
++ (UIColor *)lcBlueColorHighlight {
     return [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:0.25];
 }
 
@@ -104,7 +100,7 @@
 }
 
 + (UIColor *)lcSelectionBlueColor {
-    return [UIColor lcIOS7BlueColor];
+    return [UIColor lcBlueColor];
 }
 
 + (UIColor *)lcSelectionGrayColor {
@@ -125,10 +121,6 @@
 
 + (UIColor *)lcRepliesTableBackgroundDarkColor {
     return [UIColor blackColor];
-}
-
-+ (UIColor *)lcPullToRefreshBackgroundColor {
-    return [UIColor colorWithRed:47.0/255.0 green:47.0/255.0 blue:50.0/255.0 alpha:1.0];
 }
 
 // Post expiration progress colors
@@ -234,7 +226,7 @@
 }
 
 + (NSDictionary *)blueTextAttributesDictionary {
-    return @{NSForegroundColorAttributeName:[UIColor lcIOS7BlueColor]};
+    return @{NSForegroundColorAttributeName:[UIColor lcBlueColor]};
 }
 
 + (NSDictionary *)grayTextAttributesDictionary {

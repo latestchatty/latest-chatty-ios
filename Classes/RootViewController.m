@@ -88,7 +88,7 @@
     // color the menu button blue
     if ([self centerControllerHasMenuButton:[LatestChatty2AppDelegate delegate].navigationController]) {
         [UIView animateWithDuration:0.3 animations:^{
-            [[LatestChatty2AppDelegate delegate].navigationController.visibleViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor lcIOS7BlueColor]];
+            [[LatestChatty2AppDelegate delegate].navigationController.visibleViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor lcBlueColor]];
         }];
     }
 }

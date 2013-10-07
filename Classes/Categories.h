@@ -18,13 +18,12 @@
 
 // Common colors
 + (UIColor *)lcAuthorColor;
-+ (UIColor *)lcBlueColor;
 + (UIColor *)lcLightGrayTextColor;
 + (UIColor *)lcDarkGrayTextColor;
 + (UIColor *)lcTextShadowColor;
 + (UIColor *)lcOverlayColor;
-+ (UIColor *)lcIOS7BlueColor;
-+ (UIColor *)lcIOS7BlueColorHighlight;
++ (UIColor *)lcBlueColor;
++ (UIColor *)lcBlueColorHighlight;
 
 // Table cell colors
 + (UIColor *)lcCellNormalColor;
@@ -41,7 +40,6 @@
 + (UIColor *)lcTableBackgroundDarkColor;
 + (UIColor *)lcRepliesTableBackgroundColor;
 + (UIColor *)lcRepliesTableBackgroundDarkColor;
-+ (UIColor *)lcPullToRefreshBackgroundColor;
 
 // Post expiration progress colors
 + (UIColor *)lcExpirationOnTopicColor;
