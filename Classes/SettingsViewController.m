@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation SettingsViewController
 
@@ -273,6 +274,8 @@
 	[defaults setBool:nwsSwitch.on         forKey:@"postCategory.nws"];
 	
 	[defaults synchronize];
+    
+    [Crashlytics setUserName:[defaults stringForKey:@"username"]];
 }
 
 - (IBAction)dismiss:(id)sender {

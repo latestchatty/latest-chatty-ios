@@ -11,6 +11,7 @@
 #import "Mod.h"
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation LatestChatty2AppDelegate
 
@@ -85,11 +86,13 @@
     [deckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose];
     [deckController setSizeMode:IIViewDeckViewSizeMode];
     [deckController setParallaxAmount:0.3f];
-    
+
     return deckController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Crashlytics startWithAPIKey:@"7e5579f671abccb0156cc1a6de1201f981ef170c"];
+    
     [self customizeAppearance];
 
     self.formatter = [[NSDateFormatter alloc] init];
@@ -139,6 +142,8 @@
                                      [NSNumber numberWithBool:YES], @"saveSearches",
                                      nil];
     [defaults registerDefaults:defaultSettings];
+    
+    [Crashlytics setUserName:[defaults stringForKey:@"username"]];
 
     if ([self isPadDevice]) {
         [self setupInterfaceForPadWithOptions:launchOptions];

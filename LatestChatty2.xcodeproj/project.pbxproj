@@ -37,6 +37,8 @@
 		CD235A4F173AFC000078423B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4B173AFB920078423B /* MobileCoreServices.framework */; };
 		CD235A52173B1F830078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
 		CD235A53173B1F920078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
+		CD4370D5180372DB008D9DCF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4370D4180372DA008D9DCF /* Crashlytics.framework */; };
+		CD4370D6180372DB008D9DCF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4370D4180372DA008D9DCF /* Crashlytics.framework */; };
 		CD43CFE61743B7AD00165FF3 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */; };
 		CD43CFE71743B7AD00165FF3 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */; };
 		CD43CFEA1744809F00165FF3 /* Clear.24.png in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE81744809F00165FF3 /* Clear.24.png */; };
@@ -580,6 +582,7 @@
 		CD205659174540A9003AF4FA /* PinIcon.24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PinIcon.24@2x.png"; path = "Assets/PinIcon.24@2x.png"; sourceTree = "<group>"; };
 		CD235A4B173AFB920078423B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CD235A51173B1F1A0078423B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CD4370D4180372DA008D9DCF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		CD43CFE81744809F00165FF3 /* Clear.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Clear.24.png; path = Assets/Clear.24.png; sourceTree = "<group>"; };
 		CD43CFE91744809F00165FF3 /* Clear.24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Clear.24@2x.png"; path = "Assets/Clear.24@2x.png"; sourceTree = "<group>"; };
@@ -905,6 +908,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				CD235A4F173AFC000078423B /* MobileCoreServices.framework in Frameworks */,
 				CD235A53173B1F920078423B /* QuartzCore.framework in Frameworks */,
+				CD4370D5180372DB008D9DCF /* Crashlytics.framework in Frameworks */,
 				5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				5907C5B710A69A190028D630 /* libz.dylib in Frameworks */,
@@ -921,6 +925,7 @@
 				CDA1181D16C1DC6600CE1375 /* Foundation.framework in Frameworks */,
 				CD235A4C173AFB920078423B /* MobileCoreServices.framework in Frameworks */,
 				CD235A52173B1F830078423B /* QuartzCore.framework in Frameworks */,
+				CD4370D6180372DB008D9DCF /* Crashlytics.framework in Frameworks */,
 				CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */,
 				CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */,
 				CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */,
@@ -1015,6 +1020,7 @@
 				CD13747A17EA90A0002A2551 /* AVFoundation.framework */,
 				5907C5AC10A69A0A0028D630 /* CFNetwork.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+				CD4370D4180372DA008D9DCF /* Crashlytics.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				CD235A4B173AFB920078423B /* MobileCoreServices.framework */,
 				CD235A51173B1F1A0078423B /* QuartzCore.framework */,
@@ -1447,6 +1453,7 @@
 				CDA1174D16C1DC6600CE1375 /* Resources */,
 				CDA117CE16C1DC6600CE1375 /* Sources */,
 				CDA1181C16C1DC6600CE1375 /* Frameworks */,
+				CD4370D31803727B008D9DCF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1873,6 +1880,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		CD4370D31803727B008D9DCF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 7e5579f671abccb0156cc1a6de1201f981ef170c";
+		};
 		CD7ADD2417EF575700B4C886 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2079,6 +2099,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2099,6 +2123,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
@@ -2174,6 +2202,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2196,6 +2228,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
@@ -2216,6 +2252,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
@@ -2263,6 +2303,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
