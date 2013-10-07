@@ -208,8 +208,6 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:allowFarts forKey:@"superSecretFartMode"];
         [defaults synchronize];
-        
-        NSLog(@"saving farts");
     }
 }
 
