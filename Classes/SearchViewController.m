@@ -66,19 +66,6 @@
     [self.view addSubview:topStroke];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    //Patch-E: always keeping focus in one of the text fields upon segemented control mode change, made the search button under the table view unecessary for iPhone, removed from iPhone xib and programmatically create one on the top right of navigation bar. Always scrolling the text field with focus into view on iPhone.
-    [self.view endEditing:YES];
-    switch (segmentedBar.selectedSegmentIndex) {
-        case 1:
-            [authorField becomeFirstResponder];
-            break;
-        default:
-            [termsField becomeFirstResponder];
-            break;
-    }
-}
-
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     // resize the scroll view on rotation
     [self sizeRecentSearchScrollView];
@@ -186,7 +173,6 @@
     // background and frame properties
     [btn setFrame:CGRectMake(segmentedBar.frameX, yButtonOffset, segmentedBar.frameWidth, buttonHeight)];
     [btn setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [btn setShowsTouchWhenHighlighted:YES];
     
     // title label properties
     [btn setTitle:title forState:UIControlStateNormal];
@@ -295,6 +281,16 @@
         // get and show the lock image (last subview in cell's contentView), really ugly
         UIView *cell = [(UITableViewCell *)usernameField.superview.superview.superview contentView];
         ((UIView *)cell.subviews.lastObject).hidden = NO;
+    }
+    
+    //Patch-E: always keeping focus in one of the text fields upon segemented control mode change, made the search button under the table view unecessary for iPhone, removed from iPhone xib and programmatically create one on the top right of navigation bar. Always scrolling the text field with focus into view on iPhone.
+    switch (segmentedBar.selectedSegmentIndex) {
+        case 1:
+            [authorField becomeFirstResponder];
+            break;
+        default:
+            [termsField becomeFirstResponder];
+            break;
     }
 
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
