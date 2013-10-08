@@ -5,7 +5,16 @@ iOS 7 Conversion / Semi-rewrite
 
 *Disclaimers/Known Issues:
 - iPad has not been touched yet at all, probably blows up completely there.
-- The (x) to clear text fields on Search view isn't currently working.
+
+3.4.10
+====
+- The (x) to clear text fields on Search view is now functional again
+- Better network activity indicator usage
+- Side menu item spacing evened out for both iPhones
+- Farts on scroll
+- Crashlytics integration
+- Revised timer pie icons
+- Capitalize mod tags
 
 3.4.9
 ====
