@@ -66,12 +66,25 @@
     [self.view addSubview:topStroke];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    //Patch-E: always keeping focus in one of the text fields upon segemented control mode change, made the search button under the table view unecessary for iPhone, removed from iPhone xib and programmatically create one on the top right of navigation bar. Always scrolling the text field with focus into view on iPhone.
+    [self.view endEditing:YES];
+    switch (segmentedBar.selectedSegmentIndex) {
+        case 1:
+            [authorField becomeFirstResponder];
+            break;
+        default:
+            [termsField becomeFirstResponder];
+            break;
+    }
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     // resize the scroll view on rotation
     [self sizeRecentSearchScrollView];
 }
 
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     // scroll the scroll view to the top on rotation
     [recentSearchScrollView setContentOffset:CGPointZero animated:NO];
 }
@@ -171,9 +184,9 @@
                buttonOffset:(CGFloat)yButtonOffset
                buttonHeight:(CGFloat)buttonHeight {
     // background and frame properties
-//    [btn setBackgroundImage:[[UIImage imageNamed:@"BlueButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forState:UIControlStateNormal];
     [btn setFrame:CGRectMake(segmentedBar.frameX, yButtonOffset, segmentedBar.frameWidth, buttonHeight)];
     [btn setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [btn setShowsTouchWhenHighlighted:YES];
     
     // title label properties
     [btn setTitle:title forState:UIControlStateNormal];
@@ -239,8 +252,9 @@
         field.delegate = self;
     }
     
-    for (UITableViewCell *cell in [inputTable visibleCells]) {        
-        cell.accessoryView.hidden = YES;
+    for (UITableViewCell *cell in [inputTable visibleCells]) {
+        // get and hide the lock image (last subview in cell's contentView), really ugly
+        ((UIView *)cell.contentView.subviews.lastObject).hidden = YES;
     }
     
     UITextField *usernameField = nil;
@@ -277,18 +291,12 @@
         usernameField.text = username;
         usernameField.enabled = NO;
         usernameField.clearButtonMode = UITextFieldViewModeNever;
-        [(UITableViewCell *)usernameField.superview.superview.superview accessoryView].hidden = NO;
+        
+        // get and show the lock image (last subview in cell's contentView), really ugly
+        UIView *cell = [(UITableViewCell *)usernameField.superview.superview.superview contentView];
+        ((UIView *)cell.subviews.lastObject).hidden = NO;
     }
-    
-    //Patch-E: always keeping focus in one of the text fields upon segemented control mode change, made the search button under the table view unecessary for iPhone, removed from iPhone xib and programmatically create one on the top right of navigation bar. Always scrolling the text field with focus into view on iPhone.
-    switch (segmentedBar.selectedSegmentIndex) {
-        case 1:
-            [authorField becomeFirstResponder];
-            break;
-        default:
-            [termsField becomeFirstResponder];
-            break;
-    }
+
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [inputTable setContentOffset:CGPointZero animated:YES];
     }
@@ -426,13 +434,15 @@
     [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
 
     UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
-    lockImage.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+    lockImage.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    lockImage.frameX = cell.frameWidth - 30;
+    lockImage.frameY = 13;
     
     CGRect fieldRect;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        fieldRect = CGRectMake(80, 12, 264, 20);
+        fieldRect = CGRectMake(80, 12, 234, 20);
     } else {
-        fieldRect = CGRectMake(80, 12, 264, 20);
+        fieldRect = CGRectMake(80, 12, 234, 20);
     }
     
     switch (indexPath.row) {
@@ -473,7 +483,7 @@
             break;
     }
     
-    cell.accessoryView = lockImage;
+    [cell.contentView addSubview:lockImage];
     
     return cell;
 }
