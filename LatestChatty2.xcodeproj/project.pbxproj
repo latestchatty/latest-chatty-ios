@@ -39,6 +39,46 @@
 		CD235A53173B1F920078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
 		CD4370D5180372DB008D9DCF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4370D4180372DA008D9DCF /* Crashlytics.framework */; };
 		CD4370D6180372DB008D9DCF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4370D4180372DA008D9DCF /* Crashlytics.framework */; };
+		CD4370EB1803A4E0008D9DCF /* List-Lifespan-25-Participant.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370D71803A4E0008D9DCF /* List-Lifespan-25-Participant.png */; };
+		CD4370EC1803A4E0008D9DCF /* List-Lifespan-25-Participant.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370D71803A4E0008D9DCF /* List-Lifespan-25-Participant.png */; };
+		CD4370ED1803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370D81803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png */; };
+		CD4370EE1803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370D81803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png */; };
+		CD4370EF1803A4E0008D9DCF /* List-Lifespan-25.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370D91803A4E0008D9DCF /* List-Lifespan-25.png */; };
+		CD4370F01803A4E0008D9DCF /* List-Lifespan-25.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370D91803A4E0008D9DCF /* List-Lifespan-25.png */; };
+		CD4370F11803A4E0008D9DCF /* List-Lifespan-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DA1803A4E0008D9DCF /* List-Lifespan-25@2x.png */; };
+		CD4370F21803A4E0008D9DCF /* List-Lifespan-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DA1803A4E0008D9DCF /* List-Lifespan-25@2x.png */; };
+		CD4370F31803A4E0008D9DCF /* List-Lifespan-50-Participant.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DB1803A4E0008D9DCF /* List-Lifespan-50-Participant.png */; };
+		CD4370F41803A4E0008D9DCF /* List-Lifespan-50-Participant.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DB1803A4E0008D9DCF /* List-Lifespan-50-Participant.png */; };
+		CD4370F51803A4E0008D9DCF /* List-Lifespan-50-Participant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DC1803A4E0008D9DCF /* List-Lifespan-50-Participant@2x.png */; };
+		CD4370F61803A4E0008D9DCF /* List-Lifespan-50-Participant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DC1803A4E0008D9DCF /* List-Lifespan-50-Participant@2x.png */; };
+		CD4370F71803A4E0008D9DCF /* List-Lifespan-50.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DD1803A4E0008D9DCF /* List-Lifespan-50.png */; };
+		CD4370F81803A4E0008D9DCF /* List-Lifespan-50.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DD1803A4E0008D9DCF /* List-Lifespan-50.png */; };
+		CD4370F91803A4E0008D9DCF /* List-Lifespan-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DE1803A4E0008D9DCF /* List-Lifespan-50@2x.png */; };
+		CD4370FA1803A4E0008D9DCF /* List-Lifespan-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DE1803A4E0008D9DCF /* List-Lifespan-50@2x.png */; };
+		CD4370FB1803A4E0008D9DCF /* List-Lifespan-75-Participant.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DF1803A4E0008D9DCF /* List-Lifespan-75-Participant.png */; };
+		CD4370FC1803A4E0008D9DCF /* List-Lifespan-75-Participant.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370DF1803A4E0008D9DCF /* List-Lifespan-75-Participant.png */; };
+		CD4370FD1803A4E0008D9DCF /* List-Lifespan-75-Participant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E01803A4E0008D9DCF /* List-Lifespan-75-Participant@2x.png */; };
+		CD4370FE1803A4E0008D9DCF /* List-Lifespan-75-Participant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E01803A4E0008D9DCF /* List-Lifespan-75-Participant@2x.png */; };
+		CD4370FF1803A4E0008D9DCF /* List-Lifespan-75.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E11803A4E0008D9DCF /* List-Lifespan-75.png */; };
+		CD4371001803A4E0008D9DCF /* List-Lifespan-75.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E11803A4E0008D9DCF /* List-Lifespan-75.png */; };
+		CD4371011803A4E0008D9DCF /* List-Lifespan-75@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E21803A4E0008D9DCF /* List-Lifespan-75@2x.png */; };
+		CD4371021803A4E0008D9DCF /* List-Lifespan-75@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E21803A4E0008D9DCF /* List-Lifespan-75@2x.png */; };
+		CD4371031803A4E0008D9DCF /* List-Lifespan-100-Participant.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E31803A4E0008D9DCF /* List-Lifespan-100-Participant.png */; };
+		CD4371041803A4E0008D9DCF /* List-Lifespan-100-Participant.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E31803A4E0008D9DCF /* List-Lifespan-100-Participant.png */; };
+		CD4371051803A4E0008D9DCF /* List-Lifespan-100-Participant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E41803A4E0008D9DCF /* List-Lifespan-100-Participant@2x.png */; };
+		CD4371061803A4E0008D9DCF /* List-Lifespan-100-Participant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E41803A4E0008D9DCF /* List-Lifespan-100-Participant@2x.png */; };
+		CD4371071803A4E0008D9DCF /* List-Lifespan-100.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E51803A4E0008D9DCF /* List-Lifespan-100.png */; };
+		CD4371081803A4E0008D9DCF /* List-Lifespan-100.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E51803A4E0008D9DCF /* List-Lifespan-100.png */; };
+		CD4371091803A4E0008D9DCF /* List-Lifespan-100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E61803A4E0008D9DCF /* List-Lifespan-100@2x.png */; };
+		CD43710A1803A4E0008D9DCF /* List-Lifespan-100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E61803A4E0008D9DCF /* List-Lifespan-100@2x.png */; };
+		CD43710B1803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E71803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png */; };
+		CD43710C1803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E71803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png */; };
+		CD43710D1803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E81803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png */; };
+		CD43710E1803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E81803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png */; };
+		CD43710F1803A4E0008D9DCF /* List-Lifespan-Empty.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E91803A4E0008D9DCF /* List-Lifespan-Empty.png */; };
+		CD4371101803A4E0008D9DCF /* List-Lifespan-Empty.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370E91803A4E0008D9DCF /* List-Lifespan-Empty.png */; };
+		CD4371111803A4E0008D9DCF /* List-Lifespan-Empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370EA1803A4E0008D9DCF /* List-Lifespan-Empty@2x.png */; };
+		CD4371121803A4E0008D9DCF /* List-Lifespan-Empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4370EA1803A4E0008D9DCF /* List-Lifespan-Empty@2x.png */; };
 		CD43CFE61743B7AD00165FF3 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */; };
 		CD43CFE71743B7AD00165FF3 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */; };
 		CD43CFEA1744809F00165FF3 /* Clear.24.png in Resources */ = {isa = PBXBuildFile; fileRef = CD43CFE81744809F00165FF3 /* Clear.24.png */; };
@@ -336,42 +376,6 @@
 		CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5B610A69A190028D630 /* libz.dylib */; };
-		CDB348D5174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CC174573C0000003CA /* TimerDotQuarterBlue@2x.png */; };
-		CDB348D6174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CC174573C0000003CA /* TimerDotQuarterBlue@2x.png */; };
-		CDB348D7174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CD174573C0000003CA /* TimerDotHalfBlue@2x.png */; };
-		CDB348D8174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CD174573C0000003CA /* TimerDotHalfBlue@2x.png */; };
-		CDB348D9174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CE174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png */; };
-		CDB348DA174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CE174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png */; };
-		CDB348DB174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CF174573C0000003CA /* TimerDotFullBlue@2x.png */; };
-		CDB348DC174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348CF174573C0000003CA /* TimerDotFullBlue@2x.png */; };
-		CDB348DD174573C0000003CA /* TimerDotEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D0174573C0000003CA /* TimerDotEmpty@2x.png */; };
-		CDB348DE174573C0000003CA /* TimerDotEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D0174573C0000003CA /* TimerDotEmpty@2x.png */; };
-		CDB348DF174573C0000003CA /* TimerDotQuarter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D1174573C0000003CA /* TimerDotQuarter@2x.png */; };
-		CDB348E0174573C0000003CA /* TimerDotQuarter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D1174573C0000003CA /* TimerDotQuarter@2x.png */; };
-		CDB348E1174573C0000003CA /* TimerDotHalf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D2174573C0000003CA /* TimerDotHalf@2x.png */; };
-		CDB348E2174573C0000003CA /* TimerDotHalf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D2174573C0000003CA /* TimerDotHalf@2x.png */; };
-		CDB348E3174573C0000003CA /* TimerDotThreeQuarter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D3174573C0000003CA /* TimerDotThreeQuarter@2x.png */; };
-		CDB348E4174573C0000003CA /* TimerDotThreeQuarter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D3174573C0000003CA /* TimerDotThreeQuarter@2x.png */; };
-		CDB348E5174573C0000003CA /* TimerDotFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D4174573C0000003CA /* TimerDotFull@2x.png */; };
-		CDB348E6174573C0000003CA /* TimerDotFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348D4174573C0000003CA /* TimerDotFull@2x.png */; };
-		CDB348F01745745F000003CA /* TimerDotQuarterBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E71745745F000003CA /* TimerDotQuarterBlue.png */; };
-		CDB348F11745745F000003CA /* TimerDotQuarterBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E71745745F000003CA /* TimerDotQuarterBlue.png */; };
-		CDB348F21745745F000003CA /* TimerDotHalfBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E81745745F000003CA /* TimerDotHalfBlue.png */; };
-		CDB348F31745745F000003CA /* TimerDotHalfBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E81745745F000003CA /* TimerDotHalfBlue.png */; };
-		CDB348F41745745F000003CA /* TimerDotThreeQuarterBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E91745745F000003CA /* TimerDotThreeQuarterBlue.png */; };
-		CDB348F51745745F000003CA /* TimerDotThreeQuarterBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348E91745745F000003CA /* TimerDotThreeQuarterBlue.png */; };
-		CDB348F61745745F000003CA /* TimerDotFullBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EA1745745F000003CA /* TimerDotFullBlue.png */; };
-		CDB348F71745745F000003CA /* TimerDotFullBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EA1745745F000003CA /* TimerDotFullBlue.png */; };
-		CDB348F81745745F000003CA /* TimerDotEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EB1745745F000003CA /* TimerDotEmpty.png */; };
-		CDB348F91745745F000003CA /* TimerDotEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EB1745745F000003CA /* TimerDotEmpty.png */; };
-		CDB348FA1745745F000003CA /* TimerDotQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EC1745745F000003CA /* TimerDotQuarter.png */; };
-		CDB348FB1745745F000003CA /* TimerDotQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EC1745745F000003CA /* TimerDotQuarter.png */; };
-		CDB348FC1745745F000003CA /* TimerDotHalf.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348ED1745745F000003CA /* TimerDotHalf.png */; };
-		CDB348FD1745745F000003CA /* TimerDotHalf.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348ED1745745F000003CA /* TimerDotHalf.png */; };
-		CDB348FE1745745F000003CA /* TimerDotThreeQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */; };
-		CDB348FF1745745F000003CA /* TimerDotThreeQuarter.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */; };
-		CDB349001745745F000003CA /* TimerDotFull.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EF1745745F000003CA /* TimerDotFull.png */; };
-		CDB349011745745F000003CA /* TimerDotFull.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB348EF1745745F000003CA /* TimerDotFull.png */; };
 		CDC0E9BC17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
 		CDC0E9BD17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
 		CDC0E9BE17F6886D007D3738 /* Post-Indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */; };
@@ -583,6 +587,26 @@
 		CD235A4B173AFB920078423B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CD235A51173B1F1A0078423B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CD4370D4180372DA008D9DCF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		CD4370D71803A4E0008D9DCF /* List-Lifespan-25-Participant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-25-Participant.png"; path = "Assets/List-Lifespan-25-Participant.png"; sourceTree = "<group>"; };
+		CD4370D81803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-25-Participant@2x.png"; path = "Assets/List-Lifespan-25-Participant@2x.png"; sourceTree = "<group>"; };
+		CD4370D91803A4E0008D9DCF /* List-Lifespan-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-25.png"; path = "Assets/List-Lifespan-25.png"; sourceTree = "<group>"; };
+		CD4370DA1803A4E0008D9DCF /* List-Lifespan-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-25@2x.png"; path = "Assets/List-Lifespan-25@2x.png"; sourceTree = "<group>"; };
+		CD4370DB1803A4E0008D9DCF /* List-Lifespan-50-Participant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-50-Participant.png"; path = "Assets/List-Lifespan-50-Participant.png"; sourceTree = "<group>"; };
+		CD4370DC1803A4E0008D9DCF /* List-Lifespan-50-Participant@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-50-Participant@2x.png"; path = "Assets/List-Lifespan-50-Participant@2x.png"; sourceTree = "<group>"; };
+		CD4370DD1803A4E0008D9DCF /* List-Lifespan-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-50.png"; path = "Assets/List-Lifespan-50.png"; sourceTree = "<group>"; };
+		CD4370DE1803A4E0008D9DCF /* List-Lifespan-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-50@2x.png"; path = "Assets/List-Lifespan-50@2x.png"; sourceTree = "<group>"; };
+		CD4370DF1803A4E0008D9DCF /* List-Lifespan-75-Participant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-75-Participant.png"; path = "Assets/List-Lifespan-75-Participant.png"; sourceTree = "<group>"; };
+		CD4370E01803A4E0008D9DCF /* List-Lifespan-75-Participant@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-75-Participant@2x.png"; path = "Assets/List-Lifespan-75-Participant@2x.png"; sourceTree = "<group>"; };
+		CD4370E11803A4E0008D9DCF /* List-Lifespan-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-75.png"; path = "Assets/List-Lifespan-75.png"; sourceTree = "<group>"; };
+		CD4370E21803A4E0008D9DCF /* List-Lifespan-75@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-75@2x.png"; path = "Assets/List-Lifespan-75@2x.png"; sourceTree = "<group>"; };
+		CD4370E31803A4E0008D9DCF /* List-Lifespan-100-Participant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-100-Participant.png"; path = "Assets/List-Lifespan-100-Participant.png"; sourceTree = "<group>"; };
+		CD4370E41803A4E0008D9DCF /* List-Lifespan-100-Participant@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-100-Participant@2x.png"; path = "Assets/List-Lifespan-100-Participant@2x.png"; sourceTree = "<group>"; };
+		CD4370E51803A4E0008D9DCF /* List-Lifespan-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-100.png"; path = "Assets/List-Lifespan-100.png"; sourceTree = "<group>"; };
+		CD4370E61803A4E0008D9DCF /* List-Lifespan-100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-100@2x.png"; path = "Assets/List-Lifespan-100@2x.png"; sourceTree = "<group>"; };
+		CD4370E71803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-Empty-Participant.png"; path = "Assets/List-Lifespan-Empty-Participant.png"; sourceTree = "<group>"; };
+		CD4370E81803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-Empty-Participant@2x.png"; path = "Assets/List-Lifespan-Empty-Participant@2x.png"; sourceTree = "<group>"; };
+		CD4370E91803A4E0008D9DCF /* List-Lifespan-Empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-Empty.png"; path = "Assets/List-Lifespan-Empty.png"; sourceTree = "<group>"; };
+		CD4370EA1803A4E0008D9DCF /* List-Lifespan-Empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-Empty@2x.png"; path = "Assets/List-Lifespan-Empty@2x.png"; sourceTree = "<group>"; };
 		CD43CFE51743B7AD00165FF3 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		CD43CFE81744809F00165FF3 /* Clear.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Clear.24.png; path = Assets/Clear.24.png; sourceTree = "<group>"; };
 		CD43CFE91744809F00165FF3 /* Clear.24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Clear.24@2x.png"; path = "Assets/Clear.24@2x.png"; sourceTree = "<group>"; };
@@ -734,24 +758,6 @@
 		CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewThreadViewController.m; sourceTree = "<group>"; };
 		CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewThreadViewController.xib; sourceTree = "<group>"; };
 		CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChattyBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDB348CC174573C0000003CA /* TimerDotQuarterBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotQuarterBlue@2x.png"; path = "Assets/TimerDotQuarterBlue@2x.png"; sourceTree = "<group>"; };
-		CDB348CD174573C0000003CA /* TimerDotHalfBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotHalfBlue@2x.png"; path = "Assets/TimerDotHalfBlue@2x.png"; sourceTree = "<group>"; };
-		CDB348CE174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotThreeQuarterBlue@2x.png"; path = "Assets/TimerDotThreeQuarterBlue@2x.png"; sourceTree = "<group>"; };
-		CDB348CF174573C0000003CA /* TimerDotFullBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotFullBlue@2x.png"; path = "Assets/TimerDotFullBlue@2x.png"; sourceTree = "<group>"; };
-		CDB348D0174573C0000003CA /* TimerDotEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotEmpty@2x.png"; path = "Assets/TimerDotEmpty@2x.png"; sourceTree = "<group>"; };
-		CDB348D1174573C0000003CA /* TimerDotQuarter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotQuarter@2x.png"; path = "Assets/TimerDotQuarter@2x.png"; sourceTree = "<group>"; };
-		CDB348D2174573C0000003CA /* TimerDotHalf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotHalf@2x.png"; path = "Assets/TimerDotHalf@2x.png"; sourceTree = "<group>"; };
-		CDB348D3174573C0000003CA /* TimerDotThreeQuarter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotThreeQuarter@2x.png"; path = "Assets/TimerDotThreeQuarter@2x.png"; sourceTree = "<group>"; };
-		CDB348D4174573C0000003CA /* TimerDotFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TimerDotFull@2x.png"; path = "Assets/TimerDotFull@2x.png"; sourceTree = "<group>"; };
-		CDB348E71745745F000003CA /* TimerDotQuarterBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotQuarterBlue.png; path = Assets/TimerDotQuarterBlue.png; sourceTree = "<group>"; };
-		CDB348E81745745F000003CA /* TimerDotHalfBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotHalfBlue.png; path = Assets/TimerDotHalfBlue.png; sourceTree = "<group>"; };
-		CDB348E91745745F000003CA /* TimerDotThreeQuarterBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotThreeQuarterBlue.png; path = Assets/TimerDotThreeQuarterBlue.png; sourceTree = "<group>"; };
-		CDB348EA1745745F000003CA /* TimerDotFullBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotFullBlue.png; path = Assets/TimerDotFullBlue.png; sourceTree = "<group>"; };
-		CDB348EB1745745F000003CA /* TimerDotEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotEmpty.png; path = Assets/TimerDotEmpty.png; sourceTree = "<group>"; };
-		CDB348EC1745745F000003CA /* TimerDotQuarter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotQuarter.png; path = Assets/TimerDotQuarter.png; sourceTree = "<group>"; };
-		CDB348ED1745745F000003CA /* TimerDotHalf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotHalf.png; path = Assets/TimerDotHalf.png; sourceTree = "<group>"; };
-		CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotThreeQuarter.png; path = Assets/TimerDotThreeQuarter.png; sourceTree = "<group>"; };
-		CDB348EF1745745F000003CA /* TimerDotFull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerDotFull.png; path = Assets/TimerDotFull.png; sourceTree = "<group>"; };
 		CDC0E9A817F6886D007D3738 /* Post-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator.png"; path = "Assets/Post-Indicator.png"; sourceTree = "<group>"; };
 		CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator@2x.png"; path = "Assets/Post-Indicator@2x.png"; sourceTree = "<group>"; };
 		CDC0E9AA17F6886D007D3738 /* Post-Indicator-Reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-Reply.png"; path = "Assets/Post-Indicator-Reply.png"; sourceTree = "<group>"; };
@@ -1361,6 +1367,26 @@
 				CD7F2F2617FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png */,
 				CD7F2F2717FE85BE00E7EAE3 /* Keyboard-Normal.png */,
 				CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */,
+				CD4370D71803A4E0008D9DCF /* List-Lifespan-25-Participant.png */,
+				CD4370D81803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png */,
+				CD4370D91803A4E0008D9DCF /* List-Lifespan-25.png */,
+				CD4370DA1803A4E0008D9DCF /* List-Lifespan-25@2x.png */,
+				CD4370DB1803A4E0008D9DCF /* List-Lifespan-50-Participant.png */,
+				CD4370DC1803A4E0008D9DCF /* List-Lifespan-50-Participant@2x.png */,
+				CD4370DD1803A4E0008D9DCF /* List-Lifespan-50.png */,
+				CD4370DE1803A4E0008D9DCF /* List-Lifespan-50@2x.png */,
+				CD4370DF1803A4E0008D9DCF /* List-Lifespan-75-Participant.png */,
+				CD4370E01803A4E0008D9DCF /* List-Lifespan-75-Participant@2x.png */,
+				CD4370E11803A4E0008D9DCF /* List-Lifespan-75.png */,
+				CD4370E21803A4E0008D9DCF /* List-Lifespan-75@2x.png */,
+				CD4370E31803A4E0008D9DCF /* List-Lifespan-100-Participant.png */,
+				CD4370E41803A4E0008D9DCF /* List-Lifespan-100-Participant@2x.png */,
+				CD4370E51803A4E0008D9DCF /* List-Lifespan-100.png */,
+				CD4370E61803A4E0008D9DCF /* List-Lifespan-100@2x.png */,
+				CD4370E71803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png */,
+				CD4370E81803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png */,
+				CD4370E91803A4E0008D9DCF /* List-Lifespan-Empty.png */,
+				CD4370EA1803A4E0008D9DCF /* List-Lifespan-Empty@2x.png */,
 				CD48680617EB5B430071F3D7 /* Fart1.mp3 */,
 				CD48680717EB5B430071F3D7 /* Fart2.mp3 */,
 				CD48680817EB5B430071F3D7 /* Fart3.mp3 */,
@@ -1389,24 +1415,6 @@
 				CD43CFE91744809F00165FF3 /* Clear.24@2x.png */,
 				CD205655174540A9003AF4FA /* PinIcon.24.png */,
 				CD205659174540A9003AF4FA /* PinIcon.24@2x.png */,
-				CDB348EB1745745F000003CA /* TimerDotEmpty.png */,
-				CDB348D0174573C0000003CA /* TimerDotEmpty@2x.png */,
-				CDB348EC1745745F000003CA /* TimerDotQuarter.png */,
-				CDB348D1174573C0000003CA /* TimerDotQuarter@2x.png */,
-				CDB348ED1745745F000003CA /* TimerDotHalf.png */,
-				CDB348D2174573C0000003CA /* TimerDotHalf@2x.png */,
-				CDB348EE1745745F000003CA /* TimerDotThreeQuarter.png */,
-				CDB348D3174573C0000003CA /* TimerDotThreeQuarter@2x.png */,
-				CDB348EF1745745F000003CA /* TimerDotFull.png */,
-				CDB348D4174573C0000003CA /* TimerDotFull@2x.png */,
-				CDB348E71745745F000003CA /* TimerDotQuarterBlue.png */,
-				CDB348CC174573C0000003CA /* TimerDotQuarterBlue@2x.png */,
-				CDB348E81745745F000003CA /* TimerDotHalfBlue.png */,
-				CDB348CD174573C0000003CA /* TimerDotHalfBlue@2x.png */,
-				CDB348E91745745F000003CA /* TimerDotThreeQuarterBlue.png */,
-				CDB348CE174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png */,
-				CDB348EA1745745F000003CA /* TimerDotFullBlue.png */,
-				CDB348CF174573C0000003CA /* TimerDotFullBlue@2x.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -1503,11 +1511,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD4370FD1803A4E0008D9DCF /* List-Lifespan-75-Participant@2x.png in Resources */,
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				FA5FCE950F6F7CB600878F27 /* StoryCell.xib in Resources */,
 				FA6EDD320F70D56B00AAF4E4 /* ChattyViewController.xib in Resources */,
 				FA6EDD6A0F70D95A00AAF4E4 /* ThreadCell.xib in Resources */,
 				CD7F2F3317FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png in Resources */,
+				CD43710D1803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png in Resources */,
 				CD7ADD0A17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */,
 				CDDAC2D317F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png in Resources */,
 				CD7F2EB117FA705300E7EAE3 /* Web-Previous.png in Resources */,
@@ -1520,9 +1530,11 @@
 				CD7ADD1B17EF180E00B4C886 /* StoryCell-iPad.xib in Resources */,
 				CDC0E9C617F91AEF007D3738 /* Sidebar-bg.png in Resources */,
 				CD7F2EB717FA705300E7EAE3 /* Web-Refresh@2x.png in Resources */,
+				CD4370FB1803A4E0008D9DCF /* List-Lifespan-75-Participant.png in Resources */,
 				CD7ADD0417EF17FA00B4C886 /* SendMessageViewController-iPad.xib in Resources */,
 				CDDAC2F117F44E78000FEC8A /* Stories-Inactive.png in Resources */,
 				FAB765E50F7C9D5800CE0E38 /* BrowserViewController.xib in Resources */,
+				CD4371091803A4E0008D9DCF /* List-Lifespan-100@2x.png in Resources */,
 				CDDAC2C917F44E78000FEC8A /* Menu-Button-List.png in Resources */,
 				CDC0E9BE17F6886D007D3738 /* Post-Indicator@2x.png in Resources */,
 				FA2260530F8EE251002F77DD /* Settings.bundle in Resources */,
@@ -1538,10 +1550,12 @@
 				CD7F2F5317FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png in Resources */,
 				FA4124540F8FEFF1002E1978 /* MessagesViewController.xib in Resources */,
 				FA828B8C0F90901100B59FF8 /* MessageCell.xib in Resources */,
+				CD4370EF1803A4E0008D9DCF /* List-Lifespan-25.png in Resources */,
 				FAD4EB540F96798800E74FED /* MessageViewController.xib in Resources */,
 				FA9C3ED00F9CEB1E0022A739 /* SearchViewController.xib in Resources */,
 				CDDAC2D917F44E78000FEC8A /* Thread-Toolbar-Refresh@2x.png in Resources */,
 				CDDAC2C517F44E78000FEC8A /* Menu-Button-Reply.png in Resources */,
+				CD43710B1803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png in Resources */,
 				FA2ECCC10F9D4FED00912BE4 /* Lock.16.png in Resources */,
 				CDDAC30117F44E78000FEC8A /* Search-Inactive.png in Resources */,
 				FACD9A7E0F9E2F49009D9A15 /* SearchResultsViewController.xib in Resources */,
@@ -1549,6 +1563,8 @@
 				CD7ADD0C17EF17FA00B4C886 /* StoryViewController-iPad.xib in Resources */,
 				FA7A3436112F652700DCD653 /* StoryViewController.xib in Resources */,
 				CD7ADCF817EF17FA00B4C886 /* MessageViewController-iPad.xib in Resources */,
+				CD4371071803A4E0008D9DCF /* List-Lifespan-100.png in Resources */,
+				CD4370F31803A4E0008D9DCF /* List-Lifespan-50-Participant.png in Resources */,
 				CD7ADCF617EF17FA00B4C886 /* MessagesViewController-iPad.xib in Resources */,
 				CD48680F17EB5B430071F3D7 /* Fart1.mp3 in Resources */,
 				FA04878F11640DA800290D2D /* SendMessageViewController.xib in Resources */,
@@ -1562,6 +1578,7 @@
 				CDDAC2F517F44E78000FEC8A /* Stories-Active@2x.png in Resources */,
 				CDDAC2FF17F44E78000FEC8A /* Search-Inactive@2x.png in Resources */,
 				CD7F2EAF17FA705300E7EAE3 /* Web-Next@2x.png in Resources */,
+				CD4370FF1803A4E0008D9DCF /* List-Lifespan-75.png in Resources */,
 				CD7ADCF217EF17FA00B4C886 /* ChattyViewController-iPad.xib in Resources */,
 				CD7F2F4717FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png in Resources */,
 				CD7ADD1517EF180E00B4C886 /* MessageCell-iPad.xib in Resources */,
@@ -1570,6 +1587,7 @@
 				CD8BA2BA16306A0900ED5C5E /* AppleSafari-Icon@2x.png in Resources */,
 				CD8BA2BB16306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png in Resources */,
 				CDDAC30517F44E78000FEC8A /* Search-Active@2x.png in Resources */,
+				CD4370ED1803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png in Resources */,
 				CD8BA2BC16306A0900ED5C5E /* AppleSafari-Icon~ipad.png in Resources */,
 				CD8BA2C316306A9E00ED5C5E /* GoogleChrome-Icon.png in Resources */,
 				CDDAC2E317F44E78000FEC8A /* Thread-Toolbar-Mods@2x.png in Resources */,
@@ -1581,6 +1599,7 @@
 				CD48681717EB5B430071F3D7 /* Fart5.mp3 in Resources */,
 				CDDAC30317F44E78000FEC8A /* Search-Active.png in Resources */,
 				CDDAC30D17F44E78000FEC8A /* Messages-Active.png in Resources */,
+				CD4370F51803A4E0008D9DCF /* List-Lifespan-50-Participant@2x.png in Resources */,
 				CDA01B1D1730AD5B00E24A28 /* Lock.16@2x.png in Resources */,
 				CD7F2F5117FE85BE00E7EAE3 /* Keyboard-Normal-Strike.png in Resources */,
 				CDDAC2BF17F44E78000FEC8A /* Menu-Button-Thread.png in Resources */,
@@ -1590,7 +1609,9 @@
 				CDC0E9C217F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
 				CD7F2F3F17FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */,
 				CD7F2F4B17FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png in Resources */,
+				CD4371031803A4E0008D9DCF /* List-Lifespan-100-Participant.png in Resources */,
 				CD7F2F5517FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */,
+				CD43710F1803A4E0008D9DCF /* List-Lifespan-Empty.png in Resources */,
 				CD7ADCF417EF17FA00B4C886 /* ComposeViewController-iPad.xib in Resources */,
 				CD7F2F5917FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */,
 				CDDAC30F17F44E78000FEC8A /* Shack[lol]-Inactive@2x.png in Resources */,
@@ -1598,6 +1619,7 @@
 				CD7ADCFC17EF17FA00B4C886 /* ReviewThreadViewController-iPad.xib in Resources */,
 				CD7ADD1917EF180E00B4C886 /* RootCell-iPad.xib in Resources */,
 				CD7F2F4917FE85BE00E7EAE3 /* Keyboard-Normal-Code.png in Resources */,
+				CD4371111803A4E0008D9DCF /* List-Lifespan-Empty@2x.png in Resources */,
 				CD7F2F3917FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */,
 				CDDAC31B17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
 				CD7F2F4D17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
@@ -1615,47 +1637,34 @@
 				CD43CFEC1744809F00165FF3 /* Clear.24@2x.png in Resources */,
 				CDDAC2F917F44E78000FEC8A /* Settings-Inactive.png in Resources */,
 				CD205660174540A9003AF4FA /* PinIcon.24.png in Resources */,
+				CD4370EB1803A4E0008D9DCF /* List-Lifespan-25-Participant.png in Resources */,
 				CDDAC2FB17F44E78000FEC8A /* Settings-Active.png in Resources */,
 				CD7F2F3D17FE85BE00E7EAE3 /* Keyboard-Color-Pink.png in Resources */,
 				CD205668174540A9003AF4FA /* PinIcon.24@2x.png in Resources */,
-				CDB348D5174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */,
 				CD7F2F3117FE85BE00E7EAE3 /* Keyboard-Color-Lime.png in Resources */,
-				CDB348D7174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */,
 				CD7ADD0817EF17FA00B4C886 /* SlideOutViewController-iPad.xib in Resources */,
-				CDB348D9174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */,
 				CDDAC2F317F44E78000FEC8A /* Stories-Active.png in Resources */,
+				CD4371051803A4E0008D9DCF /* List-Lifespan-100-Participant@2x.png in Resources */,
 				CDDAC2E917F44E78000FEC8A /* Take-Photo.png in Resources */,
 				CDDAC30B17F44E78000FEC8A /* Messages-Active@2x.png in Resources */,
 				CD7ADCFE17EF17FA00B4C886 /* RootViewController-iPad.xib in Resources */,
 				CD48681F17EB5B430071F3D7 /* Fart9.mp3 in Resources */,
-				CDB348DB174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */,
-				CDB348DD174573C0000003CA /* TimerDotEmpty@2x.png in Resources */,
 				CD7F2F4317FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png in Resources */,
 				CD7F2F2B17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png in Resources */,
 				CD7F2F4F17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png in Resources */,
+				CD4370F11803A4E0008D9DCF /* List-Lifespan-25@2x.png in Resources */,
 				CDC0E9C017F6886D007D3738 /* Post-Indicator-Reply.png in Resources */,
+				CD4370F91803A4E0008D9DCF /* List-Lifespan-50@2x.png in Resources */,
 				CD7ADD1D17EF180E00B4C886 /* ThreadCell-iPad.xib in Resources */,
-				CDB348DF174573C0000003CA /* TimerDotQuarter@2x.png in Resources */,
 				CDDAC2DD17F44E78000FEC8A /* Thread-Toolbar-Previous.png in Resources */,
 				CD7F2F5B17FE85BE00E7EAE3 /* Keyboard-Normal@2x.png in Resources */,
+				CD4370F71803A4E0008D9DCF /* List-Lifespan-50.png in Resources */,
 				CDDAC2D117F44E78000FEC8A /* Thread-Toolbar-Timer.png in Resources */,
 				CDDAC31917F44E78000FEC8A /* Chatty-Inactive.png in Resources */,
-				CDB348E1174573C0000003CA /* TimerDotHalf@2x.png in Resources */,
 				CDDAC2E517F44E78000FEC8A /* Thread-Toolbar-Mods.png in Resources */,
-				CDB348E3174573C0000003CA /* TimerDotThreeQuarter@2x.png in Resources */,
 				CD7F2F5717FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png in Resources */,
-				CDB348E5174573C0000003CA /* TimerDotFull@2x.png in Resources */,
-				CDB348F01745745F000003CA /* TimerDotQuarterBlue.png in Resources */,
-				CDB348F21745745F000003CA /* TimerDotHalfBlue.png in Resources */,
-				CDB348F41745745F000003CA /* TimerDotThreeQuarterBlue.png in Resources */,
 				CDDAC31517F44E78000FEC8A /* Shack[lol]-Active.png in Resources */,
-				CDB348F61745745F000003CA /* TimerDotFullBlue.png in Resources */,
-				CDB348F81745745F000003CA /* TimerDotEmpty.png in Resources */,
-				CDB348FA1745745F000003CA /* TimerDotQuarter.png in Resources */,
-				CDB348FC1745745F000003CA /* TimerDotHalf.png in Resources */,
 				CDDAC2CB17F44E78000FEC8A /* Menu-Button-Compose@2x.png in Resources */,
-				CDB348FE1745745F000003CA /* TimerDotThreeQuarter.png in Resources */,
-				CDB349001745745F000003CA /* TimerDotFull.png in Resources */,
 				CDDAC30917F44E78000FEC8A /* Messages-Inactive.png in Resources */,
 				CD7C247B1754674300D90942 /* StoriesViewController.xib in Resources */,
 				CDDAC31D17F44E78000FEC8A /* Chatty-Active.png in Resources */,
@@ -1674,6 +1683,7 @@
 				CD7ADD0617EF17FA00B4C886 /* SettingsViewController-iPad.xib in Resources */,
 				CD7ADCFA17EF17FA00B4C886 /* NoContentController-iPad.xib in Resources */,
 				CDDAC2DB17F44E78000FEC8A /* Thread-Toolbar-Previous@2x.png in Resources */,
+				CD4371011803A4E0008D9DCF /* List-Lifespan-75@2x.png in Resources */,
 				CDDAC2EB17F44E78000FEC8A /* Story-Comment-Count@2x.png in Resources */,
 				CD7C248D1754689100D90942 /* Youtube.html in Resources */,
 				CDDAC31717F44E78000FEC8A /* Chatty-Inactive@2x.png in Resources */,
@@ -1692,11 +1702,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD4370FE1803A4E0008D9DCF /* List-Lifespan-75-Participant@2x.png in Resources */,
 				CD7ADCFF17EF17FA00B4C886 /* RootViewController-iPad.xib in Resources */,
 				CDA1174E16C1DC6600CE1375 /* MainWindow.xib in Resources */,
 				CDA1175016C1DC6600CE1375 /* StoryCell.xib in Resources */,
 				CD7ADD1617EF180E00B4C886 /* MessageCell-iPad.xib in Resources */,
 				CD7F2F3417FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png in Resources */,
+				CD43710E1803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png in Resources */,
 				CDA1175216C1DC6600CE1375 /* ChattyViewController.xib in Resources */,
 				CDDAC2D417F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png in Resources */,
 				CD7F2EB217FA705300E7EAE3 /* Web-Previous.png in Resources */,
@@ -1709,9 +1721,11 @@
 				CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */,
 				CDC0E9C717F91AEF007D3738 /* Sidebar-bg.png in Resources */,
 				CD7F2EB817FA705300E7EAE3 /* Web-Refresh@2x.png in Resources */,
+				CD4370FC1803A4E0008D9DCF /* List-Lifespan-75-Participant.png in Resources */,
 				CD48682017EB5B430071F3D7 /* Fart9.mp3 in Resources */,
 				CDDAC2F217F44E78000FEC8A /* Stories-Inactive.png in Resources */,
 				CD7ADD1A17EF180E00B4C886 /* RootCell-iPad.xib in Resources */,
+				CD43710A1803A4E0008D9DCF /* List-Lifespan-100@2x.png in Resources */,
 				CDDAC2CA17F44E78000FEC8A /* Menu-Button-List.png in Resources */,
 				CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */,
 				CDC0E9BF17F6886D007D3738 /* Post-Indicator@2x.png in Resources */,
@@ -1727,10 +1741,12 @@
 				CD7F2F5417FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png in Resources */,
 				CDA1177416C1DC6600CE1375 /* RootCell.xib in Resources */,
 				CDA1177516C1DC6600CE1375 /* RootViewController.xib in Resources */,
+				CD4370F01803A4E0008D9DCF /* List-Lifespan-25.png in Resources */,
 				CDA1177816C1DC6600CE1375 /* MessagesViewController.xib in Resources */,
 				CDA1177916C1DC6600CE1375 /* MessageCell.xib in Resources */,
 				CDDAC2DA17F44E78000FEC8A /* Thread-Toolbar-Refresh@2x.png in Resources */,
 				CDDAC2C617F44E78000FEC8A /* Menu-Button-Reply.png in Resources */,
+				CD43710C1803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png in Resources */,
 				CDA1177A16C1DC6600CE1375 /* MessageViewController.xib in Resources */,
 				CDDAC30217F44E78000FEC8A /* Search-Inactive.png in Resources */,
 				CDA1177B16C1DC6600CE1375 /* SearchViewController.xib in Resources */,
@@ -1738,6 +1754,8 @@
 				CD48681617EB5B430071F3D7 /* Fart4.mp3 in Resources */,
 				CDA1178016C1DC6600CE1375 /* Lock.16.png in Resources */,
 				CDA1178116C1DC6600CE1375 /* SearchResultsViewController.xib in Resources */,
+				CD4371081803A4E0008D9DCF /* List-Lifespan-100.png in Resources */,
+				CD4370F41803A4E0008D9DCF /* List-Lifespan-50-Participant.png in Resources */,
 				CDA1178516C1DC6600CE1375 /* StoryViewController.xib in Resources */,
 				CD7ADCF117EF17FA00B4C886 /* BrowserViewController-iPad.xib in Resources */,
 				CD48681017EB5B430071F3D7 /* Fart1.mp3 in Resources */,
@@ -1751,6 +1769,7 @@
 				CDDAC30017F44E78000FEC8A /* Search-Inactive@2x.png in Resources */,
 				CD7ADCFD17EF17FA00B4C886 /* ReviewThreadViewController-iPad.xib in Resources */,
 				CD7F2EB017FA705300E7EAE3 /* Web-Next@2x.png in Resources */,
+				CD4371001803A4E0008D9DCF /* List-Lifespan-75.png in Resources */,
 				CD7ADCF517EF17FA00B4C886 /* ComposeViewController-iPad.xib in Resources */,
 				CD7F2F4817FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png in Resources */,
 				CD7ADD0D17EF17FA00B4C886 /* StoryViewController-iPad.xib in Resources */,
@@ -1759,6 +1778,7 @@
 				CDA117BB16C1DC6600CE1375 /* AppleSafari-Icon@2x.png in Resources */,
 				CDA117BC16C1DC6600CE1375 /* AppleSafari-Icon@2x~ipad.png in Resources */,
 				CDDAC30617F44E78000FEC8A /* Search-Active@2x.png in Resources */,
+				CD4370EE1803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png in Resources */,
 				CDA117BD16C1DC6600CE1375 /* AppleSafari-Icon~ipad.png in Resources */,
 				CDA117BF16C1DC6600CE1375 /* GoogleChrome-Icon.png in Resources */,
 				CDDAC2E417F44E78000FEC8A /* Thread-Toolbar-Mods@2x.png in Resources */,
@@ -1770,6 +1790,7 @@
 				CDA01B1E1730AD5B00E24A28 /* Lock.16@2x.png in Resources */,
 				CDDAC30417F44E78000FEC8A /* Search-Active.png in Resources */,
 				CDDAC30E17F44E78000FEC8A /* Messages-Active.png in Resources */,
+				CD4370F61803A4E0008D9DCF /* List-Lifespan-50-Participant@2x.png in Resources */,
 				CDA01B251731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
 				CD7F2F5217FE85BE00E7EAE3 /* Keyboard-Normal-Strike.png in Resources */,
 				CDDAC2C017F44E78000FEC8A /* Menu-Button-Thread.png in Resources */,
@@ -1779,7 +1800,9 @@
 				CDC0E9C317F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
 				CD7F2F4017FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */,
 				CD7F2F4C17FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png in Resources */,
+				CD4371041803A4E0008D9DCF /* List-Lifespan-100-Participant.png in Resources */,
 				CD7F2F5617FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */,
+				CD4371101803A4E0008D9DCF /* List-Lifespan-Empty.png in Resources */,
 				CD7F2F5A17FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */,
 				CDDAC31017F44E78000FEC8A /* Shack[lol]-Inactive@2x.png in Resources */,
 				CD7F2F3C17FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png in Resources */,
@@ -1787,6 +1810,7 @@
 				CD7F2F3A17FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */,
 				CDDAC31C17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
 				CD7F2F4E17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
+				CD4371121803A4E0008D9DCF /* List-Lifespan-Empty@2x.png in Resources */,
 				CD7F2EBA17FA705300E7EAE3 /* Web-Share.png in Resources */,
 				CD7F2F3017FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
 				CDDAC2CE17F44E78000FEC8A /* Menu-Button-Compose.png in Resources */,
@@ -1804,6 +1828,7 @@
 				CD7ADD0517EF17FA00B4C886 /* SendMessageViewController-iPad.xib in Resources */,
 				CDDAC2FA17F44E78000FEC8A /* Settings-Inactive.png in Resources */,
 				CD43CFEB1744809F00165FF3 /* Clear.24.png in Resources */,
+				CD4370EC1803A4E0008D9DCF /* List-Lifespan-25-Participant.png in Resources */,
 				CDDAC2FC17F44E78000FEC8A /* Settings-Active.png in Resources */,
 				CD7F2F3E17FE85BE00E7EAE3 /* Keyboard-Color-Pink.png in Resources */,
 				CD43CFED1744809F00165FF3 /* Clear.24@2x.png in Resources */,
@@ -1813,56 +1838,43 @@
 				CD7ADCF717EF17FA00B4C886 /* MessagesViewController-iPad.xib in Resources */,
 				CD7ADD0917EF17FA00B4C886 /* SlideOutViewController-iPad.xib in Resources */,
 				CDDAC2F417F44E78000FEC8A /* Stories-Active.png in Resources */,
+				CD4371061803A4E0008D9DCF /* List-Lifespan-100-Participant@2x.png in Resources */,
 				CDDAC2EA17F44E78000FEC8A /* Take-Photo.png in Resources */,
 				CDDAC30C17F44E78000FEC8A /* Messages-Active@2x.png in Resources */,
 				CD48681817EB5B430071F3D7 /* Fart5.mp3 in Resources */,
 				CD205669174540A9003AF4FA /* PinIcon.24@2x.png in Resources */,
-				CDB348D6174573C0000003CA /* TimerDotQuarterBlue@2x.png in Resources */,
-				CDB348D8174573C0000003CA /* TimerDotHalfBlue@2x.png in Resources */,
 				CD7F2F4417FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png in Resources */,
 				CD7F2F2C17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png in Resources */,
 				CD7F2F5017FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png in Resources */,
+				CD4370F21803A4E0008D9DCF /* List-Lifespan-25@2x.png in Resources */,
 				CDC0E9C117F6886D007D3738 /* Post-Indicator-Reply.png in Resources */,
-				CDB348DA174573C0000003CA /* TimerDotThreeQuarterBlue@2x.png in Resources */,
+				CD4370FA1803A4E0008D9DCF /* List-Lifespan-50@2x.png in Resources */,
 				CD7ADD0117EF17FA00B4C886 /* SearchResultsViewController-iPad.xib in Resources */,
 				CDDAC2DE17F44E78000FEC8A /* Thread-Toolbar-Previous.png in Resources */,
 				CD7F2F5C17FE85BE00E7EAE3 /* Keyboard-Normal@2x.png in Resources */,
+				CD4370F81803A4E0008D9DCF /* List-Lifespan-50.png in Resources */,
 				CDDAC2D217F44E78000FEC8A /* Thread-Toolbar-Timer.png in Resources */,
 				CDDAC31A17F44E78000FEC8A /* Chatty-Inactive.png in Resources */,
-				CDB348DC174573C0000003CA /* TimerDotFullBlue@2x.png in Resources */,
 				CDDAC2E617F44E78000FEC8A /* Thread-Toolbar-Mods.png in Resources */,
-				CDB348DE174573C0000003CA /* TimerDotEmpty@2x.png in Resources */,
 				CD7F2F5817FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png in Resources */,
-				CDB348E0174573C0000003CA /* TimerDotQuarter@2x.png in Resources */,
-				CDB348E2174573C0000003CA /* TimerDotHalf@2x.png in Resources */,
 				CD7ADCF317EF17FA00B4C886 /* ChattyViewController-iPad.xib in Resources */,
 				CD7ADD1817EF180E00B4C886 /* ReplyCell-iPad.xib in Resources */,
 				CDDAC31617F44E78000FEC8A /* Shack[lol]-Active.png in Resources */,
-				CDB348E4174573C0000003CA /* TimerDotThreeQuarter@2x.png in Resources */,
-				CDB348E6174573C0000003CA /* TimerDotFull@2x.png in Resources */,
-				CDB348F11745745F000003CA /* TimerDotQuarterBlue.png in Resources */,
-				CDB348F31745745F000003CA /* TimerDotHalfBlue.png in Resources */,
 				CDDAC2CC17F44E78000FEC8A /* Menu-Button-Compose@2x.png in Resources */,
-				CDB348F51745745F000003CA /* TimerDotThreeQuarterBlue.png in Resources */,
-				CDB348F71745745F000003CA /* TimerDotFullBlue.png in Resources */,
 				CDDAC30A17F44E78000FEC8A /* Messages-Inactive.png in Resources */,
 				CD48681E17EB5B430071F3D7 /* Fart8.mp3 in Resources */,
 				CDDAC31E17F44E78000FEC8A /* Chatty-Active.png in Resources */,
-				CDB348F91745745F000003CA /* TimerDotEmpty.png in Resources */,
 				CDC0E9BD17F6886D007D3738 /* Post-Indicator.png in Resources */,
 				CDDAC2E817F44E78000FEC8A /* Take-Photo@2x.png in Resources */,
 				CDDAC2D817F44E78000FEC8A /* Thread-Toolbar-Refresh.png in Resources */,
 				CDDAC2C217F44E78000FEC8A /* Menu-Button-Thread@2x.png in Resources */,
-				CDB348FB1745745F000003CA /* TimerDotQuarter.png in Resources */,
 				CD7F2F4217FE85BE00E7EAE3 /* Keyboard-Color-Red.png in Resources */,
-				CDB348FD1745745F000003CA /* TimerDotHalf.png in Resources */,
 				CD7F2EB417FA705300E7EAE3 /* Web-Previous@2x.png in Resources */,
-				CDB348FF1745745F000003CA /* TimerDotThreeQuarter.png in Resources */,
-				CDB349011745745F000003CA /* TimerDotFull.png in Resources */,
 				CD7C247C1754674300D90942 /* StoriesViewController.xib in Resources */,
 				CD7C24841754689100D90942 /* Message.html in Resources */,
 				CD7C24861754689100D90942 /* Post.html in Resources */,
 				CDDAC2DC17F44E78000FEC8A /* Thread-Toolbar-Previous@2x.png in Resources */,
+				CD4371021803A4E0008D9DCF /* List-Lifespan-75@2x.png in Resources */,
 				CDDAC2EC17F44E78000FEC8A /* Story-Comment-Count@2x.png in Resources */,
 				CD7C24881754689100D90942 /* ReviewPost.html in Resources */,
 				CDDAC31817F44E78000FEC8A /* Chatty-Inactive@2x.png in Resources */,

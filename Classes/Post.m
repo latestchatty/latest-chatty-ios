@@ -85,21 +85,21 @@ static NSMutableDictionary *expirationColorMapping;
 // Return an image according to an 18 hour post date expiration, participant modifier alters the image used
 + (UIImage *)imageForPostExpiration:(NSDate *)date withParticipant:(BOOL)hasParticipant {
     if (!date) {
-        return [UIImage imageNamed:@"TimerDotEmpty"];
+        return [UIImage imageNamed:@"List-Lifespan-Empty"];
     }
     
     NSTimeInterval ti = [date timeIntervalSinceNow];
     CGFloat hours = (ti / 3600) * -1;
     
     NSString *participantModifier = @"";
-    if (hasParticipant) participantModifier = @"Blue";
+    if (hasParticipant) participantModifier = @"-Participant";
     
     NSMutableDictionary *timerDots = [[NSMutableDictionary alloc] init];
-    [timerDots setValue:@"TimerDotEmpty%@"        forKey:@"empty"];
-    [timerDots setValue:@"TimerDotQuarter%@"      forKey:@"quarter"];
-    [timerDots setValue:@"TimerDotHalf%@"         forKey:@"half"];
-    [timerDots setValue:@"TimerDotThreeQuarter%@" forKey:@"threeQuarter"];
-    [timerDots setValue:@"TimerDotFull%@"         forKey:@"full"];
+    [timerDots setValue:@"List-Lifespan-Empty%@" forKey:@"empty"];
+    [timerDots setValue:@"List-Lifespan-25%@"    forKey:@"quarter"];
+    [timerDots setValue:@"List-Lifespan-50%@"    forKey:@"half"];
+    [timerDots setValue:@"List-Lifespan-75%@"    forKey:@"threeQuarter"];
+    [timerDots setValue:@"List-Lifespan-100%@"   forKey:@"full"];
     
     UIImage *timerDotImage;
     if (hours >= 18.0f) {

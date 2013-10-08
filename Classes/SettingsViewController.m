@@ -253,7 +253,7 @@
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
     [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
     [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
-    //	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
 	
     //	if (pushMessagesSwitch.on) {
