@@ -816,7 +816,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"stupid", @"offtopic", @"nws", @"political", @"informative", @"nuked", @"ontopic", nil];
+                                                        otherButtonTitles:@"Stupid", @"Offtopic", @"NWS", @"Political", @"Informative", @"Nuked", @"Ontopic", nil];
     [modActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     [modActionSheet showInView:self.view];
 }
