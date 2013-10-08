@@ -66,6 +66,10 @@
     return [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:0.25];
 }
 
++ (UIColor *)lcTopStrokeColor {
+    return [UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0];
+}
+
 // Table cell colors
 + (UIColor *)lcCellNormalColor {
     return [UIColor colorWithRed:32.0/255.0 green:32.0/255.0 blue:36.0/255.0 alpha:1.0];

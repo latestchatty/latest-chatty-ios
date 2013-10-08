@@ -24,6 +24,7 @@
 + (UIColor *)lcOverlayColor;
 + (UIColor *)lcBlueColor;
 + (UIColor *)lcBlueColorHighlight;
++ (UIColor *)lcTopStrokeColor;
 
 // Table cell colors
 + (UIColor *)lcCellNormalColor;
