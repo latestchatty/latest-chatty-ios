@@ -14,7 +14,7 @@
 
 @implementation ThreadViewController
 
-@synthesize threadId, rootPost, threadStarter, selectedIndexPath, toolbar, leftToolbar;
+@synthesize threadId, rootPost, threadStarter, selectedIndexPath, toolbar;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
         self = [super initWithNib];
@@ -121,8 +121,8 @@
     }
     
     // Enable toolbars
-    self.toolbar.userInteractionEnabled     = YES;
-    self.leftToolbar.userInteractionEnabled = YES;
+    self.toolbar.userInteractionEnabled = YES;
+    self.toolbar.hidden = NO;
     grippyBar.userInteractionEnabled = YES;
     self.navigationItem.rightBarButtonItem.enabled = YES;
     
@@ -162,6 +162,7 @@
     
     // Load buttons
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        self.toolbar.clipsToBounds = YES;        
         self.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
         self.navigationItem.titleView = self.toolbar;
     } else {
@@ -207,7 +208,7 @@
     self.navigationController.navigationBar.translucent = NO;
     
     // top separation bar
-    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
@@ -216,8 +217,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     if (rootPost) {
         postView.hidden = NO;
-        self.toolbar.userInteractionEnabled     = YES;
-        self.leftToolbar.userInteractionEnabled = YES;
+        self.toolbar.userInteractionEnabled = YES;
+        self.toolbar.hidden = NO;
     }
     [self resetLayout:NO];
     

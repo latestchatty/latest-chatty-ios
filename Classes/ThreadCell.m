@@ -47,18 +47,9 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
 	// Set background to a light color if the user is the root poster
-//	UIImageView *background = (UIImageView *)self.backgroundView;
 	if ([rootPost.author.lowercaseString isEqualToString:[defaults stringForKey:@"username"].lowercaseString]) {
-//		author.font = [UIFont boldSystemFontOfSize:12.0];
-//		background.image = [UIImage imageNamed:@"CellBackgroundLight.png"];
         self.backgroundColor = [UIColor lcCellParticipantColor];
 	} else {
-//		author.font = [UIFont systemFontOfSize:12.0];
-//        if ([defaults boolForKey:@"darkMode"]) {
-//            background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
-//        } else {
-//            background.image = [UIImage imageNamed:@"CellBackground.png"];            
-//        }
         self.backgroundColor = [UIColor lcCellNormalColor];
 	}
 	

@@ -40,7 +40,6 @@
     
     UIPopoverController *popoverController;
     UIToolbar *toolbar;
-    UIToolbar *leftToolbar;
     
     UIActionSheet *theActionSheet;
 }
