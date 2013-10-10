@@ -44,13 +44,16 @@
     return self;
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+- (void)connection:(NSURLConnection *)aConnection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     if ([challenge previousFailureCount] == 0) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
         [[challenge sender] useCredential:[appDelegate userCredential] forAuthenticationChallenge:challenge];
     } else {        
         [[challenge sender] cancelAuthenticationChallenge:challenge];
-        [modelDelegate didFailToLoadModels];
+        
+        if (![aConnection.currentRequest.URL.path isEqualToString:@"/messages.json"]) {
+            [modelDelegate didFailToLoadModels];   
+        }
     }
 }
 
@@ -88,7 +91,6 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Failed to load from URL: %@", urlString);
-    
     [modelDelegate didFailToLoadModels];
 }
 
