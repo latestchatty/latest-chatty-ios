@@ -10,6 +10,17 @@
 
 @implementation NoContentController
 
+- (void)viewDidLoad {
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+    
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
+    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
+}
+
 - (NSUInteger)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }

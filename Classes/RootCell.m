@@ -16,6 +16,8 @@
 - (id)init {
     self = [super initWithNibName:@"RootCell" bundle:nil];
   
+    self.backgroundColor = [UIColor clearColor];
+    
     self.textLabel.font = [UIFont boldSystemFontOfSize:24];
     self.textLabel.textColor = [UIColor whiteColor];
     self.textLabel.shadowColor = [UIColor lcTextShadowColor];

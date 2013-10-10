@@ -94,7 +94,7 @@
     self.navigationController.navigationBar.translucent = NO;
     
     // top separation bar
-    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
@@ -270,8 +270,7 @@
 }
 
 - (UIProgressView*)showActivityIndicator:(BOOL)progressViewType {
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [[LatestChatty2AppDelegate delegate] incrementNetworkActivityIndicator];
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
     
 	CGRect frame = self.view.frame;
 	frame.origin = CGPointZero;
@@ -300,8 +299,7 @@
 - (void)hideActivityIndicator {
 	[activityView removeFromSuperview];
 	[spinner stopAnimating];
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)image:(Image*)image sendComplete:(NSString*)url {
@@ -332,7 +330,7 @@
     
     if (picsResize) {
 //        [image autoRotate:800 scale:YES];
-        [image autoRotate:1296 scale:YES];
+        [image autoRotate:1600 scale:YES];
     } else {
         [image autoRotate:anImage.size.width scale:NO];
     }

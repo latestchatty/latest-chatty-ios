@@ -152,9 +152,10 @@ div.story-content iframe { max-width: 100%; }
    iPad-only media queries
 */
 
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
-
-}
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
-
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait),
+       all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
+    div.author,
+    div.author a {
+      font-size: 10.5pt;
+    }
 }

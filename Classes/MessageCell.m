@@ -19,6 +19,8 @@
 - (id)init {
     self = [super initWithNibName:@"MessageCell" bundle:nil];
     
+    self.backgroundColor = [UIColor clearColor];
+    
     return self;
 }
 

@@ -376,6 +376,14 @@
 		CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5B610A69A190028D630 /* libz.dylib */; };
+		CDA1FA181806498F0036F7B6 /* Menu-Button-Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */; };
+		CDA1FA191806498F0036F7B6 /* Menu-Button-Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */; };
+		CDA1FA1A1806498F0036F7B6 /* Menu-Button-Timer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */; };
+		CDA1FA1B1806498F0036F7B6 /* Menu-Button-Timer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */; };
+		CDA1FA1E1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */; };
+		CDA1FA1F1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */; };
+		CDA1FA201806C15E0036F7B6 /* MenuBorderOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */; };
+		CDA1FA211806C15E0036F7B6 /* MenuBorderOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */; };
 		CDC0E9BC17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
 		CDC0E9BD17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
 		CDC0E9BE17F6886D007D3738 /* Post-Indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */; };
@@ -758,6 +766,10 @@
 		CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewThreadViewController.m; sourceTree = "<group>"; };
 		CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewThreadViewController.xib; sourceTree = "<group>"; };
 		CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChattyBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-Timer.png"; path = "Assets/Menu-Button-Timer.png"; sourceTree = "<group>"; };
+		CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-Timer@2x.png"; path = "Assets/Menu-Button-Timer@2x.png"; sourceTree = "<group>"; };
+		CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorder@2x.png"; path = "Assets/MenuBorder@2x.png"; sourceTree = "<group>"; };
+		CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorderOut@2x.png"; path = "Assets/MenuBorderOut@2x.png"; sourceTree = "<group>"; };
 		CDC0E9A817F6886D007D3738 /* Post-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator.png"; path = "Assets/Post-Indicator.png"; sourceTree = "<group>"; };
 		CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator@2x.png"; path = "Assets/Post-Indicator@2x.png"; sourceTree = "<group>"; };
 		CDC0E9AA17F6886D007D3738 /* Post-Indicator-Reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-Reply.png"; path = "Assets/Post-Indicator-Reply.png"; sourceTree = "<group>"; };
@@ -1287,6 +1299,8 @@
 				CDDAC29317F44E78000FEC8A /* Menu-Button-List@2x.png */,
 				CDDAC29617F44E78000FEC8A /* Menu-Button-Compose.png */,
 				CDDAC29517F44E78000FEC8A /* Menu-Button-Compose@2x.png */,
+				CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */,
+				CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */,
 				CDDAC29817F44E78000FEC8A /* Thread-Toolbar-Timer.png */,
 				CDDAC29717F44E78000FEC8A /* Thread-Toolbar-Timer@2x.png */,
 				CDDAC29A17F44E78000FEC8A /* Thread-Toolbar-Tag.png */,
@@ -1407,7 +1421,9 @@
 				CD8BA2C216306A9E00ED5C5E /* GoogleChrome-Icon~ipad.png */,
 				A27EA7211171E60D0072EB59 /* SliderDivider.png */,
 				A254B841116FFE9A001534FF /* MenuBorder.png */,
+				CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */,
 				FAE438C71173FAA5000263F7 /* MenuBorderOut.png */,
+				CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */,
 				FAD29A600F796452006E14A2 /* DropShadow.png */,
 				FA2ECCC00F9D4FED00912BE4 /* Lock.16.png */,
 				CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */,
@@ -1520,6 +1536,7 @@
 				CD43710D1803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png in Resources */,
 				CD7ADD0A17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */,
 				CDDAC2D317F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png in Resources */,
+				CDA1FA1E1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */,
 				CD7F2EB117FA705300E7EAE3 /* Web-Previous.png in Resources */,
 				FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */,
 				CD7ADD2017EF19F300B4C886 /* Images.xcassets in Resources */,
@@ -1554,6 +1571,7 @@
 				FAD4EB540F96798800E74FED /* MessageViewController.xib in Resources */,
 				FA9C3ED00F9CEB1E0022A739 /* SearchViewController.xib in Resources */,
 				CDDAC2D917F44E78000FEC8A /* Thread-Toolbar-Refresh@2x.png in Resources */,
+				CDA1FA1A1806498F0036F7B6 /* Menu-Button-Timer@2x.png in Resources */,
 				CDDAC2C517F44E78000FEC8A /* Menu-Button-Reply.png in Resources */,
 				CD43710B1803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png in Resources */,
 				FA2ECCC10F9D4FED00912BE4 /* Lock.16.png in Resources */,
@@ -1620,6 +1638,7 @@
 				CD7ADD1917EF180E00B4C886 /* RootCell-iPad.xib in Resources */,
 				CD7F2F4917FE85BE00E7EAE3 /* Keyboard-Normal-Code.png in Resources */,
 				CD4371111803A4E0008D9DCF /* List-Lifespan-Empty@2x.png in Resources */,
+				CDA1FA181806498F0036F7B6 /* Menu-Button-Timer.png in Resources */,
 				CD7F2F3917FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */,
 				CDDAC31B17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
 				CD7F2F4D17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
@@ -1676,6 +1695,7 @@
 				CD7C24851754689100D90942 /* Post.html in Resources */,
 				CD7F2F4117FE85BE00E7EAE3 /* Keyboard-Color-Red.png in Resources */,
 				CD7C24871754689100D90942 /* ReviewPost.html in Resources */,
+				CDA1FA201806C15E0036F7B6 /* MenuBorderOut@2x.png in Resources */,
 				CD7F2EB317FA705300E7EAE3 /* Web-Previous@2x.png in Resources */,
 				CD7C24891754689100D90942 /* Story.html in Resources */,
 				CD48681117EB5B430071F3D7 /* Fart2.mp3 in Resources */,
@@ -1711,6 +1731,7 @@
 				CD43710E1803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png in Resources */,
 				CDA1175216C1DC6600CE1375 /* ChattyViewController.xib in Resources */,
 				CDDAC2D417F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png in Resources */,
+				CDA1FA1F1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */,
 				CD7F2EB217FA705300E7EAE3 /* Web-Previous.png in Resources */,
 				CDA1175316C1DC6600CE1375 /* ThreadCell.xib in Resources */,
 				CD7ADD0317EF17FA00B4C886 /* SearchViewController-iPad.xib in Resources */,
@@ -1745,6 +1766,7 @@
 				CDA1177816C1DC6600CE1375 /* MessagesViewController.xib in Resources */,
 				CDA1177916C1DC6600CE1375 /* MessageCell.xib in Resources */,
 				CDDAC2DA17F44E78000FEC8A /* Thread-Toolbar-Refresh@2x.png in Resources */,
+				CDA1FA1B1806498F0036F7B6 /* Menu-Button-Timer@2x.png in Resources */,
 				CDDAC2C617F44E78000FEC8A /* Menu-Button-Reply.png in Resources */,
 				CD43710C1803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png in Resources */,
 				CDA1177A16C1DC6600CE1375 /* MessageViewController.xib in Resources */,
@@ -1811,6 +1833,7 @@
 				CDDAC31C17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
 				CD7F2F4E17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
 				CD4371121803A4E0008D9DCF /* List-Lifespan-Empty@2x.png in Resources */,
+				CDA1FA191806498F0036F7B6 /* Menu-Button-Timer.png in Resources */,
 				CD7F2EBA17FA705300E7EAE3 /* Web-Share.png in Resources */,
 				CD7F2F3017FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
 				CDDAC2CE17F44E78000FEC8A /* Menu-Button-Compose.png in Resources */,
@@ -1867,6 +1890,7 @@
 				CDC0E9BD17F6886D007D3738 /* Post-Indicator.png in Resources */,
 				CDDAC2E817F44E78000FEC8A /* Take-Photo@2x.png in Resources */,
 				CDDAC2D817F44E78000FEC8A /* Thread-Toolbar-Refresh.png in Resources */,
+				CDA1FA211806C15E0036F7B6 /* MenuBorderOut@2x.png in Resources */,
 				CDDAC2C217F44E78000FEC8A /* Menu-Button-Thread@2x.png in Resources */,
 				CD7F2F4217FE85BE00E7EAE3 /* Keyboard-Color-Red.png in Resources */,
 				CD7F2EB417FA705300E7EAE3 /* Web-Previous@2x.png in Resources */,

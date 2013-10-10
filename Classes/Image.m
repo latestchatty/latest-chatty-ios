@@ -39,8 +39,7 @@
 }
 
 - (void)uploadAndReturnImageUrlWithDictionary:(NSDictionary*)args {
-//	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [[LatestChatty2AppDelegate delegate] incrementNetworkActivityIndicator];
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
 
     NSString *baseUrlString = @"http://chattypics.com";
 

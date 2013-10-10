@@ -20,7 +20,7 @@
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate> {
     UIWindow *window;
     UINavigationController *navigationController;
-    NSUInteger networkActivityIndicatorCount;
+//    NSUInteger networkActivityIndicatorCount;
     
     // iPad
     UINavigationController *contentNavigationController;
@@ -53,8 +53,7 @@
 - (id)urlAsChromeScheme:(NSURL *)url;
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
-- (void)incrementNetworkActivityIndicator;
-- (void)decrementNetworkActivityIndicator;
+- (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 	
 @end
 

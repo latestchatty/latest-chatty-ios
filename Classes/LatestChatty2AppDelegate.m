@@ -42,9 +42,6 @@
 
 - (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions {
     self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
-    contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    contentNavigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.15 alpha:1.0];
-    navigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.15 alpha:1.0];
     
     if (![self reloadSavedState]) {
         // Add the root view controller
@@ -60,6 +57,10 @@
     self.slideOutViewController =  [SlideOutViewController controllerWithNib];
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
     [slideOutViewController.view setFrame:CGRectMake(0, 20, 768, 1004)];
+
+    UIView *topBar = [UIView viewWithFrame:CGRectMake(0, 0, 1024, 20)];
+    topBar.backgroundColor = [UIColor lcTableBackgroundColor];
+    [slideOutViewController.view addSubview:topBar];
     
     self.window.rootViewController = slideOutViewController;
 }
@@ -419,20 +420,18 @@
     return YES;
 }
 
-- (void)incrementNetworkActivityIndicator {
-    networkActivityIndicatorCount++;
+- (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible {
+    static NSInteger NumberOfCallsToSetVisible = 0;
+    if (setVisible)
+        NumberOfCallsToSetVisible++;
+    else
+        NumberOfCallsToSetVisible--;
     
-    if (networkActivityIndicatorCount > 0) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    }
-}
-- (void)decrementNetworkActivityIndicator {
-    networkActivityIndicatorCount--;
+//    NSLog(@"%i", NumberOfCallsToSetVisible);
+//    NSAssert(NumberOfCallsToSetVisible >= 0, @"Network Activity Indicator was asked to hide more often than shown");
     
-    if (networkActivityIndicatorCount <= 0) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        networkActivityIndicatorCount = 0;
-    }
+    // display the indicator as long as our static counter is > 0.
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(NumberOfCallsToSetVisible > 0)];
 }
 
 #pragma mark - Appearance customizations

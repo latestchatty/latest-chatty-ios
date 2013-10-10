@@ -20,6 +20,8 @@
 - (id)init {
     self = [super initWithNibName:@"StoryCell" bundle:nil];
     
+    self.backgroundColor = [UIColor clearColor];
+    
     return self;
 }
 

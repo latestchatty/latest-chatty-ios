@@ -1,4 +1,4 @@
-    //
+//
 //  SlideOutViewController.m
 //  LatestChatty2
 //
@@ -63,7 +63,6 @@
         result = CGSizeMake(result.height, result.width);
     }
     
-    result.height -= 20; // status bar
     return result;
 }
 

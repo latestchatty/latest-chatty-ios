@@ -127,6 +127,8 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+    
+    self.tableView.clipsToBounds = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -150,11 +152,6 @@
     [super viewWillDisappear:animated];
     
     [loader cancel];
-    
-    if ([self.refreshControl isRefreshing]) {
-        [self.refreshControl endRefreshing];
-        [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
-    }
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {

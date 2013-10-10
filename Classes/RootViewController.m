@@ -12,7 +12,7 @@
 
 @implementation RootViewController
 
-@synthesize selectedIndex, messagesSpinner;
+@synthesize selectedIndex;
 
 - (id)init {
     self = [super initWithNib];
@@ -50,8 +50,7 @@
     // only check for messages if it's been 5 minutes since the last check
     if (interval == 0 || (interval * -1) > 60*5) {
         // fetch messages
-        [self.messagesSpinner startAnimating];
-        [[LatestChatty2AppDelegate delegate] incrementNetworkActivityIndicator];
+        [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
         messageLoader = [Message findAllWithDelegate:self];
     }
 }
@@ -65,20 +64,25 @@
         [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
         [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
         
-        self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Sidebar-bg.png"]];
-        self.tableView.backgroundView.contentMode = UIViewContentModeScaleToFill;
+        // iOS7
+        if ([[UIScreen mainScreen] bounds].size.height == 568) {
+            [self.tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
+        }
+        
+        // Maintain selection while view is still loaded
+        [self setClearsSelectionOnViewWillAppear:NO];
+    } else {
+        [self setClearsSelectionOnViewWillAppear:YES];
     }
     
-    // Maintain selection while view is still loaded
-    [self setClearsSelectionOnViewWillAppear:NO];
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Sidebar-bg.png"]];
+    self.tableView.backgroundView.contentMode = UIViewContentModeScaleToFill;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForCredits) name:@"PushBrowserForCredits" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
-    
-    // iOS7
-    if ([[UIScreen mainScreen] bounds].size.height == 568) {
-        [self.tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
-    }
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
@@ -91,6 +95,9 @@
             [[LatestChatty2AppDelegate delegate].navigationController.visibleViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor lcBlueColor]];
         }];
     }
+    
+    // send notification to browser controller to show bars if controller on the stack
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBrowserBars" object:nil];
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
@@ -159,8 +166,7 @@
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
     
-    [self.messagesSpinner stopAnimating];
-    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
     
     messageLoader = nil;
     
@@ -172,8 +178,7 @@
 
 - (void)didFailToLoadModels {
     NSLog(@"Failed to load messages");
-    [self.messagesSpinner stopAnimating];
-    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
 }
 
 #pragma mark Table view methods
@@ -214,20 +219,7 @@
 			break;
             
         case 2:
-            cell.title = @"Messages";
-            
-            // add activity spinner to messages cell that starts spinning when messages are loading and stops when the messages call has finished
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice] && self.messagesSpinner == nil) {
-                [self setMessagesSpinner:[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]];
-                [self.messagesSpinner setColor:[UIColor lightGrayColor]];
-                int center = [cell iconImage].frameHeight / 2; //vertical center
-                CGFloat spinnerSize = 25.0f;
-                
-                // place spinner on top of messages icon
-                [self.messagesSpinner setFrame:CGRectMake(center - spinnerSize / 2, center - spinnerSize / 2, spinnerSize, spinnerSize)];
-                [[cell iconImage] addSubview:self.messagesSpinner];
-            }
-            
+            cell.title = @"Messages";    
             // set number of unread messages in badge of cell
 //            messageCount = 9; // for testing
             [cell setBadgeWithNumber:messageCount];

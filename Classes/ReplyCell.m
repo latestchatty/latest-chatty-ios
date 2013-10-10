@@ -20,6 +20,8 @@
     self = [super initWithNibName:@"ReplyCell" bundle:nil];
     self.isThreadStarter = NO;
     
+    self.backgroundColor = [UIColor clearColor];
+    
     return self;
 }
 
