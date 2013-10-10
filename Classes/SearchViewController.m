@@ -60,7 +60,7 @@
     self.navigationController.navigationBar.translucent = NO;
     
     // top separation bar
-    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
@@ -171,24 +171,34 @@
                buttonOffset:(CGFloat)yButtonOffset
                buttonHeight:(CGFloat)buttonHeight {
     // background and frame properties
-    [btn setFrame:CGRectMake(segmentedBar.frameX, yButtonOffset, segmentedBar.frameWidth, buttonHeight)];
+    [btn setFrame:CGRectMake(segmentedBar.frameX, yButtonOffset, segmentedBar.frameWidth-1, buttonHeight)];
     [btn setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
     // title label properties
     [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor lcBlueColorHighlight] forState:UIControlStateHighlighted];
     [btn setTitleColor:[UIColor lcDarkGrayTextColor] forState:UIControlStateDisabled];
     [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 6.0, 0, 6.0)];
+    
     CGFloat titleFontSize = 15.0f;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         titleFontSize += 3.0f;
     }
 
-    [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:titleFontSize]];
     [btn.titleLabel setMinimumScaleFactor:10.0f];
     [btn.titleLabel setAdjustsFontSizeToFitWidth:YES];
     [btn.titleLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
+    
+    btn.layer.cornerRadius = 5;
+    btn.layer.borderWidth = 1;
+    if ([title isEqualToString:@"Clear Recent Searches"]) {
+        [btn setTitleColor:[UIColor lcDarkGrayTextColor] forState:UIControlStateNormal];
+        btn.layer.borderColor = [UIColor lcDarkGrayTextColor].CGColor;
+    } else {
+        [btn setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
+        btn.layer.borderColor = [UIColor lcBlueColor].CGColor;
+    }
 }
 
 - (void)sizeRecentSearchScrollView {

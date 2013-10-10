@@ -99,7 +99,7 @@
     self.navigationController.navigationBar.translucent = NO;
     
     // top separation bar
-    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frameY, 320, 1)];
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frameY, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
@@ -381,8 +381,6 @@
     [titleLabel setFont:[UIFont systemFontOfSize:12]];
     [titleLabel setText:[self titleForHeaderInSection:section]];
     [titleLabel setTextColor:[UIColor lcGroupedTitleColor]];
-//    [titleLabel setShadowColor:[UIColor lcTextShadowColor]];
-//    [titleLabel setShadowOffset:CGSizeMake(0, -1.0)];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
 
     [titleView addSubview:titleLabel];
@@ -559,6 +557,10 @@
                 [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
 
                 [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+
+                button.layer.cornerRadius = 5;
+                button.layer.borderWidth = 1;
+                button.layer.borderColor = [UIColor lcBlueColor].CGColor;
                 
                 [button addTarget:self action:@selector(openCredits) forControlEvents:UIControlEventTouchUpInside];
                 
@@ -572,6 +574,10 @@
                 [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
                 
                 [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                
+                button.layer.cornerRadius = 5;
+                button.layer.borderWidth = 1;
+                button.layer.borderColor = [UIColor lcBlueColor].CGColor;
                 
                 [button addTarget:self action:@selector(openLicenses) forControlEvents:UIControlEventTouchUpInside];
                 
