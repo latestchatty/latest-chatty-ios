@@ -66,11 +66,13 @@
     panGesture.delegate = self;
     panGesture.cancelsTouchesInView = NO;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showBars) name:@"ShowBrowserBars" object:nil];
+    
     // iOS7
     self.navigationController.navigationBar.translucent = NO;
     
     // top separation bar
-     topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+     topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
@@ -87,7 +89,9 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [self showBars];
     
-    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
+    if (webView.isLoading) {
+        [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
+    }
 }
 
 // Hide the status bar and navigation bar with the built-in animation method
@@ -148,13 +152,11 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [[LatestChatty2AppDelegate delegate] incrementNetworkActivityIndicator];
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [[LatestChatty2AppDelegate delegate] decrementNetworkActivityIndicator];
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
     backButton.enabled = webView.canGoBack;
     forwardButton.enabled = webView.canGoForward;
 
