@@ -58,8 +58,9 @@
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
             
-            NSMutableArray *newItems = [[NSMutableArray alloc] initWithArray:@[lolMenuButton, flexSpace]];
-            [newItems addObjectsFromArray:[self.mainToolbar.items mutableCopy]];
+            NSMutableArray *newItems = [self.mainToolbar.items mutableCopy];
+            [newItems addObject:flexSpace];
+            [newItems addObject:lolMenuButton];
             [self.mainToolbar setItems:newItems animated:YES];
         } else {
             self.navigationItem.rightBarButtonItem = lolMenuButton;

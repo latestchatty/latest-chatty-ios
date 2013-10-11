@@ -244,7 +244,11 @@
         field.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         field.borderStyle = UITextBorderStyleNone;
         field.returnKeyType = UIReturnKeySearch;
-        field.font = [UIFont systemFontOfSize:16];
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            field.font = [UIFont systemFontOfSize:18];
+        } else {
+            field.font = [UIFont systemFontOfSize:16];
+        }
         field.delegate = self;
     }
     
@@ -437,18 +441,20 @@
     [cell.textLabel setTextColor:[UIColor lcGroupedCellLabelColor]];
     [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
-    [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
 
     UIImageView *lockImage = [UIImageView viewWithImageNamed:@"Lock.16.png"];
     lockImage.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     lockImage.frameX = cell.frameWidth - 30;
-    lockImage.frameY = 13;
     
     CGRect fieldRect;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        fieldRect = CGRectMake(80, 12, 234, 20);
+        [cell.textLabel setFont:[UIFont systemFontOfSize:18]];
+        fieldRect = CGRectMake(100, 33, 214, 22);
+        lockImage.frameY = 36;
     } else {
+        [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
         fieldRect = CGRectMake(80, 12, 234, 20);
+        lockImage.frameY = 13;
     }
     
     switch (indexPath.row) {

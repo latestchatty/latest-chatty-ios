@@ -192,6 +192,9 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        return 100;
+    }
     if ([[UIScreen mainScreen] bounds].size.height == 568) return 90;
     return 80;
 }
