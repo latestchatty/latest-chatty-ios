@@ -355,6 +355,10 @@
 #pragma mark Tagging
 
 - (void)showTagButtons {
+	CGRect frame = self.view.frame;
+	frame.origin = CGPointZero;
+	innerTagView.frame = frame;
+    
     tagView.hidden = NO;
     tagView.alpha = 0.0;
     tagView.transform = CGAffineTransformMakeScale(1.1, 1.1);
