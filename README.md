@@ -14,8 +14,8 @@ iOS 7 Conversion / Semi-rewrite
 - Revised timer pie icons
 - Recent Search buttons now have colored border around them
 - Credits/Licenses buttons in Settings now have colored border around them
-- Capitalize mod tags
-- Opening the side menu while the Browser view is in full screen mode will bring the browser bars back into view (iPhone)
+- Capitalized mod tags
+- Opening the side menu while Browser view is in full screen mode will bring the browser bars back into view
 
 3.4.9
 ====
