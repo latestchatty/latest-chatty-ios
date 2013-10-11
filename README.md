@@ -3,18 +3,19 @@ latest-chatty-2
 
 iOS 7 Conversion / Semi-rewrite
 
-*Disclaimers/Known Issues:
-- iPad has not been touched yet at all, probably blows up completely there.
-
 3.4.10
 ====
-- The (x) to clear text fields on Search view is now functional again
+- Initial iPad build
+- (x) to clear text fields on Search view is now functional again
 - Better network activity indicator usage
 - Side menu item spacing evened out for both iPhones
 - Farts on scroll
 - Crashlytics integration
 - Revised timer pie icons
+- Recent Search buttons now have colored border around them
+- Credits/Licenses buttons in Settings now have colored border around them
 - Capitalize mod tags
+- Opening the side menu while the Browser view is in full screen mode will bring the browser bars back into view (iPhone)
 
 3.4.9
 ====
