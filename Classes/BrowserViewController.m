@@ -32,7 +32,13 @@
     self.isShackLOL = isForShackLOL;
     self.isCredits = isForCredits;
  
-    if (isForShackLOL) {
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    if (self.isShackLOL) {
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
                                                                            style:UIBarButtonItemStyleBordered
@@ -41,22 +47,24 @@
             self.navigationItem.leftBarButtonItem = menuButton;
         }
         
-        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@""
+        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
                                                                           style:UIBarButtonItemStyleDone
                                                                          target:self
                                                                          action:@selector(lolMenu)];
         [lolMenuButton setEnabled:NO];
         [lolMenuButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
                                      forState:UIControlStateNormal];
-     
-        [self.navigationItem setRightBarButtonItem:lolMenuButton];
+        
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+            
+            NSMutableArray *newItems = [[NSMutableArray alloc] initWithArray:@[lolMenuButton, flexSpace]];
+            [newItems addObjectsFromArray:[self.mainToolbar.items mutableCopy]];
+            [self.mainToolbar setItems:newItems animated:YES];
+        } else {
+            self.navigationItem.rightBarButtonItem = lolMenuButton;
+        }
     }
-    
-    return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
     
     [webView loadRequest:request];
     
@@ -164,9 +172,12 @@
         [self.navigationItem.leftBarButtonItem setEnabled:YES];
     }
 
+    if (self.mainToolbar.items.lastObject != nil && isShackLOL) {
+        [self.mainToolbar.items.lastObject setEnabled:YES];
+    }
+    
     if (self.navigationItem.rightBarButtonItem != nil) {
         [self.navigationItem.rightBarButtonItem setEnabled:YES];
-        [self.navigationItem.rightBarButtonItem setTitle:@"Menu"];
     }
     
     [self.actionButton setEnabled:YES];

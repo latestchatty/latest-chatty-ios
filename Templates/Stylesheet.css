@@ -48,9 +48,9 @@ body.review div.body a {
 }
 div.expiration {
     /*box-shadow: inset 0px 1px rgba(255,255,255,0.08);*/
-    height: 5px;
+    height: 4px;
     left: 0;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     position: absolute;
     top: 0;
     width: 100%;
@@ -157,5 +157,9 @@ div.story-content iframe { max-width: 100%; }
     div.author,
     div.author a {
       font-size: 10.5pt;
+    }
+    
+    div.expiration {
+        height: 8px;
     }
 }

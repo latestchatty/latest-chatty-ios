@@ -50,7 +50,7 @@
                         <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                     </label>
                     <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="center" image="List-Lifespan-100.png" id="23">
-                        <rect key="frame" x="302" y="2" width="11" height="20"/>
+                        <rect key="frame" x="302" y="6" width="11" height="11"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="21" userLabel="Category Stripe">

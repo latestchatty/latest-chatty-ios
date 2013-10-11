@@ -110,7 +110,14 @@
 }
 
 - (UITextField *)generateTextFieldWithKey:(NSString *)key {
-	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 22)];
+    CGFloat frameWidth;
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        frameWidth = 220;
+    } else {
+        frameWidth = 170;
+    }
+    
+	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, frameWidth, 22)];
 
 	textField.returnKeyType = UIReturnKeyNext;
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -505,13 +512,7 @@
 	
 	// Post category toggles
 	if (indexPath.section == 3) {
-        CGFloat categoryXOffset;
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            categoryXOffset = 36;
-        } else {
-            categoryXOffset = 18;
-        }
-        UIView *categoryColor = [[UIView alloc] initWithFrame:CGRectMake(categoryXOffset, 9, 4, 28)];
+        UIView *categoryColor = [[UIView alloc] initWithFrame:CGRectMake(18, 9, 4, 28)];
 		[cell addSubview:categoryColor];
 		
 		switch (indexPath.row) {

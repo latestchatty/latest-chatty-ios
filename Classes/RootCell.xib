@@ -26,7 +26,7 @@
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </label>
                     <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="center" image="Stories-Inactive.png" id="11">
-                        <rect key="frame" x="8" y="17" width="48" height="48"/>
+                        <rect key="frame" x="16" y="24" width="33" height="33"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
@@ -40,6 +40,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Stories-Inactive.png" width="33" height="24"/>
+        <image name="Stories-Inactive.png" width="33" height="33"/>
     </resources>
 </document>

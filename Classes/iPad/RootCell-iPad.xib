@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Stories" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="8">
-                        <rect key="frame" x="65" y="17" width="255" height="82"/>
+                        <rect key="frame" x="56" y="19" width="254" height="82"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -26,7 +26,7 @@
                         <color key="shadowColor" white="0.0" alpha="0.52000000000000002" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </label>
                     <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="center" image="Stories-Inactive.png" id="11">
-                        <rect key="frame" x="6" y="17" width="66" height="82"/>
+                        <rect key="frame" x="16" y="43" width="33" height="33"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
@@ -40,6 +40,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Stories-Inactive.png" width="33" height="24"/>
+        <image name="Stories-Inactive.png" width="33" height="33"/>
     </resources>
 </document>
