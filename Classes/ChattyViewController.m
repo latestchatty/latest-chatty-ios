@@ -127,9 +127,6 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
-    
-    self.tableView.clipsToBounds = YES;
-    self.navigationController.navigationBar.clipsToBounds = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
