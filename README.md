@@ -9,6 +9,9 @@ To be merged back to squeegy's master repo once completed.
 - Fixed visual bug with Chatty view navigation bar
 - New iPad launch images
 - Post tagging view for iPad fixed
+- Minor message cell frame adjustments for iPad
+- Minor search view frame adjustments
+- Adjusted spacing of side menu icons for iPhone
 - Revised the way unread message badges are calculated and applied within the app and on the app icon in Springboard
 
 3.4.10
