@@ -3,6 +3,12 @@ latest-chatty-2
 
 iOS 7 Conversion / Semi-rewrite
 
+3.4.11
+====
+- Fixed visual bug with Chatty view navigation bar
+- New iPad launch images
+
+
 3.4.10
 ====
 - Initial iPad build
@@ -80,7 +86,7 @@ iOS 7 Conversion / Semi-rewrite
 - Status bar loading indicator appears/disappears as necessary now
 - Loading spinner in Browser view removed completely in favor of the status bar loading indicator (which means there is no loading indicator visible when Browser view is full screen after scrolling down the page). I'd like to make a thin progress bar at the top of the screen similar to iOS 7 Safari in the end.
 - Testing an open source component to replace the loading overlays. They are visible when loading a main section, loading a thread, or tagging a thread only for now.
-- Super Secret Fart Mode added. This is an easter egg, so don't tell the shack about it! I want someone to find it on their own :) Protip: go to Settings view and try shaking your device
+- Super Secret Fart Mode added
 
 3.4.2
 ====
