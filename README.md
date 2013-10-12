@@ -1,13 +1,15 @@
 latest-chatty-2
 ===============
 
-iOS 7 Conversion / Semi-rewrite
+iOS 7 Conversion Fork
+To be merged back to squeegy's master repo once completed.
 
 3.4.11
 ====
 - Fixed visual bug with Chatty view navigation bar
 - New iPad launch images
-
+- Post tagging view for iPad fixed
+- Revised the way unread message badges are calculated and applied within the app and on the app icon in Springboard
 
 3.4.10
 ====
@@ -15,7 +17,7 @@ iOS 7 Conversion / Semi-rewrite
 - (x) to clear text fields on Search view is now functional again
 - Better network activity indicator usage
 - Side menu item spacing evened out for both iPhones
-- Farts on scroll
+- Farts on scroll instead of cell tap
 - Crashlytics integration
 - Revised timer pie icons
 - Recent Search buttons now have colored border around them
@@ -86,7 +88,7 @@ iOS 7 Conversion / Semi-rewrite
 - Status bar loading indicator appears/disappears as necessary now
 - Loading spinner in Browser view removed completely in favor of the status bar loading indicator (which means there is no loading indicator visible when Browser view is full screen after scrolling down the page). I'd like to make a thin progress bar at the top of the screen similar to iOS 7 Safari in the end.
 - Testing an open source component to replace the loading overlays. They are visible when loading a main section, loading a thread, or tagging a thread only for now.
-- Super Secret Fart Mode added
+- Super Secret Fart Mode added (how to enable it is a secret!)
 
 3.4.2
 ====
