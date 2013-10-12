@@ -60,11 +60,11 @@
     if (badgeNumber <= 0) return;
     
     // modify left edge of badge frame depending on how many digits are in the unread message count
-    float leftEdge = self.iconImage.frameWidth - 20;
-    if (badgeNumber >= 10) leftEdge = leftEdge - 10;
-    if (badgeNumber >= 100) leftEdge = leftEdge - 10;
-    if (badgeNumber >= 1000) leftEdge = leftEdge - 10;
-    [self.badge setFrame:CGRectMake(leftEdge, 0, self.badge.frame.size.width, self.badge.frame.size.height)];
+    float leftEdge = self.iconImage.frameWidth - 15;
+    if (badgeNumber >= 10) leftEdge -= 10;
+    if (badgeNumber >= 100) leftEdge -= 10;
+    if (badgeNumber >= 1000) leftEdge -= 10;
+    [self.badge setFrame:CGRectMake(leftEdge, -5, self.badge.frame.size.width, self.badge.frame.size.height)];
     
     //use autoBadgeSizeWithString to set value in badge after it has been initialized
     [self.badge autoBadgeSizeWithString:[NSString stringWithFormat:@"%i", badgeNumber]];
