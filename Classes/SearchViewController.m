@@ -88,10 +88,7 @@
     
     // show the recent search view
     [recentSearchView setFrame:self.view.frame];
-    CGFloat yFrameOffset = 40.0f;
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        yFrameOffset += 15.0f;
-    }
+    CGFloat yFrameOffset = segmentedBar.frameHeight + segmentedBar.frameY;
     [recentSearchView setFrameY:yFrameOffset];
     [recentSearchView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [self.view addSubview:recentSearchView];
@@ -429,7 +426,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 1;
+    return 0.01f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

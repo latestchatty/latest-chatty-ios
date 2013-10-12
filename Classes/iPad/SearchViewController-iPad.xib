@@ -18,11 +18,10 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="grouped" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="88" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" id="39">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="grouped" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="88" sectionHeaderHeight="1" sectionFooterHeight="1" id="39">
+                    <rect key="frame" x="0.0" y="57" width="1024" height="711"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <inset key="contentInset" minX="0.0" minY="70" maxX="0.0" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="41"/>
                         <outlet property="delegate" destination="-1" id="42"/>
