@@ -992,6 +992,7 @@
 				CD76FFE0174C734B00B378E6 /* AFNetworking */,
 				FA2B47500F7E1DA30074064A /* Base64 */,
 				CD7C24181754653900D90942 /* HKHelperKit */,
+				CD2770BC180995C300DD06E1 /* MBProgressHUD */,
 				59EC55AF17EDF27900F513A9 /* Regex */,
 				CDBD37FE17521EC2000A9F58 /* ViewDeck */,
 				CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */,
@@ -1004,8 +1005,6 @@
 				CDD056CF174FD043000E0477 /* CustomBadge.m */,
 				CD7C245E1754655900D90942 /* HTMLEscaper.h */,
 				CD7C245F1754655A00D90942 /* HTMLEscaper.m */,
-				CD1328D017DD7912009A5AE3 /* MBProgressHUD.h */,
-				CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */,
 				FA5FCD1C0F6F63AC00878F27 /* ModelLoadingDelegate.h */,
 				CD7C246A1754668D00D90942 /* PinnedThreadsLoader.h */,
 				CD7C246B1754668E00D90942 /* PinnedThreadsLoader.m */,
@@ -1056,6 +1055,15 @@
 				59EC55B117EDF29C00F513A9 /* NSString+Regex.m */,
 			);
 			name = Regex;
+			sourceTree = "<group>";
+		};
+		CD2770BC180995C300DD06E1 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CD1328D017DD7912009A5AE3 /* MBProgressHUD.h */,
+				CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		CD76FFE0174C734B00B378E6 /* AFNetworking */ = {
