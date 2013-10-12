@@ -1459,6 +1459,7 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				CDA1FA2218096F140036F7B6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1496,6 +1497,9 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = JA9LQCT6NB;
+					};
 					CDA1174C16C1DC6600CE1375 = {
 						DevelopmentTeam = JA9LQCT6NB;
 					};
@@ -1941,6 +1945,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "version=`/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$SRCROOT/Info beta.plist\"`\n/usr/libexec/PlistBuddy $SRCROOT/Settings.bundle/Root.plist -c \"set PreferenceSpecifiers:1:DefaultValue $version\"";
+		};
+		CDA1FA2218096F140036F7B6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "./Crashlytics.framework/run 7e5579f671abccb0156cc1a6de1201f981ef170c";
+			shellScript = "";
 		};
 		CDC8BC9417EF7681007B25C6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
