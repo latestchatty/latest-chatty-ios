@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Post preview... Post preview... Post preview... Post preview... Post preview... Post preview... Post preview... " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7">
-                        <rect key="frame" x="8" y="37" width="224" height="42"/>
+                        <rect key="frame" x="10" y="37" width="224" height="42"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -26,7 +26,7 @@
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Post Subject" lineBreakMode="tailTruncation" numberOfLines="3" adjustsFontSizeToFit="NO" id="21">
-                        <rect key="frame" x="8" y="22" width="225" height="16"/>
+                        <rect key="frame" x="10" y="22" width="224" height="16"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" red="0.4549019608" green="0.76862745099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,7 +42,7 @@
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="SqueegyTBS" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="9">
-                        <rect key="frame" x="8" y="0.0" width="105" height="20"/>
+                        <rect key="frame" x="10" y="0.0" width="105" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.96078431369999995" green="0.89411764709999997" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,7 +50,7 @@
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </label>
                     <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="5">
-                        <rect key="frame" x="0.0" y="0.0" width="4" height="84"/>
+                        <rect key="frame" x="0.0" y="0.0" width="6" height="84"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.4549019608" green="0.76862745099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
