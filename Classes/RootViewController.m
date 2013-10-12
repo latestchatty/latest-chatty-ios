@@ -124,8 +124,7 @@
     UIViewController *viewController =
     [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                               title:@"Credits"
-                                      isForShackLOL:NO
-                                       isForCredits:YES];
+                                      isForShackLOL:NO];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
@@ -138,8 +137,7 @@
     UIViewController *viewController =
     [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                               title:@"Licenses"
-                                      isForShackLOL:NO
-                                       isForCredits:YES];
+                                      isForShackLOL:NO];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
@@ -293,8 +291,7 @@
             urlString = [[NSString stringWithFormat:@"http://lol.lmnopc.com?lc_webview=1&user=%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
             viewController = [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                                                        title:nil
-                                                               isForShackLOL:YES
-                                                                isForCredits:NO];
+                                                               isForShackLOL:YES];
             
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
