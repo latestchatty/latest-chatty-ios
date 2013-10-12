@@ -67,10 +67,10 @@
 
 - (IIViewDeckController*)generateControllerStack {
     // Left controller
-    RootViewController* leftController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    RootViewController* leftController = [[RootViewController alloc] init];
     
     // Center controller
-    ChattyViewController *centerController = [[ChattyViewController alloc] initWithNibName:@"ChattyViewController" bundle:nil];
+    ChattyViewController *centerController = [ChattyViewController chattyControllerWithLatest];
     [centerController setTitle:@"Loading..."];
     
     // Initialize the navigation controller with the center (chatty) controller
