@@ -19,7 +19,7 @@
 
 @interface RootViewController : UITableViewController <ModelLoadingDelegate, IIViewDeckControllerDelegate> {
     ModelLoader *messageLoader;
-    NSUInteger messageCount;
+//    NSUInteger messageCount;
     NSIndexPath *selectedIndex;
 }
 

@@ -49,6 +49,24 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+    
+    // if this message is unread, decrement the message count if it's over 0
+    if (self.message.unread) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        NSUInteger messageCount = [defaults integerForKey:@"messageCount"];
+        if (messageCount > 0) {
+            messageCount--;
+            
+            // save the updated message count to the db
+            [defaults setInteger:messageCount forKey:@"messageCount"];
+            [defaults synchronize];
+            // reflect the unread count on the app badge
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
+            
+            NSLog(@"Message Count saved: %i", messageCount);            
+        }
+    }
 }
 
 - (void)showWebView:(NSTimer*)theTimer {

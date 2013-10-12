@@ -123,6 +123,21 @@
     
     [self.refreshControl endRefreshing];
     
+    // total up the unread messages
+    NSUInteger messageCount = 0;
+    for (Message *message in models) {
+        if (message.unread) messageCount++;
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // save the updated message count to the db
+    [defaults setInteger:messageCount forKey:@"messageCount"];
+    [defaults synchronize];
+    // reflect the unread count on the app badge
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
+    
+    NSLog(@"Message Count saved: %i", messageCount);
+    
     if (self.messages.count == 0) {
         [UIAlertView showSimpleAlertWithTitle:@"Messages"
                                       message:@"No messages found."];
@@ -165,6 +180,9 @@
     Message *message = [messages objectAtIndex:indexPath.row];
     [message markRead];
     MessageViewController *viewController = [[MessageViewController alloc] initWithMesage:message];
+    
+    // mark the message read in the local data to reflect in the table
+    message.unread = NO;
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];

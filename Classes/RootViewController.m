@@ -17,6 +17,10 @@
 - (id)init {
     self = [super initWithNib];
     self.title = @"Home";
+    
+//    messageCount = [[NSUserDefaults standardUserDefaults] integerForKey:@"messageCount"];
+//    NSLog(@"Message Count in init: %i", messageCount);
+    
     return self;
 }
 
@@ -40,14 +44,9 @@
     [super viewDidAppear:animated];
     
     // only check for messages if it's been 5 minutes since the last check
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDate *lastMessageFetchDate = [defaults objectForKey:@"messageFetchDate"];
+    NSDate *lastMessageFetchDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"messageFetchDate"];
     NSTimeInterval interval = [lastMessageFetchDate timeIntervalSinceDate:[NSDate date]];
 
-//    NSLog(@"%@", lastMessageFetchDate);
-//    NSLog(@"%f", interval);
-    
-    // only check for messages if it's been 5 minutes since the last check
     if (interval == 0 || (interval * -1) > 60*5) {
         // fetch messages
         [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
@@ -147,7 +146,7 @@
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
-    messageCount = 0;
+    NSUInteger messageCount = 0;
     for (Message *message in models) {
         if (message.unread) messageCount++;
     }
@@ -158,8 +157,6 @@
 //        [[UIApplication sharedApplication] scheduleLocalNotification:messagesNotification];
 //    }
     
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
-    
     // keep track if an index path had been selected, and reset it after the table is reloaded
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -168,10 +165,15 @@
     
     messageLoader = nil;
     
-    // capture this successful messages fetch
+    // capture the date this successful messages fetch and the number of unread messages
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSDate date] forKey:@"messageFetchDate"];
+    [defaults setInteger:messageCount forKey:@"messageCount"];
     [defaults synchronize];
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
+    
+    NSLog(@"Message Count saved: %i", messageCount);
 }
 
 - (void)didFailToLoadModels {
@@ -193,8 +195,8 @@
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         return 100;
     }
-    if ([[UIScreen mainScreen] bounds].size.height == 568) return 90;
-    return 80;
+    if ([[UIScreen mainScreen] bounds].size.height == 568) return 92;
+    return 82;
 }
 
 // Customize the number of rows in the table view.
@@ -223,7 +225,7 @@
             cell.title = @"Messages";    
             // set number of unread messages in badge of cell
 //            messageCount = 9; // for testing
-            [cell setBadgeWithNumber:messageCount];
+            [cell setBadgeWithNumber:[[NSUserDefaults standardUserDefaults] integerForKey:@"messageCount"]];
             
             break;
             
