@@ -10,6 +10,7 @@
 
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation Image
 
@@ -39,8 +40,6 @@
 }
 
 - (void)uploadAndReturnImageUrlWithDictionary:(NSDictionary*)args {
-    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
-
     NSString *baseUrlString = @"http://chattypics.com";
 
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrlString]];
@@ -54,6 +53,7 @@
                             nil];
     
     // Use the AFNetworking client to login
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     [httpClient postPath:@"/users.php?act=login_go"
               parameters:params
                  success:^(AFHTTPRequestOperation *loginOperation, id responseObject) {
