@@ -13,7 +13,7 @@
 
 @implementation BrowserViewController
 
-@synthesize request, webView, backButton, forwardButton, mainToolbar, actionButton, bottomToolbar, isShackLOL, isCredits;
+@synthesize request, webView, backButton, forwardButton, mainToolbar, actionButton, bottomToolbar, isShackLOL;
 
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
@@ -24,13 +24,16 @@
 
 - (id)initWithRequest:(NSURLRequest*)_request
                 title:(NSString*)title
-        isForShackLOL:(BOOL)isForShackLOL
-           isForCredits:(BOOL)isForCredits {
+        isForShackLOL:(BOOL)isForShackLOL {
     self = [super initWithNib];
     self.request = _request;
-    self.title = (title != nil ? title : @"Loading...");
+    if (title) {
+        self.title = title;
+        initWithTitle = YES;
+    } else {
+        self.title = @"Loading...";
+    }
     self.isShackLOL = isForShackLOL;
-    self.isCredits = isForCredits;
  
     return self;
 }
@@ -184,12 +187,13 @@
     [self.actionButton setEnabled:YES];
     
     NSString *docTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    if (docTitle.length > 0) {
-        self.title = docTitle;
-    } else {
-        self.title = @"Browser";
+    if (!initWithTitle) {
+        if (docTitle.length > 0) {
+            self.title = docTitle;
+        } else {
+            self.title = @"Browser";
+        }
     }
-
 }
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error {

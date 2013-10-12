@@ -18,7 +18,7 @@
     UIBarButtonItem *actionButton;
     UIToolbar *bottomToolbar;
     BOOL isShackLOL;
-    BOOL isCredits;
+    BOOL initWithTitle;
     
     UIActionSheet *theActionSheet;
     UIPopoverController *popoverController;
@@ -37,8 +37,7 @@
 - (id)initWithRequest:(NSURLRequest *)request;
 - (id)initWithRequest:(NSURLRequest *)request
                 title:(NSString*)title
-        isForShackLOL:(BOOL)isForShackLOL
-           isForCredits:(BOOL)isForCredits;
+        isForShackLOL:(BOOL)isForShackLOL;
 
 - (IBAction)action:(id)sender;
 - (IBAction)refreshWebView:(id)sender;
