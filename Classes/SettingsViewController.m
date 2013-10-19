@@ -179,6 +179,10 @@
 	return NO;
 }
 
+- (BOOL)disablesAutomaticKeyboardDismissal {
+    return NO;
+}
+
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
 	return NO;
 }
