@@ -86,7 +86,7 @@
     [deckController setPanningMode:IIViewDeckFullViewPanning];
     [deckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose];
     [deckController setSizeMode:IIViewDeckViewSizeMode];
-    [deckController setParallaxAmount:0.3f];
+    [deckController setParallaxAmount:0.5f];
 
     return deckController;
 }
