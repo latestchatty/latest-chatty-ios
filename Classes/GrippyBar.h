@@ -28,6 +28,7 @@
     UIButton *orderByPostDateButton;
 }
 
+- (void)layoutButtons;
 - (void)tappedLeftButton;
 - (void)tappedRightButton;
 - (void)tappedRefreshButton;

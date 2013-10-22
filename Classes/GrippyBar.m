@@ -15,7 +15,7 @@
     if (self) {
         self.contentMode = UIViewContentModeCenter;
         
-        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 12, self.frame.size.width, 25)];
+        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 12, self.frameWidth, 25)];
         [backgroundView setBackgroundColor:[UIColor lcTableBackgroundColor]];
         backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self addSubview:backgroundView];
@@ -25,75 +25,84 @@
                                                                                      action:@selector(handlePan:)];
         [self addGestureRecognizer:panGesture];
         
-        BOOL modToolsEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"modTools"];
-        
-        if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            UIButton *refreshButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 2, 44, 44)];
-            [refreshButton addTarget:self action:@selector(tappedRefreshButton) forControlEvents:UIControlEventTouchUpInside];
-            [refreshButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Refresh.png"] forState:UIControlStateNormal];
-            refreshButton.showsTouchWhenHighlighted = YES;
-            refreshButton.alpha = 0.5;
-            refreshButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
-            [self addSubview:refreshButton];
-            
-            UIButton *tagButton = [[UIButton alloc] initWithFrame:CGRectMake(refreshButton.frameX+refreshButton.frameWidth+20, 2, 44, 44)];
-            [tagButton addTarget:self action:@selector(tappedTagButton) forControlEvents:UIControlEventTouchUpInside];
-            [tagButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Tag.png"] forState:UIControlStateNormal];
-            tagButton.showsTouchWhenHighlighted = YES;
-            tagButton.alpha = 0.5;
-            tagButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-            [self addSubview:tagButton];
-            
-            orderByPostDateButton = [[UIButton alloc] initWithFrame:CGRectMake(tagButton.frameX+tagButton.frameWidth+20, 2, 44, 44)];
-            [orderByPostDateButton addTarget:self action:@selector(tappedOrderByPostDateButton) forControlEvents:UIControlEventTouchUpInside];
-            [orderByPostDateButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Timer.png"] forState:UIControlStateNormal];
-            orderByPostDateButton.showsTouchWhenHighlighted = YES;
-            orderByPostDateButton.alpha = 0.5;
-            orderByPostDateButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-            [self addSubview:orderByPostDateButton];
-			
-			UIButton *previousButton = [[UIButton alloc] initWithFrame:CGRectMake(orderByPostDateButton.frameX+orderByPostDateButton.frameWidth+20, 2, 44, 44)];
-            [previousButton addTarget:self action:@selector(tappedLeftButton) forControlEvents:UIControlEventTouchUpInside];
-            [previousButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Previous.png"] forState:UIControlStateNormal];
-            previousButton.showsTouchWhenHighlighted = YES;
-            previousButton.alpha = 0.5;
-            previousButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-            [self addSubview:previousButton];
-            
-            UIButton *nextButton = [[UIButton alloc] initWithFrame:CGRectMake(previousButton.frameX+previousButton.frameWidth+20, 2, 44, 44)];
-            [nextButton addTarget:self action:@selector(tappedRightButton) forControlEvents:UIControlEventTouchUpInside];
-            [nextButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Next.png"] forState:UIControlStateNormal];
-            nextButton.showsTouchWhenHighlighted = YES;
-            nextButton.alpha = 0.5;
-            nextButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-            [self addSubview:nextButton];
-            
-            if (modToolsEnabled) {
-                [refreshButton setFrameX:0];
-                [tagButton setFrameX:44];
-            }
-        }
-        
-        // Only needed for mods
-        if (modToolsEnabled) {
-            CGFloat leftEdge = [[LatestChatty2AppDelegate delegate] isPadDevice] ? 0 : 88;
-            UIButton *modButton = [[UIButton alloc] initWithFrame:CGRectMake(leftEdge, 2, 44, 44)];
-            [modButton addTarget:self action:@selector(tappedModButton) forControlEvents:UIControlEventTouchUpInside];
-            [modButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Mods.png"] forState:UIControlStateNormal];
-            modButton.showsTouchWhenHighlighted = YES;
-            modButton.alpha = 0.5;
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                modButton.autoresizingMask = UIViewAutoresizingNone;
-            } else {
-                modButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-            }
-
-            [self addSubview:modButton];
-        }
+        [self layoutButtons];
         
         self.userInteractionEnabled = NO;
     }
     return self;
+}
+
+- (void)layoutButtons {
+    BOOL modToolsEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"modTools"];
+    
+    // space buttons across bar evenly, mod tools enabled adds an extra button
+    NSInteger numButtons = (modToolsEnabled ? 6 : 5);
+    NSInteger buttonIteration = 1;
+    // I had to decrement a few points off for some reason, my math is probably off somehow?
+    CGFloat spacePerButton = (self.frameWidth / numButtons) - 4;
+    CGFloat buttonWidth = 44.0f;
+    
+    UIButton *refreshButton = [[UIButton alloc] initWithFrame:CGRectMake((spacePerButton*buttonIteration) - (spacePerButton/2) - (buttonWidth/4), 2, buttonWidth, buttonWidth)];
+    [refreshButton addTarget:self action:@selector(tappedRefreshButton) forControlEvents:UIControlEventTouchUpInside];
+    [refreshButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Refresh.png"] forState:UIControlStateNormal];
+    refreshButton.showsTouchWhenHighlighted = YES;
+    refreshButton.alpha = 0.5;
+//    refreshButton.backgroundColor = [UIColor redColor];
+    refreshButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    [self addSubview:refreshButton];
+    buttonIteration++;
+    
+    UIButton *tagButton = [[UIButton alloc] initWithFrame:CGRectMake((spacePerButton*buttonIteration) - (spacePerButton/2) - (buttonWidth/4), 2, buttonWidth, buttonWidth)];
+    [tagButton addTarget:self action:@selector(tappedTagButton) forControlEvents:UIControlEventTouchUpInside];
+    [tagButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Tag.png"] forState:UIControlStateNormal];
+    tagButton.showsTouchWhenHighlighted = YES;
+    tagButton.alpha = 0.5;
+//    tagButton.backgroundColor = [UIColor orangeColor];
+    tagButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    [self addSubview:tagButton];
+    buttonIteration++;
+    
+    // Only needed for mods
+    if (modToolsEnabled) {
+        UIButton *modButton = [[UIButton alloc] initWithFrame:CGRectMake((spacePerButton*buttonIteration) - (spacePerButton/2) - (buttonWidth/4), 2, buttonWidth, buttonWidth)];
+        [modButton addTarget:self action:@selector(tappedModButton) forControlEvents:UIControlEventTouchUpInside];
+        [modButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Mods.png"] forState:UIControlStateNormal];
+        modButton.showsTouchWhenHighlighted = YES;
+        modButton.alpha = 0.5;
+//        modButton.backgroundColor = [UIColor yellowColor];
+        modButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+        [self addSubview:modButton];
+        buttonIteration++;
+    }
+    
+    orderByPostDateButton = [[UIButton alloc] initWithFrame:CGRectMake((spacePerButton*buttonIteration) - (spacePerButton/2) - (buttonWidth/4), 2, buttonWidth, buttonWidth)];
+    [orderByPostDateButton addTarget:self action:@selector(tappedOrderByPostDateButton) forControlEvents:UIControlEventTouchUpInside];
+    [orderByPostDateButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Timer.png"] forState:UIControlStateNormal];
+    orderByPostDateButton.showsTouchWhenHighlighted = YES;
+    orderByPostDateButton.alpha = 0.5;
+//    orderByPostDateButton.backgroundColor = [UIColor greenColor];
+    orderByPostDateButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    [self addSubview:orderByPostDateButton];
+    buttonIteration++;
+    
+    UIButton *previousButton = [[UIButton alloc] initWithFrame:CGRectMake((spacePerButton*buttonIteration) - (spacePerButton/2) - (buttonWidth/4), 2, buttonWidth, buttonWidth)];
+    [previousButton addTarget:self action:@selector(tappedLeftButton) forControlEvents:UIControlEventTouchUpInside];
+    [previousButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Previous.png"] forState:UIControlStateNormal];
+    previousButton.showsTouchWhenHighlighted = YES;
+    previousButton.alpha = 0.5;
+//    previousButton.backgroundColor = [UIColor blueColor];
+    previousButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    [self addSubview:previousButton];
+    buttonIteration++;
+    
+    UIButton *nextButton = [[UIButton alloc] initWithFrame:CGRectMake((spacePerButton*buttonIteration) - (spacePerButton/2) - (buttonWidth/4), 2, buttonWidth, buttonWidth)];
+    [nextButton addTarget:self action:@selector(tappedRightButton) forControlEvents:UIControlEventTouchUpInside];
+    [nextButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Next.png"] forState:UIControlStateNormal];
+    nextButton.showsTouchWhenHighlighted = YES;
+    nextButton.alpha = 0.5;
+//    nextButton.backgroundColor = [UIColor purpleColor];
+    nextButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    [self addSubview:nextButton];
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)sender {
