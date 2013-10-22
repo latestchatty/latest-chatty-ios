@@ -39,10 +39,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Red" backgroundImage="Button.png">
+                            <state key="disabled" title="Red">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Red" backgroundImage="Button.png">
+                            <state key="selected" title="Red">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Red">
@@ -61,10 +61,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Green" backgroundImage="Button.png">
+                            <state key="disabled" title="Green">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Green" backgroundImage="Button.png">
+                            <state key="selected" title="Green">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Green">
@@ -83,10 +83,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Blue" backgroundImage="Button.png">
+                            <state key="disabled" title="Blue">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Blue" backgroundImage="Button.png">
+                            <state key="selected" title="Blue">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Blue">
@@ -105,10 +105,10 @@
                                 <color key="titleColor" red="0.13333333999999999" green="0.13333333999999999" blue="0.13333333999999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" backgroundImage="Button.png">
+                            <state key="disabled">
                                 <color key="titleColor" red="0.13333333999999999" green="0.13333333999999999" blue="0.13333333999999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" backgroundImage="Button.png">
+                            <state key="selected">
                                 <color key="titleColor" red="0.13333333999999999" green="0.13333333999999999" blue="0.13333333999999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted">
@@ -127,10 +127,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Orange" backgroundImage="Button.png">
+                            <state key="disabled" title="Orange">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Orange" backgroundImage="Button.png">
+                            <state key="selected" title="Orange">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Orange">
@@ -149,11 +149,11 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Olive" backgroundImage="Button.png">
+                            <state key="disabled" title="Olive">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                             </state>
-                            <state key="selected" title="Olive" backgroundImage="Button.png">
+                            <state key="selected" title="Olive">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                             </state>
@@ -174,10 +174,10 @@
                                 <color key="titleColor" red="0.13333333999999999" green="0.13333333999999999" blue="0.13333333999999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Lime" backgroundImage="Button.png">
+                            <state key="disabled" title="Lime">
                                 <color key="titleColor" red="0.13333333999999999" green="0.13333333999999999" blue="0.13333333999999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Lime" backgroundImage="Button.png">
+                            <state key="selected" title="Lime">
                                 <color key="titleColor" red="0.13333333999999999" green="0.13333333999999999" blue="0.13333333999999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Lime">
@@ -196,10 +196,10 @@
                                 <color key="titleColor" red="0.13333333999999999" green="0.13333333999999999" blue="0.13333333999999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Pink" backgroundImage="Button.png">
+                            <state key="disabled" title="Pink">
                                 <color key="titleColor" red="0.13333333999999999" green="0.13333333999999999" blue="0.13333333999999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Pink" backgroundImage="Button.png">
+                            <state key="selected" title="Pink">
                                 <color key="titleColor" red="0.13333333999999999" green="0.13333333999999999" blue="0.13333333999999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Pink">
@@ -217,10 +217,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Italic" backgroundImage="Button.png">
+                            <state key="disabled" title="Italic">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Italic" backgroundImage="Button.png">
+                            <state key="selected" title="Italic">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Italic">
@@ -238,10 +238,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Quote" backgroundImage="Button.png">
+                            <state key="disabled" title="Quote">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Quote" backgroundImage="Button.png">
+                            <state key="selected" title="Quote">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Quote">
@@ -259,10 +259,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Small" backgroundImage="Button.png">
+                            <state key="disabled" title="Small">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Small" backgroundImage="Button.png">
+                            <state key="selected" title="Small">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Small">
@@ -280,10 +280,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Bold" backgroundImage="Button.png">
+                            <state key="disabled" title="Bold">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Bold" backgroundImage="Button.png">
+                            <state key="selected" title="Bold">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Bold">
@@ -301,10 +301,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Underline" backgroundImage="Button.png">
+                            <state key="disabled" title="Underline">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Underline" backgroundImage="Button.png">
+                            <state key="selected" title="Underline">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Underline">
@@ -322,10 +322,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Spoiler" image="ButtonContentSpoiler.png" backgroundImage="Button.png">
+                            <state key="disabled" title="Spoiler">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Spoiler" image="ButtonContentSpoiler.png" backgroundImage="Button.png">
+                            <state key="selected" title="Spoiler">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Spoiler">
@@ -343,10 +343,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" backgroundImage="Button.png">
+                            <state key="disabled">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" backgroundImage="Button.png">
+                            <state key="selected">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted">
@@ -364,10 +364,10 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="disabled" title="Code" backgroundImage="Button.png">
+                            <state key="disabled" title="Code">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <state key="selected" title="Code" backgroundImage="Button.png">
+                            <state key="selected" title="Code">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" title="Code">
@@ -442,10 +442,10 @@
                     <state key="normal" image="Take-Photo.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="disabled" image="Camera.png" backgroundImage="Button.png">
+                    <state key="disabled">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <state key="selected" image="Camera.png" backgroundImage="Button.png">
+                    <state key="selected">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <state key="highlighted" image="Take-Photo.png">
@@ -488,9 +488,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Button.png" width="77" height="51"/>
-        <image name="ButtonContentSpoiler.png" width="77" height="51"/>
-        <image name="Camera.png" width="20" height="20"/>
         <image name="Keyboard-Color-Blue-Normal.png" width="70" height="70"/>
         <image name="Keyboard-Color-Green-Normal.png" width="70" height="70"/>
         <image name="Keyboard-Color-Lime.png" width="70" height="70"/>
@@ -504,6 +501,10 @@
         <image name="Keyboard-Normal-Strike.png" width="70" height="70"/>
         <image name="Keyboard-Normal-Underline.png" width="70" height="70"/>
         <image name="Keyboard-Normal.png" width="70" height="70"/>
+        <image name="Keyboard-Normal.png" width="70" height="70"/>
+        <image name="Keyboard-Normal.png" width="70" height="70"/>
+        <image name="Keyboard-Normal.png" width="70" height="70"/>
+        <image name="Take-Photo.png" width="46" height="46"/>
         <image name="Take-Photo.png" width="46" height="46"/>
     </resources>
 </document>
