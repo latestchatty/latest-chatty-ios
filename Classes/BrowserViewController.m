@@ -356,7 +356,7 @@
     NSLog(@"%s", __PRETTY_FUNCTION__);
 
     [webView stopLoading];
-    [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+    [webView loadHTMLString:@"" baseURL:nil];
     webView.delegate = nil;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
