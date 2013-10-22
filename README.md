@@ -4,6 +4,24 @@ latest-chatty-2
 iOS 7 Conversion Fork
 To be merged back to squeegy's master repo once completed.
 
+3.4.13
+====
+- Thread separator toolbar buttons positioned evenly across bar when mod tools are on or off
+- Thread separator toolbar for iPad same as iPhone now, buttons no longer across the top of the app, buttons in thread toolbar now (I could make top or thread separator toolbar an option I suppose...)
+- Alignment fix for thread timer pie icon
+- Date color in Thread view matched with date color in Chatty view
+- Keyboard hides properly with the Done button in Settings on iPad
+- Keyboard hides properly when scrolling the Settings view on iPad
+- Cell animation into view disabled for all tables (the animation was quick, but can potentially block user input when scrolling very fast via flick)
+- Image picker control now cancels correctly on iPad
+- Removed references to no-longer-existing images in some nib files
+- Side menu parallax effect increased slightly
+
+3.4.12
+====
+- Build to add more beta testers to provisioning profile
+- Minor change to network activity indicator usage when uploading to Chattypics
+
 3.4.11
 ====
 - Fixed visual bug with Chatty view navigation bar
