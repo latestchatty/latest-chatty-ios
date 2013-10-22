@@ -319,7 +319,7 @@
         didFinishPickingImage:(UIImage *)anImage
                   editingInfo:(NSDictionary *)editingInfo
 {
-	[self.navigationController dismissModalViewControllerAnimated:YES];
+	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
 	[postContent resignFirstResponder];
 	Image *image = [[Image alloc] initWithImage:anImage];
 	image.delegate = self;
@@ -340,6 +340,14 @@
                            [NSNumber numberWithFloat:picsQuality], @"qualityAmount",
                            nil];
     [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithDictionary:) withObject:args];
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [popoverController dismissPopoverAnimated:YES];
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [popoverController dismissPopoverAnimated:YES];
