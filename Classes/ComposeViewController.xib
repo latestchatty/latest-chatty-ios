@@ -501,10 +501,6 @@
         <image name="Keyboard-Normal-Strike.png" width="70" height="70"/>
         <image name="Keyboard-Normal-Underline.png" width="70" height="70"/>
         <image name="Keyboard-Normal.png" width="70" height="70"/>
-        <image name="Keyboard-Normal.png" width="70" height="70"/>
-        <image name="Keyboard-Normal.png" width="70" height="70"/>
-        <image name="Keyboard-Normal.png" width="70" height="70"/>
-        <image name="Take-Photo.png" width="46" height="46"/>
         <image name="Take-Photo.png" width="46" height="46"/>
     </resources>
 </document>
