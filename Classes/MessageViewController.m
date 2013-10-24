@@ -50,6 +50,9 @@
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
     
+    // scroll indicator coloring
+    [webView.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
+    
     // if this message is unread, decrement the message count if it's over 0
     if (self.message.unread) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

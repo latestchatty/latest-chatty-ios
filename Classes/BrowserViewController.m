@@ -88,6 +88,9 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+    
+    // scroll indicator coloring
+    [webView.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

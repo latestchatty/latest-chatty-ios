@@ -64,6 +64,10 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+    
+    // scroll indicator coloring
+    [inputTable setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
+    [recentSearchScrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

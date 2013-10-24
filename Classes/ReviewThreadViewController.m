@@ -35,6 +35,9 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+    
+    // scroll indicator coloring
+    [postView.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
 - (IBAction)dismiss {

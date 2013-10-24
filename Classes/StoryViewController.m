@@ -82,6 +82,9 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+    
+    // scroll indicator coloring
+    [content.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

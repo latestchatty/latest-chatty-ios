@@ -38,6 +38,9 @@
     [loadingView addSubview:spinner];
 
     [self.view addSubview:loadingView];
+    
+    // scroll indicator coloring
+    [tableView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -208,7 +208,8 @@
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
     
-
+    // scroll indicator coloring
+    [postView.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

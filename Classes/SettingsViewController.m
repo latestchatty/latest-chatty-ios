@@ -103,6 +103,9 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+    
+    // scroll indicator coloring
+    [tableView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
