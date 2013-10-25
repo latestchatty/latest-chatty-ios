@@ -84,7 +84,7 @@
                          // Process response
                          // regex will fail if there's a second underscore anywhere in the URL, but that shouldn't happen...
                          NSString *regEx = @"http://chattypics\\.com/files/iPhoneUpload_[^_]+\\.jpg";
-                         NSString *imageURL = [operation.responseString stringByMatching:regEx];
+                         NSString *imageURL = [NSString stringWithFormat:@"%@ ", [operation.responseString stringByMatching:regEx]];
                          
                          // Pass imageURL back to selector as success
                          [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:imageURL waitUntilDone:YES];
