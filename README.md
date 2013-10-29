@@ -4,6 +4,11 @@ latest-chatty-2
 iOS 7 Conversion Fork
 To be merged back to squeegy's master repo once completed.
 
+3.4.14
+====
+- Tap status bar in Thread view to scroll replies table to the top
+- Scroll indicators lightened so that scroll position is easier to see on the dark backgrounds
+
 3.4.13
 ====
 - Thread separator toolbar buttons positioned evenly across bar when mod tools are on or off
