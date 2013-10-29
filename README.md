@@ -8,6 +8,8 @@ To be merged back to squeegy's master repo once completed.
 ====
 - Tap status bar in Thread view to scroll replies table to the top
 - Scroll indicators lightened so that scroll position is easier to see on the dark backgrounds
+- iPad Browser view toolbar relocated to bottom of screen (like iPhone)
+- Story view no long shows title of story in nav bar
 
 3.4.13
 ====
