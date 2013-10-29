@@ -79,25 +79,6 @@
 + (NSDictionary *)grayTextAttributesDictionary;
 + (NSDictionary *)textShadowAttributesDictionary;
 
++ (NSDictionary *)blueHighlightTextAttributesDictionary;
+
 @end
-
-//@interface UIImage(ImageAdditions)
-
-//// Bar backgrounds
-//+ (UIImage *)navbarBgImage;
-//+ (UIImage *)navbarBgLandscapeImage;
-//+ (UIImage *)toolbarBgImage;
-//
-//// Navbar buttons
-//+ (UIImage *)backButtonImage;
-//+ (UIImage *)backButtonHighlightImage;
-//+ (UIImage *)backButtonLandscapeImage;
-//+ (UIImage *)backButtonHighlightLandscapeImage;
-//+ (UIImage *)barButtonNormalImage;
-//+ (UIImage *)barButtonNormalHighlightImage;
-//+ (UIImage *)barButtonNormalLandscapeImage;
-//+ (UIImage *)barButtonNormalHighlightLandscapeImage;
-//+ (UIImage *)barButtonDoneImage;
-//+ (UIImage *)barButtonDoneLandscapeImage;
-
-//@end
