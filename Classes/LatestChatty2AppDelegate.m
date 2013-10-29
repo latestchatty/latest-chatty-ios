@@ -446,9 +446,9 @@
     
     // nav/toolbar tinting
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor lcBarTintColor]];
     [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
-    [[UIToolbar appearance] setBarTintColor:[UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0]];
+    [[UIToolbar appearance] setBarTintColor:[UIColor lcBarTintColor]];
     
     // Settings controls appearance
     [[UISwitch appearance] setOnTintColor:[UIColor lcSwitchOnColor]];

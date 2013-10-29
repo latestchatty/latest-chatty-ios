@@ -69,7 +69,7 @@
     }
     
     if (foundParticipant) {
-        replyCount.textColor = [UIColor colorWithRed:119.0/255.0 green:197.0/255.0 blue:254.0/255.0 alpha:1.0];
+        replyCount.textColor = [UIColor lcBlueParticipantColor];
     } else {
         replyCount.textColor = [UIColor lcLightGrayTextColor];
     }
