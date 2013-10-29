@@ -57,17 +57,19 @@
         [lolMenuButton setEnabled:NO];
         [lolMenuButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
                                      forState:UIControlStateNormal];
+        [lolMenuButton setTitleTextAttributes:[NSDictionary blueHighlightTextAttributesDictionary]
+                                     forState:UIControlStateDisabled];
         
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-            
-            NSMutableArray *newItems = [self.mainToolbar.items mutableCopy];
-            [newItems addObject:flexSpace];
-            [newItems addObject:lolMenuButton];
-            [self.mainToolbar setItems:newItems animated:YES];
-        } else {
-            self.navigationItem.rightBarButtonItem = lolMenuButton;
-        }
+//        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//            UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+//            
+//            NSMutableArray *newItems = [self.mainToolbar.items mutableCopy];
+//            [newItems addObject:flexSpace];
+//            [newItems addObject:lolMenuButton];
+//            [self.mainToolbar setItems:newItems animated:YES];
+//        } else {
+        self.navigationItem.rightBarButtonItem = lolMenuButton;
+//        }
     }
     
     [webView loadRequest:request];
@@ -88,18 +90,15 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
-    
-    // scroll indicator coloring
-    [webView.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice] && self.navigationController) {
+//- (void)viewWillAppear:(BOOL)animated {
+//    if ([[LatestChatty2AppDelegate delegate] isPadDevice] && self.navigationController) {
 //        mainToolbar.tintColor = self.navigationController.navigationBar.tintColor;
-        self.navigationItem.titleView = self.mainToolbar;
-        webView.frame = self.view.bounds;
-    }
-}
+//        self.navigationItem.titleView = self.mainToolbar;
+//        webView.frame = self.view.bounds;
+//    }
+//}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self showBars];
@@ -175,15 +174,15 @@
     backButton.enabled = webView.canGoBack;
     forwardButton.enabled = webView.canGoForward;
 
-    if (self.navigationItem.leftBarButtonItem != nil) {
-        [self.navigationItem.leftBarButtonItem setEnabled:YES];
-    }
-
-    if (self.mainToolbar.items.lastObject != nil && isShackLOL) {
-        [self.mainToolbar.items.lastObject setEnabled:YES];
-    }
-    
-    if (self.navigationItem.rightBarButtonItem != nil) {
+//    if (self.navigationItem.leftBarButtonItem != nil) {
+//        [self.navigationItem.leftBarButtonItem setEnabled:YES];
+//    }
+//
+//    if (self.mainToolbar.items.lastObject != nil && isShackLOL) {
+//        [self.mainToolbar.items.lastObject setEnabled:YES];
+//    }
+//
+    if (self.navigationItem.rightBarButtonItem != nil && isShackLOL) {
         [self.navigationItem.rightBarButtonItem setEnabled:YES];
     }
     
