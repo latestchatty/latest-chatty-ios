@@ -327,9 +327,9 @@
     // filter the recent searches array to remove the recent search that was tapped
     NSMutableArray *filteredRecentSearches = [NSMutableArray array];
 	for (NSDictionary *recentSearch in recentSearches) {
-        NSLog(@"recentSearch: %@", recentSearch);
+//        NSLog(@"recentSearch: %@", recentSearch);
         if (![recentSearch isEqual:searchDictionary]) {
-            NSLog(@"searchDictionary: %@", searchDictionary);
+//            NSLog(@"searchDictionary: %@", searchDictionary);
             [filteredRecentSearches addObject:recentSearch];
         }
 	}
