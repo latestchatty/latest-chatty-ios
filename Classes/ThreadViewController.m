@@ -192,7 +192,7 @@
     [grippyBar setOrderByPostDateWithValue:orderByPostDate];
     
     UIImageView *background = [UIImageView viewWithImage:[UIImage imageNamed:@"DropShadow.png"]];
-    background.frame = CGRectMake(0, 36, grippyBar.frameWidth, grippyBar.frameHeight-16);
+    background.frame = CGRectMake(0, 36, grippyBar.frameWidth, grippyBar.frameHeight-32);
     background.alpha = 0.75;
     background.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [grippyBar addSubview:background];
