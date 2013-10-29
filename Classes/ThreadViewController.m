@@ -210,6 +210,10 @@
     
     // scroll indicator coloring
     [postView.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
+    
+    // tap status bar to scroll replies table to the top
+    postView.scrollView.scrollsToTop = NO;
+    tableView.scrollsToTop = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
