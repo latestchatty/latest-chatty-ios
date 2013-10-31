@@ -123,9 +123,9 @@
 
 - (void)loadChatty {
 //    ChattyViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
-    UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:story.threadId]; // for testing
+    UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:story.threadId];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
+        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
     }
