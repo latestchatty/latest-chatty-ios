@@ -14,7 +14,7 @@
 
 @implementation ThreadViewController
 
-@synthesize threadId, rootPost, threadStarter, selectedIndexPath, toolbar;
+@synthesize threadId, rootPost, threadStarter, selectedIndexPath;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
         self = [super initWithNib];

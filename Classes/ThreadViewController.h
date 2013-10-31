@@ -39,7 +39,6 @@
     BOOL orderByPostDate;
     
     UIPopoverController *popoverController;
-    UIToolbar *toolbar;
     
     UIActionSheet *theActionSheet;
 }
@@ -48,8 +47,6 @@
 @property (strong) Post *rootPost;
 @property (nonatomic, copy) NSString *threadStarter;
 @property (strong) NSIndexPath *selectedIndexPath;
-@property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, strong) IBOutlet UIToolbar *leftToolbar;
 @property (nonatomic, assign) CGPoint scrollPosition;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
