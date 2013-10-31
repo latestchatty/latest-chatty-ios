@@ -250,68 +250,29 @@
 #pragma mark UIActivityViewController & Action Sheet Delegate
 
 - (IBAction)action:(id)sender {
-    //use iOS 6 ActivityViewController functionality if available
-    if ([UIActivityViewController class]) {
-        //load custom activities
-        AppleSafariActivity *safariActivity = [[AppleSafariActivity alloc] init];
-        GoogleChromeActivity *chromeActivity = [[GoogleChromeActivity alloc] init];
-        
-        NSArray *activityItems = @[[webView.request URL]];
-        
-        UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
-                                                            initWithActivityItems:activityItems
-                                                            applicationActivities:@[safariActivity, chromeActivity]];
-        
-        activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToWeibo, UIActivityTypePrint, UIActivityTypeSaveToCameraRoll];
-        
-        //present as popover on iPad, as a regular view on iPhone
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            //hide popover if its already showing and the button is pressed again
-            if ([popoverController isPopoverVisible]) {
-                [popoverController dismissPopoverAnimated:YES];
-            } else {
-                popoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
-                [popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-            }
+    //load custom activities
+    AppleSafariActivity *safariActivity = [[AppleSafariActivity alloc] init];
+    GoogleChromeActivity *chromeActivity = [[GoogleChromeActivity alloc] init];
+    
+    NSArray *activityItems = @[[webView.request URL]];
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
+                                                        initWithActivityItems:activityItems
+                                                        applicationActivities:@[safariActivity, chromeActivity]];
+    
+    activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToWeibo, UIActivityTypePrint, UIActivityTypeSaveToCameraRoll];
+    
+    //present as popover on iPad, as a regular view on iPhone
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        //hide popover if its already showing and the button is pressed again
+        if ([popoverController isPopoverVisible]) {
+            [popoverController dismissPopoverAnimated:YES];
         } else {
-            [self presentViewController:activityViewController animated:YES completion:nil];
+            popoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
+            [popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }
-        
-    }
-    //fallback to ActionSheets for pre-iOS 6
-    else {
-        //check to see if action sheet is already showing (isn't nil), dismiss it if so
-        if (theActionSheet) {
-            [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-            theActionSheet = nil;
-            return;
-        }
-        //keep track of the action sheet
-        theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Options"
-                                                      delegate:self
-                                             cancelButtonTitle:nil
-                                        destructiveButtonTitle:nil
-                                             otherButtonTitles:nil];
-        [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-        
-        [theActionSheet addButtonWithTitle:@"Copy URL"];
-        [theActionSheet addButtonWithTitle:@"Open in Safari"];
-        
-        //if Chome is available, add it to the action sheet
-        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
-            [theActionSheet addButtonWithTitle:@"Open in Chrome"];
-        }
-        //set the cancel button to the last button
-        [theActionSheet addButtonWithTitle:@"Cancel"];
-        theActionSheet.cancelButtonIndex = theActionSheet.numberOfButtons-1;
-        
-        //present as popover of the sender button on iPad, modally on iPhone
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            [theActionSheet showFromBarButtonItem:sender animated:YES];
-        } else {
-            [theActionSheet showInView:self.navigationController.view];
-        }
-        
+    } else {
+        [self presentViewController:activityViewController animated:YES completion:nil];
     }
 }
 
