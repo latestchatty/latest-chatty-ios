@@ -156,19 +156,19 @@
 
 #pragma mark Actions
 
-- (IBAction)tappedChattyButton:(id)sender {
-    NSIndexPath *indexPath;
-    for (StoryCell *cell in [self.tableView visibleCells]) {
-        if (cell.chattyButton == sender) {
-            indexPath = [self.tableView indexPathForCell:cell];
-        }
-    }
-
-    Story *story = [stories objectAtIndex:indexPath.row];
-    UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
-    //UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:29061947]; // for testing
-    [self.navigationController pushViewController:viewController animated:YES];
-}
+//- (IBAction)tappedChattyButton:(id)sender {
+//    NSIndexPath *indexPath;
+//    for (StoryCell *cell in [self.tableView visibleCells]) {
+//        if (cell.chattyButton == sender) {
+//            indexPath = [self.tableView indexPathForCell:cell];
+//        }
+//    }
+//
+//    Story *story = [stories objectAtIndex:indexPath.row];
+//    UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
+//    //UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:29061947]; // for testing
+//    [self.navigationController pushViewController:viewController animated:YES];
+//}
 
 //- (IBAction)tappedLatestChattyButton {
 //    ChattyViewController *viewController = [ChattyViewController chattyControllerWithLatest];

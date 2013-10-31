@@ -10,7 +10,7 @@
 
 @implementation Story
 
-@synthesize title, preview, body, date, commentCount;
+@synthesize title, preview, body, date, commentCount, threadId;
 
 - (id)initWithCoder:(NSCoder *)coder {
     if (!(self = [super initWithCoder:coder])) return nil;
@@ -20,6 +20,7 @@
     self.body    = [coder decodeObjectForKey:@"body"];
     self.date    = [coder decodeObjectForKey:@"date"];
     commentCount = [coder decodeIntForKey:@"commentCount"];
+    threadId     = [coder decodeIntForKey:@"threadId"];
     
     return self;
 }
@@ -31,6 +32,7 @@
     [encoder encodeObject:body      forKey:@"body"];
     [encoder encodeObject:date      forKey:@"date"];
     [encoder encodeInt:commentCount forKey:@"commentCount"];
+    [encoder encodeInt:threadId     forKey:@"threadId"];
 }
 
 + (NSString *)formatDate:(NSDate *)date {
@@ -56,6 +58,7 @@
     self.body    = [dictionary objectForKey:@"body"];
     self.date    = [[self class] decodeDate:[dictionary objectForKey:@"date"]];
     commentCount = [[dictionary objectForKey:@"comment_count"] intValue];
+    threadId     = [[dictionary objectForKey:@"thread_id"] intValue];
     
     return self;
 }

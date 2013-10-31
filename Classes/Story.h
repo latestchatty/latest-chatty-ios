@@ -14,6 +14,7 @@
     NSString *body;
     NSDate   *date;
     NSUInteger commentCount;
+    NSUInteger threadId;
 }
 
 @property (copy) NSString *title;
@@ -21,6 +22,7 @@
 @property (copy) NSString *body;
 @property (copy) NSDate   *date;
 @property (readonly) NSUInteger commentCount;
+@property (readonly) NSUInteger threadId;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate;
 + (ModelLoader *)findById:(NSUInteger)aModelId delegate:(id<ModelLoadingDelegate>)delegate;
