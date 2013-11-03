@@ -146,6 +146,8 @@
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
+    
     NSUInteger messageCount = 0;
     for (Message *message in models) {
         if (message.unread) messageCount++;
@@ -157,14 +159,6 @@
 //        [[UIApplication sharedApplication] scheduleLocalNotification:messagesNotification];
 //    }
     
-    // keep track if an index path had been selected, and reset it after the table is reloaded
-    [self.tableView reloadData];
-    [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
-    
-    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
-    
-    messageLoader = nil;
-    
     // capture the date this successful messages fetch and the number of unread messages
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSDate date] forKey:@"messageFetchDate"];
@@ -174,6 +168,12 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     
     NSLog(@"Message Count saved: %i", messageCount);
+    
+    // redraw the messages row to update the badge count, and re-set the selected index (will keep messages row selected it the user is in the messages section)
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
+    messageLoader = nil;
 }
 
 - (void)didFailToLoadModels {
