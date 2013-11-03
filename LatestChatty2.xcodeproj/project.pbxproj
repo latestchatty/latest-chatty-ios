@@ -384,6 +384,12 @@
 		CDA1FA1F1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */; };
 		CDA1FA201806C15E0036F7B6 /* MenuBorderOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */; };
 		CDA1FA211806C15E0036F7B6 /* MenuBorderOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */; };
+		CDA26B6018234F1C00239BA9 /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B5F18234F1C00239BA9 /* libFlurry_4.3.0.a */; };
+		CDA26B6118234F1C00239BA9 /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B5F18234F1C00239BA9 /* libFlurry_4.3.0.a */; };
+		CDA26B6318234F4100239BA9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6218234F4100239BA9 /* Security.framework */; };
+		CDA26B6518234F4D00239BA9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6418234F4D00239BA9 /* AdSupport.framework */; };
+		CDA26B6618234F6000239BA9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6418234F4D00239BA9 /* AdSupport.framework */; };
+		CDA26B6718234F6800239BA9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6218234F4100239BA9 /* Security.framework */; };
 		CDC0E9BC17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
 		CDC0E9BD17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
 		CDC0E9BE17F6886D007D3738 /* Post-Indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */; };
@@ -770,6 +776,10 @@
 		CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-Timer@2x.png"; path = "Assets/Menu-Button-Timer@2x.png"; sourceTree = "<group>"; };
 		CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorder@2x.png"; path = "Assets/MenuBorder@2x.png"; sourceTree = "<group>"; };
 		CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorderOut@2x.png"; path = "Assets/MenuBorderOut@2x.png"; sourceTree = "<group>"; };
+		CDA26B5E18234F1C00239BA9 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		CDA26B5F18234F1C00239BA9 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.0.a; sourceTree = "<group>"; };
+		CDA26B6218234F4100239BA9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		CDA26B6418234F4D00239BA9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		CDC0E9A817F6886D007D3738 /* Post-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator.png"; path = "Assets/Post-Indicator.png"; sourceTree = "<group>"; };
 		CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator@2x.png"; path = "Assets/Post-Indicator@2x.png"; sourceTree = "<group>"; };
 		CDC0E9AA17F6886D007D3738 /* Post-Indicator-Reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-Reply.png"; path = "Assets/Post-Indicator-Reply.png"; sourceTree = "<group>"; };
@@ -920,16 +930,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDA26B6618234F6000239BA9 /* AdSupport.framework in Frameworks */,
 				CD7ADD2217EF434200B4C886 /* AVFoundation.framework in Frameworks */,
 				5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				CD4370D5180372DB008D9DCF /* Crashlytics.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				CD235A4F173AFC000078423B /* MobileCoreServices.framework in Frameworks */,
 				CD235A53173B1F920078423B /* QuartzCore.framework in Frameworks */,
-				CD4370D5180372DB008D9DCF /* Crashlytics.framework in Frameworks */,
+				CDA26B6718234F6800239BA9 /* Security.framework in Frameworks */,
 				5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				5907C5B710A69A190028D630 /* libz.dylib in Frameworks */,
+				CDA26B6018234F1C00239BA9 /* libFlurry_4.3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,16 +950,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDA26B6518234F4D00239BA9 /* AdSupport.framework in Frameworks */,
 				CD13747B17EA90A0002A2551 /* AVFoundation.framework in Frameworks */,
 				CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */,
 				CDA1181F16C1DC6600CE1375 /* CoreGraphics.framework in Frameworks */,
+				CD4370D6180372DB008D9DCF /* Crashlytics.framework in Frameworks */,
 				CDA1181D16C1DC6600CE1375 /* Foundation.framework in Frameworks */,
 				CD235A4C173AFB920078423B /* MobileCoreServices.framework in Frameworks */,
 				CD235A52173B1F830078423B /* QuartzCore.framework in Frameworks */,
-				CD4370D6180372DB008D9DCF /* Crashlytics.framework in Frameworks */,
+				CDA26B6318234F4100239BA9 /* Security.framework in Frameworks */,
 				CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */,
 				CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */,
 				CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */,
+				CDA26B6118234F1C00239BA9 /* libFlurry_4.3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -991,6 +1007,7 @@
 			children = (
 				CD76FFE0174C734B00B378E6 /* AFNetworking */,
 				FA2B47500F7E1DA30074064A /* Base64 */,
+				CDA26B5D18234F1C00239BA9 /* Flurry */,
 				CD7C24181754653900D90942 /* HKHelperKit */,
 				CD2770BC180995C300DD06E1 /* MBProgressHUD */,
 				59EC55AF17EDF27900F513A9 /* Regex */,
@@ -1033,6 +1050,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDA26B6418234F4D00239BA9 /* AdSupport.framework */,
+				CDA26B6218234F4100239BA9 /* Security.framework */,
 				CD13748217EAA4EE002A2551 /* AudioToolbox.framework */,
 				CD13747A17EA90A0002A2551 /* AVFoundation.framework */,
 				5907C5AC10A69A0A0028D630 /* CFNetwork.framework */,
@@ -1134,6 +1153,16 @@
 			);
 			name = HKHelperKit;
 			path = Classes/HKHelperKit;
+			sourceTree = "<group>";
+		};
+		CDA26B5D18234F1C00239BA9 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				CDA26B5E18234F1C00239BA9 /* Flurry.h */,
+				CDA26B5F18234F1C00239BA9 /* libFlurry_4.3.0.a */,
+			);
+			name = Flurry;
+			path = Classes/Flurry;
 			sourceTree = "<group>";
 		};
 		CDBD37FE17521EC2000A9F58 /* ViewDeck */ = {
@@ -2156,6 +2185,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
@@ -2170,6 +2200,10 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+				);
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Debug;
@@ -2180,6 +2214,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
@@ -2192,6 +2227,10 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+				);
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Release;
@@ -2199,6 +2238,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2227,6 +2267,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2258,6 +2299,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2273,6 +2315,10 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+				);
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
 			};
@@ -2284,6 +2330,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2297,6 +2344,10 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+				);
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
 			};
@@ -2308,6 +2359,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2321,6 +2373,10 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+				);
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
 			};
@@ -2329,6 +2385,7 @@
 		FADDB5410F81548500DF3650 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2360,6 +2417,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
@@ -2372,6 +2430,10 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+				);
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Distribution;

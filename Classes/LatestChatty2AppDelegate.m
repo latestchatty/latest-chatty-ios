@@ -11,6 +11,7 @@
 #import "Mod.h"
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
+#import "Flurry.h"
 #import <Crashlytics/Crashlytics.h>
 
 @implementation LatestChatty2AppDelegate
@@ -92,6 +93,8 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Flurry setCrashReportingEnabled:NO];
+    [Flurry startSession:@"KNR8BVFGGHX3MB6J6CP8"];
     [Crashlytics startWithAPIKey:@"7e5579f671abccb0156cc1a6de1201f981ef170c"];
     
     [self customizeAppearance];
