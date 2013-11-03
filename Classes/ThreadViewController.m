@@ -254,6 +254,11 @@
     
     // set the panning gesture delegate to this controller to monitor whether the panning should occur
     [self.viewDeckController setPanningGestureDelegate:self];
+    
+    // pop back the the thread vc instantiated doesn't have a threadId
+    if (threadId == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
