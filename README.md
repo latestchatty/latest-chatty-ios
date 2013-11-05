@@ -10,6 +10,14 @@ To be merged back to squeegy's master repo once completed.
 - Scroll indicators lightened so that scroll position is easier to see on the dark backgrounds
 - iPad Browser view toolbar relocated to bottom of screen (like iPhone)
 - Story view no long shows title of story in nav bar
+- Stories view comment count no longer tappable to jump to chatty attached to story
+- Chatty button on top right of Story view now jumps directly to Thread view for the thread associated with the story (nuShack only), legacy stories that don't have a single comment thread continue to load a Chatty view of comments for the story
+- Thread traversal buttons now point up and down instead of left and right
+- Resolved the updating of the in-app badge count on the messages icon for unread messages
+- ChattyPics uploads now append a space to the end of the generated URL that is pasted into post view (to prevent someone from uploading multiple images back-to-back and having the URLs run together)
+- Fixed thread separator toolbar shadow image alignment
+- Flurry analytics integration
+- Remove some logging and old pre-iOS 6 fallback code
 
 3.4.13
 ====
