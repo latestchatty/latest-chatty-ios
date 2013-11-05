@@ -122,10 +122,20 @@
 }
 
 - (void)loadChatty {
-//    ChattyViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
-    UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:story.threadId];
+    UIViewController *viewController;
+    
+    if (story.threadId > 0) {
+        viewController = [[ThreadViewController alloc] initWithThreadId:story.threadId];
+    } else {
+        viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
+    }
+
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
+        if (story.threadId > 0) {
+            [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
+        } else {
+            [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
+        }
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
     }
