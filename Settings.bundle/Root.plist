@@ -20,22 +20,6 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Settings</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>forgetHistory</string>
-			<key>Title</key>
-			<string>Don't Save History</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

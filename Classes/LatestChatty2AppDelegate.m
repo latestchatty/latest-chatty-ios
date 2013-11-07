@@ -103,7 +103,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
+//    NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
     
 //    // Register for Push
 //    if ([defaults boolForKey:@"push.messages"]) {
@@ -111,9 +111,9 @@
 //    }
     
     // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
-    if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
+//    if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
         [defaults removeObjectForKey:@"savedState"];
-    }        
+//    }        
 
     // Settings defaults
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
