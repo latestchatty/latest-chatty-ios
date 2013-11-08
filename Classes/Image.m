@@ -3,20 +3,21 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/28/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "Image.h"
 
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation Image
 
 @synthesize image, delegate;
 
 - (id)initWithImage:(UIImage *)anImage {
-	[super init];
+	if (!(self = [super init])) return nil;
 	self.image = anImage;
 	return self;
 }
@@ -39,8 +40,6 @@
 }
 
 - (void)uploadAndReturnImageUrlWithDictionary:(NSDictionary*)args {
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-
     NSString *baseUrlString = @"http://chattypics.com";
 
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrlString]];
@@ -54,6 +53,7 @@
                             nil];
     
     // Use the AFNetworking client to login
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     [httpClient postPath:@"/users.php?act=login_go"
               parameters:params
                  success:^(AFHTTPRequestOperation *loginOperation, id responseObject) {
@@ -67,7 +67,7 @@
                          [formData appendPartWithFileData:imageData name:@"userfile[]" fileName:@"iPhoneUpload.jpg" mimeType:@"image/jpeg"];
                      }];
                      
-                     AFHTTPRequestOperation *uploadOperation = [[[AFHTTPRequestOperation alloc] initWithRequest:uploadRequest] autorelease];
+                     AFHTTPRequestOperation *uploadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:uploadRequest];
                      // Async upload blocks
                      // Progress block
                      [uploadOperation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
@@ -81,19 +81,16 @@
                      }];
                      // Success block
                      [uploadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-                         
                          // Process response
                          // regex will fail if there's a second underscore anywhere in the URL, but that shouldn't happen...
                          NSString *regEx = @"http://chattypics\\.com/files/iPhoneUpload_[^_]+\\.jpg";
-                         NSString *imageURL = [operation.responseString stringByMatching:regEx];
+                         NSString *imageURL = [NSString stringWithFormat:@"%@ ", [operation.responseString stringByMatching:regEx]];
                          
                          // Pass imageURL back to selector as success
                          [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:imageURL waitUntilDone:YES];
                          
                          // Failure block
                      } failure:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                          // Pass nil to selector so that it handles the error
                          [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:nil waitUntilDone:YES];
                      }];
@@ -105,7 +102,6 @@
                      // We currently aren't telling the user if they couldn't log in successfully
                      // Would need to parse the response for successful login indication in the login success block
                      
-                     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                      // Pass nil to selector so that it handles the error
                      [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:nil waitUntilDone:YES];
                  }];
@@ -218,9 +214,5 @@
 	self.image = imageCopy;
 }
 
-- (void)dealloc {
-    self.image = nil;
-    [super dealloc];
-}
 
 @end

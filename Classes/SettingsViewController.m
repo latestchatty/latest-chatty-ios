@@ -3,11 +3,11 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/25/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "SettingsViewController.h"
-#import "RegexKitLite.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation SettingsViewController
 
@@ -16,49 +16,50 @@
 	if (self) {
         self.title = @"Settings";
         
-        usernameField = [[self generateTextFieldWithKey:@"username"] retain];
-        usernameField.placeholder = @"Enter Username";
+        usernameField = [self generateTextFieldWithKey:@"username"];
+        usernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Username" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         usernameField.returnKeyType = UIReturnKeyNext;
         usernameField.keyboardType = UIKeyboardTypeEmailAddress;
         usernameField.textColor = [UIColor lcAuthorColor];
         
-        passwordField = [[self generateTextFieldWithKey:@"password"] retain];
-        passwordField.placeholder = @"Enter Password";
+        passwordField = [self generateTextFieldWithKey:@"password"];
+        passwordField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Password" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         passwordField.secureTextEntry = YES;
         passwordField.returnKeyType = UIReturnKeyDone;
         
-        serverField = [[self generateTextFieldWithKey:@"server"] retain];
-        serverField.placeholder = @"shackapi.stonedonkey.com";
+        serverField = [self generateTextFieldWithKey:@"server"];
+        serverField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"shackapi.stonedonkey.com" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
         
-        picsUsernameField = [[self generateTextFieldWithKey:@"picsUsername"] retain];
-        picsUsernameField.placeholder = @"Enter Username";
+        picsUsernameField = [self generateTextFieldWithKey:@"picsUsername"];
+        picsUsernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Username" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         picsUsernameField.returnKeyType = UIReturnKeyNext;
         picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
         picsUsernameField.textColor = [UIColor lcAuthorColor];
         
-        picsPasswordField = [[self generateTextFieldWithKey:@"picsPassword"] retain];
-        picsPasswordField.placeholder = @"Enter Password";
+        picsPasswordField = [self generateTextFieldWithKey:@"picsPassword"];
+        picsPasswordField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Password" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
 
-        darkModeSwitch     = [[self generateSwitchWithKey:@"darkMode"] retain];
-        collapseSwitch     = [[self generateSwitchWithKey:@"collapse"] retain];
-        landscapeSwitch    = [[self generateSwitchWithKey:@"landscape"] retain];
-        picsResizeSwitch   = [[self generateSwitchWithKey:@"picsResize"] retain];
-        picsQualitySlider  = [[self generateSliderWithKey:@"picsQuality"] retain];
-        youtubeSwitch      = [[self generateSwitchWithKey:@"embedYoutube"] retain];
-        chromeSwitch       = [[self generateSwitchWithKey:@"useChrome"] retain];
-        safariSwitch       = [[self generateSwitchWithKey:@"useSafari"] retain];
+        saveSearchesSwitch = [self generateSwitchWithKey:@"saveSearches"];
+//        darkModeSwitch     = [self generateSwitchWithKey:@"darkMode"];
+        collapseSwitch     = [self generateSwitchWithKey:@"collapse"];
+        landscapeSwitch    = [self generateSwitchWithKey:@"landscape"];
+        picsResizeSwitch   = [self generateSwitchWithKey:@"picsResize"];
+        picsQualitySlider  = [self generateSliderWithKey:@"picsQuality"];
+        youtubeSwitch      = [self generateSwitchWithKey:@"embedYoutube"];
+        chromeSwitch       = [self generateSwitchWithKey:@"useChrome"];
+        safariSwitch       = [self generateSwitchWithKey:@"useSafari"];
 //        pushMessagesSwitch = [[self generateSwitchWithKey:@"push.messages"] retain];
-        modToolsSwitch     = [[self generateSwitchWithKey:@"modTools"] retain];
+        modToolsSwitch     = [self generateSwitchWithKey:@"modTools"];
         
-        interestingSwitch  = [[self generateSwitchWithKey:@"postCategory.informative"] retain];
-        offtopicSwitch     = [[self generateSwitchWithKey:@"postCategory.offtopic"] retain];
-        randomSwitch       = [[self generateSwitchWithKey:@"postCategory.stupid"] retain];
-        politicsSwitch     = [[self generateSwitchWithKey:@"postCategory.political"] retain];
-        nwsSwitch          = [[self generateSwitchWithKey:@"postCategory.nws"] retain];
+        interestingSwitch  = [self generateSwitchWithKey:@"postCategory.informative"];
+        offtopicSwitch     = [self generateSwitchWithKey:@"postCategory.offtopic"];
+        randomSwitch       = [self generateSwitchWithKey:@"postCategory.stupid"];
+        politicsSwitch     = [self generateSwitchWithKey:@"postCategory.political"];
+        nwsSwitch          = [self generateSwitchWithKey:@"postCategory.nws"];
 
         [picsQualitySlider addTarget:self action:@selector(handlePicsQualitySlider:) forControlEvents:UIControlEventValueChanged];
         [safariSwitch addTarget:self action:@selector(handleSafariSwitch) forControlEvents:UIControlEventValueChanged];
@@ -68,134 +69,12 @@
 	return self;
 }
 
-- (void)handlePicsQualitySlider:(UISlider *)slider {
-    picsQualityLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(slider.value*100)];
-}
-
--(void)handleSafariSwitch {
-    if (safariSwitch.on) {
-        [chromeSwitch setOn:NO animated:YES];
-    }
-}
-
--(void)handleChromeSwitch {
-    if (![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
-         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Google Chrome"
-                                                             message:@"App not found on device, install it first to use this option."
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil];
-        [chromeSwitch setOn:NO animated:YES];
-        [alertView show];
-        [alertView release];
-    }
-    
-    if (chromeSwitch.on) {
-        [safariSwitch setOn:NO animated:YES];
-    }
-}
-
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
 	return [self init];
 }
 
 - (NSDictionary *)stateDictionary {
 	return [NSDictionary dictionaryWithObject:@"Settings" forKey:@"type"];
-}
-
-- (UITextField *)generateTextFieldWithKey:(NSString *)key {
-	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 170, 21)];
-
-	textField.returnKeyType = UIReturnKeyNext;
-	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-	textField.autocorrectionType = UITextAutocorrectionTypeNo;
-	textField.delegate = self;
-	textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:key];
-    textField.textColor = [UIColor whiteColor];
-    textField.keyboardAppearance = UIKeyboardAppearanceAlert;
-	
-	return [textField autorelease];
-}
-
-- (UISwitch *)generateSwitchWithKey:(NSString *)key {
-	UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-	toggle.on = [[NSUserDefaults standardUserDefaults] boolForKey:key];
-    
-	return [toggle autorelease];
-}
-
-- (UISlider *)generateSliderWithKey:(NSString *)key {
-	UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 155, 20)];
-    slider.value = [[NSUserDefaults standardUserDefaults] floatForKey:key];
-    slider.continuous = YES;
-    slider.minimumValue = 0.10f;
-    slider.minimumValue = 0.10f;
-    
-	return [slider autorelease];
-}
-
--(void)saveSettings {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setObject:usernameField.text      forKey:@"username"];
-	[defaults setObject:passwordField.text      forKey:@"password"];
-    [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
-    [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
-	[defaults setBool:darkModeSwitch.on         forKey:@"darkMode"];
-	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
-	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
-    [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
-    [defaults setFloat:picsQualitySlider.value  forKey:@"picsQuality"];
-	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
-    [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
-    [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
-//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
-    [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
-	
-//	if (pushMessagesSwitch.on) {
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-//    } else {
-//        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
-//    }
-    
-	NSString *serverAddress = serverField.text;
-	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
-	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"/$" withString:@""];
-	[defaults setObject:serverAddress forKey:@"server"];
-	
-	[defaults setBool:interestingSwitch.on forKey:@"postCategory.informative"];
-	[defaults setBool:offtopicSwitch.on    forKey:@"postCategory.offtopic"];
-	[defaults setBool:randomSwitch.on      forKey:@"postCategory.stupid"];
-	[defaults setBool:politicsSwitch.on    forKey:@"postCategory.political"];
-	[defaults setBool:nwsSwitch.on         forKey:@"postCategory.nws"];
-	
-	[defaults synchronize];
-}
-
-- (IBAction)dismiss:(id)sender {
-    [self saveSettings];
-	
-	[self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)save {
-    [self saveSettings];
-    
-    [usernameField resignFirstResponder];
-    [passwordField resignFirstResponder];
-    [serverField resignFirstResponder];
-    [picsUsernameField resignFirstResponder];
-    [picsPasswordField resignFirstResponder];
-    
-    [UIAlertView showSimpleAlertWithTitle:@"Settings"
-                                  message:@"Saved!"];
-    
-    [self.viewDeckController toggleLeftView];   
-}
-
-- (void)resignAndToggle {
-    [[self view] endEditing:YES];
-    
-    [self.viewDeckController toggleLeftView];
 }
 
 - (void)viewDidLoad {
@@ -207,29 +86,75 @@
                                                                       target:self
                                                                       action:@selector(resignAndToggle)];
         self.navigationItem.leftBarButtonItem = menuButton;
-        [menuButton release];
-        
-//        UIBarButtonItem *saveDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
-//                                                                           style:UIBarButtonItemStyleDone
-//                                                                          target:self
-//                                                                          action:@selector(save)];
-//
-//        [saveDoneButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
-//        
-//        self.navigationItem.rightBarButtonItem = saveDoneButton;
-//
-//        [saveDoneButton release];
     }
-//    else {
-//        [saveButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
-//    }
     
-    [saveButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
+    [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
     
     [tableView setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
     [tableView setBackgroundView:nil];
-    [tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
+    [tableView setBackgroundView:[[UIView alloc] init]];
     [tableView setBackgroundColor:[UIColor clearColor]];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+    
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frameY, 1024, 1)];
+    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
+    
+    // scroll indicator coloring
+    [tableView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.view endEditing:YES];
+}
+
+- (UITextField *)generateTextFieldWithKey:(NSString *)key {
+    CGFloat frameWidth;
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        frameWidth = 220;
+    } else {
+        frameWidth = 170;
+    }
+    
+	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, frameWidth, 22)];
+
+	textField.returnKeyType = UIReturnKeyNext;
+	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+	textField.autocorrectionType = UITextAutocorrectionTypeNo;
+	textField.delegate = self;
+	textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:key];
+    textField.textColor = [UIColor whiteColor];
+    textField.keyboardAppearance = UIKeyboardAppearanceDark;
+    textField.font = [UIFont systemFontOfSize:16];
+	
+	return textField;
+}
+
+- (UISwitch *)generateSwitchWithKey:(NSString *)key {
+	UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
+	toggle.on = [[NSUserDefaults standardUserDefaults] boolForKey:key];
+    
+	return toggle;
+}
+
+- (UISlider *)generateSliderWithKey:(NSString *)key {
+	UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 155, 20)];
+    slider.value = [[NSUserDefaults standardUserDefaults] floatForKey:key];
+    slider.continuous = YES;
+    slider.minimumValue = 0.10f;
+    slider.minimumValue = 0.10f;
+    
+	return slider;
+}
+
+- (void)resignAndToggle {
+    [[self view] endEditing:YES];
+    
+    [self.viewDeckController toggleLeftView];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -239,6 +164,8 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
+
+#pragma mark Text Field Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	if (textField == usernameField) {
@@ -255,11 +182,151 @@
 	return NO;
 }
 
+- (BOOL)disablesAutomaticKeyboardDismissal {
+    return NO;
+}
+
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
 	return NO;
 }
 
-#pragma mark Table View Delegate Methods
+- (void) textFieldDidBeginEditing:(UITextField *)textField {
+    //scroll the tapped text field into view so that it's never under the keyboard on focus
+    UITableViewCell *cell = (UITableViewCell *) [[textField superview] superview];
+    [tableView scrollToRowAtIndexPath:[tableView indexPathForCell:cell]
+                     atScrollPosition:UITableViewScrollPositionTop
+                             animated:YES];
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+#pragma mark Actions
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (motion == UIEventSubtypeMotionShake) {
+        [UIAlertView showWithTitle:@"Super Secret Fart Mode"
+                           message:@"Allow the farts?"
+                          delegate:self
+                 cancelButtonTitle:@"No!"
+                 otherButtonTitles:@"Yes!", nil];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+	if ([[alertView title] isEqualToString:@"Super Secret Fart Mode"]) {
+        BOOL allowFarts = NO;
+        if (buttonIndex == 1)  {
+            allowFarts = YES;
+        }
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:allowFarts forKey:@"superSecretFartMode"];
+        [defaults synchronize];
+    }
+}
+
+- (void)handlePicsQualitySlider:(UISlider *)slider {
+    picsQualityLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(slider.value*100)];
+}
+
+-(void)handleSafariSwitch {
+    if (safariSwitch.on) {
+        [chromeSwitch setOn:NO animated:YES];
+    }
+}
+
+-(void)handleChromeSwitch {
+    if (![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Google Chrome"
+                                                            message:@"App not found on device, install it first to use this option."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [chromeSwitch setOn:NO animated:YES];
+        [alertView show];
+    }
+    
+    if (chromeSwitch.on) {
+        [safariSwitch setOn:NO animated:YES];
+    }
+}
+
+-(void)saveSettings {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:usernameField.text      forKey:@"username"];
+	[defaults setObject:passwordField.text      forKey:@"password"];
+    [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
+    [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
+	[defaults setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
+//	[defaults setBool:darkModeSwitch.on         forKey:@"darkMode"];
+	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
+	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
+    [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
+    [defaults setFloat:picsQualitySlider.value  forKey:@"picsQuality"];
+	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
+    [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
+    [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
+//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+    [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
+	
+    //	if (pushMessagesSwitch.on) {
+    //        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+    //    } else {
+    //        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    //    }
+    
+	NSString *serverAddress = serverField.text;
+	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
+	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"/$" withString:@""];
+	[defaults setObject:serverAddress forKey:@"server"];
+	
+	[defaults setBool:interestingSwitch.on forKey:@"postCategory.informative"];
+	[defaults setBool:offtopicSwitch.on    forKey:@"postCategory.offtopic"];
+	[defaults setBool:randomSwitch.on      forKey:@"postCategory.stupid"];
+	[defaults setBool:politicsSwitch.on    forKey:@"postCategory.political"];
+	[defaults setBool:nwsSwitch.on         forKey:@"postCategory.nws"];
+	
+	[defaults synchronize];
+    
+    [Crashlytics setUserName:[defaults stringForKey:@"username"]];
+}
+
+- (IBAction)dismiss:(id)sender {
+    [self saveSettings];
+	
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)save {
+    [self saveSettings];
+    
+//    [usernameField resignFirstResponder];
+//    [passwordField resignFirstResponder];
+//    [serverField resignFirstResponder];
+//    [picsUsernameField resignFirstResponder];
+//    [picsPasswordField resignFirstResponder];
+    [self.view endEditing:YES];
+    
+    [UIAlertView showSimpleAlertWithTitle:@"Settings"
+                                  message:@"Saved!"];
+    
+    [self.viewDeckController toggleLeftView];
+}
+
+- (void)openCredits {
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForCredits" object:nil];
+    }];
+}
+
+- (void)openLicenses {
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForLicenses" object:nil];
+    }];
+}
+
+#pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 5;
@@ -295,23 +362,23 @@
 - (NSString *)titleForHeaderInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
-			return @"Shacknews.com Account";
+			return @"SHACKNEWS.COM ACCOUNT";
 			break;
         
         case 1:
-            return @"ChattyPics.com Account";
+            return @"CHATTYPICS.COM ACCOUNT";
             break;
 			
 		case 2:
-			return @"Preferences";
+			return @"PREFERENCES";
 			break;
 			
 		case 3:
-			return @"Post Categories";
+			return @"POST CATEGORIES";
 			break;
         
         case 4:
-            return @"About";
+            return @"ABOUT";
             break;
 			
 		default:
@@ -323,13 +390,11 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // Generate a custom view with a label for each section
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 44)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 280, 44)];
     
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+    [titleLabel setFont:[UIFont systemFontOfSize:12]];
     [titleLabel setText:[self titleForHeaderInSection:section]];
     [titleLabel setTextColor:[UIColor lcGroupedTitleColor]];
-    [titleLabel setShadowColor:[UIColor lcTextShadowColor]];
-    [titleLabel setShadowOffset:CGSizeMake(0, -1.0)];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
 
     [titleView addSubview:titleLabel];
@@ -341,6 +406,10 @@
     return 44;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
@@ -350,6 +419,7 @@
     [cell.textLabel setTextColor:[UIColor lcGroupedCellLabelColor]];
     [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
     
 	// username/password/server text entry fields
 	if (indexPath.section == 0) {
@@ -400,57 +470,56 @@
 	// Preference toggles
 	if (indexPath.section == 2) {
 		switch (indexPath.row) {
-			case 0:
-				cell.accessoryView = darkModeSwitch;
-				cell.textLabel.text = @"Dark Mode:";
-				break;
-			
-            case 1:
+            case 0:
 				cell.accessoryView = collapseSwitch;
 				cell.textLabel.text = @"Allow Collapse:";
 				break;
-			
-            case 2:
+                
+            case 1:
 				cell.accessoryView = landscapeSwitch;
 				cell.textLabel.text = @"Allow Landscape:";
 				break;
                 
-			case 3:
+			case 2:
 				cell.accessoryView = youtubeSwitch;
 				cell.textLabel.text = @"Embed YouTube:";
 				break;
                 
-            case 4:
+			case 3:
+				cell.accessoryView = modToolsSwitch;
+				cell.textLabel.text = @"Mod Tools:";
+				break;
+                
+			case 4:
+				cell.accessoryView = saveSearchesSwitch;
+				cell.textLabel.text = @"Save Searches:";
+				break;
+                
+            case 5:
 				cell.accessoryView = safariSwitch;
 				cell.textLabel.text = @"Use Safari:";
 				break;
                 
-			case 5:
+			case 6:
 				cell.accessoryView = chromeSwitch;
 				cell.textLabel.text = @"Use Chrome:";
 				break;
 				
+//			case 1:
+//				cell.accessoryView = darkModeSwitch;
+//				cell.textLabel.text = @"Dark Mode:";
+//				break;
+                
 //			case 3:
 //				cell.accessoryView = pushMessagesSwitch;
 //				cell.textLabel.text = @"Push Messages:";
 //				break;
-            
-			case 6:
-				cell.accessoryView = modToolsSwitch;
-				cell.textLabel.text = @"Mod Tools:";
-				break;
 		}
 	}
 	
 	// Post category toggles
 	if (indexPath.section == 3) {
-        CGFloat categoryXOffset;
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            categoryXOffset = 36;
-        } else {
-            categoryXOffset = 18;
-        }
-        UIView *categoryColor = [[[UIView alloc] initWithFrame:CGRectMake(categoryXOffset, 9, 6, 28)] autorelease];
+        UIView *categoryColor = [[UIView alloc] initWithFrame:CGRectMake(18, 9, 4, 28)];
 		[cell addSubview:categoryColor];
 		
 		switch (indexPath.row) {
@@ -459,26 +528,25 @@
 				cell.textLabel.text = @"  Interesting:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"informative"];
 				break;
-				
+                
 			case 1:
 				cell.accessoryView = offtopicSwitch;
 				cell.textLabel.text = @"  Off Topic:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"offtopic"];
 				break;
-				
+                
 			case 2:
-				cell.accessoryView = randomSwitch;
-				cell.textLabel.text = @"  Stupid:";
-				categoryColor.backgroundColor = [Post colorForPostCategory:@"stupid"];
-				break;
-				
-			case 3:
 				cell.accessoryView = politicsSwitch;
 				cell.textLabel.text = @"  Politics / Religion:";
 				categoryColor.backgroundColor = [Post colorForPostCategory:@"political"];
 				break;
 				
-				
+			case 3:
+				cell.accessoryView = randomSwitch;
+				cell.textLabel.text = @"  Stupid:";
+				categoryColor.backgroundColor = [Post colorForPostCategory:@"stupid"];
+				break;
+                
 			case 4:
 				cell.accessoryView = nwsSwitch;
 				cell.textLabel.text = @"  NWS:";
@@ -492,14 +560,15 @@
         
         switch (indexPath.row) {
 			case 0:
-                [button setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
-                
-                [button setFrame:CGRectMake(0, 0, 90, 30)];
+                [button setFrame:CGRectMake(0, 0, 50, 30)];
                 [button setTitle:@"View" forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                
-                button.titleLabel.shadowColor = [UIColor lcTextShadowColor];
-                button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+                [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
+
+                [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+
+                button.layer.cornerRadius = 5;
+                button.layer.borderWidth = 1;
+                button.layer.borderColor = [UIColor lcBlueColor].CGColor;
                 
                 [button addTarget:self action:@selector(openCredits) forControlEvents:UIControlEventTouchUpInside];
                 
@@ -508,14 +577,15 @@
                 
                 break;
 			case 1:
-                [button setBackgroundImage:[UIImage barButtonDoneImage] forState:UIControlStateNormal];
-                
-                [button setFrame:CGRectMake(0, 0, 90, 30)];
+                [button setFrame:CGRectMake(0, 0, 50, 30)];
                 [button setTitle:@"View" forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
                 
-                button.titleLabel.shadowColor = [UIColor lcTextShadowColor];
-                button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+                [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                
+                button.layer.cornerRadius = 5;
+                button.layer.borderWidth = 1;
+                button.layer.borderColor = [UIColor lcBlueColor].CGColor;
                 
                 [button addTarget:self action:@selector(openLicenses) forControlEvents:UIControlEventTouchUpInside];
                 
@@ -526,51 +596,17 @@
         }
     }
 
-	return [cell autorelease];
-}
-
-- (void)openCredits {
-    [self dismissViewControllerAnimated:YES completion:^{
-       [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForCredits" object:nil];
-    }];
-}
-
-- (void)openLicenses {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForLicenses" object:nil];
-    }];
+	return cell;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	return nil;
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
-	[usernameField release];
-	[passwordField release];
-	[serverField release];
-    
-    [picsUsernameField release];
-    [picsPasswordField release];
-    [picsResizeSwitch release];
-    [picsQualitySlider release];
-	
-    [darkModeSwitch release];
-    [collapseSwitch release];
-	[landscapeSwitch release];
-    [safariSwitch release];
-	[youtubeSwitch release];
-	[chromeSwitch release];
-//	[pushMessagesSwitch release];
-	
-	[interestingSwitch release];
-	[offtopicSwitch release];
-	[randomSwitch release];
-	[politicsSwitch release];
-	[nwsSwitch release];
-	
-    [saveButton release];
-	[super dealloc];
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 @end

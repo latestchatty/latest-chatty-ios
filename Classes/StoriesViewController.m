@@ -3,14 +3,14 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/16/09.
-//    Copyright __MyCompanyName__ 2009. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "StoriesViewController.h"
 
 @implementation StoriesViewController
 
-@synthesize stories, pull;
+@synthesize stories, refreshControl;
 
 - (id)initWithNib {
     if (self = [super initWithNib]) {
@@ -20,8 +20,10 @@
 }
 
 - (id)initWithStateDictionary:(NSDictionary *)dictionary {
-    [self init];
+    if (!(self = [self init])) return nil;
+    
     self.stories = [dictionary objectForKey:@"stories"];
+    
     return self;
 }
 
@@ -32,15 +34,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (stories == nil || [stories count] == 0) [self refresh:self];
+    if (stories == nil || [stories count] == 0) [self refresh:self.refreshControl];
     
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self.viewDeckController
                                                                       action:@selector(toggleLeftView)];
         self.navigationItem.leftBarButtonItem = menuButton;
-        [menuButton release];
     }
     
 //    UIBarButtonItem *latestChattyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ChatIcon.24.png"]
@@ -52,42 +53,50 @@
     
     self.tableView.hidden = YES;
     
-    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
-    [pull setDelegate:self];
-    [self.tableView addSubview:pull];
-    [pull finishedLoading];
+    // replaced open source pull-to-refresh with native SDK refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                            action:@selector(refresh:)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setTintColor:[UIColor lightGrayColor]];
+    
+    [self.tableView addSubview:self.refreshControl];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+    
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
+    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
-    } else {
-        self.tableView.separatorColor = [UIColor lcSeparatorColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
-    }
-}
-
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
-    NSLog(@"Pull?");
-    [self refresh:self];
-    [pull finishedLoading];
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
+//    } else {
+//        self.tableView.separatorColor = [UIColor lcSeparatorColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
+//    }
 }
 
 - (void)refresh:(id)sender {
     [super refresh:sender];
-    loader = [[Story findAllWithDelegate:self] retain];
+    loader = [Story findAllWithDelegate:self];
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
     self.stories = models;
-    [loader release];
     loader = nil;
     [super didFinishLoadingAllModels:models otherData:otherData];
     
     self.title = @"Stories";
+    
+    [self.refreshControl endRefreshing];
     
     if (self.stories.count == 0) {
         BOOL isWinChatty = [[[NSUserDefaults standardUserDefaults] stringForKey:@"server"] containsString:@"winchatty"];
@@ -105,10 +114,6 @@
     self.tableView.hidden = NO;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark Table view methods
 
 // Customize the number of rows in the table view.
@@ -124,7 +129,7 @@
     
     StoryCell *cell = (StoryCell *)[aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[StoryCell alloc] init] autorelease];
+        cell = [[StoryCell alloc] init];
         [cell.chattyButton addTarget:self action:@selector(tappedChattyButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -134,11 +139,9 @@
     return (UITableViewCell *)cell;
 }
 
-#pragma mark Actions
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Story *story = [stories objectAtIndex:indexPath.row];
-    StoryViewController *viewController = [[[StoryViewController alloc] initWithStoryId:story.modelId] autorelease];
+    StoryViewController *viewController = [[StoryViewController alloc] initWithStoryId:story.modelId];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
@@ -147,29 +150,37 @@
     }
 }
 
-- (IBAction)tappedChattyButton:(id)sender {
-    NSIndexPath *indexPath;
-    for (StoryCell *cell in [self.tableView visibleCells]) {
-        if (cell.chattyButton == sender) {
-            indexPath = [self.tableView indexPathForCell:cell];
-        }
-    }
-
-    Story *story = [stories objectAtIndex:indexPath.row];
-    UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
-//    UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:29061947];
-    [self.navigationController pushViewController:viewController animated:YES];
+-(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:_tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
 }
+
+#pragma mark Actions
+
+//- (IBAction)tappedChattyButton:(id)sender {
+//    NSIndexPath *indexPath;
+//    for (StoryCell *cell in [self.tableView visibleCells]) {
+//        if (cell.chattyButton == sender) {
+//            indexPath = [self.tableView indexPathForCell:cell];
+//        }
+//    }
+//
+//    Story *story = [stories objectAtIndex:indexPath.row];
+//    UIViewController *viewController = [ChattyViewController chattyControllerWithStoryId:story.modelId];
+//    //UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:29061947]; // for testing
+//    [self.navigationController pushViewController:viewController animated:YES];
+//}
 
 //- (IBAction)tappedLatestChattyButton {
 //    ChattyViewController *viewController = [ChattyViewController chattyControllerWithLatest];
 //    [self.navigationController pushViewController:viewController animated:YES];
 //}
 
+#pragma mark Cleanup
+
 - (void)dealloc {
-    self.stories = nil;
-    [pull release];
-    [super dealloc];
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+   [[NSNotificationCenter defaultCenter] removeObserver:self]; 
 }
 
 @end

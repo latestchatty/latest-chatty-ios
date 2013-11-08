@@ -10,12 +10,4 @@
 
 @implementation RecentSearchButton
 
-- (void)dealloc {
-    [self.searchTerms release];
-    [self.searchAuthor release];
-    [self.searchParentAuthor release];
-    
-    [super dealloc];
-}
-
 @end

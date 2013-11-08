@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/16/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "StoryCell.h"
@@ -19,6 +19,9 @@
 
 - (id)init {
     self = [super initWithNibName:@"StoryCell" bundle:nil];
+    
+    self.backgroundColor = [UIColor clearColor];
+    
     return self;
 }
 
@@ -33,18 +36,14 @@
     title.highlightedTextColor = [UIColor whiteColor];
     preview.highlightedTextColor = [UIColor whiteColor];
     timestamp.highlightedTextColor = [UIColor whiteColor];
+    commentCount.highlightedTextColor = [UIColor whiteColor];
     
-	UIImageView *background = (UIImageView *)self.backgroundView;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
-    } else {
-        background.image = [UIImage imageNamed:@"CellBackground.png"];
-    }
-}
-
-- (void)dealloc {
-    [story release];
-    [super dealloc];
+//	UIImageView *background = (UIImageView *)self.backgroundView;
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
+//    } else {
+//        background.image = [UIImage imageNamed:@"CellBackground.png"];
+//    }
 }
 
 @end

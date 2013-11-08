@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/23/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "ModelLoader.h"
@@ -16,12 +16,12 @@
              dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
             modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate
 {    
-    [super init];
+    if (!(self = [super init])) return nil;
     
     self.plural = NO;
     
-    dataDelegate  = [aDataDelegate retain];
-    modelDelegate = [aModelDelegate retain];
+    dataDelegate  = aDataDelegate;
+    modelDelegate = aModelDelegate;
     urlString     = [aUrlString copy];
     
     NSLog(@"Loading URL: %@", urlString);
@@ -39,18 +39,21 @@
                  dataDelegate:(id<DataLoadingDelegate>)aDataDelegate
                 modelDelegate:(id<ModelLoadingDelegate>)aModelDelegate
 {
-    [self initWithObjectAtURL:aUrlString dataDelegate:aDataDelegate modelDelegate:aModelDelegate];
+    if (!(self = [self initWithObjectAtURL:aUrlString dataDelegate:aDataDelegate modelDelegate:aModelDelegate])) return nil;
     self.plural = YES;
     return self;
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+- (void)connection:(NSURLConnection *)aConnection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     if ([challenge previousFailureCount] == 0) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate*)[[UIApplication sharedApplication] delegate];
         [[challenge sender] useCredential:[appDelegate userCredential] forAuthenticationChallenge:challenge];
     } else {        
         [[challenge sender] cancelAuthenticationChallenge:challenge];
-        [modelDelegate didFailToLoadModels];
+        
+        if (![aConnection.currentRequest.URL.path isEqualToString:@"/messages.json"]) {
+            [modelDelegate didFailToLoadModels];   
+        }
     }
 }
 
@@ -62,10 +65,8 @@
     NSLog(@"Done Loading from URL: %@", urlString);
     
     // Parse the response string
-    NSString *dataString = [[[NSString alloc] initWithData:downloadedData encoding:NSUTF8StringEncoding] autorelease];
-    if (!dataString) dataString = [[[NSString alloc] initWithData:downloadedData encoding:NSASCIIStringEncoding] autorelease];
     
-    id dataObject = [dataString JSONValue];
+    id dataObject = [NSJSONSerialization JSONObjectWithData:downloadedData options:0 error:nil];
     
     id otherData = [dataDelegate otherDataForResponseData:dataObject];
     
@@ -90,31 +91,23 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Failed to load from URL: %@", urlString);
-    
     [modelDelegate didFailToLoadModels];
 }
 
 - (void)cancel {
     [connection cancel];
     
-    [dataDelegate release];
     dataDelegate = nil;
     
-    [modelDelegate release];
     modelDelegate = nil;
 }
+
+#pragma mark Cleanup
 
 - (void)dealloc {
     NSLog(@"ModelLoader release!");
     
     [self cancel];
-    [connection release];
-    
-    [urlString release];
-    [downloadedData release];
-    [dataDelegate release];
-    [modelDelegate release];
-    [super dealloc];
 }
 
 @end

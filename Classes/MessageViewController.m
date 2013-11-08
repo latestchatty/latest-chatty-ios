@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 4/15/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "MessageViewController.h"
@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReplyIcon.24.png"]
+    UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-Reply.png"]
                                                                     style:UIBarButtonItemStyleBordered
                                                                    target:self
                                                                    action:@selector(reply)];
@@ -40,6 +40,36 @@
     [htmlTemplate setString:message.body forKey:@"body"];
     
     [webView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://www.shacknews.com/messages"]];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+    
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
+    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
+    
+    // scroll indicator coloring
+    [webView.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
+    
+    // if this message is unread, decrement the message count if it's over 0
+    if (self.message.unread) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        NSUInteger messageCount = [defaults integerForKey:@"messageCount"];
+        if (messageCount > 0) {
+            messageCount--;
+            
+            // save the updated message count to the db
+            [defaults setInteger:messageCount forKey:@"messageCount"];
+            [defaults synchronize];
+            // reflect the unread count on the app badge
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
+            
+            NSLog(@"Message Count saved: %i", messageCount);            
+        }
+    }
 }
 
 - (void)showWebView:(NSTimer*)theTimer {
@@ -63,9 +93,8 @@
 }
 
 - (void)reply {
-    SendMessageViewController *sendMessageViewController = [SendMessageViewController controllerWithNib];
+    SendMessageViewController *sendMessageViewController = [[SendMessageViewController alloc] initWithMessage:message];
 	[self.navigationController pushViewController:sendMessageViewController animated:YES];
-    [sendMessageViewController setupReply:message];
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -109,7 +138,7 @@
                 }
             }
             
-            viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
+            viewController = [[BrowserViewController alloc] initWithRequest:request];
         }
         
         [self.navigationController pushViewController:viewController animated:YES];
@@ -128,9 +157,10 @@
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
-    self.message = nil;
-    [super dealloc];
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 @end

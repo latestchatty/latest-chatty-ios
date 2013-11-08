@@ -3,15 +3,14 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/25/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "ComposeViewController.h"
 
 @implementation ComposeViewController
 
-@synthesize storyId;
-@synthesize post;
+@synthesize storyId, post;
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost {
 	self = [super initWithNib];
@@ -48,17 +47,15 @@
                                                                          style:UIBarButtonItemStyleDone
                                                                         target:self
                                                                         action:@selector(sendPost)];
-
-    [submitPostButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
+    [submitPostButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
+                                    forState:UIControlStateNormal];
 	self.navigationItem.rightBarButtonItem = submitPostButton;
-	[submitPostButton release];
 	
     UITapGestureRecognizer *previewTapRecognizer = [[UITapGestureRecognizer alloc]
                                                           initWithTarget:self
                                                           action:@selector(previewLabelTap:)];
     [previewTapRecognizer setNumberOfTapsRequired:1];
     [parentPostPreview addGestureRecognizer:previewTapRecognizer];
-    [previewTapRecognizer release];
 
     composeLabel.text = @"Compose:";
     parentPostAuthor.text = @"";
@@ -68,27 +65,39 @@
         parentPostAuthor.text = post.author;
         parentPostPreview.text = post.preview;
     }
-	[postContent becomeFirstResponder];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postContentBecomeFirstResponder:) name:@"PostContentBecomeFirstResponder" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(postContentBecomeFirstResponder:) name:@"PostContentBecomeFirstResponder"
+                                               object:nil];
     
     // Append inner tag view to hidden tag view container
     [tagView addSubview:innerTagView];
-    innerTagView.frame = CGRectMake((tagView.frame.size.width - innerTagView.frame.size.width) / 2.0,
-                                    (tagView.frame.size.height - innerTagView.frame.size.height) / 2.0,
-                                    innerTagView.frame.size.width,
-                                    innerTagView.frame.size.height);
+    [self sizeTagViewScrollView];
 
     // Add a style item to the text selection menu
     UIMenuController *menu = [UIMenuController sharedMenuController];
-    menu.menuItems = [NSArray arrayWithObject:[[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)] autorelease]];
-}
+    menu.menuItems = [NSArray arrayWithObject:[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)]];
+    
+    [postContent becomeFirstResponder];
 
-- (void)styleSelection {
-    // Snag the selection and current content.
-    selection = postContent.selectedRange;
-    [self showTagButtons];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:@"UIKeyboardWillShowNotification"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:@"UIKeyboardDidHideNotification"
+                                               object:nil];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+    
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
+    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -111,34 +120,14 @@
 	}
 }
 
-//Patch-E: implemented fix for text view being underneath the keyboard when view appears in landscape on iPhone. Also for iPhone, resizing postContent text view and the parent view containing all shack tag buttons before the view appears based on Retina 4" or non-Retina 4" screen.
-- (void)viewWillAppear:(BOOL)animated {
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
-    CGFloat screenHeight = screenSize.height;
-    CGFloat screenWidth = screenSize.width;
-    
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIInterfaceOrientation orientation = self.interfaceOrientation;
-        
-        if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-            [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
-        } else {
-            if ( screenHeight > 480 ) {
-                [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
-            }
-            else {
-                [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
-            }
-        }
-    }
-}
-
 - (void)viewDidDisappear:(BOOL)animated {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
+}
+
+- (void)styleSelection {
+    // Snag the selection and current content.
+    selection = postContent.selectedRange;
+    [self showTagButtons];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -148,7 +137,6 @@
             NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
 			BrowserViewController *controller = [[BrowserViewController alloc] initWithRequest:rulesPageRequest];
 			[[self navigationController] pushViewController:controller animated:YES];
-			[controller release];            
 		} else {
             [self showActivityIndicator:NO];
 			[postContent resignFirstResponder];
@@ -161,7 +149,7 @@
 
 - (void)previewLabelTap:(UITapGestureRecognizer *)recognizer {
     if (self.post) {
-        ReviewThreadViewController *reviewController = [[[ReviewThreadViewController alloc] initWithPost:self.post] autorelease];
+        ReviewThreadViewController *reviewController = [[ReviewThreadViewController alloc] initWithPost:self.post];
         
         reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -182,46 +170,74 @@
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
-//Patch-E: implemented fix for text view being underneath the keyboard in landscape, sets coords/dimensions when in portrait or landscape on non-pad devices. Used didRotate instead of willRotate, ends up causing a minor flash when the view resizes, but it is minimal.
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        CGRect screenBound = [[UIScreen mainScreen] bounds];
-        CGSize screenSize = screenBound.size;
-        CGFloat screenWidth = screenSize.width;
-        CGFloat screenHeight = screenSize.height;
-            
-        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) {
-            //if rotating from landscapeLeft to landscapeRight or vice versa, don't change postContent's frame
-            if (postContent.frame.size.width > 320) {
-                return;
-            }
-            
-            //iPhone portrait activated, handle Retina 4" & 3.5" accordingly
-            if ( screenHeight > 480 ) {
-                [postContent setFrame:CGRectMake(0, 72, screenWidth, 214)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 10, 50, 50)];
-            }
-            else {
-                [postContent setFrame:CGRectMake(0, 62, screenWidth, 136)];
-                [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 5, 50, 50)];
-            }
-        } else {
-            //iPhone landscape activated
-            [postContent setFrame:CGRectMake(0, 43, screenHeight, 62)];
-            [imageButton setFrame:CGRectMake(imageButton.frameOrigin.x, 1, 40, 40)];
-        }
+    // resize the scroll view on rotation
+    [self sizeTagViewScrollView];
+}
+
+- (void)sizeTagViewScrollView {
+    // loop over the scroll view's subviews to total up their height and offset for the scroll view's content height
+    CGFloat scrollViewHeight = 0.0f;
+    for (UIView *view in innerTagScrollView.subviews){
+        if (scrollViewHeight < view.frame.origin.y + view.frame.size.height)
+            scrollViewHeight = view.frame.origin.y + view.frame.size.height;
+    }
+    [innerTagScrollView setContentSize:CGSizeMake(innerTagScrollView.frameWidth, scrollViewHeight)];
+}
+
+#pragma mark Keyboard notifications
+
+- (void)keyboardWillShow:(NSNotification *)note {
+    NSDictionary *userInfo = [note userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIInterfaceOrientation orientation = self.interfaceOrientation;
+    
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        [UIView animateWithDuration:0.25 animations:^{
+            postContent.frameHeight = postContent.frameHeight - kbSize.width;
+        }];
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            postContent.frameHeight = postContent.frameHeight - kbSize.height;
+        }];
+    }
+}
+
+- (void)keyboardDidHide:(NSNotification *)note {
+    NSDictionary *userInfo = [note userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIInterfaceOrientation orientation = self.interfaceOrientation;
+    
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        [UIView animateWithDuration:0.25 animations:^{
+            postContent.frameHeight = postContent.frameHeight + kbSize.width;
+        }];
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            postContent.frameHeight = postContent.frameHeight + kbSize.height;
+        }];
     }
 }
 
 #pragma mark Image Handling
 
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    [viewController setNeedsStatusBarAppearanceUpdate];
+}
+
 - (IBAction)showImagePicker {
+    [postContent resignFirstResponder];
 	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-		UIActionSheet *dialog = [[[UIActionSheet alloc] initWithTitle:@"Upload Image"
+		UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Upload Image"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Camera", @"Library", nil] autorelease];
+                                                    otherButtonTitles:@"Camera", @"Library", nil];
         [dialog setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
 		dialog.destructiveButtonIndex = -1;
         [dialog showInView:self.view];
@@ -236,7 +252,7 @@
 		if (buttonIndex == 0) sourceType = UIImagePickerControllerSourceTypeCamera;
 		if (buttonIndex == 1) sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		
-		UIImagePickerController *imagePicker = [[[UIImagePickerController alloc] init] autorelease];
+		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
         
@@ -248,12 +264,14 @@
                              permittedArrowDirections:UIPopoverArrowDirectionAny
                                              animated:YES];
         } else {
-            [self presentModalViewController:imagePicker animated:YES];			
+            [self presentViewController:imagePicker animated:YES completion:nil];
 		}
 	}
 }
 
 - (UIProgressView*)showActivityIndicator:(BOOL)progressViewType {
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
+    
 	CGRect frame = self.view.frame;
 	frame.origin = CGPointZero;
 	activityView.frame = frame;
@@ -266,7 +284,7 @@
 		activityText.text = @"Posting comment...";
 		spinner.hidden = NO;
 		[spinner startAnimating];
-		uploadBar.hidden = YES; 
+		uploadBar.hidden = YES;
 	} else {
 		activityText.text = @"Uploading image...";
 		spinner.hidden = YES;
@@ -278,14 +296,15 @@
 	return progressBar;
 }
 
-- (void)hideActivtyIndicator {
+- (void)hideActivityIndicator {
 	[activityView removeFromSuperview];
 	[spinner stopAnimating];
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)image:(Image*)image sendComplete:(NSString*)url {
 	postContent.text = [postContent.text stringByAppendingString:url];
-	[self hideActivtyIndicator];
+	[self hideActivityIndicator];
 	[postContent becomeFirstResponder];
 }
 
@@ -293,16 +312,16 @@
     [UIAlertView showSimpleAlertWithTitle:@"Upload Failed"
                                   message:@"Sorry but there was an error uploading your photo. Be sure you have set a valid ChattyPics.com username and password."
                               buttonTitle:@"Oopsie"];
-	[self hideActivtyIndicator];
+	[self hideActivityIndicator];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker
         didFinishPickingImage:(UIImage *)anImage
                   editingInfo:(NSDictionary *)editingInfo
 {
-	[self.navigationController dismissModalViewControllerAnimated:YES];
+	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
 	[postContent resignFirstResponder];
-	Image *image = [[[Image alloc] initWithImage:anImage] autorelease];
+	Image *image = [[Image alloc] initWithImage:anImage];
 	image.delegate = self;
 	
 	UIProgressView* progressBar = [self showActivityIndicator:YES];
@@ -310,7 +329,8 @@
     float picsQuality = [[NSUserDefaults standardUserDefaults] floatForKey:@"picsQuality"];
     
     if (picsResize) {
-        [image autoRotate:800 scale:YES];
+//        [image autoRotate:800 scale:YES];
+        [image autoRotate:1600 scale:YES];
     } else {
         [image autoRotate:anImage.size.width scale:NO];
     }
@@ -326,9 +346,16 @@
     }
 }
 
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [popoverController dismissPopoverAnimated:YES];
+    }
+}
+
 - (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
     if (popoverController == pc) {
-        [popoverController release];
         popoverController = nil;
     }
 }
@@ -336,6 +363,10 @@
 #pragma mark Tagging
 
 - (void)showTagButtons {
+	CGRect frame = self.view.frame;
+	frame.origin = CGPointZero;
+	innerTagView.frame = frame;
+    
     tagView.hidden = NO;
     tagView.alpha = 0.0;
     tagView.transform = CGAffineTransformMakeScale(1.1, 1.1);
@@ -351,7 +382,7 @@
 - (IBAction)tag:(id)sender {
 	NSString *tag = [tagLookup objectForKey:[(UIButton *)sender currentTitle]];
     
-    NSMutableString *result = [[postContent.text mutableCopy] autorelease];
+    NSMutableString *result = [postContent.text mutableCopy];
     
     // No selection, just slap the tag on the end.
     if (selection.location == NSNotFound) {
@@ -397,7 +428,7 @@
 	[lastController refresh:self];
 	[self.navigationController popViewControllerAnimated:YES];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
-	[self hideActivtyIndicator];
+	[self hideActivityIndicator];
 }
 
 - (void)postFailure {
@@ -405,12 +436,12 @@
 //    [UIAlertView showSimpleAlertWithTitle:@"Post Failure"
 //                                  message:@"There seems to have been an issue making the post. Try again!"
 //                              buttonTitle:@"Bummer"];
-	[self hideActivtyIndicator];
+	[self hideActivityIndicator];
 }
 
 - (void)makePost {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	self.navigationController.view.userInteractionEnabled = NO;
+    @autoreleasepool {
+		self.navigationController.view.userInteractionEnabled = NO;
     
     //Patch-E: wrapped existing code in GCD blocks to avoid UIKit on background thread issues that were causing status/nav bar flashing and the console warning:
     //"Obtaining the web lock from a thread other than the main thread or the web thread. UIKit should not be called from a secondary thread."
@@ -428,12 +459,12 @@
         });
     });
     
-	postingWarningAlertView = NO;
-	[pool release];
+		postingWarningAlertView = NO;
+	}
 }
 
 - (void)sendPost {
-    [postContent becomeFirstResponder];
+//    [postContent becomeFirstResponder];
     [postContent resignFirstResponder];
     
     postingWarningAlertView = YES;
@@ -444,28 +475,15 @@
              otherButtonTitles:@"Send", nil];
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
-    NSLog(@"ComposeViewController dealloc");
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 
     // Remove special style item from text selection menu
     [UIMenuController sharedMenuController].menuItems = nil;
-    
-    [composeLabel release];
-    [parentPostAuthor release];
-	[parentPostPreview release];
-    [imageButton release];
-	[postContent release];
-    [tagView release];
 	
-	[activityView release];
-	[activityText release];
-	[spinner release];
-	[uploadBar release];
-	
-	[tagLookup release];
-	self.post = nil;
-    
-	[super dealloc];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

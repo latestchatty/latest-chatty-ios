@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/17/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "Post.h"
@@ -13,24 +13,13 @@ static NSMutableDictionary *expirationColorMapping;
 
 @implementation Post
 
-@synthesize author;
-@synthesize preview;
-@synthesize body;
-@synthesize date;
-@synthesize replyCount;
-@synthesize category;
+@synthesize author, preview, body, date, replyCount, category;
 
-@synthesize storyId;
-@synthesize parentPostId;
-@synthesize lastReplyId;
+@synthesize storyId, parentPostId, lastReplyId;
 
-@synthesize participants;
-@synthesize replies;
-@synthesize depth;
+@synthesize participants, replies, depth;
 
-@synthesize timeLevel;
-@synthesize newPost;
-@synthesize pinned;
+@synthesize timeLevel, newPost, pinned;
 
 @synthesize newReplies;
 
@@ -44,7 +33,6 @@ static NSMutableDictionary *expirationColorMapping;
     [categoryColorMapping setObject:[UIColor lcNotWorkSafeColor] forKey:@"nws"];
     
     expirationColorMapping = [[NSMutableDictionary alloc] init];
-    [expirationColorMapping setObject:[UIColor lcExpiredColor] forKey:@"expired"];
     [expirationColorMapping setObject:[UIColor lcExpirationOnTopicColor] forKey:@"ontopic"];
     [expirationColorMapping setObject:[UIColor lcExpirationInformativeColor] forKey:@"informative"];
     [expirationColorMapping setObject:[UIColor lcExpirationOffTopicColor] forKey:@"offtopic"];
@@ -97,21 +85,21 @@ static NSMutableDictionary *expirationColorMapping;
 // Return an image according to an 18 hour post date expiration, participant modifier alters the image used
 + (UIImage *)imageForPostExpiration:(NSDate *)date withParticipant:(BOOL)hasParticipant {
     if (!date) {
-        return [UIImage imageNamed:@"TimerDotEmpty"];
+        return [UIImage imageNamed:@"List-Lifespan-Empty"];
     }
     
     NSTimeInterval ti = [date timeIntervalSinceNow];
     CGFloat hours = (ti / 3600) * -1;
     
     NSString *participantModifier = @"";
-    if (hasParticipant) participantModifier = @"Blue";
+    if (hasParticipant) participantModifier = @"-Participant";
     
     NSMutableDictionary *timerDots = [[NSMutableDictionary alloc] init];
-    [timerDots setValue:@"TimerDotEmpty%@"        forKey:@"empty"];
-    [timerDots setValue:@"TimerDotQuarter%@"      forKey:@"quarter"];
-    [timerDots setValue:@"TimerDotHalf%@"         forKey:@"half"];
-    [timerDots setValue:@"TimerDotThreeQuarter%@" forKey:@"threeQuarter"];
-    [timerDots setValue:@"TimerDotFull%@"         forKey:@"full"];
+    [timerDots setValue:@"List-Lifespan-Empty%@" forKey:@"empty"];
+    [timerDots setValue:@"List-Lifespan-25%@"    forKey:@"quarter"];
+    [timerDots setValue:@"List-Lifespan-50%@"    forKey:@"half"];
+    [timerDots setValue:@"List-Lifespan-75%@"    forKey:@"threeQuarter"];
+    [timerDots setValue:@"List-Lifespan-100%@"   forKey:@"full"];
     
     UIImage *timerDotImage;
     if (hours >= 18.0f) {
@@ -130,7 +118,7 @@ static NSMutableDictionary *expirationColorMapping;
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
-    [super initWithCoder:coder];
+    if (!(self = [super initWithCoder:coder])) return nil;
     
     self.author         = [coder decodeObjectForKey:@"author"];
     self.preview        = [coder decodeObjectForKey:@"preview"];
@@ -253,7 +241,7 @@ static NSMutableDictionary *expirationColorMapping;
 + (BOOL)createWithBody:(NSString *)body parentId:(NSUInteger)parentId storyId:(NSUInteger)storyId {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/post/", server]]];
     
@@ -275,9 +263,9 @@ static NSMutableDictionary *expirationColorMapping;
     NSHTTPURLResponse *response;
     NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]];
     
-    NSLog(@"Creating Post with Request body: %@", requestBody);
-    NSLog(@"Server responded: %@", responseBody);
-    NSLog(@"response statusCode: %d", [response statusCode]);
+//    NSLog(@"Creating Post with Request body: %@", requestBody);
+//    NSLog(@"Server responded: %@", responseBody);
+//    NSLog(@"response statusCode: %d", [response statusCode]);
     
     // Handle login failed
     if ([responseBody isEqualToString:@"error_login_failed"]) {
@@ -312,7 +300,7 @@ static NSMutableDictionary *expirationColorMapping;
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
-    [super initWithDictionary:dictionary];
+    if (!(self = [super initWithDictionary:dictionary])) return nil;
     
     self.author     = [[dictionary objectForKey:@"author"] stringByUnescapingHTML];
     self.preview    = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
@@ -339,11 +327,12 @@ static NSMutableDictionary *expirationColorMapping;
     }
     
     self.replies = [NSMutableArray array];
-    for (NSMutableDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
+    for (NSDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
+        NSMutableDictionary *replyDictionaryMutable = [replyDictionary mutableCopy];
         NSInteger newDepth = [[dictionary objectForKey:@"depth"] intValue];
-        [replyDictionary setObject:[NSNumber numberWithInt:newDepth + 1] forKey:@"depth"];
+        [replyDictionaryMutable setObject:[NSNumber numberWithInt:newDepth + 1] forKey:@"depth"];
         
-        Post *reply = [[[Post alloc] initWithDictionary:replyDictionary] autorelease];
+        Post *reply = [[Post alloc] initWithDictionary:replyDictionaryMutable];
         [replies addObject:reply];
     }
  
@@ -419,18 +408,6 @@ static NSMutableDictionary *expirationColorMapping;
     }
     
     return isOnTopic || isAllowed;
-}
-
-- (void)dealloc {
-    self.author     = nil;
-    self.preview    = nil;
-    self.body         = nil;
-    self.date         = nil;
-    self.participants = nil;
-    self.replies    = nil;
-    self.category = nil;
-    [flatReplies release];
-    [super dealloc];
 }
 
 @end

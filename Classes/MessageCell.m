@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 4/11/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "MessageCell.h"
@@ -13,11 +13,14 @@
 @synthesize message, previewLabel, subjectLabel, dateLabel;
 
 + (CGFloat)cellHeight {
-	return 85.0;
+	return 80.0;
 }
 
 - (id)init {
     self = [super initWithNibName:@"MessageCell" bundle:nil];
+    
+    self.backgroundColor = [UIColor clearColor];
+    
     return self;
 }
 
@@ -35,20 +38,12 @@
     dateLabel.highlightedTextColor = [UIColor whiteColor];
     subjectLabel.highlightedTextColor = [UIColor whiteColor];
     
-	UIImageView *background = (UIImageView *)self.backgroundView;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
-    } else {
-        background.image = [UIImage imageNamed:@"CellBackground.png"];
-    }
-}
-
-- (void)dealloc {
-    self.message = nil;
-    self.previewLabel = nil;
-    self.subjectLabel = nil;
-    self.dateLabel = nil;
-    [super dealloc];
+//	UIImageView *background = (UIImageView *)self.backgroundView;
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
+//    } else {
+//        background.image = [UIImage imageNamed:@"CellBackground.png"];
+//    }
 }
 
 @end

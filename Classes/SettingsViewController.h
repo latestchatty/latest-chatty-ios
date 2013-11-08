@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/25/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "Post.h"
@@ -21,13 +21,14 @@
     UISlider    *picsQualitySlider;
     UILabel     *picsQualityLabel;
 
+    UISwitch    *saveSearchesSwitch;
     UISwitch    *darkModeSwitch;
     UISwitch    *collapseSwitch;
     UISwitch    *landscapeSwitch;
     UISwitch    *youtubeSwitch;
     UISwitch    *safariSwitch;
     UISwitch    *chromeSwitch;
-    UISwitch    *pushMessagesSwitch;
+//    UISwitch    *pushMessagesSwitch;
     UISwitch    *modToolsSwitch;
   
     UISwitch    *interestingSwitch;

@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/16/09.
-//    Copyright __MyCompanyName__ 2009. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "LatestChatty2AppDelegate.h"
@@ -11,36 +11,27 @@
 #import "Mod.h"
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
+#import "Flurry.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation LatestChatty2AppDelegate
 
 @synthesize window,
             navigationController,
             contentNavigationController,
-            slideOutViewController;
+            slideOutViewController,
+            formatter;
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
 - (void)setupInterfaceForPhoneWithOptions:(NSDictionary *)launchOptions {
-//    if (![self reloadSavedState]) {
-//        // Add the root view controller
-//        RootViewController *viewController = [RootViewController controllerWithNib];
+//    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
+//        // Tapped a messge push's view button
+//        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
 //        [navigationController pushViewController:viewController animated:NO];
 //    }
-////    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
-////        // Tapped a messge push's view button
-////        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
-////        [navigationController pushViewController:viewController animated:NO];
-////    }
-    
-//    // Style the navigation bar
-//    navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-
-//    // Configure and show the window
-//    window.backgroundColor = [UIColor blackColor];
-//    window.rootViewController = navigationController;
     
     // Create and assign the left and center controllers
     IIViewDeckController* deckController = [self generateControllerStack];
@@ -52,9 +43,6 @@
 
 - (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions {
     self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
-    contentNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    contentNavigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.15 alpha:1.0];
-    navigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.15 alpha:1.0];
     
     if (![self reloadSavedState]) {
         // Add the root view controller
@@ -70,39 +58,52 @@
     self.slideOutViewController =  [SlideOutViewController controllerWithNib];
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
     [slideOutViewController.view setFrame:CGRectMake(0, 20, 768, 1004)];
+
+    UIView *topBar = [UIView viewWithFrame:CGRectMake(0, 0, 1024, 20)];
+    topBar.backgroundColor = [UIColor lcTableBackgroundColor];
+    [slideOutViewController.view addSubview:topBar];
     
     self.window.rootViewController = slideOutViewController;
 }
 
 - (IIViewDeckController*)generateControllerStack {
     // Left controller
-    RootViewController* leftController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    RootViewController* leftController = [[RootViewController alloc] init];
+    
     // Center controller
-    ChattyViewController *centerController = [[ChattyViewController alloc] initWithNibName:@"ChattyViewController" bundle:nil];
+    ChattyViewController *centerController = [ChattyViewController chattyControllerWithLatest];
     [centerController setTitle:@"Loading..."];
     
     // Initialize the navigation controller with the center (chatty) controller
-    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:centerController] autorelease];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:centerController];
     
     // Create the deck controller with the left and center
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController
                                                                                     leftViewController:leftController];
     // Set navigation type, left size, no elasticity
     [deckController setNavigationControllerBehavior:IIViewDeckNavigationControllerIntegrated];
-    [deckController setLeftSize:255.0f];
+    [deckController setLeftSize:256.0f];
     [deckController setElastic:NO];
     [deckController setPanningMode:IIViewDeckFullViewPanning];
     [deckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose];
-    
+    [deckController setSizeMode:IIViewDeckViewSizeMode];
+    [deckController setParallaxAmount:0.5f];
+
     return deckController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Flurry setCrashReportingEnabled:NO];
+    [Flurry startSession:@"KNR8BVFGGHX3MB6J6CP8"];
+    [Crashlytics startWithAPIKey:@"7e5579f671abccb0156cc1a6de1201f981ef170c"];
+    
     [self customizeAppearance];
 
+    self.formatter = [[NSDateFormatter alloc] init];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
+//    NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
     
 //    // Register for Push
 //    if ([defaults boolForKey:@"push.messages"]) {
@@ -110,9 +111,9 @@
 //    }
     
     // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
-    if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
+//    if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
         [defaults removeObjectForKey:@"savedState"];
-    }        
+//    }        
 
     // Settings defaults
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -140,17 +141,19 @@
                                      [NSMutableArray array],        @"pinnedPosts",
                                      [NSMutableArray array],        @"collapsedThreads",
                                      [NSMutableArray array],        @"recentSearches",
-                                     [NSNumber numberWithBool:NO],  @"darkMode",                                     
+                                     [NSNumber numberWithBool:NO],  @"darkMode",
+                                     [NSNumber numberWithBool:NO],  @"superSecretFartMode",
+                                     [NSNumber numberWithBool:YES], @"saveSearches",
                                      nil];
     [defaults registerDefaults:defaultSettings];
+    
+    [Crashlytics setUserName:[defaults stringForKey:@"username"]];
 
     if ([self isPadDevice]) {
         [self setupInterfaceForPadWithOptions:launchOptions];
     } else {
         [self setupInterfaceForPhoneWithOptions:launchOptions];
     }
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     
     [window makeKeyAndVisible];
     
@@ -161,7 +164,7 @@
         NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
         //NSString *requestBody = [NSString stringWithFormat:@"email=%@&password=%@&login=login", usernameString, passwordString];
         NSString *requestBody = [NSString stringWithFormat:@"get_fields%%5B%%5D=result&user-identifier=%@&supplied-pass=%@&remember-login=1", usernameString, passwordString];        
-        NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 
         //[request setURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
         [request setURL:[NSURL URLWithString:@"https://www.shacknews.com/account/signin"]];
@@ -205,6 +208,14 @@
     
     return YES;
 }
+
+//- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+//    UIApplicationState state = [application applicationState];
+//    if (state == UIApplicationStateActive) {
+//        NSLog(@"adding toast");
+//        [self.navigationController.visibleViewController.view makeToast:notification.alertBody];
+//    }
+//}
 
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //    if ([userInfo objectForKey:@"message_id"]) {
@@ -283,28 +294,28 @@
     
     if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?id=(\\d+)" capture:1] intValue];
-        viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
+        viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?story=(\\d+)" capture:1] intValue];
-        viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
+        viewController = [[ChattyViewController alloc] initWithStoryId:targetStoryId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
         NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/profile/(.*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-        viewController = [[[SearchResultsViewController alloc] initWithTerms:@"" author:profileName parentAuthor:@""] autorelease];
+        viewController = [[SearchResultsViewController alloc] initWithTerms:@"" author:profileName parentAuthor:@""];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?id=(\\d+)" capture:1] intValue];
-        viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
+        viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?story=(\\d+)" capture:1] intValue];
-        viewController = [[[ChattyViewController alloc] initWithStoryId:targetStoryId] autorelease];
+        viewController = [[ChattyViewController alloc] initWithStoryId:targetStoryId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/onearticle.x/\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/onearticle.x/(\\d+)" capture:1] intValue];
-        viewController = [[[StoryViewController alloc] initWithStoryId:targetStoryId] autorelease];
+        viewController = [[StoryViewController alloc] initWithStoryId:targetStoryId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/article/.*\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/article/.*\\?id=(\\d+)" capture:1] intValue];
-        viewController = [[[ThreadViewController alloc] initWithThreadId:targetThreadId] autorelease];
+        viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/article/\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/article/(\\d+)" capture:1] intValue];
-        viewController = [[[StoryViewController alloc] initWithStoryId:targetStoryId] autorelease];
+        viewController = [[StoryViewController alloc] initWithStoryId:targetStoryId];
     }
 
     return viewController;
@@ -336,7 +347,6 @@
                 if (class) {
                     id viewController = [[class alloc] initWithStateDictionary:dictionary];
                     [navigationController pushViewController:viewController animated:NO];
-                    [viewController release];
                 } else {
                     NSLog(@"No known view controller for the type: %@", controllerName);
                     return NO;
@@ -406,118 +416,51 @@
     if ([self isPadDevice]) {
         [self.contentNavigationController pushViewController:viewController animated:YES];
     } else {
-        [self.navigationController dismissModalViewControllerAnimated:YES];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         [self.navigationController pushViewController:viewController animated:YES];
     }
     
     return YES;
 }
 
-#pragma mark - Customizations
+- (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible {
+    static NSInteger NumberOfCallsToSetVisible = 0;
+    if (setVisible)
+        NumberOfCallsToSetVisible++;
+    else
+        NumberOfCallsToSetVisible--;
+    
+//    NSLog(@"%i", NumberOfCallsToSetVisible);
+//    NSAssert(NumberOfCallsToSetVisible >= 0, @"Network Activity Indicator was asked to hide more often than shown");
+    
+    // display the indicator as long as our static counter is > 0.
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(NumberOfCallsToSetVisible > 0)];
+}
+
+#pragma mark - Appearance customizations
 
 // Custom appearance settings for UIKit items
 - (void)customizeAppearance {
-    // Set a corner radius around the whole app window
-    [self.window.layer setCornerRadius:7.0f];
-    [self.window.layer setMasksToBounds:YES];
+    // status bar
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    // Same navbar background for all iPad orientations
-    // iPhone has dedicated landscape asset
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage toolbarBgImage]
-                                           forBarMetrics:UIBarMetricsDefault];
-    } else {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage navbarBgImage]
-                                           forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage navbarBgLandscapeImage]
-                                           forBarMetrics:UIBarMetricsLandscapePhone];
-    }
-    // Same toolbar background image for all orientations    
-    [[UIToolbar appearance] setBackgroundImage:[UIImage toolbarBgImage]
-                            forToolbarPosition:UIToolbarPositionAny
-                                    barMetrics:UIBarMetricsDefault];
-    
-    // Left button (back arrow) normal and highlight states
-    // Portrait back button states
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonImage]
-                                                      forState:UIControlStateNormal
-                                                    barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonHighlightImage]
-                                                      forState:UIControlStateHighlighted
-                                                    barMetrics:UIBarMetricsDefault];
-    // Landscape highlight back button states
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonLandscapeImage]
-                                                      forState:UIControlStateNormal
-                                                    barMetrics:UIBarMetricsLandscapePhone];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage backButtonHighlightLandscapeImage]
-                                                      forState:UIControlStateHighlighted
-                                                    barMetrics:UIBarMetricsLandscapePhone];
-    
-    // Load all images for normal, highlight, and done style buttons along with their landscape counterparts    
-    // iOS 6 allows usage of appearance proxy to customize done and normal buttons independently
-    // downside to the following is that iOS 5 will not have blue color done style buttons, do we care?
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
-        // Normal button state with landscape
-        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalImage]
-                                                                                            forState:UIControlStateNormal
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalLandscapeImage]
-                                                                                            forState:UIControlStateNormal
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
-        // Highlight normal button state with landscape
-        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalHighlightImage]
-                                                                                            forState:UIControlStateHighlighted
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:[UIImage barButtonNormalHighlightLandscapeImage]
-                                                                                            forState:UIControlStateHighlighted
-                                                                                               style:UIBarButtonItemStyleBordered
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
-        // Done button style (blue) with landscape
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonDoneImage]
-                                                forState:UIControlStateNormal
-                                                   style:UIBarButtonItemStyleDone
-                                              barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonDoneLandscapeImage]
-                                                forState:UIControlStateNormal
-                                                   style:UIBarButtonItemStyleDone
-                                              barMetrics:UIBarMetricsLandscapePhone];
-    } else { // iOS 5
-        // Normal button state with landscape
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalImage]
-                                                                                            forState:UIControlStateNormal
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalLandscapeImage]
-                                                                                            forState:UIControlStateNormal
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
-        // Highlight normal button state with landscape        
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalHighlightImage]
-                                                                                            forState:UIControlStateHighlighted
-                                                                                          barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage barButtonNormalHighlightLandscapeImage]
-                                                                                            forState:UIControlStateHighlighted
-                                                                                          barMetrics:UIBarMetricsLandscapePhone];
-    }
-    
-    // Give the navigation bar title text text shadowing
+    // Give the navigation bar title text coloring & shadowing
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary titleTextAttributesDictionary]];
     
-    // Give text in buttons gray coloring with text shadowing
-    // Done style buttons will get styled here, but it gets overridden in the view controller for any view that uses Done style buttons
-    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary grayTextAttributesDictionary]
-                                                forState:UIControlStateNormal];
+    // nav/toolbar tinting
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor lcBarTintColor]];
+    [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIToolbar appearance] setBarTintColor:[UIColor lcBarTintColor]];
     
-    // iOS 6 allows more built-in customization of switch/slider than iOS 5
-    // They won't look the same without subclassing UISwitch, do we care?
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
-        [[UISwitch appearance] setTintColor:[UIColor lcSwitchOffColor]];
-        [[UISlider appearance] setThumbTintColor:[UIColor lcSliderThumbColor]];
-    }
+    // Settings controls appearance
     [[UISwitch appearance] setOnTintColor:[UIColor lcSwitchOnColor]];
+    [[UISwitch appearance] setTintColor:[UIColor lcSwitchOffColor]];
+    [[UISlider appearance] setThumbTintColor:[UIColor lcSliderThumbColor]];
     [[UISlider appearance] setMinimumTrackTintColor:[UIColor lcSwitchOnColor]];
     [[UISlider appearance] setMaximumTrackTintColor:[UIColor lcSliderThumbColor]];
+    
+    // progress bar (uploading to chattypics)
     [[UIProgressView appearance] setProgressTintColor:[UIColor lcSwitchOnColor]];
     [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderThumbColor]];
 }
@@ -563,14 +506,6 @@
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation))return NO;
         return YES;
     }
-}
-
-- (void)dealloc {
-    self.navigationController = nil;
-    self.window = nil;
-    self.contentNavigationController = nil;
-    self.slideOutViewController = nil;
-    [super dealloc];
 }
 
 @end

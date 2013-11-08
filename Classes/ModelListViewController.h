@@ -3,19 +3,25 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/19/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "ModelLoadingDelegate.h"
 #import "ModelLoader.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 @interface ModelListViewController : UIViewController <ModelLoadingDelegate, UITableViewDelegate, UITableViewDataSource> {
-  ModelLoader *loader;
-  UIView *loadingView;
-  IBOutlet UITableView *tableView;
+    ModelLoader *loader;
+    UIView *loadingView;
+    UIActivityIndicatorView *spinner;
+    IBOutlet UITableView *tableView;
+    CGPoint lastOffset;
+    AVAudioPlayer *fartSound;
+    SystemSoundID fartSound1;
 }
 
-@property (retain) UITableView *tableView;
+@property (strong) UITableView *tableView;
 @property (readonly) BOOL loading;
 
 - (void)showLoadingSpinner;

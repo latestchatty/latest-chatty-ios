@@ -15,7 +15,7 @@
     IBOutlet UIBarButtonItem *doneButton;
 }
 
-@property (retain) Post *rootPost;
+@property (strong) Post *rootPost;
 
 - (id)initWithPost:(Post *)aPost;
 

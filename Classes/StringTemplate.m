@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/18/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "StringTemplate.h"
@@ -13,12 +13,13 @@
 @synthesize result;
 
 + (StringTemplate*)templateWithName:(NSString*)name {
-    return [[[StringTemplate alloc] initWithTemplateName:name] autorelease];
+    return [[StringTemplate alloc] initWithTemplateName:name];
 }
 
 - (id)initWithTemplateName:(NSString *)templateName {
-    [self init];
-    self.result = [NSString stringFromResource:templateName];
+    if (self = [super init]) {
+        self.result = [NSString stringFromResource:templateName];
+    }
     return self;
 }
 
@@ -26,11 +27,6 @@
     NSString *findString = [NSString stringWithFormat:@"<%%= %@ %%>", key];
     if (!string) string = @"";
     self.result = [self.result stringByReplacingOccurrencesOfString:findString withString:string];
-}
-
-- (void)dealloc {
-  self.result = nil;
-  [super dealloc];
 }
 
 @end

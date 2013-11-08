@@ -1,9 +1,9 @@
-    //
+//
 //  SlideOutViewController.m
 //  LatestChatty2
 //
 //  Created by Kyle Eli on 4/8/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010. All rights reserved.
 //
 
 #import "SlideOutViewController.h"
@@ -11,27 +11,6 @@
 @implementation SlideOutViewController
 
 @synthesize isCollapsed;
-
-- (void)searchLoaded:(NSObject*)sender {
-    if(isCollapsed) return;
-    [self tabTouched];
-}
-
-- (void)composeAppeared:(NSObject*)sender {
-    if (isCollapsed) {
-        collapsedToCompose = NO;
-        return;
-    }
-    
-    collapsedToCompose = YES;
-    [self tabTouched];
-}
-
-- (void)composeDisappeared:(NSObject*)sender {
-    if (!collapsedToCompose) return;
-    collapsedToCompose = NO;    
-    [self tabTouched];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,18 +35,25 @@
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)searchLoaded:(NSObject*)sender {
+    if(isCollapsed) return;
+    [self tabTouched];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
+- (void)composeAppeared:(NSObject*)sender {
+    if (isCollapsed) {
+        collapsedToCompose = NO;
+        return;
+    }
+    
+    collapsedToCompose = YES;
+    [self tabTouched];
 }
 
-- (void)dealloc {
-    [navigationController release];
-    [contentNavigationController release];
-    [super dealloc];
+- (void)composeDisappeared:(NSObject*)sender {
+    if (!collapsedToCompose) return;
+    collapsedToCompose = NO;
+    [self tabTouched];
 }
 
 - (CGSize)availableSizeForOrientation:(UIInterfaceOrientation)orientation {
@@ -77,7 +63,6 @@
         result = CGSizeMake(result.height, result.width);
     }
     
-    result.height -= 20; // status bar
     return result;
 }
 
@@ -110,8 +95,8 @@
 }
 
 - (void)addNavigationController:(UINavigationController *)navigation contentNavigationController:(UINavigationController *)content {
-    navigationController = [navigation retain];
-    contentNavigationController = [content retain];
+    navigationController = navigation;
+    contentNavigationController = content;
     
     [navigationController viewWillAppear:NO];
     [self.view addSubview:navigationController.view];
@@ -145,6 +130,12 @@
     [self updateViewsForOrientation:[self interfaceOrientation]];
     [self updateContentLayoutIfNecessary];
     [UIView commitAnimations];
+}
+
+#pragma mark Cleanup
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

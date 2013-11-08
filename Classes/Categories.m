@@ -15,7 +15,6 @@
 - (NSString *)stringByUnescapingHTML {
     HTMLEscaper *escaper = [[HTMLEscaper alloc] init];
     NSString *unescapedString = [escaper unescapeEntitiesInString:self];
-    [escaper release];
     
     return unescapedString;
 }
@@ -40,172 +39,266 @@
 
 // Common colors
 + (UIColor *)lcAuthorColor {
-    return [UIColor colorWithRed:245.0/255.0 green:228.0/255.0 blue:157.0/255.0 alpha:1.0];
-}
-
-+ (UIColor *)lcBlueColor {
-    return [UIColor colorWithRed:119.0/255.0 green:197.0/255.0 blue:254.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:245.0/255.0 green:228.0/255.0 blue:157.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcLightGrayTextColor {
-    return [UIColor colorWithRed:176.0/255.0 green:180.0/255.0 blue:184.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithWhite:255.0/255.0 alpha:0.5];
+    return color;
 }
 
 + (UIColor *)lcDarkGrayTextColor {
-    return [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:194.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:183.0/255.0 green:187.0/255.0 blue:194.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcTextShadowColor {
-    return [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    return color;
 }
 
 + (UIColor *)lcOverlayColor {
-    return [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    return color;
+}
+
++ (UIColor *)lcBlueColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0];
+    return color;
+}
+
++ (UIColor *)lcBlueColorHighlight {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:0.25];
+    return color;
+}
+
++ (UIColor *)lcBlueParticipantColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:119.0/255.0 green:197.0/255.0 blue:254.0/255.0 alpha:1.0];
+    return color;
+}
+
++ (UIColor *)lcBarTintColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:29.0/255.0 green:29.0/255.0 blue:32.0/255.0 alpha:1.0];
+    return color;
+}
+
++ (UIColor *)lcTopStrokeColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0];
+    return color;
 }
 
 // Table cell colors
 + (UIColor *)lcCellNormalColor {
-    return [UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:58.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:32.0/255.0 green:32.0/255.0 blue:36.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcCellParticipantColor {
-    return [UIColor colorWithRed:40.0/255.0 green:59.0/255.0 blue:82.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:24.0/255.0 green:39.0/255.0 blue:49.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcGroupedCellColor {
-    return [UIColor colorWithRed:47.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:47.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcGroupedCellLabelColor {
-    return [UIColor colorWithRed:172.0/255.0 green:172.0/255.0 blue:173.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:172.0/255.0 green:172.0/255.0 blue:173.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcGroupedTitleColor {
-    return [UIColor colorWithRed:121.0/255.0 green:122.0/255.0 blue:128.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:121.0/255.0 green:122.0/255.0 blue:128.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcGroupedSeparatorColor {
-    return [UIColor colorWithRed:27.0/255.0 green:27.0/255.0 blue:29.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:27.0/255.0 green:27.0/255.0 blue:29.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcSeparatorColor {
-    return [UIColor colorWithRed:40.0/255.0 green:41.0/255.0 blue:44.0/255.0 alpha:0.8];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithWhite:255.0/255.0 alpha:0.1];
+    return color;
 }
 
 + (UIColor *)lcSeparatorDarkColor {
-    return [UIColor colorWithRed:28.0/255.0 green:28.0/255.0 blue:30.0/255.0 alpha:0.8];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:28.0/255.0 green:28.0/255.0 blue:30.0/255.0 alpha:0.8];
+    return color;
 }
 
 + (UIColor *)lcSelectionBlueColor {
-    return [UIColor colorWithRed:4.0/255.0 green:101.0/255.0 blue:147.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor lcBlueColor];
+    return color;
 }
 
 + (UIColor *)lcSelectionGrayColor {
-    return [UIColor colorWithRed:53.0/255.0 green:53.0/255.0 blue:57.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:53.0/255.0 green:53.0/255.0 blue:57.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcTableBackgroundColor {
-    return [UIColor colorWithRed:40.0/255.0 green:41.0/255.0 blue:44.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:39.0/255.0 green:39.0/255.0 blue:43.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcTableBackgroundDarkColor {
-    return [UIColor colorWithRed:28.0/255.0 green:28.0/255.0 blue:30.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:28.0/255.0 green:28.0/255.0 blue:30.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcRepliesTableBackgroundColor {
-    return [UIColor colorWithRed:28.0/255.0 green:28.0/255.0 blue:30.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:28.0/255.0 green:28.0/255.0 blue:30.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcRepliesTableBackgroundDarkColor {
-    return [UIColor blackColor];
-}
-
-+ (UIColor *)lcPullToRefreshBackgroundColor {
-    return [UIColor colorWithRed:47.0/255.0 green:47.0/255.0 blue:50.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor blackColor];
+    return color;
 }
 
 // Post expiration progress colors
-+ (UIColor *)lcExpiredColor {
-    return [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:0.50];
-}
-
 + (UIColor *)lcExpirationOnTopicColor {
-    return [UIColor colorWithRed:78.0/255.0 green:79.0/255.0 blue:83.0/255.0 alpha:0.50];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:78.0/255.0 green:79.0/255.0 blue:84.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcExpirationInformativeColor {
-    return [UIColor colorWithRed:6.0/255.0 green:82.0/255.0 blue:112.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:18.0/255.0 green:81.0/255.0 blue:115.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcExpirationOffTopicColor {
-    return [UIColor colorWithRed:126.0/255.0 green:127.0/255.0 blue:130.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:126.0/255.0 green:128.0/255.0 blue:131.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcExpirationStupidColor {
-    return [UIColor colorWithRed:10.0/255.0 green:80.0/255.0 blue:43.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:20.0/255.0 green:80.0/255.0 blue:37.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcExpirationPoliticalColor {
-    return [UIColor colorWithRed:116.0/255.0 green:77.0/255.0 blue:34.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:115.0/255.0 green:78.0/255.0 blue:24.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcExpirationNotWorkSafeColor {
-    return [UIColor colorWithRed:104.0/255.0 green:28.0/255.0 blue:31.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:102.0/255.0 green:29.0/255.0 blue:29.0/255.0 alpha:1.0];
+    return color;
 }
 
 // Category colors
 + (UIColor *)lcInformativeColor {
-    return [UIColor colorWithRed:27.0/255.0 green:110.0/255.0 blue:151.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:16.0/255.0 green:99.0/255.0 blue:140.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcOffTopicColor {
-    return [UIColor colorWithRed:103.0/255.0 green:104.0/255.0 blue:110.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:92.0/255.0 green:94.0/255.0 blue:98.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcStupidColor {
-    return [UIColor colorWithRed:27.0/255.0 green:103.0/255.0 blue:50.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:16.0/255.0 green:92.0/255.0 blue:39.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcPoliticalColor {
-    return [UIColor colorWithRed:151.0/255.0 green:100.0/255.0 blue:29.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:151.0/255.0 green:100.0/255.0 blue:29.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcNotWorkSafeColor {
-    return [UIColor colorWithRed:131.0/255.0 green:41.0/255.0 blue:43.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:125.0/255.0 green:35.0/255.0 blue:36.0/255.0 alpha:1.0];
+    return color;
 }
 
 // Reply text colors
 + (UIColor *)lcReplyLevel1Color {
-    return [UIColor colorWithWhite:255.0 alpha:0.95];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithWhite:255.0 alpha:0.95];
+    return color;
 }
 
 + (UIColor *)lcReplyLevel2Color {
-    return [UIColor colorWithWhite:255.0 alpha:0.90];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithWhite:255.0 alpha:0.90];
+    return color;
 }
 
 + (UIColor *)lcReplyLevel3Color {
-    return [UIColor colorWithWhite:255.0 alpha:0.85];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithWhite:255.0 alpha:0.85];
+    return color;
 }
 
 + (UIColor *)lcReplyLevel4Color {
-    return [UIColor colorWithWhite:255.0 alpha:0.80];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithWhite:255.0 alpha:0.80];
+    return color;
 }
 
 + (UIColor *)lcReplyLevel5Color {
-    return [UIColor colorWithWhite:255.0 alpha:0.75];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithWhite:255.0 alpha:0.75];
+    return color;
 }
 
 // Settings colors
 + (UIColor *)lcSwitchOnColor {
-    return [UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:6.0/255.0 green:109.0/255.0 blue:200.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcSwitchOffColor {
-    return [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:43.0/255.0 alpha:1.0];
+    return color;
 }
 
 + (UIColor *)lcSliderThumbColor {
-    return [UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0];
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0];
+    return color;
 }
 
 @end
@@ -213,90 +306,36 @@
 @implementation NSDictionary (DictionaryAdditions)
 
 + (NSDictionary *)titleTextAttributesDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            [UIColor whiteColor],UITextAttributeTextColor,
-            [UIColor lcTextShadowColor],UITextAttributeTextShadowColor,
-            [NSValue valueWithUIOffset:UIOffsetMake(0.0, -1.0)],UITextAttributeTextShadowOffset,
-            nil];
+    return @{NSForegroundColorAttributeName:[UIColor whiteColor]};
 }
 
 + (NSDictionary *)whiteTextAttributesDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            [UIColor whiteColor],UITextAttributeTextColor,
-            [UIColor lcTextShadowColor],UITextAttributeTextShadowColor,
-            [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)],UITextAttributeTextShadowOffset,
-            nil];
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [shadow setShadowColor:[UIColor lcTextShadowColor]];
+    [shadow setShadowOffset:CGSizeMake(0.0, 1.0)];
+    
+    return @{NSForegroundColorAttributeName:[UIColor whiteColor],
+             NSShadowAttributeName:shadow};
+}
+
++ (NSDictionary *)blueTextAttributesDictionary {
+    return @{NSForegroundColorAttributeName:[UIColor lcBlueColor]};
 }
 
 + (NSDictionary *)grayTextAttributesDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            [UIColor lcDarkGrayTextColor],UITextAttributeTextColor,
-            [UIColor lcTextShadowColor],UITextAttributeTextShadowColor,
-            [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)],UITextAttributeTextShadowOffset,
-            nil];
+    return @{NSForegroundColorAttributeName:[UIColor lcDarkGrayTextColor]};
 }
 
 + (NSDictionary *)textShadowAttributesDictionary {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            [UIColor lcTextShadowColor],UITextAttributeTextShadowColor,
-            [NSValue valueWithUIOffset:UIOffsetMake(0.0, -1.0)],UITextAttributeTextShadowOffset,
-            nil];
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [shadow setShadowColor:[UIColor lcTextShadowColor]];
+    [shadow setShadowOffset:CGSizeMake(0.0, -1.0)];
+    
+    return @{NSShadowAttributeName:shadow};
 }
 
-@end
-
-@implementation UIImage(ImageAdditions)
-
-+ (UIImage *)navbarBgImage {
-    return [[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
-}
-
-+ (UIImage *)navbarBgLandscapeImage {
-    return [[UIImage imageNamed:@"navbar_bg_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 8, 1, 8)];
-}
-
-+ (UIImage *)toolbarBgImage {
-    return [[UIImage imageNamed:@"toolbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-}
-
-+ (UIImage *)backButtonImage {
-    return [[UIImage imageNamed:@"button_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-}
-
-+ (UIImage *)backButtonHighlightImage {
-    return [[UIImage imageNamed:@"button_back_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-}
-
-+ (UIImage *)backButtonLandscapeImage {
-    return [[UIImage imageNamed:@"button_back_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-}
-
-+ (UIImage *)backButtonHighlightLandscapeImage {
-    return [[UIImage imageNamed:@"button_back_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-}
-
-+ (UIImage *)barButtonNormalImage {
-    return [[UIImage imageNamed:@"button_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-+ (UIImage *)barButtonNormalHighlightImage {
-    return [[UIImage imageNamed:@"button_normal_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-+ (UIImage *)barButtonNormalLandscapeImage {
-    return [[UIImage imageNamed:@"button_normal_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-+ (UIImage *)barButtonNormalHighlightLandscapeImage {
-    return [[UIImage imageNamed:@"button_normal_highlight_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-+ (UIImage *)barButtonDoneImage {
-    return [[UIImage imageNamed:@"button_done"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-}
-
-+ (UIImage *)barButtonDoneLandscapeImage {
-    return [[UIImage imageNamed:@"button_done_landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
++ (NSDictionary *)blueHighlightTextAttributesDictionary {
+    return @{NSForegroundColorAttributeName:[UIColor lcBlueColorHighlight]};
 }
 
 @end

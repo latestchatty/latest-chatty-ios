@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 4/10/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "TableCellFromNib.h"
@@ -18,8 +18,8 @@
 }
 
 @property (copy) NSString *title;
-@property (retain, nonatomic) CustomBadge *badge;
-@property (retain, nonatomic) IBOutlet UIImageView *iconImage;
+@property (strong, nonatomic) CustomBadge *badge;
+@property (strong, nonatomic) IBOutlet UIImageView *iconImage;
 
 - (void)setBadgeWithNumber:(int)badgeNumber;
 

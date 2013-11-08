@@ -3,20 +3,18 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/24/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "ThreadViewController.h"
 
 #import "SendMessageViewController.h"
 
+#import "MBProgressHUD.h"
+
 @implementation ThreadViewController
 
-@synthesize threadId;
-@synthesize rootPost;
-@synthesize threadStarter;
-@synthesize selectedIndexPath;
-@synthesize toolbar, leftToolbar;
+@synthesize threadId, rootPost, threadStarter, selectedIndexPath;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId {
         self = [super initWithNib];
@@ -59,7 +57,7 @@
     }
     
     if (threadId > 0) {
-        loader = [[Post findThreadWithId:threadId delegate:self] retain];
+        loader = [Post findThreadWithId:threadId delegate:self];
         
         highlightMyPost = NO;
         if ([sender isKindOfClass:[ComposeViewController class]]) highlightMyPost = YES;        
@@ -75,7 +73,6 @@
     }
     
     self.rootPost = (Post *)model;
-    [loader release];
     loader = nil;
     
     // Patch-E: for the latestchatty:// protocol launch, needed to check for an empty repliesArray here if a chatty URL launched the app that ulimately goes to a thread that falls outside of the user's set category filters
@@ -124,8 +121,8 @@
     }
     
     // Enable toolbars
-    self.toolbar.userInteractionEnabled     = YES;
-    self.leftToolbar.userInteractionEnabled = YES;
+//    self.toolbar.userInteractionEnabled = YES;
+//    self.toolbar.hidden = NO;
     grippyBar.userInteractionEnabled = YES;
     self.navigationItem.rightBarButtonItem.enabled = YES;
     
@@ -164,17 +161,18 @@
     }
     
     // Load buttons
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        self.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
-        self.navigationItem.titleView = self.toolbar;
-    } else {
-        UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReplyIcon.24.png"]
+//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        self.toolbar.clipsToBounds = YES;        
+//        self.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
+//        self.navigationItem.titleView = self.toolbar;
+//    } else {
+        UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-Reply.png"]
                                                                         style:UIBarButtonItemStyleBordered
                                                                        target:self
                                                                        action:@selector(tappedReplyButton)];
         self.navigationItem.rightBarButtonItem = replyButton;
         self.navigationItem.rightBarButtonItem.enabled = NO;
-    }
+//    }
     
     // Fill in empty web view
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
@@ -189,52 +187,56 @@
     // initialize scoll position property
     self.scrollPosition = CGPointMake(0, 0);
     
-    // initialize swipe gesture
-    UISwipeGestureRecognizer *backToChattySwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-    [backToChattySwipe setDirection:UISwipeGestureRecognizerDirectionRight];
-    backToChattySwipe.delegate = self;
-    [self.tableView addGestureRecognizer:backToChattySwipe];
-    [backToChattySwipe release];
-    
     // Use the persisted orderByPostDate option to set the button in the grippybar
     orderByPostDate = [[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"];
-    if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        orderByPostDateButton.tintColor = orderByPostDate ? nil : [UIColor lcSelectionGrayColor];
-    }
-    else {
-        [grippyBar setOrderByPostDateWithValue:orderByPostDate];
-    }
+    [grippyBar setOrderByPostDateWithValue:orderByPostDate];
     
     UIImageView *background = [UIImageView viewWithImage:[UIImage imageNamed:@"DropShadow.png"]];
-    background.frame = CGRectMake(0, 36, self.tableView.frame.size.width, 16);
+    background.frame = CGRectMake(0, 36, grippyBar.frameWidth, grippyBar.frameHeight-32);
     background.alpha = 0.75;
     background.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [grippyBar addSubview:background];
     
     [self resetLayout:NO];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+    
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, postViewContainer.frameY, 1024, 1)];
+    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
+    
+    // scroll indicator coloring
+    [postView.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
+    
+    // tap status bar to scroll replies table to the top
+    postView.scrollView.scrollsToTop = NO;
+    tableView.scrollsToTop = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if (rootPost) {
         postView.hidden = NO;
-        self.toolbar.userInteractionEnabled     = YES;
-        self.leftToolbar.userInteractionEnabled = YES;
+//        self.toolbar.userInteractionEnabled = YES;
+//        self.toolbar.hidden = NO;
     }
     [self resetLayout:NO];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundDarkColor];
-    } else {
-        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundColor];
-    }
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundDarkColor];
+//    } else {
+//        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundColor];
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.toolbar.frame = self.navigationController.navigationBar.frame;
+//    self.toolbar.frame = self.navigationController.navigationBar.frame;
     [self.view setNeedsLayout];
-    
+
     // if there is a saved scroll position, animate the scroll to it and reinitialize the ivar
     if (self.scrollPosition.y > 0) {
         [postView.scrollView setContentOffset:self.scrollPosition animated:YES];
@@ -242,17 +244,21 @@
     }
     
     // long press gesture only for iPhone now
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         // initialize long press gesture
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
         longPress.minimumPressDuration = 1.0; //seconds
         longPress.delegate = self;
         [self.navigationController.navigationBar addGestureRecognizer:longPress];
-        [longPress release];
-    }
+//    }
     
     // set the panning gesture delegate to this controller to monitor whether the panning should occur
     [self.viewDeckController setPanningGestureDelegate:self];
+    
+    // pop back the the thread vc instantiated doesn't have a threadId
+    if (threadId == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -264,10 +270,12 @@
     
     // remove the panning gesture delegate from this controller when the view goes away
     [self.viewDeckController setPanningGestureDelegate:nil];
+    
+    [loader cancel];
 }
 
 - (void)tappedDoneButton {
-    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)tappedReplyButton {
@@ -278,7 +286,7 @@
     
     Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
     
-    ComposeViewController *viewController = [[[ComposeViewController alloc] initWithStoryId:storyId post:post] autorelease];
+    ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:post];
     [self.navigationController pushViewController:viewController animated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
 }
@@ -287,8 +295,7 @@
     [self resetLayout:YES];
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{        
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {        
     // Reload the post to fit the new view sizes.
     [self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
 }
@@ -298,7 +305,7 @@
 - (void)pinThread:(NSUInteger)postId {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
-    NSMutableArray *updatedPinnedThreads = [[[NSMutableArray alloc] initWithArray:pinnedThreads] autorelease];    
+    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] initWithArray:pinnedThreads];    
     
     for (NSNumber *pinnedThread in updatedPinnedThreads) {
         if ([pinnedThread unsignedIntValue] == postId) {
@@ -315,7 +322,7 @@
 - (void)unPinThread:(NSUInteger)postId {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
-    NSMutableArray *updatedPinnedThreads = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] init];
     
     for (NSNumber *pinnedId in pinnedThreads)
         if([pinnedId unsignedIntValue] != postId)
@@ -341,38 +348,38 @@
     [self pinThread:[post modelId]];
 }
 
-#pragma mark -
-#pragma mark Split view support
-- (void)splitViewController:(UISplitViewController*)svc
-     willHideViewController:(UIViewController *)aViewController
-          withBarButtonItem:(UIBarButtonItem*)barButtonItem
-       forPopoverController:(UIPopoverController*)pc
-{
-    barButtonItem.title = @"Threads";
-    NSArray *items = [NSArray arrayWithObjects:
-                      //[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
-                      barButtonItem,
-                      nil];
-    [self.toolbar setItems:items animated:YES];
-    
-    popoverController = pc;
-}
-
-// Called when the view is shown again in the split view, invalidating the button and popover controller.
-- (void)splitViewController: (UISplitViewController*)svc
-     willShowViewController:(UIViewController *)aViewController
-  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    [self.toolbar setItems:[NSArray array] animated:YES];
-}
-
-- (void)splitViewController:(UISplitViewController*)svc
-          popoverController:(UIPopoverController*)pc
-  willPresentViewController:(UIViewController *)aViewController
-{
-    pc.popoverContentSize = CGSizeMake(480, 900);
-    [pc presentPopoverFromBarButtonItem:[self.toolbar.items objectAtIndex:0] permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-}
+//#pragma mark -
+//#pragma mark Split view support
+//- (void)splitViewController:(UISplitViewController*)svc
+//     willHideViewController:(UIViewController *)aViewController
+//          withBarButtonItem:(UIBarButtonItem*)barButtonItem
+//       forPopoverController:(UIPopoverController*)pc
+//{
+//    barButtonItem.title = @"Threads";
+//    NSArray *items = [NSArray arrayWithObjects:
+//                      //[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+//                      barButtonItem,
+//                      nil];
+//    [self.toolbar setItems:items animated:YES];
+//    
+//    popoverController = pc;
+//}
+//
+//// Called when the view is shown again in the split view, invalidating the button and popover controller.
+//- (void)splitViewController: (UISplitViewController*)svc
+//     willShowViewController:(UIViewController *)aViewController
+//  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+//{
+//    [self.toolbar setItems:[NSArray array] animated:YES];
+//}
+//
+//- (void)splitViewController:(UISplitViewController*)svc
+//          popoverController:(UIPopoverController*)pc
+//  willPresentViewController:(UIViewController *)aViewController
+//{
+//    pc.popoverContentSize = CGSizeMake(480, 900);
+//    [pc presentPopoverFromBarButtonItem:[self.toolbar.items objectAtIndex:0] permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+//}
 
 #pragma mark -
 #pragma mark Managing the popover controller
@@ -384,11 +391,17 @@
     self.threadId = _threadId;
     [self refresh:nil];
  
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                if (popoverController != nil) {
-                        [popoverController dismissPopoverAnimated:YES];
-                }
-        }    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        if (popoverController != nil) {
+            [popoverController dismissPopoverAnimated:YES];
+        }
+    }
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
+    if (popoverController == pc) {
+        popoverController = nil;
+    }
 }
 
 #pragma mark -
@@ -409,7 +422,7 @@
     
     ReplyCell *cell = (ReplyCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[ReplyCell alloc] init] autorelease];
+        cell = [[ReplyCell alloc] init];
     }
     
     cell.post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
@@ -419,7 +432,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)aTableView viewForHeaderInSection:(NSInteger)section {
-    UIView  *background = [[[UIView alloc] init] autorelease];
+    UIView  *background = [[UIView alloc] init];
     return background;
 }
 
@@ -466,6 +479,10 @@
     
     [htmlTemplate setString:body forKey:@"body"];
     [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%i", rootPost.modelId]]];
+}
+
+-(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:_tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
 }
 
 - (NSString *)postBodyWithYoutubeWidgets:(NSString *)body {
@@ -553,7 +570,7 @@
                 }
             }
 
-            viewController = [[[BrowserViewController alloc] initWithRequest:request] autorelease];
+            viewController = [[BrowserViewController alloc] initWithRequest:request];
         }
         // save scroll position of web view before pushing view controller
         self.scrollPosition = aWebView.scrollView.contentOffset;
@@ -663,18 +680,18 @@
         return;
     }
     // keep track of the action sheet
-    theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Tag this Post"
+    theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
                                                         delegate:self
                                                cancelButtonTitle:@"Cancel"
                                           destructiveButtonTitle:nil
-                                               otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", @"UGH", nil] autorelease];
+                                               otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", @"UGH", nil];
     [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [theActionSheet showFromBarButtonItem:tagButton animated:YES];
-    } else {
-        [theActionSheet showInView:self.navigationController.view];
-    }
+//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        [theActionSheet showFromBarButtonItem:tagButton animated:YES];
+//    } else {
+    [theActionSheet showInView:self.navigationController.view];
+//    }
 }
 
 - (void)showAuthorActions {
@@ -685,11 +702,11 @@
         return;
     }
     // keep track of the action sheet
-    theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Author Actions"
+    theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Author Actions"
                                                   delegate:self
                                          cancelButtonTitle:@"Cancel"
                                     destructiveButtonTitle:nil
-                                         otherButtonTitles:@"Search for Posts", @"Send a Message", nil] autorelease];
+                                         otherButtonTitles:@"Search for Posts", @"Send a Message", nil];
     [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -705,15 +722,15 @@
 }
 
 - (IBAction)toggleOrderByPostDate {
-    if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        orderByPostDate = !orderByPostDate;
-//        orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
-        orderByPostDateButton.tintColor = orderByPostDate ? nil : [UIColor lcSelectionGrayColor];
-    }
-    else {
-        orderByPostDate = !orderByPostDate;
-        [grippyBar setOrderByPostDateButtonHighlight];
-    }
+//    if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        orderByPostDate = !orderByPostDate;
+////        orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
+//        orderByPostDateButton.tintColor = orderByPostDate ? nil : [UIColor lcSelectionGrayColor];
+//    }
+//    else {
+    orderByPostDate = !orderByPostDate;
+    [grippyBar setOrderByPostDateButtonHighlight];
+//    }
     
     // Persist the orderByPostDate toggle option
     [[NSUserDefaults standardUserDefaults] setBool:orderByPostDate forKey:@"orderByPostDate"];
@@ -757,10 +774,10 @@
     NSIndexPath *oldIndexPath = selectedIndexPath;
         
     NSIndexPath *newIndexPath;
-        if (orderByPostDate)
-                newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:oldIndexPath.row] inSection:0];
+    if (orderByPostDate)
+        newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:oldIndexPath.row] inSection:0];
     else if (oldIndexPath.row == 0)
-                newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
+        newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
     else
         newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
     
@@ -773,11 +790,11 @@
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
         
-        if (orderByPostDate)
-                newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:oldIndexPath.row] inSection:0];
-        else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1) 
-                newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        
+    if (orderByPostDate)
+        newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:oldIndexPath.row] inSection:0];
+    else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1)
+        newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    
     [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
 }
@@ -803,12 +820,11 @@
 }
 
 -(void)grippyBarDidTapModButton {
-    UIActionSheet *modActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Mod this Post"
+    UIActionSheet *modActionSheet = [[UIActionSheet alloc] initWithTitle:@"Mod this Post"
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"stupid", @"offtopic", @"nws", @"political", @"informative", @"nuked", @"ontopic", nil] autorelease];
-    [modActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+                                                        otherButtonTitles:@"Stupid", @"Offtopic", @"NWS", @"Political", @"Informative", @"Nuked", @"Ontopic", nil];
     [modActionSheet showInView:self.view];
 }
 
@@ -834,8 +850,26 @@
                 post.category = [actionSheet buttonTitleAtIndex:buttonIndex];
                 [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
         }
+        
+        //show mod HUD message
+        NSTimeInterval theTimeInterval = 1;
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:MBProgressHUDModeText];
+        [hud setLabelText:@"Modded!"];
+        [hud setColor:[UIColor lcTableBackgroundColor]];
+//        [hud setYOffset:-33];
+        [hud hide:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Tag this Post"]) { //tagging
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
+        
+        //show tag HUD message
+        NSTimeInterval theTimeInterval = 1;
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:MBProgressHUDModeText];
+        [hud setLabelText:@"Tagged!"];
+        [hud setColor:[UIColor lcTableBackgroundColor]];
+//        [hud setYOffset:-33];
+        [hud hide:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Author Actions"]) { //author actions
         NSString *author = [post author];
         UIViewController *viewController;
@@ -849,7 +883,7 @@
         }
         // start a shackmessage with this author as the recipient
         if (buttonIndex == 1) {
-            viewController = [[[SendMessageViewController alloc] initWithRecipient:author] autorelease];
+            viewController = [[SendMessageViewController alloc] initWithRecipient:author];
         }
         
         // push the resulting view controller
@@ -877,14 +911,7 @@
 // monitor gesture touches
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     // if gesture is panning kind (ViewDeck uses panning to bring out menu)
-    if ([gestureRecognizer.class isSubclassOfClass:[UIPanGestureRecognizer class]]) {
-        // and if gesture is on the replies table, cancel it to allow the swipe gesture through
-        if ([touch.view.superview isKindOfClass:[UITableViewCell class]] ||
-            [touch.view isKindOfClass:[UITableView class]]) {
-            return NO;
-        }
-        return YES;
-    }
+    if ([gestureRecognizer.class isSubclassOfClass:[UIPanGestureRecognizer class]]) return YES;
 
     // if gesture is swipe kind, let it pass through
     if ([gestureRecognizer.class isSubclassOfClass:[UISwipeGestureRecognizer class]]) return YES;
@@ -897,10 +924,6 @@
     }
 
     return NO;
-}
-
-- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)gestureRecognizer {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
@@ -916,11 +939,11 @@
             return;
         }
         // keep track of the action sheet
-        theActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Reply"
+        theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Reply"
                                                       delegate:self
                                              cancelButtonTitle:@"Cancel"
                                         destructiveButtonTitle:nil
-                                             otherButtonTitles:@"Reply to this post", @"Reply to root post", nil] autorelease];
+                                             otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
         [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -949,15 +972,7 @@
 #pragma mark Cleanup
 
 - (void)dealloc {
-    NSLog(@"ThreadViewController dealloc");
-    [rootPost release];
-    [selectedIndexPath release];
-    
-    self.threadStarter = nil;
-    self.toolbar = nil;
-    self.leftToolbar = nil;
-    
-    [super dealloc];
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 @end

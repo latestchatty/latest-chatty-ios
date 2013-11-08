@@ -6,12 +6,10 @@
 //
 //
 
-#import <UIKit/UIKit.h>
-
 @interface RecentSearchButton : UIButton
 
-@property (nonatomic, retain) NSString *searchTerms;
-@property (nonatomic, retain) NSString *searchAuthor;
-@property (nonatomic, retain) NSString *searchParentAuthor;
+@property (nonatomic, strong) NSString *searchTerms;
+@property (nonatomic, strong) NSString *searchAuthor;
+@property (nonatomic, strong) NSString *searchParentAuthor;
 
 @end

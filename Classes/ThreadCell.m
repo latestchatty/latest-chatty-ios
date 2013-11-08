@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/18/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "ThreadCell.h"
@@ -14,11 +14,12 @@
 @synthesize rootPost;
 
 + (CGFloat)cellHeight {
-	return 65.0;
+	return 70.0;
 }
 
 - (id)init {
 	self = [super initWithNibName:@"ThreadCell" bundle:nil];
+    
 	return self;
 }
 
@@ -42,21 +43,14 @@
 	} else {
         replyCount.text = [NSString stringWithFormat:@"%i", rootPost.replyCount];
     }
-	
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
 	// Set background to a light color if the user is the root poster
-	UIImageView *background = (UIImageView *)self.backgroundView;
 	if ([rootPost.author.lowercaseString isEqualToString:[defaults stringForKey:@"username"].lowercaseString]) {
-//		author.font = [UIFont boldSystemFontOfSize:12.0];
-		background.image = [UIImage imageNamed:@"CellBackgroundLight.png"];
+        self.backgroundColor = [UIColor lcCellParticipantColor];
 	} else {
-//		author.font = [UIFont systemFontOfSize:12.0];
-        if ([defaults boolForKey:@"darkMode"]) {
-            background.image = [UIImage imageNamed:@"CellBackgroundDark.png"];
-        } else {
-            background.image = [UIImage imageNamed:@"CellBackground.png"];            
-        }
+        self.backgroundColor = [UIColor lcCellNormalColor];
 	}
 	
 	// Set side color stripe for the post category
@@ -75,7 +69,7 @@
     }
     
     if (foundParticipant) {
-        replyCount.textColor = [UIColor lcBlueColor];
+        replyCount.textColor = [UIColor lcBlueParticipantColor];
     } else {
         replyCount.textColor = [UIColor lcLightGrayTextColor];
     }
@@ -90,11 +84,6 @@
 
 - (void)setShowCount:(BOOL)shouldShowCount {
 	replyCount.hidden = !shouldShowCount;
-}
-
-- (void)dealloc {
-	self.rootPost = nil;
-	[super dealloc];
 }
 
 @end

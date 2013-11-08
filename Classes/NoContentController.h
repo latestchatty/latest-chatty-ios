@@ -6,8 +6,6 @@
 //  Copyright 2010 Beautiful Pixel. All rights reserved.
 //
 
-@interface NoContentController : UIViewController {
-
-}
+@interface NoContentController : UIViewController {}
 
 @end

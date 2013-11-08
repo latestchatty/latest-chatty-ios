@@ -3,15 +3,16 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 4/10/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "MessagesViewController.h"
+
 #import "SendMessageViewController.h"
 
 @implementation MessagesViewController
 
-@synthesize messages, pull;
+@synthesize messages, refreshControl;
 
 - (id)initWithNib {
     self = [super initWithNib];
@@ -21,29 +22,24 @@
     return self;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
-    return [LatestChatty2AppDelegate supportedInterfaceOrientations];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self refresh:self];
-    
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self.viewDeckController
                                                                       action:@selector(toggleLeftView)];
         self.navigationItem.leftBarButtonItem = menuButton;
-        [menuButton release];
     }
     
-    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"PenIcon.24.png"]
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isPresent] || ![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isPresent]) {
+        return;
+    }
+    
+    [self refresh:self.refreshControl];
+    
+    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-Compose.png"]
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:self
                                                                      action:@selector(composeMessage)];
@@ -51,23 +47,52 @@
     self.navigationItem.rightBarButtonItem = composeButton;
     
     self.tableView.hidden = YES;
+
+    // new native pull to refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                       action:@selector(refresh:)
+             forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setTintColor:[UIColor lightGrayColor]];
     
-    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
-    [pull setDelegate:self];
-    [self.tableView addSubview:pull];
-    [pull finishedLoading];
+    [self.tableView addSubview:self.refreshControl];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+    
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
+    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isPresent] || ![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isPresent]) {
+        [UIAlertView showSimpleAlertWithTitle:@"Not Logged In" message:@"Please head back to the main menu and tap \"Settings\" to set your Shacknews.com username and password"];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
-    } else {
-        self.tableView.separatorColor = [UIColor lcSeparatorColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
-    }
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
+//    } else {
+//        self.tableView.separatorColor = [UIColor lcSeparatorColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
+//    }
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return [LatestChatty2AppDelegate supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 - (void)composeMessage {
@@ -80,28 +105,38 @@
     }
 }
 
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
-    NSLog(@"Pull?");
-    [self refresh:self];
-    [pull finishedLoading];
-}
-
 - (void)refresh:(id)sender {
-    [super refresh:self];
-    loader = [[Message findAllWithDelegate:self] retain];
+    [super refresh:sender];
+    loader = [Message findAllWithDelegate:self];
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
     self.messages = [NSMutableArray arrayWithArray:models];
     [self.tableView reloadData];
     
-    [loader release];
     loader = nil;
     
     [super didFinishLoadingAllModels:models otherData:otherData];
     
     self.title = @"Messages";
     self.navigationItem.rightBarButtonItem.enabled = YES;
+    
+    [self.refreshControl endRefreshing];
+    
+    // total up the unread messages
+    NSUInteger messageCount = 0;
+    for (Message *message in models) {
+        if (message.unread) messageCount++;
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // save the updated message count to the db
+    [defaults setInteger:messageCount forKey:@"messageCount"];
+    [defaults synchronize];
+    // reflect the unread count on the app badge
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
+    
+    NSLog(@"Message Count saved: %i", messageCount);
     
     if (self.messages.count == 0) {
         [UIAlertView showSimpleAlertWithTitle:@"Messages"
@@ -133,7 +168,7 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageCell *cell = (MessageCell*)[tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
     if (cell == nil) {
-        cell = [[[MessageCell alloc] init] autorelease];
+        cell = [[MessageCell alloc] init];
     }
 	
     cell.message = [messages objectAtIndex:indexPath.row];
@@ -144,7 +179,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Message *message = [messages objectAtIndex:indexPath.row];
     [message markRead];
-    MessageViewController *viewController = [[[MessageViewController alloc] initWithMesage:message] autorelease];
+    MessageViewController *viewController = [[MessageViewController alloc] initWithMesage:message];
+    
+    // mark the message read in the local data to reflect in the table
+    message.unread = NO;
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
@@ -153,10 +191,16 @@
     }
 }
 
+-(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:_tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+}
+
+#pragma mark Cleanup
+
 - (void)dealloc {
-    self.messages = nil;
-    [pull release];
-    [super dealloc];
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];    
 }
 
 @end

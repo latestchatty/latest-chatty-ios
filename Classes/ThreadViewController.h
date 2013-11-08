@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/24/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "ModelListViewController.h"
@@ -12,7 +12,6 @@
 #import "Mod.h"
 #import "ReplyCell.h"
 #import "StringTemplate.h"
-#import "RegexKitLite.h"
 #import "GrippyBar.h"
 #import "ComposeViewController.h"
 #import "BrowserViewController.h"
@@ -40,18 +39,14 @@
     BOOL orderByPostDate;
     
     UIPopoverController *popoverController;
-    UIToolbar *toolbar;
-    UIToolbar *leftToolbar;
     
     UIActionSheet *theActionSheet;
 }
 
 @property (nonatomic, assign) NSUInteger threadId;
-@property (retain) Post *rootPost;
+@property (strong) Post *rootPost;
 @property (nonatomic, copy) NSString *threadStarter;
-@property (retain) NSIndexPath *selectedIndexPath;
-@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, retain) IBOutlet UIToolbar *leftToolbar;
+@property (strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, assign) CGPoint scrollPosition;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;

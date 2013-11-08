@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Kyle Eli on 4/8/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010. All rights reserved.
 //
 
 #import "ThreadViewController.h"

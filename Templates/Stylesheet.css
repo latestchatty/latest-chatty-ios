@@ -6,6 +6,7 @@ body {
   background: rgb(0,0,0);
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 11pt;
+  /*font-weight: 300;*/
   color: white;
 }
 
@@ -25,11 +26,11 @@ div.author a {
 div.date,
 div.date a {
   font-size: 8pt;
-  color: rgb(176,180,184);
+  color: rgba(255,255,255,0.5);
   float: right;
   text-decoration: none;
   margin-top: 1px;
-  -webkit-tap-highlight-color: rgba(176,180,184,0.5);
+  -webkit-tap-highlight-color: rgba(255,255,255,0.5);
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);  
 }
 div.body {
@@ -46,10 +47,10 @@ body.review div.body a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 div.expiration {
-    box-shadow: inset 0px 1px rgba(255,255,255,0.08);
-    height: 5px;
+    /*box-shadow: inset 0px 1px rgba(255,255,255,0.08);*/
+    height: 4px;
     left: 0;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     position: absolute;
     top: 0;
     width: 100%;
@@ -108,10 +109,15 @@ div.youtube-widget a {
    Stories
 */
 
+#story, #message {
+  background: transparent;
+}
+
 h1.story-title {
   clear: both;
   color: rgb(116,196,255);
   font-size: 150%;
+  font-weight: 300;
   margin: 0;
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
 }
@@ -121,12 +127,13 @@ div.focalbox {
   padding: 10px;
   text-align: center;
   -webkit-border-radius: 20px;
-  margin: 10px 0;
+  margin: 10px;
 }
 
 div.focalbox img {
-  margin: 10px;
+  margin: 10px auto;
   border: 2px solid #888;
+  display: block;
 }
 
 div#video #embedswf {
@@ -136,13 +143,23 @@ div#video #embedswf {
 div.story-content img,
 div.story-content iframe { max-width: 100%; }
 
+#story div.date,
+#story div.date a {
+  float: none;
+}
+
 /*
    iPad-only media queries
 */
 
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
-
-}
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
-
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait),
+       all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
+    div.author,
+    div.author a {
+      font-size: 10.5pt;
+    }
+    
+    div.expiration {
+        height: 8px;
+    }
 }

@@ -3,19 +3,14 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 4/10/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "Message.h"
 
 @implementation Message
 
-@synthesize from;
-@synthesize to;
-@synthesize subject;
-@synthesize body;
-@synthesize date;
-@synthesize unread;
+@synthesize from, to, subject, body, date, unread;
 
 + (ModelLoader *)findAllWithDelegate:(id<ModelLoadingDelegate>)delegate {
     return [self loadAllFromUrl:@"/messages" delegate:delegate];
@@ -27,7 +22,7 @@
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
-    [super initWithDictionary:dictionary];
+    if (!(self = [super initWithDictionary:dictionary])) return nil;
 
     self.from     = [dictionary objectForKey:@"from"]/* stringByUnescapingHTML]*/;
     self.subject  = [dictionary objectForKey:@"subject"]/* stringByUnescapingHTML]*/;
@@ -50,6 +45,12 @@
     [NSURLConnection connectionWithRequest:request delegate:self];
 //    NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
 //    NSLog(@"%@",responseBody);
+    
+    // clear the last message fetch date to force message fetching again which will set the badge number count correctly
+    // terrible way of doing this but whatevs
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nil forKey:@"messageFetchDate"];
+    [defaults synchronize];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
@@ -64,7 +65,7 @@
 + (BOOL)createWithTo:(NSString *)to subject:(NSString *)subject body:(NSString *)body {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/messages/send/", server]]];
     
@@ -120,13 +121,5 @@
     }
 }
 
-- (void)dealloc {
-    self.from = nil;
-    self.to = nil;
-    self.subject =nil;
-    self.body = nil;
-    self.date = nil;
-    [super dealloc];
-}
 
 @end

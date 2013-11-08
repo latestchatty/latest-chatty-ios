@@ -3,10 +3,11 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 4/10/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "RootViewController.h"
+
 #import "CustomBadge.h"
 
 @implementation RootViewController
@@ -16,6 +17,10 @@
 - (id)init {
     self = [super initWithNib];
     self.title = @"Home";
+    
+//    messageCount = [[NSUserDefaults standardUserDefaults] integerForKey:@"messageCount"];
+//    NSLog(@"Message Count in init: %i", messageCount);
+    
     return self;
 }
 
@@ -37,84 +42,161 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.messagesSpinner startAnimating];
-    messageLoader = [[Message findAllWithDelegate:self] retain];
+    
+    // only check for messages if it's been 5 minutes since the last check
+    NSDate *lastMessageFetchDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"messageFetchDate"];
+    NSTimeInterval interval = [lastMessageFetchDate timeIntervalSinceDate:[NSDate date]];
+
+    if (interval == 0 || (interval * -1) > 60*5) {
+        // fetch messages
+        [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
+        messageLoader = [Message findAllWithDelegate:self];
+    }
 }
 
 - (void)viewDidLoad {
-    // iPhone ViewDeck menu needs rounded corners to match the nav bar
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [self.view.layer setCornerRadius:7.0f];
-        [self.view.layer setMasksToBounds:YES];
+        // root view controller is delegate for view deck on iPhone
+        self.viewDeckController.delegate = self;
         
         // initialize the index path to chatty row
         [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
         [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+        
+        // iOS7
+        if ([[UIScreen mainScreen] bounds].size.height == 568) {
+            [self.tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
+        }
+        
+        // Maintain selection while view is still loaded
+        [self setClearsSelectionOnViewWillAppear:NO];
+    } else {
+        [self setClearsSelectionOnViewWillAppear:YES];
     }
     
-    // Maintain selection while view is still loaded
-    [self setClearsSelectionOnViewWillAppear:NO];
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Sidebar-bg.png"]];
+    self.tableView.backgroundView.contentMode = UIViewContentModeScaleToFill;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForCredits) name:@"PushBrowserForCredits" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
 }
 
+- (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    // resign any showing keyboards
+    [[LatestChatty2AppDelegate delegate].navigationController.visibleViewController.view endEditing:YES];
+    
+    // color the menu button blue
+    if ([self centerControllerHasMenuButton:[LatestChatty2AppDelegate delegate].navigationController]) {
+        [UIView animateWithDuration:0.3 animations:^{
+            [[LatestChatty2AppDelegate delegate].navigationController.visibleViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor lcBlueColor]];
+        }];
+    }
+    
+    // send notification to browser controller to show bars if controller on the stack
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBrowserBars" object:nil];
+}
+
+- (void)viewDeckController:(IIViewDeckController *)viewDeckController willCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    // color the menu button back to white
+    if ([self centerControllerHasMenuButton:[LatestChatty2AppDelegate delegate].navigationController]) {
+        [UIView animateWithDuration:0.3 animations:^{
+            [[LatestChatty2AppDelegate delegate].navigationController.visibleViewController.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
+        }];
+    }
+}
+
+- (BOOL)centerControllerHasMenuButton:(UINavigationController *)navController {
+    NSArray *classesWithMenuButton = @[[BrowserViewController class], [ChattyViewController class], [MessagesViewController class], [SearchViewController class], [StoriesViewController class]];
+    for (Class cls in classesWithMenuButton) {
+        if ([navController.visibleViewController isKindOfClass:cls]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (void)pushBrowserForCredits {
     NSString *urlString = @"http://mccrager.com/latestchatty/credits";
     UIViewController *viewController =
-    [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+    [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                               title:@"Credits"
-                                      isForShackLOL:NO
-                                       isForCredits:YES] autorelease];
+                                      isForShackLOL:NO];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
-        [(UINavigationController*)self.viewDeckController.centerController pushViewController:viewController animated:YES];
+        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
     }
 }
 
 - (void)pushBrowserForLicenses {
     NSString *urlString = @"http://mccrager.com/latestchatty/licenses";
     UIViewController *viewController =
-    [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+    [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                               title:@"Licenses"
-                                      isForShackLOL:NO
-                                       isForCredits:YES] autorelease];
+                                      isForShackLOL:NO];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
-        [(UINavigationController*)self.viewDeckController.centerController pushViewController:viewController animated:YES];
+        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
     }
 
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
-    messageCount = 0;
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
+    
+    NSUInteger messageCount = 0;
     for (Message *message in models) {
         if (message.unread) messageCount++;
     }
     
+//    if (messageCount > 0) {
+//        UILocalNotification *messagesNotification = [[UILocalNotification alloc] init];
+//        messagesNotification.alertBody = @"You have unread messages.";
+//        [[UIApplication sharedApplication] scheduleLocalNotification:messagesNotification];
+//    }
+    
+    // capture the date this successful messages fetch and the number of unread messages
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSDate date] forKey:@"messageFetchDate"];
+    [defaults setInteger:messageCount forKey:@"messageCount"];
+    [defaults synchronize];
+    
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     
-    // keep track if an index path had been selected, and reset it after the table is reloaded
-    [self.tableView reloadData];
+    NSLog(@"Message Count saved: %i", messageCount);
+    
+    // redraw the messages row to update the badge count, and re-set the selected index (will keep messages row selected it the user is in the messages section)
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
     
-    [self.messagesSpinner stopAnimating];
-    
-    [messageLoader release];
     messageLoader = nil;
 }
 
 - (void)didFailToLoadModels {
     NSLog(@"Failed to load messages");
-    [self.messagesSpinner stopAnimating];
+    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
 }
 
 #pragma mark Table view methods
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        return 100;
+    }
+    if ([[UIScreen mainScreen] bounds].size.height == 568) return 92;
+    return 82;
 }
 
 // Customize the number of rows in the table view.
@@ -126,7 +208,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RootCell *cell = (RootCell *)[tableView dequeueReusableCellWithIdentifier:@"RootCell"];
     if (cell == nil) {
-        cell = [[[RootCell alloc] init] autorelease];
+        cell = [[RootCell alloc] init];
     }
     
     switch (indexPath.row) {
@@ -136,25 +218,14 @@
             
         case 1:
             cell.title = @"LatestChatty";
+            [cell setBadgeWithNumber:0];
 			break;
             
         case 2:
-            cell.title = @"Messages";
-            
-            // add activity spinner to messages cell that starts spinning when messages are loading and stops when the messages call has finished
-            if (self.messagesSpinner == nil) {
-                [self setMessagesSpinner:[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-                int center = [cell iconImage].frameHeight / 2; //vertical center
-                CGFloat spinnerSize = 25.0f;
-                
-                // place spinner on top of messages icon
-                [self.messagesSpinner setFrame:CGRectMake(center - spinnerSize / 2, center - spinnerSize / 2, spinnerSize, spinnerSize)];
-                [[cell iconImage] addSubview:self.messagesSpinner];
-            }
-            
+            cell.title = @"Messages";    
             // set number of unread messages in badge of cell
-            //messageCount = 9;
-            [cell setBadgeWithNumber:messageCount];
+//            messageCount = 9; // for testing
+            [cell setBadgeWithNumber:[[NSUserDefaults standardUserDefaults] integerForKey:@"messageCount"]];
             
             break;
             
@@ -217,13 +288,12 @@
             }
             break;
             
-            //Patch-E: added new menu item for Shack[LOL]-tergration! Passes user= on the URL to allow lol'ing within the web view on the Shack[LOL] site. Uses new BrowserViewController constructor.
         case 4:
+            // Pass user= on the URL for Shack[LOL] in Browser web view.
             urlString = [[NSString stringWithFormat:@"http://lol.lmnopc.com?lc_webview=1&user=%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
-                                                                       title:@"Shack[lol]"
-                                                               isForShackLOL:YES
-                                                                isForCredits:NO] autorelease];
+            viewController = [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+                                                                       title:nil
+                                                               isForShackLOL:YES];
             
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
@@ -242,17 +312,6 @@
             
             break;
             
-//        case 6:
-//            urlString = [NSString stringWithFormat:@"http://%@/about", [Model host]];
-//            viewController = [[[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]] autorelease];
-//            
-//            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
-//                [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
-//                viewController = nil;
-//            }
-//            break;
-            
         default:
             [NSException raise:@"too many rows" format:@"This table can only have 6 cells!"];
             break;
@@ -263,27 +322,29 @@
 			if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
 				viewController.modalPresentationStyle = UIModalPresentationFormSheet;
-				[appDelegate.slideOutViewController presentModalViewController:viewController animated:YES];
+                [appDelegate.slideOutViewController presentViewController:viewController animated:YES completion:nil];
 			} else {
                 [self.viewDeckController toggleLeftView];
-                [self.viewDeckController presentModalViewController:viewController animated:YES];
+                [self.viewDeckController presentViewController:viewController animated:YES completion:nil];
             }
         } else {
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 [self.navigationController pushViewController:viewController animated:YES];
             } else {
-                self.viewDeckController.centerController = [[[UINavigationController alloc] initWithRootViewController:viewController] autorelease];
+                self.viewDeckController.centerController = [[UINavigationController alloc] initWithRootViewController:viewController];
+                [LatestChatty2AppDelegate delegate].navigationController = (UINavigationController *)self.viewDeckController.centerController;
                 [self.viewDeckController toggleLeftView];
             }
         }
     }
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
-    self.selectedIndex = nil;
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [messageLoader release];
-    [super dealloc];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

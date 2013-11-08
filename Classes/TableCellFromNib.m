@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/16/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "TableCellFromNib.h"
@@ -19,16 +19,19 @@
         nibName = [nibName stringByAppendingString:@"-iPad"];
     }
     
-    UIViewController *cellFactory = [[[UIViewController alloc] initWithNibName:nibName bundle:nibBundleOrNil] autorelease];
+    UIViewController *cellFactory = [[UIViewController alloc] initWithNibName:nibName bundle:nibBundleOrNil];
     self = (TableCellFromNib *)cellFactory.view;
-    [self retain];
     
-//    UIImageView *selectionView = [[UIImageView alloc] initWithFrame:self.bounds];
-//    selectionView.contentMode = UIViewContentModeScaleToFill;
-//    selectionView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    selectionView.backgroundColor = [UIColor lcSelectionBlueColor];
-//    self.selectedBackgroundView = selectionView;
-//    [selectionView release];
+    // create a custom selection view with a blue color
+    if ([nibName containsString:@"Root"]) {
+        UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frameX, self.frameY, self.frameWidth, self.frameHeight-1)];
+//        selectionView.backgroundColor = [UIColor lcSelectionGrayColor];
+        self.selectedBackgroundView = selectionView;
+    } else {
+        UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frameX, self.frameY, self.frameWidth, self.frameHeight)];
+        selectionView.backgroundColor = [UIColor lcSelectionBlueColor];
+        self.selectedBackgroundView = selectionView;
+    }
 
     return self;
 }

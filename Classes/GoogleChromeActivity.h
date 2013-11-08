@@ -8,7 +8,7 @@
 
 @interface GoogleChromeActivity : UIActivity
 
-@property (nonatomic, retain) NSURL *url;
+@property (nonatomic, strong) NSURL *url;
 
 - (NSString *)activityType;
 - (NSString *)activityTitle;

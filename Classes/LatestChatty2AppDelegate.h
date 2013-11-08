@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/16/09.
-//  Copyright __MyCompanyName__ 2009. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "RootViewController.h"
@@ -20,6 +20,7 @@
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate> {
     UIWindow *window;
     UINavigationController *navigationController;
+//    NSUInteger networkActivityIndicatorCount;
     
     // iPad
     UINavigationController *contentNavigationController;
@@ -27,14 +28,16 @@
 	SlideOutViewController *slideOutViewController;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, strong) NSDateFormatter *formatter;
 
-@property (nonatomic, retain) IBOutlet SlideOutViewController *slideOutViewController;
-@property (nonatomic, retain) IBOutlet UINavigationController *contentNavigationController;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UINavigationController *navigationController;
 
-@property (retain, nonatomic) UIViewController *centerController;
-@property (retain, nonatomic) UIViewController *leftController;
+@property (nonatomic, strong) IBOutlet SlideOutViewController *slideOutViewController;
+@property (nonatomic, strong) IBOutlet UINavigationController *contentNavigationController;
+
+@property (strong, nonatomic) UIViewController *centerController;
+@property (strong, nonatomic) UIViewController *leftController;
 
 - (IIViewDeckController*)generateControllerStack;
 
@@ -50,6 +53,7 @@
 - (id)urlAsChromeScheme:(NSURL *)url;
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
+- (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 	
 @end
 

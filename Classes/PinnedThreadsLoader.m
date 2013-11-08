@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Kyle Eli on 4/11/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010. All rights reserved.
 //
 
 #import "PinnedThreadsLoader.h"
@@ -16,7 +16,7 @@
 {
     self = [super init];
     if (self != nil) {
-        pinnedThreadsToLoad = [threadsToLoad retain];
+        pinnedThreadsToLoad = threadsToLoad;
         loadingModels = [[NSMutableArray alloc] init];
         loadingStoryId = storyId;
         loadingPageId = page;
@@ -28,10 +28,10 @@
 + (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId page:(NSUInteger)page for:(id<ModelLoadingDelegate>)delegate {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *threadsToLoad = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *threadsToLoad = [[NSMutableArray alloc] init];
     for(NSNumber *threadId in [defaults objectForKey:@"pinnedThreads"])
         [threadsToLoad addObject:threadId];
-    return [[[[PinnedThreadsLoader alloc] initWithThreadsToLoad:threadsToLoad for:delegate withStoryId:storyId page:page] autorelease] loadPinnedThread];
+    return [[[PinnedThreadsLoader alloc] initWithThreadsToLoad:threadsToLoad for:delegate withStoryId:storyId page:page] loadPinnedThread];
 }
 
 + (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId for:(id<ModelLoadingDelegate>)delegate {
@@ -93,7 +93,7 @@
     
 //    [[dictionary objectForKey:@"id"] intValue]
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *nonDuplicateModels = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *nonDuplicateModels = [[NSMutableArray alloc] init];
     
     if(models != nil && [models count] > 0) { 
         for(Post *post in models)
@@ -113,13 +113,6 @@
     
     [loadingModels addObjectsFromArray:nonDuplicateModels];
     [loadingFor didFinishLoadingAllModels:loadingModels otherData:otherData];
-}
-
-- (void)dealloc {
-    self.pinnedThreadsToLoad = nil;
-    self.loadingFor = nil;
-    [loadingModels release];
-    [super dealloc];
 }
 
 @end

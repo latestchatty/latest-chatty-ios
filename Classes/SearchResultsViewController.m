@@ -3,54 +3,61 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 4/21/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "SearchResultsViewController.h"
 
 @implementation SearchResultsViewController
 
-@synthesize posts;
-@synthesize pull;
+@synthesize posts, refreshControl;
 
 - (id)initWithTerms:(NSString *)searchTerms author:(NSString *)searchAuthor parentAuthor:(NSString *)searchParentAuthor {
     self = [super initWithNib];
     
     self.title = @"Search Results";
-    terms = [searchTerms retain];
-    author = [searchAuthor retain];
-    parentAuthor = [searchParentAuthor retain];
+    terms = searchTerms;
+    author = searchAuthor;
+    parentAuthor = searchParentAuthor;
 
     return self;
 }
 
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view{
-    [self refresh:self];
-    [pull finishedLoading];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self refresh:self];
+    [self refresh:self.refreshControl];
     
     self.tableView.hidden = YES;
 
-    pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
-    [pull setDelegate:self];
-    [self.tableView addSubview:pull];
-    [pull finishedLoading];
+    // replaced open source pull-to-refresh with native SDK refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                            action:@selector(refresh:)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setTintColor:[UIColor lightGrayColor]];
+    
+    [self.tableView addSubview:self.refreshControl];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+    
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
+    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
-    } else {
-        self.tableView.separatorColor = [UIColor lcSeparatorColor];
-        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
-    }
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
+//    } else {
+//        self.tableView.separatorColor = [UIColor lcSeparatorColor];
+//        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
+//    }
 }
 
 // handled popping back to search view when no results in both viewDidAppear and in didFinishLoadingAllModels
@@ -71,7 +78,7 @@
     [super refresh:sender];
 
     currentPage = 1;
-    loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self] retain];
+    loader = [Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self];
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {    
@@ -87,15 +94,22 @@
     lastPage = [[otherData objectForKey:@"lastPage"] intValue];
 
 	[self.tableView reloadData];
-	[loader release];
 	loader = nil;
   
     // Override super method so there is no fade if we are loading a second page.
 	if (currentPage <= 1) {
+        if ([self.refreshControl isRefreshing]) {
+            [self.refreshControl endRefreshing];
+        }
+        
 		[super didFinishLoadingAllModels:models otherData:otherData];
 	} else {
-		// Hide the loader
-		[self hideLoadingSpinner];
+        if ([self.refreshControl isRefreshing]) {
+            [self.refreshControl endRefreshing];
+        } else {
+            // Hide the loader
+            [self hideLoadingSpinner];
+        }
 		
 		// Refresh the table
 		[self.tableView reloadData];
@@ -129,7 +143,7 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < [posts count]) {
         ThreadCell *cell = (ThreadCell *)[aTableView dequeueReusableCellWithIdentifier:@"ThreadCell"];
-        if (cell == nil) cell = [[[ThreadCell alloc] init] autorelease];
+        if (cell == nil) cell = [[ThreadCell alloc] init];
         
         // Set up the cell...
         Post *post = [posts objectAtIndex:indexPath.row];
@@ -139,7 +153,7 @@
         
         return cell;
 	} else {
-		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:self.tableView.frame] autorelease];
+		UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:self.tableView.frame];
         
         //checking posts count for 0, and returning a blank cell if it is
         //without this a cell is allocated with a spinner in it while the view is loading initially
@@ -147,27 +161,29 @@
             return cell;
         }
         
+        [cell setBackgroundColor:[UIColor clearColor]];
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 10000, 0, 0)];
+        
+        UIView *selectionView = [[UIView alloc] initWithFrame:CGRectMake(cell.frameX, cell.frameY, cell.frameWidth, cell.frameHeight-1)];
+        selectionView.backgroundColor = [UIColor clearColor];
+        cell.selectedBackgroundView = selectionView;
+        
         UIActivityIndicatorView *cellSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        
-        UIView *cellTopStroke = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frameWidth, 1)] autorelease];
-        cellTopStroke.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        cellTopStroke.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.08f];
-        
-        [cell.contentView addSubview:cellTopStroke];
-        [cell.contentView addSubview:cellSpinner];
-        
         [cellSpinner setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
         [cellSpinner setCenter:cell.contentView.center];
+        [cellSpinner setColor:[UIColor lightGrayColor]];        
         [cellSpinner startAnimating];
+        [cell.contentView addSubview:cellSpinner];
         
-        [cellSpinner release];
 		return cell;
 	}
 	
 	return nil;
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+-(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:_tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    
     //checking posts count for 0, and returning if it is
     //without this the view fires off the initial load request and a loadMorePosts, and continually fires loadMorePosts when a search doesn't results in any posts being returned
     if ([posts count] == 0) {
@@ -181,10 +197,9 @@
 
 -(void)loadMorePosts {
     [loader cancel];
-    [loader release];
     
     currentPage++;
-    loader = [[Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self] retain];
+    loader = [Post searchWithTerms:terms author:author parentAuthor:parentAuthor page:currentPage delegate:self];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -192,16 +207,12 @@
     
     ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:post.modelId];
     [self.navigationController pushViewController:viewController animated:YES];
-    [viewController release];
 }
 
+#pragma mark Cleanup
+
 - (void)dealloc {
-    self.posts = nil;
-    [terms release];
-    [author release];
-    [parentAuthor release];
-    [pull release];
-    [super dealloc];
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 @end

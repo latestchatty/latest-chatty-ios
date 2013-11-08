@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/18/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "TableCellFromNib.h"
@@ -23,7 +23,7 @@
 }
 
 @property (assign) NSUInteger storyId;
-@property (retain) Post *rootPost;
+@property (strong) Post *rootPost;
 @property (assign) BOOL showCount;
 
 @end

@@ -22,14 +22,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [doneButton setTitleTextAttributes:[NSDictionary whiteTextAttributesDictionary] forState:UIControlStateNormal];
 
     [self placePostInWebView:self.rootPost];
+    
+    [doneButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
+    
+    // iOS7
+    self.navigationController.navigationBar.translucent = NO;
+    
+    // top separation bar
+    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, postView.frameY, 1024, 1)];
+    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:topStroke];
+    
+    // scroll indicator coloring
+    [postView.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
 - (IBAction)dismiss {
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PostContentBecomeFirstResponder" object:nil];
 }
 
@@ -66,14 +78,18 @@
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+        [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
+    } else {
+        [postView.scrollView setContentInset:UIEdgeInsetsMake(52.0, 0, 0, 0)];
+    }
+}
+
 #pragma mark Cleanup
 
 - (void)dealloc {
-    NSLog(@"ReviewThreadViewController dealloc");
-    self.rootPost = nil;
-    
-    [doneButton release];
-    [super dealloc];
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 @end

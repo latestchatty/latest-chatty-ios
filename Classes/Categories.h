@@ -18,11 +18,15 @@
 
 // Common colors
 + (UIColor *)lcAuthorColor;
-+ (UIColor *)lcBlueColor;
 + (UIColor *)lcLightGrayTextColor;
 + (UIColor *)lcDarkGrayTextColor;
 + (UIColor *)lcTextShadowColor;
 + (UIColor *)lcOverlayColor;
++ (UIColor *)lcBlueColor;
++ (UIColor *)lcBlueColorHighlight;
++ (UIColor *)lcBlueParticipantColor;
++ (UIColor *)lcBarTintColor;
++ (UIColor *)lcTopStrokeColor;
 
 // Table cell colors
 + (UIColor *)lcCellNormalColor;
@@ -39,10 +43,8 @@
 + (UIColor *)lcTableBackgroundDarkColor;
 + (UIColor *)lcRepliesTableBackgroundColor;
 + (UIColor *)lcRepliesTableBackgroundDarkColor;
-+ (UIColor *)lcPullToRefreshBackgroundColor;
 
 // Post expiration progress colors
-+ (UIColor *)lcExpiredColor;
 + (UIColor *)lcExpirationOnTopicColor;
 + (UIColor *)lcExpirationInformativeColor;
 + (UIColor *)lcExpirationOffTopicColor;
@@ -75,28 +77,10 @@
 
 + (NSDictionary *)titleTextAttributesDictionary;
 + (NSDictionary *)whiteTextAttributesDictionary;
++ (NSDictionary *)blueTextAttributesDictionary;
 + (NSDictionary *)grayTextAttributesDictionary;
 + (NSDictionary *)textShadowAttributesDictionary;
 
-@end
-
-@interface UIImage(ImageAdditions)
-
-// Bar backgrounds
-+ (UIImage *)navbarBgImage;
-+ (UIImage *)navbarBgLandscapeImage;
-+ (UIImage *)toolbarBgImage;
-
-// Navbar buttons
-+ (UIImage *)backButtonImage;
-+ (UIImage *)backButtonHighlightImage;
-+ (UIImage *)backButtonLandscapeImage;
-+ (UIImage *)backButtonHighlightLandscapeImage;
-+ (UIImage *)barButtonNormalImage;
-+ (UIImage *)barButtonNormalHighlightImage;
-+ (UIImage *)barButtonNormalLandscapeImage;
-+ (UIImage *)barButtonNormalHighlightLandscapeImage;
-+ (UIImage *)barButtonDoneImage;
-+ (UIImage *)barButtonDoneLandscapeImage;
++ (NSDictionary *)blueHighlightTextAttributesDictionary;
 
 @end

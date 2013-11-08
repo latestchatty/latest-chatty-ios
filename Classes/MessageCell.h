@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 4/11/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "TableCellFromNib.h"
@@ -19,9 +19,9 @@
   IBOutlet UIView  *newStripe;
 }
 
-@property (retain) Message *message;
-@property (nonatomic, retain) UILabel *subjectLabel;
-@property (nonatomic, retain) UILabel *dateLabel;
-@property (nonatomic, retain) UILabel *previewLabel;
+@property (strong) Message *message;
+@property (nonatomic, strong) UILabel *subjectLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *previewLabel;
 
 @end

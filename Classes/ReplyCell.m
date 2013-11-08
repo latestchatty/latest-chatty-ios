@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/24/09.
-//    Copyright 2009 __MyCompanyName__. All rights reserved.
+//    Copyright 2009. All rights reserved.
 //
 
 #import "ReplyCell.h"
@@ -19,6 +19,9 @@
 - (id)init {
     self = [super initWithNibName:@"ReplyCell" bundle:nil];
     self.isThreadStarter = NO;
+    
+    self.backgroundColor = [UIColor clearColor];
+    
     return self;
 }
 
@@ -54,15 +57,6 @@
 //        grayBullet.alpha = 1.0 - (0.2 * post.timeLevel);
 //    }
     
-    /* RGB values
-     0  255,255,255
-     1  218,225,229
-     2  194,200,204
-     3  183,187,189
-     4  157,163,166
-     >5 150,155,158
-     */
-    
     // Set preview text label color by reply order
     // Top 5 most recent posts increase in white level until fully white with the most recent reply
     // Modify alpha of non-participant bullet to match the preview text color
@@ -70,32 +64,32 @@
         case 0:
             grayBullet.alpha = 1.0;
             // Set latest to bold
-            preview.font = [UIFont boldSystemFontOfSize:14];
+            preview.font = [UIFont boldSystemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor whiteColor];
             break;
         case 1:
             grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
-            preview.font = [UIFont systemFontOfSize:14];
+            preview.font = [UIFont systemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor lcReplyLevel1Color];
             break;
         case 2:
             grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
-            preview.font = [UIFont systemFontOfSize:14];
+            preview.font = [UIFont systemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor lcReplyLevel2Color];
             break;
         case 3:
             grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
-            preview.font = [UIFont systemFontOfSize:14];
+            preview.font = [UIFont systemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor lcReplyLevel3Color];
             break;
         case 4:
             grayBullet.alpha = 1.0 - (0.15 * post.timeLevel);
-            preview.font = [UIFont systemFontOfSize:14];
+            preview.font = [UIFont systemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor lcReplyLevel4Color];
             break;            
         default:
             grayBullet.alpha = 0.25;
-            preview.font = [UIFont systemFontOfSize:14];
+            preview.font = [UIFont systemFontOfSize:preview.font.pointSize];
             preview.textColor = [UIColor lcReplyLevel5Color];
             break;
     }
@@ -116,11 +110,12 @@
     categoryStripe.backgroundColor = [post categoryColor];
     categoryStripe.frame = CGRectMake(indentation - 3, categoryStripe.frame.origin.y,
                                       categoryStripe.frame.size.width, categoryStripe.frame.size.height);
-}
-
-- (void)dealloc {
-    self.post = nil;
-    [super dealloc];
+    
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
+//        self.backgroundColor = [UIColor lcRepliesTableBackgroundDarkColor];
+//    } else {
+//        self.backgroundColor = [UIColor lcRepliesTableBackgroundColor];
+//    }
 }
 
 @end

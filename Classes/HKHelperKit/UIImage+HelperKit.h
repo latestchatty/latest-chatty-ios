@@ -11,8 +11,8 @@
 @interface UIImage (HelperKit) <NSCoding>
 
 #pragma mark NSCoding Support
-- (id)initWithCoder:(NSCoder*)decoder;
-- (void)encodeWithCoder:(NSCoder*)encoder;
+//- (id)initWithCoder:(NSCoder*)decoder;
+//- (void)encodeWithCoder:(NSCoder*)encoder;
 
 #pragma mark Image Manipulation
 

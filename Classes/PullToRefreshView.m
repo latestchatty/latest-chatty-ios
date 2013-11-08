@@ -86,7 +86,7 @@
 		lastUpdatedLabel.shadowColor = [UIColor lcTextShadowColor];
 		lastUpdatedLabel.shadowOffset = CGSizeMake(0.0, -1.0);
 		lastUpdatedLabel.backgroundColor = [UIColor clearColor];
-		lastUpdatedLabel.textAlignment = UITextAlignmentCenter;
+		lastUpdatedLabel.textAlignment = NSTextAlignmentCenter;
 		[self addSubview:lastUpdatedLabel];
         
 		statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, self.frame.size.width, 20.0f)];
@@ -96,7 +96,7 @@
 		statusLabel.shadowColor = [UIColor lcTextShadowColor];
 		statusLabel.shadowOffset = CGSizeMake(0.0, -1.0);
 		statusLabel.backgroundColor = [UIColor clearColor];
-		statusLabel.textAlignment = UITextAlignmentCenter;
+		statusLabel.textAlignment = NSTextAlignmentCenter;
 		[self addSubview:statusLabel];
         
 		arrowImage = [[CALayer alloc] init];

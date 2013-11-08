@@ -7,22 +7,21 @@
       <%= stylesheet %>
     </style>
   </head>
-  <body>
-    <div class="wrapper">
-      <div class="date">
-        <a href="http://shacknews.com/onearticle.x/<%= storyId %>">
-          <%= date %>
-        </a>
-      </div>
-      
-      <h1 class="story-title">
-        <%= storyTitle %>
-      </h1>
-      
-      <div class="body story-content">
-        <%= content %>
-      </div>
-      
+  <body id="story">
+      <div class="wrapper">
+          <h1 class="story-title">
+            <%= storyTitle %>
+          </h1>
+          
+          <div class="date">
+              <a href="http://shacknews.com/onearticle.x/<%= storyId %>">
+                  <%= date %>
+              </a>
+          </div>
+          
+          <div class="body story-content">
+            <%= content %>
+          </div>
     </div>
   </body>
 </html>

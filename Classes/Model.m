@@ -3,7 +3,7 @@
 //    LatestChatty2
 //
 //  Created by Alex Wayne on 3/16/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "Model.h"
@@ -21,7 +21,7 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
 #pragma mark Encoding
 
 - (id)initWithCoder:(NSCoder *)coder {
-    [super init];
+    if (!(self = [super init])) return nil;
     modelId = [coder decodeIntForKey:@"modelId"];
     return self;
 }
@@ -33,9 +33,9 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
 #pragma mark Class Helpers
 
 + (NSString *)formatDate:(NSDate *)date; {
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *formatter = [LatestChatty2AppDelegate delegate].formatter;
     //Force the 12hr locale so dates appear on the 24hr guys
-    [formatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease]];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
     [formatter setDateFormat:kDateFormat];
     return [formatter stringFromDate:date];
 }
@@ -43,9 +43,9 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
 + (NSDate *)decodeDate:(NSString *)string {
     if ((id)string == [NSNull null]) return nil;
   
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *formatter = [LatestChatty2AppDelegate delegate].formatter;
     //Force the 12hr locale so dates appear on the 24hr guys    
-    [formatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease]];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
     [formatter setDateFormat:kParseDateFormat];
 
     NSDate *date = [formatter dateFromString:string];
@@ -85,7 +85,7 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
     ModelLoader *loader =    [[ModelLoader alloc] initWithAllObjectsAtURL:[self urlStringWithPath:urlString]
                                                              dataDelegate:(id)self
                                                             modelDelegate:delegate];
-    return [loader autorelease];
+    return loader;
 }
 
 //Patch-E: 10/13/2012, stonedonkey API URL rewriting is broken when paging is needed for search
@@ -94,14 +94,14 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
     ModelLoader *loader =    [[ModelLoader alloc] initWithAllObjectsAtURL:[self urlStringWithPathNoRewrite:urlString]
                                                              dataDelegate:(id)self
                                                             modelDelegate:delegate];
-    return [loader autorelease];
+    return loader;
 }
 
 + (ModelLoader *)loadObjectFromUrl:(NSString *)urlString delegate:(id<ModelLoadingDelegate>)delegate {
     ModelLoader *loader =    [[ModelLoader alloc] initWithObjectAtURL:[self urlStringWithPath:urlString]
                                                          dataDelegate:(id)self
                                                         modelDelegate:delegate];
-    return [loader autorelease];
+    return loader;
 }
 
 
@@ -118,20 +118,19 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
         if ([dictionary isKindOfClass:[NSDictionary class]]) {
             Model *model = [[self alloc] initWithDictionary:dictionary];
             [models addObject:model];
-            [model release];
         }
     }
     return models;
 }
 
 + (id)didFinishLoadingData:(id)dataObject {
-    return [[[self alloc] initWithDictionary:dataObject] autorelease];
+    return [[self alloc] initWithDictionary:dataObject];
 }
 
 #pragma mark Model Initializer
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
-    [super init];
+    if (!(self = [super init])) return nil;
     modelId = [[dictionary objectForKey:@"id"] intValue];
     return self;
 }

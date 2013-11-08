@@ -351,6 +351,11 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 - (id)initWithCenterViewController:(UIViewController*)centerController leftViewController:(UIViewController*)leftController {
     if ((self = [self initWithCenterViewController:centerController])) {
         self.leftController = leftController;
+        self.topBar = [UIView viewWithFrame:CGRectMake(0, 0, 320, 20)];
+        [self.topBar setBackgroundColor:[UIColor blackColor]];
+        [self.topBar setAlpha:0.0];
+        [self.topBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        [self.view addSubview:self.topBar];
     }
     return self;
 }
@@ -1231,6 +1236,9 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 
     if ([self isSideClosed:viewDeckSide]) {
         [self performDelegate:@selector(viewDeckController:willOpenViewSide:animated:) side:viewDeckSide animated:animated];
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.topBar setAlpha:1.0];
+        }];
     }
 }
 
@@ -1249,6 +1257,9 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 
     if (![self isSideClosed:viewDeckSide]) {
         [self performDelegate:@selector(viewDeckController:willCloseViewSide:animated:) side:viewDeckSide animated:animated];
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.topBar setAlpha:0.0];
+        }];
     }
 }
 
@@ -1627,7 +1638,8 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (BOOL)toggleLeftViewAnimated:(BOOL)animated completion:(IIViewDeckControllerBlock)completed {
-    if ([self isSideClosed:IIViewDeckLeftSide]) 
+    [self.view bringSubviewToFront:self.topBar];
+    if ([self isSideClosed:IIViewDeckLeftSide])
         return [self openLeftViewAnimated:animated completion:completed];
     else
         return [self closeLeftViewAnimated:animated completion:completed];
@@ -2922,6 +2934,8 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 
 
 - (void)setCenterController:(UIViewController *)centerController {
+    [self.view bringSubviewToFront:self.topBar];
+    
     if (_centerController == centerController) return;
     
     void(^beforeBlock)(UIViewController* controller) = ^(UIViewController* controller){};
@@ -3134,6 +3148,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 #pragma mark - Shadow
 
 - (void)restoreShadowToSlidingView {
+//    return;
     UIView* shadowedView = self.slidingControllerView;
     if (!shadowedView) return;
     
@@ -3145,6 +3160,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (void)applyShadowToSlidingViewAnimated:(BOOL)animated {
+//    return;
     UIView* shadowedView = self.slidingControllerView;
     if (!shadowedView) return;
     

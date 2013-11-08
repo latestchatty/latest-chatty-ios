@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/25/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "Post.h"
@@ -23,15 +23,15 @@
     IBOutlet UILabel *parentPostAuthor;
 	IBOutlet UILabel *parentPostPreview;
 	IBOutlet UITextView *postContent;
+    IBOutlet UIButton *imageButton;
     IBOutlet UIView *tagView;
     IBOutlet UIView *innerTagView;
+    IBOutlet UIScrollView *innerTagScrollView;
 	
-	IBOutlet UIView* activityView;
-	IBOutlet UILabel* activityText;
-	IBOutlet UIActivityIndicatorView* spinner;
-	IBOutlet UIProgressView* uploadBar;
-    
-    IBOutlet UIButton *imageButton;
+	IBOutlet UIView *activityView;
+	IBOutlet UILabel *activityText;
+	IBOutlet UIActivityIndicatorView *spinner;
+	IBOutlet UIProgressView *uploadBar;
     
     NSRange selection;
     
@@ -39,11 +39,11 @@
 }
 
 @property (assign) NSInteger storyId;
-@property (retain) Post *post;
+@property (strong) Post *post;
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost;
 - (void)makePost;
-- (UIProgressView*)showActivityIndicator:(BOOL)progressViewType;
+- (UIProgressView *)showActivityIndicator:(BOOL)progressViewType;
 
 - (IBAction)showImagePicker;
 - (IBAction)tag:(id)sender;

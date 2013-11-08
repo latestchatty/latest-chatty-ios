@@ -3,7 +3,7 @@
 //  LatestChatty2
 //
 //  Created by Kyle Eli on 4/11/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010. All rights reserved.
 //
 
 #import "ModelLoader.h"
@@ -18,8 +18,8 @@
     NSUInteger loadingPageId;
 }
 
-@property (nonatomic, retain) NSMutableArray *pinnedThreadsToLoad;
-@property (nonatomic, retain) id<ModelLoadingDelegate> loadingFor;
+@property (nonatomic, strong) NSMutableArray *pinnedThreadsToLoad;
+@property (nonatomic, strong) id<ModelLoadingDelegate> loadingFor;
 @property (nonatomic, assign) NSUInteger loadingStoryId;
 
 + (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId for:(id<ModelLoadingDelegate>)delegate;
