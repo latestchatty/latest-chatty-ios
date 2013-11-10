@@ -1,10 +1,13 @@
 latest-chatty-2
 ===============
 
-iOS 7 Conversion Fork
-To be merged back to squeegy's master repo once completed.
+Updated for iOS 7
 
-3.4.14
+4.0
+====
+- 3.4.14 RC submitted to App Store
+
+3.4.14 Release Candidate
 ====
 - Tap status bar in Thread view to scroll replies table to the top
 - Scroll indicators lightened so that scroll position is easier to see on the dark backgrounds
