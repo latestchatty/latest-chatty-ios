@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BrowserViewController">
             <connections>
                 <outlet property="actionButton" destination="26" id="49"/>
                 <outlet property="backButton" destination="24" id="29"/>
+                <outlet property="bottomToolbar" destination="23" id="KLo-Rz-FUR"/>
                 <outlet property="forwardButton" destination="25" id="30"/>
-                <outlet property="mainToolbar" destination="23" id="40"/>
                 <outlet property="view" destination="1" id="20"/>
                 <outlet property="webView" destination="4" id="21"/>
             </connections>
