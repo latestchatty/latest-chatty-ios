@@ -6,6 +6,7 @@ Updated for iOS 7
 4.0.1
 ====
 - Bug fixes for Browser view on iPhone/iPad
+- Bug fix for selection of infinite loading cell in Chatty/Search Results views
 
 4.0
 ====
