@@ -13,7 +13,7 @@
 
 @implementation BrowserViewController
 
-@synthesize request, webView, backButton, forwardButton, mainToolbar, actionButton, bottomToolbar, isShackLOL;
+@synthesize request, webView, backButton, forwardButton, actionButton, bottomToolbar, isShackLOL;
 
 - (id)initWithRequest:(NSURLRequest*)_request {
     self = [super initWithNib];
@@ -60,27 +60,24 @@
         [lolMenuButton setTitleTextAttributes:[NSDictionary blueHighlightTextAttributesDictionary]
                                      forState:UIControlStateDisabled];
         
-//        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//            UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-//            
-//            NSMutableArray *newItems = [self.mainToolbar.items mutableCopy];
-//            [newItems addObject:flexSpace];
-//            [newItems addObject:lolMenuButton];
-//            [self.mainToolbar setItems:newItems animated:YES];
-//        } else {
         self.navigationItem.rightBarButtonItem = lolMenuButton;
-//        }
     }
     
     [webView loadRequest:request];
     
-    // Add pan gesture to detect velocity of panning webview to hide/show bars
-    UIPanGestureRecognizer* panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [self.view addGestureRecognizer:panGesture];
-    panGesture.delegate = self;
-    panGesture.cancelsTouchesInView = NO;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showBars) name:@"ShowBrowserBars" object:nil];
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        // Add pan gesture to detect velocity of panning webview to hide/show bars
+        // only for iPhone
+        UIPanGestureRecognizer* panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+        [self.view addGestureRecognizer:panGesture];
+        panGesture.delegate = self;
+        panGesture.cancelsTouchesInView = NO;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showBars) name:@"ShowBrowserBars" object:nil];
+        
+        [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, self.bottomToolbar.frameHeight, 0)];
+        [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    }
     
     // iOS7
     self.navigationController.navigationBar.translucent = NO;
@@ -123,6 +120,9 @@
         topStrokeFrame.origin.y = -1;
         topStroke.frame = topStrokeFrame;
     }];
+    
+    [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 }
 
 // Show the status bar and navigation bar with the built-in animation method
@@ -140,6 +140,9 @@
         topStrokeFrame.origin.y = 0;
         topStroke.frame = topStrokeFrame;
     }];
+    
+    [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, self.bottomToolbar.frameHeight, 0)];
+    [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, self.bottomToolbar.frameHeight, 0)];
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)sender {
@@ -174,14 +177,6 @@
     backButton.enabled = webView.canGoBack;
     forwardButton.enabled = webView.canGoForward;
 
-//    if (self.navigationItem.leftBarButtonItem != nil) {
-//        [self.navigationItem.leftBarButtonItem setEnabled:YES];
-//    }
-//
-//    if (self.mainToolbar.items.lastObject != nil && isShackLOL) {
-//        [self.mainToolbar.items.lastObject setEnabled:YES];
-//    }
-//
     if (self.navigationItem.rightBarButtonItem != nil && isShackLOL) {
         [self.navigationItem.rightBarButtonItem setEnabled:YES];
     }

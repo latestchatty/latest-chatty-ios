@@ -14,7 +14,6 @@
     UIBarButtonItem *backButton;
     UIBarButtonItem *forwardButton;
 
-    UIToolbar *mainToolbar;
     UIBarButtonItem *actionButton;
     UIToolbar *bottomToolbar;
     BOOL isShackLOL;
@@ -28,7 +27,6 @@
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *backButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *forwardButton;
-@property (nonatomic, strong) IBOutlet UIToolbar *mainToolbar;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *actionButton;
 @property (nonatomic, strong) IBOutlet UIToolbar *bottomToolbar;
 @property (nonatomic, assign) BOOL isShackLOL;
