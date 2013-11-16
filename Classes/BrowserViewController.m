@@ -98,11 +98,31 @@
 //}
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self showBars];
+    [super viewWillDisappear:animated];
+    
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        if ([popoverController isPopoverVisible]) {
+            [popoverController dismissPopoverAnimated:NO];
+        }
+    } else {
+        [self showBars];
+    }
     
     if (webView.isLoading) {
         [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
     }
+    
+    // force webview to stop scrolling if it is when viewWillDisappear is fired
+    for (id subview in webView.subviews){
+        if ([[subview class] isSubclassOfClass: [UIScrollView class]]){
+            [subview setContentOffset:CGPointZero animated:NO];
+        }
+    }
+    
+    // moved here from dealloc, this should be the right way to do this with ARC
+    [webView loadHTMLString:@"" baseURL:nil];
+    [webView setDelegate:nil];
+    [webView stopLoading];
 }
 
 // Hide the status bar and navigation bar with the built-in animation method
@@ -312,10 +332,6 @@
 
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-
-    [webView stopLoading];
-    [webView loadHTMLString:@"" baseURL:nil];
-    webView.delegate = nil;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
