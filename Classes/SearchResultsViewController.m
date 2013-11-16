@@ -203,10 +203,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Post *post = [posts objectAtIndex:indexPath.row];
-    
-    ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:post.modelId];
-    [self.navigationController pushViewController:viewController animated:YES];
+	if (indexPath.row < [posts count]) {
+        Post *post = [posts objectAtIndex:indexPath.row];
+        
+        ThreadViewController *viewController = [[ThreadViewController alloc] initWithThreadId:post.modelId];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 #pragma mark Cleanup
