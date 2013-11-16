@@ -237,6 +237,10 @@
         }
         
 		[super didFinishLoadingAllModels:models otherData:otherData];
+        
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:threadController];
+        }
 	} else {
         if ([self.refreshControl isRefreshing]) {
             [self.refreshControl endRefreshing];
@@ -258,10 +262,6 @@
             [defaults setInteger:newLastRefresh forKey:@"lastRefresh"];
         }
 	}
-    
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:threadController];
-    }
     
     if (self.threads.count == 0) {
         [UIAlertView showSimpleAlertWithTitle:@"LatestChatty"

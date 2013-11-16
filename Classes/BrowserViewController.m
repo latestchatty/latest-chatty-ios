@@ -100,7 +100,13 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    [self showBars];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        if ([popoverController isPopoverVisible]) {
+            [popoverController dismissPopoverAnimated:NO];
+        }
+    } else {
+        [self showBars];
+    }
     
     if (webView.isLoading) {
         [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
