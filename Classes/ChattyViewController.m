@@ -435,10 +435,7 @@
         
         thread.newReplies = 0;
         [[tableView cellForRowAtIndexPath:indexPath] setNeedsLayout];
-        
-    } else {
-        [self loadMorePosts];
-	}
+    }
 }
 
 -(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
