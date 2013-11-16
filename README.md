@@ -3,6 +3,10 @@ latest-chatty-2
 
 Updated for iOS 7
 
+4.0.1
+====
+- Bug fixes for Browser view on iPhone/iPad
+
 4.0
 ====
 - 3.4.14 RC submitted to App Store
