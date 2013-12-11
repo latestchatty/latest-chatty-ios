@@ -685,13 +685,8 @@
                                                cancelButtonTitle:@"Cancel"
                                           destructiveButtonTitle:nil
                                                otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", @"UGH", nil];
-    [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
-//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        [theActionSheet showFromBarButtonItem:tagButton animated:YES];
-//    } else {
     [theActionSheet showInView:self.navigationController.view];
-//    }
 }
 
 - (void)showAuthorActions {
@@ -707,14 +702,8 @@
                                          cancelButtonTitle:@"Cancel"
                                     destructiveButtonTitle:nil
                                          otherButtonTitles:@"Search for Posts", @"Send a Message", nil];
-    [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        // just place the actionsheet in the middle of the screen rather than whatever horrible code would result from trying to position it to the point to the author name inside postView
-        [theActionSheet showInView:postView];
-    } else {
-        [theActionSheet showInView:self.navigationController.view];
-    }
+    [theActionSheet showInView:self.navigationController.view];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -929,9 +918,6 @@
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     // only fire on the intial long press detection
     if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
-        // grab the long press point
-        CGPoint longPressPoint = [gestureRecognizer locationInView:self.tableView];
-        
         // standard action sheet code
         if (theActionSheet) {
             [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
@@ -944,20 +930,8 @@
                                              cancelButtonTitle:@"Cancel"
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
-        [theActionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            // make an rect out of the long press point and another point offset by 1 in both directions
-            CGRect rowRect = CGRectMake(MIN(longPressPoint.x, longPressPoint.x+1),
-                                        MIN(longPressPoint.y, longPressPoint.y+1),
-                                        fabs(longPressPoint.x - longPressPoint.x+1),
-                                        fabs(longPressPoint.y - longPressPoint.y+1));
-            // popover the action sheet from that rect in the table view
-            [theActionSheet showFromRect:rowRect inView:self.tableView animated:YES];
-        } else {
-            // show standard style action sheet on iPhone
-            [theActionSheet showInView:self.navigationController.view];
-        }
+        [theActionSheet showInView:self.navigationController.view];
     }
 }
 
