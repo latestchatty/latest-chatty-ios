@@ -422,7 +422,7 @@
 #pragma mark Actions
 
 - (void)postSuccess {
-	self.navigationController.view.userInteractionEnabled = YES;
+	//self.navigationController.view.userInteractionEnabled = YES;
 	ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
 	[lastController refresh:self];
 	[self.navigationController popViewControllerAnimated:YES];
@@ -431,7 +431,7 @@
 }
 
 - (void)postFailure {
-	self.navigationController.view.userInteractionEnabled = YES;
+	//self.navigationController.view.userInteractionEnabled = YES;
 //    [UIAlertView showSimpleAlertWithTitle:@"Post Failure"
 //                                  message:@"There seems to have been an issue making the post. Try again!"
 //                              buttonTitle:@"Bummer"];
@@ -440,7 +440,7 @@
 
 - (void)makePost {
     @autoreleasepool {
-		self.navigationController.view.userInteractionEnabled = NO;
+		//self.navigationController.view.userInteractionEnabled = NO;
     
         //Patch-E: wrapped existing code in GCD blocks to avoid UIKit on background thread issues that were causing status/nav bar flashing and the console warning:
         //"Obtaining the web lock from a thread other than the main thread or the web thread. UIKit should not be called from a secondary thread."
@@ -463,7 +463,7 @@
 }
 
 - (void)sendPost {
-//    [postContent becomeFirstResponder];
+    [postContent becomeFirstResponder];
     [postContent resignFirstResponder];
     
     postingWarningAlertView = YES;

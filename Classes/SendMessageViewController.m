@@ -172,7 +172,7 @@
 - (void)sendSuccess {
     [UIAlertView showSimpleAlertWithTitle:@"Message Sent!" message:nil];
     
-	self.navigationController.view.userInteractionEnabled = YES;
+	//self.navigationController.view.userInteractionEnabled = YES;
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [self.recipient setText:@""];
@@ -197,13 +197,13 @@
 }
 
 - (void)sendFailure {
-	self.navigationController.view.userInteractionEnabled = YES;
+	//self.navigationController.view.userInteractionEnabled = YES;
 	[self hideActivityIndicator];
 }
 
 - (void)makeMessage {
     @autoreleasepool {
-        self.navigationController.view.userInteractionEnabled = NO;
+        //self.navigationController.view.userInteractionEnabled = NO;
         
         // See [ComposeViewController makePost] for explanation, same GCD blocks used there
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -222,7 +222,7 @@
 }
 
 - (void)sendMessage {
-//    [body becomeFirstResponder];
+    [body becomeFirstResponder];
     [body resignFirstResponder];
     
     postingWarningAlertView = YES;
