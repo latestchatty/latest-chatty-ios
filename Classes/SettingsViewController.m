@@ -607,6 +607,8 @@
 
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    tableView.delegate = nil;
 }
 
 @end

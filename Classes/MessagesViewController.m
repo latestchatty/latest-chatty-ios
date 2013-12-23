@@ -87,6 +87,13 @@
 //    }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [loader cancel];
+    [self.refreshControl endRefreshing];
+}
+
 - (NSUInteger)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
@@ -200,7 +207,16 @@
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];    
+    [loader cancel];
+    [self.refreshControl endRefreshing];
+    
+	if ([LatestChatty2AppDelegate delegate] != nil && [LatestChatty2AppDelegate delegate].contentNavigationController != nil) {
+        [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = nil;
+    }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    tableView.delegate = nil;
 }
 
 @end
