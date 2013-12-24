@@ -169,9 +169,12 @@
     
     NSLog(@"Message Count saved: %i", messageCount);
     
-    // redraw the messages row to update the badge count, and re-set the selected index (will keep messages row selected it the user is in the messages section)
+    // redraw the messages row to update the badge count
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-    [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+    // re-set the selected index (will keep messages row selected if the user is in the messages section)
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
     
     messageLoader = nil;
 }
@@ -306,9 +309,12 @@
             modal = YES;
             viewController = [SettingsViewController controllerWithNib];
 
-            // use the saved index path to re-select the previous index since settings selection should not persist as a modal
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-            [self.tableView selectRowAtIndexPath:self.selectedIndex animated:YES scrollPosition:UITableViewScrollPositionNone];
+            
+            // use the saved index path to re-select the previous index since settings selection should not persist as a modal
+            if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                [self.tableView selectRowAtIndexPath:self.selectedIndex animated:YES scrollPosition:UITableViewScrollPositionNone];
+            }
             
             break;
             

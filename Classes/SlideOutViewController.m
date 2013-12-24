@@ -25,6 +25,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(composeAppeared:) name:@"ComposeAppeared" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(composeDisappeared:) name:@"ComposeDisappeared" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchLoaded:) name:@"SearchLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lolLoaded:) name:@"LOLLoaded" object:nil];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -36,6 +37,11 @@
 }
 
 - (void)searchLoaded:(NSObject*)sender {
+    if(isCollapsed) return;
+    [self tabTouched];
+}
+
+- (void)lolLoaded:(NSObject*)sender {
     if(isCollapsed) return;
     [self tabTouched];
 }

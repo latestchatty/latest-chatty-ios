@@ -49,15 +49,20 @@
     //open the url property in chrome
     NSString *absoluteURLString = [self.url absoluteString];
     NSRange rangeForScheme = [absoluteURLString rangeOfString:@":"];
-    NSString *urlWithNoScheme =  [absoluteURLString substringFromIndex:rangeForScheme.location];
-    NSString *chromeURLString = [@"googlechrome" stringByAppendingString:urlWithNoScheme];
-    NSURL *chromeURL = [NSURL URLWithString:chromeURLString];
+    
+    //ensure substring creation from index doesn't go out of bounds
+    if (absoluteURLString.length > rangeForScheme.location) {
+        NSString *urlWithNoScheme =  [absoluteURLString substringFromIndex:rangeForScheme.location];
+        NSString *chromeURLString = [@"googlechrome" stringByAppendingString:urlWithNoScheme];
+        NSURL *chromeURL = [NSURL URLWithString:chromeURLString];
+        
+        urlWithNoScheme = nil;
+        chromeURLString = nil;
+        
+        [[UIApplication sharedApplication] openURL:chromeURL];
+    }
     
     absoluteURLString = nil;
-    urlWithNoScheme = nil;
-    chromeURLString = nil;
-    
-    [[UIApplication sharedApplication] openURL:chromeURL];
     
     [self activityDidFinish:YES];
 }

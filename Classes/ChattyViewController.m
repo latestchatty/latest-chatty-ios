@@ -150,6 +150,7 @@
     [super viewWillDisappear:animated];
     
     [loader cancel];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -458,6 +459,7 @@
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
     [loader cancel];
+    [self.refreshControl endRefreshing];
     
 	if ([LatestChatty2AppDelegate delegate] != nil && [LatestChatty2AppDelegate delegate].contentNavigationController != nil) {
         [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = nil;
@@ -466,6 +468,8 @@
     indexPathToSelect = nil;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    tableView.delegate = nil;
 }
 
 @end

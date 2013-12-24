@@ -74,6 +74,13 @@
     viewDidAppearFinished = YES;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [loader cancel];
+    [self.refreshControl endRefreshing];
+}
+
 - (void)refresh:(id)sender {
     [super refresh:sender];
 
@@ -215,6 +222,15 @@
 
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    [loader cancel];
+    [self.refreshControl endRefreshing];
+    
+	if ([LatestChatty2AppDelegate delegate] != nil && [LatestChatty2AppDelegate delegate].contentNavigationController != nil) {
+        [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = nil;
+    }
+    
+    tableView.delegate = nil;
 }
 
 @end

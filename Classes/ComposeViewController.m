@@ -238,7 +238,6 @@
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Camera", @"Library", nil];
-        [dialog setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
 		dialog.destructiveButtonIndex = -1;
         [dialog showInView:self.view];
 	} else {
@@ -423,7 +422,7 @@
 #pragma mark Actions
 
 - (void)postSuccess {
-	self.navigationController.view.userInteractionEnabled = YES;
+	//self.navigationController.view.userInteractionEnabled = YES;
 	ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
 	[lastController refresh:self];
 	[self.navigationController popViewControllerAnimated:YES];
@@ -432,7 +431,7 @@
 }
 
 - (void)postFailure {
-	self.navigationController.view.userInteractionEnabled = YES;
+	//self.navigationController.view.userInteractionEnabled = YES;
 //    [UIAlertView showSimpleAlertWithTitle:@"Post Failure"
 //                                  message:@"There seems to have been an issue making the post. Try again!"
 //                              buttonTitle:@"Bummer"];
@@ -441,30 +440,30 @@
 
 - (void)makePost {
     @autoreleasepool {
-		self.navigationController.view.userInteractionEnabled = NO;
+		//self.navigationController.view.userInteractionEnabled = NO;
     
-    //Patch-E: wrapped existing code in GCD blocks to avoid UIKit on background thread issues that were causing status/nav bar flashing and the console warning:
-    //"Obtaining the web lock from a thread other than the main thread or the web thread. UIKit should not be called from a secondary thread."
-    //[Post createWithBody:parentId:storyId:] was the culprit causing the UIKit on background thread issue
-    //this started happening in iOS 6
-    //same change made to [SendMessageViewController makeMessage:]
-    dispatch_async(dispatch_get_main_queue(), ^{
-        BOOL success = [Post createWithBody:postContent.text parentId:post.modelId storyId:storyId];
+        //Patch-E: wrapped existing code in GCD blocks to avoid UIKit on background thread issues that were causing status/nav bar flashing and the console warning:
+        //"Obtaining the web lock from a thread other than the main thread or the web thread. UIKit should not be called from a secondary thread."
+        //[Post createWithBody:parentId:storyId:] was the culprit causing the UIKit on background thread issue
+        //this started happening in iOS 6
+        //same change made to [SendMessageViewController makeMessage:]
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (success) {
-                [self performSelectorOnMainThread:@selector(postSuccess) withObject:nil waitUntilDone:NO];
-            } else {
-                [self performSelectorOnMainThread:@selector(postFailure) withObject:nil waitUntilDone:NO];
-            }
+            BOOL success = [Post createWithBody:postContent.text parentId:post.modelId storyId:storyId];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    [self performSelectorOnMainThread:@selector(postSuccess) withObject:nil waitUntilDone:NO];
+                } else {
+                    [self performSelectorOnMainThread:@selector(postFailure) withObject:nil waitUntilDone:NO];
+                }
+            });
         });
-    });
     
 		postingWarningAlertView = NO;
 	}
 }
 
 - (void)sendPost {
-//    [postContent becomeFirstResponder];
+    [postContent becomeFirstResponder];
     [postContent resignFirstResponder];
     
     postingWarningAlertView = YES;

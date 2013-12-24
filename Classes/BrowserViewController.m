@@ -50,6 +50,8 @@
             self.navigationItem.leftBarButtonItem = menuButton;
         }
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LOLLoaded" object:self];
+        
         UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
                                                                           style:UIBarButtonItemStyleDone
                                                                          target:self
