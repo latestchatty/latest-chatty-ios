@@ -61,13 +61,13 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
     
-    if (self.bodyString) {
-        [self.body becomeFirstResponder];
-    } else if (self.recipientString) {
-        [self.subject becomeFirstResponder];
-    } else {
-        [self.recipient becomeFirstResponder];
-    }
+//    if (self.bodyString) {
+//        [self.body becomeFirstResponder];
+//    } else if (self.recipientString) {
+//        [self.subject becomeFirstResponder];
+//    } else {
+//        [self.recipient becomeFirstResponder];
+//    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -87,6 +87,18 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.bodyString) {
+        [self.body becomeFirstResponder];
+    } else if (self.recipientString) {
+        [self.subject becomeFirstResponder];
+    } else {
+        [self.recipient becomeFirstResponder];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

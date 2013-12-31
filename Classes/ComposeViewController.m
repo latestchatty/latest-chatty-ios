@@ -78,7 +78,7 @@
     UIMenuController *menu = [UIMenuController sharedMenuController];
     menu.menuItems = [NSArray arrayWithObject:[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)]];
     
-    [postContent becomeFirstResponder];
+//    [postContent becomeFirstResponder];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -118,6 +118,8 @@
                  cancelButtonTitle:@"OK"
                  otherButtonTitles:@"Rules", @"Hide", nil];
 	}
+    
+    [postContent becomeFirstResponder];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
