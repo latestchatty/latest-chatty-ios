@@ -453,13 +453,6 @@
     [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
     [[UIToolbar appearance] setBarTintColor:[UIColor lcBarTintColor]];
     
-    // Settings controls appearance
-    [[UISwitch appearance] setOnTintColor:[UIColor lcSwitchOnColor]];
-    [[UISwitch appearance] setTintColor:[UIColor lcSwitchOffColor]];
-    [[UISlider appearance] setThumbTintColor:[UIColor lcSliderThumbColor]];
-    [[UISlider appearance] setMinimumTrackTintColor:[UIColor lcSwitchOnColor]];
-    [[UISlider appearance] setMaximumTrackTintColor:[UIColor lcSliderThumbColor]];
-    
     // progress bar (uploading to chattypics)
     [[UIProgressView appearance] setProgressTintColor:[UIColor lcSwitchOnColor]];
     [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderThumbColor]];

@@ -138,6 +138,10 @@
 	UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
 	toggle.on = [[NSUserDefaults standardUserDefaults] boolForKey:key];
     
+    // moved appearance proxy settings from app delegate to directly on the controls
+    [toggle setOnTintColor:[UIColor lcSwitchOnColor]];
+    [toggle setTintColor:[UIColor lcSwitchOffColor]];
+    
 	return toggle;
 }
 
@@ -147,6 +151,12 @@
     slider.continuous = YES;
     slider.minimumValue = 0.10f;
     slider.minimumValue = 0.10f;
+    
+    // moved appearance proxy settings from app delegate to directly on the controls
+    // slider appearance proxy was affecting volume slider in video player unintentionaly
+    [slider setThumbTintColor:[UIColor lcSliderThumbColor]];
+    [slider setMinimumTrackTintColor:[UIColor lcSwitchOnColor]];
+    [slider setMaximumTrackTintColor:[UIColor lcSliderThumbColor]];
     
 	return slider;
 }
