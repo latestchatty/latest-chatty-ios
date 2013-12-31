@@ -78,7 +78,7 @@ span.jt_spoiler {
 }
 
 span.jt_spoiler a {
-  border-bottom: 1px solid rgb(170,222,244);
+  border-bottom: 1px solid rgba(170,222,244,0.5);
   color: #383838;
 }
 
@@ -167,4 +167,5 @@ div.story-content iframe { max-width: 100%; }
     div.expiration {
         height: 8px;
     }
+    i { font-weight: 300; }
 }
