@@ -114,10 +114,6 @@ div.youtube-widget a {
    Stories
 */
 
-#story, #message {
-  background: transparent;
-}
-
 h1.story-title {
   clear: both;
   color: rgb(116,196,255);
@@ -167,5 +163,5 @@ div.story-content iframe { max-width: 100%; }
     div.expiration {
         height: 8px;
     }
-    i { font-weight: 300; }
+    i { font-weight: 350; }
 }
