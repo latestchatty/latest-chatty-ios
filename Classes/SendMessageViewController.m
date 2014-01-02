@@ -126,11 +126,11 @@
     UIInterfaceOrientation orientation = self.interfaceOrientation;
     
     if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             body.frameHeight = body.frameHeight - kbSize.width;
         }];
     } else {
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             body.frameHeight = body.frameHeight - kbSize.height;
         }];
     }
@@ -147,11 +147,11 @@
     UIInterfaceOrientation orientation = self.interfaceOrientation;
     
     if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             body.frameHeight = body.frameHeight + kbSize.width;
         }];
     } else {
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             body.frameHeight = body.frameHeight + kbSize.height;
         }];
     }
