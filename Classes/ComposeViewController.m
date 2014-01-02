@@ -256,6 +256,7 @@
 		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
+        imagePicker.navigationBar.barStyle = UIBarStyleBlack;
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
