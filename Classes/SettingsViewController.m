@@ -154,9 +154,7 @@
     
     // moved appearance proxy settings from app delegate to directly on the controls
     // slider appearance proxy was affecting volume slider in video player unintentionaly
-    [slider setThumbTintColor:[UIColor lcSliderThumbColor]];
-    [slider setMinimumTrackTintColor:[UIColor lcSwitchOnColor]];
-    [slider setMaximumTrackTintColor:[UIColor lcSliderThumbColor]];
+    [slider setMaximumTrackTintColor:[UIColor lcSliderMaximumColor]];
     
 	return slider;
 }
@@ -336,6 +334,12 @@
     }];
 }
 
+- (void)openDonate {
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForDonate" object:nil];
+    }];
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -360,7 +364,7 @@
 			break;
             
         case 4:
-            return 2;
+            return 3;
             break;
 			
 		default:
@@ -601,6 +605,23 @@
                 
                 cell.accessoryView = button;
                 cell.textLabel.text = @"Licenses:";
+                
+                break;
+			case 2:
+                [button setFrame:CGRectMake(0, 0, 50, 30)];
+                [button setTitle:@"View" forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
+                
+                [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                
+                button.layer.cornerRadius = 5;
+                button.layer.borderWidth = 1;
+                button.layer.borderColor = [UIColor lcBlueColor].CGColor;
+                
+                [button addTarget:self action:@selector(openDonate) forControlEvents:UIControlEventTouchUpInside];
+                
+                cell.accessoryView = button;
+                cell.textLabel.text = @"Donate:";
                 
                 break;
         }
