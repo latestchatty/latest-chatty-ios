@@ -110,9 +110,7 @@
         [self showBars];
     }
     
-    if (webView.isLoading) {
-        [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
-    }
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     // force webview to stop scrolling if it is when viewWillDisappear is fired
     for (id subview in webView.subviews){
@@ -191,11 +189,11 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
-    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     backButton.enabled = webView.canGoBack;
     forwardButton.enabled = webView.canGoForward;
 
@@ -216,7 +214,7 @@
 }
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error {
-    [self webViewDidFinishLoad:webView];
+    [self webViewDidFinishLoad:_webView];
 }
 
 - (IBAction)refreshWebView:(id)sender {
