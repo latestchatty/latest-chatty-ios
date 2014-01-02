@@ -69,7 +69,7 @@
 // Settings colors
 + (UIColor *)lcSwitchOnColor;
 + (UIColor *)lcSwitchOffColor;
-+ (UIColor *)lcSliderThumbColor;
++ (UIColor *)lcSliderMaximumColor;
 
 @end
 

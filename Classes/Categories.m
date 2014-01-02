@@ -295,7 +295,7 @@
     return color;
 }
 
-+ (UIColor *)lcSliderThumbColor {
++ (UIColor *)lcSliderMaximumColor {
     static UIColor *color = nil;
     if (!color) color = [UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0];
     return color;
