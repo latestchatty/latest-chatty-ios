@@ -44,16 +44,29 @@
 	}
     
 	if (modCategory) {
-        NSString *url = [NSString stringWithFormat:@"http://www.shacknews.com/mod_chatty.x?root=%d&post_id=%d&mod_type_id=%@", parentId, postId, modCategory];
-
-		NSMutableURLRequest *request;
-		
+        // fire request to moderate the post
+        NSString *modUrl = [NSString stringWithFormat:@"http://www.shacknews.com/mod_chatty.x?root=%d&post_id=%d&mod_type_id=%@", parentId, postId, modCategory];
+		NSMutableURLRequest *modRequest;
         //NSLog(@"Moderating post with URL: %@", url);
-		request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]
-												cachePolicy:NSURLRequestReloadIgnoringCacheData 
-											timeoutInterval:60];
-        [NSURLConnection connectionWithRequest:request delegate:nil];    
+		modRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:modUrl]
+                                                  cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                              timeoutInterval:60];
+        [NSURLConnection connectionWithRequest:modRequest delegate:nil];
 
+        // fire a request to winchatty to reindex the post
+        NSString *reindexUrl = @"http://winchatty.com/v2/requestReindex";
+        NSMutableURLRequest *reindexRequest;
+        //NSLog(@"Reindexing post with URL: %@", url);
+		reindexRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:reindexUrl]
+                                                      cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                  timeoutInterval:60];
+        [reindexRequest setHTTPMethod:@"POST"];
+        [reindexRequest setHTTPBody:[[NSString stringWithFormat:@"postId=%i", postId] dataUsingEncoding:NSASCIIStringEncoding]];
+        [NSURLConnection connectionWithRequest:reindexRequest delegate:nil];
+
+        // test response bodies
+//        NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:modRequest returningResponse:nil error:nil]];
+//        NSLog(@"rb: %@", responseBody);
 	}
 }
 
