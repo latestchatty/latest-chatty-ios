@@ -1,7 +1,30 @@
 latest-chatty-2
 ===============
 
-Updated for iOS 7
+Updated for iOS 7!
+
+4.1
+====
+- Experimental "Chatty Tags" user setting that attempts to generate attributed strings from thread bodies for use in the main chatty. It's a bit slow and a buggy right now.
+- API server selector picker view in Settings, includes manual entry as well
+- API server defaults to winchatty.com/chatty for new/fresh app installs
+- Mod requests send a reindex request to winchatty regardless of API selection
+- Keyboards fly up after view fully loads now
+- Search segemented control colored gray now
+- Bug fix for opening links in Chrome
+- Bug fix for iPad popovers (fixed bug by removing their use altogether, lol!)
+- Bug fix for shrinking of user names in iPad replies table
+- Bug fix for pull-to-refresh control, will now cancel refreshing when view disappears or app is backgrounded
+- Bug fix for volume slider in videos played through Browser view
+- Potential bug fix for intermittent shack message sending bug
+- ShackLOL on iPad now expands to full screen upon navigation
+- Links inside spoiler tags are now hidden until revealed, with an underline to signify that a link is in the spoiler
+- Reduced weight of iPad italic text, always looked bold + italic previously
+- Image picker for iPad now has a dark gray colored navigation bar rather than light gray
+- Stories and Message viewing now on top of a pure black background
+- Donation button added to Settings view
+- Activity indicator bug fix
+- Badge number bug fix on main menu list items
 
 4.0.1
 ====
