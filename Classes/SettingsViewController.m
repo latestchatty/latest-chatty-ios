@@ -28,9 +28,12 @@
         passwordField.returnKeyType = UIReturnKeyDone;
         
         serverField = [self generateTextFieldWithKey:@"server"];
-        serverField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"shackapi.stonedonkey.com" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
+        serverField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter API Server" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
+        
+        serverPicker = [self generatePickerViewWithKey:@"server"];
+        serverPicker.tintColor = [UIColor darkGrayColor];
         
         picsUsernameField = [self generateTextFieldWithKey:@"picsUsername"];
         picsUsernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Username" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
@@ -106,6 +109,23 @@
     
     // scroll indicator coloring
     [tableView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
+    
+    // two possible api servers are hardcoded into the app along with a manual entry possibility
+    apiServerNames = @[@"Manual",
+                       @"ShackAPI",
+                       @"WinChatty"];
+    apiServerAddresses = @[@"",
+                           @"shackapi.stonedonkey.com",
+                           @"winchatty.com/chatty"];
+    
+    // get the user's saved api server address
+    NSString *userServer = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
+    NSUInteger index = [apiServerAddresses indexOfObject:userServer];
+    // if manually entered API, default the picker to the zero slot (manual)
+    // otherwise, set the picker to the server saved in the "server" user default
+    if (index == NSNotFound) index = 0;
+    [serverPicker selectRow:index inComponent:0 animated:NO];
+    [serverPicker reloadComponent:0];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -157,6 +177,16 @@
     [slider setMaximumTrackTintColor:[UIColor lcSliderMaximumColor]];
     
 	return slider;
+}
+
+- (UIPickerView *)generatePickerViewWithKey:(NSString *)key {
+    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 170, 22)];
+    
+    picker.delegate = self;
+    picker.showsSelectionIndicator = YES;
+    picker.clipsToBounds = YES;
+    
+    return picker;
 }
 
 - (void)resignAndToggle {
@@ -349,7 +379,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
-			return 3;
+			return 4;
 			break;
         case 1:
             return 4;
@@ -429,6 +459,7 @@
     
     [cell setBackgroundColor:[UIColor lcGroupedCellColor]];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell setClipsToBounds: YES];
     
     [cell.textLabel setTextColor:[UIColor lcGroupedCellLabelColor]];
     [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
@@ -448,7 +479,12 @@
 				cell.textLabel.text = @"Password:";
 				break;
 				
-			case 2:
+            case 2:
+                cell.accessoryView = serverPicker;
+                cell.textLabel.text = @"API Selector:";
+                break;
+                
+			case 3:
 				cell.accessoryView = serverField;
 				cell.textLabel.text = @"API Server:";
 				break;
@@ -469,14 +505,14 @@
                 break;
                 
             case 2:
-				cell.accessoryView = picsResizeSwitch;
-				cell.textLabel.text = @"Scale Uploads:";
-				break;
-                
-            case 3:
 				cell.accessoryView = picsQualitySlider;
 				cell.textLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(picsQualitySlider.value*100)];
                 picsQualityLabel = cell.textLabel;
+				break;
+                
+            case 3:
+				cell.accessoryView = picsResizeSwitch;
+				cell.textLabel.text = @"Scale Uploads:";
 				break;
         }
     }
@@ -632,6 +668,34 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	return nil;
+}
+
+#pragma mark UIPickerView delegate methods
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    serverField.text = apiServerAddresses[row];
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return apiServerNames.count;
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    NSString *title = apiServerNames[row];
+    
+    // dumb hack to change the font color within a picker view
+    // create an attributed string and set it in the label after getting a reference to the label for this row
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:16]}];
+    UILabel *label = (UILabel *)view;
+    if (!label) {
+        label = [[UILabel alloc] init];
+        label.attributedText = attributedTitle;
+    }
+    return label;
 }
 
 #pragma mark Cleanup
