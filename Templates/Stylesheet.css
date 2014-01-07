@@ -163,5 +163,6 @@ div.story-content iframe { max-width: 100%; }
     div.expiration {
         height: 8px;
     }
-    i { font-weight: 350; }
+
+    i { font-weight: 300; }
 }
