@@ -119,7 +119,7 @@
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                      @"",                           @"username",
                                      @"",                           @"password",
-                                     @"shackapi.stonedonkey.com",   @"server",
+                                     @"winchatty.com/chatty",       @"server",
                                      [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:YES], @"embedYoutube",
