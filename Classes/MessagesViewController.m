@@ -69,7 +69,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isPresent] || ![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isPresent]) {
-        [UIAlertView showSimpleAlertWithTitle:@"Not Logged In" message:@"Please head back to the main menu and tap \"Settings\" to set your Shacknews.com username and password"];
+        [UIAlertView showSimpleAlertWithTitle:@"Not Logged In"
+                                      message:@"Enter your username and password in Settings."];
         
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -155,9 +156,8 @@
 }
 
 - (void)didFailToLoadModels {
-    [UIAlertView showSimpleAlertWithTitle:@"Error"
-                                  message:@"Could not retrieve your messages."
-                                          @"Check your internet connection, or your username and password in Settings"];
+    [UIAlertView showSimpleAlertWithTitle:@"Latest Chatty"
+                                  message:@"Could not retrieve your messages. Check your internet connection or your server API address in Settings."];
 }
 
 #pragma mark Table view methods

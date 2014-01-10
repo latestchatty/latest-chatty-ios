@@ -106,7 +106,7 @@
     [self.refreshControl endRefreshing];
     
     if (self.stories.count == 0) {
-        [UIAlertView showSimpleAlertWithTitle:@"LatestChatty"
+        [UIAlertView showSimpleAlertWithTitle:@"Latest Chatty"
                                       message:@"There was an error loading stories. Please try again."];
         return;
     }

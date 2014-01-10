@@ -287,8 +287,6 @@
     switch (indexPath.row) {
         case 0:
             viewController = [StoriesViewController controllerWithNib];
-            //[UIAlertView showSimpleAlertWithTitle:@"Sorry" message:@"Stories are disabled for now.  They were broken by the shacknews.com redesign.  Check back soon!"];
-            //[tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
             
         case 1:

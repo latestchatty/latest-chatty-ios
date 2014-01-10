@@ -113,10 +113,10 @@
     
     // Check for invalid data
     if (rootPost.body == nil) {
-        [UIAlertView showSimpleAlertWithTitle:@"Error!"
-                                      message:@"Thread loading failed.    Could not parse the response properly."
-                                  buttonTitle:@"Sad face"];
-        [self.navigationController popViewControllerAnimated:YES];
+        threadId = 0;
+        [UIAlertView showSimpleAlertWithTitle:@"Error"
+                                      message:@"Thread loading failed. Could not parse the response properly."];
+//        [self.navigationController popViewControllerAnimated:YES];
         return;
     }
     
@@ -137,9 +137,11 @@
         [self tableView:tableView didSelectRowAtIndexPath:indexPath];
         
     } else {
+        threadId = 0;
         [UIAlertView showSimpleAlertWithTitle:@"Check your filters"
-                                      message:@"You current filters do not allow to view this thead.    Check the filters in your settings and try again."];
-        [self.navigationController popViewControllerAnimated:YES];
+                                      message:@"Current filters do not allow viewing this thread. Check the set filters in Settings and try again."];
+//        [self.navigationController popViewControllerAnimated:YES];
+        return;
     }
         
     if (postView.hidden) {

@@ -336,22 +336,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)save {
-    [self saveSettings];
-    
-//    [usernameField resignFirstResponder];
-//    [passwordField resignFirstResponder];
-//    [serverField resignFirstResponder];
-//    [picsUsernameField resignFirstResponder];
-//    [picsPasswordField resignFirstResponder];
-    [self.view endEditing:YES];
-    
-    [UIAlertView showSimpleAlertWithTitle:@"Settings"
-                                  message:@"Saved!"];
-    
-    [self.viewDeckController toggleLeftView];
-}
-
 - (void)openCredits {
     [self dismissViewControllerAnimated:YES completion:^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForCredits" object:nil];

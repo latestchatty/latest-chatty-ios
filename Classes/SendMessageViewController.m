@@ -182,7 +182,8 @@
 }
 
 - (void)sendSuccess {
-    [UIAlertView showSimpleAlertWithTitle:@"Message Sent!" message:nil];
+    [UIAlertView showSimpleAlertWithTitle:@"Message Sent!"
+                                  message:nil];
     
 	//self.navigationController.view.userInteractionEnabled = YES;
     

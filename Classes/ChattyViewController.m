@@ -265,8 +265,11 @@
 	}
     
     if (self.threads.count == 0) {
-        [UIAlertView showSimpleAlertWithTitle:@"LatestChatty"
-                                      message:@"There was an error loading the chatty. Please try again."];
+        [UIAlertView showWithTitle:@"Latest Chatty"
+                           message:@"There was an error loading the chatty."
+                          delegate:self
+                 cancelButtonTitle:@"Cancel"
+                 otherButtonTitles:@"Try Again", nil];
         return;
     }
     
@@ -451,6 +454,16 @@
     [loader cancel];
     currentPage++;
     loader = [Post findAllWithStoryId:storyId pageNumber:currentPage delegate:self];
+}
+
+#pragma mark Alert View handling
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    self.title = @"Loading...";
+    
+	if (buttonIndex == 1) {
+        [self refresh:nil];
+	}
 }
 
 #pragma mark Cleanup

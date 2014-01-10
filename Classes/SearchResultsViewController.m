@@ -66,7 +66,8 @@
 // capturing which finishes first and eval'ing that along with 0 results to let either method pop back
 - (void)viewDidAppear:(BOOL)animated {
     if (modelFinished && self.posts.count == 0) {
-        [UIAlertView showSimpleAlertWithTitle:@"Search" message:@"No results found for entered criteria."];
+        [UIAlertView showSimpleAlertWithTitle:@"Search"
+                                      message:@"No results found for entered criteria."];
         [self.navigationController popViewControllerAnimated:YES];
 //        NSLog(@"popping back from viewDidAppear");
     }
@@ -125,7 +126,8 @@
     modelFinished = YES;
     
     if (viewDidAppearFinished && self.posts.count == 0) {
-        [UIAlertView showSimpleAlertWithTitle:@"Search" message:@"No results found for entered criteria."];
+        [UIAlertView showSimpleAlertWithTitle:@"Search"
+                                      message:@"No results found for entered criteria."];
         [self.navigationController popViewControllerAnimated:YES];
 //        NSLog(@"popping back from didFinishLoadingAllModels");
         return;
