@@ -118,11 +118,6 @@
             [subview setContentOffset:CGPointZero animated:NO];
         }
     }
-    
-    // moved here from dealloc, this should be the right way to do this with ARC
-    [webView loadHTMLString:@"" baseURL:nil];
-    [webView setDelegate:nil];
-    [webView stopLoading];
 }
 
 // Hide the status bar and navigation bar with the built-in animation method
@@ -229,6 +224,7 @@
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType {
+    NSLog(@"in hurr");
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
         
@@ -334,6 +330,10 @@
     NSLog(@"%s", __PRETTY_FUNCTION__);
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [webView loadHTMLString:@"" baseURL:nil];
+    [webView setDelegate:nil];
+    [webView stopLoading];
 }
 
 @end
