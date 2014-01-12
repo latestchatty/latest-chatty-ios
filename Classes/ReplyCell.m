@@ -30,6 +30,7 @@
     
     // Set the highlight text color to white
     preview.highlightedTextColor = [UIColor whiteColor];
+    usernameLabel.highlightedTextColor = [UIColor whiteColor];
     
     // Set the cell text
     preview.text = post.preview;
