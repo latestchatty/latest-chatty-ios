@@ -180,7 +180,14 @@
 }
 
 - (UIPickerView *)generatePickerViewWithKey:(NSString *)key {
-    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 170, 22)];
+    CGFloat frameWidth;
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        frameWidth = 220;
+    } else {
+        frameWidth = 170;
+    }
+    
+    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, frameWidth, 22)];
     
     picker.delegate = self;
     picker.showsSelectionIndicator = YES;
