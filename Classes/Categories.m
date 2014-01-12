@@ -58,7 +58,9 @@
 
 + (UIColor *)lcTextShadowColor {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    // text shadows have been removed..
+    // made color fully transparent for now, rather than remove all references to it
+    if (!color) color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
     return color;
 }
 

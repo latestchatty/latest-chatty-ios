@@ -21,7 +21,7 @@ div.author a {
   color: rgb(245,228,157);
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(245,228,157,0.5);
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
+  /*text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);*/
 }
 div.date,
 div.date a {
@@ -31,7 +31,7 @@ div.date a {
   text-decoration: none;
   margin-top: 1px;
   -webkit-tap-highlight-color: rgba(255,255,255,0.5);
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);  
+  /*text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);*/
 }
 div.body {
   color: white;
@@ -120,7 +120,7 @@ h1.story-title {
   font-size: 150%;
   font-weight: 300;
   margin: 0;
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
+  /*text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);*/
 }
 
 div.focalbox {
