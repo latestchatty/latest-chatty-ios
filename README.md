@@ -3,9 +3,18 @@ latest-chatty-2
 
 Updated for iOS 7!
 
-4.1
+4.0.4
 ====
-- Experimental "Chatty Tags" user setting that attempts to generate attributed strings from thread bodies for use in the main chatty. It's a bit slow and a buggy right now.
+- Removed text shadows throughout
+- Revised error messaging/handling
+- Ability to reload chatty via an alert view if it fails to load
+- Username colored blue for current user in replies table on iPad
+- Username colored white when row selected in replies table on iPad
+- API server picker view sized correctly for iPad
+- Bug fix for dealloc of Browser vc
+
+4.0.3
+====
 - API server selector picker view in Settings, includes manual entry as well
 - API server defaults to winchatty.com/chatty for new/fresh app installs
 - Mod requests send a reindex request to winchatty regardless of API selection
