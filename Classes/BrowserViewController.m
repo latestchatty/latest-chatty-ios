@@ -224,7 +224,6 @@
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(@"in hurr");
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
         
