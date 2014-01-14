@@ -12,6 +12,7 @@ Updated for iOS 7!
 - Username colored white when row selected in replies table on iPad
 - API server picker view sized correctly for iPad
 - Bug fix for dealloc of Browser vc
+- One-time reset applied to all users' API server address setting to winchatty
 
 4.0.3
 ====
