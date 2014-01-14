@@ -119,7 +119,7 @@
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                      @"",                           @"username",
                                      @"",                           @"password",
-                                     @"winchatty.com/chatty",       @"server",
+                                     @"winchatty.com/chatty",       @"serverApi",
                                      [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:YES], @"embedYoutube",

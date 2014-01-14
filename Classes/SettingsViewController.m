@@ -27,12 +27,12 @@
         passwordField.secureTextEntry = YES;
         passwordField.returnKeyType = UIReturnKeyDone;
         
-        serverField = [self generateTextFieldWithKey:@"server"];
+        serverField = [self generateTextFieldWithKey:@"serverApi"];
         serverField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter API Server" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
         
-        serverPicker = [self generatePickerViewWithKey:@"server"];
+        serverPicker = [self generatePickerViewWithKey:@"serverApi"];
         serverPicker.tintColor = [UIColor darkGrayColor];
         
         picsUsernameField = [self generateTextFieldWithKey:@"picsUsername"];
@@ -119,10 +119,10 @@
                            @"winchatty.com/chatty"];
     
     // get the user's saved api server address
-    NSString *userServer = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
+    NSString *userServer = [[NSUserDefaults standardUserDefaults] objectForKey:@"serverApi"];
     NSUInteger index = [apiServerAddresses indexOfObject:userServer];
     // if manually entered API, default the picker to the zero slot (manual)
-    // otherwise, set the picker to the server saved in the "server" user default
+    // otherwise, set the picker to the server saved in the "serverApi" user default
     if (index == NSNotFound) index = 0;
     [serverPicker selectRow:index inComponent:0 animated:NO];
     [serverPicker reloadComponent:0];
@@ -324,7 +324,7 @@
 	NSString *serverAddress = serverField.text;
 	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
 	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"/$" withString:@""];
-	[defaults setObject:serverAddress forKey:@"server"];
+	[defaults setObject:serverAddress forKey:@"serverApi"];
 	
 	[defaults setBool:interestingSwitch.on forKey:@"postCategory.informative"];
 	[defaults setBool:offtopicSwitch.on    forKey:@"postCategory.offtopic"];

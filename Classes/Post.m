@@ -242,7 +242,7 @@ static NSMutableDictionary *expirationColorMapping;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
+    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"serverApi"];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/post/", server]]];
     
     // Set request body and HTTP method
