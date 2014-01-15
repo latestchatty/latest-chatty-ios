@@ -21,7 +21,7 @@ div.author a {
   color: rgb(245,228,157);
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(245,228,157,0.5);
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
+  /*text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);*/
 }
 div.date,
 div.date a {
@@ -31,7 +31,7 @@ div.date a {
   text-decoration: none;
   margin-top: 1px;
   -webkit-tap-highlight-color: rgba(255,255,255,0.5);
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);  
+  /*text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);*/
 }
 div.body {
   color: white;
@@ -78,7 +78,7 @@ span.jt_spoiler {
 }
 
 span.jt_spoiler a {
-  border-bottom: 1px solid rgb(170,222,244);
+  border-bottom: 1px solid rgba(170,222,244,0.5);
   color: #383838;
 }
 
@@ -114,17 +114,13 @@ div.youtube-widget a {
    Stories
 */
 
-#story, #message {
-  background: transparent;
-}
-
 h1.story-title {
   clear: both;
   color: rgb(116,196,255);
   font-size: 150%;
   font-weight: 300;
   margin: 0;
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
+  /*text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);*/
 }
 
 div.focalbox {
@@ -167,4 +163,5 @@ div.story-content iframe { max-width: 100%; }
     div.expiration {
         height: 8px;
     }
+
 }

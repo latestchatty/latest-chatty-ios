@@ -242,7 +242,7 @@ static NSMutableDictionary *expirationColorMapping;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
+    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"serverApi"];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/post/", server]]];
     
     // Set request body and HTTP method
@@ -270,8 +270,7 @@ static NSMutableDictionary *expirationColorMapping;
     // Handle login failed
     if ([responseBody isEqualToString:@"error_login_failed"]) {
         [UIAlertView showSimpleAlertWithTitle:@"Login Failed"
-                                      message:@"Check your Username and Password in Settings from the main menu."
-                                  buttonTitle:@"Dang"];
+                                      message:@"Enter your username and password in Settings."];
         return NO;
     }
     
@@ -279,9 +278,8 @@ static NSMutableDictionary *expirationColorMapping;
     else if ([responseBody isMatchedByRegex:@"^error_"]) {
         NSString *msg = [[responseBody stringByReplacingOccurrencesOfString:@"error_" withString:@""]
                          stringByReplacingOccurrencesOfString:@"_" withString:@" "];
-        [UIAlertView showSimpleAlertWithTitle:@"Error!"
-                                      message:[NSString stringWithFormat:@"Post failed:\n%@", msg]
-                                  buttonTitle:@"Dang"];
+        [UIAlertView showSimpleAlertWithTitle:@"Error"
+                                      message:[NSString stringWithFormat:@"Post failed:\n%@", msg]];
         return NO;
     }
     
@@ -292,9 +290,8 @@ static NSMutableDictionary *expirationColorMapping;
     
     // Handle any other error 
     else {
-        [UIAlertView showSimpleAlertWithTitle:@"Error!"
-                                      message:@"Post failed and we don't know why :("
-                                  buttonTitle:@"Dang"];
+        [UIAlertView showSimpleAlertWithTitle:@"Error"
+                                      message:@"Post failed and we don't know why :("];
         return NO;
     }
 }

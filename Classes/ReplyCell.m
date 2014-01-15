@@ -30,6 +30,7 @@
     
     // Set the highlight text color to white
     preview.highlightedTextColor = [UIColor whiteColor];
+    usernameLabel.highlightedTextColor = [UIColor whiteColor];
     
     // Set the cell text
     preview.text = post.preview;
@@ -101,9 +102,11 @@
     if ([post.author.lowercaseString isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"].lowercaseString]) {
         blueBullet.hidden = (post.depth == 0);
         grayBullet.hidden = YES;
+        usernameLabel.textColor = [UIColor lcBlueParticipantColor];
     } else {
         blueBullet.hidden = YES;
         grayBullet.hidden = (post.depth == 0);
+        usernameLabel.textColor = [UIColor lcAuthorColor];
     }
     
     // Set category stripe

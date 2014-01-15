@@ -66,7 +66,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
+    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"serverApi"];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/messages/send/", server]]];
     
     // Set request body and HTTP method
@@ -92,8 +92,7 @@
     // Handle login failed
     if ([responseBody isEqualToString:@"error_login_failed"] || [response statusCode] == 401) {
         [UIAlertView showSimpleAlertWithTitle:@"Login Failed"
-                                      message:@"Check your Username and Password in Settings from the main menu."
-                                  buttonTitle:@"Dang"];
+                                      message:@"Check your username and password in Settings."];
         return NO;
     }
     
@@ -101,9 +100,8 @@
     else if ([responseBody isMatchedByRegex:@"^error_"]) {
         NSString *msg = [[responseBody stringByReplacingOccurrencesOfString:@"error_" withString:@""]
                          stringByReplacingOccurrencesOfString:@"_" withString:@" "];
-        [UIAlertView showSimpleAlertWithTitle:@"Error!"
-                                      message:[NSString stringWithFormat:@"Message send failed:\n%@", msg]
-                                  buttonTitle:@"Dang"];
+        [UIAlertView showSimpleAlertWithTitle:@"Error"
+                                      message:[NSString stringWithFormat:@"Message send failed:\n%@", msg]];
         return NO;
     }
     
@@ -114,9 +112,8 @@
     
     // Handle any other error
     else {
-        [UIAlertView showSimpleAlertWithTitle:@"Error!"
-                                      message:@"Message send failed and we don't know why :("
-                                  buttonTitle:@"Dang"];
+        [UIAlertView showSimpleAlertWithTitle:@"Error"
+                                      message:@"Message send failed and we don't know why :("];
         return NO;
     }
 }

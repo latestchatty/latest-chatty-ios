@@ -8,12 +8,13 @@
 
 #import "Post.h"
 
-@interface SettingsViewController : UIViewController <UITextFieldDelegate> {
+@interface SettingsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate> {
     IBOutlet UITableView *tableView;
   
     UITextField *usernameField;
     UITextField *passwordField;
     UITextField *serverField;
+    UIPickerView *serverPicker;
     
     UITextField *picsUsernameField;
     UITextField *picsPasswordField;
@@ -38,11 +39,16 @@
     UISwitch    *nwsSwitch;
 
     IBOutlet UIBarButtonItem *saveButton;
+    
+    NSArray *apiServerNames;
+    NSArray *apiServerAddresses;
 }
 
 - (IBAction)dismiss:(id)sender;
 
 - (UITextField *)generateTextFieldWithKey:(NSString *)key;
 - (UISwitch *)generateSwitchWithKey:(NSString *)key;
+- (UISlider *)generateSliderWithKey:(NSString *)key;
+- (UIPickerView *)generatePickerViewWithKey:(NSString *)key;
 
 @end

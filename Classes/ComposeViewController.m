@@ -78,7 +78,7 @@
     UIMenuController *menu = [UIMenuController sharedMenuController];
     menu.menuItems = [NSArray arrayWithObject:[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)]];
     
-    [postContent becomeFirstResponder];
+//    [postContent becomeFirstResponder];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -104,20 +104,15 @@
 	[super viewDidAppear:animated];
 	
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isPresent] || ![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isPresent]) {
-        [UIAlertView showSimpleAlertWithTitle:@"Not Logged In" message:@"Please head back to the main menu and tap \"Settings\" to set your Shacknews.com username and password"];
+        [UIAlertView showSimpleAlertWithTitle:@"Not Logged In"
+                                      message:@"Enter your username and password in Settings."];
         
         [postContent becomeFirstResponder];
         [postContent resignFirstResponder];
         [self.navigationController popViewControllerAnimated:YES];
     }
     
-	else if ([[NSUserDefaults standardUserDefaults] boolForKey:@"hideOrientationWarning"] != YES && !activityView) {
-        [UIAlertView showWithTitle:@"Important!"
-                           message:@"This app is just one portal to a much larger community. If you are new here, tap \"Rules\" to read up on what to do and what not to do. Improper conduct may lead to unpleasant experiences and getting banned by community moderators.\n\n Lastly, use the text formatting tags sparingly. Please."
-                          delegate:self
-                 cancelButtonTitle:@"OK"
-                 otherButtonTitles:@"Rules", @"Hide", nil];
-	}
+    [postContent becomeFirstResponder];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -254,6 +249,7 @@
 		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
+        imagePicker.navigationBar.barStyle = UIBarStyleBlack;
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
             popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
@@ -309,8 +305,7 @@
 
 - (void)image:(Image*)image sendFailure:(NSString*)message {
     [UIAlertView showSimpleAlertWithTitle:@"Upload Failed"
-                                  message:@"Sorry but there was an error uploading your photo. Be sure you have set a valid ChattyPics.com username and password."
-                              buttonTitle:@"Oopsie"];
+                                  message:@"There was an error uploading your photo. Be sure you have set a valid ChattyPics.com username and password in Settings."];
 	[self hideActivityIndicator];
 }
 
@@ -432,9 +427,6 @@
 
 - (void)postFailure {
 	//self.navigationController.view.userInteractionEnabled = YES;
-//    [UIAlertView showSimpleAlertWithTitle:@"Post Failure"
-//                                  message:@"There seems to have been an issue making the post. Try again!"
-//                              buttonTitle:@"Bummer"];
 	[self hideActivityIndicator];
 }
 

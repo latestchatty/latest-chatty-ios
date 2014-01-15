@@ -82,6 +82,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForCredits) name:@"PushBrowserForCredits" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForDonate) name:@"PushBrowserForDonate" object:nil];
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
@@ -142,7 +143,19 @@
     } else {
         [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
     }
+}
 
+- (void)pushBrowserForDonate {
+    NSString *urlString = @"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=p.crager@gmail.com&item_name=Latest+Chatty+app+donation&currency_code=USD";
+    UIViewController *viewController =
+    [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+                                             title:@"Donate"
+                                     isForShackLOL:NO];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
+    } else {
+        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
@@ -217,6 +230,7 @@
     switch (indexPath.row) {
         case 0:
             cell.title = @"Stories";
+            [cell setBadgeWithNumber:0];
             break;
             
         case 1:
@@ -234,18 +248,22 @@
             
         case 3:
             cell.title = @"Search";
+            [cell setBadgeWithNumber:0];
             break;
             
         case 4:
             cell.title = @"Shack[lol]";
+            [cell setBadgeWithNumber:0];
             break;
             
         case 5:
             cell.title = @"Settings";
+            [cell setBadgeWithNumber:0];
             break;
             
         case 6:
             cell.title = @"About";
+            [cell setBadgeWithNumber:0];
             break;
             
         default:
@@ -269,8 +287,6 @@
     switch (indexPath.row) {
         case 0:
             viewController = [StoriesViewController controllerWithNib];
-            //[UIAlertView showSimpleAlertWithTitle:@"Sorry" message:@"Stories are disabled for now.  They were broken by the shacknews.com redesign.  Check back soon!"];
-            //[tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
             
         case 1:

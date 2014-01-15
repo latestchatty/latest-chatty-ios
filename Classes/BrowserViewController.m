@@ -110,9 +110,7 @@
         [self showBars];
     }
     
-    if (webView.isLoading) {
-        [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
-    }
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     // force webview to stop scrolling if it is when viewWillDisappear is fired
     for (id subview in webView.subviews){
@@ -120,11 +118,6 @@
             [subview setContentOffset:CGPointZero animated:NO];
         }
     }
-    
-    // moved here from dealloc, this should be the right way to do this with ARC
-    [webView loadHTMLString:@"" baseURL:nil];
-    [webView setDelegate:nil];
-    [webView stopLoading];
 }
 
 // Hide the status bar and navigation bar with the built-in animation method
@@ -191,11 +184,11 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
-    [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     backButton.enabled = webView.canGoBack;
     forwardButton.enabled = webView.canGoForward;
 
@@ -216,7 +209,7 @@
 }
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error {
-    [self webViewDidFinishLoad:webView];
+    [self webViewDidFinishLoad:_webView];
 }
 
 - (IBAction)refreshWebView:(id)sender {
@@ -336,6 +329,10 @@
     NSLog(@"%s", __PRETTY_FUNCTION__);
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [webView loadHTMLString:@"" baseURL:nil];
+    [webView setDelegate:nil];
+    [webView stopLoading];
 }
 
 @end

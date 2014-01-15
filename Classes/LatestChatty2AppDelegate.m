@@ -119,7 +119,7 @@
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                      @"",                           @"username",
                                      @"",                           @"password",
-                                     @"shackapi.stonedonkey.com",   @"server",
+                                     @"winchatty.com/chatty",       @"serverApi",
                                      [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:YES], @"embedYoutube",
@@ -424,17 +424,17 @@
 }
 
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible {
-    static NSInteger NumberOfCallsToSetVisible = 0;
+    static NSInteger numberOfCallsToSetVisible = 0;
     if (setVisible)
-        NumberOfCallsToSetVisible++;
+        numberOfCallsToSetVisible++;
     else
-        NumberOfCallsToSetVisible--;
+        numberOfCallsToSetVisible--;
     
-//    NSLog(@"%i", NumberOfCallsToSetVisible);
-//    NSAssert(NumberOfCallsToSetVisible >= 0, @"Network Activity Indicator was asked to hide more often than shown");
+//    NSLog(@"%i", numberOfCallsToSetVisible);
+//    NSAssert(numberOfCallsToSetVisible >= 0, @"Network Activity Indicator was asked to hide more often than shown");
     
     // display the indicator as long as our static counter is > 0.
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(NumberOfCallsToSetVisible > 0)];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(numberOfCallsToSetVisible > 0)];
 }
 
 #pragma mark - Appearance customizations
@@ -453,16 +453,9 @@
     [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
     [[UIToolbar appearance] setBarTintColor:[UIColor lcBarTintColor]];
     
-    // Settings controls appearance
-    [[UISwitch appearance] setOnTintColor:[UIColor lcSwitchOnColor]];
-    [[UISwitch appearance] setTintColor:[UIColor lcSwitchOffColor]];
-    [[UISlider appearance] setThumbTintColor:[UIColor lcSliderThumbColor]];
-    [[UISlider appearance] setMinimumTrackTintColor:[UIColor lcSwitchOnColor]];
-    [[UISlider appearance] setMaximumTrackTintColor:[UIColor lcSliderThumbColor]];
-    
     // progress bar (uploading to chattypics)
     [[UIProgressView appearance] setProgressTintColor:[UIColor lcSwitchOnColor]];
-    [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderThumbColor]];
+    [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderMaximumColor]];
 }
 
 #pragma Rotation

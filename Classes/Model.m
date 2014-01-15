@@ -62,7 +62,7 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
 }
 
 + (NSString *)host {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"server"];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"serverApi"];
 }
 
 + (NSString *)urlStringWithPath:(NSString *)path {

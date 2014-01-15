@@ -106,15 +106,8 @@
     [self.refreshControl endRefreshing];
     
     if (self.stories.count == 0) {
-        BOOL isWinChatty = [[[NSUserDefaults standardUserDefaults] stringForKey:@"server"] containsString:@"winchatty"];
-        if (isWinChatty) {
-            [UIAlertView showSimpleAlertWithTitle:@"LatestChatty"
-                                          message:@"There was an error loading stories. Stories are currently not supported with the winchatty API."];
-        } else {
-            [UIAlertView showSimpleAlertWithTitle:@"LatestChatty"
-                                          message:@"There was an error loading stories. Please try again."];
-        }
-        
+        [UIAlertView showSimpleAlertWithTitle:@"Latest Chatty"
+                                      message:@"There was an error loading stories. Please try again."];
         return;
     }
     

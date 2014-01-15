@@ -1,7 +1,46 @@
 latest-chatty-2
 ===============
 
-Updated for iOS 7
+Updated for iOS 7!
+
+4.1
+====
+- 4.0.3 RC submitted to App Store
+
+4.0.3 Release Candidate
+====
+- Removed text shadows throughout
+- Revised error messaging/handling
+- Ability to reload chatty via an alert view if it fails to load
+- Username colored blue for current user in replies table on iPad
+- Username colored white when row selected in replies table on iPad
+- API server picker view sized correctly for iPad
+- Bug fix for dealloc of Browser vc
+- One-time reset applied to all users' API server address setting to winchatty
+- Shelfed "Chatty Tags" feature for now
+
+4.0.2
+====
+- API server selector picker view in Settings, includes manual entry as well
+- API server defaults to winchatty.com/chatty for new/fresh app installs
+- Mod requests send a reindex request to winchatty regardless of API selection
+- Keyboards fly up after view fully loads now
+- Search segemented control colored gray now
+- Bug fix for opening links in Chrome
+- Bug fix for iPad popovers (fixed bug by removing their use altogether, lol!)
+- Bug fix for shrinking of user names in iPad replies table
+- Bug fix for pull-to-refresh control, will now cancel refreshing when view disappears or app is backgrounded
+- Bug fix for volume slider in videos played through Browser view
+- Potential bug fix for intermittent shack message sending bug
+- ShackLOL on iPad now expands to full screen upon navigation
+- Links inside spoiler tags are now hidden until revealed, with an underline to signify that a link is in the spoiler
+- Reduced weight of iPad italic text, always looked bold + italic previously
+- Image picker for iPad now has a dark gray colored navigation bar rather than light gray
+- Stories and Message viewing now on top of a pure black background
+- Donation button added to Settings view
+- Activity indicator bug fix
+- Badge number bug fix on main menu list items
+- Experimental "Chatty Tags" feature to create attributed strings from the body of posts when generating the Chatty vc table cells
 
 4.0.1
 ====

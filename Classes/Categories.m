@@ -58,7 +58,9 @@
 
 + (UIColor *)lcTextShadowColor {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    // text shadows have been removed..
+    // made color fully transparent for now, rather than remove all references to it
+    if (!color) color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
     return color;
 }
 
@@ -295,7 +297,7 @@
     return color;
 }
 
-+ (UIColor *)lcSliderThumbColor {
++ (UIColor *)lcSliderMaximumColor {
     static UIColor *color = nil;
     if (!color) color = [UIColor colorWithRed:66.0/255.0 green:67.0/255.0 blue:70.0/255.0 alpha:1.0];
     return color;
