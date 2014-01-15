@@ -3,7 +3,11 @@ latest-chatty-2
 
 Updated for iOS 7!
 
-4.0.4
+4.1
+====
+- 4.0.3 RC submitted to App Store
+
+4.0.3 Release Candidate
 ====
 - Removed text shadows throughout
 - Revised error messaging/handling
@@ -13,8 +17,9 @@ Updated for iOS 7!
 - API server picker view sized correctly for iPad
 - Bug fix for dealloc of Browser vc
 - One-time reset applied to all users' API server address setting to winchatty
+- Shelfed "Chatty Tags" feature for now
 
-4.0.3
+4.0.2
 ====
 - API server selector picker view in Settings, includes manual entry as well
 - API server defaults to winchatty.com/chatty for new/fresh app installs
@@ -35,6 +40,7 @@ Updated for iOS 7!
 - Donation button added to Settings view
 - Activity indicator bug fix
 - Badge number bug fix on main menu list items
+- Experimental "Chatty Tags" feature to create attributed strings from the body of posts when generating the Chatty vc table cells
 
 4.0.1
 ====
