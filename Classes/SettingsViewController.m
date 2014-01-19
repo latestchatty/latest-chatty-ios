@@ -385,7 +385,7 @@
 			break;
             
         case 4:
-            return 3;
+            return 2;
             break;
 			
 		default:
