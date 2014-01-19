@@ -18,6 +18,7 @@ Updated for iOS 7!
 - Bug fix for dealloc of Browser vc
 - One-time reset applied to all users' API server address setting to winchatty
 - Shelfed "Chatty Tags" feature for now
+- Removed Donation button in Settings
 
 4.0.2
 ====
