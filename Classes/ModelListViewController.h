@@ -18,7 +18,6 @@
     IBOutlet UITableView *tableView;
     CGPoint lastOffset;
     AVAudioPlayer *fartSound;
-    SystemSoundID fartSound1;
 }
 
 @property (strong) UITableView *tableView;
