@@ -55,7 +55,7 @@
     }
 }
 
-- (void)setBadgeWithNumber:(int)badgeNumber {
+- (void)setBadgeWithNumber:(NSUInteger)badgeNumber {
     [self.badge setHidden:YES];
     if (badgeNumber <= 0) return;
     
@@ -67,7 +67,7 @@
     [self.badge setFrame:CGRectMake(leftEdge, -5, self.badge.frame.size.width, self.badge.frame.size.height)];
     
     //use autoBadgeSizeWithString to set value in badge after it has been initialized
-    [self.badge autoBadgeSizeWithString:[NSString stringWithFormat:@"%i", badgeNumber]];
+    [self.badge autoBadgeSizeWithString:[NSString stringWithFormat:@"%lu", (unsigned long)badgeNumber]];
     
     //only show if the number is positive
     [self.badge setHidden:NO];

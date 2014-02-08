@@ -21,6 +21,6 @@
 @property (strong, nonatomic) CustomBadge *badge;
 @property (strong, nonatomic) IBOutlet UIImageView *iconImage;
 
-- (void)setBadgeWithNumber:(int)badgeNumber;
+- (void)setBadgeWithNumber:(NSUInteger)badgeNumber;
 
 @end

@@ -27,7 +27,7 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
-    [encoder encodeInt:modelId forKey:@"modelId"];
+    [encoder encodeInteger:modelId forKey:@"modelId"];
 }
 
 #pragma mark Class Helpers

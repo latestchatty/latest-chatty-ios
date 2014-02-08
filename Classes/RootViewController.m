@@ -180,7 +180,7 @@
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     
-    NSLog(@"Message Count saved: %i", messageCount);
+//    NSLog(@"Message Count saved: %i", messageCount);
     
     // redraw the messages row to update the badge count
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];

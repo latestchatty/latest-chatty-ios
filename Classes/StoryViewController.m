@@ -64,7 +64,7 @@
     // Load story
     self.storyLoader = [Story findById:storyId delegate:self];
     
-    NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
+    NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%lu", (unsigned long)story.modelId];
     StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
@@ -103,7 +103,7 @@
     self.title = @"Story";
     
     // Load up web view content
-    NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
+    NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%lu", (unsigned long)story.modelId];
     
     //if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
     //    [content loadRequest:[NSURLRequest requestWithURLString:baseUrlString]];
@@ -113,7 +113,7 @@
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:[Story formatDate:story.date] forKey:@"date"];
-    [htmlTemplate setString:[NSString stringWithFormat:@"%i", story.modelId] forKey:@"storyId"];
+    [htmlTemplate setString:[NSString stringWithFormat:@"%lu", (unsigned long)story.modelId] forKey:@"storyId"];
     [htmlTemplate setString:story.body forKey:@"content"];
     [htmlTemplate setString:story.title forKey:@"storyTitle"];
     
