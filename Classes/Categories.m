@@ -303,6 +303,43 @@
     return color;
 }
 
+// LOL Tag colors
++ (UIColor *)lcLOLColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:255.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:0.75];
+    return color;
+}
+
++ (UIColor *)lcINFColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:0.0/255.0 green:149.0/255.0 blue:223.0/255.0 alpha:0.75];
+    return color;
+}
+
++ (UIColor *)lcUNFColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.75];
+    return color;
+}
+
++ (UIColor *)lcTAGColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:130.0/255.0 green:208.0/255.0 blue:2.0/255.0 alpha:0.75];
+    return color;
+}
+
++ (UIColor *)lcWTFColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:210.0/255.0 green:0.0/255.0 blue:208.0/255.0 alpha:0.75];
+    return color;
+}
+
++ (UIColor *)lcUGHColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:1.0/255.0 green:155.0/255.0 blue:1.0/255.0 alpha:0.75];
+    return color;
+}
+
 @end
 
 @implementation NSDictionary (DictionaryAdditions)

@@ -144,44 +144,15 @@
                                      [NSNumber numberWithBool:NO],  @"darkMode",
                                      [NSNumber numberWithBool:NO],  @"superSecretFartMode",
                                      [NSNumber numberWithBool:YES], @"saveSearches",
+                                     [NSNumber numberWithBool:NO],  @"lolTags",
                                      nil];
     [defaults registerDefaults:defaultSettings];
     
     [Crashlytics setUserName:[defaults stringForKey:@"username"]];
-
-    if ([self isPadDevice]) {
-        [self setupInterfaceForPadWithOptions:launchOptions];
-    } else {
-        [self setupInterfaceForPhoneWithOptions:launchOptions];
-    }
     
-    [window makeKeyAndVisible];
-    
-    // Modified requestBody and request URL for May 2013 Shacknews login changes
-    if([defaults boolForKey:@"modTools"]==YES){
-        //Mods need cookies
-        NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
-        NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
-        //NSString *requestBody = [NSString stringWithFormat:@"email=%@&password=%@&login=login", usernameString, passwordString];
-        NSString *requestBody = [NSString stringWithFormat:@"get_fields%%5B%%5D=result&user-identifier=%@&supplied-pass=%@&remember-login=1", usernameString, passwordString];        
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-
-        //[request setURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
-        [request setURL:[NSURL URLWithString:@"https://www.shacknews.com/account/signin"]];
-        [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-        [NSURLConnection connectionWithRequest:request delegate:nil];
-        
-        // Use for testing login above and to output current cookies for www.shacknews.com
-//        NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
-//        NSLog(@"%@", responseBody);
-//        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"https://www.shacknews.com"]];
-//        for (int i=0;i<cookies.count;i++) {
-//            NSHTTPCookie *cookie = cookies[i];
-//            NSLog(@"%@", cookie.description);
-//        }
-    }
+    // clear the captured date of the last successful lol fetch and fire an asynchronous call to fetch fresh lol counts
+    [defaults removeObjectForKey:@"lolFetchDate"];
+    [self fetchLols];
     
     // Self-clearing the collapsedThreads array based on date of each collapsed thread.
     // Keep threads collapsed only if they haven't expired yet from the chatty.
@@ -193,7 +164,7 @@
     // loop over collapsedThread dictionaries in array
     for (NSDictionary *collapsedThreadDict in collapsedThreads) {
         // build time interval from now to original post date of collapsed thread
-        NSTimeInterval ti = [[collapsedThreadDict objectForKey:@"date" ] timeIntervalSinceNow];
+        NSTimeInterval ti = [[collapsedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
         NSInteger hours = (ti / 3600) * -1;
         
         // if collapsed thread hasn't expired, add dictionary collapsedThreadsToKeep array
@@ -206,7 +177,74 @@
     [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
     [defaults synchronize];
     
+    if ([self isPadDevice]) {
+        [self setupInterfaceForPadWithOptions:launchOptions];
+    } else {
+        [self setupInterfaceForPhoneWithOptions:launchOptions];
+    }
+    
+    [window makeKeyAndVisible];
+    
+    // Modified requestBody and request URL for May 2013 Shacknews login changes
+    if([defaults boolForKey:@"modTools"]==YES) {
+        //Mods need cookies
+        NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
+        NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
+        //NSString *requestBody = [NSString stringWithFormat:@"email=%@&password=%@&login=login", usernameString, passwordString];
+        NSString *requestBody = [NSString stringWithFormat:@"get_fields%%5B%%5D=result&user-identifier=%@&supplied-pass=%@&remember-login=1", usernameString, passwordString];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        
+        //[request setURL:[NSURL URLWithString:@"http://www.shacknews.com"]];
+        [request setURL:[NSURL URLWithString:@"https://www.shacknews.com/account/signin"]];
+        [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+        [NSURLConnection connectionWithRequest:request delegate:nil];
+        
+// Use for testing login above and to output current cookies for www.shacknews.com
+//        NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
+//        NSLog(@"%@", responseBody);
+//        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"https://www.shacknews.com"]];
+//        for (int i=0;i<cookies.count;i++) {
+//            NSHTTPCookie *cookie = cookies[i];
+//            NSLog(@"%@", cookie.description);
+//        }
+    }
+    
     return YES;
+}
+
+- (void)fetchLols {
+   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // jump out if user doesn't have lol tags enabled
+    if (![defaults boolForKey:@"lolTags"]) {
+        return;
+    }
+    
+    // only fetch lols if it's been 5 minutes since the last fetch
+    NSDate *lastLolFetchDate = [defaults objectForKey:@"lolFetchDate"];
+    NSTimeInterval interval = [lastLolFetchDate timeIntervalSinceDate:[NSDate date]];
+    
+    if (interval == 0 || (interval * -1) > 60*5) {
+        // fetch lols asynchronously
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://lol.lmnopc.com/api.php?special=getcounts"]];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   if (!error && data) {
+                                       // parse getcounts JSON into a dictionary
+                                       self.lolCounts = [NSJSONSerialization JSONObjectWithData:data
+                                                                                        options:NSJSONReadingMutableContainers
+                                                                                          error:nil];
+                                       NSLog(@"%lu lols fetched", (unsigned long)self.lolCounts.count);
+                                       
+                                       // stuff successful fetch date into user defaults
+                                       [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
+                                       [defaults synchronize];
+                                   }
+                               }];
+    }
 }
 
 //- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {

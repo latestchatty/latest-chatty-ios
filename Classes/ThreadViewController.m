@@ -41,10 +41,10 @@
     return [NSDictionary dictionaryWithObjectsAndKeys:
             @"Thread", @"type",
             rootPost,    @"rootPost",
-            [NSNumber numberWithInt:storyId],    @"storyId",
-            [NSNumber numberWithInt:threadId], @"threadId",
+            [NSNumber numberWithUnsignedInteger:storyId],    @"storyId",
+            [NSNumber numberWithUnsignedInteger:threadId], @"threadId",
             selectedIndexPath, @"selectedIndexPath",
-            [NSNumber numberWithInt:lastReplyId], @"lastReplyId",
+            [NSNumber numberWithUnsignedInteger:lastReplyId], @"lastReplyId",
             nil];
 }
 
@@ -315,7 +315,7 @@
         } 
     }
     
-    [updatedPinnedThreads addObject:[NSNumber numberWithUnsignedInt:postId]];
+    [updatedPinnedThreads addObject:[NSNumber numberWithUnsignedInteger:postId]];
 
     [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];    
     [defaults synchronize];
@@ -468,7 +468,7 @@
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:[Post formatDate:post.date] forKey:@"date"];
     [htmlTemplate setString:post.author forKey:@"author"];
-    [htmlTemplate setString:[NSString stringWithFormat:@"%i", post.modelId] forKey:@"postId"];
+    [htmlTemplate setString:[NSString stringWithFormat:@"%lu", (unsigned long)post.modelId] forKey:@"postId"];
 
     // set the expiration stripe's background color and size in the HTML template
 //    NSLog(@"%@", [NSString hexFromUIColor:[Post colorForPostExpiration:post.date]]);
@@ -480,7 +480,7 @@
     NSString *body = [self postBodyWithYoutubeWidgets:post.body];
     
     [htmlTemplate setString:body forKey:@"body"];
-    [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%i", rootPost.modelId]]];
+    [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%lu", (unsigned long)rootPost.modelId]]];
 }
 
 -(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -741,9 +741,9 @@
         return 0;
 }
 
-- (int)previousRowByTimeLevel:(int)currentRow {
+- (NSInteger)previousRowByTimeLevel:(int)currentRow {
         Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
-        int minTimeLevel = -1, minTimeLevelPostIndex = 0;
+        NSInteger minTimeLevel = -1, minTimeLevelPostIndex = 0;
         
         for(int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
         {
@@ -766,7 +766,7 @@
         
     NSIndexPath *newIndexPath;
     if (orderByPostDate)
-        newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:oldIndexPath.row] inSection:0];
+        newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
     else if (oldIndexPath.row == 0)
         newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
     else
@@ -782,7 +782,7 @@
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
         
     if (orderByPostDate)
-        newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:oldIndexPath.row] inSection:0];
+        newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
     else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1)
         newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     

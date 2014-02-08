@@ -26,6 +26,7 @@
     UISwitch    *darkModeSwitch;
     UISwitch    *collapseSwitch;
     UISwitch    *landscapeSwitch;
+    UISwitch    *lolTagsSwitch;
     UISwitch    *youtubeSwitch;
     UISwitch    *safariSwitch;
     UISwitch    *chromeSwitch;

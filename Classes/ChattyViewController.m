@@ -61,11 +61,11 @@
 
 - (NSDictionary *)stateDictionary {
 	NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"Chatty", @"type",
-									   [NSNumber numberWithInt:self.storyId], @"storyId",
+									   [NSNumber numberWithUnsignedInteger:self.storyId], @"storyId",
 									   threads, @"threads",
 									   self.title, @"title",
-									   [NSNumber numberWithInt:lastPage], @"lastPage",
-									   [NSNumber numberWithInt:currentPage], @"currentPage", nil];
+									   [NSNumber numberWithUnsignedInteger:lastPage], @"lastPage",
+									   [NSNumber numberWithUnsignedInteger:currentPage], @"currentPage", nil];
 	
 	NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
 	if (selectedIndexPath) [dictionary setObject:selectedIndexPath forKey:@"selectedIndexPath"];
@@ -158,9 +158,15 @@
 		[threadController resetLayout:YES];
 }
 
-- (void)refresh:(id)sender {
+- (void)refresh:(id)sender {    
 	[super refresh:sender];
+    
 	currentPage = 1;
+    
+    if (sender) {
+        // fetch lols if refresh came from UIRefreshControl
+        [[LatestChatty2AppDelegate delegate] fetchLols];   
+    }
 	
 	if (storyId > 0) {
         loader = [Post findAllWithStoryId:self.storyId delegate:self];        
@@ -207,14 +213,14 @@
 	// Filter Posts
 	NSMutableArray *filteredThreads = [NSMutableArray array];
 	for (Post *rootPost in self.threads) {
-		NSString *modelID = [NSString stringWithFormat:@"%d", rootPost.modelId];
+		NSString *modelID = [NSString stringWithFormat:@"%lu", (unsigned long)rootPost.modelId];
 		NSNumber *numPosts = [postHistoryDict objectForKey:modelID];
 		if( numPosts ){
 			rootPost.newReplies = rootPost.replyCount-[numPosts intValue];
 		}
 		else rootPost.newReplies = rootPost.replyCount;
 		
-		[postHistoryDict setObject:[NSNumber numberWithInt:rootPost.replyCount] forKey:modelID];
+		[postHistoryDict setObject:[NSNumber numberWithUnsignedInteger:rootPost.replyCount] forKey:modelID];
         if ([rootPost visible]) {
             [filteredThreads addObject:rootPost];
         }
@@ -393,6 +399,19 @@
 		cell.storyId = storyId;
 		cell.rootPost = [threads objectAtIndex:indexPath.row];
 		
+        NSDictionary *parentLolCounts = [[LatestChatty2AppDelegate delegate].lolCounts objectForKey:[NSString stringWithFormat: @"%lu", (unsigned long)cell.rootPost.modelId]];
+        if (parentLolCounts) {
+            NSDictionary *lolCounts = [parentLolCounts objectForKey:[NSString stringWithFormat: @"%lu", (unsigned long)cell.rootPost.modelId]];
+            if (lolCounts) {
+//                NSLog(@"post %lu has lol counts: %@", (unsigned long)cell.rootPost.modelId, lolCounts);
+                cell.lolCounts = lolCounts;
+            } else {
+                cell.lolCounts = nil;
+            }
+        } else {
+            cell.lolCounts = nil;
+        }
+        
         if (shouldCollapse) {
             // initialize long press gesture for super collapse
             UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];

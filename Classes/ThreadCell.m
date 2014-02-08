@@ -12,10 +12,7 @@
 
 @synthesize storyId;
 @synthesize rootPost;
-
-+ (CGFloat)cellHeight {
-	return 70.0;
-}
+@synthesize lolCounts;
 
 - (id)init {
 	self = [super initWithNibName:@"ThreadCell" bundle:nil];
@@ -35,13 +32,14 @@
     author.highlightedTextColor = [UIColor whiteColor];
     date.highlightedTextColor = [UIColor whiteColor];
     replyCount.highlightedTextColor = [UIColor whiteColor];
+    lolCountsLabel.highlightedTextColor = [UIColor whiteColor];
 	
 	NSString* newPostText = nil;
 	if (rootPost.newReplies) {
-		newPostText = [NSString stringWithFormat:@"+%d", rootPost.newReplies];
-		replyCount.text = [NSString stringWithFormat:@"%i (%@)", rootPost.replyCount, newPostText];
+		newPostText = [NSString stringWithFormat:@"+%ld", (long)rootPost.newReplies];
+		replyCount.text = [NSString stringWithFormat:@"%lu (%@)", (unsigned long)rootPost.replyCount, newPostText];
 	} else {
-        replyCount.text = [NSString stringWithFormat:@"%i", rootPost.replyCount];
+        replyCount.text = [NSString stringWithFormat:@"%lu", (unsigned long)rootPost.replyCount];
     }
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -76,6 +74,49 @@
     
     // Choose which timer icon to show based on post date and participation indication
     timerIcon.image = [Post imageForPostExpiration:rootPost.date withParticipant:foundParticipant];
+    
+    // If lol tags are enabled and lolCounts came in when constructing this cell, parse the counts to make an attributed string
+    if ([defaults boolForKey:@"lolTags"] && lolCounts) {
+        NSMutableAttributedString *tags = [[NSMutableAttributedString alloc] init];
+        for (NSString *key in lolCounts) {
+            NSDictionary *attributes;
+            BOOL customTag = NO;
+            NSString *value = [lolCounts valueForKey:key];
+            
+            // make an attributes dictionary to hold the appropriate background color for the tag
+            if ([key isEqualToString:@"lol"]) {
+                attributes = @{NSBackgroundColorAttributeName:[UIColor lcLOLColor]};
+            } else if ([key isEqualToString:@"inf"]) {
+                attributes = @{NSBackgroundColorAttributeName:[UIColor lcINFColor]};
+            } else if ([key isEqualToString:@"unf"]) {
+                attributes = @{NSBackgroundColorAttributeName:[UIColor lcUNFColor]};
+            } else if ([key isEqualToString:@"tag"]) {
+                attributes = @{NSBackgroundColorAttributeName:[UIColor lcTAGColor]};
+            } else if ([key isEqualToString:@"wtf"]) {
+                attributes = @{NSBackgroundColorAttributeName:[UIColor lcWTFColor]};
+            } else if ([key isEqualToString:@"ugh"]) {
+                attributes = @{NSBackgroundColorAttributeName:[UIColor lcUGHColor]};
+            } else {
+                attributes = nil;
+                customTag = YES;
+            }
+            
+            // ignore custom tags (ie. not the standard tags above) that may come from lol counts data
+            if (!customTag) {
+                // append this tag to the attributed string
+                NSAttributedString *attribTag = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@ x %@ ", key, value] attributes:attributes];
+                [tags appendAttributedString:attribTag];
+                [tags appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+            }
+        }
+        // set the final attributed string to the label
+        lolCountsLabel.attributedText = tags;
+        // push the preview label's frame up/down depending on whether tags are visible
+        preview.frameY = 20.0f;
+    } else {
+        lolCountsLabel.attributedText = nil;
+        preview.frameY = 27.0f;
+    }
 }
 
 - (BOOL)showCount {
