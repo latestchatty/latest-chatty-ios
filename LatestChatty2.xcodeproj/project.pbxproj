@@ -502,6 +502,30 @@
 		CDDAC31C17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDAC2BD17F44E78000FEC8A /* Chatty-Active@2x.png */; };
 		CDDAC31D17F44E78000FEC8A /* Chatty-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDAC2BE17F44E78000FEC8A /* Chatty-Active.png */; };
 		CDDAC31E17F44E78000FEC8A /* Chatty-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDAC2BE17F44E78000FEC8A /* Chatty-Active.png */; };
+		CDDD572418A730D8005E491A /* Post-Indicator-INF.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571818A730D8005E491A /* Post-Indicator-INF.png */; };
+		CDDD572518A730D8005E491A /* Post-Indicator-INF.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571818A730D8005E491A /* Post-Indicator-INF.png */; };
+		CDDD572618A730D8005E491A /* Post-Indicator-INF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571918A730D8005E491A /* Post-Indicator-INF@2x.png */; };
+		CDDD572718A730D8005E491A /* Post-Indicator-INF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571918A730D8005E491A /* Post-Indicator-INF@2x.png */; };
+		CDDD572818A730D8005E491A /* Post-Indicator-LOL.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571A18A730D8005E491A /* Post-Indicator-LOL.png */; };
+		CDDD572918A730D8005E491A /* Post-Indicator-LOL.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571A18A730D8005E491A /* Post-Indicator-LOL.png */; };
+		CDDD572A18A730D8005E491A /* Post-Indicator-LOL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571B18A730D8005E491A /* Post-Indicator-LOL@2x.png */; };
+		CDDD572B18A730D8005E491A /* Post-Indicator-LOL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571B18A730D8005E491A /* Post-Indicator-LOL@2x.png */; };
+		CDDD572C18A730D8005E491A /* Post-Indicator-TAG.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571C18A730D8005E491A /* Post-Indicator-TAG.png */; };
+		CDDD572D18A730D8005E491A /* Post-Indicator-TAG.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571C18A730D8005E491A /* Post-Indicator-TAG.png */; };
+		CDDD572E18A730D8005E491A /* Post-Indicator-TAG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571D18A730D8005E491A /* Post-Indicator-TAG@2x.png */; };
+		CDDD572F18A730D8005E491A /* Post-Indicator-TAG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571D18A730D8005E491A /* Post-Indicator-TAG@2x.png */; };
+		CDDD573018A730D8005E491A /* Post-Indicator-UGH.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571E18A730D8005E491A /* Post-Indicator-UGH.png */; };
+		CDDD573118A730D8005E491A /* Post-Indicator-UGH.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571E18A730D8005E491A /* Post-Indicator-UGH.png */; };
+		CDDD573218A730D8005E491A /* Post-Indicator-UGH@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571F18A730D8005E491A /* Post-Indicator-UGH@2x.png */; };
+		CDDD573318A730D8005E491A /* Post-Indicator-UGH@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD571F18A730D8005E491A /* Post-Indicator-UGH@2x.png */; };
+		CDDD573418A730D8005E491A /* Post-Indicator-UNF.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD572018A730D8005E491A /* Post-Indicator-UNF.png */; };
+		CDDD573518A730D8005E491A /* Post-Indicator-UNF.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD572018A730D8005E491A /* Post-Indicator-UNF.png */; };
+		CDDD573618A730D8005E491A /* Post-Indicator-UNF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD572118A730D8005E491A /* Post-Indicator-UNF@2x.png */; };
+		CDDD573718A730D8005E491A /* Post-Indicator-UNF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD572118A730D8005E491A /* Post-Indicator-UNF@2x.png */; };
+		CDDD573818A730D8005E491A /* Post-Indicator-WTF.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD572218A730D8005E491A /* Post-Indicator-WTF.png */; };
+		CDDD573918A730D8005E491A /* Post-Indicator-WTF.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD572218A730D8005E491A /* Post-Indicator-WTF.png */; };
+		CDDD573A18A730D8005E491A /* Post-Indicator-WTF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD572318A730D8005E491A /* Post-Indicator-WTF@2x.png */; };
+		CDDD573B18A730D8005E491A /* Post-Indicator-WTF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDD572318A730D8005E491A /* Post-Indicator-WTF@2x.png */; };
 		CDF1BDDC175EEDC200D6B1AE /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD7175EEDC200D6B1AE /* IISideController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDF1BDDD175EEDC200D6B1AE /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD7175EEDC200D6B1AE /* IISideController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDF1BDDE175EEDC200D6B1AE /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDD9175EEDC200D6B1AE /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -838,6 +862,18 @@
 		CDDAC2BC17F44E78000FEC8A /* Chatty-Inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Chatty-Inactive.png"; path = "Assets/Chatty-Inactive.png"; sourceTree = "<group>"; };
 		CDDAC2BD17F44E78000FEC8A /* Chatty-Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Chatty-Active@2x.png"; path = "Assets/Chatty-Active@2x.png"; sourceTree = "<group>"; };
 		CDDAC2BE17F44E78000FEC8A /* Chatty-Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Chatty-Active.png"; path = "Assets/Chatty-Active.png"; sourceTree = "<group>"; };
+		CDDD571818A730D8005E491A /* Post-Indicator-INF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-INF.png"; path = "Assets/Post-Indicator-INF.png"; sourceTree = "<group>"; };
+		CDDD571918A730D8005E491A /* Post-Indicator-INF@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-INF@2x.png"; path = "Assets/Post-Indicator-INF@2x.png"; sourceTree = "<group>"; };
+		CDDD571A18A730D8005E491A /* Post-Indicator-LOL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-LOL.png"; path = "Assets/Post-Indicator-LOL.png"; sourceTree = "<group>"; };
+		CDDD571B18A730D8005E491A /* Post-Indicator-LOL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-LOL@2x.png"; path = "Assets/Post-Indicator-LOL@2x.png"; sourceTree = "<group>"; };
+		CDDD571C18A730D8005E491A /* Post-Indicator-TAG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-TAG.png"; path = "Assets/Post-Indicator-TAG.png"; sourceTree = "<group>"; };
+		CDDD571D18A730D8005E491A /* Post-Indicator-TAG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-TAG@2x.png"; path = "Assets/Post-Indicator-TAG@2x.png"; sourceTree = "<group>"; };
+		CDDD571E18A730D8005E491A /* Post-Indicator-UGH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-UGH.png"; path = "Assets/Post-Indicator-UGH.png"; sourceTree = "<group>"; };
+		CDDD571F18A730D8005E491A /* Post-Indicator-UGH@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-UGH@2x.png"; path = "Assets/Post-Indicator-UGH@2x.png"; sourceTree = "<group>"; };
+		CDDD572018A730D8005E491A /* Post-Indicator-UNF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-UNF.png"; path = "Assets/Post-Indicator-UNF.png"; sourceTree = "<group>"; };
+		CDDD572118A730D8005E491A /* Post-Indicator-UNF@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-UNF@2x.png"; path = "Assets/Post-Indicator-UNF@2x.png"; sourceTree = "<group>"; };
+		CDDD572218A730D8005E491A /* Post-Indicator-WTF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-WTF.png"; path = "Assets/Post-Indicator-WTF.png"; sourceTree = "<group>"; };
+		CDDD572318A730D8005E491A /* Post-Indicator-WTF@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-WTF@2x.png"; path = "Assets/Post-Indicator-WTF@2x.png"; sourceTree = "<group>"; };
 		CDDE5BE517DC37AC0036CA42 /* Info beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info beta.plist"; sourceTree = "<group>"; };
 		CDF1BDD6175EEDC200D6B1AE /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
 		CDF1BDD7175EEDC200D6B1AE /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
@@ -1382,6 +1418,18 @@
 				CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */,
 				CDC0E9AA17F6886D007D3738 /* Post-Indicator-Reply.png */,
 				CDC0E9AB17F6886D007D3738 /* Post-Indicator-Reply@2x.png */,
+				CDDD571818A730D8005E491A /* Post-Indicator-INF.png */,
+				CDDD571918A730D8005E491A /* Post-Indicator-INF@2x.png */,
+				CDDD571A18A730D8005E491A /* Post-Indicator-LOL.png */,
+				CDDD571B18A730D8005E491A /* Post-Indicator-LOL@2x.png */,
+				CDDD571C18A730D8005E491A /* Post-Indicator-TAG.png */,
+				CDDD571D18A730D8005E491A /* Post-Indicator-TAG@2x.png */,
+				CDDD571E18A730D8005E491A /* Post-Indicator-UGH.png */,
+				CDDD571F18A730D8005E491A /* Post-Indicator-UGH@2x.png */,
+				CDDD572018A730D8005E491A /* Post-Indicator-UNF.png */,
+				CDDD572118A730D8005E491A /* Post-Indicator-UNF@2x.png */,
+				CDDD572218A730D8005E491A /* Post-Indicator-WTF.png */,
+				CDDD572318A730D8005E491A /* Post-Indicator-WTF@2x.png */,
 				CDC0E9C417F91AEF007D3738 /* Sidebar-bg.png */,
 				CDC0E9C517F91AEF007D3738 /* Sidebar-bg@2x.png */,
 				CD7F2EA517FA705300E7EAE3 /* Web-Next.png */,
@@ -1580,6 +1628,7 @@
 				CDA1FA1E1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */,
 				CD7F2EB117FA705300E7EAE3 /* Web-Previous.png in Resources */,
 				FAA8499A0F78C2B000026446 /* ThreadViewController.xib in Resources */,
+				CDDD573A18A730D8005E491A /* Post-Indicator-WTF@2x.png in Resources */,
 				CD7ADD2017EF19F300B4C886 /* Images.xcassets in Resources */,
 				FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */,
 				FAD29A610F796452006E14A2 /* DropShadow.png in Resources */,
@@ -1588,6 +1637,7 @@
 				CD7ADD1B17EF180E00B4C886 /* StoryCell-iPad.xib in Resources */,
 				CDC0E9C617F91AEF007D3738 /* Sidebar-bg.png in Resources */,
 				CD7F2EB717FA705300E7EAE3 /* Web-Refresh@2x.png in Resources */,
+				CDDD573018A730D8005E491A /* Post-Indicator-UGH.png in Resources */,
 				CD4370FB1803A4E0008D9DCF /* List-Lifespan-75-Participant.png in Resources */,
 				CD7ADD0417EF17FA00B4C886 /* SendMessageViewController-iPad.xib in Resources */,
 				CDDAC2F117F44E78000FEC8A /* Stories-Inactive.png in Resources */,
@@ -1613,6 +1663,7 @@
 				FA9C3ED00F9CEB1E0022A739 /* SearchViewController.xib in Resources */,
 				CDDAC2D917F44E78000FEC8A /* Thread-Toolbar-Refresh@2x.png in Resources */,
 				CDA1FA1A1806498F0036F7B6 /* Menu-Button-Timer@2x.png in Resources */,
+				CDDD573618A730D8005E491A /* Post-Indicator-UNF@2x.png in Resources */,
 				CDDAC2C517F44E78000FEC8A /* Menu-Button-Reply.png in Resources */,
 				CD43710B1803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png in Resources */,
 				FA2ECCC10F9D4FED00912BE4 /* Lock.16.png in Resources */,
@@ -1642,6 +1693,7 @@
 				CD7F2F4717FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png in Resources */,
 				CD7ADD1517EF180E00B4C886 /* MessageCell-iPad.xib in Resources */,
 				CD8BA2B916306A0900ED5C5E /* AppleSafari-Icon.png in Resources */,
+				CDDD572618A730D8005E491A /* Post-Indicator-INF@2x.png in Resources */,
 				CDDAC31117F44E78000FEC8A /* Shack[lol]-Inactive.png in Resources */,
 				CD8BA2BA16306A0900ED5C5E /* AppleSafari-Icon@2x.png in Resources */,
 				CD8BA2BB16306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png in Resources */,
@@ -1649,6 +1701,7 @@
 				CD4370ED1803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png in Resources */,
 				CD8BA2BC16306A0900ED5C5E /* AppleSafari-Icon~ipad.png in Resources */,
 				CD8BA2C316306A9E00ED5C5E /* GoogleChrome-Icon.png in Resources */,
+				CDDD573218A730D8005E491A /* Post-Indicator-UGH@2x.png in Resources */,
 				CDDAC2E317F44E78000FEC8A /* Thread-Toolbar-Mods@2x.png in Resources */,
 				CD8BA2C416306A9E00ED5C5E /* GoogleChrome-Icon@2x.png in Resources */,
 				CD7F2EBB17FA705300E7EAE3 /* Web-Share@2x.png in Resources */,
@@ -1673,20 +1726,24 @@
 				CD43710F1803A4E0008D9DCF /* List-Lifespan-Empty.png in Resources */,
 				CD7ADCF417EF17FA00B4C886 /* ComposeViewController-iPad.xib in Resources */,
 				CD7F2F5917FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */,
+				CDDD573418A730D8005E491A /* Post-Indicator-UNF.png in Resources */,
 				CDDAC30F17F44E78000FEC8A /* Shack[lol]-Inactive@2x.png in Resources */,
 				CD7F2F3B17FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png in Resources */,
 				CD7ADCFC17EF17FA00B4C886 /* ReviewThreadViewController-iPad.xib in Resources */,
 				CD7ADD1917EF180E00B4C886 /* RootCell-iPad.xib in Resources */,
 				CD7F2F4917FE85BE00E7EAE3 /* Keyboard-Normal-Code.png in Resources */,
 				CD4371111803A4E0008D9DCF /* List-Lifespan-Empty@2x.png in Resources */,
+				CDDD572818A730D8005E491A /* Post-Indicator-LOL.png in Resources */,
 				CDA1FA181806498F0036F7B6 /* Menu-Button-Timer.png in Resources */,
 				CD7F2F3917FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */,
 				CDDAC31B17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
 				CD7F2F4D17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
+				CDDD572418A730D8005E491A /* Post-Indicator-INF.png in Resources */,
 				CD7F2EB917FA705300E7EAE3 /* Web-Share.png in Resources */,
 				CD7F2F2F17FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
 				CD7ADD0E17EF17FA00B4C886 /* ThreadViewController-iPad.xib in Resources */,
 				CDDAC2CD17F44E78000FEC8A /* Menu-Button-Compose.png in Resources */,
+				CDDD572A18A730D8005E491A /* Post-Indicator-LOL@2x.png in Resources */,
 				CD7F2EAD17FA705300E7EAE3 /* Web-Next.png in Resources */,
 				CD48681517EB5B430071F3D7 /* Fart4.mp3 in Resources */,
 				CD43CFE61743B7AD00165FF3 /* ComposeViewController.xib in Resources */,
@@ -1695,7 +1752,9 @@
 				CD43CFEA1744809F00165FF3 /* Clear.24.png in Resources */,
 				CD7F2F3717FE85BE00E7EAE3 /* Keyboard-Color-Olive@2x.png in Resources */,
 				CD43CFEC1744809F00165FF3 /* Clear.24@2x.png in Resources */,
+				CDDD572E18A730D8005E491A /* Post-Indicator-TAG@2x.png in Resources */,
 				CDDAC2F917F44E78000FEC8A /* Settings-Inactive.png in Resources */,
+				CDDD573818A730D8005E491A /* Post-Indicator-WTF.png in Resources */,
 				CD205660174540A9003AF4FA /* PinIcon.24.png in Resources */,
 				CD4370EB1803A4E0008D9DCF /* List-Lifespan-25-Participant.png in Resources */,
 				CDDAC2FB17F44E78000FEC8A /* Settings-Active.png in Resources */,
@@ -1724,6 +1783,7 @@
 				CDDAC2E517F44E78000FEC8A /* Thread-Toolbar-Mods.png in Resources */,
 				CD7F2F5717FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png in Resources */,
 				CDDAC31517F44E78000FEC8A /* Shack[lol]-Active.png in Resources */,
+				CDDD572C18A730D8005E491A /* Post-Indicator-TAG.png in Resources */,
 				CDDAC2CB17F44E78000FEC8A /* Menu-Button-Compose@2x.png in Resources */,
 				CDDAC30917F44E78000FEC8A /* Messages-Inactive.png in Resources */,
 				CD7C247B1754674300D90942 /* StoriesViewController.xib in Resources */,
@@ -1775,6 +1835,7 @@
 				CDA1FA1F1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */,
 				CD7F2EB217FA705300E7EAE3 /* Web-Previous.png in Resources */,
 				CDA1175316C1DC6600CE1375 /* ThreadCell.xib in Resources */,
+				CDDD573B18A730D8005E491A /* Post-Indicator-WTF@2x.png in Resources */,
 				CD7ADD0317EF17FA00B4C886 /* SearchViewController-iPad.xib in Resources */,
 				CDA1175916C1DC6600CE1375 /* ThreadViewController.xib in Resources */,
 				CDA1175A16C1DC6600CE1375 /* ReplyCell.xib in Resources */,
@@ -1783,6 +1844,7 @@
 				CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */,
 				CDC0E9C717F91AEF007D3738 /* Sidebar-bg.png in Resources */,
 				CD7F2EB817FA705300E7EAE3 /* Web-Refresh@2x.png in Resources */,
+				CDDD573118A730D8005E491A /* Post-Indicator-UGH.png in Resources */,
 				CD4370FC1803A4E0008D9DCF /* List-Lifespan-75-Participant.png in Resources */,
 				CD48682017EB5B430071F3D7 /* Fart9.mp3 in Resources */,
 				CDDAC2F217F44E78000FEC8A /* Stories-Inactive.png in Resources */,
@@ -1808,6 +1870,7 @@
 				CDA1177916C1DC6600CE1375 /* MessageCell.xib in Resources */,
 				CDDAC2DA17F44E78000FEC8A /* Thread-Toolbar-Refresh@2x.png in Resources */,
 				CDA1FA1B1806498F0036F7B6 /* Menu-Button-Timer@2x.png in Resources */,
+				CDDD573718A730D8005E491A /* Post-Indicator-UNF@2x.png in Resources */,
 				CDDAC2C617F44E78000FEC8A /* Menu-Button-Reply.png in Resources */,
 				CD43710C1803A4E0008D9DCF /* List-Lifespan-Empty-Participant.png in Resources */,
 				CDA1177A16C1DC6600CE1375 /* MessageViewController.xib in Resources */,
@@ -1837,6 +1900,7 @@
 				CD7F2F4817FE85BE00E7EAE3 /* Keyboard-Color-Yellow@2x.png in Resources */,
 				CD7ADD0D17EF17FA00B4C886 /* StoryViewController-iPad.xib in Resources */,
 				CDA117BA16C1DC6600CE1375 /* AppleSafari-Icon.png in Resources */,
+				CDDD572718A730D8005E491A /* Post-Indicator-INF@2x.png in Resources */,
 				CDDAC31217F44E78000FEC8A /* Shack[lol]-Inactive.png in Resources */,
 				CDA117BB16C1DC6600CE1375 /* AppleSafari-Icon@2x.png in Resources */,
 				CDA117BC16C1DC6600CE1375 /* AppleSafari-Icon@2x~ipad.png in Resources */,
@@ -1844,6 +1908,7 @@
 				CD4370EE1803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png in Resources */,
 				CDA117BD16C1DC6600CE1375 /* AppleSafari-Icon~ipad.png in Resources */,
 				CDA117BF16C1DC6600CE1375 /* GoogleChrome-Icon.png in Resources */,
+				CDDD573318A730D8005E491A /* Post-Indicator-UGH@2x.png in Resources */,
 				CDDAC2E417F44E78000FEC8A /* Thread-Toolbar-Mods@2x.png in Resources */,
 				CDA117C016C1DC6600CE1375 /* GoogleChrome-Icon@2x.png in Resources */,
 				CD7F2EBC17FA705300E7EAE3 /* Web-Share@2x.png in Resources */,
@@ -1868,20 +1933,24 @@
 				CD4371101803A4E0008D9DCF /* List-Lifespan-Empty.png in Resources */,
 				CD7F2F5A17FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */,
 				CDDAC31017F44E78000FEC8A /* Shack[lol]-Inactive@2x.png in Resources */,
+				CDDD573518A730D8005E491A /* Post-Indicator-UNF.png in Resources */,
 				CD7F2F3C17FE85BE00E7EAE3 /* Keyboard-Color-Orange@2x.png in Resources */,
 				CD7F2F4A17FE85BE00E7EAE3 /* Keyboard-Normal-Code.png in Resources */,
 				CD7F2F3A17FE85BE00E7EAE3 /* Keyboard-Color-Orange.png in Resources */,
 				CDDAC31C17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
 				CD7F2F4E17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
 				CD4371121803A4E0008D9DCF /* List-Lifespan-Empty@2x.png in Resources */,
+				CDDD572918A730D8005E491A /* Post-Indicator-LOL.png in Resources */,
 				CDA1FA191806498F0036F7B6 /* Menu-Button-Timer.png in Resources */,
 				CD7F2EBA17FA705300E7EAE3 /* Web-Share.png in Resources */,
 				CD7F2F3017FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
 				CDDAC2CE17F44E78000FEC8A /* Menu-Button-Compose.png in Resources */,
+				CDDD572518A730D8005E491A /* Post-Indicator-INF.png in Resources */,
 				CD7ADD0717EF17FA00B4C886 /* SettingsViewController-iPad.xib in Resources */,
 				CD48681C17EB5B430071F3D7 /* Fart7.mp3 in Resources */,
 				CD7F2EAE17FA705300E7EAE3 /* Web-Next.png in Resources */,
 				CD7ADD0B17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */,
+				CDDD572B18A730D8005E491A /* Post-Indicator-LOL@2x.png in Resources */,
 				CD7ADCFB17EF17FA00B4C886 /* NoContentController-iPad.xib in Resources */,
 				CD48681217EB5B430071F3D7 /* Fart2.mp3 in Resources */,
 				CD43CFE71743B7AD00165FF3 /* ComposeViewController.xib in Resources */,
@@ -1890,7 +1959,9 @@
 				CD7ADD1E17EF180E00B4C886 /* ThreadCell-iPad.xib in Resources */,
 				CD7F2F3817FE85BE00E7EAE3 /* Keyboard-Color-Olive@2x.png in Resources */,
 				CD7ADD0517EF17FA00B4C886 /* SendMessageViewController-iPad.xib in Resources */,
+				CDDD572F18A730D8005E491A /* Post-Indicator-TAG@2x.png in Resources */,
 				CDDAC2FA17F44E78000FEC8A /* Settings-Inactive.png in Resources */,
+				CDDD573918A730D8005E491A /* Post-Indicator-WTF.png in Resources */,
 				CD43CFEB1744809F00165FF3 /* Clear.24.png in Resources */,
 				CD4370EC1803A4E0008D9DCF /* List-Lifespan-25-Participant.png in Resources */,
 				CDDAC2FC17F44E78000FEC8A /* Settings-Active.png in Resources */,
@@ -1919,6 +1990,7 @@
 				CD4370F81803A4E0008D9DCF /* List-Lifespan-50.png in Resources */,
 				CDDAC2D217F44E78000FEC8A /* Thread-Toolbar-Timer.png in Resources */,
 				CDDAC31A17F44E78000FEC8A /* Chatty-Inactive.png in Resources */,
+				CDDD572D18A730D8005E491A /* Post-Indicator-TAG.png in Resources */,
 				CDDAC2E617F44E78000FEC8A /* Thread-Toolbar-Mods.png in Resources */,
 				CD7F2F5817FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png in Resources */,
 				CD7ADCF317EF17FA00B4C886 /* ChattyViewController-iPad.xib in Resources */,
