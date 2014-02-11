@@ -13,7 +13,6 @@
 @interface ThreadCell : TableCellFromNib {
 	NSUInteger storyId;
 	Post *rootPost;
-    NSDictionary *lolCounts;
 	
 	IBOutlet UILabel *author;
 	IBOutlet UILabel *date;
@@ -27,6 +26,5 @@
 @property (assign) NSUInteger storyId;
 @property (strong) Post *rootPost;
 @property (assign) BOOL showCount;
-@property (strong) NSDictionary *lolCounts;
 
 @end

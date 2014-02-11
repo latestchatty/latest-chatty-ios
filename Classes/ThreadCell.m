@@ -12,7 +12,6 @@
 
 @synthesize storyId;
 @synthesize rootPost;
-@synthesize lolCounts;
 
 - (id)init {
 	self = [super initWithNibName:@"ThreadCell" bundle:nil];
@@ -76,12 +75,12 @@
     timerIcon.image = [Post imageForPostExpiration:rootPost.date withParticipant:foundParticipant];
     
     // If lol tags are enabled and lolCounts came in when constructing this cell, parse the counts to make an attributed string
-    if ([defaults boolForKey:@"lolTags"] && lolCounts) {
+    if ([defaults boolForKey:@"lolTags"] && rootPost.lolCounts) {
         NSMutableAttributedString *tags = [[NSMutableAttributedString alloc] init];
-        for (NSString *key in lolCounts) {
+        for (NSString *key in rootPost.lolCounts) {
             NSDictionary *attributes;
             BOOL customTag = NO;
-            NSString *value = [lolCounts valueForKey:key];
+            NSString *value = [rootPost.lolCounts valueForKey:key];
             
             // make an attributes dictionary to hold the appropriate background color for the tag
             if ([key isEqualToString:@"lol"]) {

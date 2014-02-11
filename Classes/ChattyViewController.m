@@ -162,17 +162,18 @@
 	[super refresh:sender];
     
 	currentPage = 1;
-    
-    if (sender) {
-        // fetch lols if refresh came from UIRefreshControl
-        [[LatestChatty2AppDelegate delegate] fetchLols];   
-    }
 	
-	if (storyId > 0) {
-        loader = [Post findAllWithStoryId:self.storyId delegate:self];        
-    } else {
-        loader = [Post findAllInLatestChattyWithDelegate:self];
-    }
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        [[LatestChatty2AppDelegate delegate] fetchLols];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (storyId > 0) {
+                loader = [Post findAllWithStoryId:self.storyId delegate:self];
+            } else {
+                loader = [Post findAllInLatestChattyWithDelegate:self];
+            }
+        });
+    });
     
 //    if (storyId > 0) {
 //        loader = [[PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self] retain];        
@@ -181,8 +182,8 @@
 //    }
 }
 
-- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
-	NSUInteger page = [[otherData objectForKey:@"page"] intValue];
+- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {    
+    NSUInteger page = [[otherData objectForKey:@"page"] intValue];
 	self.navigationItem.rightBarButtonItem.enabled = YES;
 	BOOL hasPosts = [models count] > 0;
 	self.navigationItem.rightBarButtonItem.enabled = hasPosts;
@@ -210,7 +211,7 @@
 	NSMutableDictionary* postHistoryDict = [NSMutableDictionary dictionaryWithDictionary:
                                             [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"PostCountHistory"]];
 	
-	// Filter Posts
+	// Filter Posts and apply lol tags
 	NSMutableArray *filteredThreads = [NSMutableArray array];
 	for (Post *rootPost in self.threads) {
 		NSString *modelID = [NSString stringWithFormat:@"%lu", (unsigned long)rootPost.modelId];
@@ -223,6 +224,18 @@
 		[postHistoryDict setObject:[NSNumber numberWithUnsignedInteger:rootPost.replyCount] forKey:modelID];
         if ([rootPost visible]) {
             [filteredThreads addObject:rootPost];
+        }
+        
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"lolTags"]) {
+            // get the lol counts dict for this post and it's replies
+            NSDictionary *rootPostLolCounts = [[LatestChatty2AppDelegate delegate].lolCounts objectForKey:[NSString stringWithFormat: @"%lu", (unsigned long)rootPost.modelId]];
+            if (rootPostLolCounts) {
+                // associate the lol counts to this post
+                NSDictionary *postLolCounts = [rootPostLolCounts objectForKey:[NSString stringWithFormat: @"%lu", (unsigned long)rootPost.modelId]];
+                if (postLolCounts) {
+                    rootPost.lolCounts = postLolCounts;
+                }
+            }
         }
 	}
 	self.threads = filteredThreads;
@@ -398,19 +411,6 @@
         
 		cell.storyId = storyId;
 		cell.rootPost = [threads objectAtIndex:indexPath.row];
-		
-        NSDictionary *parentLolCounts = [[LatestChatty2AppDelegate delegate].lolCounts objectForKey:[NSString stringWithFormat: @"%lu", (unsigned long)cell.rootPost.modelId]];
-        if (parentLolCounts) {
-            NSDictionary *lolCounts = [parentLolCounts objectForKey:[NSString stringWithFormat: @"%lu", (unsigned long)cell.rootPost.modelId]];
-            if (lolCounts) {
-//                NSLog(@"post %lu has lol counts: %@", (unsigned long)cell.rootPost.modelId, lolCounts);
-                cell.lolCounts = lolCounts;
-            } else {
-                cell.lolCounts = nil;
-            }
-        } else {
-            cell.lolCounts = nil;
-        }
         
         if (shouldCollapse) {
             // initialize long press gesture for super collapse

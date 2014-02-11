@@ -23,6 +23,8 @@ static NSMutableDictionary *expirationColorMapping;
 
 @synthesize newReplies;
 
+@synthesize lolCounts;
+
 + (void)initialize {
     categoryColorMapping = [[NSMutableDictionary alloc] init];
     [categoryColorMapping setObject:[UIColor clearColor] forKey:@"ontopic"];

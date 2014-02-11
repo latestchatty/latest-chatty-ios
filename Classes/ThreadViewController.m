@@ -111,6 +111,25 @@
         }
     }
     
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"lolTags"]) {
+        // get the lol counts dict for this post and it's replies
+        NSDictionary *rootPostLolCounts = [[LatestChatty2AppDelegate delegate].lolCounts objectForKey:[NSString stringWithFormat: @"%lu", (unsigned long)rootPost.modelId]];
+        if (rootPostLolCounts) {
+            // iterate over keys for each post in this thread that has been tagged
+            for (NSString *key in rootPostLolCounts) {
+                for (Post *reply in [rootPost repliesArray]) {
+                    // if we found a match, associate the tags dict to this post
+                    if (reply.modelId == [key integerValue]) {
+                        reply.lolCounts = [rootPostLolCounts valueForKey:key];
+                    }
+                }
+            }
+        }
+    }
+    
+    NSLog(@"finished loading");
+    [self.tableView reloadData];
+    
     // Check for invalid data
     if (rootPost.body == nil) {
         threadId = 0;
@@ -476,6 +495,46 @@
 //    NSLog(@"%@", [NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]]);
     [htmlTemplate setString:[NSString rgbaFromUIColor:[Post colorForPostExpiration:post.date withCategory:post.category]] forKey:@"expirationColor"];
     [htmlTemplate setString:[NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]] forKey:@"expirationSize"];
+    
+    // create lol tags for this post if they exist and are enabled
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"lolTags"] && post.lolCounts) {
+        NSMutableString *tags = [[NSMutableString alloc] init];
+        for (NSString *key in post.lolCounts) {
+            BOOL customTag = NO;
+            NSString *value = [post.lolCounts valueForKey:key];
+            
+            // tag to append to the mutable string
+            NSString *tag;
+            
+            // construct a span for the appropriate tag
+            if ([key isEqualToString:@"lol"]) {
+                tag = [NSString stringWithFormat:@"<span class=\"lol\">%@ x %@</span>", key, value];
+            } else if ([key isEqualToString:@"inf"]) {
+                tag = [NSString stringWithFormat:@"<span class=\"inf\">%@ x %@</span>", key, value];
+            } else if ([key isEqualToString:@"unf"]) {
+                tag = [NSString stringWithFormat:@"<span class=\"unf\">%@ x %@</span>", key, value];
+            } else if ([key isEqualToString:@"tag"]) {
+                tag = [NSString stringWithFormat:@"<span class=\"tag\">%@ x %@</span>", key, value];
+            } else if ([key isEqualToString:@"wtf"]) {
+                tag = [NSString stringWithFormat:@"<span class=\"wtf\">%@ x %@</span>", key, value];
+            } else if ([key isEqualToString:@"ugh"]) {
+                tag = [NSString stringWithFormat:@"<span class=\"ugh\">%@ x %@</span>", key, value];
+            } else {
+                customTag = YES;
+            }
+            
+            // ignore custom tags (ie. not the standard tags above) that may come from lol counts data
+            if (!customTag) {
+                // append this tag to the mutable string
+                [tags appendString:tag];
+            }
+        }
+        if (tags) {
+            // if a tag was constructed, place it in the html template
+            [htmlTemplate setString:@"show" forKey:@"tagDisplay"];
+            [htmlTemplate setString:tags forKey:@"tags"];
+        }
+    }
     
     NSString *body = [self postBodyWithYoutubeWidgets:post.body];
     

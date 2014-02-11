@@ -152,7 +152,6 @@
     
     // clear the captured date of the last successful lol fetch and fire an asynchronous call to fetch fresh lol counts
     [defaults removeObjectForKey:@"lolFetchDate"];
-    [self fetchLols];
     
     // Self-clearing the collapsedThreads array based on date of each collapsed thread.
     // Keep threads collapsed only if they haven't expired yet from the chatty.
@@ -215,36 +214,70 @@
 }
 
 - (void)fetchLols {
-   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // jump out if user doesn't have lol tags enabled
     if (![defaults boolForKey:@"lolTags"]) {
         return;
     }
-    
+
     // only fetch lols if it's been 5 minutes since the last fetch
+    NSLog(@"fetching lols...");    
     NSDate *lastLolFetchDate = [defaults objectForKey:@"lolFetchDate"];
     NSTimeInterval interval = [lastLolFetchDate timeIntervalSinceDate:[NSDate date]];
     
     if (interval == 0 || (interval * -1) > 60*5) {
-        // fetch lols asynchronously
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://lol.lmnopc.com/api.php?special=getcounts"]];
-        [NSURLConnection sendAsynchronousRequest:request
-                                           queue:[NSOperationQueue mainQueue]
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   if (!error && data) {
-                                       // parse getcounts JSON into a dictionary
-                                       self.lolCounts = [NSJSONSerialization JSONObjectWithData:data
-                                                                                        options:NSJSONReadingMutableContainers
-                                                                                          error:nil];
-                                       NSLog(@"%lu lols fetched", (unsigned long)self.lolCounts.count);
-                                       
-                                       // stuff successful fetch date into user defaults
-                                       [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
-                                       [defaults synchronize];
-                                   }
-                               }];
+        // fetch lols synchronously with error handling support and timeout support, set to 5 seconds
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://lol.lmnopc.com/api.php?special=getcounts"]
+                                                 cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
+        NSError *requestError;
+        NSURLResponse *urlResponse = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+        if (!data) {
+            // error to get lols
+            if (requestError) {
+                // do we care about the specific error? or fail silently
+            }
+        }
+        else {
+            // Data was received.. continue processing
+            // parse getcounts JSON into a dictionary
+            self.lolCounts = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:nil];
+            NSLog(@"%lu lols fetched", (unsigned long)self.lolCounts.count);
+
+            // stuff successful fetch date into user defaults
+            [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
+            [defaults synchronize];
+        }
+        
+//        // fetch lols synchronously with no error handling support
+//        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://lol.lmnopc.com/api.php?special=getcounts"]];
+//        self.lolCounts = [NSJSONSerialization JSONObjectWithData:data
+//                                                         options:NSJSONReadingMutableContainers
+//                                                           error:nil];
+        
+//        // fetch lols asynchronously
+//        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://lol.lmnopc.com/api.php?special=getcounts"]];
+//        [NSURLConnection sendAsynchronousRequest:request
+//                                           queue:[NSOperationQueue mainQueue]
+//                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//                                   if (!error && data) {
+//                                       // parse getcounts JSON into a dictionary
+//                                       self.lolCounts = [NSJSONSerialization JSONObjectWithData:data
+//                                                                                        options:NSJSONReadingMutableContainers
+//                                                                                          error:nil];
+//                                       NSLog(@"%lu lols fetched", (unsigned long)self.lolCounts.count);
+//                                       
+//                                       // stuff successful fetch date into user defaults
+//                                       [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
+//                                       [defaults synchronize];
+//                                   }
+//                               }];
     }
+    
+    NSLog(@"...done fetching lols");
 }
 
 //- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
