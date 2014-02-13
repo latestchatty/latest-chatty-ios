@@ -25,7 +25,23 @@
 	// Set text labels
 	author.text       = rootPost.author;
 	preview.text      = rootPost.preview;
-	date.text         = [Post formatDate:rootPost.date];
+//	date.text         = [Post formatDate:rootPost.date];
+    NSUInteger desiredComponents = NSYearCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:desiredComponents
+                                                                       fromDate:rootPost.date
+                                                                         toDate:[NSDate date]
+                                                                         options:0];
+    if (dateComponents.year > 0) {
+        date.text = [NSString stringWithFormat:@"%ldyr ago", (long)dateComponents.year];
+    } else if (dateComponents.day > 0) {
+        date.text = [NSString stringWithFormat:@"%ldd ago", (long)dateComponents.day];
+    } else if (dateComponents.hour > 0) {
+        date.text = [NSString stringWithFormat:@"%ldhr %ldm ago", (long)dateComponents.hour, (long)dateComponents.minute];
+    } else if (dateComponents.minute >= 1) {
+        date.text = [NSString stringWithFormat:@"%ldm ago", (long)dateComponents.minute];
+    } else {
+        date.text = [NSString stringWithFormat:@"%lds ago", (long)dateComponents.second];
+    }
     
     // force white text color on highlight
     author.highlightedTextColor = [UIColor whiteColor];
