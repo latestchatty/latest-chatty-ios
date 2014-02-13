@@ -56,8 +56,18 @@
         [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
     }
     
+    // wrapped existing loader logic in a GCD block to wait until the synchronous lol fetch
+    // completes on a global background thread before loading the thread
     if (threadId > 0) {
-        loader = [Post findThreadWithId:threadId delegate:self];
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            // load the lols
+            [[LatestChatty2AppDelegate delegate] fetchLols];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // load the thread
+                loader = [Post findThreadWithId:threadId delegate:self];
+            });
+        });
         
         highlightMyPost = NO;
         if ([sender isKindOfClass:[ComposeViewController class]]) highlightMyPost = YES;        
