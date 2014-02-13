@@ -11,7 +11,7 @@ Xd ago
 Xhr Xm ago
 Xm ago
 Xs ago
-where Xye = years, Xd = days, Xhr = hours, Xm = minutes Xs = seconds
+where Xyr = years, Xd = days, Xhr = hours, Xm = minutes Xs = seconds
 
 - Tweaks to lol tag fetching, now fetchs on thread refresh in addition to chatty refresh
 
