@@ -49,8 +49,8 @@
     CGFloat indentation = 3 + post.depth * self.indentationWidth;
     CGFloat previewWidth = self.frame.size.width - indentation;
     if (usernameLabel) previewWidth -= (usernameLabel.frame.size.width + 20);
-    
     preview.frame = CGRectMake(indentation, 0, previewWidth, self.frame.size.height);
+    grayBullet.frame = CGRectMake(indentation - 12, 1, 10, self.frame.size.height);
     
     // Set preview text label color by reply order
     // Top 5 most recent posts increase in white level until fully white with the most recent reply
@@ -90,16 +90,17 @@
     }
     
     // Color the preview and author labels blue if this is my post
-    grayBullet.frame = CGRectMake(indentation - 12, 1, 10, self.frame.size.height);
     if ([post.author.lowercaseString isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"].lowercaseString]) {
         usernameLabel.textColor = [UIColor lcBlueParticipantColor];
         preview.textColor = [UIColor lcBlueParticipantColor];
     }
     
     // Set category stripe
-    categoryStripe.backgroundColor = [post categoryColor];
-    categoryStripe.frame = CGRectMake(indentation - 3, categoryStripe.frame.origin.y,
-                                      categoryStripe.frame.size.width, categoryStripe.frame.size.height);
+    self.backgroundColor = [post categoryColor];
+    categoryStripe.hidden = YES;
+//    categoryStripe.backgroundColor = [post categoryColor];
+//    categoryStripe.frame = CGRectMake(indentation - 3, categoryStripe.frame.origin.y,
+//                                      categoryStripe.frame.size.width, categoryStripe.frame.size.height);
     
     // If lol tags are enabled and lolCounts came in when constructing this cell, parse the counts to make an attributed string
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"lolTags"] && post.lolCounts) {
