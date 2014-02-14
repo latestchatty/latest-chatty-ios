@@ -5,17 +5,17 @@ Updated for iOS 7!
 
 4.1.2
 ====
-- Date stamps changed for chatty/search views. Now displays one of the follow depending on "time ago" criteria:
+- Date stamps changed for chatty/search view table cells. Now displays one of the follow depending on "time ago" criteria:
 Xyr ago
 Xd ago
 Xhr Xm ago
 Xm ago
 Xs ago
-where Xyr = years, Xd = days, Xhr = hours, Xm = minutes Xs = seconds
+where Xyr = years, Xd = days, Xhr = hours, Xm = minutes, Xs = seconds
 
-- Tweaks to lol tag fetching, now fetchs on thread refresh in addition to chatty refresh
+- Tweaks to lol tag fetching, now fetchs on thread refresh in addition to chatty refresh (5 minute caching still applies to both)
 
-- Hide category color stripes in replies table cells, entire cell background now colored with category color
+- Removed category color stripes in replies table cells, entire cell background now colored with category color
 
 - Minor interface alignment tweaks
 
