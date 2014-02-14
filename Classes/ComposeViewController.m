@@ -79,6 +79,7 @@
     menu.menuItems = [NSArray arrayWithObject:[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)]];
     
 //    [postContent becomeFirstResponder];
+    postContent.textContainerInset = UIEdgeInsetsMake(5, 5, 5, 5);
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
