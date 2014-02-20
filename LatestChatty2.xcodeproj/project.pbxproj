@@ -740,8 +740,8 @@
 		CD7C24631754661200D90942 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDataAdditions.m; path = Classes/NSDataAdditions.m; sourceTree = "<group>"; };
 		CD7C24641754661200D90942 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringAdditions.h; path = Classes/NSStringAdditions.h; sourceTree = "<group>"; };
 		CD7C24651754661300D90942 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSStringAdditions.m; path = Classes/NSStringAdditions.m; sourceTree = "<group>"; };
-		CD7C246A1754668D00D90942 /* PinnedThreadsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PinnedThreadsLoader.h; path = Classes/PinnedThreadsLoader.h; sourceTree = "<group>"; };
-		CD7C246B1754668E00D90942 /* PinnedThreadsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PinnedThreadsLoader.m; path = Classes/PinnedThreadsLoader.m; sourceTree = "<group>"; };
+		CD7C246A1754668D00D90942 /* PinnedThreadsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinnedThreadsLoader.h; sourceTree = "<group>"; };
+		CD7C246B1754668E00D90942 /* PinnedThreadsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinnedThreadsLoader.m; sourceTree = "<group>"; };
 		CD7C247A1754674100D90942 /* StoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoriesViewController.xib; sourceTree = "<group>"; };
 		CD7C247D1754689100D90942 /* Message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Message.html; path = Templates/Message.html; sourceTree = "<group>"; };
 		CD7C247E1754689100D90942 /* Post.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Post.html; path = Templates/Post.html; sourceTree = "<group>"; };
@@ -1059,8 +1059,6 @@
 				CD7C245E1754655900D90942 /* HTMLEscaper.h */,
 				CD7C245F1754655A00D90942 /* HTMLEscaper.m */,
 				FA5FCD1C0F6F63AC00878F27 /* ModelLoadingDelegate.h */,
-				CD7C246A1754668D00D90942 /* PinnedThreadsLoader.h */,
-				CD7C246B1754668E00D90942 /* PinnedThreadsLoader.m */,
 				FABA5DC00F718086008EEE3A /* StringTemplate.h */,
 				FABA5DC10F718086008EEE3A /* StringTemplate.m */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -1318,6 +1316,8 @@
 				FA5FCD150F6F61A600878F27 /* Model.m */,
 				FA1E7D650F787FEF00BAA55B /* ModelLoader.h */,
 				FA1E7D660F787FEF00BAA55B /* ModelLoader.m */,
+				CD7C246A1754668D00D90942 /* PinnedThreadsLoader.h */,
+				CD7C246B1754668E00D90942 /* PinnedThreadsLoader.m */,
 				FA04800B0F70BD0500F752A6 /* Post.h */,
 				FA04800C0F70BD0500F752A6 /* Post.m */,
 				FA5FCDAA0F6F6FDF00878F27 /* Story.h */,

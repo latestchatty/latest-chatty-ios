@@ -6,9 +6,7 @@
 //  Copyright 2010. All rights reserved.
 //
 
-#import "ModelLoader.h"
 #import "ModelLoadingDelegate.h"
-#import "Post.h"
 
 @interface PinnedThreadsLoader : NSObject <ModelLoadingDelegate> {
     NSMutableArray *pinnedThreadsToLoad;
@@ -25,7 +23,10 @@
 + (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId for:(id<ModelLoadingDelegate>)delegate;
 + (ModelLoader *)loadPinnedThreadsThenLatestChattyFor:(id<ModelLoadingDelegate>)delegate;
 
-- (id) initWithThreadsToLoad:(NSMutableArray *)threadsToLoad for:(id<ModelLoadingDelegate>)delegate withStoryId:(NSUInteger)storyId page:(NSUInteger)page;
+- (id)initWithThreadsToLoad:(NSMutableArray *)threadsToLoad
+                        for:(id<ModelLoadingDelegate>)delegate
+                withStoryId:(NSUInteger)storyId
+                       page:(NSUInteger)page;
 - (ModelLoader *)loadPinnedThread;
 
 @end
