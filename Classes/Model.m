@@ -33,34 +33,38 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
 #pragma mark Class Helpers
 
 + (NSString *)formatDate:(NSDate *)date {
-    NSDateFormatter *formatter = [LatestChatty2AppDelegate delegate].formatter;
-    //Force the 12hr locale so dates appear on the 24hr guys
-    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-    [formatter setDateFormat:kDateFormat];
-    return [formatter stringFromDate:date];
-}
-
-+ (NSString *)formatShortDate:(NSDate *)date {
-    NSUInteger desiredComponents = NSYearCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:desiredComponents
-                                                                       fromDate:date
-                                                                         toDate:[NSDate date]
-                                                                        options:0];
-    NSString *shortDateString;
+    // if it's at least a day old, show the full date, otherwise use the new shortened method
+    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:date];
     
-    if (dateComponents.year > 0) {
-        shortDateString = [NSString stringWithFormat:@"%ldyr ago", (long)dateComponents.year];
-    } else if (dateComponents.day > 0) {
-        shortDateString = [NSString stringWithFormat:@"%ldd ago", (long)dateComponents.day];
-    } else if (dateComponents.hour > 0) {
-        shortDateString = [NSString stringWithFormat:@"%ldhr %ldm ago", (long)dateComponents.hour, (long)dateComponents.minute];
-    } else if (dateComponents.minute >= 1) {
-        shortDateString = [NSString stringWithFormat:@"%ldm ago", (long)dateComponents.minute];
+    // 60sec * 1440min = number of sec in day
+    if (interval >= 60*1440) {
+        NSDateFormatter *formatter = [LatestChatty2AppDelegate delegate].formatter;
+        //Force the 12hr locale so dates appear on the 24hr guys
+        [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+        [formatter setDateFormat:kDateFormat];
+        return [formatter stringFromDate:date];
     } else {
-        shortDateString = [NSString stringWithFormat:@"%lds ago", (long)dateComponents.second];
+        NSUInteger desiredComponents = NSYearCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+        NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:desiredComponents
+                                                                           fromDate:date
+                                                                             toDate:[NSDate date]
+                                                                            options:0];
+        NSString *shortDateString;
+        
+        if (dateComponents.year > 0) {
+            shortDateString = [NSString stringWithFormat:@"%ldyr ago", (long)dateComponents.year];
+        } else if (dateComponents.day > 0) {
+            shortDateString = [NSString stringWithFormat:@"%ldd ago", (long)dateComponents.day];
+        } else if (dateComponents.hour > 0) {
+            shortDateString = [NSString stringWithFormat:@"%ldhr %ldm ago", (long)dateComponents.hour, (long)dateComponents.minute];
+        } else if (dateComponents.minute >= 1) {
+            shortDateString = [NSString stringWithFormat:@"%ldm ago", (long)dateComponents.minute];
+        } else {
+            shortDateString = [NSString stringWithFormat:@"%lds ago", (long)dateComponents.second];
+        }
+        
+        return shortDateString;
     }
-    
-    return shortDateString;
 }
 
 + (NSDate *)decodeDate:(NSString *)string {

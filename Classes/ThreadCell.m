@@ -27,8 +27,7 @@
 	// Set text labels
 	author.text = rootPost.author;
 	preview.text = rootPost.preview;
-    //date.text = [Post formatDate:rootPost.date];
-    date.text = [Post formatShortDate:rootPost.date];
+    date.text = [Post formatDate:rootPost.date];
     
     // force white text color on highlight
     author.highlightedTextColor = [UIColor whiteColor];
