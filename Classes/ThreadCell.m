@@ -76,8 +76,9 @@
     timerIcon.image = [Post imageForPostExpiration:rootPost.date withParticipant:foundParticipant];
     
     // If lol tags are enabled and lolCounts came in when constructing this cell, parse the counts to make an attributed string
+    NSMutableAttributedString *tags;
     if ([defaults boolForKey:@"lolTags"] && rootPost.lolCounts) {
-        NSMutableAttributedString *tags = [[NSMutableAttributedString alloc] init];
+        tags = [[NSMutableAttributedString alloc] init];
         for (NSString *key in rootPost.lolCounts) {
             NSDictionary *attributes;
             BOOL customTag = NO;
@@ -104,11 +105,15 @@
             // ignore custom tags (ie. not the standard tags above) that may come from lol counts data
             if (!customTag) {
                 // append this tag to the attributed string
-                NSAttributedString *attribTag = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@ x %@ ", key, value] attributes:attributes];
+                NSAttributedString *attribTag = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@ %@ ", key, value] attributes:attributes];
                 [tags appendAttributedString:attribTag];
                 [tags appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
             }
         }
+    }
+    
+    // if the tags string was allocated and appended to...
+    if (tags != nil && tags.length > 0) {
         // set the final attributed string to the label
         lolCountsLabel.attributedText = tags;
         // push the preview label's frame up/down depending on whether tags are visible

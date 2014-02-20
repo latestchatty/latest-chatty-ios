@@ -518,17 +518,17 @@
             
             // construct a span for the appropriate tag
             if ([key isEqualToString:@"lol"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"lol\">%@ x %@</span>", key, value];
+                tag = [NSString stringWithFormat:@"<span class=\"lol\">%@ %@</span>", key, value];
             } else if ([key isEqualToString:@"inf"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"inf\">%@ x %@</span>", key, value];
+                tag = [NSString stringWithFormat:@"<span class=\"inf\">%@ %@</span>", key, value];
             } else if ([key isEqualToString:@"unf"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"unf\">%@ x %@</span>", key, value];
+                tag = [NSString stringWithFormat:@"<span class=\"unf\">%@ %@</span>", key, value];
             } else if ([key isEqualToString:@"tag"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"tag\">%@ x %@</span>", key, value];
+                tag = [NSString stringWithFormat:@"<span class=\"tag\">%@ %@</span>", key, value];
             } else if ([key isEqualToString:@"wtf"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"wtf\">%@ x %@</span>", key, value];
+                tag = [NSString stringWithFormat:@"<span class=\"wtf\">%@ %@</span>", key, value];
             } else if ([key isEqualToString:@"ugh"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"ugh\">%@ x %@</span>", key, value];
+                tag = [NSString stringWithFormat:@"<span class=\"ugh\">%@ %@</span>", key, value];
             } else {
                 customTag = YES;
             }
