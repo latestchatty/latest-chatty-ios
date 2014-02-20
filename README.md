@@ -3,6 +3,10 @@ latest-chatty-2
 
 Updated for iOS 7!
 
+4.1.3
+====
+- Removed "x" separator from lol tags
+
 4.1.2
 ====
 - Date stamps changed for chatty/search view table cells. Now displays one of the follow depending on "time ago" criteria:
