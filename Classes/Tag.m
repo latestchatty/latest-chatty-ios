@@ -14,9 +14,13 @@
     NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
     NSString *url = [[NSString stringWithFormat:@"http://lmnopc.com/greasemonkey/shacklol/report.php?who=%@&what=%lu&tag=%@&version=-1", username, (unsigned long)postId, tag] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
-    NSLog(@"Tagging post with URL: %@", url);
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [NSURLConnection connectionWithRequest:request delegate:nil];
+//    NSLog(@"Tagging post with URL: %@", url);
+    NSURLRequest *tagRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [NSURLConnection connectionWithRequest:tagRequest delegate:nil];
+    
+    // test response bodies
+//    NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:tagRequest returningResponse:nil error:nil]];
+//    NSLog(@"rb: %@", responseBody);
 }
 
 + (NSMutableString *)buildPostViewTag:(NSDictionary *)lolCounts {
@@ -32,6 +36,7 @@
         
         // construct a span for the appropriate tag
         if ([key isEqualToString:@"lol"] ||
+            [key isEqualToString:@"inf"] ||
             [key isEqualToString:@"unf"] ||
             [key isEqualToString:@"tag"] ||
             [key isEqualToString:@"wtf"] ||
