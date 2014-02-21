@@ -507,43 +507,16 @@
     [htmlTemplate setString:[NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]] forKey:@"expirationSize"];
     
     // create lol tags for this post if they exist and are enabled
+    NSMutableString *tags;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"lolTags"] && post.lolCounts) {
-        NSMutableString *tags = [[NSMutableString alloc] init];
-        for (NSString *key in post.lolCounts) {
-            BOOL customTag = NO;
-            NSString *value = [post.lolCounts valueForKey:key];
-            
-            // tag to append to the mutable string
-            NSString *tag;
-            
-            // construct a span for the appropriate tag
-            if ([key isEqualToString:@"lol"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"lol\">%@ %@</span>", key, value];
-            } else if ([key isEqualToString:@"inf"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"inf\">%@ %@</span>", key, value];
-            } else if ([key isEqualToString:@"unf"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"unf\">%@ %@</span>", key, value];
-            } else if ([key isEqualToString:@"tag"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"tag\">%@ %@</span>", key, value];
-            } else if ([key isEqualToString:@"wtf"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"wtf\">%@ %@</span>", key, value];
-            } else if ([key isEqualToString:@"ugh"]) {
-                tag = [NSString stringWithFormat:@"<span class=\"ugh\">%@ %@</span>", key, value];
-            } else {
-                customTag = YES;
-            }
-            
-            // ignore custom tags (ie. not the standard tags above) that may come from lol counts data
-            if (!customTag) {
-                // append this tag to the mutable string
-                [tags appendString:tag];
-            }
-        }
-        if (tags) {
-            // if a tag was constructed, place it in the html template
-            [htmlTemplate setString:@"show" forKey:@"tagDisplay"];
-            [htmlTemplate setString:tags forKey:@"tags"];
-        }
+        tags = [Tag buildPostViewTag:post.lolCounts];
+    }
+    
+    // if the tags string was allocated and appended to...
+    if (tags != nil && tags.length > 0) {
+        // place it in the html template
+        [htmlTemplate setString:@"show" forKey:@"tagDisplay"];
+        [htmlTemplate setString:tags forKey:@"tags"];
     }
     
     NSString *body = [self postBodyWithYoutubeWidgets:post.body];
