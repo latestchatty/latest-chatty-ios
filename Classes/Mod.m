@@ -11,7 +11,8 @@
 @implementation Mod
 
 + (void)modParentId:(NSUInteger)parentId modPostId:(NSUInteger)postId mod:(ModType)modType {
-    NSString *modCategory = nil;
+    NSString *modCategory;
+    
 	switch (modType) {
         case ModTypeInformative:
 			modCategory = @"1";
@@ -46,6 +47,7 @@
         // fire request to moderate the post
         NSString *modUrl = [NSString stringWithFormat:@"http://www.shacknews.com/mod_chatty.x?root=%lu&post_id=%lu&mod_type_id=%@", (unsigned long)parentId, (unsigned long)postId, modCategory];
 		NSMutableURLRequest *modRequest;
+        
         //NSLog(@"Moderating post with URL: %@", url);
 		modRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:modUrl]
                                                   cachePolicy:NSURLRequestReloadIgnoringCacheData

@@ -880,8 +880,8 @@
         if (buttonIndex == 6) [Mod modParentId:parentId modPostId:postId mod:ModTypeOntopic];
 
         if (buttonIndex <= 6 && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"nuked"]) {
-                post.category = [actionSheet buttonTitleAtIndex:buttonIndex];
-                [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
+            post.category = [actionSheet buttonTitleAtIndex:buttonIndex];
+            [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
         }
         
         //show mod HUD message
