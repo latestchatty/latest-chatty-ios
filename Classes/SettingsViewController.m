@@ -523,24 +523,24 @@
 				cell.textLabel.text = @"Allow Landscape:";
 				break;
                 
-            case 2:
-				cell.accessoryView = lolTagsSwitch;
-				cell.textLabel.text = @"LOL Tags:";
-				break;
-                
-			case 3:
+			case 2:
 				cell.accessoryView = youtubeSwitch;
 				cell.textLabel.text = @"Embed YouTube:";
 				break;
                 
-			case 4:
+			case 3:
 				cell.accessoryView = modToolsSwitch;
-				cell.textLabel.text = @"Mod Tools:";
+				cell.textLabel.text = @"Enable Mod Tools:";
 				break;
                 
-			case 5:
+			case 4:
 				cell.accessoryView = saveSearchesSwitch;
 				cell.textLabel.text = @"Save Searches:";
+				break;
+                
+            case 5:
+				cell.accessoryView = lolTagsSwitch;
+				cell.textLabel.text = @"Show [lol] Tags:";
 				break;
                 
             case 6:
