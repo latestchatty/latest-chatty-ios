@@ -11,9 +11,16 @@
 @implementation Mod
 
 + (void)modParentId:(NSUInteger)parentId modPostId:(NSUInteger)postId mod:(ModType)modType {
-
     NSString *modCategory = nil;
 	switch (modType) {
+        case ModTypeInformative:
+			modCategory = @"1";
+			break;
+            
+        case ModTypeNWS:
+			modCategory = @"2";
+			break;
+            
 		case ModTypeStupid:
 			modCategory = @"3";
 			break;
@@ -22,24 +29,16 @@
 			modCategory = @"4";
 			break;
 			
-		case ModTypeNWS:
-			modCategory = @"2";
-			break;
-			
-		case ModTypePolitical:
-			modCategory = @"9";
-			break;
-			
-		case ModTypeNuked:
-			modCategory = @"8";
-			break;
-			
-		case ModTypeInformative:
-			modCategory = @"1";
-			break;			
-			
 		case ModTypeOntopic:
 			modCategory = @"5";
+			break;
+			
+        case ModTypeNuked:
+			modCategory = @"8";
+			break;
+            
+		case ModTypePolitical:
+			modCategory = @"9";
 			break;
 	}
     
