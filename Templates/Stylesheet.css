@@ -62,24 +62,23 @@ div.tags {
   display: none;
   clear: both;
   color: #000;
-  font-size: 7.5pt;
+  font-size: 9pt;
+  font-weight: 500;
   line-height: 10pt;
-  margin-top: 23px;
+  margin-top: 20px;
 }
 div.tags.show {
   display: block;
 }
 div.tags span {
   display: inline-block;
-  margin-right: 2px;
-  padding: 0 2px;
 }
-span.lol { background-color: rgba(255,126,0,0.75); }
-span.inf { background-color: rgba(0,149,223,0.75); }
-span.unf { background-color: rgba(255,0,0,0.75);   }
-span.tag { background-color: rgba(130,208,2,0.75); }
-span.wtf { background-color: rgba(210,0,208,0.75); }
-span.ugh { background-color: rgba(1,155,1,0.75);   }
+span.lol { color: rgba(255,126,0,0.75); }
+span.inf { color: rgba(0,149,223,0.75); }
+span.unf { color: rgba(255,0,0,0.75);   }
+span.tag { color: rgba(130,208,2,0.75); }
+span.wtf { color: rgba(210,0,208,0.75); }
+span.ugh { color: rgba(1,155,1,0.75);   }
 
 /*
    Comment formatting styles

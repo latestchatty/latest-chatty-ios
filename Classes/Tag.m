@@ -31,7 +31,7 @@
         NSString *value = [lolCounts valueForKey:key];
         
         // tag to append to the mutable string
-        NSString *baseTag = @"<span class=\"%@\">%@ %@</span>";
+        NSString *baseTag = @"<span class=\"%@\">%@ %@</span> ";
         NSString *tag;
         
         // construct a span for the appropriate tag
@@ -66,17 +66,17 @@
         
         // make an attributes dictionary to hold the appropriate background color for the tag
         if ([key isEqualToString:@"lol"]) {
-            attributes = @{NSBackgroundColorAttributeName:[UIColor lcLOLColor]};
+            attributes = @{NSForegroundColorAttributeName:[UIColor lcLOLColor]};
         } else if ([key isEqualToString:@"inf"]) {
-            attributes = @{NSBackgroundColorAttributeName:[UIColor lcINFColor]};
+            attributes = @{NSForegroundColorAttributeName:[UIColor lcINFColor]};
         } else if ([key isEqualToString:@"unf"]) {
-            attributes = @{NSBackgroundColorAttributeName:[UIColor lcUNFColor]};
+            attributes = @{NSForegroundColorAttributeName:[UIColor lcUNFColor]};
         } else if ([key isEqualToString:@"tag"]) {
-            attributes = @{NSBackgroundColorAttributeName:[UIColor lcTAGColor]};
+            attributes = @{NSForegroundColorAttributeName:[UIColor lcTAGColor]};
         } else if ([key isEqualToString:@"wtf"]) {
-            attributes = @{NSBackgroundColorAttributeName:[UIColor lcWTFColor]};
+            attributes = @{NSForegroundColorAttributeName:[UIColor lcWTFColor]};
         } else if ([key isEqualToString:@"ugh"]) {
-            attributes = @{NSBackgroundColorAttributeName:[UIColor lcUGHColor]};
+            attributes = @{NSForegroundColorAttributeName:[UIColor lcUGHColor]};
         } else {
             customTag = YES;
         }
@@ -84,9 +84,8 @@
         // ignore custom tags (ie. not the standard tags above) that may come from lol counts data
         if (!customTag) {
             // append this tag to the attributed string
-            NSAttributedString *attribTag = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@ %@ ", key, value] attributes:attributes];
+            NSAttributedString *attribTag = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@ ", key, value] attributes:attributes];
             [tags appendAttributedString:attribTag];
-            [tags appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
         }
     }
     
