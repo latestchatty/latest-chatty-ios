@@ -3,6 +3,10 @@ latest-chatty-2
 
 Updated for iOS 7!
 
+4.2.0
+====
+- 4.1.3 RC submitted to App Store
+
 4.1.3 Release Candidate
 ====
 - lol tags visually changed. They are no longer colored badges, but rather colored text. Font was also made bold and size increased.
@@ -23,7 +27,7 @@ Xhr Xm ago
 Xm ago
 Xs ago
 where Xyr = years, Xd = days, Xhr = hours, Xm = minutes, Xs = seconds
-- Tweaks to lol tag fetching, now fetchs on thread refresh in addition to chatty refresh (5 minute caching still applies to both)
+- Tweaks to lol tag fetching, now fetches on thread refresh in addition to chatty refresh (5 minute caching still applies to both)
 - Removed category color stripes in replies table cells, entire cell background now colored with category color
 - Minor interface alignment tweaks
 
