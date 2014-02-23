@@ -41,7 +41,7 @@
 - (void)layoutSubviews {
     titleLabel.text = self.title;
   
-    if ([self.title isEqualToString:@"LatestChatty"]) {
+    if ([self.title isEqualToString:@"Latest Chatty"]) {
         self.iconImage.image = [UIImage imageNamed:@"Chatty-Inactive.png"];
         self.iconImage.highlightedImage = [UIImage imageNamed:@"Chatty-Active.png"];
     }

@@ -234,7 +234,7 @@
             break;
             
         case 1:
-            cell.title = @"LatestChatty";
+            cell.title = @"Latest Chatty";
             [cell setBadgeWithNumber:0];
 			break;
             
