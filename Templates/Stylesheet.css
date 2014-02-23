@@ -12,7 +12,7 @@ body {
 
 div.wrapper {
   clear: both;
-  padding: 10px 5px 10px 5px;
+  padding: 10px 7px;
 }
 div.author,
 div.author a {
@@ -35,7 +35,7 @@ div.date a {
 }
 div.body {
   color: white;
-  padding: 5px;
+  padding: 5px 0;
   clear: both;
 }
 div.body a {
