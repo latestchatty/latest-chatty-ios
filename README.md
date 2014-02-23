@@ -5,10 +5,10 @@ Updated for iOS 7!
 
 4.1.3 Release Candidate
 ====
-- lol tags visually changed. They are no longer colored badges, but rather colored text.
+- lol tags visually changed. They are no longer colored badges, but rather colored text. Font was also made bold and size increased.
 - Removed "x" separator from lol tags
-- Bug fix for threads that only contained custom tags (custom tags aren't shown in the app)
-- Tag construction code refactoring
+- Bug fix for threads that only contained custom tags (custom tags aren't shown in the app on purpose)
+- Tag construction code refactored
 - Lowercased the tags in the action sheet when tagging a post for consistency purposes
 - Short date stamps now only occur on dates that are <24 hours old. Short date stamps are now available on messages and in thread view as well (again, only if they are <24 hours old).
 - UI tweaks to layout of objects in thread cells
