@@ -60,11 +60,12 @@
                                                                       style:UIBarButtonItemStylePlain
                                                                      target:self
                                                                      action:@selector(loadChatty)];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
     // Load story
     self.storyLoader = [Story findById:storyId delegate:self];
     
-    NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
+    NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%lu", (unsigned long)story.modelId];
     StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
@@ -99,26 +100,23 @@
 #pragma mark Actions
 
 - (void)displayStory {
-//    self.title = story.title;
     self.title = @"Story";
     
     // Load up web view content
-    NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%i", story.modelId];
+    NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%lu", (unsigned long)story.modelId];
     
-    //if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-    //    [content loadRequest:[NSURLRequest requestWithURLString:baseUrlString]];
-    //} else {
     StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
     
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:[Story formatDate:story.date] forKey:@"date"];
-    [htmlTemplate setString:[NSString stringWithFormat:@"%i", story.modelId] forKey:@"storyId"];
+    [htmlTemplate setString:[NSString stringWithFormat:@"%lu", (unsigned long)story.modelId] forKey:@"storyId"];
     [htmlTemplate setString:story.body forKey:@"content"];
     [htmlTemplate setString:story.title forKey:@"storyTitle"];
     
     [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
-    //}
+    
+    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)loadChatty {

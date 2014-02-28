@@ -61,6 +61,8 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
     
+    self.body.textContainerInset = UIEdgeInsetsMake(5, 5, 5, 5);
+    
 //    if (self.bodyString) {
 //        [self.body becomeFirstResponder];
 //    } else if (self.recipientString) {

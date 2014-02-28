@@ -12,7 +12,7 @@ body {
 
 div.wrapper {
   clear: both;
-  padding: 10px 5px 10px 5px;
+  padding: 10px 7px;
 }
 div.author,
 div.author a {
@@ -35,7 +35,7 @@ div.date a {
 }
 div.body {
   color: white;
-  padding: 10px 0;
+  padding: 5px 0;
   clear: both;
 }
 div.body a {
@@ -47,17 +47,38 @@ body.review div.body a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 div.expiration {
-    /*box-shadow: inset 0px 1px rgba(255,255,255,0.08);*/
-    height: 4px;
-    left: 0;
-    margin-bottom: 3px;
-    position: absolute;
-    top: 0;
-    width: 100%;
+  /*box-shadow: inset 0px 1px rgba(255,255,255,0.08);*/
+  height: 4px;
+  left: 0;
+  margin-bottom: 3px;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 div.expiration.background {
-    opacity: 0.6;
+  opacity: 0.6;
 }
+div.tags {
+  display: none;
+  clear: both;
+  color: #000;
+  font-size: 7.75pt;
+  font-weight: 500;
+  line-height: 10pt;
+  margin-top: 20px;
+}
+div.tags.show {
+  display: block;
+}
+div.tags span {
+  display: inline-block;
+}
+span.lol { color: rgba(255,126,0,1.0); }
+span.inf { color: rgba(0,149,223,1.0); }
+span.unf { color: rgba(255,0,0,1.0);   }
+span.tag { color: rgba(130,208,2,1.0); }
+span.wtf { color: rgba(210,0,208,1.0); }
+span.ugh { color: rgba(1,155,1,1.0);   }
 
 /*
    Comment formatting styles
@@ -155,13 +176,13 @@ div.story-content iframe { max-width: 100%; }
 
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait),
        all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
-    div.author,
-    div.author a {
-      font-size: 10.5pt;
-    }
+  div.author,
+  div.author a {
+    font-size: 10.5pt;
+  }
     
-    div.expiration {
-        height: 8px;
-    }
+  div.expiration {
+    height: 8px;
+  }
 
 }

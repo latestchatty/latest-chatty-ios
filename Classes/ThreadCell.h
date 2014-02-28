@@ -12,12 +12,13 @@
 
 @interface ThreadCell : TableCellFromNib {
 	NSUInteger storyId;
-	Post  *rootPost;
+	Post *rootPost;
 	
 	IBOutlet UILabel *author;
 	IBOutlet UILabel *date;
 	IBOutlet UILabel *preview;
 	IBOutlet UILabel *replyCount;
+	IBOutlet UILabel *lolCountsLabel;
 	IBOutlet UIView  *categoryStripe;
 	IBOutlet UIImageView *timerIcon;
 }

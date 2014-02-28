@@ -67,7 +67,7 @@
             // reflect the unread count on the app badge
             [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
             
-            NSLog(@"Message Count saved: %i", messageCount);            
+//            NSLog(@"Message Count saved: %i", messageCount);            
         }
     }
 }

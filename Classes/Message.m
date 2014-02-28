@@ -38,7 +38,7 @@
 }
 
 - (void)markRead {
-    NSString *string = [Message urlStringWithPath:[NSString stringWithFormat:@"/messages/%i", self.modelId]];
+    NSString *string = [Message urlStringWithPath:[NSString stringWithFormat:@"/messages/%lu", (unsigned long)self.modelId]];
     NSURL *url = [NSURL URLWithString:string];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"PUT"];
@@ -87,7 +87,7 @@
     
     NSLog(@"Creating Message with Request body: %@", requestBody);
     NSLog(@"Server responded: %@", responseBody);
-    NSLog(@"response statusCode: %d", [response statusCode]);
+    NSLog(@"response statusCode: %ld", (long)[response statusCode]);
     
     // Handle login failed
     if ([responseBody isEqualToString:@"error_login_failed"] || [response statusCode] == 401) {

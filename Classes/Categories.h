@@ -71,6 +71,14 @@
 + (UIColor *)lcSwitchOffColor;
 + (UIColor *)lcSliderMaximumColor;
 
+// LOL Tag colors
++ (UIColor *)lcLOLColor;
++ (UIColor *)lcINFColor;
++ (UIColor *)lcUNFColor;
++ (UIColor *)lcTAGColor;
++ (UIColor *)lcWTFColor;
++ (UIColor *)lcUGHColor;
+
 @end
 
 @interface NSDictionary(DictionaryAdditions)

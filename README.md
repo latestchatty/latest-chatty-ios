@@ -3,6 +3,48 @@ latest-chatty-2
 
 Updated for iOS 7!
 
+4.2.0
+====
+- 4.1.3 RC submitted to App Store
+
+4.1.3 Release Candidate
+====
+- lol tags visually changed. They are no longer colored badges, but rather colored text. Font was also made bold and size increased.
+- Removed "x" separator from lol tags
+- Bug fix for threads that only contained custom tags (custom tags aren't shown in the app on purpose)
+- Tag construction code refactored
+- Lowercased the tags in the action sheet when tagging a post for consistency purposes
+- Short date stamps now only occur on dates that are <24 hours old. Short date stamps are now available on messages and in thread view as well (again, only if they are <24 hours old).
+- UI tweaks to layout of objects in thread cells
+- Changed wording of some Settings preferences
+
+4.1.2
+====
+- Date stamps changed for chatty/search view table cells. Now displays one of the follow depending on "time ago" criteria:
+Xyr ago
+Xd ago
+Xhr Xm ago
+Xm ago
+Xs ago
+where Xyr = years, Xd = days, Xhr = hours, Xm = minutes, Xs = seconds
+- Tweaks to lol tag fetching, now fetches on thread refresh in addition to chatty refresh (5 minute caching still applies to both)
+- Removed category color stripes in replies table cells, entire cell background now colored with category color
+- Minor interface alignment tweaks
+
+4.1.1
+====
+- Initial pass at support for LOL Tags! Some items of note:
+Enable in Settings with setting "LOL Tags"
+Will fetch current LOL tags on app load and every chatty refresh if it's been 5 minutes since the last fetch
+Tags are visible in the main chatty view's table cells, thread view's post view and replies table cells
+Replies table will show a colored tag icon for the tag with the highest count (first tag encountered will show in event of tie)
+There is not currently a threshold for tag display, ie: a thread with 1x lol tag will show the tag. Can result in threads being a little noisy, so a threshold of say 5 before a tag is rendered may be desirable.
+Because the INF tag looks similar to the current "blue ball" indicator in the replies table, indication of a post made by you in the replies table now colors the preview text (and author name on iPad) blue, removing all use of the "blue ball" indicator
+- Padded post text in post view and compose view slightly for easier text selection
+- Root post author names now colored yellow in replies table on iPad
+- Phone number detection disabled for web pages loaded in browser view
+- Built for 64 bit iOS
+
 4.1
 ====
 - 4.0.3 RC submitted to App Store

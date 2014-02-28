@@ -41,10 +41,10 @@
     return [NSDictionary dictionaryWithObjectsAndKeys:
             @"Thread", @"type",
             rootPost,    @"rootPost",
-            [NSNumber numberWithInt:storyId],    @"storyId",
-            [NSNumber numberWithInt:threadId], @"threadId",
+            [NSNumber numberWithUnsignedInteger:storyId],    @"storyId",
+            [NSNumber numberWithUnsignedInteger:threadId], @"threadId",
             selectedIndexPath, @"selectedIndexPath",
-            [NSNumber numberWithInt:lastReplyId], @"lastReplyId",
+            [NSNumber numberWithUnsignedInteger:lastReplyId], @"lastReplyId",
             nil];
 }
 
@@ -56,8 +56,18 @@
         [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
     }
     
+    // wrapped existing loader logic in a GCD block to wait until the synchronous lol fetch
+    // completes on a global background thread before loading the thread
     if (threadId > 0) {
-        loader = [Post findThreadWithId:threadId delegate:self];
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            // load the lols
+            [[LatestChatty2AppDelegate delegate] fetchLols];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // load the thread
+                loader = [Post findThreadWithId:threadId delegate:self];
+            });
+        });
         
         highlightMyPost = NO;
         if ([sender isKindOfClass:[ComposeViewController class]]) highlightMyPost = YES;        
@@ -110,6 +120,25 @@
             if (reply.modelId == threadId) firstPost = reply;
         }
     }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"lolTags"]) {
+        // get the lol counts dict for this post and it's replies
+        NSDictionary *rootPostLolCounts = [[LatestChatty2AppDelegate delegate].lolCounts objectForKey:[NSString stringWithFormat: @"%lu", (unsigned long)rootPost.modelId]];
+        if (rootPostLolCounts) {
+            // iterate over keys for each post in this thread that has been tagged
+            for (NSString *key in rootPostLolCounts) {
+                for (Post *reply in [rootPost repliesArray]) {
+                    // if we found a match, associate the tags dict to this post
+                    if (reply.modelId == [key integerValue]) {
+                        reply.lolCounts = [rootPostLolCounts valueForKey:key];
+                    }
+                }
+            }
+        }
+    }
+    
+    NSLog(@"finished loading");
+    [self.tableView reloadData];
     
     // Check for invalid data
     if (rootPost.body == nil) {
@@ -315,7 +344,7 @@
         } 
     }
     
-    [updatedPinnedThreads addObject:[NSNumber numberWithUnsignedInt:postId]];
+    [updatedPinnedThreads addObject:[NSNumber numberWithUnsignedInteger:postId]];
 
     [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];    
     [defaults synchronize];
@@ -468,7 +497,7 @@
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:[Post formatDate:post.date] forKey:@"date"];
     [htmlTemplate setString:post.author forKey:@"author"];
-    [htmlTemplate setString:[NSString stringWithFormat:@"%i", post.modelId] forKey:@"postId"];
+    [htmlTemplate setString:[NSString stringWithFormat:@"%lu", (unsigned long)post.modelId] forKey:@"postId"];
 
     // set the expiration stripe's background color and size in the HTML template
 //    NSLog(@"%@", [NSString hexFromUIColor:[Post colorForPostExpiration:post.date]]);
@@ -477,10 +506,23 @@
     [htmlTemplate setString:[NSString rgbaFromUIColor:[Post colorForPostExpiration:post.date withCategory:post.category]] forKey:@"expirationColor"];
     [htmlTemplate setString:[NSString stringWithFormat:@"%f%%", [Post sizeForPostExpiration:post.date]] forKey:@"expirationSize"];
     
+    // create lol tags for this post if they exist and are enabled
+    NSMutableString *tags;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"lolTags"] && post.lolCounts) {
+        tags = [Tag buildPostViewTag:post.lolCounts];
+    }
+    
+    // if the tags string was allocated and appended to...
+    if (tags != nil && tags.length > 0) {
+        // place it in the html template
+        [htmlTemplate setString:@"show" forKey:@"tagDisplay"];
+        [htmlTemplate setString:tags forKey:@"tags"];
+    }
+    
     NSString *body = [self postBodyWithYoutubeWidgets:post.body];
     
     [htmlTemplate setString:body forKey:@"body"];
-    [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%i", rootPost.modelId]]];
+    [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%lu", (unsigned long)rootPost.modelId]]];
 }
 
 -(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -686,7 +728,7 @@
                                                         delegate:self
                                                cancelButtonTitle:@"Cancel"
                                           destructiveButtonTitle:nil
-                                               otherButtonTitles:@"LOL", @"INF", @"UNF", @"TAG", @"WTF", @"UGH", nil];
+                                               otherButtonTitles:@"lol", @"inf", @"unf", @"tag", @"wtf", @"ugh", nil];
     
     [theActionSheet showInView:self.navigationController.view];
 }
@@ -741,9 +783,9 @@
         return 0;
 }
 
-- (int)previousRowByTimeLevel:(int)currentRow {
+- (NSInteger)previousRowByTimeLevel:(int)currentRow {
         Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
-        int minTimeLevel = -1, minTimeLevelPostIndex = 0;
+        NSInteger minTimeLevel = -1, minTimeLevelPostIndex = 0;
         
         for(int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
         {
@@ -766,7 +808,7 @@
         
     NSIndexPath *newIndexPath;
     if (orderByPostDate)
-        newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:oldIndexPath.row] inSection:0];
+        newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
     else if (oldIndexPath.row == 0)
         newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
     else
@@ -782,7 +824,7 @@
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
         
     if (orderByPostDate)
-        newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:oldIndexPath.row] inSection:0];
+        newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
     else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1)
         newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     
@@ -838,8 +880,8 @@
         if (buttonIndex == 6) [Mod modParentId:parentId modPostId:postId mod:ModTypeOntopic];
 
         if (buttonIndex <= 6 && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"nuked"]) {
-                post.category = [actionSheet buttonTitleAtIndex:buttonIndex];
-                [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
+            post.category = [actionSheet buttonTitleAtIndex:buttonIndex];
+            [[tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]] setNeedsLayout];
         }
         
         //show mod HUD message

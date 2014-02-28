@@ -131,7 +131,7 @@
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"superSecretFartMode"]) {
             NSUInteger randomFartNumber = arc4random() % 9 + 1;
 //            NSLog(@"Playing Fart #%i, don't forget to wipe!", randomFartNumber);
-            NSURL *soundURL = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"Fart%i", randomFartNumber]
+            NSURL *soundURL = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"Fart%lu", (unsigned long)randomFartNumber]
                                                       withExtension:@"mp3"];
             fartSound = [[AVAudioPlayer alloc]
                          initWithContentsOfURL:soundURL error:nil];

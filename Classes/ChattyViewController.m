@@ -61,11 +61,11 @@
 
 - (NSDictionary *)stateDictionary {
 	NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"Chatty", @"type",
-									   [NSNumber numberWithInt:self.storyId], @"storyId",
+									   [NSNumber numberWithUnsignedInteger:self.storyId], @"storyId",
 									   threads, @"threads",
 									   self.title, @"title",
-									   [NSNumber numberWithInt:lastPage], @"lastPage",
-									   [NSNumber numberWithInt:currentPage], @"currentPage", nil];
+									   [NSNumber numberWithUnsignedInteger:lastPage], @"lastPage",
+									   [NSNumber numberWithUnsignedInteger:currentPage], @"currentPage", nil];
 	
 	NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
 	if (selectedIndexPath) [dictionary setObject:selectedIndexPath forKey:@"selectedIndexPath"];
@@ -158,15 +158,26 @@
 		[threadController resetLayout:YES];
 }
 
-- (void)refresh:(id)sender {
+- (void)refresh:(id)sender {    
 	[super refresh:sender];
+    
 	currentPage = 1;
 	
-	if (storyId > 0) {
-        loader = [Post findAllWithStoryId:self.storyId delegate:self];        
-    } else {
-        loader = [Post findAllInLatestChattyWithDelegate:self];
-    }
+    // wrapped existing loader logic in a GCD block to wait until the synchronous lol fetch
+    // completes on a global background thread before loading the chatty
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        // load the lols
+        [[LatestChatty2AppDelegate delegate] fetchLols];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // load the chatty
+            if (storyId > 0) {
+                loader = [Post findAllWithStoryId:self.storyId delegate:self];
+            } else {
+                loader = [Post findAllInLatestChattyWithDelegate:self];
+            }
+        });
+    });
     
 //    if (storyId > 0) {
 //        loader = [[PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self] retain];        
@@ -175,8 +186,8 @@
 //    }
 }
 
-- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
-	NSUInteger page = [[otherData objectForKey:@"page"] intValue];
+- (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {    
+    NSUInteger page = [[otherData objectForKey:@"page"] intValue];
 	self.navigationItem.rightBarButtonItem.enabled = YES;
 	BOOL hasPosts = [models count] > 0;
 	self.navigationItem.rightBarButtonItem.enabled = hasPosts;
@@ -204,19 +215,31 @@
 	NSMutableDictionary* postHistoryDict = [NSMutableDictionary dictionaryWithDictionary:
                                             [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"PostCountHistory"]];
 	
-	// Filter Posts
+	// Filter Posts and apply lol tags
 	NSMutableArray *filteredThreads = [NSMutableArray array];
 	for (Post *rootPost in self.threads) {
-		NSString *modelID = [NSString stringWithFormat:@"%d", rootPost.modelId];
+		NSString *modelID = [NSString stringWithFormat:@"%lu", (unsigned long)rootPost.modelId];
 		NSNumber *numPosts = [postHistoryDict objectForKey:modelID];
 		if( numPosts ){
 			rootPost.newReplies = rootPost.replyCount-[numPosts intValue];
 		}
 		else rootPost.newReplies = rootPost.replyCount;
 		
-		[postHistoryDict setObject:[NSNumber numberWithInt:rootPost.replyCount] forKey:modelID];
+		[postHistoryDict setObject:[NSNumber numberWithUnsignedInteger:rootPost.replyCount] forKey:modelID];
         if ([rootPost visible]) {
             [filteredThreads addObject:rootPost];
+        }
+        
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"lolTags"]) {
+            // get the lol counts dict for this post and it's replies
+            NSDictionary *rootPostLolCounts = [[LatestChatty2AppDelegate delegate].lolCounts objectForKey:[NSString stringWithFormat: @"%lu", (unsigned long)rootPost.modelId]];
+            if (rootPostLolCounts) {
+                // associate the lol counts to this post
+                NSDictionary *postLolCounts = [rootPostLolCounts objectForKey:[NSString stringWithFormat: @"%lu", (unsigned long)rootPost.modelId]];
+                if (postLolCounts) {
+                    rootPost.lolCounts = postLolCounts;
+                }
+            }
         }
 	}
 	self.threads = filteredThreads;
@@ -392,7 +415,7 @@
         
 		cell.storyId = storyId;
 		cell.rootPost = [threads objectAtIndex:indexPath.row];
-		
+        
         if (shouldCollapse) {
             // initialize long press gesture for super collapse
             UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];

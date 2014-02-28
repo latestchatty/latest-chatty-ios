@@ -27,12 +27,12 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [super encodeWithCoder:encoder];
-    [encoder encodeObject:title     forKey:@"title"];
-    [encoder encodeObject:preview   forKey:@"preview"];
-    [encoder encodeObject:body      forKey:@"body"];
-    [encoder encodeObject:date      forKey:@"date"];
-    [encoder encodeInt:commentCount forKey:@"commentCount"];
-    [encoder encodeInt:threadId     forKey:@"threadId"];
+    [encoder encodeObject:title         forKey:@"title"];
+    [encoder encodeObject:preview       forKey:@"preview"];
+    [encoder encodeObject:body          forKey:@"body"];
+    [encoder encodeObject:date          forKey:@"date"];
+    [encoder encodeInteger:commentCount forKey:@"commentCount"];
+    [encoder encodeInteger:threadId     forKey:@"threadId"];
 }
 
 + (NSString *)formatDate:(NSDate *)date {
@@ -46,7 +46,7 @@
 }
 
 + (ModelLoader *)findById:(NSUInteger)aModelId delegate:(id<ModelLoadingDelegate>)delegate {
-    NSString *url = [NSString stringWithFormat:@"/stories/%i", aModelId];
+    NSString *url = [NSString stringWithFormat:@"/stories/%lu", (unsigned long)aModelId];
     return [self loadObjectFromUrl:url delegate:delegate];
 }
 

@@ -29,6 +29,8 @@
 	NSUInteger      timeLevel;
 	BOOL newPost;
 	BOOL pinned;
+    
+    NSDictionary *lolCounts;
 }
 
 @property (copy) NSString *author;
@@ -53,6 +55,8 @@
 
 @property (assign) BOOL newPost;
 @property (assign) BOOL pinned;
+
+@property (strong) NSDictionary *lolCounts;
 
 + (UIColor *)colorForPostCategory:(NSString *)categoryName;
 + (UIColor *)colorForPostExpiration:(NSDate *)date withCategory:(NSString *)categoryName;

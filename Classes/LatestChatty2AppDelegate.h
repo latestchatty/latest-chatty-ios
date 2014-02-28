@@ -39,6 +39,8 @@
 @property (strong, nonatomic) UIViewController *centerController;
 @property (strong, nonatomic) UIViewController *leftController;
 
+@property (strong, nonatomic) NSDictionary *lolCounts;
+
 - (IIViewDeckController*)generateControllerStack;
 
 + (LatestChatty2AppDelegate*)delegate;
@@ -47,6 +49,7 @@
 + (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 - (BOOL)reloadSavedState;
+- (void)fetchLols;
 
 - (NSURLCredential *)userCredential;
 - (BOOL)isYoutubeURL:(NSURL *)url;
@@ -56,4 +59,3 @@
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 	
 @end
-

@@ -20,5 +20,7 @@ typedef enum {
 }
 
 + (void)tagPostId:(NSUInteger)postId tag:(NSString*)tag;
++ (NSMutableString *)buildPostViewTag:(NSDictionary *)lolCounts;
++ (NSMutableAttributedString *)buildThreadCellTag:(NSDictionary *)lolCounts;
 
 @end

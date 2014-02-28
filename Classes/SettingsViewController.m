@@ -50,6 +50,7 @@
 //        darkModeSwitch     = [self generateSwitchWithKey:@"darkMode"];
         collapseSwitch     = [self generateSwitchWithKey:@"collapse"];
         landscapeSwitch    = [self generateSwitchWithKey:@"landscape"];
+        lolTagsSwitch      = [self generateSwitchWithKey:@"lolTags"];
         picsResizeSwitch   = [self generateSwitchWithKey:@"picsResize"];
         picsQualitySlider  = [self generateSliderWithKey:@"picsQuality"];
         youtubeSwitch      = [self generateSwitchWithKey:@"embedYoutube"];
@@ -307,6 +308,7 @@
 //	[defaults setBool:darkModeSwitch.on         forKey:@"darkMode"];
 	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
 	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
+	[defaults setBool:lolTagsSwitch.on          forKey:@"lolTags"];
     [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
     [defaults setFloat:picsQualitySlider.value  forKey:@"picsQuality"];
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
@@ -377,7 +379,7 @@
             break;
 			
 		case 2:
-			return 7;
+			return 8;
 			break;
 			
 		case 3:
@@ -528,7 +530,7 @@
                 
 			case 3:
 				cell.accessoryView = modToolsSwitch;
-				cell.textLabel.text = @"Mod Tools:";
+				cell.textLabel.text = @"Enable Mod Tools:";
 				break;
                 
 			case 4:
@@ -537,11 +539,16 @@
 				break;
                 
             case 5:
+				cell.accessoryView = lolTagsSwitch;
+				cell.textLabel.text = @"Show [lol] Tags:";
+				break;
+                
+            case 6:
 				cell.accessoryView = safariSwitch;
 				cell.textLabel.text = @"Use Safari:";
 				break;
                 
-			case 6:
+			case 7:
 				cell.accessoryView = chromeSwitch;
 				cell.textLabel.text = @"Use Chrome:";
 				break;

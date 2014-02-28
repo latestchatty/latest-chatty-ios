@@ -23,6 +23,8 @@ static NSMutableDictionary *expirationColorMapping;
 
 @synthesize newReplies;
 
+@synthesize lolCounts;
+
 + (void)initialize {
     categoryColorMapping = [[NSMutableDictionary alloc] init];
     [categoryColorMapping setObject:[UIColor clearColor] forKey:@"ontopic"];
@@ -144,27 +146,27 @@ static NSMutableDictionary *expirationColorMapping;
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [super encodeWithCoder:encoder];
     
-    [encoder encodeObject:author    forKey:@"author"];
-    [encoder encodeObject:preview   forKey:@"preview"];
-    [encoder encodeObject:body      forKey:@"body"];
-    [encoder encodeObject:date      forKey:@"date"];
-    [encoder encodeInt:replyCount   forKey:@"replyCount"];
-    [encoder encodeObject:category  forKey:@"category"];
+    [encoder encodeObject:author        forKey:@"author"];
+    [encoder encodeObject:preview       forKey:@"preview"];
+    [encoder encodeObject:body          forKey:@"body"];
+    [encoder encodeObject:date          forKey:@"date"];
+    [encoder encodeInteger:replyCount   forKey:@"replyCount"];
+    [encoder encodeObject:category      forKey:@"category"];
     
-    [encoder encodeInt:storyId      forKey:@"storyId"];
-    [encoder encodeInt:parentPostId forKey:@"parentPostId"];
-    [encoder encodeInt:lastReplyId  forKey:@"lastReplyId"];
+    [encoder encodeInteger:storyId      forKey:@"storyId"];
+    [encoder encodeInteger:parentPostId forKey:@"parentPostId"];
+    [encoder encodeInteger:lastReplyId  forKey:@"lastReplyId"];
     
-    [encoder encodeObject:participants forKey:@"participants"];
-    [encoder encodeObject:replies   forKey:@"replies"];
-    [encoder encodeInt:depth        forKey:@"depth"];
+    [encoder encodeObject:participants  forKey:@"participants"];
+    [encoder encodeObject:replies       forKey:@"replies"];
+    [encoder encodeInteger:depth        forKey:@"depth"];
     
-    [encoder encodeInt:timeLevel    forKey:@"timeLevel"];
-    [encoder encodeBool:newPost     forKey:@"newPost"];
+    [encoder encodeInteger:timeLevel    forKey:@"timeLevel"];
+    [encoder encodeBool:newPost         forKey:@"newPost"];
 }
 
 + (ModelLoader *)findAllWithStoryId:(NSUInteger)storyId pageNumber:(NSUInteger)pageNumber delegate:(id<ModelLoadingDelegate>)delegate {
-    NSString *urlString = [NSString stringWithFormat:@"/%i.%i", storyId, pageNumber];
+    NSString *urlString = [NSString stringWithFormat:@"/%lu.%lu", (unsigned long)storyId, (unsigned long)pageNumber];
     return [self loadAllFromUrl:urlString delegate:delegate];
 }
 
@@ -177,7 +179,7 @@ static NSMutableDictionary *expirationColorMapping;
 }
 
 + (ModelLoader *)findThreadWithId:(NSUInteger)threadId delegate:(id<ModelLoadingDelegate>)delegate {
-    NSString *urlString = [NSString stringWithFormat:@"/thread/%i", threadId];
+    NSString *urlString = [NSString stringWithFormat:@"/thread/%lu", (unsigned long)threadId];
     return [self loadObjectFromUrl:urlString delegate:delegate];
 }
 
@@ -197,11 +199,11 @@ static NSMutableDictionary *expirationColorMapping;
 //                                                    [authorName stringByEscapingURL],
 //                                                    [parentAuthor stringByEscapingURL],
 //                                                    page];
-    NSString *urlString = [NSString stringWithFormat:@"/search?terms=%@&author=%@&parent_author=%@&page=%d",
+    NSString *urlString = [NSString stringWithFormat:@"/search?terms=%@&author=%@&parent_author=%@&page=%lu",
                            [terms stringByEscapingURL],
                            [authorName stringByEscapingURL],
                            [parentAuthor stringByEscapingURL],
-                           page];
+                           (unsigned long)page];
     return [self loadAllFromUrl:urlString delegate:delegate];
 }
 
@@ -249,7 +251,7 @@ static NSMutableDictionary *expirationColorMapping;
     NSString *requestBody = [NSString stringWithFormat:
                              @"body=%@&parent_id=%@",
                              [body stringByEscapingURL],                                         // Comment Body
-                             parentId == 0 ? @"" : [NSString stringWithFormat:@"%i", parentId]]; // Parent ID
+                             parentId == 0 ? @"" : [NSString stringWithFormat:@"%lu", (unsigned long)parentId]]; // Parent ID
     [request setHTTPBody:[requestBody data]];
     [request setHTTPMethod:@"POST"];
     
@@ -327,7 +329,7 @@ static NSMutableDictionary *expirationColorMapping;
     for (NSDictionary *replyDictionary in [dictionary objectForKey:@"comments"]) {
         NSMutableDictionary *replyDictionaryMutable = [replyDictionary mutableCopy];
         NSInteger newDepth = [[dictionary objectForKey:@"depth"] intValue];
-        [replyDictionaryMutable setObject:[NSNumber numberWithInt:newDepth + 1] forKey:@"depth"];
+        [replyDictionaryMutable setObject:[NSNumber numberWithUnsignedInteger:newDepth + 1] forKey:@"depth"];
         
         Post *reply = [[Post alloc] initWithDictionary:replyDictionaryMutable];
         [replies addObject:reply];

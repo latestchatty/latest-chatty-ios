@@ -12,8 +12,10 @@
 
 @synthesize pinnedThreadsToLoad, loadingFor, loadingStoryId;
 
-- (id) initWithThreadsToLoad:(NSMutableArray *)threadsToLoad for:(id<ModelLoadingDelegate>)delegate withStoryId:(NSUInteger)storyId page:(NSUInteger)page
-{
+- (id) initWithThreadsToLoad:(NSMutableArray *)threadsToLoad
+                         for:(id<ModelLoadingDelegate>)delegate
+                 withStoryId:(NSUInteger)storyId
+                        page:(NSUInteger)page {
     self = [super init];
     if (self != nil) {
         pinnedThreadsToLoad = threadsToLoad;
@@ -26,7 +28,6 @@
 }
 
 + (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId page:(NSUInteger)page for:(id<ModelLoadingDelegate>)delegate {
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *threadsToLoad = [[NSMutableArray alloc] init];
     for(NSNumber *threadId in [defaults objectForKey:@"pinnedThreads"])
@@ -51,7 +52,6 @@
 }
 
 - (ModelLoader *)loadPinnedThread {
-
     if([pinnedThreadsToLoad count] == 0)
     {
         [self finishLoading];
@@ -62,8 +62,7 @@
     return [Post findThreadWithId:[pinnedThreadIdToLoad unsignedIntValue] delegate:self];
 }
 
-- (Post *)findReply:(NSUInteger)postId inReplies:(NSMutableArray *)replies
-{
+- (Post *)findReply:(NSUInteger)postId inReplies:(NSMutableArray *)replies {
     for(Post *reply in replies) {        
         if (reply.modelId == postId)
             return reply;
@@ -90,7 +89,6 @@
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
-    
 //    [[dictionary objectForKey:@"id"] intValue]
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *nonDuplicateModels = [[NSMutableArray alloc] init];

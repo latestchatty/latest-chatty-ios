@@ -13,10 +13,6 @@
 @synthesize storyId;
 @synthesize rootPost;
 
-+ (CGFloat)cellHeight {
-	return 70.0;
-}
-
 - (id)init {
 	self = [super initWithNibName:@"ThreadCell" bundle:nil];
     
@@ -26,25 +22,26 @@
 - (void)layoutSubviews {
 	[super layoutSubviews];
 	
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
 	// Set text labels
-	author.text       = rootPost.author;
-	preview.text      = rootPost.preview;
-	date.text         = [Post formatDate:rootPost.date];
+	author.text = rootPost.author;
+	preview.text = rootPost.preview;
+    date.text = [Post formatDate:rootPost.date];
     
     // force white text color on highlight
     author.highlightedTextColor = [UIColor whiteColor];
     date.highlightedTextColor = [UIColor whiteColor];
     replyCount.highlightedTextColor = [UIColor whiteColor];
+    lolCountsLabel.highlightedTextColor = [UIColor whiteColor];
 	
 	NSString* newPostText = nil;
 	if (rootPost.newReplies) {
-		newPostText = [NSString stringWithFormat:@"+%d", rootPost.newReplies];
-		replyCount.text = [NSString stringWithFormat:@"%i (%@)", rootPost.replyCount, newPostText];
+		newPostText = [NSString stringWithFormat:@"+%ld", (long)rootPost.newReplies];
+		replyCount.text = [NSString stringWithFormat:@"%lu (%@)", (unsigned long)rootPost.replyCount, newPostText];
 	} else {
-        replyCount.text = [NSString stringWithFormat:@"%i", rootPost.replyCount];
+        replyCount.text = [NSString stringWithFormat:@"%lu", (unsigned long)rootPost.replyCount];
     }
-
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
 	// Set background to a light color if the user is the root poster
 	if ([rootPost.author.lowercaseString isEqualToString:[defaults stringForKey:@"username"].lowercaseString]) {
@@ -76,6 +73,23 @@
     
     // Choose which timer icon to show based on post date and participation indication
     timerIcon.image = [Post imageForPostExpiration:rootPost.date withParticipant:foundParticipant];
+    
+    // If lol tags are enabled and lolCounts came in when constructing this cell, parse the counts to make an attributed string
+    NSMutableAttributedString *tags;
+    if ([defaults boolForKey:@"lolTags"] && rootPost.lolCounts) {
+        tags = [Tag buildThreadCellTag:rootPost.lolCounts];
+    }
+    
+    // if the tags string was allocated and appended to...
+    if (tags != nil && tags.length > 0) {
+        // set the final attributed string to the label
+        lolCountsLabel.attributedText = tags;
+        // push the preview label's frame up/down depending on whether tags are visible
+        preview.frameY = 20.0f;
+    } else {
+        lolCountsLabel.attributedText = nil;
+        preview.frameY = 27.0f;
+    }
 }
 
 - (BOOL)showCount {
