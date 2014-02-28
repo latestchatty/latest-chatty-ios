@@ -60,6 +60,7 @@
                                                                       style:UIBarButtonItemStylePlain
                                                                      target:self
                                                                      action:@selector(loadChatty)];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
     // Load story
     self.storyLoader = [Story findById:storyId delegate:self];
@@ -99,15 +100,11 @@
 #pragma mark Actions
 
 - (void)displayStory {
-//    self.title = story.title;
     self.title = @"Story";
     
     // Load up web view content
     NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%lu", (unsigned long)story.modelId];
     
-    //if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-    //    [content loadRequest:[NSURLRequest requestWithURLString:baseUrlString]];
-    //} else {
     StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
     
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
@@ -118,7 +115,8 @@
     [htmlTemplate setString:story.title forKey:@"storyTitle"];
     
     [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
-    //}
+    
+    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)loadChatty {
