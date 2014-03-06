@@ -84,11 +84,20 @@
     if (tags != nil && tags.length > 0) {
         // set the final attributed string to the label
         lolCountsLabel.attributedText = tags;
-        // push the preview label's frame up/down depending on whether tags are visible
-        preview.frameY = 20.0f;
+        // iPhone: modify the preview label's frame size depending on whether tags are visible
+        // iPad: modify the preview label frame origin depending on whether tags are visible        
+        if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            preview.frameHeight = 42.0f;
+        } else {
+            preview.frameY = 20.0f;
+        }
     } else {
         lolCountsLabel.attributedText = nil;
-        preview.frameY = 27.0f;
+        if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            preview.frameHeight = 54.0f;
+        } else {
+            preview.frameY = 27.0f;
+        }
     }
 }
 
