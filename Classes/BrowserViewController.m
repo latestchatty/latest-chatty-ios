@@ -65,6 +65,9 @@
         self.navigationItem.rightBarButtonItem = lolMenuButton;
     }
     
+    // initialize scoll position property
+    self.scrollPosition = CGPointMake(0, 0);
+    
     [webView loadRequest:request];
     
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
@@ -91,13 +94,11 @@
     [self.view addSubview:topStroke];
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    if ([[LatestChatty2AppDelegate delegate] isPadDevice] && self.navigationController) {
-//        mainToolbar.tintColor = self.navigationController.navigationBar.tintColor;
-//        self.navigationItem.titleView = self.mainToolbar;
-//        webView.frame = self.view.bounds;
-//    }
-//}
+- (void)viewWillAppear:(BOOL)animated {
+    if (self.scrollPosition.y > 0) {
+        [webView.scrollView setContentOffset:self.scrollPosition animated:NO];
+    }
+}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -233,6 +234,9 @@
         if (viewController == nil) {
             return YES;
         }
+        
+        // save scroll position of web view before pushing view controller
+        self.scrollPosition = webView.scrollView.contentOffset;
         
         [self.navigationController pushViewController:viewController animated:YES];
         
