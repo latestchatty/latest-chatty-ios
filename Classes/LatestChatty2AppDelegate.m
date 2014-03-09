@@ -154,10 +154,6 @@
                                              selector:@selector(storeChanged:)
                                                  name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                object:store];
-    // fire synchronize on app load to sync settings from iCloud
-    // freshing install: will pull all existing iCloud user settings down and put into user defaults database
-    // existing install: will pull down and changes in the iCloud user settings and sync to the user defaults database
-    [store synchronize];
     
     [Crashlytics setUserName:[defaults stringForKey:@"username"]];
     
@@ -186,6 +182,12 @@
     // update collapsedThreads array and sync user defaults
     [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
     [defaults synchronize];
+    
+    // fire synchronize on app load to sync settings from iCloud
+    // freshing install: will pull all existing iCloud user settings down and put into user defaults database
+    // existing install: will pull down and changes in the iCloud user settings and sync to the user defaults database
+    [[NSUbiquitousKeyValueStore defaultStore] setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];    
+    [store synchronize];
     
     if ([self isPadDevice]) {
         [self setupInterfaceForPadWithOptions:launchOptions];
@@ -233,7 +235,7 @@
         NSInteger reasonValue = [reason integerValue];
         // 0 = not a fresh install, sync existing settings
         // 1 = new install, sync all settings
-//        NSLog(@"storeChanged with reason %ld", (long)reasonValue);
+        NSLog(@"storeChanged with reason %ld", (long)reasonValue);
         
         if ((reasonValue == NSUbiquitousKeyValueStoreServerChange) ||
             (reasonValue == NSUbiquitousKeyValueStoreInitialSyncChange)) {
@@ -246,7 +248,7 @@
             for (NSString *key in keys) {
                 id value = [store objectForKey:key];
                 [userDefaults setObject:value forKey:key];
-//                NSLog(@"storeChanged updated value for %@",key);
+                NSLog(@"storeChanged updated value for %@",key);
             }
         }
     }
