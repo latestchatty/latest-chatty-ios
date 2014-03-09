@@ -383,6 +383,7 @@
                                                  nil];
             [collapsedThreads addObject:collapsedThreadDict];
             [defaults setObject:collapsedThreads forKey:@"collapsedThreads"];
+            [[NSUbiquitousKeyValueStore defaultStore] setObject:collapsedThreads forKey:@"collapsedThreads"];
 //            [defaults synchronize];
         }
     }
