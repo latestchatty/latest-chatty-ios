@@ -245,7 +245,7 @@
 	self.threads = filteredThreads;
 	
 	[[NSUserDefaults standardUserDefaults] setValue:postHistoryDict forKey:@"PostCountHistory"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+//	[[NSUserDefaults standardUserDefaults] synchronize];
 	
 	[self.tableView reloadData];
 	loader = nil;
@@ -383,7 +383,7 @@
                                                  nil];
             [collapsedThreads addObject:collapsedThreadDict];
             [defaults setObject:collapsedThreads forKey:@"collapsedThreads"];
-            [defaults synchronize];
+//            [defaults synchronize];
         }
     }
 }

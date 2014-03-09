@@ -63,7 +63,7 @@
             
             // save the updated message count to the db
             [defaults setInteger:messageCount forKey:@"messageCount"];
-            [defaults synchronize];
+//            [defaults synchronize];
             // reflect the unread count on the app badge
             [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
             

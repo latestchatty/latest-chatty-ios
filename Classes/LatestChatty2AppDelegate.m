@@ -113,7 +113,7 @@
     // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
 //    if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
         [defaults removeObjectForKey:@"savedState"];
-//    }        
+//    }
 
     // Settings defaults
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -147,6 +147,17 @@
                                      [NSNumber numberWithBool:NO],  @"lolTags",
                                      nil];
     [defaults registerDefaults:defaultSettings];
+    
+    // register for iCloud notifications to the keystore
+    NSUbiquitousKeyValueStore* store = [NSUbiquitousKeyValueStore defaultStore];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(storeChanged:)
+                                                 name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
+                                               object:store];
+    // fire synchronize on app load to sync settings from iCloud
+    // freshing install: will pull all existing iCloud user settings down and put into user defaults database
+    // existing install: will pull down and changes in the iCloud user settings and sync to the user defaults database
+    [store synchronize];
     
     [Crashlytics setUserName:[defaults stringForKey:@"username"]];
     
@@ -213,6 +224,34 @@
     return YES;
 }
 
+// handler fired when iCloud keystore synchronizes
+- (void)storeChanged:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *reason = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
+    
+    if (reason) {
+        NSInteger reasonValue = [reason integerValue];
+        // 0 = not a fresh install, sync existing settings
+        // 1 = new install, sync all settings
+//        NSLog(@"storeChanged with reason %ld", (long)reasonValue);
+        
+        if ((reasonValue == NSUbiquitousKeyValueStoreServerChange) ||
+            (reasonValue == NSUbiquitousKeyValueStoreInitialSyncChange)) {
+            
+            NSArray *keys = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangedKeysKey];
+            NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            
+            // all key names locally and in iCloud are the same, so we can loop over the changed keys and sync easily
+            for (NSString *key in keys) {
+                id value = [store objectForKey:key];
+                [userDefaults setObject:value forKey:key];
+//                NSLog(@"storeChanged updated value for %@",key);
+            }
+        }
+    }
+}
+
 - (void)fetchLols {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -250,7 +289,7 @@
 
             // stuff successful fetch date into user defaults
             [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
-            [defaults synchronize];
+//            [defaults synchronize];
         }
         
         request = nil;

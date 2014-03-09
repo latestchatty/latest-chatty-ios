@@ -347,7 +347,7 @@
     [updatedPinnedThreads addObject:[NSNumber numberWithUnsignedInteger:postId]];
 
     [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];    
-    [defaults synchronize];
+//    [defaults synchronize];
 }
 
 - (void)unPinThread:(NSUInteger)postId {
@@ -360,7 +360,7 @@
             [updatedPinnedThreads addObject:pinnedId];
     
     [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
-    [defaults synchronize];    
+//    [defaults synchronize];    
 }
 
 - (IBAction)toggleThreadPinned {
@@ -702,7 +702,7 @@
     if (grippyBarPosition < 0) grippyBarPosition = 0;
     [self resetLayout:YES];
     [[NSUserDefaults standardUserDefaults] setInteger:grippyBarPosition forKey:@"grippyBarPosition"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+//	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)grippyBarDidSwipeDown {
@@ -710,7 +710,7 @@
     if (grippyBarPosition > 2) grippyBarPosition = 2;
     [self resetLayout:YES];
     [[NSUserDefaults standardUserDefaults] setInteger:grippyBarPosition forKey:@"grippyBarPosition"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+//	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 // Patch-E: fixed the iPad issue where if you tap the tag button numerous times, many action sheet popovers are created
@@ -767,7 +767,7 @@
     
     // Persist the orderByPostDate toggle option
     [[NSUserDefaults standardUserDefaults] setBool:orderByPostDate forKey:@"orderByPostDate"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+//	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (int)nextRowByTimeLevel:(int)currentRow {

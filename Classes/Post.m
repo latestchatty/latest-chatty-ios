@@ -347,7 +347,7 @@ static NSMutableDictionary *expirationColorMapping;
                 self.pinned = YES;
     } else {
         [defaults setObject:[NSMutableArray arrayWithCapacity:0] forKey:@"pinnedThreads"];
-        [defaults synchronize];
+//        [defaults synchronize];
     }
     return self;
 }
