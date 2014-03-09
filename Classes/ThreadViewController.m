@@ -519,9 +519,9 @@
         [htmlTemplate setString:tags forKey:@"tags"];
     }
     
-    NSString *body = [self postBodyWithYoutubeWidgets:post.body];
+//    NSString *body = [self postBodyWithYoutubeWidgets:post.body];
     
-    [htmlTemplate setString:body forKey:@"body"];
+    [htmlTemplate setString:post.body forKey:@"body"];
     [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%lu", (unsigned long)rootPost.modelId]]];
 }
 
@@ -529,35 +529,35 @@
     [super tableView:_tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
 }
 
-- (NSString *)postBodyWithYoutubeWidgets:(NSString *)body {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"embedYoutube"]) return body;
-    
-    // Insert youtube widgets
-    if ([body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"]) {
-        @try {
-            CGSize youtubeSize = [[LatestChatty2AppDelegate delegate] isPadDevice] ? CGSizeMake(640, 480) : CGSizeMake(140, 105);
-            NSString *replacement = [NSString stringWithFormat:
-                                     @"<div class=\"youtube-widget\">"
-                                     @"  <object width=\"%d\" height=\"%d\">"
-                                     @"    <param name=\"movie\" value=\"$1\"></param>"
-                                     @"    <param name=\"wmode\" value=\"transparent\"></param>"
-                                     @"    <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"%d\" height=\"%d\"></embed>"
-                                     @"  </object>"
-                                     @"  <br/>"
-                                     @"  <a href=\"$1\">$1</a>"
-                                     @"</div>",
-                                     (int)youtubeSize.width, (int)youtubeSize.height,
-                                     (int)youtubeSize.width, (int)youtubeSize.height];
-            
-            body = [body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>" withString:replacement];
-            
-        } @catch (NSException *exception) {
-            NSLog(@"Error inserting youtube widgets. %@", exception);
-        }
-    }
-    
-    return body;
-}
+//- (NSString *)postBodyWithYoutubeWidgets:(NSString *)body {
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"embedYoutube"]) return body;
+//    
+//    // Insert youtube widgets
+//    if ([body isMatchedByRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>"]) {
+//        @try {
+//            CGSize youtubeSize = [[LatestChatty2AppDelegate delegate] isPadDevice] ? CGSizeMake(640, 480) : CGSizeMake(140, 105);
+//            NSString *replacement = [NSString stringWithFormat:
+//                                     @"<div class=\"youtube-widget\">"
+//                                     @"  <object width=\"%d\" height=\"%d\">"
+//                                     @"    <param name=\"movie\" value=\"$1\"></param>"
+//                                     @"    <param name=\"wmode\" value=\"transparent\"></param>"
+//                                     @"    <embed id=\"yt\" src=\"$1\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"%d\" height=\"%d\"></embed>"
+//                                     @"  </object>"
+//                                     @"  <br/>"
+//                                     @"  <a href=\"$1\">$1</a>"
+//                                     @"</div>",
+//                                     (int)youtubeSize.width, (int)youtubeSize.height,
+//                                     (int)youtubeSize.width, (int)youtubeSize.height];
+//            
+//            body = [body stringByReplacingOccurrencesOfRegex:@"<a href=\"(http://(www\\.)?youtube\\.com/watch\\?v=.*?)\">.*?</a>" withString:replacement];
+//            
+//        } @catch (NSException *exception) {
+//            NSLog(@"Error inserting youtube widgets. %@", exception);
+//        }
+//    }
+//    
+//    return body;
+//}
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     if (scrollView == tableView) {

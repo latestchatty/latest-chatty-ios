@@ -244,7 +244,7 @@ static NSMutableDictionary *expirationColorMapping;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"serverApi"];
+    NSString *server = [defaults objectForKey:@"serverApi"];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/post/", server]]];
     
     // Set request body and HTTP method
@@ -335,10 +335,10 @@ static NSMutableDictionary *expirationColorMapping;
         [replies addObject:reply];
     }
  
-    NSUInteger lastRefresh = [[NSUserDefaults standardUserDefaults] integerForKey:@"lastRefresh"];
-    newPost = self.modelId > lastRefresh || self.lastReplyId > lastRefresh;
-        
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSUInteger lastRefresh = [defaults integerForKey:@"lastRefresh"];
+    newPost = self.modelId > lastRefresh || self.lastReplyId > lastRefresh;
 
     if ([defaults objectForKey:@"pinnedThreads"] != nil) {
         NSMutableArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];        
