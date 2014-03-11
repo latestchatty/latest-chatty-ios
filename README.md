@@ -3,6 +3,18 @@ latest-chatty-2
 
 Updated for iOS 7!
 
+4.2.2
+====
+- Pin threads support. Double tap the top navigation bar when viewing a thread to pin the root thread to the chatty. Pinned threads appear with a purple background color at the top of the chatty. Threads will be unpinned after they have expired. Pinned threads are also synced with iCloud.
+
+4.2.1
+====
+- iPhone now shows three lines of preview text (up from two) in chatty/search thread cells when no [lol] tags exist for the thread ([lol] tags are never visible in search thread cells). iPad is unchanged and always showed three lines.
+- iCloud support. Settings now sync across your iOS devices. The only setting that does not sync is the "Allow Landscape" preference as that is usually set differently between phone and pad devices. Collapsed threads are also synced.
+- In-app Shack[lol] browser now maintains scroll position when going back to the Shack[lol] browser after tapping a post to load it.
+- Bug fix for persisting user settings to database on device, erroneously sending the synchronize message too frequently and causing crashes. The API docs indicate to not call it unless you want immediate persistance (like on app termination), otherwise the framework periodically calls synchronize for you. All instances of immediate persistance have been removed and immediate persistance only occurs on "Save" button tap in Settings view and upon app termination.
+- Bug fix for accessing comments attached to a story before the story has finished loading (and thus provides the correct id to the threads loader for loading only threads attached that story).
+
 4.2.0
 ====
 - 4.1.3 RC submitted to App Store
