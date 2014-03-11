@@ -113,6 +113,12 @@
     return color;
 }
 
++ (UIColor *)lcCellPinnedColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:33.0/255.0 green:14.0/255.0 blue:25.0/255.0 alpha:1.0];
+    return color;
+}
+
 + (UIColor *)lcGroupedCellColor {
     static UIColor *color = nil;
     if (!color) color = [UIColor colorWithRed:47.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
