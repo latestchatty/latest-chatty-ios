@@ -290,6 +290,8 @@
 		CD7F2F5A17FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2717FE85BE00E7EAE3 /* Keyboard-Normal.png */; };
 		CD7F2F5B17FE85BE00E7EAE3 /* Keyboard-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */; };
 		CD7F2F5C17FE85BE00E7EAE3 /* Keyboard-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */; };
+		CD87EB9518CEA5B700638794 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD87EB9418CEA5B700638794 /* libFlurry_4.3.2.a */; };
+		CD87EB9618CEA5B700638794 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD87EB9418CEA5B700638794 /* libFlurry_4.3.2.a */; };
 		CD8BA2B916306A0900ED5C5E /* AppleSafari-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */; };
 		CD8BA2BA16306A0900ED5C5E /* AppleSafari-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */; };
 		CD8BA2BB16306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */; };
@@ -384,11 +386,7 @@
 		CDA1FA1F1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */; };
 		CDA1FA201806C15E0036F7B6 /* MenuBorderOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */; };
 		CDA1FA211806C15E0036F7B6 /* MenuBorderOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */; };
-		CDA26B6018234F1C00239BA9 /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B5F18234F1C00239BA9 /* libFlurry_4.3.0.a */; };
-		CDA26B6118234F1C00239BA9 /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B5F18234F1C00239BA9 /* libFlurry_4.3.0.a */; };
 		CDA26B6318234F4100239BA9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6218234F4100239BA9 /* Security.framework */; };
-		CDA26B6518234F4D00239BA9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6418234F4D00239BA9 /* AdSupport.framework */; };
-		CDA26B6618234F6000239BA9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6418234F4D00239BA9 /* AdSupport.framework */; };
 		CDA26B6718234F6800239BA9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6218234F4100239BA9 /* Security.framework */; };
 		CDC0E9BC17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
 		CDC0E9BD17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
@@ -785,6 +783,7 @@
 		CD7F2F2617FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal-Underline@2x.png"; path = "Assets/Keyboard-Normal-Underline@2x.png"; sourceTree = "<group>"; };
 		CD7F2F2717FE85BE00E7EAE3 /* Keyboard-Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal.png"; path = "Assets/Keyboard-Normal.png"; sourceTree = "<group>"; };
 		CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal@2x.png"; path = "Assets/Keyboard-Normal@2x.png"; sourceTree = "<group>"; };
+		CD87EB9418CEA5B700638794 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.2.a; sourceTree = "<group>"; };
 		CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon.png"; path = "Assets/AppleSafari-Icon.png"; sourceTree = "<group>"; };
 		CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon@2x.png"; path = "Assets/AppleSafari-Icon@2x.png"; sourceTree = "<group>"; };
 		CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon@2x~ipad.png"; path = "Assets/AppleSafari-Icon@2x~ipad.png"; sourceTree = "<group>"; };
@@ -803,7 +802,6 @@
 		CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorder@2x.png"; path = "Assets/MenuBorder@2x.png"; sourceTree = "<group>"; };
 		CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorderOut@2x.png"; path = "Assets/MenuBorderOut@2x.png"; sourceTree = "<group>"; };
 		CDA26B5E18234F1C00239BA9 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		CDA26B5F18234F1C00239BA9 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.0.a; sourceTree = "<group>"; };
 		CDA26B6218234F4100239BA9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CDA26B6418234F4D00239BA9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		CDC0E9A817F6886D007D3738 /* Post-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator.png"; path = "Assets/Post-Indicator.png"; sourceTree = "<group>"; };
@@ -968,7 +966,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDA26B6618234F6000239BA9 /* AdSupport.framework in Frameworks */,
 				CD7ADD2217EF434200B4C886 /* AVFoundation.framework in Frameworks */,
 				5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
@@ -980,7 +977,7 @@
 				5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				5907C5B710A69A190028D630 /* libz.dylib in Frameworks */,
-				CDA26B6018234F1C00239BA9 /* libFlurry_4.3.0.a in Frameworks */,
+				CD87EB9518CEA5B700638794 /* libFlurry_4.3.2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -988,7 +985,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDA26B6518234F4D00239BA9 /* AdSupport.framework in Frameworks */,
 				CD13747B17EA90A0002A2551 /* AVFoundation.framework in Frameworks */,
 				CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */,
 				CDA1181F16C1DC6600CE1375 /* CoreGraphics.framework in Frameworks */,
@@ -1000,7 +996,7 @@
 				CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */,
 				CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */,
 				CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */,
-				CDA26B6118234F1C00239BA9 /* libFlurry_4.3.0.a in Frameworks */,
+				CD87EB9618CEA5B700638794 /* libFlurry_4.3.2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1197,7 +1193,7 @@
 			isa = PBXGroup;
 			children = (
 				CDA26B5E18234F1C00239BA9 /* Flurry.h */,
-				CDA26B5F18234F1C00239BA9 /* libFlurry_4.3.0.a */,
+				CD87EB9418CEA5B700638794 /* libFlurry_4.3.2.a */,
 			);
 			name = Flurry;
 			path = Classes/Flurry;
@@ -2290,6 +2286,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+					"$(PROJECT_DIR)/Classes/Flurry",
 				);
 				PRODUCT_NAME = LatestChatty;
 			};
@@ -2318,6 +2315,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+					"$(PROJECT_DIR)/Classes/Flurry",
 				);
 				PRODUCT_NAME = LatestChatty;
 			};
@@ -2407,6 +2405,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+					"$(PROJECT_DIR)/Classes/Flurry",
 				);
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
@@ -2437,6 +2436,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+					"$(PROJECT_DIR)/Classes/Flurry",
 				);
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
@@ -2467,6 +2467,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+					"$(PROJECT_DIR)/Classes/Flurry",
 				);
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
@@ -2525,6 +2526,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
+					"$(PROJECT_DIR)/Classes/Flurry",
 				);
 				PRODUCT_NAME = LatestChatty;
 			};
