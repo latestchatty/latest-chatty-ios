@@ -12,7 +12,6 @@
 #import "ThreadCell.h"
 #import "ModelLoader.h"
 #import "ComposeViewController.h"
-#import "PinnedThreadsLoader.h"
 
 @class ThreadViewController;
 

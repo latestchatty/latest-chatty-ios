@@ -150,10 +150,13 @@
     }
     
     // Enable toolbars
-//    self.toolbar.userInteractionEnabled = YES;
-//    self.toolbar.hidden = NO;
     grippyBar.userInteractionEnabled = YES;
     self.navigationItem.rightBarButtonItem.enabled = YES;
+    if (rootPost.pinned) {
+        [self.navigationController.navigationBar setBarTintColor:[UIColor lcCellPinnedColor]];
+    } else {
+        [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
+    }
     
     // Select and display the targeted post
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];
@@ -253,6 +256,13 @@
 //        self.toolbar.userInteractionEnabled = YES;
 //        self.toolbar.hidden = NO;
     }
+
+    if (rootPost.pinned) {
+        [self.navigationController.navigationBar setBarTintColor:[UIColor lcCellPinnedColor]];
+    } else {
+        [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
+    }
+    
     [self resetLayout:NO];
     
 //    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
@@ -274,14 +284,16 @@
         self.scrollPosition = CGPointMake(0, 0);
     }
     
-    // long press gesture only for iPhone now
-//    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        // initialize long press gesture
-        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-        longPress.minimumPressDuration = 1.0; //seconds
-        longPress.delegate = self;
-        [self.navigationController.navigationBar addGestureRecognizer:longPress];
-//    }
+    // initialize long press gesture
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    longPress.minimumPressDuration = 1.0; //seconds
+    longPress.delegate = self;
+    [self.navigationController.navigationBar addGestureRecognizer:longPress];
+
+    // initialize double tap gesture
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    doubleTap.numberOfTapsRequired = 2;
+    [self.navigationController.navigationBar addGestureRecognizer:doubleTap];
     
     // set the panning gesture delegate to this controller to monitor whether the panning should occur
     [self.viewDeckController setPanningGestureDelegate:self];
@@ -301,6 +313,8 @@
     
     // remove the panning gesture delegate from this controller when the view goes away
     [self.viewDeckController setPanningGestureDelegate:nil];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
     
     [loader cancel];
 }
@@ -333,50 +347,70 @@
 
 #pragma mark -
 #pragma mark Thread pinning
-- (void)pinThread:(NSUInteger)postId {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
-    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] initWithArray:pinnedThreads];    
-    
-    for (NSNumber *pinnedThread in updatedPinnedThreads) {
-        if ([pinnedThread unsignedIntValue] == postId) {
-            return;
-        } 
+- (void)togglePinThread {
+    if (rootPost.pinned) { // unpin thread
+        [self unPinThread];
+    } else { // pin thread
+        [self pinThread];
     }
-    
-    [updatedPinnedThreads addObject:[NSNumber numberWithUnsignedInteger:postId]];
-
-    [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];    
-//    [defaults synchronize];
+    rootPost.pinned = !rootPost.pinned;
 }
 
-- (void)unPinThread:(NSUInteger)postId {
+- (void)pinThread {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
-    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] init];
+    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] initWithArray:pinnedThreads];
     
-    for (NSNumber *pinnedId in pinnedThreads)
-        if([pinnedId unsignedIntValue] != postId)
-            [updatedPinnedThreads addObject:pinnedId];
+    // create dictionary from thread's id/date, add to array and sync
+    NSDictionary *pinnedThreadDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      [NSNumber numberWithInteger:rootPost.modelId], @"modelId",
+                                      rootPost.date, @"date",
+                                      nil];
+    [updatedPinnedThreads addObject:pinnedThreadDict];
     
     [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
-//    [defaults synchronize];    
+    [[NSUbiquitousKeyValueStore defaultStore] setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor lcCellPinnedColor]];
+    
+    //show tag HUD message
+    NSTimeInterval theTimeInterval = 1.0;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeText];
+    [hud setLabelText:@"Pinned!"];
+    [hud setColor:[UIColor lcCellPinnedColor]];
+    //        [hud setYOffset:-33];
+    [hud hide:YES afterDelay:theTimeInterval];
 }
 
-- (IBAction)toggleThreadPinned {
-        Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
-        if (post.pinned) {
-                [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
-                threadPinButton.alpha = 0.2;
-                post.pinned = NO;
-        [self unPinThread:[post modelId]];
-                return;
+- (void)unPinThread {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
+    // container to hold threads to remain pinned
+    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] init];
+    
+    // loop over pinnedThreads dictionaries in array
+    for (NSDictionary *pinnedThreadDict in pinnedThreads) {
+        NSUInteger pinnedThreadModelId = [[pinnedThreadDict objectForKey:@"modelId"] unsignedIntegerValue];
+        
+        if (pinnedThreadModelId != rootPost.modelId) {
+            [updatedPinnedThreads addObject:pinnedThreadDict];
         }
-                 
-        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
-        threadPinButton.alpha = 1.0;
-        post.pinned = YES;
-    [self pinThread:[post modelId]];
+    }
+    
+    [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
+    [[NSUbiquitousKeyValueStore defaultStore] setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
+    
+    //show tag HUD message
+    NSTimeInterval theTimeInterval = 1.0;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeText];
+    [hud setLabelText:@"Unpinned!"];
+    [hud setColor:[UIColor lcBarTintColor]];
+    //        [hud setYOffset:-33];
+    [hud hide:YES afterDelay:theTimeInterval];
 }
 
 //#pragma mark -
@@ -478,17 +512,14 @@
     Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
     
     if (post.pinned) {
-        threadPinButton.hidden = NO;
-        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
-        threadPinButton.alpha = 1.0;
+//        threadPinButton.hidden = NO;
+//        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
+//        threadPinButton.alpha = 1.0;
     } else {
-        threadPinButton.hidden = NO;
-        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
-        threadPinButton.alpha = 0.2;
+//        threadPinButton.hidden = NO;
+//        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
+//        threadPinButton.alpha = 0.2;
     }
-    
-    // Force pin thread button to be hidden for this release
-    threadPinButton.hidden = YES;
     
     // Create HTML for the post
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
@@ -885,22 +916,22 @@
         }
         
         //show mod HUD message
-        NSTimeInterval theTimeInterval = 1;
+        NSTimeInterval theTimeInterval = 1.0;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Modded!"];
-        [hud setColor:[UIColor lcTableBackgroundColor]];
+        [hud setColor:[UIColor lcBarTintColor]];
 //        [hud setYOffset:-33];
         [hud hide:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Tag this Post"]) { //tagging
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
         
         //show tag HUD message
-        NSTimeInterval theTimeInterval = 1;
+        NSTimeInterval theTimeInterval = 1.0;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Tagged!"];
-        [hud setColor:[UIColor lcTableBackgroundColor]];
+        [hud setColor:[UIColor lcBarTintColor]];
 //        [hud setYOffset:-33];
         [hud hide:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Author Actions"]) { //author actions
@@ -950,7 +981,8 @@
     if ([gestureRecognizer.class isSubclassOfClass:[UISwipeGestureRecognizer class]]) return YES;
     
     // if gesture is long press (on the navigation bar), only let it pass through if the press is on the reply button
-    if ([gestureRecognizer.class isSubclassOfClass:[UILongPressGestureRecognizer class]]) {
+    if ([gestureRecognizer.class isSubclassOfClass:[UILongPressGestureRecognizer class]] ||
+        [gestureRecognizer.class isSubclassOfClass:[UITapGestureRecognizer class]]) {
         // this will be faulty logic if there is ever another button on the nav bar other than the reply button,
         // the back button is not included in this because its view's class is not a subclass of UIControl
         if ([[touch.view class] isSubclassOfClass:[UIControl class]]) return YES;
@@ -977,6 +1009,10 @@
         
         [theActionSheet showInView:self.navigationController.view];
     }
+}
+
+-(void)handleDoubleTap:(UITapGestureRecognizer *)gestureRecognizer {
+    [self togglePinThread];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

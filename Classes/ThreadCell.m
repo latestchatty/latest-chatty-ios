@@ -49,6 +49,10 @@
 	} else {
         self.backgroundColor = [UIColor lcCellNormalColor];
 	}
+    
+    if (rootPost.pinned) {
+        self.backgroundColor = [UIColor lcCellPinnedColor];
+    }
 	
 	// Set side color stripe for the post category
 	categoryStripe.backgroundColor = rootPost.categoryColor;

@@ -340,15 +340,21 @@ static NSMutableDictionary *expirationColorMapping;
     NSUInteger lastRefresh = [defaults integerForKey:@"lastRefresh"];
     newPost = self.modelId > lastRefresh || self.lastReplyId > lastRefresh;
 
-    if ([defaults objectForKey:@"pinnedThreads"] != nil) {
-        NSMutableArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];        
-        for (NSNumber *pinnedThread in pinnedThreads)
-            if(self.modelId == [pinnedThread unsignedIntValue])
+    NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
+    if (pinnedThreads != nil) {
+        // loop over pinnedThreads dictionaries in array
+        for (NSDictionary *pinnedThreadDict in pinnedThreads) {
+            NSUInteger pinnedThreadModelId = [[pinnedThreadDict objectForKey:@"modelId"] unsignedIntegerValue];
+        
+            if (pinnedThreadModelId == self.modelId) {
                 self.pinned = YES;
-    } else {
-        [defaults setObject:[NSMutableArray arrayWithCapacity:0] forKey:@"pinnedThreads"];
-//        [defaults synchronize];
+            }
+        }
     }
+//    else {
+//        [defaults setObject:[NSMutableArray arrayWithCapacity:0] forKey:@"pinnedThreads"];
+//        [defaults synchronize];
+//    }
     return self;
 }
 

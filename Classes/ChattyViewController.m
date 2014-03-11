@@ -8,6 +8,7 @@
 
 #import "ChattyViewController.h"
 
+#import "PinnedThreadsLoader.h"
 #include "ThreadViewController.h"
 #include "NoContentController.h"
 
@@ -171,19 +172,18 @@
         [[LatestChatty2AppDelegate delegate] fetchLols];
         dispatch_async(dispatch_get_main_queue(), ^{
             // load the chatty
+//            if (storyId > 0) {
+//                loader = [Post findAllWithStoryId:self.storyId delegate:self];
+//            } else {
+//                loader = [Post findAllInLatestChattyWithDelegate:self];
+//            }
             if (storyId > 0) {
-                loader = [Post findAllWithStoryId:self.storyId delegate:self];
+                loader = [PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self];
             } else {
-                loader = [Post findAllInLatestChattyWithDelegate:self];
+                loader = [PinnedThreadsLoader loadPinnedThreadsThenLatestChattyFor:self];
             }
         });
     });
-    
-//    if (storyId > 0) {
-//        loader = [[PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self] retain];        
-//    } else {
-//        loader = [[PinnedThreadsLoader loadPinnedThreadsThenLatestChattyFor:self] retain];
-//    }
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {    
@@ -217,6 +217,7 @@
 	
 	// Filter Posts and apply lol tags
 	NSMutableArray *filteredThreads = [NSMutableArray array];
+//    NSUInteger index = 0;
 	for (Post *rootPost in self.threads) {
 		NSString *modelID = [NSString stringWithFormat:@"%lu", (unsigned long)rootPost.modelId];
 		NSNumber *numPosts = [postHistoryDict objectForKey:modelID];
@@ -241,6 +242,14 @@
                 }
             }
         }
+    
+//        // bubble pinned threads to the top
+//        if (rootPost.pinned) {
+//            id object = [filteredThreads objectAtIndex:index];
+//            [filteredThreads removeObjectAtIndex:index];
+//            [filteredThreads insertObject:object atIndex:0];
+//        }
+//        index++;
 	}
 	self.threads = filteredThreads;
 	

@@ -30,8 +30,10 @@
 + (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId page:(NSUInteger)page for:(id<ModelLoadingDelegate>)delegate {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *threadsToLoad = [[NSMutableArray alloc] init];
-    for(NSNumber *threadId in [defaults objectForKey:@"pinnedThreads"])
-        [threadsToLoad addObject:threadId];
+    for (NSDictionary *pinnedThreadDict in [defaults objectForKey:@"pinnedThreads"]) {
+        NSNumber *modelId = [pinnedThreadDict objectForKey:@"modelId"];
+        [threadsToLoad addObject:modelId];
+    }
     return [[[PinnedThreadsLoader alloc] initWithThreadsToLoad:threadsToLoad for:delegate withStoryId:storyId page:page] loadPinnedThread];
 }
 
@@ -45,15 +47,16 @@
 }
 
 - (void)finishLoading {
-    if(loadingStoryId == 0)
+    if(loadingStoryId == 0) {
         [Post findAllInLatestChattyWithDelegate:self];
-    else
+    }
+    else {
         [Post findAllWithStoryId:loadingStoryId delegate:self];
+    }
 }
 
 - (ModelLoader *)loadPinnedThread {
-    if([pinnedThreadsToLoad count] == 0)
-    {
+    if ([pinnedThreadsToLoad count] == 0) {
         [self finishLoading];
         return nil;
     }
@@ -64,12 +67,14 @@
 
 - (Post *)findReply:(NSUInteger)postId inReplies:(NSMutableArray *)replies {
     for(Post *reply in replies) {        
-        if (reply.modelId == postId)
+        if (reply.modelId == postId) {
             return reply;
-        else if([reply replies] != nil && [reply replies].count > 0) {
+        }
+        else if ([reply replies] != nil && [reply replies].count > 0) {
             Post* subReply = [self findReply:postId inReplies:[reply replies]];
-            if(subReply != nil)
+            if (subReply != nil) {
                 return subReply;
+            }
         }
     }
      
@@ -82,8 +87,9 @@
     Post *postModel = (Post *)model;
     if (postModel.modelId != [loadedPinnedThreadId unsignedIntValue]) {
         [loadingModels addObject:[self findReply:[loadedPinnedThreadId unsignedIntValue] inReplies:[postModel replies]]];
-    } else
+    } else {
         [loadingModels addObject:model];
+    }
 
     [self loadPinnedThread];
 }
@@ -93,19 +99,21 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *nonDuplicateModels = [[NSMutableArray alloc] init];
     
-    if(models != nil && [models count] > 0) { 
-        for(Post *post in models)
-        {
+    if (models != nil && [models count] > 0) {
+        for (Post *post in models) {
             BOOL isDuplicate = NO;
-            for(NSNumber *threadId in [defaults objectForKey:@"pinnedThreads"])
-            {     
-                if([post modelId] != [threadId intValue]) continue;
+            for (NSDictionary *pinnedThreadDict in [defaults objectForKey:@"pinnedThreads"]) {
+                NSUInteger modelId = [[pinnedThreadDict objectForKey:@"modelId"] unsignedIntegerValue];
+                if (post.modelId != modelId) {
+                    continue;
+                }
                 isDuplicate = YES;
                 break;
             }
             
-            if(!isDuplicate)
+            if (!isDuplicate) {
                 [nonDuplicateModels addObject:post];
+            }
         }
     }
     

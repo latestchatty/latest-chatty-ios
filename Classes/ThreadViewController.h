@@ -57,7 +57,6 @@
 - (IBAction)previous;
 - (IBAction)next;
 - (IBAction)toggleOrderByPostDate;
-- (IBAction)toggleThreadPinned;
 
 //- (NSString *)postBodyWithYoutubeWidgets:(NSString *)body;
 

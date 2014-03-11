@@ -138,7 +138,7 @@
                                      [NSNumber numberWithInt:1],    @"grippyBarPosition",
                                      [NSNumber numberWithBool:NO],  @"orderByPostDate",
                                      [NSNumber numberWithInt:0],    @"searchSegmented",
-                                     [NSMutableArray array],        @"pinnedPosts",
+                                     [NSMutableArray array],        @"pinnedThreads",
                                      [NSMutableArray array],        @"collapsedThreads",
                                      [NSMutableArray array],        @"recentSearches",
                                      [NSNumber numberWithBool:NO],  @"darkMode",
@@ -181,6 +181,29 @@
     }
     // update collapsedThreads array and sync user defaults
     [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
+    
+    // Self-clearing the pinnedThreads array based on date of each pinned thread.
+    // Keep threads pinned only if they haven't expired yet from the chatty.
+    // Should be more efficient to create a new array of threads to keep rather than the inverse
+    // of creating an array of threads to remove with [pinnedThreads removeObjectsInArray:array].
+    NSMutableArray *pinnedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"pinnedThreads"]];
+    NSMutableArray *pinnedThreadsToKeep = [NSMutableArray array];
+    
+    // loop over pinnedThread dictionaries in array
+    for (NSDictionary *pinnedThreadDict in pinnedThreads) {
+        // build time interval from now to original post date of collapsed thread
+        NSTimeInterval ti = [[pinnedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
+        NSInteger hours = (ti / 3600) * -1;
+        
+        // if pinned thread hasn't expired, add dictionary pinnedThreadsToKeep array
+        if (hours < 18) {
+            //NSLog(@"keeping thread pinned: %@", pinnedThreadDict);
+            [pinnedThreadsToKeep addObject:pinnedThreadDict];
+        }
+    }
+    // update collapsedThreads array and sync user defaults
+    [defaults setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
+    
     [defaults synchronize];
     
     // fire synchronize on app load to sync settings from iCloud
