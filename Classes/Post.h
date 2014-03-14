@@ -72,6 +72,9 @@
 
 + (BOOL)createWithBody:(NSString *)body parentId:(NSUInteger)parentId storyId:(NSUInteger)storyId;
 
++ (void)pin:(Post *)post;
++ (void)unpin:(Post *)post;
+
 - (NSArray *)repliesArray;
 - (NSArray *)repliesArray:(NSMutableArray *)parentArray;
 
