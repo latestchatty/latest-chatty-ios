@@ -357,23 +357,11 @@
 }
 
 - (void)pinThread {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
-    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] initWithArray:pinnedThreads];
-    
-    // create dictionary from thread's id/date, add to array and sync
-    NSDictionary *pinnedThreadDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      [NSNumber numberWithInteger:rootPost.modelId], @"modelId",
-                                      rootPost.date, @"date",
-                                      nil];
-    [updatedPinnedThreads addObject:pinnedThreadDict];
-    
-    [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
-    [[NSUbiquitousKeyValueStore defaultStore] setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
+    [Post pin:rootPost];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor lcCellPinnedColor]];
     
-    //show tag HUD message
+    //show pin HUD message
     NSTimeInterval theTimeInterval = 1.0;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
@@ -381,29 +369,16 @@
     [hud setColor:[UIColor lcCellPinnedColor]];
     //        [hud setYOffset:-33];
     [hud hide:YES afterDelay:theTimeInterval];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadPinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
 }
 
 - (void)unPinThread {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
-    // container to hold threads to remain pinned
-    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] init];
-    
-    // loop over pinnedThreads dictionaries in array
-    for (NSDictionary *pinnedThreadDict in pinnedThreads) {
-        NSUInteger pinnedThreadModelId = [[pinnedThreadDict objectForKey:@"modelId"] unsignedIntegerValue];
-        
-        if (pinnedThreadModelId != rootPost.modelId) {
-            [updatedPinnedThreads addObject:pinnedThreadDict];
-        }
-    }
-    
-    [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
-    [[NSUbiquitousKeyValueStore defaultStore] setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
+    [Post unpin:rootPost];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
     
-    //show tag HUD message
+    //show unpin HUD message
     NSTimeInterval theTimeInterval = 1.0;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
@@ -411,6 +386,8 @@
     [hud setColor:[UIColor lcBarTintColor]];
     //        [hud setYOffset:-33];
     [hud hide:YES afterDelay:theTimeInterval];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadUnpinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
 }
 
 //#pragma mark -

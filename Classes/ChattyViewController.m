@@ -128,6 +128,62 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadPinned:) name:@"ThreadPinned" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadUnpinned:) name:@"ThreadUnpinned" object:nil];
+}
+
+- (void)threadPinned:(NSNotification *)notification {
+    NSDictionary *dict = [notification userInfo];
+    
+    NSUInteger modelId = [[dict objectForKey:@"modelId"] unsignedIntegerValue];
+    NSLog(@"thread pinned notification received, modelId: %lu", modelId);
+    
+    NSInteger index = 0;
+    NSInteger count = 0;
+    for (Post *rootPost in self.threads) {
+        if (rootPost.modelId == modelId) {
+            rootPost.pinned = YES;
+            index = count;
+        }
+        count++;
+    }
+    
+    if (index > -1) {
+        id object = [self.threads objectAtIndex:index];
+        [self.threads removeObjectAtIndex:index];
+        [self.threads insertObject:object atIndex:0];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)threadUnpinned:(NSNotification *)notification {
+    NSDictionary *dict = [notification userInfo];
+    
+    NSUInteger modelId = [[dict objectForKey:@"modelId"] unsignedIntegerValue];
+    NSLog(@"thread unpinned notification received, modelId: %lu", modelId);
+    
+    id object;
+    NSInteger pinnedCount = 0;
+    NSInteger index = 0;
+    NSInteger count = 0;
+    for (Post *rootPost in self.threads) {
+        if (rootPost.modelId == modelId) {
+            rootPost.pinned = NO;
+            index = count;
+        }
+        if (rootPost.pinned) {
+            pinnedCount++;
+        }
+        count++;
+    }
+    
+    if (index > -1) {
+        object = [self.threads objectAtIndex:index];
+        [self.threads removeObjectAtIndex:index];
+        [self.threads insertObject:object atIndex:pinnedCount];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
