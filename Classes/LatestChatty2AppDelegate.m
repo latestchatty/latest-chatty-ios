@@ -420,8 +420,18 @@
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
         NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/profile/(.*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         viewController = [[SearchResultsViewController alloc] initWithTerms:@"" author:profileName parentAuthor:@""];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/search\\?"]) {
+        NSString *terms = [[uri stringByMatching:@"&chatty_term=([^&]*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        NSString *author = [[uri stringByMatching:@"&chatty_user=([^&]*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        NSString *parentAuthor = [[uri stringByMatching:@"&chatty_author=([^&]*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        if (terms || author || parentAuthor) {
+            viewController = [[SearchResultsViewController alloc] initWithTerms:terms author:author parentAuthor:parentAuthor];
+        }
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?id=(\\d+)" capture:1] intValue];
+        viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty/\\d+"]) {
+        NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty/(\\d+)" capture:1] intValue];
         viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?story=(\\d+)" capture:1] intValue];
