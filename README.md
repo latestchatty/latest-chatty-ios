@@ -6,10 +6,10 @@ Updated for iOS 7!
 4.2.2
 ====
 - Pinning a thread and then popping the thread view controller off the stack back to the chatty will reflect that pinned thread at the top of the chatty list colored in the pinned color
-- Unpinning a thread and then popping the thread view controller off the stack back to the chatty will reflect that the unpinned thread is now placed after any pinned threads and back to the unpinned color
+- Unpinning a thread and then popping the thread view controller off the stack back to the chatty will reflect that the unpinned thread is now placed after any pinned threads in the unpinned color
 - Additional support for tapped http://shacknews.com/chatty/threadId URLs to instantiate a thread view controller directed at the threadId in the URL
-- New support for tapped shacknews.com/search?chatty=1&type=4&chatty_term=test&chatty_user=test&chatty_author=test&chatty_filter=all&result_sort=postdate_desc chatty search URLs to instantiate a search view controller directed at the chatty_term, chatty_user, and chatty_author in the URL
-- New support for tapped shacknews.com/search?q=test&type=4 chatty search URLs to instantiate a search view controller directed at the chatty_term, chatty_user, and chatty_author in the URL
+- New support for tapped shacknews.com/search?chatty=1&type=4&chatty_term=test&chatty_user=test&chatty_author=test chatty search URLs to instantiate a search view controller directed at the chatty_term, chatty_user, and chatty_author values in the URL
+- New support for tapped shacknews.com/search?q=test&type=4 chatty search URLs to instantiate a search view controller directed at the q value the URL (used only for searching by term)
 
 4.2.1
 ====
