@@ -208,8 +208,9 @@
     
     // fire synchronize on app load to sync settings from iCloud
     // freshing install: will pull all existing iCloud user settings down and put into user defaults database
-    // existing install: will pull down and changes in the iCloud user settings and sync to the user defaults database
-    [[NSUbiquitousKeyValueStore defaultStore] setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];    
+    // existing install: will pull down any changes in the iCloud user settings and sync to the user defaults database
+    [store setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
+    [store setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
     [store synchronize];
     
     if ([self isPadDevice]) {
