@@ -137,7 +137,7 @@
     NSDictionary *dict = [notification userInfo];
     
     NSUInteger modelId = [[dict objectForKey:@"modelId"] unsignedIntegerValue];
-    NSLog(@"thread pinned notification received, modelId: %lu", modelId);
+//    NSLog(@"thread pinned notification received, modelId: %lu", modelId);
     
     NSInteger index = 0;
     NSInteger count = 0;
@@ -161,7 +161,7 @@
     NSDictionary *dict = [notification userInfo];
     
     NSUInteger modelId = [[dict objectForKey:@"modelId"] unsignedIntegerValue];
-    NSLog(@"thread unpinned notification received, modelId: %lu", modelId);
+//    NSLog(@"thread unpinned notification received, modelId: %lu", modelId);
     
     id object;
     NSInteger pinnedCount = 0;
