@@ -420,14 +420,20 @@
         viewController = [[ChattyViewController alloc] initWithStoryId:targetStoryId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
         NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/profile/(.*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-        viewController = [[SearchResultsViewController alloc] initWithTerms:@"" author:profileName parentAuthor:@""];
+        viewController = [[SearchResultsViewController alloc] initWithTerms:@"" author:[profileName stringByReplacingOccurrencesOfString:@"+" withString:@" "] parentAuthor:@""];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/user/.*/posts"]) {
+        NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/user/(.*)/posts" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        viewController = [[SearchResultsViewController alloc] initWithTerms:@"" author:[profileName stringByReplacingOccurrencesOfString:@"+" withString:@" "] parentAuthor:@""];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/search\\?chatty=1&type=4"]) {
         //http://www.shacknews.com/search?chatty=1&type=4&chatty_term=test&chatty_user=test&chatty_author=test&chatty_filter=all&result_sort=postdate_desc
         NSString *terms = [[uri stringByMatching:@"&chatty_term=([^&]*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         NSString *author = [[uri stringByMatching:@"&chatty_user=([^&]*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         NSString *parentAuthor = [[uri stringByMatching:@"&chatty_author=([^&]*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         if (terms || author || parentAuthor) {
-            viewController = [[SearchResultsViewController alloc] initWithTerms:terms author:author parentAuthor:parentAuthor];
+            viewController = [[SearchResultsViewController alloc]
+                              initWithTerms:(terms ? [terms stringByReplacingOccurrencesOfString:@"+" withString:@" "] : @"")
+                              author:(author ? [author stringByReplacingOccurrencesOfString:@"+" withString:@" "] : @"")
+                              parentAuthor:(parentAuthor ? [parentAuthor stringByReplacingOccurrencesOfString:@"+" withString:@" "] : @"")];
         }
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/search\\?q=([^&]*)&type=4"]) {
         //http://www.shacknews.com/search?q=test&type=4
