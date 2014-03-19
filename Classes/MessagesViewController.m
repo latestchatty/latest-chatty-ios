@@ -154,11 +154,6 @@
     self.tableView.hidden = NO;
 }
 
-- (void)didFailToLoadModels {
-    [UIAlertView showSimpleAlertWithTitle:@"Latest Chatty"
-                                  message:@"Could not retrieve your messages. Check your internet connection or your server API address in Settings."];
-}
-
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

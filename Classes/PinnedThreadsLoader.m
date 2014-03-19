@@ -34,7 +34,10 @@
         NSNumber *modelId = [pinnedThreadDict objectForKey:@"modelId"];
         [threadsToLoad addObject:modelId];
     }
-    return [[[PinnedThreadsLoader alloc] initWithThreadsToLoad:threadsToLoad for:delegate withStoryId:storyId page:page] loadPinnedThread];
+    return [[[PinnedThreadsLoader alloc] initWithThreadsToLoad:threadsToLoad
+                                                           for:delegate
+                                                   withStoryId:storyId
+                                                          page:page] loadPinnedThread];
 }
 
 + (ModelLoader *)loadPinnedThreadsThenStoryId:(NSUInteger) storyId for:(id<ModelLoadingDelegate>)delegate {
@@ -119,6 +122,10 @@
     
     [loadingModels addObjectsFromArray:nonDuplicateModels];
     [loadingFor didFinishLoadingAllModels:loadingModels otherData:otherData];
+}
+
+- (void)didFailToLoadModels {
+    [self finishLoading];
 }
 
 @end
