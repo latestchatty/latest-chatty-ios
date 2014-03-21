@@ -160,57 +160,13 @@
     // clear the captured date of the last successful lol fetch and fire an asynchronous call to fetch fresh lol counts
     [defaults removeObjectForKey:@"lolFetchDate"];
     
-    // Self-clearing the collapsedThreads array based on date of each collapsed thread.
-    // Keep threads collapsed only if they haven't expired yet from the chatty.
-    // Should be more efficient to create a new array of threads to keep rather than the inverse
-    // of creating an array of threads to remove with [collapsedThreads removeObjectsInArray:array].
-    NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
-    NSMutableArray *collapsedThreadsToKeep = [NSMutableArray array];
-    
-    // loop over collapsedThread dictionaries in array
-    for (NSDictionary *collapsedThreadDict in collapsedThreads) {
-        // build time interval from now to original post date of collapsed thread
-        NSTimeInterval ti = [[collapsedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
-        NSInteger hours = (ti / 3600) * -1;
-        
-        // if collapsed thread hasn't expired, add dictionary collapsedThreadsToKeep array
-        if (hours < 18) {
-            //NSLog(@"keeping thread collapsed: %@", collapsedThreadDict);
-            [collapsedThreadsToKeep addObject:collapsedThreadDict];
-        }
-    }
-    // update collapsedThreads array and sync user defaults
-    [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
-    
-    // Self-clearing the pinnedThreads array based on date of each pinned thread.
-    // Keep threads pinned only if they haven't expired yet from the chatty.
-    // Should be more efficient to create a new array of threads to keep rather than the inverse
-    // of creating an array of threads to remove with [pinnedThreads removeObjectsInArray:array].
-    NSMutableArray *pinnedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"pinnedThreads"]];
-    NSMutableArray *pinnedThreadsToKeep = [NSMutableArray array];
-    
-    // loop over pinnedThread dictionaries in array
-    for (NSDictionary *pinnedThreadDict in pinnedThreads) {
-        // build time interval from now to original post date of collapsed thread
-        NSTimeInterval ti = [[pinnedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
-        NSInteger hours = (ti / 3600) * -1;
-        
-        // if pinned thread is less than 48 hours old, add dictionary to pinnedThreadsToKeep array
-        if (hours < 48) {
-            //NSLog(@"keeping thread pinned: %@", pinnedThreadDict);
-            [pinnedThreadsToKeep addObject:pinnedThreadDict];
-        }
-    }
-    // update collapsedThreads array and sync user defaults
-    [defaults setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
-    
+    [self cleanUpCollapsedThreads];
+    [self cleanUpPinnedThreads];
+
     [defaults synchronize];
-    
     // fire synchronize on app load to sync settings from iCloud
     // freshing install: will pull all existing iCloud user settings down and put into user defaults database
     // existing install: will pull down any changes in the iCloud user settings and sync to the user defaults database
-    [store setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
-    [store setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
     [store synchronize];
     
     if ([self isPadDevice]) {
@@ -248,6 +204,58 @@
     }
     
     return YES;
+}
+
+- (void)cleanUpPinnedThreads {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // Self-clearing the pinnedThreads array based on date of each pinned thread.
+    // Keep threads pinned only if they haven't expired yet from the chatty.
+    // Should be more efficient to create a new array of threads to keep rather than the inverse
+    // of creating an array of threads to remove with [pinnedThreads removeObjectsInArray:array].
+    NSMutableArray *pinnedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"pinnedThreads"]];
+    NSMutableArray *pinnedThreadsToKeep = [NSMutableArray array];
+    
+    // loop over pinnedThread dictionaries in array
+    for (NSDictionary *pinnedThreadDict in pinnedThreads) {
+        // build time interval from now to original post date of collapsed thread
+        NSTimeInterval ti = [[pinnedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
+        NSInteger hours = (ti / 3600) * -1;
+        
+        // if pinned thread is less than 48 hours old, add dictionary to pinnedThreadsToKeep array
+        if (hours < 48) {
+            //NSLog(@"keeping thread pinned: %@", pinnedThreadDict);
+            [pinnedThreadsToKeep addObject:pinnedThreadDict];
+        }
+    }
+    // update pinnedThreads array
+    [defaults setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
+    [[NSUbiquitousKeyValueStore defaultStore] setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
+}
+
+- (void)cleanUpCollapsedThreads {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // Self-clearing the collapsedThreads array based on date of each collapsed thread.
+    // Keep threads collapsed only if they haven't expired yet from the chatty.
+    // Should be more efficient to create a new array of threads to keep rather than the inverse
+    // of creating an array of threads to remove with [collapsedThreads removeObjectsInArray:array].
+    NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
+    NSMutableArray *collapsedThreadsToKeep = [NSMutableArray array];
+    
+    // loop over collapsedThread dictionaries in array
+    for (NSDictionary *collapsedThreadDict in collapsedThreads) {
+        // build time interval from now to original post date of collapsed thread
+        NSTimeInterval ti = [[collapsedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
+        NSInteger hours = (ti / 3600) * -1;
+        
+        // if collapsed thread hasn't expired, add dictionary collapsedThreadsToKeep array
+        if (hours < 18) {
+            //NSLog(@"keeping thread collapsed: %@", collapsedThreadDict);
+            [collapsedThreadsToKeep addObject:collapsedThreadDict];
+        }
+    }
+    // update collapsedThreads array
+    [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
+    [[NSUbiquitousKeyValueStore defaultStore] setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
 }
 
 // handler fired when iCloud keystore synchronizes
