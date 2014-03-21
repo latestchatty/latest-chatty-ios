@@ -195,8 +195,8 @@
         NSTimeInterval ti = [[pinnedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
         NSInteger hours = (ti / 3600) * -1;
         
-        // if pinned thread hasn't expired, add dictionary pinnedThreadsToKeep array
-        if (hours < 18) {
+        // if pinned thread is less than 48 hours old, add dictionary to pinnedThreadsToKeep array
+        if (hours < 48) {
             //NSLog(@"keeping thread pinned: %@", pinnedThreadDict);
             [pinnedThreadsToKeep addObject:pinnedThreadDict];
         }
@@ -222,7 +222,7 @@
     [window makeKeyAndVisible];
     
     // Modified requestBody and request URL for May 2013 Shacknews login changes
-    if([defaults boolForKey:@"modTools"]==YES) {
+    if ([defaults boolForKey:@"modTools"] == YES) {
         //Mods need cookies
         NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
         NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
@@ -510,7 +510,7 @@
 }
 
 - (BOOL)isPadDevice {
-    return CGRectGetMaxX([[UIScreen mainScreen] bounds]) > 480;
+    return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
