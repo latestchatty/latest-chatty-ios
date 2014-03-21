@@ -93,14 +93,14 @@
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             preview.frameHeight = 42.0f;
         } else {
-            preview.frameY = 20.0f;
+            preview.frameHeight = 54.0f;
         }
     } else {
         lolCountsLabel.attributedText = nil;
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             preview.frameHeight = 54.0f;
         } else {
-            preview.frameY = 27.0f;
+            preview.frameHeight = 68.0f;
         }
     }
 }
