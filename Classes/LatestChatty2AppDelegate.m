@@ -209,27 +209,32 @@
 - (void)cleanUpPinnedThreads {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     // Self-clearing the pinnedThreads array based on date of each pinned thread.
-    // Keep threads pinned only if they haven't expired yet from the chatty.
+    // Keep threads pinned only if they haven't passed a set hours threshold.
     // Should be more efficient to create a new array of threads to keep rather than the inverse
     // of creating an array of threads to remove with [pinnedThreads removeObjectsInArray:array].
     NSMutableArray *pinnedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"pinnedThreads"]];
     NSMutableArray *pinnedThreadsToKeep = [NSMutableArray array];
     
+    BOOL aThreadWasRemoved = NO;
     // loop over pinnedThread dictionaries in array
     for (NSDictionary *pinnedThreadDict in pinnedThreads) {
         // build time interval from now to original post date of collapsed thread
         NSTimeInterval ti = [[pinnedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
         NSInteger hours = (ti / 3600) * -1;
         
-        // if pinned thread is less than 48 hours old, add dictionary to pinnedThreadsToKeep array
-        if (hours < 48) {
+        // if pinned thread is less than 36 hours old, add dictionary to pinnedThreadsToKeep array
+        if (hours < 36) {
             //NSLog(@"keeping thread pinned: %@", pinnedThreadDict);
             [pinnedThreadsToKeep addObject:pinnedThreadDict];
+        } else {
+            aThreadWasRemoved = YES;
         }
     }
-    // update pinnedThreads array
-    [defaults setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
-    [[NSUbiquitousKeyValueStore defaultStore] setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
+    if (aThreadWasRemoved) {
+        // update pinnedThreads array
+        [defaults setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
+        [[NSUbiquitousKeyValueStore defaultStore] setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
+    }
 }
 
 - (void)cleanUpCollapsedThreads {
@@ -241,6 +246,7 @@
     NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
     NSMutableArray *collapsedThreadsToKeep = [NSMutableArray array];
     
+    BOOL aThreadWasRemoved = NO;
     // loop over collapsedThread dictionaries in array
     for (NSDictionary *collapsedThreadDict in collapsedThreads) {
         // build time interval from now to original post date of collapsed thread
@@ -251,11 +257,15 @@
         if (hours < 18) {
             //NSLog(@"keeping thread collapsed: %@", collapsedThreadDict);
             [collapsedThreadsToKeep addObject:collapsedThreadDict];
+        } else {
+            aThreadWasRemoved = YES;
         }
     }
-    // update collapsedThreads array
-    [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
-    [[NSUbiquitousKeyValueStore defaultStore] setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
+    if (aThreadWasRemoved) {
+        // update collapsedThreads array
+        [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
+        [[NSUbiquitousKeyValueStore defaultStore] setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
+    }
 }
 
 // handler fired when iCloud keystore synchronizes
@@ -519,6 +529,11 @@
 
 - (BOOL)isPadDevice {
     return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [self cleanUpCollapsedThreads];
+    [self cleanUpPinnedThreads];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
