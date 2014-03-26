@@ -8,7 +8,7 @@ Updated for iOS 7!
 - Pinning a thread and then popping the thread view controller off the stack back to the chatty will reflect that pinned thread at the top of the chatty list colored in the pinned color
 - Unpinning a thread and then popping the thread view controller off the stack back to the chatty will reflect that the unpinned thread is now placed after any pinned threads in the unpinned color
 - 4 lines of preview text for chatty cells on iPad
-- Additional support for more parsing more shacknews.com thread URLs to instantiate a thread view controller directed at the threadId on the URL
+- Additional support for parsing more shacknews.com thread URLs to instantiate a thread view controller directed at the threadId on the URL
 - New support for parsing various different shacknews.com search URLs to instantiate a search results view controller directed at the term/user/author values on the URL
 
 4.2.1

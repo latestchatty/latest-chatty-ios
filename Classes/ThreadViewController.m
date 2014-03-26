@@ -154,8 +154,10 @@
     self.navigationItem.rightBarButtonItem.enabled = YES;
     if (rootPost.pinned) {
         [self.navigationController.navigationBar setBarTintColor:[UIColor lcCellPinnedColor]];
+        [grippyBar setBackgroundColorForThread:[UIColor lcCellPinnedColor]];
     } else {
         [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
+        [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     }
     
     // Select and display the targeted post
@@ -259,8 +261,10 @@
 
     if (rootPost.pinned) {
         [self.navigationController.navigationBar setBarTintColor:[UIColor lcCellPinnedColor]];
+        [grippyBar setBackgroundColorForThread:[UIColor lcCellPinnedColor]];
     } else {
         [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
+        [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     }
     
     [self resetLayout:NO];
@@ -315,6 +319,7 @@
     [self.viewDeckController setPanningGestureDelegate:nil];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
+    [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     
     [loader cancel];
 }
@@ -360,6 +365,7 @@
     [Post pin:rootPost];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor lcCellPinnedColor]];
+    [grippyBar setBackgroundColorForThread:[UIColor lcCellPinnedColor]];
     
     //show pin HUD message
     NSTimeInterval theTimeInterval = 1.0;
@@ -377,6 +383,7 @@
     [Post unpin:rootPost];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
+    [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     
     //show unpin HUD message
     NSTimeInterval theTimeInterval = 1.0;

@@ -222,8 +222,8 @@
         NSTimeInterval ti = [[pinnedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
         NSInteger hours = (ti / 3600) * -1;
         
-        // if pinned thread is less than 36 hours old, add dictionary to pinnedThreadsToKeep array
-        if (hours < 36) {
+        // if pinned thread is less than 24 hours old, add dictionary to pinnedThreadsToKeep array
+        if (hours < 24) {
             //NSLog(@"keeping thread pinned: %@", pinnedThreadDict);
             [pinnedThreadsToKeep addObject:pinnedThreadDict];
         } else {
