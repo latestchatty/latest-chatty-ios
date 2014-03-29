@@ -557,19 +557,19 @@
 				cell.textLabel.text = @"Embed YouTube:";
 				break;
                 
-			case 3:
+            case 3:
+				cell.accessoryView = lolTagsSwitch;
+				cell.textLabel.text = @"Enable [lol] Tags:";
+				break;
+                
+			case 4:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Enable Mod Tools:";
 				break;
                 
-			case 4:
+			case 5:
 				cell.accessoryView = saveSearchesSwitch;
 				cell.textLabel.text = @"Save Searches:";
-				break;
-                
-            case 5:
-				cell.accessoryView = lolTagsSwitch;
-				cell.textLabel.text = @"Show [lol] Tags:";
 				break;
                 
             case 6:
