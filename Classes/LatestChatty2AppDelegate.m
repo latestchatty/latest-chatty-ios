@@ -157,7 +157,7 @@
     
     [Crashlytics setUserName:[defaults stringForKey:@"username"]];
     
-    // clear the captured date of the last successful lol fetch and fire an asynchronous call to fetch fresh lol counts
+    // clear the captured date of the last successful lol fetch
     [defaults removeObjectForKey:@"lolFetchDate"];
     
     [self cleanUpCollapsedThreads];
@@ -294,57 +294,6 @@
             }
         }
     }
-}
-
-- (void)fetchLols {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    // jump out if user doesn't have lol tags enabled
-    if (![defaults boolForKey:@"lolTags"]) {
-        return;
-    }
-
-    // only fetch lols if it's been 5 minutes since the last fetch
-    NSDate *lastLolFetchDate = [defaults objectForKey:@"lolFetchDate"];
-    NSTimeInterval interval = [lastLolFetchDate timeIntervalSinceDate:[NSDate date]];
-    
-    if (interval == 0 || (interval * -1) > 60*5) {
-        NSLog(@"fetching lols...");
-        
-        // fetch lols synchronously with error handling support and timeout support, set to 5 seconds
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://lol.lmnopc.com/api.php?special=getcounts"]
-                                                 cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
-        NSError *requestError;
-        NSURLResponse *urlResponse = nil;
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-        if (!data) {
-            // error to get lols
-            if (requestError) {
-                // do we care about the specific error? or fail silently
-            }
-        }
-        else {
-            // Data was received.. continue processing
-            // parse getcounts JSON into a dictionary
-            self.lolCounts = [NSJSONSerialization JSONObjectWithData:data
-                                                            options:NSJSONReadingMutableContainers
-                                                              error:nil];
-            NSLog(@"%lu lols fetched", (unsigned long)self.lolCounts.count);
-
-            // stuff successful fetch date into user defaults
-            [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
-//            [defaults synchronize];
-        }
-        
-        request = nil;
-        requestError = nil;
-        data = nil;
-        
-        NSLog(@"...done fetching lols");
-    }
-    
-    defaults = nil;
-    lastLolFetchDate = nil;
 }
 
 //- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {

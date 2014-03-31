@@ -62,7 +62,7 @@
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(queue, ^{
             // load the lols
-            [[LatestChatty2AppDelegate delegate] fetchLols];
+            [Tag getLolTags];
             dispatch_async(dispatch_get_main_queue(), ^{
                 // load the thread
                 loader = [Post findThreadWithId:threadId delegate:self];
