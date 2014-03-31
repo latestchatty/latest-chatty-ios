@@ -8,19 +8,24 @@
 
 #import "Tag.h"
 
+static NSString *kTagUrl = @"http://lmnopc.com/greasemonkey/shacklol/report.php";
+static NSString *kGetCountsUrl = @"http://lol.lmnopc.com/api.php?special=getcounts";
+
 @implementation Tag
 
 + (void)tagPostId:(NSUInteger)postId tag:(NSString*)tag {
     NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
-    NSString *url = [[NSString stringWithFormat:@"http://lmnopc.com/greasemonkey/shacklol/report.php?who=%@&what=%lu&tag=%@&version=-1", username, (unsigned long)postId, tag] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString *requestBody = [[NSString stringWithFormat:@"who=%@&what=%lu&tag=%@&version=-1", username, (unsigned long)postId, tag] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
-//    NSLog(@"Tagging post with URL: %@", url);
-    NSURLRequest *tagRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [NSURLConnection connectionWithRequest:tagRequest delegate:nil];
+    [request setURL:[NSURL URLWithString:kTagUrl]];
+    [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection connectionWithRequest:request delegate:nil];
     
-    // test response bodies
-//    NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:tagRequest returningResponse:nil error:nil]];
-//    NSLog(@"rb: %@", responseBody);
+    // Use for testing tagging above
+//    NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
+//    NSLog(@"%@", responseBody);
 }
 
 + (NSMutableString *)buildPostViewTag:(NSDictionary *)lolCounts {
@@ -90,6 +95,57 @@
     }
     
     return tags;
+}
+
++ (void)getLolTags {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // jump out if user doesn't have lol tags enabled
+    if (![defaults boolForKey:@"lolTags"]) {
+        return;
+    }
+    
+    // only fetch lols if it's been 5 minutes since the last fetch
+    NSDate *lastLolFetchDate = [defaults objectForKey:@"lolFetchDate"];
+    NSTimeInterval interval = [lastLolFetchDate timeIntervalSinceDate:[NSDate date]];
+    
+    if (interval == 0 || (interval * -1) > 60*5) {
+        NSLog(@"getting lol tags...");
+        
+        // fetch lols synchronously with error handling support and timeout support, set to 5 seconds
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kGetCountsUrl]
+                                                 cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
+        NSError *requestError;
+        NSURLResponse *urlResponse = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+        if (!data) {
+            // error to get lols
+            if (requestError) {
+                // do we care about the specific error? or fail silently
+            }
+        }
+        else {
+            // Data was received.. continue processing
+            // parse getcounts JSON into a dictionary
+            [LatestChatty2AppDelegate delegate].lolCounts = [NSJSONSerialization JSONObjectWithData:data
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:nil];
+            NSLog(@"got %lu lol tags", (unsigned long)[LatestChatty2AppDelegate delegate].lolCounts.count);
+            
+            // stuff successful fetch date into user defaults
+            [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
+            //            [defaults synchronize];
+        }
+        
+        request = nil;
+        requestError = nil;
+        data = nil;
+        
+        NSLog(@"...done getting lol tags");
+    }
+    
+    defaults = nil;
+    lastLolFetchDate = nil;
 }
 
 @end
