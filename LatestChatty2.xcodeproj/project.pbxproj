@@ -103,6 +103,8 @@
 		CD48681E17EB5B430071F3D7 /* Fart8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680D17EB5B430071F3D7 /* Fart8.mp3 */; };
 		CD48681F17EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
 		CD48682017EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
+		CD6C60ED18EBDD760033FA55 /* libFlurry_4.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6C60EC18EBDD760033FA55 /* libFlurry_4.4.0.a */; };
+		CD6C60EE18EBDD760033FA55 /* libFlurry_4.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6C60EC18EBDD760033FA55 /* libFlurry_4.4.0.a */; };
 		CD760000174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760001174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760002174C734B00B378E6 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFF1174C734B00B378E6 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -290,8 +292,6 @@
 		CD7F2F5A17FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2717FE85BE00E7EAE3 /* Keyboard-Normal.png */; };
 		CD7F2F5B17FE85BE00E7EAE3 /* Keyboard-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */; };
 		CD7F2F5C17FE85BE00E7EAE3 /* Keyboard-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */; };
-		CD87EB9518CEA5B700638794 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD87EB9418CEA5B700638794 /* libFlurry_4.3.2.a */; };
-		CD87EB9618CEA5B700638794 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD87EB9418CEA5B700638794 /* libFlurry_4.3.2.a */; };
 		CD8BA2B916306A0900ED5C5E /* AppleSafari-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */; };
 		CD8BA2BA16306A0900ED5C5E /* AppleSafari-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */; };
 		CD8BA2BB16306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */; };
@@ -657,6 +657,7 @@
 		CD48680E17EB5B430071F3D7 /* Fart9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart9.mp3; path = Assets/Fart9.mp3; sourceTree = "<group>"; };
 		CD64F12218CBB0B900BF6889 /* LatestChattyBeta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LatestChattyBeta.entitlements; sourceTree = "<group>"; };
 		CD64F12318CBB0DE00BF6889 /* LatestChatty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LatestChatty.entitlements; sourceTree = "<group>"; };
+		CD6C60EC18EBDD760033FA55 /* libFlurry_4.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.4.0.a; sourceTree = "<group>"; };
 		CD76FFE1174C734B00B378E6 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		CD76FFE2174C734B00B378E6 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		CD76FFE3174C734B00B378E6 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -783,7 +784,6 @@
 		CD7F2F2617FE85BE00E7EAE3 /* Keyboard-Normal-Underline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal-Underline@2x.png"; path = "Assets/Keyboard-Normal-Underline@2x.png"; sourceTree = "<group>"; };
 		CD7F2F2717FE85BE00E7EAE3 /* Keyboard-Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal.png"; path = "Assets/Keyboard-Normal.png"; sourceTree = "<group>"; };
 		CD7F2F2817FE85BE00E7EAE3 /* Keyboard-Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard-Normal@2x.png"; path = "Assets/Keyboard-Normal@2x.png"; sourceTree = "<group>"; };
-		CD87EB9418CEA5B700638794 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.2.a; sourceTree = "<group>"; };
 		CD8BA2B516306A0900ED5C5E /* AppleSafari-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon.png"; path = "Assets/AppleSafari-Icon.png"; sourceTree = "<group>"; };
 		CD8BA2B616306A0900ED5C5E /* AppleSafari-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon@2x.png"; path = "Assets/AppleSafari-Icon@2x.png"; sourceTree = "<group>"; };
 		CD8BA2B716306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleSafari-Icon@2x~ipad.png"; path = "Assets/AppleSafari-Icon@2x~ipad.png"; sourceTree = "<group>"; };
@@ -977,7 +977,7 @@
 				5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				5907C5B710A69A190028D630 /* libz.dylib in Frameworks */,
-				CD87EB9518CEA5B700638794 /* libFlurry_4.3.2.a in Frameworks */,
+				CD6C60ED18EBDD760033FA55 /* libFlurry_4.4.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,7 +996,7 @@
 				CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */,
 				CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */,
 				CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */,
-				CD87EB9618CEA5B700638794 /* libFlurry_4.3.2.a in Frameworks */,
+				CD6C60EE18EBDD760033FA55 /* libFlurry_4.4.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1193,7 +1193,7 @@
 			isa = PBXGroup;
 			children = (
 				CDA26B5E18234F1C00239BA9 /* Flurry.h */,
-				CD87EB9418CEA5B700638794 /* libFlurry_4.3.2.a */,
+				CD6C60EC18EBDD760033FA55 /* libFlurry_4.4.0.a */,
 			);
 			name = Flurry;
 			path = Classes/Flurry;
