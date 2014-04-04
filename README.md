@@ -3,6 +3,14 @@ latest-chatty-2
 
 Updated for iOS 7!
 
+4.3.0
+====
+- 4.2.3 RC submitted to App Store
+
+4.2.3 Release Candidate
+====
+- Revised support for LOL tagging via POST instead of GET
+
 4.2.2
 ====
 - Pinning a thread and then popping the thread view controller off the stack back to the chatty will reflect that pinned thread at the top of the chatty list colored in the pinned color
