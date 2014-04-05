@@ -8,6 +8,9 @@
 
 #import "Mod.h"
 
+static NSString *kModUrl = @"http://www.shacknews.com/mod_chatty.x";
+static NSString *kWinchattyReindexUrl = @"http://winchatty.com/v2/requestReindex";
+
 @implementation Mod
 
 + (void)modParentId:(NSUInteger)parentId modPostId:(NSUInteger)postId mod:(ModType)modType {
@@ -45,7 +48,7 @@
     
 	if (modCategory) {
         // fire request to moderate the post
-        NSString *modUrl = [NSString stringWithFormat:@"http://www.shacknews.com/mod_chatty.x?root=%lu&post_id=%lu&mod_type_id=%@", (unsigned long)parentId, (unsigned long)postId, modCategory];
+        NSString *modUrl = [NSString stringWithFormat:@"%@?root=%lu&post_id=%lu&mod_type_id=%@", kModUrl, (unsigned long)parentId, (unsigned long)postId, modCategory];
 		NSMutableURLRequest *modRequest;
         
         //NSLog(@"Moderating post with URL: %@", url);
@@ -55,12 +58,10 @@
         [NSURLConnection connectionWithRequest:modRequest delegate:nil];
 
         // fire a request to winchatty to reindex the post
-        NSString *reindexUrl = @"http://winchatty.com/v2/requestReindex";
-        NSMutableURLRequest *reindexRequest;
-        //NSLog(@"Reindexing post with URL: %@", url);
-		reindexRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:reindexUrl]
-                                                      cachePolicy:NSURLRequestReloadIgnoringCacheData
-                                                  timeoutInterval:60];
+        NSMutableURLRequest *reindexRequest = [[NSMutableURLRequest alloc]
+                                               initWithURL:[NSURL URLWithString:kWinchattyReindexUrl]
+                                               cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                               timeoutInterval:60];
         [reindexRequest setHTTPMethod:@"POST"];
         [reindexRequest setHTTPBody:[[NSString stringWithFormat:@"postId=%lu", (unsigned long)postId] dataUsingEncoding:NSASCIIStringEncoding]];
         [NSURLConnection connectionWithRequest:reindexRequest delegate:nil];

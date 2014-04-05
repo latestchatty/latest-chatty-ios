@@ -244,7 +244,7 @@ static NSMutableDictionary *expirationColorMapping;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"serverApi"];
+    NSString *server = [defaults objectForKey:@"serverApi"];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/post/", server]]];
     
     // Set request body and HTTP method
@@ -298,6 +298,41 @@ static NSMutableDictionary *expirationColorMapping;
     }
 }
 
++ (void)pin:(Post *)post {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
+    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] initWithArray:pinnedThreads];
+    
+    // create dictionary from thread's id/date, add to array and sync
+    NSDictionary *pinnedThreadDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      [NSNumber numberWithInteger:post.modelId], @"modelId",
+                                      post.date, @"date",
+                                      nil];
+    [updatedPinnedThreads addObject:pinnedThreadDict];
+    
+    [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
+    [[NSUbiquitousKeyValueStore defaultStore] setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
+}
+
++ (void)unpin:(Post *)post {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
+    // container to hold threads to remain pinned
+    NSMutableArray *updatedPinnedThreads = [[NSMutableArray alloc] init];
+    
+    // loop over pinnedThreads dictionaries in array
+    for (NSDictionary *pinnedThreadDict in pinnedThreads) {
+        NSUInteger pinnedThreadModelId = [[pinnedThreadDict objectForKey:@"modelId"] unsignedIntegerValue];
+        
+        if (pinnedThreadModelId != post.modelId) {
+            [updatedPinnedThreads addObject:pinnedThreadDict];
+        }
+    }
+    
+    [defaults setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
+    [[NSUbiquitousKeyValueStore defaultStore] setObject:updatedPinnedThreads forKey:@"pinnedThreads"];
+}
+
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     if (!(self = [super initWithDictionary:dictionary])) return nil;
     
@@ -335,20 +370,26 @@ static NSMutableDictionary *expirationColorMapping;
         [replies addObject:reply];
     }
  
-    NSUInteger lastRefresh = [[NSUserDefaults standardUserDefaults] integerForKey:@"lastRefresh"];
-    newPost = self.modelId > lastRefresh || self.lastReplyId > lastRefresh;
-        
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSUInteger lastRefresh = [defaults integerForKey:@"lastRefresh"];
+    newPost = self.modelId > lastRefresh || self.lastReplyId > lastRefresh;
 
-    if ([defaults objectForKey:@"pinnedThreads"] != nil) {
-        NSMutableArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];        
-        for (NSNumber *pinnedThread in pinnedThreads)
-            if(self.modelId == [pinnedThread unsignedIntValue])
+    NSArray *pinnedThreads = [defaults objectForKey:@"pinnedThreads"];
+    if (pinnedThreads != nil) {
+        // loop over pinnedThreads dictionaries in array
+        for (NSDictionary *pinnedThreadDict in pinnedThreads) {
+            NSUInteger pinnedThreadModelId = [[pinnedThreadDict objectForKey:@"modelId"] unsignedIntegerValue];
+        
+            if (pinnedThreadModelId == self.modelId) {
                 self.pinned = YES;
-    } else {
-        [defaults setObject:[NSMutableArray arrayWithCapacity:0] forKey:@"pinnedThreads"];
-        [defaults synchronize];
+            }
+        }
     }
+//    else {
+//        [defaults setObject:[NSMutableArray arrayWithCapacity:0] forKey:@"pinnedThreads"];
+//        [defaults synchronize];
+//    }
     return self;
 }
 

@@ -8,6 +8,7 @@
 
 #import "ChattyViewController.h"
 
+#import "PinnedThreadsLoader.h"
 #include "ThreadViewController.h"
 #include "NoContentController.h"
 
@@ -127,6 +128,62 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadPinned:) name:@"ThreadPinned" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadUnpinned:) name:@"ThreadUnpinned" object:nil];
+}
+
+- (void)threadPinned:(NSNotification *)notification {
+    NSDictionary *dict = [notification userInfo];
+    
+    NSUInteger modelId = [[dict objectForKey:@"modelId"] unsignedIntegerValue];
+//    NSLog(@"thread pinned notification received, modelId: %lu", modelId);
+    
+    NSInteger index = 0;
+    NSInteger count = 0;
+    for (Post *rootPost in self.threads) {
+        if (rootPost.modelId == modelId) {
+            rootPost.pinned = YES;
+            index = count;
+        }
+        count++;
+    }
+    
+    if (index > -1) {
+        id object = [self.threads objectAtIndex:index];
+        [self.threads removeObjectAtIndex:index];
+        [self.threads insertObject:object atIndex:0];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)threadUnpinned:(NSNotification *)notification {
+    NSDictionary *dict = [notification userInfo];
+    
+    NSUInteger modelId = [[dict objectForKey:@"modelId"] unsignedIntegerValue];
+//    NSLog(@"thread unpinned notification received, modelId: %lu", modelId);
+    
+    id object;
+    NSInteger pinnedCount = 0;
+    NSInteger index = 0;
+    NSInteger count = 0;
+    for (Post *rootPost in self.threads) {
+        if (rootPost.modelId == modelId) {
+            rootPost.pinned = NO;
+            index = count;
+        }
+        if (rootPost.pinned) {
+            pinnedCount++;
+        }
+        count++;
+    }
+    
+    if (index > -1) {
+        object = [self.threads objectAtIndex:index];
+        [self.threads removeObjectAtIndex:index];
+        [self.threads insertObject:object atIndex:pinnedCount];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -168,22 +225,21 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         // load the lols
-        [[LatestChatty2AppDelegate delegate] fetchLols];
+        [Tag getLolTags];
         dispatch_async(dispatch_get_main_queue(), ^{
             // load the chatty
+//            if (storyId > 0) {
+//                loader = [Post findAllWithStoryId:self.storyId delegate:self];
+//            } else {
+//                loader = [Post findAllInLatestChattyWithDelegate:self];
+//            }
             if (storyId > 0) {
-                loader = [Post findAllWithStoryId:self.storyId delegate:self];
+                loader = [PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self];
             } else {
-                loader = [Post findAllInLatestChattyWithDelegate:self];
+                loader = [PinnedThreadsLoader loadPinnedThreadsThenLatestChattyFor:self];
             }
         });
     });
-    
-//    if (storyId > 0) {
-//        loader = [[PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self] retain];        
-//    } else {
-//        loader = [[PinnedThreadsLoader loadPinnedThreadsThenLatestChattyFor:self] retain];
-//    }
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {    
@@ -217,6 +273,7 @@
 	
 	// Filter Posts and apply lol tags
 	NSMutableArray *filteredThreads = [NSMutableArray array];
+//    NSUInteger index = 0;
 	for (Post *rootPost in self.threads) {
 		NSString *modelID = [NSString stringWithFormat:@"%lu", (unsigned long)rootPost.modelId];
 		NSNumber *numPosts = [postHistoryDict objectForKey:modelID];
@@ -241,11 +298,19 @@
                 }
             }
         }
+    
+//        // bubble pinned threads to the top
+//        if (rootPost.pinned) {
+//            id object = [filteredThreads objectAtIndex:index];
+//            [filteredThreads removeObjectAtIndex:index];
+//            [filteredThreads insertObject:object atIndex:0];
+//        }
+//        index++;
 	}
 	self.threads = filteredThreads;
 	
 	[[NSUserDefaults standardUserDefaults] setValue:postHistoryDict forKey:@"PostCountHistory"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+//	[[NSUserDefaults standardUserDefaults] synchronize];
 	
 	[self.tableView reloadData];
 	loader = nil;
@@ -383,7 +448,8 @@
                                                  nil];
             [collapsedThreads addObject:collapsedThreadDict];
             [defaults setObject:collapsedThreads forKey:@"collapsedThreads"];
-            [defaults synchronize];
+            [[NSUbiquitousKeyValueStore defaultStore] setObject:collapsedThreads forKey:@"collapsedThreads"];
+//            [defaults synchronize];
         }
     }
 }

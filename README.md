@@ -3,6 +3,31 @@ latest-chatty-2
 
 Updated for iOS 7!
 
+4.3.0
+====
+- 4.2.3 RC submitted to App Store
+
+4.2.3 Release Candidate
+====
+- Revised support for LOL tagging via POST instead of GET
+
+4.2.2
+====
+- Pinning a thread and then popping the thread view controller off the stack back to the chatty will reflect that pinned thread at the top of the chatty list colored in the pinned color
+- Unpinning a thread and then popping the thread view controller off the stack back to the chatty will reflect that the unpinned thread is now placed after any pinned threads in the unpinned color
+- 4 lines of preview text for chatty cells on iPad
+- Additional support for parsing more shacknews.com thread URLs to instantiate a thread view controller directed at the threadId on the URL
+- New support for parsing various different shacknews.com search URLs to instantiate a search results view controller directed at the term/user/author values on the URL
+
+4.2.1
+====
+- iPhone now shows three lines of preview text (up from two) in chatty/search thread cells when no [lol] tags exist for the thread ([lol] tags are never visible in search thread cells). iPad is unchanged and always showed three lines.
+- iCloud support. Settings now sync across your iOS devices. The only setting that does not sync is the "Allow Landscape" preference as that is usually set differently between phone and pad devices. Collapsed threads are also synced.
+- Pin threads support. Double tap the top navigation bar when viewing a thread to pin the root thread to the chatty. Pinned threads appear with a purple background color at the top of the chatty. Threads will be unpinned after they have expired. Pinned threads are also synced with iCloud.
+- In-app Shack[lol] browser now maintains scroll position when going back to the Shack[lol] browser after tapping a post to load it.
+- Bug fix for persisting user settings to database on device, erroneously sending the synchronize message too frequently and causing crashes. The API docs indicate to not call it unless you want immediate persistence (like on app termination), otherwise the framework periodically calls synchronize for you. All instances of immediate persistence have been removed and immediate persistence only occurs on "Save" button tap in Settings view and upon app termination.
+- Bug fix for accessing comments attached to a story before the story has finished loading (and thus provides the correct id to the threads loader for loading only threads attached that story).
+
 4.2.0
 ====
 - 4.1.3 RC submitted to App Store

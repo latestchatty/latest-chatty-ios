@@ -156,6 +156,7 @@
         
         // Set up the cell...
         Post *post = [posts objectAtIndex:indexPath.row];
+        post.pinned = NO;
         cell.storyId = post.storyId;
         cell.rootPost = post;
         cell.showCount = NO;

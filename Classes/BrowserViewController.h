@@ -31,6 +31,7 @@
 @property (nonatomic, strong) IBOutlet UIToolbar *bottomToolbar;
 @property (nonatomic, assign) BOOL isShackLOL;
 @property (nonatomic, assign) BOOL isCredits;
+@property (nonatomic, assign) CGPoint scrollPosition;
 
 - (id)initWithRequest:(NSURLRequest *)request;
 - (id)initWithRequest:(NSURLRequest *)request

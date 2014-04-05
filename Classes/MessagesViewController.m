@@ -137,10 +137,9 @@
         if (message.unread) messageCount++;
     }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     // save the updated message count to the db
-    [defaults setInteger:messageCount forKey:@"messageCount"];
-    [defaults synchronize];
+    [[NSUserDefaults standardUserDefaults] setInteger:messageCount forKey:@"messageCount"];
+//    [defaults synchronize];
     // reflect the unread count on the app badge
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     
@@ -153,11 +152,6 @@
     }
     
     self.tableView.hidden = NO;
-}
-
-- (void)didFailToLoadModels {
-    [UIAlertView showSimpleAlertWithTitle:@"Latest Chatty"
-                                  message:@"Could not retrieve your messages. Check your internet connection or your server API address in Settings."];
 }
 
 #pragma mark Table view methods

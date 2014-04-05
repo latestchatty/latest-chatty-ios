@@ -266,9 +266,8 @@
         if (buttonIndex == 1)  {
             allowFarts = YES;
         }
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:allowFarts forKey:@"superSecretFartMode"];
-        [defaults synchronize];
+        [[NSUserDefaults standardUserDefaults] setBool:allowFarts forKey:@"superSecretFartMode"];
+//        [defaults synchronize];
     }
 }
 
@@ -300,6 +299,7 @@
 
 -(void)saveSettings {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
 	[defaults setObject:usernameField.text      forKey:@"username"];
 	[defaults setObject:passwordField.text      forKey:@"password"];
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
@@ -310,7 +310,10 @@
 	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
 	[defaults setBool:lolTagsSwitch.on          forKey:@"lolTags"];
     [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
-    [defaults setFloat:picsQualitySlider.value  forKey:@"picsQuality"];
+    
+    NSNumber *picsQuality = [NSNumber numberWithFloat:picsQualitySlider.value];
+    [defaults setObject:picsQuality             forKey:@"picsQuality"];
+    
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
     [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
     [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
@@ -323,10 +326,10 @@
     //        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     //    }
     
-	NSString *serverAddress = serverField.text;
-	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
-	serverAddress = [serverAddress stringByReplacingOccurrencesOfRegex:@"/$" withString:@""];
-	[defaults setObject:serverAddress forKey:@"serverApi"];
+	NSString *serverApi = serverField.text;
+	serverApi = [serverApi stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
+	serverApi = [serverApi stringByReplacingOccurrencesOfRegex:@"/$" withString:@""];
+	[defaults setObject:serverApi forKey:@"serverApi"];
 	
 	[defaults setBool:interestingSwitch.on forKey:@"postCategory.informative"];
 	[defaults setBool:offtopicSwitch.on    forKey:@"postCategory.offtopic"];
@@ -335,6 +338,32 @@
 	[defaults setBool:nwsSwitch.on         forKey:@"postCategory.nws"];
 	
 	[defaults synchronize];
+    
+    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+	[store setObject:usernameField.text      forKey:@"username"];
+	[store setObject:passwordField.text      forKey:@"password"];
+    [store setObject:picsUsernameField.text  forKey:@"picsUsername"];
+    [store setObject:picsPasswordField.text  forKey:@"picsPassword"];
+	[store setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
+//	[store setBool:darkModeSwitch.on         forKey:@"darkMode"];
+	[store setBool:collapseSwitch.on         forKey:@"collapse"];
+//	[store setBool:landscapeSwitch.on        forKey:@"landscape"];
+	[store setBool:lolTagsSwitch.on          forKey:@"lolTags"];
+    [store setBool:picsResizeSwitch.on       forKey:@"picsResize"];
+    [store setObject:picsQuality             forKey:@"picsQuality"];
+	[store setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
+    [store setBool:safariSwitch.on           forKey:@"useSafari"];
+    [store setBool:chromeSwitch .on          forKey:@"useChrome"];
+//	[store setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+    [store setBool:modToolsSwitch.on         forKey:@"modTools"];
+	[store setObject:serverApi               forKey:@"serverApi"];
+	[store setBool:interestingSwitch.on      forKey:@"postCategory.informative"];
+	[store setBool:offtopicSwitch.on         forKey:@"postCategory.offtopic"];
+	[store setBool:randomSwitch.on           forKey:@"postCategory.stupid"];
+	[store setBool:politicsSwitch.on         forKey:@"postCategory.political"];
+	[store setBool:nwsSwitch.on              forKey:@"postCategory.nws"];
+    
+    [store synchronize];
     
     [Crashlytics setUserName:[defaults stringForKey:@"username"]];
 }
@@ -528,19 +557,19 @@
 				cell.textLabel.text = @"Embed YouTube:";
 				break;
                 
-			case 3:
+            case 3:
+				cell.accessoryView = lolTagsSwitch;
+				cell.textLabel.text = @"Enable [lol] Tags:";
+				break;
+                
+			case 4:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Enable Mod Tools:";
 				break;
                 
-			case 4:
+			case 5:
 				cell.accessoryView = saveSearchesSwitch;
 				cell.textLabel.text = @"Save Searches:";
-				break;
-                
-            case 5:
-				cell.accessoryView = lolTagsSwitch;
-				cell.textLabel.text = @"Show [lol] Tags:";
 				break;
                 
             case 6:

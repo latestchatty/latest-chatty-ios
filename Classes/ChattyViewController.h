@@ -10,9 +10,7 @@
 #import "Story.h"
 #import "Post.h"
 #import "ThreadCell.h"
-#import "ModelLoader.h"
 #import "ComposeViewController.h"
-#import "PinnedThreadsLoader.h"
 
 @class ThreadViewController;
 

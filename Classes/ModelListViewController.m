@@ -165,6 +165,7 @@
 - (void)didFailToLoadModels {
     loader = nil;
     [self hideLoadingSpinner];
+    self.title = @"";
     [UIAlertView showSimpleAlertWithTitle:@"Error"
                                   message:@"Could not connect to the server. Check your internet connection or your server API address in Settings."];
 }

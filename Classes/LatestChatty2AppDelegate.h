@@ -49,7 +49,6 @@
 + (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 - (BOOL)reloadSavedState;
-- (void)fetchLols;
 
 - (NSURLCredential *)userCredential;
 - (BOOL)isYoutubeURL:(NSURL *)url;

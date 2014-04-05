@@ -26,6 +26,7 @@
     CGPoint initialTouchPoint;
     IBOutlet id<GrippyBarDelegate> delegate;
     UIButton *orderByPostDateButton;
+    UIView *background;
 }
 
 - (void)layoutButtons;
@@ -38,5 +39,6 @@
 
 - (void)setOrderByPostDateWithValue:(BOOL)value;
 - (void)setOrderByPostDateButtonHighlight;
+- (void)setBackgroundColorForThread:(UIColor*)color;
 
 @end

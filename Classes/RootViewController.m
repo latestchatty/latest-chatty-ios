@@ -176,7 +176,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSDate date] forKey:@"messageFetchDate"];
     [defaults setInteger:messageCount forKey:@"messageCount"];
-    [defaults synchronize];
+//    [defaults synchronize];
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     

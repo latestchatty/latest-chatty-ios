@@ -113,7 +113,7 @@
     // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
 //    if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
         [defaults removeObjectForKey:@"savedState"];
-//    }        
+//    }
 
     // Settings defaults
     NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -138,7 +138,7 @@
                                      [NSNumber numberWithInt:1],    @"grippyBarPosition",
                                      [NSNumber numberWithBool:NO],  @"orderByPostDate",
                                      [NSNumber numberWithInt:0],    @"searchSegmented",
-                                     [NSMutableArray array],        @"pinnedPosts",
+                                     [NSMutableArray array],        @"pinnedThreads",
                                      [NSMutableArray array],        @"collapsedThreads",
                                      [NSMutableArray array],        @"recentSearches",
                                      [NSNumber numberWithBool:NO],  @"darkMode",
@@ -148,33 +148,26 @@
                                      nil];
     [defaults registerDefaults:defaultSettings];
     
+    // register for iCloud notifications to the keystore
+    NSUbiquitousKeyValueStore* store = [NSUbiquitousKeyValueStore defaultStore];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(storeChanged:)
+                                                 name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
+                                               object:store];
+    
     [Crashlytics setUserName:[defaults stringForKey:@"username"]];
     
-    // clear the captured date of the last successful lol fetch and fire an asynchronous call to fetch fresh lol counts
+    // clear the captured date of the last successful lol fetch
     [defaults removeObjectForKey:@"lolFetchDate"];
     
-    // Self-clearing the collapsedThreads array based on date of each collapsed thread.
-    // Keep threads collapsed only if they haven't expired yet from the chatty.
-    // Should be more efficient to create a new array of threads to keep rather than the inverse
-    // of creating an array of threads to remove with [collapsedThreads removeObjectsInArray:array].
-    NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
-    NSMutableArray *collapsedThreadsToKeep = [NSMutableArray array];
-    
-    // loop over collapsedThread dictionaries in array
-    for (NSDictionary *collapsedThreadDict in collapsedThreads) {
-        // build time interval from now to original post date of collapsed thread
-        NSTimeInterval ti = [[collapsedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
-        NSInteger hours = (ti / 3600) * -1;
-        
-        // if collapsed thread hasn't expired, add dictionary collapsedThreadsToKeep array
-        if (hours < 18) {
-            //NSLog(@"keeping thread collapsed: %@", collapsedThreadDict);
-            [collapsedThreadsToKeep addObject:collapsedThreadDict];
-        }
-    }
-    // update collapsedThreads array and sync user defaults
-    [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
+    [self cleanUpCollapsedThreads];
+    [self cleanUpPinnedThreads];
+
     [defaults synchronize];
+    // fire synchronize on app load to sync settings from iCloud
+    // freshing install: will pull all existing iCloud user settings down and put into user defaults database
+    // existing install: will pull down any changes in the iCloud user settings and sync to the user defaults database
+    [store synchronize];
     
     if ([self isPadDevice]) {
         [self setupInterfaceForPadWithOptions:launchOptions];
@@ -185,7 +178,7 @@
     [window makeKeyAndVisible];
     
     // Modified requestBody and request URL for May 2013 Shacknews login changes
-    if([defaults boolForKey:@"modTools"]==YES) {
+    if ([defaults boolForKey:@"modTools"] == YES) {
         //Mods need cookies
         NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
         NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
@@ -213,55 +206,94 @@
     return YES;
 }
 
-- (void)fetchLols {
+- (void)cleanUpPinnedThreads {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // Self-clearing the pinnedThreads array based on date of each pinned thread.
+    // Keep threads pinned only if they haven't passed a set hours threshold.
+    // Should be more efficient to create a new array of threads to keep rather than the inverse
+    // of creating an array of threads to remove with [pinnedThreads removeObjectsInArray:array].
+    NSMutableArray *pinnedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"pinnedThreads"]];
+    NSMutableArray *pinnedThreadsToKeep = [NSMutableArray array];
     
-    // jump out if user doesn't have lol tags enabled
-    if (![defaults boolForKey:@"lolTags"]) {
-        return;
-    }
-
-    // only fetch lols if it's been 5 minutes since the last fetch
-    NSDate *lastLolFetchDate = [defaults objectForKey:@"lolFetchDate"];
-    NSTimeInterval interval = [lastLolFetchDate timeIntervalSinceDate:[NSDate date]];
-    
-    if (interval == 0 || (interval * -1) > 60*5) {
-        NSLog(@"fetching lols...");
+    BOOL aThreadWasRemoved = NO;
+    // loop over pinnedThread dictionaries in array
+    for (NSDictionary *pinnedThreadDict in pinnedThreads) {
+        // build time interval from now to original post date of collapsed thread
+        NSTimeInterval ti = [[pinnedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
+        NSInteger hours = (ti / 3600) * -1;
         
-        // fetch lols synchronously with error handling support and timeout support, set to 5 seconds
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://lol.lmnopc.com/api.php?special=getcounts"]
-                                                 cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
-        NSError *requestError;
-        NSURLResponse *urlResponse = nil;
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-        if (!data) {
-            // error to get lols
-            if (requestError) {
-                // do we care about the specific error? or fail silently
+        // if pinned thread is less than 24 hours old, add dictionary to pinnedThreadsToKeep array
+        if (hours < 24) {
+            //NSLog(@"keeping thread pinned: %@", pinnedThreadDict);
+            [pinnedThreadsToKeep addObject:pinnedThreadDict];
+        } else {
+            aThreadWasRemoved = YES;
+        }
+    }
+    if (aThreadWasRemoved) {
+        // update pinnedThreads array
+        [defaults setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
+        [[NSUbiquitousKeyValueStore defaultStore] setObject:pinnedThreadsToKeep forKey:@"pinnedThreads"];
+    }
+}
+
+- (void)cleanUpCollapsedThreads {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // Self-clearing the collapsedThreads array based on date of each collapsed thread.
+    // Keep threads collapsed only if they haven't expired yet from the chatty.
+    // Should be more efficient to create a new array of threads to keep rather than the inverse
+    // of creating an array of threads to remove with [collapsedThreads removeObjectsInArray:array].
+    NSMutableArray *collapsedThreads = [NSMutableArray arrayWithArray:[defaults objectForKey:@"collapsedThreads"]];
+    NSMutableArray *collapsedThreadsToKeep = [NSMutableArray array];
+    
+    BOOL aThreadWasRemoved = NO;
+    // loop over collapsedThread dictionaries in array
+    for (NSDictionary *collapsedThreadDict in collapsedThreads) {
+        // build time interval from now to original post date of collapsed thread
+        NSTimeInterval ti = [[collapsedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
+        NSInteger hours = (ti / 3600) * -1;
+        
+        // if collapsed thread hasn't expired, add dictionary collapsedThreadsToKeep array
+        if (hours < 18) {
+            //NSLog(@"keeping thread collapsed: %@", collapsedThreadDict);
+            [collapsedThreadsToKeep addObject:collapsedThreadDict];
+        } else {
+            aThreadWasRemoved = YES;
+        }
+    }
+    if (aThreadWasRemoved) {
+        // update collapsedThreads array
+        [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
+        [[NSUbiquitousKeyValueStore defaultStore] setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
+    }
+}
+
+// handler fired when iCloud keystore synchronizes
+- (void)storeChanged:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *reason = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
+    
+    if (reason) {
+        NSInteger reasonValue = [reason integerValue];
+        // 0 = not a fresh install, sync existing settings
+        // 1 = new install, sync all settings
+        NSLog(@"storeChanged with reason %ld", (long)reasonValue);
+        
+        if ((reasonValue == NSUbiquitousKeyValueStoreServerChange) ||
+            (reasonValue == NSUbiquitousKeyValueStoreInitialSyncChange)) {
+            
+            NSArray *keys = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangedKeysKey];
+            NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            
+            // all key names locally and in iCloud are the same, so we can loop over the changed keys and sync easily
+            for (NSString *key in keys) {
+                id value = [store objectForKey:key];
+                [userDefaults setObject:value forKey:key];
+                NSLog(@"storeChanged updated value for %@",key);
             }
         }
-        else {
-            // Data was received.. continue processing
-            // parse getcounts JSON into a dictionary
-            self.lolCounts = [NSJSONSerialization JSONObjectWithData:data
-                                                            options:NSJSONReadingMutableContainers
-                                                              error:nil];
-            NSLog(@"%lu lols fetched", (unsigned long)self.lolCounts.count);
-
-            // stuff successful fetch date into user defaults
-            [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
-            [defaults synchronize];
-        }
-        
-        request = nil;
-        requestError = nil;
-        data = nil;
-        
-        NSLog(@"...done fetching lols");
     }
-    
-    defaults = nil;
-    lastLolFetchDate = nil;
 }
 
 //- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
@@ -355,9 +387,32 @@
         viewController = [[ChattyViewController alloc] initWithStoryId:targetStoryId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
         NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/profile/(.*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-        viewController = [[SearchResultsViewController alloc] initWithTerms:@"" author:profileName parentAuthor:@""];
+        viewController = [[SearchResultsViewController alloc] initWithTerms:@"" author:[profileName stringByReplacingOccurrencesOfString:@"+" withString:@" "] parentAuthor:@""];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/user/.*/posts"]) {
+        NSString *profileName = [[uri stringByMatching:@"shacknews\\.com/user/(.*)/posts" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        viewController = [[SearchResultsViewController alloc] initWithTerms:@"" author:[profileName stringByReplacingOccurrencesOfString:@"+" withString:@" "] parentAuthor:@""];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/search\\?chatty=1&type=4"]) {
+        //http://www.shacknews.com/search?chatty=1&type=4&chatty_term=test&chatty_user=test&chatty_author=test&chatty_filter=all&result_sort=postdate_desc
+        NSString *terms = [[uri stringByMatching:@"&chatty_term=([^&]*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        NSString *author = [[uri stringByMatching:@"&chatty_user=([^&]*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        NSString *parentAuthor = [[uri stringByMatching:@"&chatty_author=([^&]*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        if (terms || author || parentAuthor) {
+            viewController = [[SearchResultsViewController alloc]
+                              initWithTerms:(terms ? [terms stringByReplacingOccurrencesOfString:@"+" withString:@" "] : @"")
+                              author:(author ? [author stringByReplacingOccurrencesOfString:@"+" withString:@" "] : @"")
+                              parentAuthor:(parentAuthor ? [parentAuthor stringByReplacingOccurrencesOfString:@"+" withString:@" "] : @"")];
+        }
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/search\\?q=([^&]*)&type=4"]) {
+        //http://www.shacknews.com/search?q=test&type=4
+        NSString *terms = [[uri stringByMatching:@"q=([^&]*)" capture:1] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        if (terms) {
+            viewController = [[SearchResultsViewController alloc] initWithTerms:terms author:@"" parentAuthor:@""];
+        }
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?id=(\\d+)" capture:1] intValue];
+        viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty/\\d+"]) {
+        NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty/(\\d+)" capture:1] intValue];
         viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?story=\\d+"]) {
         NSUInteger targetStoryId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?story=(\\d+)" capture:1] intValue];
@@ -422,7 +477,12 @@
 }
 
 - (BOOL)isPadDevice {
-    return CGRectGetMaxX([[UIScreen mainScreen] bounds]) > 480;
+    return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [self cleanUpCollapsedThreads];
+    [self cleanUpPinnedThreads];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -31,6 +31,7 @@
 // Table cell colors
 + (UIColor *)lcCellNormalColor;
 + (UIColor *)lcCellParticipantColor;
++ (UIColor *)lcCellPinnedColor;
 + (UIColor *)lcGroupedCellColor;
 + (UIColor *)lcGroupedCellLabelColor;
 + (UIColor *)lcGroupedTitleColor;

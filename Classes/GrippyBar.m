@@ -15,11 +15,10 @@
     if (self) {
         self.contentMode = UIViewContentModeCenter;
         
-        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 12, self.frameWidth, 25)];
-        [backgroundView setBackgroundColor:[UIColor lcTableBackgroundColor]];
-        backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-        [self addSubview:backgroundView];
-        
+        background = [[UIView alloc] initWithFrame:CGRectMake(0, 12, self.frameWidth, 25)];
+        background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        [self addSubview:background];
+
         // add pan gesture to handle moving the bar up/down when swiping up/down anywhere on the bar (including within buttons)
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                      action:@selector(handlePan:)];
@@ -151,6 +150,10 @@
 
 - (void)setOrderByPostDateButtonHighlight {
 	orderByPostDateButton.alpha = isOrderByPostDate ? 1.0 : 0.5;
+}
+
+- (void)setBackgroundColorForThread:(UIColor *)color {
+    [background setBackgroundColor:color];
 }
 
 @end
