@@ -83,9 +83,9 @@
     NSHTTPURLResponse *response;
     NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]];
     
-    NSLog(@"Creating Message with Request body: %@", requestBody);
-    NSLog(@"Server responded: %@", responseBody);
-    NSLog(@"response statusCode: %ld", (long)[response statusCode]);
+//    NSLog(@"Creating Message with Request body: %@", requestBody);
+//    NSLog(@"Server responded: %@", responseBody);
+//    NSLog(@"response statusCode: %ld", (long)[response statusCode]);
     
     // Handle login failed
     if ([responseBody isEqualToString:@"error_login_failed"] || [response statusCode] == 401) {

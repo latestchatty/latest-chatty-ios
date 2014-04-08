@@ -8,7 +8,7 @@
 
 #import "Message.h"
 
-@interface SendMessageViewController : UIViewController <UITextFieldDelegate> {
+@interface SendMessageViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate> {
 	IBOutlet UITextField *recipient;
 	IBOutlet UITextField *subject;
 	IBOutlet UITextView *body;

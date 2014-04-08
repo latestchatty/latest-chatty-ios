@@ -49,7 +49,10 @@
                                                                         action:@selector(sendPost)];
     [submitPostButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
                                     forState:UIControlStateNormal];
+    [submitPostButton setTitleTextAttributes:[NSDictionary blueHighlightTextAttributesDictionary]
+                                    forState:UIControlStateDisabled];
 	self.navigationItem.rightBarButtonItem = submitPostButton;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 	
     UITapGestureRecognizer *previewTapRecognizer = [[UITapGestureRecognizer alloc]
                                                           initWithTarget:self
@@ -179,6 +182,17 @@
             scrollViewHeight = view.frame.origin.y + view.frame.size.height;
     }
     [innerTagScrollView setContentSize:CGSizeMake(innerTagScrollView.frameWidth, scrollViewHeight)];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSUInteger length = textView.text.length - range.length + text.length;
+//    NSLog(@"length: %lu", (unsigned long)length);
+    if (length >= 5) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    } else {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+    return YES;
 }
 
 #pragma mark Keyboard notifications
