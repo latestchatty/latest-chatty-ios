@@ -3,6 +3,12 @@ latest-chatty-2
 
 Updated for iOS 7!
 
+4.3.1
+====
+- iPad bug fix for posting new threads not clearing compose view and refreshing chatty
+- iPad bug fix for message cells in portrait
+- Revised error message alert view messaging when posts fail
+
 4.3.0
 ====
 - 4.2.3 RC submitted to App Store
