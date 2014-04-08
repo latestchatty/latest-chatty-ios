@@ -49,7 +49,6 @@
     // clear the last message fetch date to force message fetching again which will set the badge number count correctly
     // terrible way of doing this but whatevs
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"messageFetchDate"];
-//    [defaults synchronize];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
@@ -84,9 +83,9 @@
     NSHTTPURLResponse *response;
     NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]];
     
-    NSLog(@"Creating Message with Request body: %@", requestBody);
-    NSLog(@"Server responded: %@", responseBody);
-    NSLog(@"response statusCode: %ld", (long)[response statusCode]);
+//    NSLog(@"Creating Message with Request body: %@", requestBody);
+//    NSLog(@"Server responded: %@", responseBody);
+//    NSLog(@"response statusCode: %ld", (long)[response statusCode]);
     
     // Handle login failed
     if ([responseBody isEqualToString:@"error_login_failed"] || [response statusCode] == 401) {

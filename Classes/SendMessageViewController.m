@@ -43,33 +43,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
-    
 	UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send"
                                                                    style:UIBarButtonItemStyleDone
                                                                   target:self
                                                                   action:@selector(sendMessage)];
     [sendButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
+    [sendButton setTitleTextAttributes:[NSDictionary blueHighlightTextAttributesDictionary] forState:UIControlStateDisabled];
 	self.navigationItem.rightBarButtonItem = sendButton;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 
     [self.recipient setText:self.recipientString];
     [self.subject setText:self.subjectString];
     [self.body setText:self.bodyString];
     if (self.bodyString) {
         [self setupReply];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
     
     self.body.textContainerInset = UIEdgeInsetsMake(5, 5, 5, 5);
-    
-//    if (self.bodyString) {
-//        [self.body becomeFirstResponder];
-//    } else if (self.recipientString) {
-//        [self.subject becomeFirstResponder];
-//    } else {
-//        [self.recipient becomeFirstResponder];
-//    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -117,6 +110,41 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSUInteger length = textField.text.length - range.length + string.length;
+    
+    if (textField.tag == 0) {
+        NSLog(@"length: %lu", (unsigned long)length);
+        if (body.text.length > 0 && subject.text.length > 0 && length > 0) {
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        } else {
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+        }
+    }
+    
+    if (textField.tag == 1) {
+        NSLog(@"length: %lu", (unsigned long)length);
+        if (body.text.length > 0 && recipient.text.length > 0 && length > 0) {
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        } else {
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+        }
+    }
+    
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSUInteger length = textView.text.length - range.length + text.length;
+    NSLog(@"length: %lu", (unsigned long)length);
+    if (recipient.text.length > 0 && subject.text.length > 0 && length > 0) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    } else {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+    return YES;
 }
 
 #pragma mark Keyboard notifications
@@ -174,7 +202,7 @@
 
 - (void)setupReply {
 //    body.text = [message.body stringByReplacingOccurrencesOfRegex:@"<br.*?>" withString:@"\n"];
-    body.text = [NSString stringWithFormat:@"On %@ %@ wrote:\n\n%@", [Message formatDate:message.date], message.from, message.body];
+    body.text = [NSString stringWithFormat:@"On %@ %@ wrote:\n\n%@", [Message formatDate:message.date withAllowShortFormat:NO], message.from, message.body];
     body.text = [NSString stringWithFormat:@"\n\n--------------------\n\n%@", [body.text stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""]];
     
     recipient.text = message.from;

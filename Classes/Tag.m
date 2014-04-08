@@ -134,7 +134,6 @@ static NSString *kGetCountsUrl = @"http://lol.lmnopc.com/api.php?special=getcoun
             
             // stuff successful fetch date into user defaults
             [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
-            //            [defaults synchronize];
         }
         
         request = nil;

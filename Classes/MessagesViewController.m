@@ -137,9 +137,8 @@
         if (message.unread) messageCount++;
     }
     
-    // save the updated message count to the db
+    // save the updated message count
     [[NSUserDefaults standardUserDefaults] setInteger:messageCount forKey:@"messageCount"];
-//    [defaults synchronize];
     // reflect the unread count on the app badge
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     

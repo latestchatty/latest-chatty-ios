@@ -33,11 +33,15 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
 #pragma mark Class Helpers
 
 + (NSString *)formatDate:(NSDate *)date {
+    return [Model formatDate:date withAllowShortFormat:YES];
+}
+
++ (NSString *)formatDate:(NSDate *)date withAllowShortFormat:(BOOL)indication {
     // if it's at least a day old, show the full date, otherwise use the new shortened method
     NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:date];
     
     // 60sec * 1440min = number of sec in day
-    if (interval >= 60*1440) {
+    if (interval >= 60*1440 || !indication) {
         NSDateFormatter *formatter = [LatestChatty2AppDelegate delegate].formatter;
         //Force the 12hr locale so dates appear on the 24hr guys
         [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
