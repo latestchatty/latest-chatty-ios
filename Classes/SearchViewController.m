@@ -214,7 +214,6 @@
 
 - (IBAction)modeChanged {
     [[NSUserDefaults standardUserDefaults] setInteger:segmentedBar.selectedSegmentIndex forKey:@"searchSegmented"];
-//    [defaults synchronize];
     
     // if is the recent segmented control, show the view else remove it from the superview and let the
     // reset of the segemented control logic fire
@@ -336,7 +335,6 @@
     [filteredRecentSearches addObject:searchDictionary];
     // persis the new recent searches array back to user defaults
     [defaults setObject:filteredRecentSearches forKey:@"recentSearches"];
-//    [defaults synchronize];
     
     // create the search results controller and push it
     SearchResultsViewController *viewController = [[SearchResultsViewController alloc] initWithTerms:sender.searchTerms
@@ -390,7 +388,6 @@
         // add the search dictionary and sync
         [recentSearches addObject:searchDictionary];
         [defaults setObject:recentSearches forKey:@"recentSearches"];
-//        [defaults synchronize];
     }
     
     // create the search results controller and push it
@@ -412,7 +409,6 @@
     [recentSearches removeAllObjects];
     
     [defaults setObject:recentSearches forKey:@"recentSearches"];
-//    [defaults synchronize];
 
     // call modeChanged as an easy way of updating the UI after clearing the recent searches
     [self modeChanged];

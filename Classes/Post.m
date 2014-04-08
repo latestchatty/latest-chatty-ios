@@ -278,10 +278,10 @@ static NSMutableDictionary *expirationColorMapping;
     
     // Handle specific errors
     else if ([responseBody isMatchedByRegex:@"^error_"]) {
-        NSString *msg = [[responseBody stringByReplacingOccurrencesOfString:@"error_" withString:@""]
-                         stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+        NSString *msg = [[[responseBody stringByReplacingOccurrencesOfString:@"error_" withString:@""]
+                         stringByReplacingOccurrencesOfString:@"_" withString:@" "] capitalizedString];
         [UIAlertView showSimpleAlertWithTitle:@"Error"
-                                      message:[NSString stringWithFormat:@"Post failed:\n%@", msg]];
+                                      message:msg];
         return NO;
     }
     
@@ -386,10 +386,7 @@ static NSMutableDictionary *expirationColorMapping;
             }
         }
     }
-//    else {
-//        [defaults setObject:[NSMutableArray arrayWithCapacity:0] forKey:@"pinnedThreads"];
-//        [defaults synchronize];
-//    }
+    
     return self;
 }
 

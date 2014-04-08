@@ -418,11 +418,19 @@
 #pragma mark Actions
 
 - (void)postSuccess {
-	//self.navigationController.view.userInteractionEnabled = YES;
-	ModelListViewController *lastController = (ModelListViewController *)self.navigationController.backViewController;
-	[lastController refresh:self];
+    ModelListViewController *controller;
+    
+    // new root post success in iPad = refresh chatty controller
+    if (post.modelId == 0 && [[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        controller = (ModelListViewController *)[[[LatestChatty2AppDelegate delegate] navigationController] topViewController];
+    } else {
+        // always send refesh msg to previous controller after success on iPhone
+        controller = (ModelListViewController *)self.navigationController.backViewController;
+    }
+    [controller refresh:self];
+    
 	[self.navigationController popViewControllerAnimated:YES];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
 	[self hideActivityIndicator];
 }
 

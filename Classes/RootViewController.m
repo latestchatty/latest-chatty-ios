@@ -10,6 +10,8 @@
 
 #import "CustomBadge.h"
 
+#import "NoContentController.h"
+
 @implementation RootViewController
 
 @synthesize selectedIndex;
@@ -176,7 +178,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSDate date] forKey:@"messageFetchDate"];
     [defaults setInteger:messageCount forKey:@"messageCount"];
-//    [defaults synchronize];
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:messageCount];
     
@@ -278,6 +279,7 @@
     UIViewController *viewController = nil;
     BOOL modal = NO;
     NSString *urlString;
+    LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
     
     // save the index path selection if this isn't settings
     if (indexPath.row != 5) {
@@ -301,7 +303,6 @@
             viewController = [SearchViewController controllerWithNib];
             
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
                 [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
                 viewController = nil;
             }
@@ -315,7 +316,6 @@
                                                                isForShackLOL:YES];
             
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
                 [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
                 viewController = nil;
             }
@@ -342,7 +342,6 @@
     if (viewController) {
         if (modal) {
 			if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
 				viewController.modalPresentationStyle = UIModalPresentationFormSheet;
                 [appDelegate.slideOutViewController presentViewController:viewController animated:YES completion:nil];
 			} else {
@@ -352,6 +351,7 @@
         } else {
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 [self.navigationController pushViewController:viewController animated:YES];
+                [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:[NoContentController controllerWithNib]]];
             } else {
                 self.viewDeckController.centerController = [[UINavigationController alloc] initWithRootViewController:viewController];
                 [LatestChatty2AppDelegate delegate].navigationController = (UINavigationController *)self.viewDeckController.centerController;

@@ -717,7 +717,6 @@
     if (grippyBarPosition < 0) grippyBarPosition = 0;
     [self resetLayout:YES];
     [[NSUserDefaults standardUserDefaults] setInteger:grippyBarPosition forKey:@"grippyBarPosition"];
-//	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)grippyBarDidSwipeDown {
@@ -725,7 +724,6 @@
     if (grippyBarPosition > 2) grippyBarPosition = 2;
     [self resetLayout:YES];
     [[NSUserDefaults standardUserDefaults] setInteger:grippyBarPosition forKey:@"grippyBarPosition"];
-//	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 // Patch-E: fixed the iPad issue where if you tap the tag button numerous times, many action sheet popovers are created
@@ -740,9 +738,9 @@
     }
     // keep track of the action sheet
     theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
-                                                        delegate:self
-                                               cancelButtonTitle:@"Cancel"
-                                          destructiveButtonTitle:nil
+                                                 delegate:self
+                                        cancelButtonTitle:@"Cancel"
+                                   destructiveButtonTitle:nil
                                                otherButtonTitles:@"lol", @"inf", @"unf", @"tag", @"wtf", @"ugh", nil];
     
     [theActionSheet showInView:self.navigationController.view];
@@ -770,52 +768,41 @@
 }
 
 - (IBAction)toggleOrderByPostDate {
-//    if([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        orderByPostDate = !orderByPostDate;
-////        orderByPostDateButton.style = orderByPostDate ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
-//        orderByPostDateButton.tintColor = orderByPostDate ? nil : [UIColor lcSelectionGrayColor];
-//    }
-//    else {
     orderByPostDate = !orderByPostDate;
     [grippyBar setOrderByPostDateButtonHighlight];
-//    }
     
     // Persist the orderByPostDate toggle option
     [[NSUserDefaults standardUserDefaults] setBool:orderByPostDate forKey:@"orderByPostDate"];
-//	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (int)nextRowByTimeLevel:(int)currentRow {
-        Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
-        
-        for (int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
-        {
-                Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];                
-                if (post.timeLevel == currentPost.timeLevel - 1)
-                        return postIndex;
-        }
-        
-        return 0;
+    Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
+    
+    for (int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++) {
+        Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];
+        if (post.timeLevel == currentPost.timeLevel - 1)
+            return postIndex;
+    }
+    
+    return 0;
 }
 
 - (NSInteger)previousRowByTimeLevel:(int)currentRow {
-        Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
-        NSInteger minTimeLevel = -1, minTimeLevelPostIndex = 0;
+    Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
+    NSInteger minTimeLevel = -1, minTimeLevelPostIndex = 0;
+    
+    for (int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++) {
+        Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];
+        if(post.timeLevel == currentPost.timeLevel + 1)
+            return postIndex;
         
-        for(int postIndex = 0; postIndex < [[rootPost repliesArray] count]; postIndex++)
-        {
-                Post *post = [[rootPost repliesArray] objectAtIndex:postIndex];                
-                if(post.timeLevel == currentPost.timeLevel + 1)
-                        return postIndex;
-                
-                if(post.timeLevel < minTimeLevel || minTimeLevel == -1)
-                {
-                        minTimeLevel = post.timeLevel;
-                        minTimeLevelPostIndex = postIndex;
-                }
+        if (post.timeLevel < minTimeLevel || minTimeLevel == -1){
+            minTimeLevel = post.timeLevel;
+            minTimeLevelPostIndex = postIndex;
         }
-        
-        return minTimeLevelPostIndex;
+    }
+    
+    return minTimeLevelPostIndex;
 }
 
 - (IBAction)previous {
@@ -869,10 +856,10 @@
 
 -(void)grippyBarDidTapModButton {
     UIActionSheet *modActionSheet = [[UIActionSheet alloc] initWithTitle:@"Mod this Post"
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"Stupid", @"Offtopic", @"NWS", @"Political", @"Informative", @"Nuked", @"Ontopic", nil];
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Cancel"
+                                                  destructiveButtonTitle:nil
+                                                       otherButtonTitles:@"Stupid", @"Offtopic", @"NWS", @"Political", @"Informative", @"Nuked", @"Ontopic", nil];
     [modActionSheet showInView:self.view];
 }
 

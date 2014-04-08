@@ -267,7 +267,6 @@
             allowFarts = YES;
         }
         [[NSUserDefaults standardUserDefaults] setBool:allowFarts forKey:@"superSecretFartMode"];
-//        [defaults synchronize];
     }
 }
 

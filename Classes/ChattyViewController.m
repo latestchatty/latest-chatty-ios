@@ -210,12 +210,15 @@
     [self.refreshControl endRefreshing];
 }
 
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-	if(viewController == self.threadController)
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated {
+	if (viewController == self.threadController) {
 		[threadController resetLayout:YES];
+    }
 }
 
-- (void)refresh:(id)sender {    
+- (void)refresh:(id)sender {
 	[super refresh:sender];
     
 	currentPage = 1;
@@ -298,19 +301,10 @@
                 }
             }
         }
-    
-//        // bubble pinned threads to the top
-//        if (rootPost.pinned) {
-//            id object = [filteredThreads objectAtIndex:index];
-//            [filteredThreads removeObjectAtIndex:index];
-//            [filteredThreads insertObject:object atIndex:0];
-//        }
-//        index++;
 	}
 	self.threads = filteredThreads;
 	
 	[[NSUserDefaults standardUserDefaults] setValue:postHistoryDict forKey:@"PostCountHistory"];
-//	[[NSUserDefaults standardUserDefaults] synchronize];
 	
 	[self.tableView reloadData];
 	loader = nil;
@@ -326,10 +320,6 @@
         }
         
 		[super didFinishLoadingAllModels:models otherData:otherData];
-        
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:threadController];
-        }
 	} else {
         if ([self.refreshControl isRefreshing]) {
             [self.refreshControl endRefreshing];
@@ -411,7 +401,8 @@
     ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
+        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
+
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
@@ -449,7 +440,6 @@
             [collapsedThreads addObject:collapsedThreadDict];
             [defaults setObject:collapsedThreads forKey:@"collapsedThreads"];
             [[NSUbiquitousKeyValueStore defaultStore] setObject:collapsedThreads forKey:@"collapsedThreads"];
-//            [defaults synchronize];
         }
     }
 }

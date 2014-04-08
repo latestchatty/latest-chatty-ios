@@ -16,6 +16,7 @@
 @property (readonly) NSUInteger modelId;
 
 + (NSString *)formatDate:(NSDate *)date;
++ (NSString *)formatDate:(NSDate *)date withAllowShortFormat:(BOOL)indication;
 + (NSDate *)decodeDate:(NSString *)string;
 
 + (NSString *)host;
