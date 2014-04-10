@@ -316,6 +316,7 @@
 	postContent.text = [postContent.text stringByAppendingString:url];
 	[self hideActivityIndicator];
 	[postContent becomeFirstResponder];
+    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)image:(Image*)image sendFailure:(NSString*)message {
