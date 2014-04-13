@@ -657,7 +657,7 @@
     
     switch (grippyBarPosition) {
         case 0:
-            dividerLocation = 0.25;
+            dividerLocation = 0.33;
             break;
             
         case 1:
@@ -665,7 +665,7 @@
             break;
             
         case 2:
-            dividerLocation = 0.8;
+            dividerLocation = 0.66;
             break;
     }
     
