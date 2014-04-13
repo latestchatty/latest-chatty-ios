@@ -9,6 +9,7 @@ Updated for iOS 7!
 - iPad bug fix for message cells in portrait
 - Revised error message alert view messaging when posts fail
 - Support for disabling "Submit" buttons on post/message compose views until character requirements are met in all fields
+- Thread view's post/reply separator bar now splits the screen by 1/3, 1/2, or 2/3 rather than the previous 1/4, 1/5, 4/5 values
 
 4.3.0
 ====
