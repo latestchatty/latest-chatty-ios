@@ -103,8 +103,8 @@
 		CD48681E17EB5B430071F3D7 /* Fart8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680D17EB5B430071F3D7 /* Fart8.mp3 */; };
 		CD48681F17EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
 		CD48682017EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
-		CD6C60ED18EBDD760033FA55 /* libFlurry_4.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6C60EC18EBDD760033FA55 /* libFlurry_4.4.0.a */; };
-		CD6C60EE18EBDD760033FA55 /* libFlurry_4.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6C60EC18EBDD760033FA55 /* libFlurry_4.4.0.a */; };
+		CD6C60ED18EBDD760033FA55 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6C60EC18EBDD760033FA55 /* libFlurry.a */; };
+		CD6C60EE18EBDD760033FA55 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6C60EC18EBDD760033FA55 /* libFlurry.a */; };
 		CD760000174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760001174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760002174C734B00B378E6 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFF1174C734B00B378E6 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -657,7 +657,7 @@
 		CD48680E17EB5B430071F3D7 /* Fart9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart9.mp3; path = Assets/Fart9.mp3; sourceTree = "<group>"; };
 		CD64F12218CBB0B900BF6889 /* LatestChattyBeta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LatestChattyBeta.entitlements; sourceTree = "<group>"; };
 		CD64F12318CBB0DE00BF6889 /* LatestChatty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LatestChatty.entitlements; sourceTree = "<group>"; };
-		CD6C60EC18EBDD760033FA55 /* libFlurry_4.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.4.0.a; sourceTree = "<group>"; };
+		CD6C60EC18EBDD760033FA55 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		CD76FFE1174C734B00B378E6 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		CD76FFE2174C734B00B378E6 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		CD76FFE3174C734B00B378E6 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -977,7 +977,7 @@
 				5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				5907C5B710A69A190028D630 /* libz.dylib in Frameworks */,
-				CD6C60ED18EBDD760033FA55 /* libFlurry_4.4.0.a in Frameworks */,
+				CD6C60ED18EBDD760033FA55 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,7 +996,7 @@
 				CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */,
 				CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */,
 				CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */,
-				CD6C60EE18EBDD760033FA55 /* libFlurry_4.4.0.a in Frameworks */,
+				CD6C60EE18EBDD760033FA55 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1193,7 +1193,7 @@
 			isa = PBXGroup;
 			children = (
 				CDA26B5E18234F1C00239BA9 /* Flurry.h */,
-				CD6C60EC18EBDD760033FA55 /* libFlurry_4.4.0.a */,
+				CD6C60EC18EBDD760033FA55 /* libFlurry.a */,
 			);
 			name = Flurry;
 			path = Classes/Flurry;
