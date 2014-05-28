@@ -149,6 +149,17 @@
         return;
     }
     
+    // initialize gestures only after a successful model load
+    // initialize long press gesture
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    longPress.minimumPressDuration = 1.0; //seconds
+    longPress.delegate = self;
+    [self.navigationController.navigationBar addGestureRecognizer:longPress];
+    // initialize double tap gesture
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    doubleTap.numberOfTapsRequired = 2;
+    [self.navigationController.navigationBar addGestureRecognizer:doubleTap];
+    
     // Enable toolbars
     grippyBar.userInteractionEnabled = YES;
     self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -287,17 +298,6 @@
         [postView.scrollView setContentOffset:self.scrollPosition animated:YES];
         self.scrollPosition = CGPointMake(0, 0);
     }
-    
-    // initialize long press gesture
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    longPress.minimumPressDuration = 1.0; //seconds
-    longPress.delegate = self;
-    [self.navigationController.navigationBar addGestureRecognizer:longPress];
-
-    // initialize double tap gesture
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-    doubleTap.numberOfTapsRequired = 2;
-    [self.navigationController.navigationBar addGestureRecognizer:doubleTap];
     
     // set the panning gesture delegate to this controller to monitor whether the panning should occur
     [self.viewDeckController setPanningGestureDelegate:self];

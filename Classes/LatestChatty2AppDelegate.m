@@ -218,15 +218,22 @@
     BOOL aThreadWasRemoved = NO;
     // loop over pinnedThread dictionaries in array
     for (NSDictionary *pinnedThreadDict in pinnedThreads) {
-        // build time interval from now to original post date of collapsed thread
-        NSTimeInterval ti = [[pinnedThreadDict objectForKey:@"date"] timeIntervalSinceNow];
-        NSInteger hours = (ti / 3600) * -1;
-        
-        // if pinned thread is less than 24 hours old, add dictionary to pinnedThreadsToKeep array
-        if (hours < 24) {
-            //NSLog(@"keeping thread pinned: %@", pinnedThreadDict);
-            [pinnedThreadsToKeep addObject:pinnedThreadDict];
+        NSDate *date = [pinnedThreadDict objectForKey:@"date"];
+        if (date) {
+            // build time interval from now to original post date of collapsed thread
+            NSTimeInterval ti = [date timeIntervalSinceNow];
+            NSInteger hours = (ti / 3600) * -1;
+            
+            // if pinned thread is less than 24 hours old, add dictionary to pinnedThreadsToKeep array
+            if (hours < 24) {
+                //NSLog(@"keeping thread pinned: %@", pinnedThreadDict);
+                [pinnedThreadsToKeep addObject:pinnedThreadDict];
+            } else {
+                aThreadWasRemoved = YES;
+            }
         } else {
+            // handles any 0 id threads that may be stuck in the array
+            // the don't have dates associated, so always remove them
             aThreadWasRemoved = YES;
         }
     }
