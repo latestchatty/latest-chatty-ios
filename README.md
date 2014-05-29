@@ -3,6 +3,12 @@ latest-chatty-2
 
 Updated for iOS 7!
 
+4.3.2
+====
+- Bug fix for pinning while a thread is loading. Was causing a thread of id 0 to be stuck in the pinned thread dictionary that could never be removed. Failing to load this 0 id thread was not graceful and caused any other pinned threads to vanish from the chatty.
+- Crashlytics version increase
+- Flurry version increase
+
 4.3.1
 ====
 - iPad bug fix for posting new threads not clearing compose view and refreshing chatty
