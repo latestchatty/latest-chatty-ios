@@ -198,37 +198,47 @@
 #pragma mark Keyboard notifications
 
 - (void)keyboardWillShow:(NSNotification *)note {
-    NSDictionary *userInfo = [note userInfo];
-    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIInterfaceOrientation orientation = self.interfaceOrientation;
-    
-    if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [UIView animateWithDuration:0.25 animations:^{
-            postContent.frameHeight = postContent.frameHeight - kbSize.width;
-        }];
-    } else {
-        [UIView animateWithDuration:0.25 animations:^{
-            postContent.frameHeight = postContent.frameHeight - kbSize.height;
-        }];
+    if (!keyboardShowing) {
+        NSDictionary *userInfo = [note userInfo];
+        CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        
+        UIInterfaceOrientation orientation = self.interfaceOrientation;
+        
+        if (UIInterfaceOrientationIsLandscape(orientation)) {
+            [UIView animateWithDuration:0.25 animations:^{
+                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight - kbSize.width);
+                postContent.frame = newFrame;
+            }];
+        } else {
+            [UIView animateWithDuration:0.25 animations:^{
+                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight - kbSize.height);
+                postContent.frame = newFrame;
+            }];
+        }
     }
+    keyboardShowing = YES;
 }
 
 - (void)keyboardDidHide:(NSNotification *)note {
-    NSDictionary *userInfo = [note userInfo];
-    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIInterfaceOrientation orientation = self.interfaceOrientation;
-    
-    if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [UIView animateWithDuration:0.25 animations:^{
-            postContent.frameHeight = postContent.frameHeight + kbSize.width;
-        }];
-    } else {
-        [UIView animateWithDuration:0.25 animations:^{
-            postContent.frameHeight = postContent.frameHeight + kbSize.height;
-        }];
+    if (keyboardShowing) {
+        NSDictionary *userInfo = [note userInfo];
+        CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        
+        UIInterfaceOrientation orientation = self.interfaceOrientation;
+        
+        if (UIInterfaceOrientationIsLandscape(orientation)) {
+            [UIView animateWithDuration:0.25 animations:^{
+                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight + kbSize.width);
+                postContent.frame = newFrame;
+            }];
+        } else {
+            [UIView animateWithDuration:0.25 animations:^{
+                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight + kbSize.height);
+                postContent.frame = newFrame;
+            }];
+        }
     }
+    keyboardShowing = NO;
 }
 
 #pragma mark Image Handling
