@@ -3,7 +3,7 @@ latest-chatty-2
 
 Updated for iOS 7!
 
-4.3.2
+4.3.3
 ====
 - Bug fixes for iOS 8
 
