@@ -292,8 +292,16 @@
         usernameField.clearButtonMode = UITextFieldViewModeNever;
         
         // get and show the lock image (last subview in cell's contentView), really ugly
-        UIView *cell = [(UITableViewCell *)usernameField.superview.superview.superview contentView];
-        ((UIView *)cell.subviews.lastObject).hidden = NO;
+        UIView *cell;
+        // superview traversing apparently changed in iOS 8
+        if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+            cell = [(UITableViewCell *)usernameField.superview.superview.superview contentView];
+        } else {
+            cell = [(UITableViewCell *)usernameField.superview.superview contentView];
+        }
+        if (cell) {
+            ((UIView *)cell.subviews.lastObject).hidden = NO;
+        }
     }
     
     //Patch-E: always keeping focus in one of the text fields upon segemented control mode change, made the search button under the table view unecessary for iPhone, removed from iPhone xib and programmatically create one on the top right of navigation bar. Always scrolling the text field with focus into view on iPhone.

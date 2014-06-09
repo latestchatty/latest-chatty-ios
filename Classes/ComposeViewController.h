@@ -36,6 +36,8 @@
     NSRange selection;
     
     UIPopoverController *popoverController;
+    
+    BOOL keyboardShowing;
 }
 
 @property (assign) NSInteger storyId;
