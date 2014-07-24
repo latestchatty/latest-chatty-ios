@@ -1,7 +1,13 @@
 latest-chatty-2
 ===============
 
-Updated for iOS 7!
+Requires iOS 7!
+
+4.3.4
+====
+- Removed Flurry analytics framework
+- Now use Crashlytics’ new “Answers” realtime analytics (no new code needed to be added! only enabled in the Crashlytics account)
+- Support for new chatty thread URL format that started appearing post-gnuShack
 
 4.3.3
 ====
