@@ -11,7 +11,6 @@
 #import "Mod.h"
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
-#import "Flurry.h"
 #import <Crashlytics/Crashlytics.h>
 
 @implementation LatestChatty2AppDelegate
@@ -93,8 +92,6 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Flurry setCrashReportingEnabled:NO];
-    [Flurry startSession:@"KNR8BVFGGHX3MB6J6CP8"];
     [Crashlytics startWithAPIKey:@"7e5579f671abccb0156cc1a6de1201f981ef170c"];
     
     [self customizeAppearance];
@@ -386,6 +383,8 @@
     NSString *uri = [url absoluteString];
     UIViewController *viewController = nil;
     
+    https://www.shacknews.com/chatty/?id=32214978#item_32214978
+    
     if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?id=(\\d+)" capture:1] intValue];
         viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
@@ -415,8 +414,8 @@
         if (terms) {
             viewController = [[SearchResultsViewController alloc] initWithTerms:terms author:@"" parentAuthor:@""];
         }
-    } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty\\?id=\\d+"]) {
-        NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty\\?id=(\\d+)" capture:1] intValue];
+    } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty/?\\?id=\\d+"]) {
+        NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty/?\\?id=(\\d+)" capture:1] intValue];
         viewController = [[ThreadViewController alloc] initWithThreadId:targetThreadId];
     } else if ([uri isMatchedByRegex:@"shacknews\\.com/chatty/\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/chatty/(\\d+)" capture:1] intValue];
