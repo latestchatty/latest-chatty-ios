@@ -2262,11 +2262,7 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
-					"$(PROJECT_DIR)/Classes/Flurry",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Debug;
@@ -2291,11 +2287,7 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
-					"$(PROJECT_DIR)/Classes/Flurry",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Release;
@@ -2381,11 +2373,7 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
-					"$(PROJECT_DIR)/Classes/Flurry",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
 			};
@@ -2412,11 +2400,7 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
-					"$(PROJECT_DIR)/Classes/Flurry",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
 			};
@@ -2443,11 +2427,7 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
-					"$(PROJECT_DIR)/Classes/Flurry",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
 			};
@@ -2502,11 +2482,7 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/patrick/Documents/latest-chatty-2/patche-latest-chatty-2/Classes/Flurry",
-					"$(PROJECT_DIR)/Classes/Flurry",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = LatestChatty;
 			};
 			name = Distribution;
