@@ -5,6 +5,7 @@ Requires iOS 7!
 
 4.4.0
 ====
+- Revised thread pinning UX
 - Bug fix for pinned thread UI coloring on iPad
 - Bug fix for iPad UI orientation on iOS 8
 - Bug fix for story previews
