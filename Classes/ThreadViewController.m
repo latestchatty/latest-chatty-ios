@@ -318,7 +318,15 @@
     // remove the panning gesture delegate from this controller when the view goes away
     [self.viewDeckController setPanningGestureDelegate:nil];
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
+    // reset the nav bar color in case this was a pinned thread
+    UINavigationBar *navBar;
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        navBar = [LatestChatty2AppDelegate delegate].contentNavigationController.navigationBar;
+    } else {
+        navBar = self.navigationController.navigationBar;
+    }
+    [navBar setBarTintColor:[UIColor lcBarTintColor]];
+    
     [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     
     [loader cancel];
