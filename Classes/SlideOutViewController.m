@@ -65,8 +65,10 @@
 - (CGSize)availableSizeForOrientation:(UIInterfaceOrientation)orientation {
     CGSize result = [UIScreen mainScreen].bounds.size;
     
-    if (UIInterfaceOrientationIsLandscape([self interfaceOrientation])) {
-        result = CGSizeMake(result.height, result.width);
+    if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+        if (UIInterfaceOrientationIsLandscape([self interfaceOrientation])) {
+            result = CGSizeMake(result.height, result.width);
+        }
     }
     
     return result;
@@ -85,7 +87,7 @@
     } else {
         [divider setFrame:CGRectMake(trayWidth+25, 0, 10, availableSize.height)];
         [navigationController.view setFrame:CGRectMake(25, 0, trayWidth, availableSize.height)];
-        [contentNavigationController.view setFrame:CGRectMake(trayWidth+35, 0, availableSize.width-(trayWidth+35), availableSize.height)];        
+        [contentNavigationController.view setFrame:CGRectMake(trayWidth+35, 0, availableSize.width-(trayWidth+35), availableSize.height)];
     }
 }
 
