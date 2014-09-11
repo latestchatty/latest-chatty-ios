@@ -66,7 +66,7 @@
         [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
         
         // iOS7
-        if ([[UIScreen mainScreen] bounds].size.height == 568) {
+        if ([[UIScreen mainScreen] bounds].size.height >= 568 && ![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             [self.tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
         }
         
@@ -212,7 +212,7 @@
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         return 100;
     }
-    if ([[UIScreen mainScreen] bounds].size.height == 568) return 92;
+    if ([[UIScreen mainScreen] bounds].size.height >= 568 && ![[LatestChatty2AppDelegate delegate] isPadDevice]) return 92;
     return 82;
 }
 
