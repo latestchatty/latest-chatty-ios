@@ -155,10 +155,10 @@
     longPress.minimumPressDuration = 1.0; //seconds
     longPress.delegate = self;
     [self.navigationController.navigationBar addGestureRecognizer:longPress];
-    // initialize double tap gesture
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-    doubleTap.numberOfTapsRequired = 2;
-    [self.navigationController.navigationBar addGestureRecognizer:doubleTap];
+//    // initialize double tap gesture
+//    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+//    doubleTap.numberOfTapsRequired = 2;
+//    [self.navigationController.navigationBar addGestureRecognizer:doubleTap];
     
     // Enable toolbars
     grippyBar.userInteractionEnabled = YES;
@@ -365,6 +365,8 @@
         [self pinThread];
     }
     rootPost.pinned = !rootPost.pinned;
+    [grippyBar setPinnedWithValue:rootPost.pinned];
+    [grippyBar setPinButtonHighlight];
 }
 
 - (void)pinThread {
@@ -828,8 +830,6 @@
 
 - (void)grippyBarDidTapPinButton {
     [self togglePinThread];
-    [grippyBar setPinnedWithValue:rootPost.pinned];
-    [grippyBar setPinButtonHighlight];
 }
 
 - (void)grippyBarDidTapRightButton {
@@ -976,9 +976,9 @@
     }
 }
 
--(void)handleDoubleTap:(UITapGestureRecognizer *)gestureRecognizer {
-    [self togglePinThread];
-}
+//-(void)handleDoubleTap:(UITapGestureRecognizer *)gestureRecognizer {
+//    [self togglePinThread];
+//}
 
 - (NSUInteger)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
