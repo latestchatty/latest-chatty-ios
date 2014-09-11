@@ -3,6 +3,13 @@ latest-chatty-2
 
 Requires iOS 7!
 
+4.4.0
+====
+- Bug fix for pinned thread UI coloring on iPad
+- Bug fix for iPad UI orientation on iOS 8
+- Bug fix for story previews
+- Compiled in iOS 8 SDK
+
 4.3.4
 ====
 - Removed Flurry analytics framework
