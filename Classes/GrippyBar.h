@@ -15,17 +15,17 @@
 - (void)grippyBarDidTapRefreshButton;
 - (void)grippyBarDidTapTagButton;
 - (void)grippyBarDidTapModButton;
-- (void)grippyBarDidTapOrderByPostDateButton;
+- (void)grippyBarDidTapPinButton;
 
 @end
 
 
 @interface GrippyBar : UIView <UIGestureRecognizerDelegate> {
     BOOL isDragging;
-    BOOL isOrderByPostDate;
+    BOOL isPinned;
     CGPoint initialTouchPoint;
     IBOutlet id<GrippyBarDelegate> delegate;
-    UIButton *orderByPostDateButton;
+    UIButton *pinButton;
     UIView *background;
 }
 
@@ -35,10 +35,11 @@
 - (void)tappedRefreshButton;
 - (void)tappedTagButton;
 - (void)tappedModButton;
-- (void)tappedOrderByPostDateButton;
+- (void)tappedPinButton;
 
-- (void)setOrderByPostDateWithValue:(BOOL)value;
-- (void)setOrderByPostDateButtonHighlight;
+- (void)setPinnedWithValue:(BOOL)value;
+- (void)setPinButtonHighlight;
+
 - (void)setBackgroundColorForThread:(UIColor*)color;
 
 @end

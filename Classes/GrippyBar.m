@@ -73,15 +73,15 @@
         [self addSubview:modButton];
         buttonIteration++;
     }
-    
-    orderByPostDateButton = [[UIButton alloc] initWithFrame:CGRectMake((spacePerButton*buttonIteration) - (spacePerButton/2) - (buttonWidth/4), 2, buttonWidth, buttonWidth)];
-    [orderByPostDateButton addTarget:self action:@selector(tappedOrderByPostDateButton) forControlEvents:UIControlEventTouchUpInside];
-    [orderByPostDateButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Timer.png"] forState:UIControlStateNormal];
-    orderByPostDateButton.showsTouchWhenHighlighted = YES;
-    orderByPostDateButton.alpha = 0.5;
-//    orderByPostDateButton.backgroundColor = [UIColor greenColor];
-    orderByPostDateButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-    [self addSubview:orderByPostDateButton];
+
+    pinButton = [[UIButton alloc] initWithFrame:CGRectMake((spacePerButton*buttonIteration) - (spacePerButton/2) - (buttonWidth/4), 2, buttonWidth, buttonWidth)];
+    [pinButton addTarget:self action:@selector(tappedPinButton) forControlEvents:UIControlEventTouchUpInside];
+    [pinButton setImage:[UIImage imageNamed:@"Thread-Toolbar-Pin.png"] forState:UIControlStateNormal];
+    pinButton.showsTouchWhenHighlighted = YES;
+    pinButton.alpha = 0.5;
+    //    previousButton.backgroundColor = [UIColor blueColor];
+    pinButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    [self addSubview:pinButton];
     buttonIteration++;
     
     UIButton *previousButton = [[UIButton alloc] initWithFrame:CGRectMake((spacePerButton*buttonIteration) - (spacePerButton/2) - (buttonWidth/4), 2, buttonWidth, buttonWidth)];
@@ -137,19 +137,19 @@
 	[delegate grippyBarDidTapModButton];
 }
 
-- (void)tappedOrderByPostDateButton {
-	isOrderByPostDate = !isOrderByPostDate;
-    [self setOrderByPostDateButtonHighlight];
-	[delegate grippyBarDidTapOrderByPostDateButton];
+- (void)tappedPinButton {
+	isPinned = !isPinned;
+    [self setPinButtonHighlight];
+	[delegate grippyBarDidTapPinButton];
 }
 
-- (void)setOrderByPostDateWithValue:(BOOL)value {
-    isOrderByPostDate = value;
-    [self setOrderByPostDateButtonHighlight];
+- (void)setPinnedWithValue:(BOOL)value {
+    isPinned = value;
+    [self setPinButtonHighlight];
 }
 
-- (void)setOrderByPostDateButtonHighlight {
-	orderByPostDateButton.alpha = isOrderByPostDate ? 1.0 : 0.5;
+- (void)setPinButtonHighlight {
+	pinButton.alpha = isPinned ? 1.0 : 0.5;
 }
 
 - (void)setBackgroundColorForThread:(UIColor *)color {

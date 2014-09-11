@@ -29,10 +29,6 @@
 		CD13D78E1754DB1A00539A23 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = CD13D78C1754DB1A00539A23 /* Categories.m */; };
 		CD1804C9162211810094A3F1 /* GoogleChromeActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */; };
 		CD1804D1162338F90094A3F1 /* AppleSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */; };
-		CD205660174540A9003AF4FA /* PinIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = CD205655174540A9003AF4FA /* PinIcon.24.png */; };
-		CD205661174540A9003AF4FA /* PinIcon.24.png in Resources */ = {isa = PBXBuildFile; fileRef = CD205655174540A9003AF4FA /* PinIcon.24.png */; };
-		CD205668174540A9003AF4FA /* PinIcon.24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD205659174540A9003AF4FA /* PinIcon.24@2x.png */; };
-		CD205669174540A9003AF4FA /* PinIcon.24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD205659174540A9003AF4FA /* PinIcon.24@2x.png */; };
 		CD235A4C173AFB920078423B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4B173AFB920078423B /* MobileCoreServices.framework */; };
 		CD235A4F173AFC000078423B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4B173AFB920078423B /* MobileCoreServices.framework */; };
 		CD235A52173B1F830078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
@@ -384,6 +380,10 @@
 		CDA1FA1F1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */; };
 		CDA1FA201806C15E0036F7B6 /* MenuBorderOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */; };
 		CDA1FA211806C15E0036F7B6 /* MenuBorderOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */; };
+		CDA2056819C151E500D8DF32 /* Thread-Toolbar-Pin.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA2056619C151E500D8DF32 /* Thread-Toolbar-Pin.png */; };
+		CDA2056919C151E500D8DF32 /* Thread-Toolbar-Pin.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA2056619C151E500D8DF32 /* Thread-Toolbar-Pin.png */; };
+		CDA2056A19C151E500D8DF32 /* Thread-Toolbar-Pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA2056719C151E500D8DF32 /* Thread-Toolbar-Pin@2x.png */; };
+		CDA2056B19C151E500D8DF32 /* Thread-Toolbar-Pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA2056719C151E500D8DF32 /* Thread-Toolbar-Pin@2x.png */; };
 		CDA26B6318234F4100239BA9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6218234F4100239BA9 /* Security.framework */; };
 		CDA26B6718234F6800239BA9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6218234F4100239BA9 /* Security.framework */; };
 		CDC0E9BC17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
@@ -615,8 +615,6 @@
 		CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleChromeActivity.m; path = Classes/GoogleChromeActivity.m; sourceTree = "<group>"; };
 		CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleSafariActivity.h; path = Classes/AppleSafariActivity.h; sourceTree = "<group>"; };
 		CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleSafariActivity.m; path = Classes/AppleSafariActivity.m; sourceTree = "<group>"; };
-		CD205655174540A9003AF4FA /* PinIcon.24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PinIcon.24.png; path = Assets/PinIcon.24.png; sourceTree = "<group>"; };
-		CD205659174540A9003AF4FA /* PinIcon.24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PinIcon.24@2x.png"; path = "Assets/PinIcon.24@2x.png"; sourceTree = "<group>"; };
 		CD235A4B173AFB920078423B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CD235A51173B1F1A0078423B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CD4370D4180372DA008D9DCF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -797,6 +795,8 @@
 		CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-Timer@2x.png"; path = "Assets/Menu-Button-Timer@2x.png"; sourceTree = "<group>"; };
 		CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorder@2x.png"; path = "Assets/MenuBorder@2x.png"; sourceTree = "<group>"; };
 		CDA1FA1D1806C15E0036F7B6 /* MenuBorderOut@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorderOut@2x.png"; path = "Assets/MenuBorderOut@2x.png"; sourceTree = "<group>"; };
+		CDA2056619C151E500D8DF32 /* Thread-Toolbar-Pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Thread-Toolbar-Pin.png"; path = "Assets/Thread-Toolbar-Pin.png"; sourceTree = "<group>"; };
+		CDA2056719C151E500D8DF32 /* Thread-Toolbar-Pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Thread-Toolbar-Pin@2x.png"; path = "Assets/Thread-Toolbar-Pin@2x.png"; sourceTree = "<group>"; };
 		CDA26B6218234F4100239BA9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CDC0E9A817F6886D007D3738 /* Post-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator.png"; path = "Assets/Post-Indicator.png"; sourceTree = "<group>"; };
 		CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator@2x.png"; path = "Assets/Post-Indicator@2x.png"; sourceTree = "<group>"; };
@@ -1359,6 +1359,8 @@
 				CDDAC29917F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png */,
 				CDDAC29B17F44E78000FEC8A /* Thread-Toolbar-Refresh.png */,
 				CDDAC29C17F44E78000FEC8A /* Thread-Toolbar-Refresh@2x.png */,
+				CDA2056619C151E500D8DF32 /* Thread-Toolbar-Pin.png */,
+				CDA2056719C151E500D8DF32 /* Thread-Toolbar-Pin@2x.png */,
 				CDDAC29E17F44E78000FEC8A /* Thread-Toolbar-Previous.png */,
 				CDDAC29D17F44E78000FEC8A /* Thread-Toolbar-Previous@2x.png */,
 				CDDAC2A017F44E78000FEC8A /* Thread-Toolbar-Next.png */,
@@ -1493,8 +1495,6 @@
 				CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */,
 				CD43CFE81744809F00165FF3 /* Clear.24.png */,
 				CD43CFE91744809F00165FF3 /* Clear.24@2x.png */,
-				CD205655174540A9003AF4FA /* PinIcon.24.png */,
-				CD205659174540A9003AF4FA /* PinIcon.24@2x.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -1713,6 +1713,7 @@
 				CD4371031803A4E0008D9DCF /* List-Lifespan-100-Participant.png in Resources */,
 				CD7F2F5517FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */,
 				CD43710F1803A4E0008D9DCF /* List-Lifespan-Empty.png in Resources */,
+				CDA2056819C151E500D8DF32 /* Thread-Toolbar-Pin.png in Resources */,
 				CD7ADCF417EF17FA00B4C886 /* ComposeViewController-iPad.xib in Resources */,
 				CD7F2F5917FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */,
 				CDDD573418A730D8005E491A /* Post-Indicator-UNF.png in Resources */,
@@ -1744,11 +1745,9 @@
 				CDDD572E18A730D8005E491A /* Post-Indicator-TAG@2x.png in Resources */,
 				CDDAC2F917F44E78000FEC8A /* Settings-Inactive.png in Resources */,
 				CDDD573818A730D8005E491A /* Post-Indicator-WTF.png in Resources */,
-				CD205660174540A9003AF4FA /* PinIcon.24.png in Resources */,
 				CD4370EB1803A4E0008D9DCF /* List-Lifespan-25-Participant.png in Resources */,
 				CDDAC2FB17F44E78000FEC8A /* Settings-Active.png in Resources */,
 				CD7F2F3D17FE85BE00E7EAE3 /* Keyboard-Color-Pink.png in Resources */,
-				CD205668174540A9003AF4FA /* PinIcon.24@2x.png in Resources */,
 				CD7F2F3117FE85BE00E7EAE3 /* Keyboard-Color-Lime.png in Resources */,
 				CD7ADD0817EF17FA00B4C886 /* SlideOutViewController-iPad.xib in Resources */,
 				CDDAC2F317F44E78000FEC8A /* Stories-Active.png in Resources */,
@@ -1760,6 +1759,7 @@
 				CD7F2F4317FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png in Resources */,
 				CD7F2F2B17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png in Resources */,
 				CD7F2F4F17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png in Resources */,
+				CDA2056A19C151E500D8DF32 /* Thread-Toolbar-Pin@2x.png in Resources */,
 				CD4370F11803A4E0008D9DCF /* List-Lifespan-25@2x.png in Resources */,
 				CDC0E9C017F6886D007D3738 /* Post-Indicator-Reply.png in Resources */,
 				CD4370F91803A4E0008D9DCF /* List-Lifespan-50@2x.png in Resources */,
@@ -1920,6 +1920,7 @@
 				CD4371041803A4E0008D9DCF /* List-Lifespan-100-Participant.png in Resources */,
 				CD7F2F5617FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */,
 				CD4371101803A4E0008D9DCF /* List-Lifespan-Empty.png in Resources */,
+				CDA2056919C151E500D8DF32 /* Thread-Toolbar-Pin.png in Resources */,
 				CD7F2F5A17FE85BE00E7EAE3 /* Keyboard-Normal.png in Resources */,
 				CDDAC31017F44E78000FEC8A /* Shack[lol]-Inactive@2x.png in Resources */,
 				CDDD573518A730D8005E491A /* Post-Indicator-UNF.png in Resources */,
@@ -1956,7 +1957,6 @@
 				CDDAC2FC17F44E78000FEC8A /* Settings-Active.png in Resources */,
 				CD7F2F3E17FE85BE00E7EAE3 /* Keyboard-Color-Pink.png in Resources */,
 				CD43CFED1744809F00165FF3 /* Clear.24@2x.png in Resources */,
-				CD205661174540A9003AF4FA /* PinIcon.24.png in Resources */,
 				CD7F2F3217FE85BE00E7EAE3 /* Keyboard-Color-Lime.png in Resources */,
 				CD7ADCF917EF17FA00B4C886 /* MessageViewController-iPad.xib in Resources */,
 				CD7ADCF717EF17FA00B4C886 /* MessagesViewController-iPad.xib in Resources */,
@@ -1966,7 +1966,7 @@
 				CDDAC2EA17F44E78000FEC8A /* Take-Photo.png in Resources */,
 				CDDAC30C17F44E78000FEC8A /* Messages-Active@2x.png in Resources */,
 				CD48681817EB5B430071F3D7 /* Fart5.mp3 in Resources */,
-				CD205669174540A9003AF4FA /* PinIcon.24@2x.png in Resources */,
+				CDA2056B19C151E500D8DF32 /* Thread-Toolbar-Pin@2x.png in Resources */,
 				CD7F2F4417FE85BE00E7EAE3 /* Keyboard-Color-Red@2x.png in Resources */,
 				CD7F2F2C17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal@2x.png in Resources */,
 				CD7F2F5017FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler@2x.png in Resources */,

@@ -170,6 +170,8 @@
         [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
         [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     }
+    [grippyBar setPinnedWithValue:rootPost.pinned];
+    [grippyBar setPinButtonHighlight];
     
     // Select and display the targeted post
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];
@@ -233,10 +235,6 @@
     
     // initialize scoll position property
     self.scrollPosition = CGPointMake(0, 0);
-    
-    // Use the persisted orderByPostDate option to set the button in the grippybar
-    orderByPostDate = [[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"];
-    [grippyBar setOrderByPostDateWithValue:orderByPostDate];
     
     UIImageView *background = [UIImageView viewWithImage:[UIImage imageNamed:@"DropShadow.png"]];
     background.frame = CGRectMake(0, 36, grippyBar.frameWidth, grippyBar.frameHeight-32);
@@ -503,16 +501,6 @@
 
     Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
     
-    if (post.pinned) {
-//        threadPinButton.hidden = NO;
-//        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
-//        threadPinButton.alpha = 1.0;
-    } else {
-//        threadPinButton.hidden = NO;
-//        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
-//        threadPinButton.alpha = 0.2;
-    }
-    
     // Create HTML for the post
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
 
@@ -775,14 +763,6 @@
     theActionSheet = nil;
 }
 
-- (IBAction)toggleOrderByPostDate {
-    orderByPostDate = !orderByPostDate;
-    [grippyBar setOrderByPostDateButtonHighlight];
-    
-    // Persist the orderByPostDate toggle option
-    [[NSUserDefaults standardUserDefaults] setBool:orderByPostDate forKey:@"orderByPostDate"];
-}
-
 - (int)nextRowByTimeLevel:(int)currentRow {
     Post *currentPost = [[rootPost repliesArray] objectAtIndex:currentRow];
     
@@ -817,12 +797,14 @@
     NSIndexPath *oldIndexPath = selectedIndexPath;
         
     NSIndexPath *newIndexPath;
-    if (orderByPostDate)
-        newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
-    else if (oldIndexPath.row == 0)
-        newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
-    else
-        newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
+//    if (orderByPostDate)
+    // Defaulting to time based traversal of threads!
+    // Removed clock as an option from grippy bar and force it's behavior now.
+    newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
+//    else if (oldIndexPath.row == 0)
+//        newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
+//    else
+//        newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
     
     [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];    
@@ -833,17 +815,21 @@
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
         
-    if (orderByPostDate)
-        newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
-    else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1)
-        newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    if (orderByPostDate)
+    // Defaulting to time based traversal of threads!
+    // Removed clock as an option from grippy bar and force it's behavior now.
+    newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
+//    else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1)
+//        newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     
     [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
 }
 
-- (void)grippyBarDidTapOrderByPostDateButton {
-    [self toggleOrderByPostDate];
+- (void)grippyBarDidTapPinButton {
+    [self togglePinThread];
+    [grippyBar setPinnedWithValue:rootPost.pinned];
+    [grippyBar setPinButtonHighlight];
 }
 
 - (void)grippyBarDidTapRightButton {
