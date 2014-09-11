@@ -54,7 +54,7 @@
     if (!(self = [super initWithDictionary:dictionary])) return nil;
     
     self.title   = [[dictionary objectForKey:@"name"] stringByUnescapingHTML];
-    self.preview = [[dictionary objectForKey:@"preview"] stringByUnescapingHTML];
+    self.preview = [[[dictionary objectForKey:@"preview"] stringByReplaceHTMLEntities] stringByUnescapingHTML];
     self.body    = [dictionary objectForKey:@"body"];
     self.date    = [[self class] decodeDate:[dictionary objectForKey:@"date"]];
     commentCount = [[dictionary objectForKey:@"comment_count"] intValue];

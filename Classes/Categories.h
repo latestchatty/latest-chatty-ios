@@ -8,6 +8,7 @@
 
 @interface NSString (StringAdditions)
 
+- (NSString *)stringByReplaceHTMLEntities;
 - (NSString *)stringByUnescapingHTML;
 + (NSString *)rgbaFromUIColor:(UIColor *)color;
 + (NSString *)hexFromUIColor:(UIColor *)color;
