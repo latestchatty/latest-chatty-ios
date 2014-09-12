@@ -65,9 +65,8 @@
         [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
         [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
         
-        // iOS7
         if ([[UIScreen mainScreen] bounds].size.height >= 568 && ![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            [self.tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
+            [self.tableView setContentInset:UIEdgeInsetsMake(10.0, 0, 0, 0)];
         }
         
         // Maintain selection while view is still loaded

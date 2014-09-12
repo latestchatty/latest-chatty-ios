@@ -348,6 +348,7 @@
                           delegate:self
                  cancelButtonTitle:@"Cancel"
                  otherButtonTitles:@"Try Again", nil];
+        self.title = @"Latest Chatty";
         return;
     }
     

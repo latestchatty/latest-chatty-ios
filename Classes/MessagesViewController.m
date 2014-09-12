@@ -73,6 +73,8 @@
                                       message:@"Enter your username and password in Settings."];
         
         [self.navigationController popViewControllerAnimated:YES];
+        
+        self.title = @"Messages";
     }
 }
 

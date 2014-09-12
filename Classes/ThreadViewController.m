@@ -155,10 +155,6 @@
     longPress.minimumPressDuration = 1.0; //seconds
     longPress.delegate = self;
     [self.navigationController.navigationBar addGestureRecognizer:longPress];
-//    // initialize double tap gesture
-//    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-//    doubleTap.numberOfTapsRequired = 2;
-//    [self.navigationController.navigationBar addGestureRecognizer:doubleTap];
     
     // Enable toolbars
     grippyBar.userInteractionEnabled = YES;
@@ -975,10 +971,6 @@
         [theActionSheet showInView:self.navigationController.view];
     }
 }
-
-//-(void)handleDoubleTap:(UITapGestureRecognizer *)gestureRecognizer {
-//    [self togglePinThread];
-//}
 
 - (NSUInteger)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
