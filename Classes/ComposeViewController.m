@@ -198,47 +198,16 @@
 #pragma mark Keyboard notifications
 
 - (void)keyboardWillShow:(NSNotification *)note {
-    if (!keyboardShowing) {
-        NSDictionary *userInfo = [note userInfo];
-        CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        
-        UIInterfaceOrientation orientation = self.interfaceOrientation;
-        
-        if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [UIView animateWithDuration:0.25 animations:^{
-                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight - kbSize.width);
-                postContent.frame = newFrame;
-            }];
-        } else {
-            [UIView animateWithDuration:0.25 animations:^{
-                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight - kbSize.height);
-                postContent.frame = newFrame;
-            }];
-        }
-    }
-    keyboardShowing = YES;
+    NSDictionary* info = [note userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    postContent.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+    postContent.scrollIndicatorInsets = postContent.contentInset;
 }
 
 - (void)keyboardDidHide:(NSNotification *)note {
-    if (keyboardShowing) {
-        NSDictionary *userInfo = [note userInfo];
-        CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        
-        UIInterfaceOrientation orientation = self.interfaceOrientation;
-        
-        if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [UIView animateWithDuration:0.25 animations:^{
-                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight + kbSize.width);
-                postContent.frame = newFrame;
-            }];
-        } else {
-            [UIView animateWithDuration:0.25 animations:^{
-                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight + kbSize.height);
-                postContent.frame = newFrame;
-            }];
-        }
-    }
-    keyboardShowing = NO;
+    postContent.contentInset = UIEdgeInsetsZero;
+    postContent.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
 #pragma mark Image Handling
