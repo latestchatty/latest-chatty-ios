@@ -54,6 +54,13 @@
         [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
         messageLoader = [Message findAllWithDelegate:self];
     }
+    
+    if (initialPhoneLoad) {
+        // initialize the index path to chatty row
+        [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
+        [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+        initialPhoneLoad = NO;
+    }
 }
 
 - (void)viewDidLoad {
@@ -61,16 +68,13 @@
         // root view controller is delegate for view deck on iPhone
         self.viewDeckController.delegate = self;
         
-        // initialize the index path to chatty row
-        [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
-        [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
-        
         if ([[UIScreen mainScreen] bounds].size.height >= 568 && ![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             [self.tableView setContentInset:UIEdgeInsetsMake(10.0, 0, 0, 0)];
         }
         
         // Maintain selection while view is still loaded
         [self setClearsSelectionOnViewWillAppear:NO];
+        initialPhoneLoad = YES;
     } else {
         [self setClearsSelectionOnViewWillAppear:YES];
     }

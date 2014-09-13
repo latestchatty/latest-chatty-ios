@@ -19,7 +19,7 @@
 
 @interface RootViewController : UITableViewController <ModelLoadingDelegate, IIViewDeckControllerDelegate> {
     ModelLoader *messageLoader;
-//    NSUInteger messageCount;
+    BOOL initialPhoneLoad;
     NSIndexPath *selectedIndex;
 }
 
