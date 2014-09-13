@@ -391,6 +391,16 @@
     }];
 }
 
+- (void)handlePasswordTap:(UITapGestureRecognizer *)recognizer {
+    BOOL current = [passwordField isSecureTextEntry];
+    [passwordField setSecureTextEntry:!current];
+}
+
+- (void)handlePicsPasswordTap:(UITapGestureRecognizer *)recognizer {
+    BOOL current = [picsPasswordField isSecureTextEntry];
+    [picsPasswordField setSecureTextEntry:!current];
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -477,6 +487,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UITapGestureRecognizer *passwordTap;
+    UITapGestureRecognizer *picsPasswordTap;
     
     [cell setBackgroundColor:[UIColor lcGroupedCellColor]];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -486,6 +498,7 @@
     [cell.textLabel setShadowColor:[UIColor lcTextShadowColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
     [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
+    
     
 	// username/password/server text entry fields
 	if (indexPath.section == 0) {
@@ -498,6 +511,11 @@
 			case 1:
 				cell.accessoryView = passwordField;
 				cell.textLabel.text = @"Password:";
+                
+                passwordTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePasswordTap:)];
+                passwordTap.delegate = self;
+                [cell addGestureRecognizer:passwordTap];
+                
 				break;
 				
             case 2:
@@ -523,6 +541,11 @@
             case 1:
                 cell.accessoryView = picsPasswordField;
                 cell.textLabel.text = @"Password:";
+                
+                picsPasswordTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePicsPasswordTap:)];
+                picsPasswordTap.delegate = self;
+                [cell addGestureRecognizer:picsPasswordTap];
+                
                 break;
                 
             case 2:
