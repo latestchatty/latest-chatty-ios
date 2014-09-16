@@ -14,7 +14,6 @@ Requires iOS 7!
 - Bug fix for pinned thread UI coloring on iPad
 - Bug fix for iPad UI orientation on iOS 8
 - Bug fix for story previews
-- Bug fix for iPad camera/photo uploads on iOS 8
 - Compiled in iOS 8 SDK
 
 4.3.4
