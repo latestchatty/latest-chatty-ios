@@ -152,8 +152,14 @@
         
         reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
-        
-        [self presentViewController:reviewController animated:YES completion:nil];
+
+        UIViewController *vc;
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            vc = [LatestChatty2AppDelegate delegate].slideOutViewController;
+        } else {
+            vc = self;
+        }
+        [vc presentViewController:reviewController animated:YES completion:nil];
     }
 }
 
@@ -221,17 +227,62 @@
 
 - (IBAction)showImagePicker {
     [postContent resignFirstResponder];
-	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-		UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Upload Image"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Camera", @"Library", nil];
-		dialog.destructiveButtonIndex = -1;
-        [dialog showInView:self.view];
-	} else {
-		[self actionSheet:nil clickedButtonAtIndex:1];
-	}
+    
+    if (NSClassFromString(@"UIAlertController")) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            UIAlertController *alertController = [UIAlertController
+                                                  alertControllerWithTitle:@"Upload Image"
+                                                  message:nil
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *cancelAction = [UIAlertAction
+                                           actionWithTitle:@"Cancel"
+                                           style:UIAlertActionStyleCancel
+                                           handler:nil];
+            
+            UIAlertAction *cameraAction = [UIAlertAction
+                                           actionWithTitle:@"Camera"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               [self actionSheet:nil clickedButtonAtIndex:0];
+                                           }];
+            
+            UIAlertAction *libraryAction = [UIAlertAction
+                                            actionWithTitle:@"Library"
+                                            style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction *action)
+                                            {
+                                                [self actionSheet:nil clickedButtonAtIndex:1];
+                                            }];
+            
+            [alertController addAction:cancelAction];
+            [alertController addAction:cameraAction];
+            [alertController addAction:libraryAction];
+            
+            UIViewController *vc;
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                vc = [LatestChatty2AppDelegate delegate].slideOutViewController;
+            } else {
+                vc = self;
+            }
+            [vc presentViewController:alertController animated:YES completion:nil];
+        } else {
+            [self actionSheet:nil clickedButtonAtIndex:1];
+        }
+    } else {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Upload Image"
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Cancel"
+                                                  destructiveButtonTitle:nil
+                                                       otherButtonTitles:@"Camera", @"Library", nil];
+            dialog.destructiveButtonIndex = -1;
+            [dialog showInView:self.view];
+        } else {
+            [self actionSheet:nil clickedButtonAtIndex:1];
+        }
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -244,17 +295,15 @@
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
         imagePicker.navigationBar.barStyle = UIBarStyleBlack;
+        imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext;
         
+        UIViewController *vc;
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-            popoverController.delegate = self;
-            [popoverController presentPopoverFromRect:imageButton.frame
-                                               inView:self.view
-                             permittedArrowDirections:UIPopoverArrowDirectionAny
-                                             animated:YES];
+            vc = [LatestChatty2AppDelegate delegate].slideOutViewController;
         } else {
-            [self presentViewController:imagePicker animated:YES completion:nil];
-		}
+            vc = self;
+        }
+        [vc presentViewController:imagePicker animated:YES completion:nil];
 	}
 }
 
@@ -308,7 +357,7 @@
         didFinishPickingImage:(UIImage *)anImage
                   editingInfo:(NSDictionary *)editingInfo
 {
-	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+	[picker dismissViewControllerAnimated:YES completion:nil];
 	[postContent resignFirstResponder];
 	Image *image = [[Image alloc] initWithImage:anImage];
 	image.delegate = self;
@@ -331,15 +380,15 @@
     [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithDictionary:) withObject:args];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [popoverController dismissPopoverAnimated:YES];
+        [[LatestChatty2AppDelegate delegate].slideOutViewController collapse];
     }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+	[picker dismissViewControllerAnimated:YES completion:nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [popoverController dismissPopoverAnimated:YES];
+        [[LatestChatty2AppDelegate delegate].slideOutViewController collapse];
     }
 }
 
@@ -366,7 +415,6 @@
     
 	[postContent resignFirstResponder];
 }
-
 
 - (IBAction)tag:(id)sender {
 	NSString *tag = [tagLookup objectForKey:[(UIButton *)sender currentTitle]];

@@ -737,7 +737,11 @@
                                    destructiveButtonTitle:nil
                                                otherButtonTitles:@"lol", @"inf", @"unf", @"tag", @"wtf", @"ugh", nil];
     
-    [theActionSheet showInView:self.navigationController.view];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [theActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+    } else {
+        [theActionSheet showInView:self.view];
+    }
 }
 
 - (void)showAuthorActions {
@@ -754,7 +758,11 @@
                                     destructiveButtonTitle:nil
                                          otherButtonTitles:@"Search for Posts", @"Send a Message", nil];
     
-    [theActionSheet showInView:self.navigationController.view];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [theActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+    } else {
+        [theActionSheet showInView:self.view];
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -850,7 +858,11 @@
                                                        cancelButtonTitle:@"Cancel"
                                                   destructiveButtonTitle:nil
                                                        otherButtonTitles:@"Stupid", @"Offtopic", @"NWS", @"Political", @"Informative", @"Nuked", @"Ontopic", nil];
-    [modActionSheet showInView:self.view];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [modActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+    } else {
+        [modActionSheet showInView:self.view];
+    }
 }
 
 #pragma mark Action Sheet Delegate
@@ -968,7 +980,11 @@
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
         
-        [theActionSheet showInView:self.navigationController.view];
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            [theActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+        } else {
+            [theActionSheet showInView:self.view];
+        }
     }
 }
 

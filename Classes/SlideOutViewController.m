@@ -140,6 +140,11 @@
     [UIView commitAnimations];
 }
 
+- (void)collapse {
+    isCollapsed = NO;
+    [self tabTouched];
+}
+
 #pragma mark Cleanup
 
 - (void)dealloc {

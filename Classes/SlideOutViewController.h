@@ -23,6 +23,7 @@
 @property (nonatomic) BOOL isCollapsed;
 
 - (IBAction)tabTouched;
+- (void)collapse;
 
 - (void)addNavigationController:(UINavigationController *)navigation contentNavigationController:(UINavigationController *)content;
 
