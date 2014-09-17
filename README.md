@@ -2,6 +2,7 @@ latest-chatty-2
 ===============
 
 Requires iOS 7!
+Supports iOS 8, iPhone 6, iPhone 6 Plus!
 
 4.4.0
 ====

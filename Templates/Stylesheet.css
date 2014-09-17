@@ -1,13 +1,12 @@
 html { -webkit-text-size-adjust: none; }
 body {
-  overflow: visible;
-  padding: 0;
-  margin: 0;
   background: rgb(0,0,0);
+  color: white;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 11pt;
-  /*font-weight: 300;*/
-  color: white;
+  margin: 0;
+  overflow: visible;
+  padding: 0;
 }
 
 div.wrapper {
@@ -16,22 +15,20 @@ div.wrapper {
 }
 div.author,
 div.author a {
+  color: rgb(245,228,157);
   float: left;
   font-size: 10pt;
-  color: rgb(245,228,157);
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(245,228,157,0.5);
-  /*text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);*/
 }
 div.date,
 div.date a {
-  font-size: 8pt;
   color: rgba(255,255,255,0.5);
   float: right;
-  text-decoration: none;
+  font-size: 8pt;
   margin-top: 1px;
+  text-decoration: none;
   -webkit-tap-highlight-color: rgba(255,255,255,0.5);
-  /*text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);*/
 }
 div.body {
   color: white;
@@ -146,16 +143,18 @@ h1.story-title {
 
 div.focalbox {
   background: #444;
+  margin: 10px;
   padding: 10px;
   text-align: center;
   -webkit-border-radius: 20px;
-  margin: 10px;
 }
 
+div.articleImage { width: 100% !important; }
+div.articleImage,
 div.focalbox img {
-  margin: 10px auto;
   border: 2px solid #888;
   display: block;
+  margin: 10px auto;
 }
 
 div#video #embedswf {
@@ -163,7 +162,10 @@ div#video #embedswf {
 }
 
 div.story-content img,
-div.story-content iframe { max-width: 100%; }
+div.story-content iframe {
+  height:auto;
+  max-width: 100% !important;
+}
 
 #story div.date,
 #story div.date a {
