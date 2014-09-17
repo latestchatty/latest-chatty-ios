@@ -659,7 +659,6 @@
 }
 
 - (IBAction)tag {
-    // keep track of the action sheet
     UIActionSheet *theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
                                                  delegate:self
                                         cancelButtonTitle:@"Cancel"
@@ -674,7 +673,6 @@
 }
 
 - (void)showAuthorActions {
-    // keep track of the action sheet
     UIActionSheet *theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Author Actions"
                                                   delegate:self
                                          cancelButtonTitle:@"Cancel"
@@ -890,57 +888,16 @@
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     // only fire on the intial long press detection
     if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
-        // keep track of the action sheet
         UIActionSheet *theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Reply"
                                                       delegate:self
                                              cancelButtonTitle:@"Cancel"
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
         
-        if (NSClassFromString(@"UIAlertController")) {
-            UIAlertController *alertController = [UIAlertController
-                                                  alertControllerWithTitle:@"Reply"
-                                                  message:nil
-                                                  preferredStyle:UIAlertControllerStyleActionSheet];
-            
-            UIAlertAction *cancelAction = [UIAlertAction
-                                           actionWithTitle:@"Cancel"
-                                           style:UIAlertActionStyleCancel
-                                           handler:nil];
-            
-            UIAlertAction *replyPost = [UIAlertAction
-                                           actionWithTitle:@"Reply to this post"
-                                           style:UIAlertActionStyleDefault
-                                           handler:^(UIAlertAction *action)
-                                           {
-                                               [self actionSheet:theActionSheet clickedButtonAtIndex:0];
-                                           }];
-            
-            UIAlertAction *replyRoot = [UIAlertAction
-                                            actionWithTitle:@"Reply to root post"
-                                            style:UIAlertActionStyleDefault
-                                            handler:^(UIAlertAction *action)
-                                            {
-                                                [self actionSheet:theActionSheet clickedButtonAtIndex:1];
-                                            }];
-            
-            [alertController addAction:cancelAction];
-            [alertController addAction:replyPost];
-            [alertController addAction:replyRoot];
-            
-            UIViewController *vc;
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                vc = [LatestChatty2AppDelegate delegate].slideOutViewController;
-            } else {
-                vc = self;
-            }
-            [vc presentViewController:alertController animated:YES completion:nil];
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            [theActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
         } else {
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                [theActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
-            } else {
-                [theActionSheet showInView:self.view];
-            }
+            [theActionSheet showInView:self.view];
         }
     }
 }
