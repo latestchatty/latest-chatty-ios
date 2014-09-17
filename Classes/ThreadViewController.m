@@ -50,11 +50,6 @@
 
 - (IBAction)refresh:(id)sender {
     [super refresh:sender];
-
-    // dismiss tag action sheet if it is showing
-    if (theActionSheet) {
-        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-    }
     
     // wrapped existing loader logic in a GCD block to wait until the synchronous lol fetch
     // completes on a global background thread before loading the thread
@@ -74,6 +69,11 @@
     } else {
         [self hideLoadingSpinner];
     }
+}
+
+- (void)refreshWithThreadId:(NSUInteger)_threadId {
+    self.threadId = _threadId;
+    [self refresh:nil];
 }
 
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
@@ -148,13 +148,6 @@
 //        [self.navigationController popViewControllerAnimated:YES];
         return;
     }
-    
-    // initialize gestures only after a successful model load
-    // initialize long press gesture
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    longPress.minimumPressDuration = 1.0; //seconds
-    longPress.delegate = self;
-    [self.navigationController.navigationBar addGestureRecognizer:longPress];
     
     // Enable toolbars
     grippyBar.userInteractionEnabled = YES;
@@ -300,6 +293,12 @@
     if (threadId == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+    
+    // initialize long press gesture
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    longPress.minimumPressDuration = 1.0; //seconds
+    longPress.delegate = self;
+    [self.navigationController.navigationBar addGestureRecognizer:longPress];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -331,11 +330,6 @@
 }
 
 - (IBAction)tappedReplyButton {
-    // dismiss tag action sheet if it is showing
-    if (theActionSheet) {
-        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-    }
-    
     Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
     
     ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:post];
@@ -399,62 +393,6 @@
     [hud hide:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadUnpinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
-}
-
-//#pragma mark -
-//#pragma mark Split view support
-//- (void)splitViewController:(UISplitViewController*)svc
-//     willHideViewController:(UIViewController *)aViewController
-//          withBarButtonItem:(UIBarButtonItem*)barButtonItem
-//       forPopoverController:(UIPopoverController*)pc
-//{
-//    barButtonItem.title = @"Threads";
-//    NSArray *items = [NSArray arrayWithObjects:
-//                      //[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
-//                      barButtonItem,
-//                      nil];
-//    [self.toolbar setItems:items animated:YES];
-//    
-//    popoverController = pc;
-//}
-//
-//// Called when the view is shown again in the split view, invalidating the button and popover controller.
-//- (void)splitViewController: (UISplitViewController*)svc
-//     willShowViewController:(UIViewController *)aViewController
-//  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-//{
-//    [self.toolbar setItems:[NSArray array] animated:YES];
-//}
-//
-//- (void)splitViewController:(UISplitViewController*)svc
-//          popoverController:(UIPopoverController*)pc
-//  willPresentViewController:(UIViewController *)aViewController
-//{
-//    pc.popoverContentSize = CGSizeMake(480, 900);
-//    [pc presentPopoverFromBarButtonItem:[self.toolbar.items objectAtIndex:0] permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-//}
-
-#pragma mark -
-#pragma mark Managing the popover controller
-
-/*
- When setting the detail item, update the view and dismiss the popover controller if it's showing.
- */
-- (void)refreshWithThreadId:(NSUInteger)_threadId {
-    self.threadId = _threadId;
-    [self refresh:nil];
- 
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        if (popoverController != nil) {
-            [popoverController dismissPopoverAnimated:YES];
-        }
-    }
-}
-
-- (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
-    if (popoverController == pc) {
-        popoverController = nil;
-    }
 }
 
 #pragma mark -
@@ -720,18 +658,9 @@
     [[NSUserDefaults standardUserDefaults] setInteger:grippyBarPosition forKey:@"grippyBarPosition"];
 }
 
-// Patch-E: fixed the iPad issue where if you tap the tag button numerous times, many action sheet popovers are created
-// the tag action sheet popover would stay visible when tapping the refresh thread and compose reply buttons, fixed that issue too
-// leff the tag action sheet popover stay in view when the clock/previous reply/next reply buttons are tapped
 - (IBAction)tag {
-    // check to see if tag action sheet is already showing (isn't nil), dismiss it if so
-    if (theActionSheet) {
-        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-        theActionSheet = nil;
-        return;
-    }
     // keep track of the action sheet
-    theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
+    UIActionSheet *theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
                                                  delegate:self
                                         cancelButtonTitle:@"Cancel"
                                    destructiveButtonTitle:nil
@@ -745,14 +674,8 @@
 }
 
 - (void)showAuthorActions {
-    // check to see if tag action sheet is already showing (isn't nil), dismiss it if so
-    if (theActionSheet) {
-        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-        theActionSheet = nil;
-        return;
-    }
     // keep track of the action sheet
-    theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Author Actions"
+    UIActionSheet *theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Author Actions"
                                                   delegate:self
                                          cancelButtonTitle:@"Cancel"
                                     destructiveButtonTitle:nil
@@ -766,7 +689,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    theActionSheet = nil;
+    actionSheet = nil;
 }
 
 - (int)nextRowByTimeLevel:(int)currentRow {
@@ -967,23 +890,57 @@
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     // only fire on the intial long press detection
     if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
-        // standard action sheet code
-        if (theActionSheet) {
-            [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-            theActionSheet = nil;
-            return;
-        }
         // keep track of the action sheet
-        theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Reply"
+        UIActionSheet *theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Reply"
                                                       delegate:self
                                              cancelButtonTitle:@"Cancel"
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
         
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            [theActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+        if (NSClassFromString(@"UIAlertController")) {
+            UIAlertController *alertController = [UIAlertController
+                                                  alertControllerWithTitle:@"Reply"
+                                                  message:nil
+                                                  preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            UIAlertAction *cancelAction = [UIAlertAction
+                                           actionWithTitle:@"Cancel"
+                                           style:UIAlertActionStyleCancel
+                                           handler:nil];
+            
+            UIAlertAction *replyPost = [UIAlertAction
+                                           actionWithTitle:@"Reply to this post"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               [self actionSheet:theActionSheet clickedButtonAtIndex:0];
+                                           }];
+            
+            UIAlertAction *replyRoot = [UIAlertAction
+                                            actionWithTitle:@"Reply to root post"
+                                            style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction *action)
+                                            {
+                                                [self actionSheet:theActionSheet clickedButtonAtIndex:1];
+                                            }];
+            
+            [alertController addAction:cancelAction];
+            [alertController addAction:replyPost];
+            [alertController addAction:replyRoot];
+            
+            UIViewController *vc;
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                vc = [LatestChatty2AppDelegate delegate].slideOutViewController;
+            } else {
+                vc = self;
+            }
+            [vc presentViewController:alertController animated:YES completion:nil];
         } else {
-            [theActionSheet showInView:self.view];
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                [theActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+            } else {
+                [theActionSheet showInView:self.view];
+            }
         }
     }
 }

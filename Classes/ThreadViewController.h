@@ -35,10 +35,6 @@
 
     NSUInteger lastReplyId;
     BOOL highlightMyPost;
-    
-    UIPopoverController *popoverController;
-    
-    UIActionSheet *theActionSheet;
 }
 
 @property (nonatomic, assign) NSUInteger threadId;
