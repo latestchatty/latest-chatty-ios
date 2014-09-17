@@ -9,6 +9,7 @@ Requires iOS 7!
 - Tap the "Password" or "Pics Password" labels in Settings to toggle viewing of passwords
 - Revised ViewDeck side menu for phones, now much larger (percentage based on screen size) to better support all screen sizes
 - Removed black bar from appearing behind status bar when ViewDeck menu opens due to iOS 8 now hiding status bars in landscape orientation
+- iPad camera / photo picker for uploads now uses the full screen
 - Bug fix for iPhone status bar not hiding in landscape orientation after opening a webpage in Browser view on iOS 8
 - Bug fix for iPad camera/photo uploads on iOS 8
 - Bug fix for pinned thread UI coloring on iPad
