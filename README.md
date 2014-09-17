@@ -3,18 +3,19 @@ latest-chatty-2
 
 Requires iOS 7!
 
-4.4.1
-====
-- Bug fix for iPad camera/photo uploads on iOS 8
-
 4.4.0
 ====
 - New thread pinning UI: a pin button is now part of the thread/reply separator toolbar, no longer a double tap action on the navigation header
 - Tap the "Password" or "Pics Password" labels in Settings to toggle viewing of passwords
+- Revised ViewDeck side menu for phones, now much larger (percentage based on screen size) to better support all screen sizes
+- Removed black bar from appearing behind status bar when ViewDeck menu opens due to iOS 8 now hiding status bars in landscape orientation
+- Bug fix for iPhone status bar not hiding in landscape orientation after opening a webpage in Browser view on iOS 8
+- Bug fix for iPad camera/photo uploads on iOS 8
 - Bug fix for pinned thread UI coloring on iPad
 - Bug fix for iPad UI orientation on iOS 8
 - Bug fix for story previews
-- Compiled in iOS 8 SDK
+- Bug fix for displaying action sheets in the wrong way on iOS 8
+- Compiled in iOS 8 SDK, support iPhone 6 and 6 Plus
 
 4.3.4
 ====
