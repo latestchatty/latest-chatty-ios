@@ -233,7 +233,7 @@
             UIAlertController *alertController = [UIAlertController
                                                   alertControllerWithTitle:@"Upload Image"
                                                   message:nil
-                                                  preferredStyle:UIAlertControllerStyleAlert];
+                                                  preferredStyle:UIAlertControllerStyleActionSheet];
             
             UIAlertAction *cancelAction = [UIAlertAction
                                            actionWithTitle:@"Cancel"
@@ -389,12 +389,6 @@
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [[LatestChatty2AppDelegate delegate].slideOutViewController collapse];
-    }
-}
-
-- (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
-    if (popoverController == pc) {
-        popoverController = nil;
     }
 }
 
