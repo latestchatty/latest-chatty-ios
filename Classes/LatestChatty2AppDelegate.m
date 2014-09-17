@@ -81,7 +81,6 @@
                                                                                     leftViewController:leftController];
     // Set navigation type, left size, no elasticity
     [deckController setNavigationControllerBehavior:IIViewDeckNavigationControllerIntegrated];
-    [deckController setLeftSize:256.0f];
     [deckController setElastic:NO];
     [deckController setPanningMode:IIViewDeckFullViewPanning];
     [deckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose];

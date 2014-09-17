@@ -63,10 +63,21 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+            [self.viewDeckController setLeftSize:(self.view.frame.size.width*0.75)];
+        } else {
+            [self.viewDeckController setLeftSize:(self.view.frame.size.width*0.5)];
+        }
+    }
+}
+
 - (void)viewDidLoad {
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         // root view controller is delegate for view deck on iPhone
         self.viewDeckController.delegate = self;
+        [self.viewDeckController setLeftSize:(self.view.frame.size.width*0.75)];
         
         if ([[UIScreen mainScreen] bounds].size.height >= 568 && ![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             [self.tableView setContentInset:UIEdgeInsetsMake(10.0, 0, 0, 0)];
@@ -88,6 +99,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForCredits) name:@"PushBrowserForCredits" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForDonate) name:@"PushBrowserForDonate" object:nil];
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [self.viewDeckController closeLeftViewAnimated:YES];
+    }
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
