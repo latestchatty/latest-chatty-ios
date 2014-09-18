@@ -123,11 +123,13 @@
     // iOS7
     self.navigationController.navigationBar.translucent = NO;
     
-    // top separation bar
-    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
-    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
-    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [self.view addSubview:topStroke];
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        // top separation bar, iPhone only in this view
+        UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
+        [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+        [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        [self.view addSubview:topStroke];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadPinned:) name:@"ThreadPinned" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadUnpinned:) name:@"ThreadUnpinned" object:nil];

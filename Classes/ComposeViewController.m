@@ -153,13 +153,15 @@
         reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
 
-        UIViewController *vc;
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            vc = [LatestChatty2AppDelegate delegate].slideOutViewController;
-        } else {
-            vc = self;
-        }
-        [vc presentViewController:reviewController animated:YES completion:nil];
+        [[self showingViewController] presentViewController:reviewController animated:YES completion:nil];
+    }
+}
+
+- (UIViewController *)showingViewController {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+    } else {
+        return self;
     }
 }
 
@@ -237,14 +239,7 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         if (NSClassFromString(@"UIAlertController")) {
             UIAlertController *uploadAlertController = [self alertControllerForUpload];
-
-            UIViewController *showingViewController;
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                showingViewController = [LatestChatty2AppDelegate delegate].slideOutViewController;
-            } else {
-                showingViewController = self;
-            }
-            [showingViewController presentViewController:uploadAlertController animated:YES completion:nil];
+            [[self showingViewController] presentViewController:uploadAlertController animated:YES completion:nil];
         } else {
             [dialog showInView:self.view];
         }
@@ -307,13 +302,7 @@
         imagePicker.navigationBar.translucent = NO;
         imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext;
         
-        UIViewController *vc;
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            vc = [LatestChatty2AppDelegate delegate].slideOutViewController;
-        } else {
-            vc = self;
-        }
-        [vc presentViewController:imagePicker animated:YES completion:nil];
+        [[self showingViewController] presentViewController:imagePicker animated:YES completion:nil];
 	}
 }
 

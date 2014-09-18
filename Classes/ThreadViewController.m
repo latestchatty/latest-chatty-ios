@@ -76,6 +76,14 @@
     [self refresh:nil];
 }
 
+- (UIViewController *)showingViewController {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+    } else {
+        return self;
+    }
+}
+
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
     NSUInteger selectedPostID = 0;
     if (selectedIndexPath) {
@@ -293,21 +301,9 @@
     if (threadId == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
-    // initialize long press gesture
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    longPress.minimumPressDuration = 1.0; //seconds
-    longPress.delegate = self;
-    [self.navigationController.navigationBar addGestureRecognizer:longPress];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    // since I am adding the longpress gesture recognizer to the navigation bar, we need to remove it from the bar when this view
-    // disappears, viewDidAppear will recreate the longpress gesture
-    for (UIGestureRecognizer *recognizer in self.navigationController.navigationBar.gestureRecognizers) {
-        [self.navigationController.navigationBar removeGestureRecognizer:recognizer];
-    }
-    
     // remove the panning gesture delegate from this controller when the view goes away
     [self.viewDeckController setPanningGestureDelegate:nil];
     
@@ -864,43 +860,43 @@
     }
 }
 
-#pragma mark Gesture Recognizers
-
-// monitor gesture touches
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    // if gesture is panning kind (ViewDeck uses panning to bring out menu)
-    if ([gestureRecognizer.class isSubclassOfClass:[UIPanGestureRecognizer class]]) return YES;
-
-    // if gesture is swipe kind, let it pass through
-    if ([gestureRecognizer.class isSubclassOfClass:[UISwipeGestureRecognizer class]]) return YES;
-    
-    // if gesture is long press (on the navigation bar), only let it pass through if the press is on the reply button
-    if ([gestureRecognizer.class isSubclassOfClass:[UILongPressGestureRecognizer class]] ||
-        [gestureRecognizer.class isSubclassOfClass:[UITapGestureRecognizer class]]) {
-        // this will be faulty logic if there is ever another button on the nav bar other than the reply button,
-        // the back button is not included in this because its view's class is not a subclass of UIControl
-        if ([[touch.view class] isSubclassOfClass:[UIControl class]]) return YES;
-    }
-
-    return NO;
-}
-
--(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-    // only fire on the intial long press detection
-    if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
-        UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Reply"
-                                                      delegate:self
-                                             cancelButtonTitle:@"Cancel"
-                                        destructiveButtonTitle:nil
-                                             otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
-        
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
-        } else {
-            [dialog showInView:self.view];
-        }
-    }
-}
+//#pragma mark Gesture Recognizers
+//
+//// monitor gesture touches
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//    // if gesture is panning kind (ViewDeck uses panning to bring out menu)
+//    if ([gestureRecognizer.class isSubclassOfClass:[UIPanGestureRecognizer class]]) return YES;
+//
+//    // if gesture is swipe kind, let it pass through
+//    if ([gestureRecognizer.class isSubclassOfClass:[UISwipeGestureRecognizer class]]) return YES;
+//    
+//    // if gesture is long press (on the navigation bar), only let it pass through if the press is on the reply button
+//    if ([gestureRecognizer.class isSubclassOfClass:[UILongPressGestureRecognizer class]] ||
+//        [gestureRecognizer.class isSubclassOfClass:[UITapGestureRecognizer class]]) {
+//        // this will be faulty logic if there is ever another button on the nav bar other than the reply button,
+//        // the back button is not included in this because its view's class is not a subclass of UIControl
+//        if ([[touch.view class] isSubclassOfClass:[UIControl class]]) return YES;
+//    }
+//
+//    return NO;
+//}
+//
+//-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+//    // only fire on the intial long press detection
+//    if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
+//        UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Reply"
+//                                                      delegate:self
+//                                             cancelButtonTitle:@"Cancel"
+//                                        destructiveButtonTitle:nil
+//                                             otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
+//        
+//        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//            [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+//        } else {
+//            [dialog showInView:self.view];
+//        }
+//    }
+//}
 
 - (NSUInteger)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
