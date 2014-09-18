@@ -75,6 +75,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
             [self.viewDeckController setLeftSize:(self.view.frame.size.width*0.75)];

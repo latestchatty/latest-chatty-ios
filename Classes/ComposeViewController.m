@@ -227,62 +227,71 @@
 
 - (IBAction)showImagePicker {
     [postContent resignFirstResponder];
+
+    UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Upload Image"
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                               otherButtonTitles:@"Camera", @"Library", nil];
     
-    if (NSClassFromString(@"UIAlertController")) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            UIAlertController *alertController = [UIAlertController
-                                                  alertControllerWithTitle:@"Upload Image"
-                                                  message:nil
-                                                  preferredStyle:UIAlertControllerStyleActionSheet];
-            
-            UIAlertAction *cancelAction = [UIAlertAction
-                                           actionWithTitle:@"Cancel"
-                                           style:UIAlertActionStyleCancel
-                                           handler:nil];
-            
-            UIAlertAction *cameraAction = [UIAlertAction
-                                           actionWithTitle:@"Camera"
-                                           style:UIAlertActionStyleDefault
-                                           handler:^(UIAlertAction *action)
-                                           {
-                                               [self actionSheet:nil clickedButtonAtIndex:0];
-                                           }];
-            
-            UIAlertAction *libraryAction = [UIAlertAction
-                                            actionWithTitle:@"Library"
-                                            style:UIAlertActionStyleDefault
-                                            handler:^(UIAlertAction *action)
-                                            {
-                                                [self actionSheet:nil clickedButtonAtIndex:1];
-                                            }];
-            
-            [alertController addAction:cancelAction];
-            [alertController addAction:cameraAction];
-            [alertController addAction:libraryAction];
-            
-            UIViewController *vc;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        if (NSClassFromString(@"UIAlertController")) {
+            UIAlertController *uploadAlertController = [self alertControllerForUpload];
+
+            UIViewController *showingViewController;
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                vc = [LatestChatty2AppDelegate delegate].slideOutViewController;
+                showingViewController = [LatestChatty2AppDelegate delegate].slideOutViewController;
             } else {
-                vc = self;
+                showingViewController = self;
             }
-            [vc presentViewController:alertController animated:YES completion:nil];
+            [showingViewController presentViewController:uploadAlertController animated:YES completion:nil];
         } else {
-            [self actionSheet:nil clickedButtonAtIndex:1];
+            [dialog showInView:self.view];
         }
     } else {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Upload Image"
-                                                                delegate:self
-                                                       cancelButtonTitle:@"Cancel"
-                                                  destructiveButtonTitle:nil
-                                                       otherButtonTitles:@"Camera", @"Library", nil];
-            dialog.destructiveButtonIndex = -1;
-            [dialog showInView:self.view];
-        } else {
-            [self actionSheet:nil clickedButtonAtIndex:1];
-        }
+        [self actionSheet:dialog clickedButtonAtIndex:1];
     }
+}
+
+- (UIAlertController *)alertControllerForUpload {
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Upload Image"
+                                          message:nil
+                                          preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:nil];
+    
+    UIAlertAction *cameraAction = [UIAlertAction
+                                   actionWithTitle:@"Camera"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       [self actionSheet:nil clickedButtonAtIndex:0];
+                                   }];
+    
+    UIAlertAction *libraryAction = [UIAlertAction
+                                    actionWithTitle:@"Library"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction *action)
+                                    {
+                                        [self actionSheet:nil clickedButtonAtIndex:1];
+                                    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:cameraAction];
+    [alertController addAction:libraryAction];
+    
+    UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+    if (popover) {
+        popover.sourceView = imageButton;
+        popover.sourceRect = imageButton.bounds;
+        popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    }
+    
+    return alertController;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -294,7 +303,8 @@
 		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
-        imagePicker.navigationBar.barStyle = UIBarStyleBlack;
+        imagePicker.navigationBar.barTintColor = [UIColor lcBarTintColor];
+        imagePicker.navigationBar.translucent = NO;
         imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext;
         
         UIViewController *vc;

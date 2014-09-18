@@ -659,30 +659,30 @@
 }
 
 - (IBAction)tag {
-    UIActionSheet *theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
+    UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
                                                  delegate:self
                                         cancelButtonTitle:@"Cancel"
                                    destructiveButtonTitle:nil
                                                otherButtonTitles:@"lol", @"inf", @"unf", @"tag", @"wtf", @"ugh", nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [theActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+        [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
     } else {
-        [theActionSheet showInView:self.view];
+        [dialog showInView:self.view];
     }
 }
 
 - (void)showAuthorActions {
-    UIActionSheet *theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Author Actions"
+    UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Author Actions"
                                                   delegate:self
                                          cancelButtonTitle:@"Cancel"
                                     destructiveButtonTitle:nil
                                          otherButtonTitles:@"Search for Posts", @"Send a Message", nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [theActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+        [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
     } else {
-        [theActionSheet showInView:self.view];
+        [dialog showInView:self.view];
     }
 }
 
@@ -888,16 +888,16 @@
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     // only fire on the intial long press detection
     if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
-        UIActionSheet *theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Reply"
+        UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Reply"
                                                       delegate:self
                                              cancelButtonTitle:@"Cancel"
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
         
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            [theActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+            [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
         } else {
-            [theActionSheet showInView:self.view];
+            [dialog showInView:self.view];
         }
     }
 }
