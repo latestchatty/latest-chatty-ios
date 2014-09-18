@@ -499,6 +499,7 @@
     [cell.textLabel setShadowOffset:CGSizeMake(0, -1.0)];
     [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
     
+    NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
     
 	// username/password/server text entry fields
 	if (indexPath.section == 0) {
@@ -510,7 +511,8 @@
 				
 			case 1:
 				cell.accessoryView = passwordField;
-				cell.textLabel.text = @"Password:";
+                cell.textLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Password:"
+                                                                         attributes:underlineAttribute];
                 
                 passwordTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePasswordTap:)];
                 passwordTap.delegate = self;
@@ -540,7 +542,8 @@
             
             case 1:
                 cell.accessoryView = picsPasswordField;
-                cell.textLabel.text = @"Password:";
+                cell.textLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Password:"
+                                                                                attributes:underlineAttribute];
                 
                 picsPasswordTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePicsPasswordTap:)];
                 picsPasswordTap.delegate = self;
