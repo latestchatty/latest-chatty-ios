@@ -11,7 +11,7 @@
 #import "ModelListViewController.h"
 #import "BrowserViewController.h"
 
-@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIActionSheetDelegate, ImageSendingDelegate, UIPopoverControllerDelegate, UITextViewDelegate> {
+@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, ImageSendingDelegate, UITextViewDelegate> {
     NSInteger storyId;
 	Post *post;
 	
@@ -34,10 +34,6 @@
 	IBOutlet UIProgressView *uploadBar;
     
     NSRange selection;
-    
-    UIPopoverController *popoverController;
-    
-    BOOL keyboardShowing;
 }
 
 @property (assign) NSInteger storyId;

@@ -152,8 +152,16 @@
         
         reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
-        
-        [self presentViewController:reviewController animated:YES completion:nil];
+
+        [[self showingViewController] presentViewController:reviewController animated:YES completion:nil];
+    }
+}
+
+- (UIViewController *)showingViewController {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+    } else {
+        return self;
     }
 }
 
@@ -198,47 +206,16 @@
 #pragma mark Keyboard notifications
 
 - (void)keyboardWillShow:(NSNotification *)note {
-    if (!keyboardShowing) {
-        NSDictionary *userInfo = [note userInfo];
-        CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        
-        UIInterfaceOrientation orientation = self.interfaceOrientation;
-        
-        if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [UIView animateWithDuration:0.25 animations:^{
-                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight - kbSize.width);
-                postContent.frame = newFrame;
-            }];
-        } else {
-            [UIView animateWithDuration:0.25 animations:^{
-                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight - kbSize.height);
-                postContent.frame = newFrame;
-            }];
-        }
-    }
-    keyboardShowing = YES;
+    NSDictionary* info = [note userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    postContent.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+    postContent.scrollIndicatorInsets = postContent.contentInset;
 }
 
 - (void)keyboardDidHide:(NSNotification *)note {
-    if (keyboardShowing) {
-        NSDictionary *userInfo = [note userInfo];
-        CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        
-        UIInterfaceOrientation orientation = self.interfaceOrientation;
-        
-        if (UIInterfaceOrientationIsLandscape(orientation)) {
-            [UIView animateWithDuration:0.25 animations:^{
-                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight + kbSize.width);
-                postContent.frame = newFrame;
-            }];
-        } else {
-            [UIView animateWithDuration:0.25 animations:^{
-                CGRect newFrame = CGRectMake(0, imageButton.frameHeight, postContent.frameWidth, self.view.frameHeight - imageButton.frameHeight + kbSize.height);
-                postContent.frame = newFrame;
-            }];
-        }
-    }
-    keyboardShowing = NO;
+    postContent.contentInset = UIEdgeInsetsZero;
+    postContent.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
 #pragma mark Image Handling
@@ -252,17 +229,64 @@
 
 - (IBAction)showImagePicker {
     [postContent resignFirstResponder];
-	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-		UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Upload Image"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Camera", @"Library", nil];
-		dialog.destructiveButtonIndex = -1;
-        [dialog showInView:self.view];
-	} else {
-		[self actionSheet:nil clickedButtonAtIndex:1];
-	}
+
+    UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Upload Image"
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                               otherButtonTitles:@"Camera", @"Library", nil];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        if (NSClassFromString(@"UIAlertController")) {
+            UIAlertController *uploadAlertController = [self alertControllerForUpload];
+            [[self showingViewController] presentViewController:uploadAlertController animated:YES completion:nil];
+        } else {
+            [dialog showInView:self.view];
+        }
+    } else {
+        [self actionSheet:dialog clickedButtonAtIndex:1];
+    }
+}
+
+- (UIAlertController *)alertControllerForUpload {
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Upload Image"
+                                          message:nil
+                                          preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:nil];
+    
+    UIAlertAction *cameraAction = [UIAlertAction
+                                   actionWithTitle:@"Camera"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       [self actionSheet:nil clickedButtonAtIndex:0];
+                                   }];
+    
+    UIAlertAction *libraryAction = [UIAlertAction
+                                    actionWithTitle:@"Library"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction *action)
+                                    {
+                                        [self actionSheet:nil clickedButtonAtIndex:1];
+                                    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:cameraAction];
+    [alertController addAction:libraryAction];
+    
+    UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+    if (popover) {
+        popover.sourceView = imageButton;
+        popover.sourceRect = imageButton.bounds;
+        popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    }
+    
+    return alertController;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -274,18 +298,11 @@
 		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
-        imagePicker.navigationBar.barStyle = UIBarStyleBlack;
+        imagePicker.navigationBar.barTintColor = [UIColor lcBarTintColor];
+        imagePicker.navigationBar.translucent = NO;
+        imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext;
         
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-            popoverController.delegate = self;
-            [popoverController presentPopoverFromRect:imageButton.frame
-                                               inView:self.view
-                             permittedArrowDirections:UIPopoverArrowDirectionAny
-                                             animated:YES];
-        } else {
-            [self presentViewController:imagePicker animated:YES completion:nil];
-		}
+        [[self showingViewController] presentViewController:imagePicker animated:YES completion:nil];
 	}
 }
 
@@ -339,7 +356,7 @@
         didFinishPickingImage:(UIImage *)anImage
                   editingInfo:(NSDictionary *)editingInfo
 {
-	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+	[picker dismissViewControllerAnimated:YES completion:nil];
 	[postContent resignFirstResponder];
 	Image *image = [[Image alloc] initWithImage:anImage];
 	image.delegate = self;
@@ -362,21 +379,15 @@
     [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithDictionary:) withObject:args];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [popoverController dismissPopoverAnimated:YES];
+        [[LatestChatty2AppDelegate delegate].slideOutViewController collapse];
     }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+	[picker dismissViewControllerAnimated:YES completion:nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [popoverController dismissPopoverAnimated:YES];
-    }
-}
-
-- (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
-    if (popoverController == pc) {
-        popoverController = nil;
+        [[LatestChatty2AppDelegate delegate].slideOutViewController collapse];
     }
 }
 
@@ -397,7 +408,6 @@
     
 	[postContent resignFirstResponder];
 }
-
 
 - (IBAction)tag:(id)sender {
 	NSString *tag = [tagLookup objectForKey:[(UIButton *)sender currentTitle]];

@@ -116,7 +116,6 @@
     NSUInteger length = textField.text.length - range.length + string.length;
     
     if (textField.tag == 0) {
-        NSLog(@"length: %lu", (unsigned long)length);
         if (body.text.length > 0 && subject.text.length > 0 && length > 0) {
             self.navigationItem.rightBarButtonItem.enabled = YES;
         } else {
@@ -125,7 +124,6 @@
     }
     
     if (textField.tag == 1) {
-        NSLog(@"length: %lu", (unsigned long)length);
         if (body.text.length > 0 && recipient.text.length > 0 && length > 0) {
             self.navigationItem.rightBarButtonItem.enabled = YES;
         } else {
@@ -138,7 +136,6 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     NSUInteger length = textView.text.length - range.length + text.length;
-    NSLog(@"length: %lu", (unsigned long)length);
     if (recipient.text.length > 0 && subject.text.length > 0 && length > 0) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     } else {
@@ -150,41 +147,16 @@
 #pragma mark Keyboard notifications
 
 - (void)keyboardWillShow:(NSNotification *)note {
-    NSDictionary *userInfo = [note userInfo];
-    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    NSDictionary* info = [note userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     
-    UIInterfaceOrientation orientation = self.interfaceOrientation;
-    
-    if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [UIView animateWithDuration:0.25 animations:^{
-            body.frameHeight = body.frameHeight - kbSize.width;
-        }];
-    } else {
-        [UIView animateWithDuration:0.25 animations:^{
-            body.frameHeight = body.frameHeight - kbSize.height;
-        }];
-    }
-//    NSLog(@"frameHeight: %f", body.frameHeight);
-//    NSLog(@"frameWidth: %f", body.frameWidth);
-//    NSLog(@"frameX: %f", body.frameX);
-//    NSLog(@"frameY: %f", body.frameY);
+    body.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+    body.scrollIndicatorInsets = body.contentInset;
 }
 
 - (void)keyboardDidHide:(NSNotification *)note {
-    NSDictionary *userInfo = [note userInfo];
-    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIInterfaceOrientation orientation = self.interfaceOrientation;
-    
-    if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [UIView animateWithDuration:0.25 animations:^{
-            body.frameHeight = body.frameHeight + kbSize.width;
-        }];
-    } else {
-        [UIView animateWithDuration:0.25 animations:^{
-            body.frameHeight = body.frameHeight + kbSize.height;
-        }];
-    }
+    body.contentInset = UIEdgeInsetsZero;
+    body.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
 #pragma mark Text Field Delegate

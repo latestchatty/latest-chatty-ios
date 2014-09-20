@@ -6,7 +6,7 @@
 //  Copyright 2009. All rights reserved.
 //
 
-@interface BrowserViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate> {
+@interface BrowserViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate> {
     NSURLRequest *request;
 
     UIView *topStroke;
@@ -18,8 +18,7 @@
     UIToolbar *bottomToolbar;
     BOOL isShackLOL;
     BOOL initWithTitle;
-    
-    UIActionSheet *theActionSheet;
+
     UIPopoverController *popoverController;
 }
 

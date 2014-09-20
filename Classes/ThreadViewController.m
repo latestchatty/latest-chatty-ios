@@ -50,11 +50,6 @@
 
 - (IBAction)refresh:(id)sender {
     [super refresh:sender];
-
-    // dismiss tag action sheet if it is showing
-    if (theActionSheet) {
-        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-    }
     
     // wrapped existing loader logic in a GCD block to wait until the synchronous lol fetch
     // completes on a global background thread before loading the thread
@@ -73,6 +68,19 @@
         if ([sender isKindOfClass:[ComposeViewController class]]) highlightMyPost = YES;        
     } else {
         [self hideLoadingSpinner];
+    }
+}
+
+- (void)refreshWithThreadId:(NSUInteger)_threadId {
+    self.threadId = _threadId;
+    [self refresh:nil];
+}
+
+- (UIViewController *)showingViewController {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+    } else {
+        return self;
     }
 }
 
@@ -149,17 +157,6 @@
         return;
     }
     
-    // initialize gestures only after a successful model load
-    // initialize long press gesture
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    longPress.minimumPressDuration = 1.0; //seconds
-    longPress.delegate = self;
-    [self.navigationController.navigationBar addGestureRecognizer:longPress];
-    // initialize double tap gesture
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-    doubleTap.numberOfTapsRequired = 2;
-    [self.navigationController.navigationBar addGestureRecognizer:doubleTap];
-    
     // Enable toolbars
     grippyBar.userInteractionEnabled = YES;
     self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -170,6 +167,8 @@
         [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
         [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     }
+    [grippyBar setPinnedWithValue:rootPost.pinned];
+    [grippyBar setPinButtonHighlight];
     
     // Select and display the targeted post
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] indexOfObject:firstPost] inSection:0];
@@ -233,10 +232,6 @@
     
     // initialize scoll position property
     self.scrollPosition = CGPointMake(0, 0);
-    
-    // Use the persisted orderByPostDate option to set the button in the grippybar
-    orderByPostDate = [[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"];
-    [grippyBar setOrderByPostDateWithValue:orderByPostDate];
     
     UIImageView *background = [UIImageView viewWithImage:[UIImage imageNamed:@"DropShadow.png"]];
     background.frame = CGRectMake(0, 36, grippyBar.frameWidth, grippyBar.frameHeight-32);
@@ -309,16 +304,18 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    // since I am adding the longpress gesture recognizer to the navigation bar, we need to remove it from the bar when this view
-    // disappears, viewDidAppear will recreate the longpress gesture
-    for (UIGestureRecognizer *recognizer in self.navigationController.navigationBar.gestureRecognizers) {
-        [self.navigationController.navigationBar removeGestureRecognizer:recognizer];
-    }
-    
     // remove the panning gesture delegate from this controller when the view goes away
     [self.viewDeckController setPanningGestureDelegate:nil];
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
+    // reset the nav bar color in case this was a pinned thread
+    UINavigationBar *navBar;
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        navBar = [LatestChatty2AppDelegate delegate].contentNavigationController.navigationBar;
+    } else {
+        navBar = self.navigationController.navigationBar;
+    }
+    [navBar setBarTintColor:[UIColor lcBarTintColor]];
+    
     [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     
     [loader cancel];
@@ -329,11 +326,6 @@
 }
 
 - (IBAction)tappedReplyButton {
-    // dismiss tag action sheet if it is showing
-    if (theActionSheet) {
-        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-    }
-    
     Post *post = [[rootPost repliesArray] objectAtIndex:selectedIndexPath.row];
     
     ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:post];
@@ -359,6 +351,8 @@
         [self pinThread];
     }
     rootPost.pinned = !rootPost.pinned;
+    [grippyBar setPinnedWithValue:rootPost.pinned];
+    [grippyBar setPinButtonHighlight];
 }
 
 - (void)pinThread {
@@ -368,7 +362,7 @@
     [grippyBar setBackgroundColorForThread:[UIColor lcCellPinnedColor]];
     
     //show pin HUD message
-    NSTimeInterval theTimeInterval = 1.0;
+    NSTimeInterval theTimeInterval = 0.5;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
     [hud setLabelText:@"Pinned!"];
@@ -386,7 +380,7 @@
     [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     
     //show unpin HUD message
-    NSTimeInterval theTimeInterval = 1.0;
+    NSTimeInterval theTimeInterval = 0.5;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
     [hud setLabelText:@"Unpinned!"];
@@ -395,62 +389,6 @@
     [hud hide:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadUnpinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
-}
-
-//#pragma mark -
-//#pragma mark Split view support
-//- (void)splitViewController:(UISplitViewController*)svc
-//     willHideViewController:(UIViewController *)aViewController
-//          withBarButtonItem:(UIBarButtonItem*)barButtonItem
-//       forPopoverController:(UIPopoverController*)pc
-//{
-//    barButtonItem.title = @"Threads";
-//    NSArray *items = [NSArray arrayWithObjects:
-//                      //[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
-//                      barButtonItem,
-//                      nil];
-//    [self.toolbar setItems:items animated:YES];
-//    
-//    popoverController = pc;
-//}
-//
-//// Called when the view is shown again in the split view, invalidating the button and popover controller.
-//- (void)splitViewController: (UISplitViewController*)svc
-//     willShowViewController:(UIViewController *)aViewController
-//  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-//{
-//    [self.toolbar setItems:[NSArray array] animated:YES];
-//}
-//
-//- (void)splitViewController:(UISplitViewController*)svc
-//          popoverController:(UIPopoverController*)pc
-//  willPresentViewController:(UIViewController *)aViewController
-//{
-//    pc.popoverContentSize = CGSizeMake(480, 900);
-//    [pc presentPopoverFromBarButtonItem:[self.toolbar.items objectAtIndex:0] permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-//}
-
-#pragma mark -
-#pragma mark Managing the popover controller
-
-/*
- When setting the detail item, update the view and dismiss the popover controller if it's showing.
- */
-- (void)refreshWithThreadId:(NSUInteger)_threadId {
-    self.threadId = _threadId;
-    [self refresh:nil];
- 
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        if (popoverController != nil) {
-            [popoverController dismissPopoverAnimated:YES];
-        }
-    }
-}
-
-- (void)popoverControllerDidDismissPopover:(UIPopoverController*)pc {
-    if (popoverController == pc) {
-        popoverController = nil;
-    }
 }
 
 #pragma mark -
@@ -494,16 +432,6 @@
     if (indexPath == nil) return;
 
     Post *post = [[rootPost repliesArray] objectAtIndex:indexPath.row];
-    
-    if (post.pinned) {
-//        threadPinButton.hidden = NO;
-//        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Active.png"] forState:UIControlStateNormal];
-//        threadPinButton.alpha = 1.0;
-    } else {
-//        threadPinButton.hidden = NO;
-//        [threadPinButton  setImage:[UIImage imageNamed:@"Pushpin-Inactive.png"] forState:UIControlStateNormal];
-//        threadPinButton.alpha = 0.2;
-    }
     
     // Create HTML for the post
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
@@ -726,53 +654,36 @@
     [[NSUserDefaults standardUserDefaults] setInteger:grippyBarPosition forKey:@"grippyBarPosition"];
 }
 
-// Patch-E: fixed the iPad issue where if you tap the tag button numerous times, many action sheet popovers are created
-// the tag action sheet popover would stay visible when tapping the refresh thread and compose reply buttons, fixed that issue too
-// leff the tag action sheet popover stay in view when the clock/previous reply/next reply buttons are tapped
 - (IBAction)tag {
-    // check to see if tag action sheet is already showing (isn't nil), dismiss it if so
-    if (theActionSheet) {
-        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-        theActionSheet = nil;
-        return;
-    }
-    // keep track of the action sheet
-    theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
+    UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Tag this Post"
                                                  delegate:self
                                         cancelButtonTitle:@"Cancel"
                                    destructiveButtonTitle:nil
                                                otherButtonTitles:@"lol", @"inf", @"unf", @"tag", @"wtf", @"ugh", nil];
     
-    [theActionSheet showInView:self.navigationController.view];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+    } else {
+        [dialog showInView:self.view];
+    }
 }
 
 - (void)showAuthorActions {
-    // check to see if tag action sheet is already showing (isn't nil), dismiss it if so
-    if (theActionSheet) {
-        [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-        theActionSheet = nil;
-        return;
-    }
-    // keep track of the action sheet
-    theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Author Actions"
+    UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Author Actions"
                                                   delegate:self
                                          cancelButtonTitle:@"Cancel"
                                     destructiveButtonTitle:nil
                                          otherButtonTitles:@"Search for Posts", @"Send a Message", nil];
     
-    [theActionSheet showInView:self.navigationController.view];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+    } else {
+        [dialog showInView:self.view];
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    theActionSheet = nil;
-}
-
-- (IBAction)toggleOrderByPostDate {
-    orderByPostDate = !orderByPostDate;
-    [grippyBar setOrderByPostDateButtonHighlight];
-    
-    // Persist the orderByPostDate toggle option
-    [[NSUserDefaults standardUserDefaults] setBool:orderByPostDate forKey:@"orderByPostDate"];
+    actionSheet = nil;
 }
 
 - (int)nextRowByTimeLevel:(int)currentRow {
@@ -809,12 +720,14 @@
     NSIndexPath *oldIndexPath = selectedIndexPath;
         
     NSIndexPath *newIndexPath;
-    if (orderByPostDate)
-        newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
-    else if (oldIndexPath.row == 0)
-        newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
-    else
-        newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
+//    if (orderByPostDate)
+    // Defaulting to time based traversal of threads!
+    // Removed clock as an option from grippy bar and force it's behavior now.
+    newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
+//    else if (oldIndexPath.row == 0)
+//        newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
+//    else
+//        newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
     
     [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];    
@@ -825,17 +738,19 @@
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
         
-    if (orderByPostDate)
-        newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
-    else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1)
-        newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    if (orderByPostDate)
+    // Defaulting to time based traversal of threads!
+    // Removed clock as an option from grippy bar and force it's behavior now.
+    newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
+//    else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1)
+//        newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     
     [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
 }
 
-- (void)grippyBarDidTapOrderByPostDateButton {
-    [self toggleOrderByPostDate];
+- (void)grippyBarDidTapPinButton {
+    [self togglePinThread];
 }
 
 - (void)grippyBarDidTapRightButton {
@@ -860,7 +775,11 @@
                                                        cancelButtonTitle:@"Cancel"
                                                   destructiveButtonTitle:nil
                                                        otherButtonTitles:@"Stupid", @"Offtopic", @"NWS", @"Political", @"Informative", @"Nuked", @"Ontopic", nil];
-    [modActionSheet showInView:self.view];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [modActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+    } else {
+        [modActionSheet showInView:self.view];
+    }
 }
 
 #pragma mark Action Sheet Delegate
@@ -887,7 +806,7 @@
         }
         
         //show mod HUD message
-        NSTimeInterval theTimeInterval = 1.0;
+        NSTimeInterval theTimeInterval = 0.5;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Modded!"];
@@ -898,7 +817,7 @@
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
         
         //show tag HUD message
-        NSTimeInterval theTimeInterval = 1.0;
+        NSTimeInterval theTimeInterval = 0.5;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Tagged!"];
@@ -941,50 +860,43 @@
     }
 }
 
-#pragma mark Gesture Recognizers
-
-// monitor gesture touches
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    // if gesture is panning kind (ViewDeck uses panning to bring out menu)
-    if ([gestureRecognizer.class isSubclassOfClass:[UIPanGestureRecognizer class]]) return YES;
-
-    // if gesture is swipe kind, let it pass through
-    if ([gestureRecognizer.class isSubclassOfClass:[UISwipeGestureRecognizer class]]) return YES;
-    
-    // if gesture is long press (on the navigation bar), only let it pass through if the press is on the reply button
-    if ([gestureRecognizer.class isSubclassOfClass:[UILongPressGestureRecognizer class]] ||
-        [gestureRecognizer.class isSubclassOfClass:[UITapGestureRecognizer class]]) {
-        // this will be faulty logic if there is ever another button on the nav bar other than the reply button,
-        // the back button is not included in this because its view's class is not a subclass of UIControl
-        if ([[touch.view class] isSubclassOfClass:[UIControl class]]) return YES;
-    }
-
-    return NO;
-}
-
--(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-    // only fire on the intial long press detection
-    if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
-        // standard action sheet code
-        if (theActionSheet) {
-            [theActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-            theActionSheet = nil;
-            return;
-        }
-        // keep track of the action sheet
-        theActionSheet = [[UIActionSheet alloc] initWithTitle:@"Reply"
-                                                      delegate:self
-                                             cancelButtonTitle:@"Cancel"
-                                        destructiveButtonTitle:nil
-                                             otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
-        
-        [theActionSheet showInView:self.navigationController.view];
-    }
-}
-
--(void)handleDoubleTap:(UITapGestureRecognizer *)gestureRecognizer {
-    [self togglePinThread];
-}
+//#pragma mark Gesture Recognizers
+//
+//// monitor gesture touches
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//    // if gesture is panning kind (ViewDeck uses panning to bring out menu)
+//    if ([gestureRecognizer.class isSubclassOfClass:[UIPanGestureRecognizer class]]) return YES;
+//
+//    // if gesture is swipe kind, let it pass through
+//    if ([gestureRecognizer.class isSubclassOfClass:[UISwipeGestureRecognizer class]]) return YES;
+//    
+//    // if gesture is long press (on the navigation bar), only let it pass through if the press is on the reply button
+//    if ([gestureRecognizer.class isSubclassOfClass:[UILongPressGestureRecognizer class]] ||
+//        [gestureRecognizer.class isSubclassOfClass:[UITapGestureRecognizer class]]) {
+//        // this will be faulty logic if there is ever another button on the nav bar other than the reply button,
+//        // the back button is not included in this because its view's class is not a subclass of UIControl
+//        if ([[touch.view class] isSubclassOfClass:[UIControl class]]) return YES;
+//    }
+//
+//    return NO;
+//}
+//
+//-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+//    // only fire on the intial long press detection
+//    if(UIGestureRecognizerStateBegan == gestureRecognizer.state) {
+//        UIActionSheet *dialog = [[UIActionSheet alloc] initWithTitle:@"Reply"
+//                                                      delegate:self
+//                                             cancelButtonTitle:@"Cancel"
+//                                        destructiveButtonTitle:nil
+//                                             otherButtonTitles:@"Reply to this post", @"Reply to root post", nil];
+//        
+//        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//            [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+//        } else {
+//            [dialog showInView:self.view];
+//        }
+//    }
+//}
 
 - (NSUInteger)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];

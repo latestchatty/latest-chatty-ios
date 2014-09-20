@@ -12,6 +12,19 @@
 // String categories
 @implementation NSString (StringAdditions)
 
+- (NSString *)stringByReplaceHTMLEntities {
+    NSString *str = [NSString stringWithString:self];
+    
+    str  = [str stringByReplacingOccurrencesOfString:@"&ndash;" withString:@"-"];
+    str  = [str stringByReplacingOccurrencesOfString:@"&rdquo;" withString:@"\""];
+    str  = [str stringByReplacingOccurrencesOfString:@"&ldquo;" withString:@"\""];
+    str  = [str stringByReplacingOccurrencesOfString:@"&rsquo;" withString:@"'"];
+    str  = [str stringByReplacingOccurrencesOfString:@"&lsquo;" withString:@"'"];
+    str  = [str stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+
+    return str;
+}
+
 - (NSString *)stringByUnescapingHTML {
     HTMLEscaper *escaper = [[HTMLEscaper alloc] init];
     NSString *unescapedString = [escaper unescapeEntitiesInString:self];

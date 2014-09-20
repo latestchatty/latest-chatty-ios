@@ -60,11 +60,13 @@
     // iOS7
     self.navigationController.navigationBar.translucent = NO;
     
-    // top separation bar
-    UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
-    [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
-    [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [self.view addSubview:topStroke];
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        // top separation bar, iPhone only in this view
+        UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
+        [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
+        [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        [self.view addSubview:topStroke];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -73,6 +75,8 @@
                                       message:@"Enter your username and password in Settings."];
         
         [self.navigationController popViewControllerAnimated:YES];
+        
+        self.title = @"Messages";
     }
 }
 

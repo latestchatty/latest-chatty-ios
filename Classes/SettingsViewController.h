@@ -8,7 +8,7 @@
 
 #import "Post.h"
 
-@interface SettingsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate> {
+@interface SettingsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIGestureRecognizerDelegate> {
     IBOutlet UITableView *tableView;
   
     UITextField *usernameField;

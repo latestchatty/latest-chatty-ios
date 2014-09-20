@@ -124,7 +124,9 @@
 // Hide the status bar and navigation bar with the built-in animation method
 // Hiding the bottom bar with manual animation because setToolbarHidden:animated: on the navigation controller was acting strange
 - (void)hideBars {
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 
     [UIView animateWithDuration:0.25 animations:^{
@@ -144,7 +146,9 @@
 // Show the status bar and navigation bar with the built-in animation method
 // Showing the bottom bar with manual animation because setToolbarHidden:animated: on the navigation controller was acting strange
 - (void)showBars {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    }
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
     [UIView animateWithDuration:0.25 animations:^{
@@ -309,22 +313,6 @@
     NSURL *chromeURL = [appDelegate urlAsChromeScheme:[webView.request URL]];
     [[UIApplication sharedApplication] openURL:chromeURL];
     chromeURL = nil;
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    theActionSheet = nil;
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == actionSheet.cancelButtonIndex) {
-        return;
-    }
-    switch (buttonIndex) {
-        case 0: [self copyURL]; break;
-        case 1: [self openInSafari]; break;
-        case 2: [self openInChrome]; break;
-        default: break;
-    }
 }
 
 #pragma mark Cleanup

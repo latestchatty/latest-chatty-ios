@@ -29,18 +29,12 @@
     IBOutlet UIView *postViewContainer;
     IBOutlet UIWebView *postView;
     IBOutlet GrippyBar *grippyBar;
-    IBOutlet UIBarButtonItem *orderByPostDateButton;
     IBOutlet UIButton *threadPinButton;
     IBOutlet UIBarButtonItem *tagButton;
     NSInteger grippyBarPosition;
 
     NSUInteger lastReplyId;
     BOOL highlightMyPost;
-    BOOL orderByPostDate;
-    
-    UIPopoverController *popoverController;
-    
-    UIActionSheet *theActionSheet;
 }
 
 @property (nonatomic, assign) NSUInteger threadId;
@@ -56,7 +50,6 @@
 - (IBAction)tag;
 - (IBAction)previous;
 - (IBAction)next;
-- (IBAction)toggleOrderByPostDate;
 
 //- (NSString *)postBodyWithYoutubeWidgets:(NSString *)body;
 

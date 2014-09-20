@@ -42,6 +42,17 @@
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [self.viewDeckController closeLeftViewAnimated:YES];
+        if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+        } else {
+            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+        }
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -54,24 +65,40 @@
         [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:YES];
         messageLoader = [Message findAllWithDelegate:self];
     }
+    
+    if (initialPhoneLoad) {
+        // initialize the index path to chatty row
+        [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
+        [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+        initialPhoneLoad = NO;
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+            [self.viewDeckController setLeftSize:(self.view.frame.size.width*0.75)];
+        } else {
+            [self.viewDeckController setLeftSize:(self.view.frame.size.width*0.5)];
+        }
+    }
 }
 
 - (void)viewDidLoad {
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         // root view controller is delegate for view deck on iPhone
         self.viewDeckController.delegate = self;
+        [self.viewDeckController setLeftSize:(self.view.frame.size.width*0.75)];
         
-        // initialize the index path to chatty row
-        [self setSelectedIndex:[NSIndexPath indexPathForRow:1 inSection:0]];
-        [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
-        
-        // iOS7
-        if ([[UIScreen mainScreen] bounds].size.height == 568) {
-            [self.tableView setContentInset:UIEdgeInsetsMake(20.0, 0, 0, 0)];
+        if ([[UIScreen mainScreen] bounds].size.height >= 568 && ![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            [self.tableView setContentInset:UIEdgeInsetsMake(10.0, 0, 0, 0)];
         }
         
         // Maintain selection while view is still loaded
         [self setClearsSelectionOnViewWillAppear:NO];
+        initialPhoneLoad = YES;
     } else {
         [self setClearsSelectionOnViewWillAppear:YES];
     }
@@ -212,7 +239,7 @@
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         return 100;
     }
-    if ([[UIScreen mainScreen] bounds].size.height == 568) return 92;
+    if ([[UIScreen mainScreen] bounds].size.height >= 568 && ![[LatestChatty2AppDelegate delegate] isPadDevice]) return 92;
     return 82;
 }
 
