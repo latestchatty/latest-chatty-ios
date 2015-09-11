@@ -16,7 +16,7 @@
     [super viewDidLoad];
     
     // Set proper size
-    self.view.frameSize = [self availableSizeForOrientation:[self interfaceOrientation]];
+    self.view.frameSize = [self availableSizeForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     
     // Set stretchable images
     [tabButton setBackgroundImage:[[tabButton backgroundImageForState:UIControlStateNormal]   stretchableImageWithLeftCapWidth:0 topCapHeight:100] forState:UIControlStateNormal];
@@ -28,7 +28,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lolLoaded:) name:@"LOLLoaded" object:nil];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
@@ -63,13 +63,8 @@
 }
 
 - (CGSize)availableSizeForOrientation:(UIInterfaceOrientation)orientation {
-    CGSize result = [UIScreen mainScreen].bounds.size;
-    
-    if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
-        if (UIInterfaceOrientationIsLandscape([self interfaceOrientation])) {
-            result = CGSizeMake(result.height, result.width);
-        }
-    }
+//    CGSize result = [UIScreen mainScreen].bounds.size;
+    CGSize result = [[UIApplication sharedApplication] keyWindow].bounds.size;
     
     return result;
 }
@@ -116,7 +111,7 @@
     
     [self.view bringSubviewToFront:tabButton];
     
-    [self updateViewsForOrientation:[self interfaceOrientation]];
+    [self updateViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
 - (void)updateContentLayoutIfNecessary {
@@ -135,7 +130,7 @@
     [UIView beginAnimations:@"slideView" context:nil];
     [UIView setAnimationDuration:0.35];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [self updateViewsForOrientation:[self interfaceOrientation]];
+    [self updateViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     [self updateContentLayoutIfNecessary];
     [UIView commitAnimations];
 }

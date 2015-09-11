@@ -45,10 +45,10 @@
 
 + (LatestChatty2AppDelegate*)delegate;
 + (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation;
-+ (NSUInteger)supportedInterfaceOrientations;
++ (UIInterfaceOrientationMask)supportedInterfaceOrientations;
 + (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
-- (BOOL)reloadSavedState;
+//- (BOOL)reloadSavedState;
 
 - (NSURLCredential *)userCredential;
 - (BOOL)isYoutubeURL:(NSURL *)url;

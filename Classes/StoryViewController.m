@@ -89,7 +89,7 @@
     [content.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 

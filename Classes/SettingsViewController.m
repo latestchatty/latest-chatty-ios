@@ -86,7 +86,7 @@
     
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
-                                                                       style:UIBarButtonItemStyleBordered
+                                                                       style:UIBarButtonItemStylePlain
                                                                       target:self
                                                                       action:@selector(resignAndToggle)];
         self.navigationItem.leftBarButtonItem = menuButton;
@@ -203,7 +203,7 @@
     [self.viewDeckController toggleLeftView];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 

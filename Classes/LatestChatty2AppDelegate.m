@@ -43,10 +43,10 @@
 - (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions {
     self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
     
-    if (![self reloadSavedState]) {
-        // Add the root view controller
-        [navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
-    }
+//    if (![self reloadSavedState]) {
+    // Add the root view controller
+    [navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
+//    }
     
 //    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
 //        // Tapped a messge push's view button
@@ -436,50 +436,50 @@
     return viewController;
 }
 
-- (BOOL)reloadSavedState {
-    @try {
-        // Find saved state
-        NSData *savedState = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedState"];
-        
-        if (savedState) {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedState"];
-            NSArray *controllerDictionaries = [NSKeyedUnarchiver unarchiveObjectWithData:savedState];
-            
-            // Create a dictionary to convert controller type strings to class objects
-            NSMutableDictionary *controllerClassLookup = [NSMutableDictionary dictionary];
-            [controllerClassLookup setObject:[RootViewController class]    forKey:@"Root"];
-            [controllerClassLookup setObject:[StoriesViewController class] forKey:@"Stories"];
-            [controllerClassLookup setObject:[StoryViewController class]   forKey:@"Story"];
-            [controllerClassLookup setObject:[ChattyViewController class]  forKey:@"Chatty"];
-            [controllerClassLookup setObject:[ThreadViewController class]  forKey:@"Thread"];
-            [controllerClassLookup setObject:[BrowserViewController class] forKey:@"Browser"];
-            
-            for (NSDictionary *dictionary in controllerDictionaries) {
-                // find the right controller class
-                NSString *controllerName = [dictionary objectForKey:@"type"];
-                Class class = [controllerClassLookup objectForKey:controllerName];
-                
-                if (class) {
-                    id viewController = [[class alloc] initWithStateDictionary:dictionary];
-                    [navigationController pushViewController:viewController animated:NO];
-                } else {
-                    NSLog(@"No known view controller for the type: %@", controllerName);
-                    return NO;
-                }
-            }
-        } else {
-            return NO;
-        }
-        
-    }
-    @catch (NSException *e) {
-        // Something went wrong restoring state, so just start over.
-        navigationController.viewControllers = nil;
-        return NO;
-    }
-    
-    return YES;
-}
+//- (BOOL)reloadSavedState {
+//    @try {
+//        // Find saved state
+//        NSData *savedState = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedState"];
+//        
+//        if (savedState) {
+//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedState"];
+//            NSArray *controllerDictionaries = [NSKeyedUnarchiver unarchiveObjectWithData:savedState];
+//            
+//            // Create a dictionary to convert controller type strings to class objects
+//            NSMutableDictionary *controllerClassLookup = [NSMutableDictionary dictionary];
+//            [controllerClassLookup setObject:[RootViewController class]    forKey:@"Root"];
+//            [controllerClassLookup setObject:[StoriesViewController class] forKey:@"Stories"];
+//            [controllerClassLookup setObject:[StoryViewController class]   forKey:@"Story"];
+//            [controllerClassLookup setObject:[ChattyViewController class]  forKey:@"Chatty"];
+//            [controllerClassLookup setObject:[ThreadViewController class]  forKey:@"Thread"];
+//            [controllerClassLookup setObject:[BrowserViewController class] forKey:@"Browser"];
+//            
+//            for (NSDictionary *dictionary in controllerDictionaries) {
+//                // find the right controller class
+//                NSString *controllerName = [dictionary objectForKey:@"type"];
+//                Class class = [controllerClassLookup objectForKey:controllerName];
+//                
+//                if (class) {
+//                    id viewController = [[class alloc] initWithStateDictionary:dictionary];
+//                    [navigationController pushViewController:viewController animated:NO];
+//                } else {
+//                    NSLog(@"No known view controller for the type: %@", controllerName);
+//                    return NO;
+//                }
+//            }
+//        } else {
+//            return NO;
+//        }
+//        
+//    }
+//    @catch (NSException *e) {
+//        // Something went wrong restoring state, so just start over.
+//        navigationController.viewControllers = nil;
+//        return NO;
+//    }
+//    
+//    return YES;
+//}
 
 - (BOOL)isPadDevice {
     return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
@@ -584,7 +584,7 @@
     return UIInterfaceOrientationPortrait;
 }
 
-+ (NSUInteger)supportedInterfaceOrientations {
++ (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     // allow landscape setting on
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {

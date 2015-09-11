@@ -34,7 +34,7 @@
     return [NSDictionary dictionaryWithObject:@"Root" forKey:@"type"];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 

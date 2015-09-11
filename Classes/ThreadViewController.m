@@ -213,7 +213,7 @@
 //        self.navigationItem.titleView = self.toolbar;
 //    } else {
         UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-Reply.png"]
-                                                                        style:UIBarButtonItemStyleBordered
+                                                                        style:UIBarButtonItemStylePlain
                                                                        target:self
                                                                        action:@selector(tappedReplyButton)];
         self.navigationItem.rightBarButtonItem = replyButton;
@@ -898,7 +898,7 @@
 //    }
 //}
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 

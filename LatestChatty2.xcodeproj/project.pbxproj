@@ -99,6 +99,8 @@
 		CD48681E17EB5B430071F3D7 /* Fart8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680D17EB5B430071F3D7 /* Fart8.mp3 */; };
 		CD48681F17EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
 		CD48682017EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
+		CD50D7F21BA347E3007108E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		CD50D7F31BA347E3007108E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		CD760000174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760001174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760002174C734B00B378E6 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFF1174C734B00B378E6 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -650,6 +652,7 @@
 		CD48680C17EB5B430071F3D7 /* Fart7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart7.mp3; path = Assets/Fart7.mp3; sourceTree = "<group>"; };
 		CD48680D17EB5B430071F3D7 /* Fart8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart8.mp3; path = Assets/Fart8.mp3; sourceTree = "<group>"; };
 		CD48680E17EB5B430071F3D7 /* Fart9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Fart9.mp3; path = Assets/Fart9.mp3; sourceTree = "<group>"; };
+		CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD64F12218CBB0B900BF6889 /* LatestChattyBeta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LatestChattyBeta.entitlements; sourceTree = "<group>"; };
 		CD64F12318CBB0DE00BF6889 /* LatestChatty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LatestChatty.entitlements; sourceTree = "<group>"; };
 		CD76FFE1174C734B00B378E6 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -1061,6 +1064,7 @@
 			children = (
 				FA5FD0480F70149500878F27 /* Assets */,
 				FABA5D340F7178A0008EEE3A /* Templates */,
+				CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				CDDE5BE517DC37AC0036CA42 /* Info beta.plist */,
@@ -1559,7 +1563,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = JA9LQCT6NB;
@@ -1710,6 +1714,7 @@
 				CDC0E9C217F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
 				CD7F2F3F17FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */,
 				CD7F2F4B17FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png in Resources */,
+				CD50D7F21BA347E3007108E4 /* LaunchScreen.storyboard in Resources */,
 				CD4371031803A4E0008D9DCF /* List-Lifespan-100-Participant.png in Resources */,
 				CD7F2F5517FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */,
 				CD43710F1803A4E0008D9DCF /* List-Lifespan-Empty.png in Resources */,
@@ -1917,6 +1922,7 @@
 				CDC0E9C317F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
 				CD7F2F4017FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */,
 				CD7F2F4C17FE85BE00E7EAE3 /* Keyboard-Normal-Code@2x.png in Resources */,
+				CD50D7F31BA347E3007108E4 /* LaunchScreen.storyboard in Resources */,
 				CD4371041803A4E0008D9DCF /* List-Lifespan-100-Participant.png in Resources */,
 				CD7F2F5617FE85BE00E7EAE3 /* Keyboard-Normal-Underline.png in Resources */,
 				CD4371101803A4E0008D9DCF /* List-Lifespan-Empty.png in Resources */,
@@ -2245,11 +2251,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = LatestChatty.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2258,9 +2264,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChatty;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2269,20 +2277,22 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = LatestChatty.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChatty;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -2293,6 +2303,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(inherited)",
@@ -2349,7 +2360,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = LatestChattyBeta.entitlements;
@@ -2363,8 +2373,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
 			};
@@ -2375,7 +2386,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = LatestChattyBeta.entitlements;
@@ -2387,8 +2397,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
 			};
@@ -2399,7 +2410,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = LatestChattyBeta.entitlements;
@@ -2411,8 +2421,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
 			};
@@ -2452,20 +2463,22 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = LatestChatty.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChatty;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Distribution;
 		};

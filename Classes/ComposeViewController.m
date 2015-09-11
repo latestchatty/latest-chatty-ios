@@ -169,7 +169,7 @@
     [postContent becomeFirstResponder];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
@@ -264,7 +264,7 @@
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction *action)
                                    {
-                                       [self actionSheet:nil clickedButtonAtIndex:0];
+                                       [self actionSheet:[[UIActionSheet alloc] init] clickedButtonAtIndex:0];
                                    }];
     
     UIAlertAction *libraryAction = [UIAlertAction
@@ -272,7 +272,7 @@
                                     style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction *action)
                                     {
-                                        [self actionSheet:nil clickedButtonAtIndex:1];
+                                        [self actionSheet:[[UIActionSheet alloc] init] clickedButtonAtIndex:1];
                                     }];
     
     [alertController addAction:cancelAction];
