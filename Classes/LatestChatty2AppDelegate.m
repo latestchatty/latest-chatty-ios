@@ -56,7 +56,8 @@
     
     self.slideOutViewController =  [SlideOutViewController controllerWithNib];
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
-    [slideOutViewController.view setFrame:CGRectMake(0, 20, 768, 1004)];
+//    [slideOutViewController.view setFrame:CGRectMake(0, 20, 768, 1004)];
+    [slideOutViewController.view setFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
 
     UIView *topBar = [UIView viewWithFrame:CGRectMake(0, 0, 1024, 20)];
     topBar.backgroundColor = [UIColor lcTableBackgroundColor];
@@ -515,6 +516,11 @@
         NSLog(@"Name: %@ : Value: %@", cookie.name, cookie.value);
         [cookies deleteCookie:cookie];
     }
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+//    NSLog(@"post active notification");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateViewsForMultitasking" object:self];
 }
 
 // Handle the registered latestchatty:// URL scheme

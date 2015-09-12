@@ -81,7 +81,7 @@
     UIMenuController *menu = [UIMenuController sharedMenuController];
     menu.menuItems = [NSArray arrayWithObject:[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)]];
     
-//    [postContent becomeFirstResponder];
+    [postContent becomeFirstResponder];
     postContent.textContainerInset = UIEdgeInsetsMake(5, 5, 5, 5);
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -111,12 +111,12 @@
         [UIAlertView showSimpleAlertWithTitle:@"Not Logged In"
                                       message:@"Enter your username and password in Settings."];
         
-        [postContent becomeFirstResponder];
-        [postContent resignFirstResponder];
+//        [postContent becomeFirstResponder];
+//        [postContent resignFirstResponder];
         [self.navigationController popViewControllerAnimated:YES];
     }
     
-    [postContent becomeFirstResponder];
+//    [postContent becomeFirstResponder];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -138,7 +138,7 @@
 			[[self navigationController] pushViewController:controller animated:YES];
 		} else {
             [self showActivityIndicator:NO];
-			[postContent resignFirstResponder];
+//			[postContent resignFirstResponder];
             [self performSelectorInBackground:@selector(makePost) withObject:nil];
 		}
 	} else if (buttonIndex == 2) {
@@ -499,8 +499,8 @@
 }
 
 - (void)sendPost {
-    [postContent becomeFirstResponder];
-    [postContent resignFirstResponder];
+//    [postContent becomeFirstResponder];
+//    [postContent resignFirstResponder];
     
     postingWarningAlertView = YES;
     [UIAlertView showWithTitle:@"Post"

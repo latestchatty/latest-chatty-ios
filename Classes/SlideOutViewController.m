@@ -26,6 +26,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(composeDisappeared:) name:@"ComposeDisappeared" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchLoaded:) name:@"SearchLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lolLoaded:) name:@"LOLLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewsForMultitasking:) name:@"UpdateViewsForMultitasking" object:nil];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
@@ -69,9 +70,14 @@
     return result;
 }
 
+- (void)updateViewsForMultitasking:(NSObject *) sender {
+    [self updateViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+}
+
 - (void)updateViewsForOrientation:(UIInterfaceOrientation) orientation {
-    CGSize availableSize = [self availableSizeForOrientation:orientation];    
-    CGFloat trayWidth = UIInterfaceOrientationIsLandscape(orientation) ? 320 : 240;
+    CGSize availableSize = [self availableSizeForOrientation:orientation];
+    // 1/3 of the window for the left tray
+    CGFloat trayWidth = availableSize.width * 0.33f;
     
     tabButton.frameHeight = availableSize.height;
     

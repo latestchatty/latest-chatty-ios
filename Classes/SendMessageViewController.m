@@ -237,8 +237,8 @@
 }
 
 - (void)sendMessage {
-    [body becomeFirstResponder];
-    [body resignFirstResponder];
+//    [body becomeFirstResponder];
+//    [body resignFirstResponder];
     
     postingWarningAlertView = YES;
     [UIAlertView showWithTitle:@"Message"
@@ -251,7 +251,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) {
         [self showActivityIndicator];
-        [body resignFirstResponder];
+//        [body resignFirstResponder];
         [self performSelectorInBackground:@selector(makeMessage) withObject:nil];
 	}
 }
