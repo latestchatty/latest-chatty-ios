@@ -133,6 +133,15 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadPinned:) name:@"ThreadPinned" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadUnpinned:) name:@"ThreadUnpinned" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewsForMultitasking:) name:@"UpdateViewsForMultitasking" object:nil];
+}
+
+- (void)updateViewsForMultitasking:(NSObject *) sender {
+    if ([[LatestChatty2AppDelegate delegate] isCompactView]) {
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
+    } else {
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    }
 }
 
 - (void)threadPinned:(NSNotification *)notification {
@@ -355,6 +364,8 @@
     }
     
     self.tableView.hidden = NO;
+    
+    [self updateViewsForMultitasking:nil];
 }
 
 // Filter any duplicate threads out. These threads have drifted to the next page since the last page was loaded.
