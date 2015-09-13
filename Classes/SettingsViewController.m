@@ -46,6 +46,7 @@
         picsPasswordField.secureTextEntry = YES;
         picsPasswordField.returnKeyType = UIReturnKeyDone;
 
+        orderByPostDateSwitch = [self generateSwitchWithKey:@"orderByPostDate"];
         saveSearchesSwitch = [self generateSwitchWithKey:@"saveSearches"];
 //        darkModeSwitch     = [self generateSwitchWithKey:@"darkMode"];
         collapseSwitch     = [self generateSwitchWithKey:@"collapse"];
@@ -303,7 +304,8 @@
 	[defaults setObject:passwordField.text      forKey:@"password"];
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
-	[defaults setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
+	[defaults setBool:orderByPostDateSwitch.on  forKey:@"orderByPostDate"];
+    [defaults setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
 //	[defaults setBool:darkModeSwitch.on         forKey:@"darkMode"];
 	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
 	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
@@ -343,7 +345,8 @@
 	[store setObject:passwordField.text      forKey:@"password"];
     [store setObject:picsUsernameField.text  forKey:@"picsUsername"];
     [store setObject:picsPasswordField.text  forKey:@"picsPassword"];
-	[store setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
+	[store setBool:orderByPostDateSwitch.on  forKey:@"orderByPostDate"];
+    [store setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
 //	[store setBool:darkModeSwitch.on         forKey:@"darkMode"];
 	[store setBool:collapseSwitch.on         forKey:@"collapse"];
 //	[store setBool:landscapeSwitch.on        forKey:@"landscape"];
@@ -417,7 +420,7 @@
             break;
 			
 		case 2:
-			return 8;
+			return 9;
 			break;
 			
 		case 3:
@@ -591,28 +594,33 @@
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Enable Mod Tools:";
 				break;
+
+            case 5:
+                cell.accessoryView = orderByPostDateSwitch;
+                cell.textLabel.text = @"Scroll Replies By Date:";
+                break;
                 
-			case 5:
+			case 6:
 				cell.accessoryView = saveSearchesSwitch;
 				cell.textLabel.text = @"Save Searches:";
 				break;
                 
-            case 6:
+            case 7:
 				cell.accessoryView = safariSwitch;
 				cell.textLabel.text = @"Use Safari:";
 				break;
                 
-			case 7:
+			case 8:
 				cell.accessoryView = chromeSwitch;
 				cell.textLabel.text = @"Use Chrome:";
 				break;
 				
-//			case 1:
+//			case 9:
 //				cell.accessoryView = darkModeSwitch;
 //				cell.textLabel.text = @"Dark Mode:";
 //				break;
                 
-//			case 3:
+//			case 10:
 //				cell.accessoryView = pushMessagesSwitch;
 //				cell.textLabel.text = @"Push Messages:";
 //				break;

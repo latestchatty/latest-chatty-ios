@@ -22,6 +22,7 @@
     UISlider    *picsQualitySlider;
     UILabel     *picsQualityLabel;
 
+    UISwitch    *orderByPostDateSwitch;
     UISwitch    *saveSearchesSwitch;
     UISwitch    *darkModeSwitch;
     UISwitch    *collapseSwitch;

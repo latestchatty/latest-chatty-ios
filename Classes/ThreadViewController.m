@@ -720,14 +720,14 @@
     NSIndexPath *oldIndexPath = selectedIndexPath;
         
     NSIndexPath *newIndexPath;
-//    if (orderByPostDate)
-    // Defaulting to time based traversal of threads!
-    // Removed clock as an option from grippy bar and force it's behavior now.
-    newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
-//    else if (oldIndexPath.row == 0)
-//        newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
-//    else
-//        newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"]) {
+        newIndexPath = [NSIndexPath indexPathForRow:[self previousRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
+    } else if (oldIndexPath.row == 0) {
+        newIndexPath = [NSIndexPath indexPathForRow:[[rootPost repliesArray] count] - 1 inSection:0];
+    } else {
+        newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
+    }
     
     [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];    
@@ -738,12 +738,12 @@
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
         
-//    if (orderByPostDate)
-    // Defaulting to time based traversal of threads!
-    // Removed clock as an option from grippy bar and force it's behavior now.
-    newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
-//    else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1)
-//        newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"orderByPostDate"]) {
+        newIndexPath = [NSIndexPath indexPathForRow:[self nextRowByTimeLevel:(int)oldIndexPath.row] inSection:0];
+    }
+    else if (oldIndexPath.row == [[rootPost repliesArray] count] - 1) {
+        newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    }
     
     [tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
