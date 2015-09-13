@@ -141,6 +141,11 @@
     [UIView commitAnimations];
 }
 
+- (void)expand {
+    isCollapsed = YES;
+    [self tabTouched];
+}
+
 - (void)collapse {
     isCollapsed = NO;
     [self tabTouched];
