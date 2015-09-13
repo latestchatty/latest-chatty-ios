@@ -20,7 +20,6 @@
         self = [super initWithNib];
     threadId = aThreadId;
     grippyBarPosition = [[NSUserDefaults standardUserDefaults] integerForKey:@"grippyBarPosition"];
-    self.title = @"Thread";
     return self;
 }
 
@@ -163,9 +162,11 @@
     if (rootPost.pinned) {
         [self.navigationController.navigationBar setBarTintColor:[UIColor lcCellPinnedColor]];
         [grippyBar setBackgroundColorForThread:[UIColor lcCellPinnedColor]];
+        self.title = @"Pinned";
     } else {
         [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
         [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
+        self.title = @"Thread";
     }
     [grippyBar setPinnedWithValue:rootPost.pinned];
     [grippyBar setPinButtonHighlight];
@@ -268,9 +269,11 @@
     if (rootPost.pinned) {
         [self.navigationController.navigationBar setBarTintColor:[UIColor lcCellPinnedColor]];
         [grippyBar setBackgroundColorForThread:[UIColor lcCellPinnedColor]];
+        self.title = @"Pinned";
     } else {
         [self.navigationController.navigationBar setBarTintColor:[UIColor lcBarTintColor]];
         [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
+        self.title = @"Thread";
     }
     
     [self resetLayout:NO];
@@ -371,6 +374,8 @@
     [hud hide:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadPinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
+    
+    self.title = @"Pinned";
 }
 
 - (void)unPinThread {
@@ -389,6 +394,8 @@
     [hud hide:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadUnpinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
+    
+    self.title = @"Thread";
 }
 
 #pragma mark -

@@ -33,10 +33,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="SqueegyTBS" lineBreakMode="tailTruncation" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" id="18">
-                        <rect key="frame" x="10" y="2" width="195" height="20"/>
+                        <rect key="frame" x="10" y="2" width="180" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.96078431369999995" green="0.89411764709999997" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.95294117649999999" green="0.90588235289999997" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="1234" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="7" id="7">
