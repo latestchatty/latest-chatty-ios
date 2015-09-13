@@ -1,8 +1,13 @@
 latest-chatty-2
 ===============
 
-Requires iOS 7!
-Supports iOS 8, iPhone 6, iPhone 6 Plus!
+Requires iOS 8!
+Supports iOS 9, iPhone 6s, iPhone 6s Plus!
+
+4.5.0
+====
+- Slide Over & Split View support on supported iPad devices
+- Small bug fix for post & message send not showing loading indication overlay
 
 4.4.0
 ====
