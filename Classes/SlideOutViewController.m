@@ -76,8 +76,8 @@
 
 - (void)updateViewsForOrientation:(UIInterfaceOrientation) orientation {
     CGSize availableSize = [self availableSizeForOrientation:orientation];
-    // 1/3 of the window for the left tray
-    CGFloat trayWidth = availableSize.width * 0.33f;
+    // 40/60 split of the window for the left tray
+    CGFloat trayWidth = availableSize.width * 0.4f;
     
     tabButton.frameHeight = availableSize.height;
     

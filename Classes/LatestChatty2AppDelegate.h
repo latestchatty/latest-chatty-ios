@@ -55,6 +55,7 @@
 - (id)urlAsChromeScheme:(NSURL *)url;
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
+- (BOOL)isCompactView;
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 	
 @end

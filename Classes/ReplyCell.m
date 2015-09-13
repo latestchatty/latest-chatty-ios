@@ -28,6 +28,10 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    // are we compact?
+    BOOL isCompact = [[LatestChatty2AppDelegate delegate] isCompactView];
+    BOOL isPad = [[LatestChatty2AppDelegate delegate] isPadDevice];
+    
     // Set the highlight text color to white
     preview.highlightedTextColor = [UIColor whiteColor];
     usernameLabel.highlightedTextColor = [UIColor whiteColor];
@@ -36,6 +40,7 @@
     preview.text = post.preview;
     
     // Set the username
+    usernameLabel.hidden = isCompact;
     usernameLabel.text = post.author;
     if (isThreadStarter) {
         usernameLabel.font = [UIFont boldSystemFontOfSize:usernameLabel.font.pointSize];
@@ -46,9 +51,17 @@
     }
     
     // Set the indentation depth
-    CGFloat indentation = 3 + post.depth * self.indentationWidth;
+    CGFloat indentation;
+    if (isCompact) {
+        indentation = 3 + post.depth * (self.indentationWidth - 15);
+    } else if (isPad) {
+        indentation = 3 + post.depth * (self.indentationWidth - 10);
+    } else {
+        indentation = 3 + post.depth * self.indentationWidth;
+    }
+    
     CGFloat previewWidth = self.frame.size.width - indentation;
-    if (usernameLabel) previewWidth -= (usernameLabel.frame.size.width + 20);
+    if (usernameLabel && !isCompact) previewWidth -= (usernameLabel.frame.size.width + 20);
     preview.frame = CGRectMake(indentation, 0, previewWidth, self.frame.size.height);
     grayBullet.frame = CGRectMake(indentation - 12, 1, 10, self.frame.size.height);
     

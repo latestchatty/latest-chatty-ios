@@ -112,6 +112,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForCredits) name:@"PushBrowserForCredits" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForDonate) name:@"PushBrowserForDonate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewsForMultitasking:) name:@"UpdateViewsForMultitasking" object:nil];
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
@@ -185,6 +186,10 @@
     } else {
         [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
     }
+}
+
+- (void)updateViewsForMultitasking:(NSObject *) sender {
+    [self.tableView reloadData];
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
