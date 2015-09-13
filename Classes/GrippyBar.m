@@ -15,8 +15,8 @@
     if (self) {
         self.contentMode = UIViewContentModeCenter;
         
-        background = [[UIView alloc] initWithFrame:CGRectMake(0, 12, self.frameWidth, 25)];
-        background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        background = [[UIView alloc] initWithFrame:CGRectMake(0, 12, 768, 25)];
+        background.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self addSubview:background];
 
         // add pan gesture to handle moving the bar up/down when swiping up/down anywhere on the bar (including within buttons)
