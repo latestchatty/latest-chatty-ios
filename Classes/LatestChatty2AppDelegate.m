@@ -487,9 +487,17 @@
 }
 
 - (BOOL)isCompactView {
-    BOOL result = [self isPadDevice] && [[UIApplication sharedApplication] keyWindow].bounds.size.width < 768.0f;
+    BOOL result = [self isPadDevice] && [[UIApplication sharedApplication] keyWindow].bounds.size.width <= 320.0f;
     
 //    NSLog(@"is compact view? %@", (result ? @"YES" : @"NO"));
+    
+    return result;
+}
+
+- (BOOL)isSplitView {
+    BOOL result = [self isPadDevice] && [[UIApplication sharedApplication] keyWindow].bounds.size.width < 768.0f;
+    
+    //    NSLog(@"is compact view? %@", (result ? @"YES" : @"NO"));
     
     return result;
 }

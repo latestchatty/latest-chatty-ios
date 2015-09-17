@@ -6,6 +6,7 @@ Supports iOS 9, iPhone 6s, iPhone 6s Plus!
 
 4.5.0
 ====
+- iOS 9 support
 - Slide Over & Split View support on supported iPad devices
 - Small bug fix for post & message send not showing loading indication overlay
 - New setting to allow changing reply traversal button behavior to traverse by date or sequentially

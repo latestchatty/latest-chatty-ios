@@ -29,7 +29,7 @@
     [super layoutSubviews];
     
     // are we compact?
-    BOOL isCompact = [[LatestChatty2AppDelegate delegate] isCompactView];
+    BOOL isCompact = [[LatestChatty2AppDelegate delegate] isSplitView];
     BOOL isPad = [[LatestChatty2AppDelegate delegate] isPadDevice];
     
     // Set the highlight text color to white

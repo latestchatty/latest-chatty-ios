@@ -189,7 +189,9 @@
 }
 
 - (void)updateViewsForMultitasking:(NSObject *) sender {
-    [self.tableView reloadData];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [self.tableView reloadData];
+    }
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {

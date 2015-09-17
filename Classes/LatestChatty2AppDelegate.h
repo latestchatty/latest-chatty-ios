@@ -56,6 +56,7 @@
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
 - (BOOL)isCompactView;
+- (BOOL)isSplitView;
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 	
 @end
