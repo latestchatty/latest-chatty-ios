@@ -47,7 +47,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="5">
-                        <rect key="frame" x="0.0" y="0.0" width="4" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="6" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.4549019608" green="0.76862745099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>

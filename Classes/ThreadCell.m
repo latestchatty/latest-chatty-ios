@@ -24,15 +24,18 @@
 	
     // are we compact?
     BOOL isCompact = [[LatestChatty2AppDelegate delegate] isCompactView];
+    BOOL isSplit = [[LatestChatty2AppDelegate delegate] isSplitView];
     replyCount.hidden = isCompact;
     timerIcon.hidden = isCompact;
-    categoryStripe.hidden = isCompact;
-    if (isCompact) {
-        author.frameX = 1.0f;
-        preview.frameX = 1.0f;
+    categoryStripe.hidden = isSplit;
+    if (isSplit) {
+        author.frameX = 3.0f;
+        preview.frameX = 3.0f;
+        lolCountsLabel.frameX = 3.0f;
     } else {
         author.frameX = 10.0f;
         preview.frameX = 10.0f;
+        lolCountsLabel.frameX = 10.0f;
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

@@ -204,14 +204,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     shouldCollapse = [defaults boolForKey:@"collapse"];
-    
-//    if ([defaults boolForKey:@"darkMode"]) {
-//        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
-//        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
-//    } else {
-//        self.tableView.separatorColor = [UIColor lcSeparatorColor];
-//        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
-//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -364,8 +356,6 @@
     }
     
     self.tableView.hidden = NO;
-    
-    [self updateViewsForMultitasking:nil];
 }
 
 // Filter any duplicate threads out. These threads have drifted to the next page since the last page was loaded.
