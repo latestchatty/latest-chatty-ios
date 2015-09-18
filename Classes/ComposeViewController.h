@@ -17,8 +17,6 @@
 	
 	NSDictionary *tagLookup;
 	
-	BOOL postingWarningAlertView;
-	
     IBOutlet UILabel *composeLabel;
     IBOutlet UILabel *parentPostAuthor;
 	IBOutlet UILabel *parentPostPreview;

@@ -100,6 +100,14 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
 }
 
+- (UIViewController *)showingViewController {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+    } else {
+        return self;
+    }
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 //    scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
 }
@@ -231,29 +239,38 @@
                 }
             });
         });
-
-        postingWarningAlertView = NO;
     }
 }
 
 - (void)sendMessage {
-//    [body becomeFirstResponder];
-//    [body resignFirstResponder];
-    
-    postingWarningAlertView = YES;
-    [UIAlertView showWithTitle:@"Message"
-                       message:@"Send this message?"
-                      delegate:self
-             cancelButtonTitle:@"Cancel"
-             otherButtonTitles:@"Send", nil];
-}
+    [body resignFirstResponder];
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 1) {
-        [self showActivityIndicator];
-//        [body resignFirstResponder];
-        [self performSelectorInBackground:@selector(makeMessage) withObject:nil];
-	}
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Message"
+                                          message:@"Send this message?"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       [[self showingViewController].presentedViewController dismissViewControllerAnimated:NO completion:nil];
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:@"Send"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   [self showActivityIndicator];
+                                   [self performSelectorInBackground:@selector(makeMessage) withObject:nil];
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [[self showingViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)showActivityIndicator {
