@@ -53,7 +53,7 @@
 // Common colors
 + (UIColor *)lcAuthorColor {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithRed:245.0/255.0 green:228.0/255.0 blue:157.0/255.0 alpha:1.0];
+    if (!color) color = [UIColor colorWithRed:243.0/255.0 green:231.0/255.0 blue:181.0/255.0 alpha:1.0];
     return color;
 }
 
@@ -128,7 +128,7 @@
 
 + (UIColor *)lcCellPinnedColor {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithRed:33.0/255.0 green:14.0/255.0 blue:25.0/255.0 alpha:1.0];
+    if (!color) color = [UIColor colorWithRed:78.0/255.0 green:69.0/255.0 blue:96.0/255.0 alpha:1.0];
     return color;
 }
 

@@ -93,14 +93,14 @@
 
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
-                                                                       style:UIBarButtonItemStyleBordered
+                                                                       style:UIBarButtonItemStylePlain
                                                                       target:self.viewDeckController
                                                                       action:@selector(toggleLeftView)];
         self.navigationItem.leftBarButtonItem = menuButton;
     }
 	
     UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-Compose.png"]
-                                                                      style:UIBarButtonItemStyleBordered
+                                                                      style:UIBarButtonItemStylePlain
                                                                      target:self
                                                                      action:@selector(tappedComposeButton)];
     self.navigationItem.rightBarButtonItem = composeButton;
@@ -133,6 +133,15 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadPinned:) name:@"ThreadPinned" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadUnpinned:) name:@"ThreadUnpinned" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewsForMultitasking:) name:@"UpdateViewsForMultitasking" object:nil];
+}
+
+- (void)updateViewsForMultitasking:(NSObject *) sender {
+    if ([[LatestChatty2AppDelegate delegate] isCompactView]) {
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
+    } else {
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    }
 }
 
 - (void)threadPinned:(NSNotification *)notification {
@@ -195,14 +204,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     shouldCollapse = [defaults boolForKey:@"collapse"];
-    
-//    if ([defaults boolForKey:@"darkMode"]) {
-//        self.tableView.separatorColor = [UIColor lcSeparatorDarkColor];
-//        self.tableView.backgroundColor = [UIColor lcTableBackgroundDarkColor];
-//    } else {
-//        self.tableView.separatorColor = [UIColor lcSeparatorColor];
-//        self.tableView.backgroundColor = [UIColor lcTableBackgroundColor];
-//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

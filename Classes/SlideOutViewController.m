@@ -16,7 +16,7 @@
     [super viewDidLoad];
     
     // Set proper size
-    self.view.frameSize = [self availableSizeForOrientation:[self interfaceOrientation]];
+    self.view.frameSize = [self availableSizeForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     
     // Set stretchable images
     [tabButton setBackgroundImage:[[tabButton backgroundImageForState:UIControlStateNormal]   stretchableImageWithLeftCapWidth:0 topCapHeight:100] forState:UIControlStateNormal];
@@ -26,9 +26,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(composeDisappeared:) name:@"ComposeDisappeared" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchLoaded:) name:@"SearchLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lolLoaded:) name:@"LOLLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewsForMultitasking:) name:@"UpdateViewsForMultitasking" object:nil];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
@@ -63,20 +64,20 @@
 }
 
 - (CGSize)availableSizeForOrientation:(UIInterfaceOrientation)orientation {
-    CGSize result = [UIScreen mainScreen].bounds.size;
-    
-    if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
-        if (UIInterfaceOrientationIsLandscape([self interfaceOrientation])) {
-            result = CGSizeMake(result.height, result.width);
-        }
-    }
+//    CGSize result = [UIScreen mainScreen].bounds.size;
+    CGSize result = [[UIApplication sharedApplication] keyWindow].bounds.size;
     
     return result;
 }
 
+- (void)updateViewsForMultitasking:(NSObject *) sender {
+    [self updateViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+}
+
 - (void)updateViewsForOrientation:(UIInterfaceOrientation) orientation {
-    CGSize availableSize = [self availableSizeForOrientation:orientation];    
-    CGFloat trayWidth = UIInterfaceOrientationIsLandscape(orientation) ? 320 : 240;
+    CGSize availableSize = [self availableSizeForOrientation:orientation];
+    // 40/60 split of the window for the left tray
+    CGFloat trayWidth = availableSize.width * 0.4f;
     
     tabButton.frameHeight = availableSize.height;
     
@@ -116,7 +117,7 @@
     
     [self.view bringSubviewToFront:tabButton];
     
-    [self updateViewsForOrientation:[self interfaceOrientation]];
+    [self updateViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
 - (void)updateContentLayoutIfNecessary {
@@ -135,9 +136,14 @@
     [UIView beginAnimations:@"slideView" context:nil];
     [UIView setAnimationDuration:0.35];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [self updateViewsForOrientation:[self interfaceOrientation]];
+    [self updateViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     [self updateContentLayoutIfNecessary];
     [UIView commitAnimations];
+}
+
+- (void)expand {
+    isCollapsed = YES;
+    [self tabTouched];
 }
 
 - (void)collapse {

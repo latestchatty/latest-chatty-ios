@@ -48,7 +48,7 @@ static NSString *kParseDateFormat3 = @"MMM d, yyyy, hh:mm a";   // Mar 15, 2011,
         [formatter setDateFormat:kDateFormat];
         return [formatter stringFromDate:date];
     } else {
-        NSUInteger desiredComponents = NSYearCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+        NSUInteger desiredComponents = NSCalendarUnitYear | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
         NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:desiredComponents
                                                                            fromDate:date
                                                                              toDate:[NSDate date]

@@ -44,7 +44,7 @@
     if (self.isShackLOL) {
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
-                                                                           style:UIBarButtonItemStyleBordered
+                                                                           style:UIBarButtonItemStylePlain
                                                                           target:self.viewDeckController
                                                                           action:@selector(toggleLeftView)];
             self.navigationItem.leftBarButtonItem = menuButton;
@@ -169,12 +169,13 @@
     CGPoint velocity = [sender velocityInView:self.view];
     
     // only activate on first touch and a semi-flick velocity
-    if (sender.state == UIGestureRecognizerStateBegan && ABS(velocity.y) > 300) {
+    if (sender.state == UIGestureRecognizerStateBegan) {
         CGPoint translatedPoint = [sender translationInView:self.view];
-        if (translatedPoint.y > 0 && self.navigationController.navigationBarHidden) {
-            [self showBars];
-        } else if (translatedPoint.y < 0 && !self.navigationController.navigationBarHidden) {
+        
+        if (ABS(velocity.y) > 400 && translatedPoint.y < 0 && !self.navigationController.navigationBarHidden) {
             [self hideBars];
+        } else if (ABS(velocity.y) > 100 && translatedPoint.y > 0 && self.navigationController.navigationBarHidden) {
+            [self showBars];
         }
     }
 }
@@ -257,7 +258,7 @@
     [viewController setNeedsStatusBarAppearanceUpdate];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 

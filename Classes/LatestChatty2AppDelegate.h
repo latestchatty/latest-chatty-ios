@@ -45,16 +45,18 @@
 
 + (LatestChatty2AppDelegate*)delegate;
 + (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation;
-+ (NSUInteger)supportedInterfaceOrientations;
++ (UIInterfaceOrientationMask)supportedInterfaceOrientations;
 + (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
-- (BOOL)reloadSavedState;
+//- (BOOL)reloadSavedState;
 
 - (NSURLCredential *)userCredential;
 - (BOOL)isYoutubeURL:(NSURL *)url;
 - (id)urlAsChromeScheme:(NSURL *)url;
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
+- (BOOL)isCompactView;
+- (BOOL)isSplitView;
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 	
 @end

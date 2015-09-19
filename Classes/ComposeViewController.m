@@ -81,7 +81,7 @@
     UIMenuController *menu = [UIMenuController sharedMenuController];
     menu.menuItems = [NSArray arrayWithObject:[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)]];
     
-//    [postContent becomeFirstResponder];
+    [postContent becomeFirstResponder];
     postContent.textContainerInset = UIEdgeInsetsMake(5, 5, 5, 5);
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -111,12 +111,8 @@
         [UIAlertView showSimpleAlertWithTitle:@"Not Logged In"
                                       message:@"Enter your username and password in Settings."];
         
-        [postContent becomeFirstResponder];
-        [postContent resignFirstResponder];
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
-    [postContent becomeFirstResponder];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -129,22 +125,19 @@
     [self showTagButtons];
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-	// Noob help alert
-	if (buttonIndex == 1) {
-		if ([alertView.title isEqualToString:@"Important!"]) {
-            NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
-			BrowserViewController *controller = [[BrowserViewController alloc] initWithRequest:rulesPageRequest];
-			[[self navigationController] pushViewController:controller animated:YES];
-		} else {
-            [self showActivityIndicator:NO];
-			[postContent resignFirstResponder];
-            [self performSelectorInBackground:@selector(makePost) withObject:nil];
-		}
-	} else if (buttonIndex == 2) {
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hideOrientationWarning"];
-	}
-}
+//- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+//	// Noob help alert
+//	if (buttonIndex == 1) {
+//		if ([alertView.title isEqualToString:@"Important!"]) {
+//            NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
+//			BrowserViewController *controller = [[BrowserViewController alloc] initWithRequest:rulesPageRequest];
+//			[[self navigationController] pushViewController:controller animated:YES];
+//		} else {
+//            [self showActivityIndicator:NO];
+//            [self performSelectorInBackground:@selector(makePost) withObject:nil];
+//		}
+//	}
+//}
 
 - (void)previewLabelTap:(UITapGestureRecognizer *)recognizer {
     if (self.post) {
@@ -169,7 +162,7 @@
     [postContent becomeFirstResponder];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
@@ -264,7 +257,7 @@
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction *action)
                                    {
-                                       [self actionSheet:nil clickedButtonAtIndex:0];
+                                       [self actionSheet:[[UIActionSheet alloc] init] clickedButtonAtIndex:0];
                                    }];
     
     UIAlertAction *libraryAction = [UIAlertAction
@@ -272,7 +265,7 @@
                                     style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction *action)
                                     {
-                                        [self actionSheet:nil clickedButtonAtIndex:1];
+                                        [self actionSheet:[[UIActionSheet alloc] init] clickedButtonAtIndex:1];
                                     }];
     
     [alertController addAction:cancelAction];
@@ -493,21 +486,38 @@
                 }
             });
         });
-    
-		postingWarningAlertView = NO;
 	}
 }
 
 - (void)sendPost {
-    [postContent becomeFirstResponder];
     [postContent resignFirstResponder];
     
-    postingWarningAlertView = YES;
-    [UIAlertView showWithTitle:@"Post"
-                       message:@"Submit this post?"
-                      delegate:self
-             cancelButtonTitle:@"Cancel"
-             otherButtonTitles:@"Send", nil];
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Post"
+                                          message:@"Submit this post?"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       [[self showingViewController].presentedViewController dismissViewControllerAnimated:NO completion:nil];
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:@"Send"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   [self showActivityIndicator:NO];
+                                   [self performSelectorInBackground:@selector(makePost) withObject:nil];
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [[self showingViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark Cleanup
