@@ -89,6 +89,14 @@
     [content.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
+- (UIViewController *)showingViewController {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+    } else {
+        return self;
+    }
+}
+
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
@@ -139,7 +147,11 @@
     }
 }
 
-#pragma mark Web view methods
+#pragma mark WebView methods
+
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
@@ -154,7 +166,8 @@
         if (viewController == nil) {
             BOOL isYouTubeURL = [appDelegate isYoutubeURL:[request URL]];
             BOOL embedYoutube = [[NSUserDefaults standardUserDefaults] boolForKey:@"embedYoutube"];
-            BOOL useSafari = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafari"];
+            BOOL useSafariApp = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafariApp"];
+            BOOL useSafariView = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafariView"];
             BOOL useChrome = [[NSUserDefaults standardUserDefaults] boolForKey:@"useChrome"];
             
             if (isYouTubeURL) {
@@ -165,8 +178,19 @@
                 }
             } else {
                 //open current URL in Safari (not guaranteed to open in Safari, could be a iTunes/App Store URL that opens in an external app, most of the time the URL will get handled by Safari
-                if (useSafari) {
+                if (useSafariApp) {
                     [[UIApplication sharedApplication] openURL:[request URL]];
+                    return NO;
+                }
+                // open current URL in iOS 9 Safari modal view
+                if (useSafariView) {
+                    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+                    
+                    SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
+                    [svc setDelegate:self];
+                    
+                    [[self showingViewController] presentViewController:svc animated:YES completion:nil];
+                    
                     return NO;
                 }
                 //open current URL in Chrome

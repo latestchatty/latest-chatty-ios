@@ -104,7 +104,12 @@
     
 //    // Register for Push
 //    if ([defaults boolForKey:@"push.messages"]) {
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert
+//                                                                                         | UIUserNotificationTypeBadge
+//                                                                                         | UIUserNotificationTypeSound) categories:nil];
+//    [application registerUserNotificationSettings:settings];
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge) categories:nil];
+    [application registerUserNotificationSettings:settings];
 //    }
     
     // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
@@ -124,7 +129,8 @@
                                      [NSNumber numberWithBool:YES], @"picsResize",
                                      [NSNumber numberWithFloat:0.7],@"picsQuality",
                                      [NSNumber numberWithBool:YES], @"embedYoutube",
-                                     [NSNumber numberWithBool:NO],  @"useSafari",
+                                     [NSNumber numberWithBool:NO],  @"useSafariApp",
+                                     [NSNumber numberWithBool:NO],  @"useSafariView",
                                      [NSNumber numberWithBool:NO],  @"useChrome",
                                      [NSNumber numberWithBool:YES], @"postCategory.informative",
                                      [NSNumber numberWithBool:YES], @"postCategory.offtopic",
@@ -592,7 +598,7 @@
     // nav/toolbar tinting
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor lcBarTintColor]];
-    [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIToolbar appearanceWhenContainedIn:[BrowserViewController class], nil] setTintColor:[UIColor whiteColor]];
     [[UIToolbar appearance] setBarTintColor:[UIColor lcBarTintColor]];
     
     // progress bar (uploading to chattypics)

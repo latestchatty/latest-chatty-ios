@@ -10,8 +10,9 @@
 #import "ChattyViewController.h"
 #import "StringTemplate.h"
 #import "BrowserViewController.h"
+@import SafariServices;
 
-@interface StoryViewController : UIViewController <ModelLoadingDelegate, UIWebViewDelegate> {
+@interface StoryViewController : UIViewController <ModelLoadingDelegate, UIWebViewDelegate, SFSafariViewControllerDelegate> {
     NSUInteger storyId;
     ModelLoader *storyLoader;
     Story *story;

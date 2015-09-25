@@ -56,7 +56,8 @@
         picsQualitySlider  = [self generateSliderWithKey:@"picsQuality"];
         youtubeSwitch      = [self generateSwitchWithKey:@"embedYoutube"];
         chromeSwitch       = [self generateSwitchWithKey:@"useChrome"];
-        safariSwitch       = [self generateSwitchWithKey:@"useSafari"];
+        safariAppSwitch    = [self generateSwitchWithKey:@"useSafariApp"];
+        safariViewSwitch   = [self generateSwitchWithKey:@"useSafariView"];
 //        pushMessagesSwitch = [[self generateSwitchWithKey:@"push.messages"] retain];
         modToolsSwitch     = [self generateSwitchWithKey:@"modTools"];
         
@@ -67,7 +68,8 @@
         nwsSwitch          = [self generateSwitchWithKey:@"postCategory.nws"];
 
         [picsQualitySlider addTarget:self action:@selector(handlePicsQualitySlider:) forControlEvents:UIControlEventValueChanged];
-        [safariSwitch addTarget:self action:@selector(handleSafariSwitch) forControlEvents:UIControlEventValueChanged];
+        [safariAppSwitch addTarget:self action:@selector(handleSafariAppSwitch) forControlEvents:UIControlEventValueChanged];
+        [safariViewSwitch addTarget:self action:@selector(handleSafariViewSwitch) forControlEvents:UIControlEventValueChanged];
         [chromeSwitch addTarget:self action:@selector(handleChromeSwitch) forControlEvents:UIControlEventValueChanged];
     }	
 	
@@ -275,8 +277,16 @@
     picsQualityLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(slider.value*100)];
 }
 
--(void)handleSafariSwitch {
-    if (safariSwitch.on) {
+-(void)handleSafariAppSwitch {
+    if (safariAppSwitch.on) {
+        [safariViewSwitch setOn:NO animated:YES];
+        [chromeSwitch setOn:NO animated:YES];
+    }
+}
+
+-(void)handleSafariViewSwitch {
+    if (safariViewSwitch.on) {
+        [safariAppSwitch setOn:NO animated:YES];
         [chromeSwitch setOn:NO animated:YES];
     }
 }
@@ -293,7 +303,8 @@
     }
     
     if (chromeSwitch.on) {
-        [safariSwitch setOn:NO animated:YES];
+        [safariAppSwitch setOn:NO animated:YES];
+        [safariViewSwitch setOn:NO animated:YES];
     }
 }
 
@@ -316,7 +327,8 @@
     [defaults setObject:picsQuality             forKey:@"picsQuality"];
     
 	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
-    [defaults setBool:safariSwitch.on           forKey:@"useSafari"];
+    [defaults setBool:safariAppSwitch.on        forKey:@"useSafariApp"];
+    [defaults setBool:([SFSafariViewController class] ? safariViewSwitch.on : NO) forKey:@"useSafariView"];
     [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
 //	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
@@ -354,7 +366,8 @@
     [store setBool:picsResizeSwitch.on       forKey:@"picsResize"];
     [store setObject:picsQuality             forKey:@"picsQuality"];
 	[store setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
-    [store setBool:safariSwitch.on           forKey:@"useSafari"];
+    [store setBool:safariAppSwitch.on        forKey:@"useSafariApp"];
+    [store setBool:([SFSafariViewController class] ? safariViewSwitch.on : NO) forKey:@"useSafariView"];
     [store setBool:chromeSwitch .on          forKey:@"useChrome"];
 //	[store setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
     [store setBool:modToolsSwitch.on         forKey:@"modTools"];
@@ -420,7 +433,7 @@
             break;
 			
 		case 2:
-			return 9;
+            return [SFSafariViewController class] ? 10 : 9;
 			break;
 			
 		case 3:
@@ -580,47 +593,52 @@
 				cell.textLabel.text = @"Allow Landscape:";
 				break;
                 
-			case 2:
-				cell.accessoryView = youtubeSwitch;
-				cell.textLabel.text = @"Embed YouTube:";
-				break;
-                
-            case 3:
+            case 2:
 				cell.accessoryView = lolTagsSwitch;
 				cell.textLabel.text = @"Enable [lol] Tags:";
 				break;
                 
-			case 4:
+			case 3:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Enable Mod Tools:";
 				break;
 
-            case 5:
+            case 4:
                 cell.accessoryView = orderByPostDateSwitch;
                 cell.textLabel.text = @"Scroll Replies By Date:";
                 break;
                 
-			case 6:
+			case 5:
 				cell.accessoryView = saveSearchesSwitch;
 				cell.textLabel.text = @"Save Searches:";
 				break;
                 
-            case 7:
-				cell.accessoryView = safariSwitch;
-				cell.textLabel.text = @"Use Safari:";
-				break;
+            case 6:
+                cell.accessoryView = youtubeSwitch;
+                cell.textLabel.text = @"Use YouTube:";
+                break;
                 
-			case 8:
-				cell.accessoryView = chromeSwitch;
-				cell.textLabel.text = @"Use Chrome:";
+            case 7:
+                cell.accessoryView = chromeSwitch;
+                cell.textLabel.text = @"Use Chrome:";
+                break;
+                
+            case 8:
+				cell.accessoryView = safariAppSwitch;
+				cell.textLabel.text = @"Use Safari App:";
 				break;
+
+            case 9:
+                cell.accessoryView = safariViewSwitch;
+                cell.textLabel.text = @"Use Safari View:";
+                break;
 				
-//			case 9:
+//			case 10:
 //				cell.accessoryView = darkModeSwitch;
 //				cell.textLabel.text = @"Dark Mode:";
 //				break;
                 
-//			case 10:
+//			case 11:
 //				cell.accessoryView = pushMessagesSwitch;
 //				cell.textLabel.text = @"Push Messages:";
 //				break;

@@ -29,7 +29,8 @@
     UISwitch    *landscapeSwitch;
     UISwitch    *lolTagsSwitch;
     UISwitch    *youtubeSwitch;
-    UISwitch    *safariSwitch;
+    UISwitch    *safariAppSwitch;
+    UISwitch    *safariViewSwitch;
     UISwitch    *chromeSwitch;
 //    UISwitch    *pushMessagesSwitch;
     UISwitch    *modToolsSwitch;

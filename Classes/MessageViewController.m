@@ -71,29 +71,31 @@
     }
 }
 
-- (void)showWebView:(NSTimer*)theTimer {
-	[theTimer invalidate];
-	webView.hidden = NO;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)aWebView {
-	[NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(showWebView:) userInfo:nil repeats:NO];
-    
-    //Patch-E: shack api returns straight text for messages, this at least turns any URL into a tappable link to open either
-    //in the browser view controller or in whatever browser the user may have set in Settings
-    NSString *jsReplaceLinkCode =
-    @"document.getElementById('body').innerHTML = "
-    @"document.getElementById('body').innerHTML.replace("
-    @"/(\\b(https?):\\/\\/[-A-Z0-9+&@#\\/%?=~_|!:,.;]*[-A-Z0-9+&@#\\/%=~_|])/ig, "
-    @"\"<a href='$1'>$1</a>\""
-    @");";
-    
-    [aWebView stringByEvaluatingJavaScriptFromString:jsReplaceLinkCode];
-}
-
 - (void)reply {
     SendMessageViewController *sendMessageViewController = [[SendMessageViewController alloc] initWithMessage:message];
 	[self.navigationController pushViewController:sendMessageViewController animated:YES];
+}
+
+- (UIViewController *)showingViewController {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+    } else {
+        return self;
+    }
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return [LatestChatty2AppDelegate supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+#pragma mark WebView methods
+
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -109,7 +111,8 @@
         if (viewController == nil) {
             BOOL isYouTubeURL = [appDelegate isYoutubeURL:[request URL]];
             BOOL embedYoutube = [[NSUserDefaults standardUserDefaults] boolForKey:@"embedYoutube"];
-            BOOL useSafari = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafari"];
+            BOOL useSafariApp = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafariApp"];
+            BOOL useSafariView = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafariView"];
             BOOL useChrome = [[NSUserDefaults standardUserDefaults] boolForKey:@"useChrome"];
             
             if (isYouTubeURL) {
@@ -120,8 +123,19 @@
                 }
             } else {
                 //open current URL in Safari (not guaranteed to open in Safari, could be a iTunes/App Store URL that opens in an external app, most of the time the URL will get handled by Safari
-                if (useSafari) {
+                if (useSafariApp) {
                     [[UIApplication sharedApplication] openURL:[request URL]];
+                    return NO;
+                }
+                // open current URL in iOS 9 Safari modal view
+                if (useSafariView) {
+                    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+                    
+                    SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
+                    [svc setDelegate:self];
+                    
+                    [[self showingViewController] presentViewController:svc animated:YES completion:nil];
+                    
                     return NO;
                 }
                 //open current URL in Chrome
@@ -148,12 +162,24 @@
     return YES;
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return [LatestChatty2AppDelegate supportedInterfaceOrientations];
+- (void)showWebView:(NSTimer*)theTimer {
+    [theTimer invalidate];
+    webView.hidden = NO;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView {
+    [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(showWebView:) userInfo:nil repeats:NO];
+    
+    //Patch-E: shack api returns straight text for messages, this at least turns any URL into a tappable link to open either
+    //in the browser view controller or in whatever browser the user may have set in Settings
+    NSString *jsReplaceLinkCode =
+    @"document.getElementById('body').innerHTML = "
+    @"document.getElementById('body').innerHTML.replace("
+    @"/(\\b(https?):\\/\\/[-A-Z0-9+&@#\\/%?=~_|!:,.;]*[-A-Z0-9+&@#\\/%=~_|])/ig, "
+    @"\"<a href='$1'>$1</a>\""
+    @");";
+    
+    [aWebView stringByEvaluatingJavaScriptFromString:jsReplaceLinkCode];
 }
 
 #pragma mark Cleanup
