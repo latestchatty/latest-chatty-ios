@@ -11,9 +11,9 @@
 @interface SettingsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIGestureRecognizerDelegate> {
     IBOutlet UITableView *tableView;
   
-    UITextField *usernameField;
-    UITextField *passwordField;
-    UITextField *serverField;
+    UITextField  *usernameField;
+    UITextField  *passwordField;
+    UITextField  *serverField;
     UIPickerView *serverPicker;
     
     UITextField *picsUsernameField;
@@ -22,17 +22,15 @@
     UISlider    *picsQualitySlider;
     UILabel     *picsQualityLabel;
 
-    UISwitch    *orderByPostDateSwitch;
-    UISwitch    *saveSearchesSwitch;
-    UISwitch    *darkModeSwitch;
-    UISwitch    *collapseSwitch;
-    UISwitch    *landscapeSwitch;
-    UISwitch    *lolTagsSwitch;
-    UISwitch    *youtubeSwitch;
-    UISwitch    *safariSwitch;
-    UISwitch    *chromeSwitch;
+    UISwitch     *orderByPostDateSwitch;
+    UISwitch     *saveSearchesSwitch;
+    UISwitch     *collapseSwitch;
+    UISwitch     *landscapeSwitch;
+    UISwitch     *lolTagsSwitch;
+    UISwitch     *youTubeSwitch;
+    UIPickerView *browserPrefPicker;
 //    UISwitch    *pushMessagesSwitch;
-    UISwitch    *modToolsSwitch;
+    UISwitch     *modToolsSwitch;
   
     UISwitch    *interestingSwitch;
     UISwitch    *offtopicSwitch;
@@ -44,6 +42,8 @@
     
     NSArray *apiServerNames;
     NSArray *apiServerAddresses;
+    NSMutableArray *browserTypes;
+    NSMutableArray *browserTypesValues;
 }
 
 - (IBAction)dismiss:(id)sender;
@@ -51,6 +51,6 @@
 - (UITextField *)generateTextFieldWithKey:(NSString *)key;
 - (UISwitch *)generateSwitchWithKey:(NSString *)key;
 - (UISlider *)generateSliderWithKey:(NSString *)key;
-- (UIPickerView *)generatePickerViewWithKey:(NSString *)key;
+- (UIPickerView *)generatePickerViewWithTag:(NSUInteger)tag;
 
 @end

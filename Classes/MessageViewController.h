@@ -9,8 +9,9 @@
 #import "Message.h"
 #import "StringTemplate.h"
 #import "BrowserViewController.h"
+@import SafariServices;
 
-@interface MessageViewController : UIViewController <UIWebViewDelegate> {
+@interface MessageViewController : UIViewController <UIWebViewDelegate, SFSafariViewControllerDelegate> {
     Message *message;
     IBOutlet UIWebView *webView;
 }

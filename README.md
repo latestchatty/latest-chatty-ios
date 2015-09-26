@@ -4,6 +4,12 @@ latest-chatty-2
 Requires iOS 8!
 Supports iOS 9, iPhone 6s, iPhone 6s Plus!
 
+4.5.1
+====
+- Revised browser preference setting to be of picker style instead of various switches
+- New browser preference to allow use of iOS 9 Safari in-app view (iOS 9 only)
+- Fix for 3rd party external apps not opening from Latest Chatty
+
 4.5.0
 ====
 - iOS 9 support

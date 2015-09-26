@@ -7,10 +7,9 @@
 //
 
 #import "ThreadViewController.h"
-
 #import "SendMessageViewController.h"
-
 #import "MBProgressHUD.h"
+#import "LCBrowserType.h"
 
 @implementation ThreadViewController
 
@@ -277,12 +276,6 @@
     }
     
     [self resetLayout:NO];
-    
-//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-//        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundDarkColor];
-//    } else {
-//        self.tableView.backgroundColor = [UIColor lcRepliesTableBackgroundColor];
-//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -515,13 +508,19 @@
     }
 }
 
+#pragma mark WebView Methods
+
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         // author name tapped, show action sheet to search for posts or shackmessage
         // still using the oldschool shacknews profile URI pattern here
         // probably not a good idea but the shack is probably never bringing back profiles at this point so whatevs
         if ([[[request URL] absoluteString] isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
-            //present action sheet 
+            // present action sheet 
             [self showAuthorActions];
             return NO;
         }
@@ -530,37 +529,44 @@
         UIViewController *viewController = [appDelegate viewControllerForURL:[request URL]];
         
         // No special controller, handle the URL.
-        // Check URL for Youtube, open externally is necessary.
-        // If not Youtube, check if URL should open in Safari/Chrome
-        // Otherwise open URL in browser view controller web view.
+        // Check URL for YouTube, open externally is necessary.
+        // If not YouTube, open URL in browser of preference
         if (viewController == nil) {
-            BOOL isYouTubeURL = [appDelegate isYoutubeURL:[request URL]];
-            BOOL embedYoutube = [[NSUserDefaults standardUserDefaults] boolForKey:@"embedYoutube"];
-            BOOL useSafari = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafari"];
-            BOOL useChrome = [[NSUserDefaults standardUserDefaults] boolForKey:@"useChrome"];
+            BOOL isYouTubeURL = [appDelegate isYouTubeURL:[request URL]];
+            BOOL useYouTube = [[NSUserDefaults standardUserDefaults] boolForKey:@"useYouTube"];
+            NSUInteger browserPref = [[NSUserDefaults standardUserDefaults] integerForKey:@"browserPref"];
+            NSLog(@"browserPref: %lu", (unsigned long)browserPref);
             
-            if (isYouTubeURL) {
-                if (!embedYoutube) {
-                    // don't embed, open Youtube URL on some external app that opens Youtube URLs
-                    [[UIApplication sharedApplication] openURL:[request URL]];
+            if (isYouTubeURL && useYouTube) {
+                // don't open with browser preference, open YouTube app
+                [[UIApplication sharedApplication] openURL:[request URL]];
+                return NO;
+            }
+            // open current URL in Safari app
+            if (browserPref == LCBrowserTypeSafariApp) {
+                [[UIApplication sharedApplication] openURL:[request URL]];
+                return NO;
+            }
+            // open current URL in iOS 9 Safari modal view
+            if (browserPref == LCBrowserTypeSafariView) {
+                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+                
+                SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
+                [svc setDelegate:self];
+                
+                [[self showingViewController] presentViewController:svc animated:YES completion:nil];
+                
+                return NO;
+            }
+            // open current URL in Chrome app
+            if (browserPref == LCBrowserTypeChromeApp) {
+                // replace http,https:// with googlechrome://
+                NSURL *chromeURL = [appDelegate urlAsChromeScheme:[request URL]];
+                if (chromeURL != nil) {
+                    [[UIApplication sharedApplication] openURL:chromeURL];
+                    
+                    chromeURL = nil;
                     return NO;
-                }
-            } else {
-                // open current URL in Safari (not guaranteed to open in Safari, could be a iTunes/App Store URL that opens in an external app, most of the time the URL will get handled by Safari
-                if (useSafari) {
-                    [[UIApplication sharedApplication] openURL:[request URL]];
-                    return NO;
-                }
-                // open current URL in Chrome
-                if (useChrome) {
-                    // replace http,https:// with googlechrome://
-                    NSURL *chromeURL = [appDelegate urlAsChromeScheme:[request URL]];
-                    if (chromeURL != nil) {
-                        [[UIApplication sharedApplication] openURL:chromeURL];
-                        
-                        chromeURL = nil;
-                        return NO;
-                    }
                 }
             }
 

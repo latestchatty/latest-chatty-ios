@@ -802,6 +802,7 @@
 		CDA2056619C151E500D8DF32 /* Thread-Toolbar-Pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Thread-Toolbar-Pin.png"; path = "Assets/Thread-Toolbar-Pin.png"; sourceTree = "<group>"; };
 		CDA2056719C151E500D8DF32 /* Thread-Toolbar-Pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Thread-Toolbar-Pin@2x.png"; path = "Assets/Thread-Toolbar-Pin@2x.png"; sourceTree = "<group>"; };
 		CDA26B6218234F4100239BA9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		CDA284141BB5FAA50083D26F /* LCBrowserType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LCBrowserType.h; path = Classes/LCBrowserType.h; sourceTree = "<group>"; };
 		CDC0E9A817F6886D007D3738 /* Post-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator.png"; path = "Assets/Post-Indicator.png"; sourceTree = "<group>"; };
 		CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator@2x.png"; path = "Assets/Post-Indicator@2x.png"; sourceTree = "<group>"; };
 		CDC0E9AA17F6886D007D3738 /* Post-Indicator-Reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-Reply.png"; path = "Assets/Post-Indicator-Reply.png"; sourceTree = "<group>"; };
@@ -1047,6 +1048,7 @@
 				CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */,
 				CD13D78B1754DB1A00539A23 /* Categories.h */,
 				CD13D78C1754DB1A00539A23 /* Categories.m */,
+				CDA284141BB5FAA50083D26F /* LCBrowserType.h */,
 				CDD056CE174FD042000E0477 /* CustomBadge.h */,
 				CDD056CF174FD043000E0477 /* CustomBadge.m */,
 				CD7C245E1754655900D90942 /* HTMLEscaper.h */,

@@ -104,7 +104,12 @@
     
 //    // Register for Push
 //    if ([defaults boolForKey:@"push.messages"]) {
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert
+//                                                                                         | UIUserNotificationTypeBadge
+//                                                                                         | UIUserNotificationTypeSound) categories:nil];
+//    [application registerUserNotificationSettings:settings];
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge) categories:nil];
+    [application registerUserNotificationSettings:settings];
 //    }
     
     // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
@@ -119,12 +124,11 @@
                                      @"winchatty.com/chatty",       @"serverApi",
                                      [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:YES], @"landscape",
-                                     [NSNumber numberWithBool:YES], @"embedYoutube",
+                                     [NSNumber numberWithBool:NO],  @"useYouTube",
                                      //[NSNumber numberWithBool:NO],  @"push.messages",
                                      [NSNumber numberWithBool:YES], @"picsResize",
                                      [NSNumber numberWithFloat:0.7],@"picsQuality",
-                                     [NSNumber numberWithBool:YES], @"embedYoutube",
-                                     [NSNumber numberWithBool:NO],  @"useSafari",
+                                     [NSNumber numberWithInt:0],    @"browserPref",
                                      [NSNumber numberWithBool:NO],  @"useChrome",
                                      [NSNumber numberWithBool:YES], @"postCategory.informative",
                                      [NSNumber numberWithBool:YES], @"postCategory.offtopic",
@@ -138,7 +142,6 @@
                                      [NSMutableArray array],        @"pinnedThreads",
                                      [NSMutableArray array],        @"collapsedThreads",
                                      [NSMutableArray array],        @"recentSearches",
-                                     [NSNumber numberWithBool:NO],  @"darkMode",
                                      [NSNumber numberWithBool:NO],  @"superSecretFartMode",
                                      [NSNumber numberWithBool:YES], @"saveSearches",
                                      [NSNumber numberWithBool:NO],  @"lolTags",
@@ -353,8 +356,8 @@
                                    persistence:NSURLCredentialPersistenceNone];
 }
 
-// Check the "Embed YouTube" user setting, if embedding is turned off open YouTube URL in either the YouTube app (if installed, either the Apple created pre-iOS 6 app or Google created app) or Safari if a YouTube app isn't installed. If embedding turned on, open YouTube URL in web view.
-- (BOOL)isYoutubeURL:(NSURL *)url {
+// Check a URL to see if it is for youtube.com
+- (BOOL)isYouTubeURL:(NSURL *)url {
     if ([[url host] containsString:@"youtube.com"] || [[url host] containsString:@"youtu.be"]) {
         return YES;
     }
@@ -592,7 +595,7 @@
     // nav/toolbar tinting
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor lcBarTintColor]];
-    [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIToolbar appearanceWhenContainedIn:[BrowserViewController class], nil] setTintColor:[UIColor whiteColor]];
     [[UIToolbar appearance] setBarTintColor:[UIColor lcBarTintColor]];
     
     // progress bar (uploading to chattypics)
