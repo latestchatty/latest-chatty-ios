@@ -151,12 +151,6 @@
     } else {
         grayBullet.image = [UIImage imageNamed:@"Post-Indicator"];
     }
-    
-//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"darkMode"]) {
-//        self.backgroundColor = [UIColor lcRepliesTableBackgroundDarkColor];
-//    } else {
-//        self.backgroundColor = [UIColor lcRepliesTableBackgroundColor];
-//    }
 }
 
 @end

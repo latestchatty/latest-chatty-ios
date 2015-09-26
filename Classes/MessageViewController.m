@@ -8,6 +8,7 @@
 
 #import "MessageViewController.h"
 #import "SendMessageViewController.h"
+#import "LCBrowserType.h"
 
 @implementation MessageViewController
 
@@ -105,49 +106,43 @@
         UIViewController *viewController = [appDelegate viewControllerForURL:[request URL]];
         
         // No special controller, handle the URL.
-        // Check URL for Youtube, open externally is necessary.
-        // If not Youtube, check if URL should open in Safari/Chrome
-        // Otherwise open URL in browser view controller web view.
+        // Check URL for YouTube, open externally is necessary.
+        // If not YouTube, open URL in browser preference
         if (viewController == nil) {
-            BOOL isYouTubeURL = [appDelegate isYoutubeURL:[request URL]];
-            BOOL embedYoutube = [[NSUserDefaults standardUserDefaults] boolForKey:@"embedYoutube"];
-            BOOL useSafariApp = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafariApp"];
-            BOOL useSafariView = [[NSUserDefaults standardUserDefaults] boolForKey:@"useSafariView"];
-            BOOL useChrome = [[NSUserDefaults standardUserDefaults] boolForKey:@"useChrome"];
+            BOOL isYouTubeURL = [appDelegate isYouTubeURL:[request URL]];
+            BOOL useYouTube = [[NSUserDefaults standardUserDefaults] boolForKey:@"useYouTube"];
+            NSUInteger browserPref = [[NSUserDefaults standardUserDefaults] integerForKey:@"browserPref"];
             
-            if (isYouTubeURL) {
-                if (!embedYoutube) {
-                    //don't embed, open Youtube URL on some external app that opens Youtube URLs
-                    [[UIApplication sharedApplication] openURL:[request URL]];
-                    return NO;
-                }
-            } else {
-                //open current URL in Safari (not guaranteed to open in Safari, could be a iTunes/App Store URL that opens in an external app, most of the time the URL will get handled by Safari
-                if (useSafariApp) {
-                    [[UIApplication sharedApplication] openURL:[request URL]];
-                    return NO;
-                }
-                // open current URL in iOS 9 Safari modal view
-                if (useSafariView) {
-                    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+            if (isYouTubeURL && useYouTube) {
+                // don't open with browser preference, open YouTube app
+                [[UIApplication sharedApplication] openURL:[request URL]];
+                return NO;
+            }
+            // open current URL in Safari app
+            if (browserPref == LCBrowserTypeSafariApp) {
+                [[UIApplication sharedApplication] openURL:[request URL]];
+                return NO;
+            }
+            // open current URL in iOS 9 Safari modal view
+            if (browserPref == LCBrowserTypeSafariView) {
+                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+                
+                SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
+                [svc setDelegate:self];
+                
+                [[self showingViewController] presentViewController:svc animated:YES completion:nil];
+                
+                return NO;
+            }
+            // open current URL in Chrome app
+            if (browserPref == LCBrowserTypeChromeApp) {
+                // replace http,https:// with googlechrome://
+                NSURL *chromeURL = [appDelegate urlAsChromeScheme:[request URL]];
+                if (chromeURL != nil) {
+                    [[UIApplication sharedApplication] openURL:chromeURL];
                     
-                    SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
-                    [svc setDelegate:self];
-                    
-                    [[self showingViewController] presentViewController:svc animated:YES completion:nil];
-                    
+                    chromeURL = nil;
                     return NO;
-                }
-                //open current URL in Chrome
-                if (useChrome) {
-                    //replace http,https:// with googlechrome://
-                    NSURL *chromeURL = [appDelegate urlAsChromeScheme:[request URL]];
-                    if (chromeURL != nil) {
-                        [[UIApplication sharedApplication] openURL:chromeURL];
-                        
-                        chromeURL = nil;
-                        return NO;
-                    }
                 }
             }
             

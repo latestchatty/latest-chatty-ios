@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import <Crashlytics/Crashlytics.h>
+#import "LCBrowserType.h"
 
 @implementation SettingsViewController
 
@@ -32,8 +33,7 @@
         serverField.returnKeyType = UIReturnKeyDone;
         serverField.keyboardType = UIKeyboardTypeURL;
         
-        serverPicker = [self generatePickerViewWithKey:@"serverApi"];
-        serverPicker.tintColor = [UIColor darkGrayColor];
+        serverPicker = [self generatePickerViewWithTag:0];
         
         picsUsernameField = [self generateTextFieldWithKey:@"picsUsername"];
         picsUsernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Username" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
@@ -48,16 +48,13 @@
 
         orderByPostDateSwitch = [self generateSwitchWithKey:@"orderByPostDate"];
         saveSearchesSwitch = [self generateSwitchWithKey:@"saveSearches"];
-//        darkModeSwitch     = [self generateSwitchWithKey:@"darkMode"];
         collapseSwitch     = [self generateSwitchWithKey:@"collapse"];
         landscapeSwitch    = [self generateSwitchWithKey:@"landscape"];
         lolTagsSwitch      = [self generateSwitchWithKey:@"lolTags"];
         picsResizeSwitch   = [self generateSwitchWithKey:@"picsResize"];
         picsQualitySlider  = [self generateSliderWithKey:@"picsQuality"];
-        youtubeSwitch      = [self generateSwitchWithKey:@"embedYoutube"];
-        chromeSwitch       = [self generateSwitchWithKey:@"useChrome"];
-        safariAppSwitch    = [self generateSwitchWithKey:@"useSafariApp"];
-        safariViewSwitch   = [self generateSwitchWithKey:@"useSafariView"];
+        youTubeSwitch      = [self generateSwitchWithKey:@"useYouTube"];
+        browserPrefPicker  = [self generatePickerViewWithTag:1];
 //        pushMessagesSwitch = [[self generateSwitchWithKey:@"push.messages"] retain];
         modToolsSwitch     = [self generateSwitchWithKey:@"modTools"];
         
@@ -68,9 +65,7 @@
         nwsSwitch          = [self generateSwitchWithKey:@"postCategory.nws"];
 
         [picsQualitySlider addTarget:self action:@selector(handlePicsQualitySlider:) forControlEvents:UIControlEventValueChanged];
-        [safariAppSwitch addTarget:self action:@selector(handleSafariAppSwitch) forControlEvents:UIControlEventValueChanged];
-        [safariViewSwitch addTarget:self action:@selector(handleSafariViewSwitch) forControlEvents:UIControlEventValueChanged];
-        [chromeSwitch addTarget:self action:@selector(handleChromeSwitch) forControlEvents:UIControlEventValueChanged];
+        [youTubeSwitch addTarget:self action:@selector(handleYouTubeSwitch) forControlEvents:UIControlEventValueChanged];
     }	
 	
 	return self;
@@ -124,12 +119,40 @@
     
     // get the user's saved api server address
     NSString *userServer = [[NSUserDefaults standardUserDefaults] objectForKey:@"serverApi"];
-    NSUInteger index = [apiServerAddresses indexOfObject:userServer];
+    NSUInteger serverIndex = [apiServerAddresses indexOfObject:userServer];
     // if manually entered API, default the picker to the zero slot (manual)
     // otherwise, set the picker to the server saved in the "serverApi" user default
-    if (index == NSNotFound) index = 0;
-    [serverPicker selectRow:index inComponent:0 animated:NO];
+    if (serverIndex == NSNotFound) serverIndex = 0;
+    [serverPicker selectRow:serverIndex inComponent:0 animated:NO];
     [serverPicker reloadComponent:0];
+    
+    // available browser types vary based on availability of apps & iOS version
+    browserTypes = [[NSMutableArray alloc] init];
+    browserTypesValues = [[NSMutableArray alloc] init];
+    // everyone gets web view
+    [browserTypes addObject:@"Web View"];
+    [browserTypesValues addObject:[NSNumber numberWithInteger:LCBrowserTypeWebView]];
+    // only iOS 9+ can use safari view
+    if ([self canOpenSafariView]) {
+        [browserTypes addObject:@"Safari View"];
+        [browserTypesValues addObject:[NSNumber numberWithInteger:LCBrowserTypeSafariView]];
+    }
+    // everyone gets safari app
+    [browserTypes addObject:@"Safari App"];
+    [browserTypesValues addObject:[NSNumber numberWithInteger:LCBrowserTypeSafariApp]];
+    //only users with chrome installed
+    if ([self canOpenChromeApp]) {
+        [browserTypes addObject:@"Chrome App"];
+        [browserTypesValues addObject:[NSNumber numberWithInteger:LCBrowserTypeChromeApp]];
+    }
+    
+    // get the user's browser preference
+    NSNumber *browserPref = [NSNumber numberWithInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"browserPref"]];
+    NSUInteger browserPrefIndex = [browserTypesValues indexOfObject:browserPref];
+    // if the user's browser preference is no longer available on device, default back to web view
+    if (browserPrefIndex == NSNotFound) browserPrefIndex = 0;
+    [browserPrefPicker selectRow:browserPrefIndex inComponent:0 animated:NO];
+    [browserPrefPicker reloadComponent:0];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -183,7 +206,7 @@
 	return slider;
 }
 
-- (UIPickerView *)generatePickerViewWithKey:(NSString *)key {
+- (UIPickerView *)generatePickerViewWithTag:(NSUInteger)tag {
     CGFloat frameWidth;
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         frameWidth = 220;
@@ -196,6 +219,8 @@
     picker.delegate = self;
     picker.showsSelectionIndicator = YES;
     picker.clipsToBounds = YES;
+    picker.tintColor = [UIColor darkGrayColor];
+    picker.tag = tag;
     
     return picker;
 }
@@ -277,34 +302,23 @@
     picsQualityLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(slider.value*100)];
 }
 
--(void)handleSafariAppSwitch {
-    if (safariAppSwitch.on) {
-        [safariViewSwitch setOn:NO animated:YES];
-        [chromeSwitch setOn:NO animated:YES];
-    }
+-(BOOL)canOpenChromeApp {
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]];
 }
 
--(void)handleSafariViewSwitch {
-    if (safariViewSwitch.on) {
-        [safariAppSwitch setOn:NO animated:YES];
-        [chromeSwitch setOn:NO animated:YES];
-    }
+-(BOOL)canOpenSafariView {
+    return [SFSafariViewController class];
 }
 
--(void)handleChromeSwitch {
-    if (![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Google Chrome"
+-(void)handleYouTubeSwitch {
+    if (![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"youtube://"]]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"YouTube"
                                                             message:@"App not found on device, install it first to use this option."
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
-        [chromeSwitch setOn:NO animated:YES];
+        [youTubeSwitch setOn:NO animated:YES];
         [alertView show];
-    }
-    
-    if (chromeSwitch.on) {
-        [safariAppSwitch setOn:NO animated:YES];
-        [safariViewSwitch setOn:NO animated:YES];
     }
 }
 
@@ -317,7 +331,6 @@
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
 	[defaults setBool:orderByPostDateSwitch.on  forKey:@"orderByPostDate"];
     [defaults setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
-//	[defaults setBool:darkModeSwitch.on         forKey:@"darkMode"];
 	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
 	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
 	[defaults setBool:lolTagsSwitch.on          forKey:@"lolTags"];
@@ -326,18 +339,15 @@
     NSNumber *picsQuality = [NSNumber numberWithFloat:picsQualitySlider.value];
     [defaults setObject:picsQuality             forKey:@"picsQuality"];
     
-	[defaults setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
-    [defaults setBool:safariAppSwitch.on        forKey:@"useSafariApp"];
-    [defaults setBool:([SFSafariViewController class] ? safariViewSwitch.on : NO) forKey:@"useSafariView"];
-    [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
-//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+	[defaults setBool:youTubeSwitch.on          forKey:@"useYouTube"];
+    [defaults setInteger:[browserTypesValues[[browserPrefPicker selectedRowInComponent:0]] integerValue] forKey:@"browserPref"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
-	
-    //	if (pushMessagesSwitch.on) {
-    //        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-    //    } else {
-    //        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
-    //    }
+//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+//    if (pushMessagesSwitch.on) {
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+//    } else {
+//        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+//    }
     
 	NSString *serverApi = serverField.text;
 	serverApi = [serverApi stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
@@ -359,17 +369,11 @@
     [store setObject:picsPasswordField.text  forKey:@"picsPassword"];
 	[store setBool:orderByPostDateSwitch.on  forKey:@"orderByPostDate"];
     [store setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
-//	[store setBool:darkModeSwitch.on         forKey:@"darkMode"];
 	[store setBool:collapseSwitch.on         forKey:@"collapse"];
-//	[store setBool:landscapeSwitch.on        forKey:@"landscape"];
 	[store setBool:lolTagsSwitch.on          forKey:@"lolTags"];
     [store setBool:picsResizeSwitch.on       forKey:@"picsResize"];
     [store setObject:picsQuality             forKey:@"picsQuality"];
-	[store setBool:youtubeSwitch.on          forKey:@"embedYoutube"];
-    [store setBool:safariAppSwitch.on        forKey:@"useSafariApp"];
-    [store setBool:([SFSafariViewController class] ? safariViewSwitch.on : NO) forKey:@"useSafariView"];
-    [store setBool:chromeSwitch .on          forKey:@"useChrome"];
-//	[store setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+	[store setBool:youTubeSwitch.on          forKey:@"useYouTube"];
     [store setBool:modToolsSwitch.on         forKey:@"modTools"];
 	[store setObject:serverApi               forKey:@"serverApi"];
 	[store setBool:interestingSwitch.on      forKey:@"postCategory.informative"];
@@ -433,7 +437,7 @@
             break;
 			
 		case 2:
-            return [SFSafariViewController class] ? 10 : 9;
+            return 8;
 			break;
 			
 		case 3:
@@ -594,51 +598,36 @@
 				break;
                 
             case 2:
+                cell.accessoryView = browserPrefPicker;
+                cell.textLabel.text = @"Browser Preference:";
+                break;
+                
+            case 3:
 				cell.accessoryView = lolTagsSwitch;
 				cell.textLabel.text = @"Enable [lol] Tags:";
 				break;
                 
-			case 3:
+			case 4:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Enable Mod Tools:";
 				break;
 
-            case 4:
+            case 5:
                 cell.accessoryView = orderByPostDateSwitch;
                 cell.textLabel.text = @"Scroll Replies By Date:";
                 break;
                 
-			case 5:
+			case 6:
 				cell.accessoryView = saveSearchesSwitch;
 				cell.textLabel.text = @"Save Searches:";
 				break;
                 
-            case 6:
-                cell.accessoryView = youtubeSwitch;
+            case 7:
+                cell.accessoryView = youTubeSwitch;
                 cell.textLabel.text = @"Use YouTube:";
                 break;
                 
-            case 7:
-                cell.accessoryView = chromeSwitch;
-                cell.textLabel.text = @"Use Chrome:";
-                break;
-                
-            case 8:
-				cell.accessoryView = safariAppSwitch;
-				cell.textLabel.text = @"Use Safari App:";
-				break;
-
-            case 9:
-                cell.accessoryView = safariViewSwitch;
-                cell.textLabel.text = @"Use Safari View:";
-                break;
-				
-//			case 10:
-//				cell.accessoryView = darkModeSwitch;
-//				cell.textLabel.text = @"Dark Mode:";
-//				break;
-                
-//			case 11:
+//			case 8:
 //				cell.accessoryView = pushMessagesSwitch;
 //				cell.textLabel.text = @"Push Messages:";
 //				break;
@@ -751,11 +740,21 @@
 #pragma mark UIPickerView delegate methods
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    serverField.text = apiServerAddresses[row];
+    // handle the picker view(s) appropriately
+    if (pickerView.tag == 0) {
+        serverField.text = apiServerAddresses[row];
+    }
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return apiServerNames.count;
+    // handle the picker view(s) appropriately
+    if (pickerView.tag == 0) {
+        return apiServerNames.count;
+    } else if (pickerView.tag == 1) {
+        return browserTypes.count;
+    }
+    
+    return 0;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -763,7 +762,16 @@
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-    NSString *title = apiServerNames[row];
+    NSString *title;
+    
+    // handle the picker view(s) appropriately
+    if (pickerView.tag == 0) {
+        title = apiServerNames[row];
+    } else if (pickerView.tag == 1) {
+        title = browserTypes[row];
+    } else {
+        title = @"";
+    }
     
     // dumb hack to change the font color within a picker view
     // create an attributed string and set it in the label after getting a reference to the label for this row
@@ -772,6 +780,7 @@
     if (!label) {
         label = [[UILabel alloc] init];
         label.attributedText = attributedTitle;
+        label.textAlignment = NSTextAlignmentCenter;
     }
     return label;
 }

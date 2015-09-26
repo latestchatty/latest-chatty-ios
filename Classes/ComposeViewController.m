@@ -81,7 +81,6 @@
     UIMenuController *menu = [UIMenuController sharedMenuController];
     menu.menuItems = [NSArray arrayWithObject:[[UIMenuItem alloc] initWithTitle:@"Tag" action:@selector(styleSelection)]];
     
-    [postContent becomeFirstResponder];
     postContent.textContainerInset = UIEdgeInsetsMake(5, 5, 5, 5);
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -113,6 +112,8 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }
+    
+    [postContent becomeFirstResponder];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
