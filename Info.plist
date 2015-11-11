@@ -33,6 +33,11 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>4.5.1.0</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>youtube</string>
+		<string>googlechrome</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -42,6 +47,41 @@
 	</dict>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeLove</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>latestchatty2.myreplies</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Replies to me</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>latestchatty2.sendmessage</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>My Messages</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeMessage</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeSearch</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Search</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>latestchatty2.search</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeCompose</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>New Comment</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>latestchatty2.newcomment</string>
+		</dict>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIPrerenderedIcon</key>
@@ -65,10 +105,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>youtube</string>
-		<string>googlechrome</string>
-	</array>
 </dict>
 </plist>

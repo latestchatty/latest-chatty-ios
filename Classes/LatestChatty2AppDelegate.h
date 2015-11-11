@@ -28,6 +28,8 @@
 	SlideOutViewController *slideOutViewController;
 }
 
+@property (nonatomic, strong) UIApplicationShortcutItem *launchedShortcutItem;
+
 @property (nonatomic, strong) NSDateFormatter *formatter;
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;

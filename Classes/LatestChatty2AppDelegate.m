@@ -19,7 +19,8 @@
             navigationController,
             contentNavigationController,
             slideOutViewController,
-            formatter;
+            formatter,
+            launchedShortcutItem;
 
 + (LatestChatty2AppDelegate*)delegate {
     return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -91,9 +92,62 @@
     return deckController;
 }
 
+- (BOOL)handleShortcutItem: (UIApplicationShortcutItem *) shortcutItem {
+    bool handled = FALSE;
+    NSArray *shortcutTypes = @[@"latestchatty2.sendmessage", @"latestchatty2.search", @"latestchatty2.newcomment", @"latestchatty2.myreplies"];
+    int shortcutItemType = [shortcutTypes indexOfObject:shortcutItem.type];
+    
+    UIViewController *viewController;
+    
+    switch (shortcutItemType) {
+        case 0: {
+            viewController = [MessagesViewController controllerWithNib];
+            handled = TRUE;
+            break;
+        }
+        case 1: {
+            viewController = [SearchViewController controllerWithNib];
+            handled = TRUE;
+            break;
+        }
+        case 2: {
+            viewController = [[ComposeViewController alloc] initWithStoryId:0 post:nil];
+            handled = TRUE;
+            break;
+        }
+        case 3: {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *user = [defaults stringForKey:@"username"];
+            viewController = [[SearchResultsViewController alloc] initWithTerms:@""
+                                                                         author:@""
+                                                                   parentAuthor:user];
+            handled = TRUE;
+            break;
+        }
+        default:
+            break;
+    }
+    if (viewController) {
+        if ([self isPadDevice]) {
+            [self.contentNavigationController pushViewController:viewController animated:YES];
+        } else {
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        viewController = nil;
+    }
+    return handled;
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    BOOL *handledShortCutItem = [self handleShortcutItem: shortcutItem];
+    completionHandler(handledShortCutItem);
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Crashlytics startWithAPIKey:@"7e5579f671abccb0156cc1a6de1201f981ef170c"];
     
+    launchedShortcutItem = [launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
+
     [self customizeAppearance];
 
     self.formatter = [[NSDateFormatter alloc] init];
@@ -540,6 +594,10 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 //    NSLog(@"post active notification");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateViewsForMultitasking" object:self];
+    
+    if (!launchedShortcutItem) { return; }
+    [self handleShortcutItem: launchedShortcutItem];
+    launchedShortcutItem = nil;
 }
 
 // Handle the registered latestchatty:// URL scheme
