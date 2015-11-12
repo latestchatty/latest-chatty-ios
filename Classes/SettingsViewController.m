@@ -214,7 +214,7 @@
         frameWidth = 170;
     }
     
-    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, frameWidth, 44)];
+    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, frameWidth, 88)];
     
     picker.delegate = self;
     picker.showsSelectionIndicator = YES;
