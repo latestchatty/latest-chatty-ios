@@ -12,7 +12,7 @@
 #include "ThreadViewController.h"
 #include "NoContentController.h"
 
-@interface ChattyViewController () <UIViewControllerPreviewingDelegate>
+@interface ChattyViewController ()
 
 -(void)loadMorePosts;
 
@@ -85,7 +85,6 @@
 }
 
 - (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
-
     if ([self.presentedViewController isKindOfClass:[ThreadViewController class]]) {
         return nil;
     }
@@ -98,8 +97,10 @@
         Post *thread = [threads objectAtIndex:indexPath.row];
         ThreadViewController *previewController = [[ThreadViewController alloc] initWithThreadId:thread.modelId];
         previewingContext.sourceRect = [self.view convertRect:tableCell.frame fromView:self.tableView];
+        
         return previewController;
     }
+    
     return nil;
 }
 
@@ -108,7 +109,7 @@
     
     [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = self;
 
-    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+    if ([[LatestChatty2AppDelegate delegate] isForceTouchEnabled]) {
         [self registerForPreviewingWithDelegate:(id)self sourceView:self.view];
     }
     

@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.5.1</string>
+	<string>4.6.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -32,7 +32,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4.5.1.0</string>
+	<string>4.6.0.0</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>youtube</string>
@@ -52,18 +52,18 @@
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeLove</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>latestchatty2.myreplies</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Replies to me</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>latestchatty2.myreplies</string>
 		</dict>
 		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>latestchatty2.sendmessage</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>My Messages</string>
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeMessage</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>My Messages</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>latestchatty2.mymessages</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>

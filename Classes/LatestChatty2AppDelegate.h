@@ -59,6 +59,7 @@
 - (BOOL)isPadDevice;
 - (BOOL)isCompactView;
 - (BOOL)isSplitView;
+- (BOOL)isForceTouchEnabled;
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 	
 @end
