@@ -31,8 +31,36 @@
     return [NSDictionary dictionaryWithObjectsAndKeys:@"Stories", @"type", stories, @"stories", nil];
 }
 
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self.navigationController showViewController:viewControllerToCommit sender:nil];
+}
+
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
+    if ([self.presentedViewController isKindOfClass:[StoryViewController class]]) {
+        return nil;
+    }
+    
+    CGPoint cellPostion = [self.tableView convertPoint:location fromView:self.view];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:cellPostion];
+    
+    if (indexPath) {
+        UITableViewCell *tableCell = [self.tableView cellForRowAtIndexPath:indexPath];
+        Story *story = [stories objectAtIndex:indexPath.row];
+        StoryViewController *previewController = [[StoryViewController alloc] initWithStory:story];
+        previewingContext.sourceRect = [self.view convertRect:tableCell.frame fromView:self.tableView];
+        
+        return previewController;
+    }
+    
+    return nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if ([[LatestChatty2AppDelegate delegate] isForceTouchEnabled]) {
+        [self registerForPreviewingWithDelegate:(id)self sourceView:self.view];
+    }
     
     if (stories == nil || [stories count] == 0) [self refresh:self.refreshControl];
     

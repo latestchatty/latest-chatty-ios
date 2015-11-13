@@ -11,7 +11,7 @@
 #import "Message.h"
 #import "MessageViewController.h"
 
-@interface MessagesViewController : ModelListViewController {
+@interface MessagesViewController : ModelListViewController <UIViewControllerPreviewingDelegate> {
     NSMutableArray *messages;
 }
 
