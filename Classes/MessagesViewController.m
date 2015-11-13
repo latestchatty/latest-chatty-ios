@@ -49,6 +49,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if ([[LatestChatty2AppDelegate delegate] isForceTouchEnabled]) {
+        [self registerForPreviewingWithDelegate:(id)self sourceView:self.view];
+    }
+    
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
                                                                        style:UIBarButtonItemStylePlain
