@@ -384,7 +384,7 @@
     
     [store synchronize];
     
-    [Crashlytics setUserName:[defaults stringForKey:@"username"]];
+    [[Crashlytics sharedInstance] setUserName:[defaults stringForKey:@"username"]];
 }
 
 - (IBAction)dismiss:(id)sender {

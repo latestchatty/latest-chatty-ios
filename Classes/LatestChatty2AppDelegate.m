@@ -94,6 +94,7 @@
 
 - (BOOL)handleShortcutItem:(UIApplicationShortcutItem *) shortcutItem {
     UIViewController *viewController;
+    NSDictionary *userInfo;
     BOOL handled = NO;
     
     NSArray *shortcutTypes = @[@"latestchatty2.mymessages",
@@ -105,11 +106,19 @@
     switch (shortcutItemType) {
         case 0: {
             viewController = [MessagesViewController controllerWithNib];
+            
+            userInfo = @{@"selectedIndex": @2};
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SetSelectedIndex" object:nil userInfo:userInfo];
+            
             handled = YES;
             break;
         }
         case 1: {
             viewController = [SearchViewController controllerWithNib];
+            
+            userInfo = @{@"selectedIndex": @3};
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SetSelectedIndex" object:nil userInfo:userInfo];
+            
             handled = YES;
             break;
         }
@@ -135,6 +144,7 @@
         if ([self isPadDevice]) {
             [self.contentNavigationController pushViewController:viewController animated:YES];
         } else {
+            [(IIViewDeckController*)self.window.rootViewController closeLeftViewAnimated:YES];
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             [self.navigationController pushViewController:viewController animated:YES];
         }
@@ -216,7 +226,7 @@
                                                  name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                object:store];
     
-    [Crashlytics setUserName:[defaults stringForKey:@"username"]];
+    [[Crashlytics sharedInstance] setUserName:[defaults stringForKey:@"username"]];
     
     // clear the captured date of the last successful lol fetch
     [defaults removeObjectForKey:@"lolFetchDate"];
@@ -641,6 +651,7 @@
     if ([self isPadDevice]) {
         [self.contentNavigationController pushViewController:viewController animated:YES];
     } else {
+        [(IIViewDeckController*)self.window.rootViewController closeLeftViewAnimated:YES];
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         [self.navigationController pushViewController:viewController animated:YES];
     }
