@@ -46,7 +46,7 @@
     if (indexPath) {
         UITableViewCell *tableCell = [self.tableView cellForRowAtIndexPath:indexPath];
         Story *story = [stories objectAtIndex:indexPath.row];
-        StoryViewController *previewController = [[StoryViewController alloc] initWithStory:story];
+        StoryViewController *previewController = [[StoryViewController alloc] initWithStoryId:story.modelId];
         previewingContext.sourceRect = [self.view convertRect:tableCell.frame fromView:self.tableView];
         
         return previewController;
