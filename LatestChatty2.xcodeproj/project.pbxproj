@@ -99,8 +99,8 @@
 		CD48681E17EB5B430071F3D7 /* Fart8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680D17EB5B430071F3D7 /* Fart8.mp3 */; };
 		CD48681F17EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
 		CD48682017EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
-		CD50D7F21BA347E3007108E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
-		CD50D7F31BA347E3007108E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		CD50D7F21BA347E3007108E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */; };
+		CD50D7F31BA347E3007108E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */; };
 		CD760000174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760001174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760002174C734B00B378E6 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFF1174C734B00B378E6 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -296,8 +296,8 @@
 		CD8BA2C416306A9E00ED5C5E /* GoogleChrome-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C016306A9D00ED5C5E /* GoogleChrome-Icon@2x.png */; };
 		CD8BA2C516306A9E00ED5C5E /* GoogleChrome-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C116306A9E00ED5C5E /* GoogleChrome-Icon@2x~ipad.png */; };
 		CD8BA2C616306A9E00ED5C5E /* GoogleChrome-Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C216306A9E00ED5C5E /* GoogleChrome-Icon~ipad.png */; };
-		CD8BDDCC1BF4EE90008AF895 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8BDDCB1BF4EE90008AF895 /* Fabric.framework */; settings = {ASSET_TAGS = (); }; };
-		CD8BDDCD1BF4EE90008AF895 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8BDDCB1BF4EE90008AF895 /* Fabric.framework */; settings = {ASSET_TAGS = (); }; };
+		CD8BDDCC1BF4EE90008AF895 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8BDDCB1BF4EE90008AF895 /* Fabric.framework */; };
+		CD8BDDCD1BF4EE90008AF895 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8BDDCB1BF4EE90008AF895 /* Fabric.framework */; };
 		CDA01B1D1730AD5B00E24A28 /* Lock.16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */; };
 		CDA01B1E1730AD5B00E24A28 /* Lock.16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */; };
 		CDA01B211731A31D00E24A28 /* ReviewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */; };
