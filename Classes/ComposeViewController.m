@@ -456,7 +456,9 @@
         // always send refesh msg to previous controller after success on iPhone
         controller = (ModelListViewController *)self.navigationController.backViewController;
     }
-    [controller refresh:self];
+    if ([controller isKindOfClass:[ChattyViewController class]]) {
+        [controller refresh:self];
+    }
     
 	[self.navigationController popViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeDisappeared" object:self];
