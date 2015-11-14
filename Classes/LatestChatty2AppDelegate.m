@@ -58,10 +58,12 @@
     self.slideOutViewController =  [SlideOutViewController controllerWithNib];
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
 //    [slideOutViewController.view setFrame:CGRectMake(0, 20, 768, 1004)];
-    [slideOutViewController.view setFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
+    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+    [slideOutViewController.view setFrame:windowBounds];
 
-    UIView *topBar = [UIView viewWithFrame:CGRectMake(0, 0, 1024, 20)];
+    UIView *topBar = [UIView viewWithFrame:CGRectMake(0, 0, windowBounds.size.width, 20)];
     topBar.backgroundColor = [UIColor lcTableBackgroundColor];
+    [topBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [slideOutViewController.view addSubview:topBar];
     
     self.window.rootViewController = slideOutViewController;
