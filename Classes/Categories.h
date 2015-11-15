@@ -90,6 +90,7 @@
 + (NSDictionary *)blueTextAttributesDictionary;
 + (NSDictionary *)grayTextAttributesDictionary;
 + (NSDictionary *)textShadowAttributesDictionary;
++ (NSDictionary *)cancelTextAttributesDictionary;
 
 + (NSDictionary *)blueHighlightTextAttributesDictionary;
 

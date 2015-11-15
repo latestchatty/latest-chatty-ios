@@ -82,15 +82,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuIcon.24.png"]
-                                                                       style:UIBarButtonItemStylePlain
-                                                                      target:self
-                                                                      action:@selector(resignAndToggle)];
-        self.navigationItem.leftBarButtonItem = menuButton;
-    }
-    
     [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
+    [cancelButton setTitleTextAttributes:[NSDictionary cancelTextAttributesDictionary] forState:UIControlStateNormal];
     
     [tableView setSeparatorColor:[UIColor lcGroupedSeparatorColor]];
     [tableView setBackgroundView:nil];
@@ -223,12 +216,6 @@
     picker.tag = tag;
     
     return picker;
-}
-
-- (void)resignAndToggle {
-    [[self view] endEditing:YES];
-    
-    [self.viewDeckController toggleLeftView];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
@@ -385,6 +372,10 @@
     [store synchronize];
     
     [[Crashlytics sharedInstance] setUserName:[defaults stringForKey:@"username"]];
+}
+
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)dismiss:(id)sender {
