@@ -57,6 +57,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if ([[LatestChatty2AppDelegate delegate] isForceTouchEnabled]) {
+        [content setAllowsLinkPreview:YES];
+    }
+    
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"Menu-Button-Thread.png"]
                                                                       style:UIBarButtonItemStylePlain
                                                                      target:self
