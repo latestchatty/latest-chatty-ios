@@ -144,10 +144,16 @@
     
     if (viewController) {
         if ([self isPadDevice]) {
+            // handle the view controller
             [self.contentNavigationController pushViewController:viewController animated:YES];
         } else {
-            [(IIViewDeckController*)self.window.rootViewController closeLeftViewAnimated:YES];
+            // close view deck menu if it was opened
+            [[self.navigationController viewDeckController] closeLeftView];
+            
+            // dismiss any modally presented view controller
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            
+            // handle the view controller
             [self.navigationController pushViewController:viewController animated:YES];
         }
         
@@ -653,8 +659,13 @@
     if ([self isPadDevice]) {
         [self.contentNavigationController pushViewController:viewController animated:YES];
     } else {
-        [(IIViewDeckController*)self.window.rootViewController closeLeftViewAnimated:YES];
+        // close view deck menu if it was opened
+        [[self.navigationController viewDeckController] closeLeftView];
+        
+        // dismiss any modally presented view controllers
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        
+        // handle the view controller
         [self.navigationController pushViewController:viewController animated:YES];
     }
     
