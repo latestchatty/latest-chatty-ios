@@ -44,6 +44,8 @@
 }
 
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
+    [super didFinishLoadingModel:nil otherData:nil];
+    
     self.story = model;
     self.storyLoader = nil;
     
@@ -51,6 +53,8 @@
 }
 
 - (void)didFailToLoadModels {
+    [super didFailToLoadModels];
+    
     self.storyLoader = nil;
 }
 
@@ -68,6 +72,7 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
     // Load story
+    [super refresh:nil];
     self.storyLoader = [Story findById:storyId delegate:self];
     
     NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%lu", (unsigned long)story.modelId];

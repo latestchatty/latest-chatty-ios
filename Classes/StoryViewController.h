@@ -12,7 +12,7 @@
 #import "BrowserViewController.h"
 @import SafariServices;
 
-@interface StoryViewController : UIViewController <ModelLoadingDelegate, UIWebViewDelegate, SFSafariViewControllerDelegate> {
+@interface StoryViewController : ModelListViewController <ModelLoadingDelegate, UIWebViewDelegate, SFSafariViewControllerDelegate> {
     NSUInteger storyId;
     ModelLoader *storyLoader;
     Story *story;
