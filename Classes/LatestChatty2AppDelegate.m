@@ -19,10 +19,11 @@
             navigationController,
             contentNavigationController,
             slideOutViewController,
-            formatter;
+            formatter,
+            launchedShortcutItem;
 
-+ (LatestChatty2AppDelegate*)delegate {
-    return (LatestChatty2AppDelegate*)[UIApplication sharedApplication].delegate;
++ (LatestChatty2AppDelegate *)delegate {
+    return (LatestChatty2AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
 - (void)setupInterfaceForPhoneWithOptions:(NSDictionary *)launchOptions {
@@ -57,16 +58,18 @@
     self.slideOutViewController =  [SlideOutViewController controllerWithNib];
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
 //    [slideOutViewController.view setFrame:CGRectMake(0, 20, 768, 1004)];
-    [slideOutViewController.view setFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
+    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+    [slideOutViewController.view setFrame:windowBounds];
 
-    UIView *topBar = [UIView viewWithFrame:CGRectMake(0, 0, 1024, 20)];
+    UIView *topBar = [UIView viewWithFrame:CGRectMake(0, 0, windowBounds.size.width, 20)];
     topBar.backgroundColor = [UIColor lcTableBackgroundColor];
+    [topBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [slideOutViewController.view addSubview:topBar];
     
     self.window.rootViewController = slideOutViewController;
 }
 
-- (IIViewDeckController*)generateControllerStack {
+- (IIViewDeckController *)generateControllerStack {
     // Left controller
     RootViewController* leftController = [[RootViewController alloc] init];
     
@@ -91,9 +94,85 @@
     return deckController;
 }
 
+- (BOOL)handleShortcutItem:(UIApplicationShortcutItem *) shortcutItem {
+    UIViewController *viewController;
+    NSDictionary *userInfo;
+    BOOL handled = NO;
+    
+    NSArray *shortcutTypes = @[@"latestchatty2.mymessages",
+                               @"latestchatty2.search",
+                               @"latestchatty2.newcomment",
+                               @"latestchatty2.myreplies"];
+    NSUInteger shortcutItemType = [shortcutTypes indexOfObject:shortcutItem.type];
+    
+    switch (shortcutItemType) {
+        case 0: {
+            viewController = [MessagesViewController controllerWithNib];
+            
+            userInfo = @{@"selectedIndex": @2};
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SetSelectedIndex" object:nil userInfo:userInfo];
+            
+            handled = YES;
+            break;
+        }
+        case 1: {
+            viewController = [SearchViewController controllerWithNib];
+            
+            userInfo = @{@"selectedIndex": @3};
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SetSelectedIndex" object:nil userInfo:userInfo];
+            
+            handled = YES;
+            break;
+        }
+        case 2: {
+            viewController = [[ComposeViewController alloc] initWithStoryId:0 post:nil];
+            handled = YES;
+            break;
+        }
+        case 3: {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *user = [defaults stringForKey:@"username"];
+            viewController = [[SearchResultsViewController alloc] initWithTerms:@""
+                                                                         author:@""
+                                                                   parentAuthor:user];
+            handled = YES;
+            break;
+        }
+        default:
+            break;
+    }
+    
+    if (viewController) {
+        if ([self isPadDevice]) {
+            // handle the view controller
+            [self.contentNavigationController pushViewController:viewController animated:YES];
+        } else {
+            // close view deck menu if it was opened
+            [[self.navigationController viewDeckController] closeLeftView];
+            
+            // dismiss any modally presented view controller
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            
+            // handle the view controller
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        
+        viewController = nil;
+    }
+    
+    return handled;
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+
+    BOOL *handledShortCutItem = [self handleShortcutItem: shortcutItem];
+    completionHandler(handledShortCutItem);
+
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Crashlytics startWithAPIKey:@"7e5579f671abccb0156cc1a6de1201f981ef170c"];
-    
+
     [self customizeAppearance];
 
     self.formatter = [[NSDateFormatter alloc] init];
@@ -155,7 +234,7 @@
                                                  name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                object:store];
     
-    [Crashlytics setUserName:[defaults stringForKey:@"username"]];
+    [[Crashlytics sharedInstance] setUserName:[defaults stringForKey:@"username"]];
     
     // clear the captured date of the last successful lol fetch
     [defaults removeObjectForKey:@"lolFetchDate"];
@@ -173,6 +252,10 @@
         [self setupInterfaceForPadWithOptions:launchOptions];
     } else {
         [self setupInterfaceForPhoneWithOptions:launchOptions];
+    }
+    
+    if ([self isForceTouchEnabled]) {
+        launchedShortcutItem = [launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
     }
     
     [window makeKeyAndVisible];
@@ -505,6 +588,17 @@
     return result;
 }
 
+- (BOOL)isForceTouchEnabled {
+    BOOL result = NO;
+    
+    if ([self.window.rootViewController.traitCollection respondsToSelector:@selector(forceTouchCapability)] &&
+        (self.window.rootViewController.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable)) {
+        result = YES;
+    }
+    
+    return result;
+}
+
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [self cleanUpCollapsedThreads];
     [self cleanUpPinnedThreads];
@@ -540,6 +634,10 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 //    NSLog(@"post active notification");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateViewsForMultitasking" object:self];
+    
+    if (!launchedShortcutItem) { return; }
+    [self handleShortcutItem: launchedShortcutItem];
+    launchedShortcutItem = nil;
 }
 
 // Handle the registered latestchatty:// URL scheme
@@ -561,7 +659,13 @@
     if ([self isPadDevice]) {
         [self.contentNavigationController pushViewController:viewController animated:YES];
     } else {
+        // close view deck menu if it was opened
+        [[self.navigationController viewDeckController] closeLeftView];
+        
+        // dismiss any modally presented view controllers
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        
+        // handle the view controller
         [self.navigationController pushViewController:viewController animated:YES];
     }
     

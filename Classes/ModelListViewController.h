@@ -26,6 +26,6 @@
 - (void)showLoadingSpinner;
 - (void)hideLoadingSpinner;
 
-- (IBAction)refresh:(id)sender;
+- (void)refresh:(id)sender;
 
 @end

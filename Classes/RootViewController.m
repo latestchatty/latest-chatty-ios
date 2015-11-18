@@ -113,6 +113,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForDonate) name:@"PushBrowserForDonate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewsForMultitasking:) name:@"UpdateViewsForMultitasking" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setSelectedIndexNotification:) name:@"SetSelectedIndex" object:nil];
 }
 
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
@@ -147,6 +148,16 @@
         }
     }
     return NO;
+}
+
+- (void)setSelectedIndexNotification:(NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    NSUInteger index = [[userInfo objectForKey:@"selectedIndex"] intValue];
+    
+    NSLog(@"Setting index: %lu", (unsigned long)index);
+    
+    [self setSelectedIndex:[NSIndexPath indexPathForRow:index inSection:0]];
+    [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)pushBrowserForCredits {

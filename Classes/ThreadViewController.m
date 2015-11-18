@@ -196,6 +196,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if ([[LatestChatty2AppDelegate delegate] isForceTouchEnabled]) {
+        [postView setAllowsLinkPreview:YES];
+    }
+    
     if (rootPost) {
         [self.tableView reloadData];
         NSIndexPath *indexPath = selectedIndexPath;

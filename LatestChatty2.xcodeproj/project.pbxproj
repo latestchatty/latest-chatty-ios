@@ -99,8 +99,8 @@
 		CD48681E17EB5B430071F3D7 /* Fart8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680D17EB5B430071F3D7 /* Fart8.mp3 */; };
 		CD48681F17EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
 		CD48682017EB5B430071F3D7 /* Fart9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD48680E17EB5B430071F3D7 /* Fart9.mp3 */; };
-		CD50D7F21BA347E3007108E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
-		CD50D7F31BA347E3007108E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		CD50D7F21BA347E3007108E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */; };
+		CD50D7F31BA347E3007108E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD50D7F11BA347E3007108E4 /* LaunchScreen.storyboard */; };
 		CD760000174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760001174C734B00B378E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFEF174C734B00B378E6 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CD760002174C734B00B378E6 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76FFF1174C734B00B378E6 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -296,6 +296,8 @@
 		CD8BA2C416306A9E00ED5C5E /* GoogleChrome-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C016306A9D00ED5C5E /* GoogleChrome-Icon@2x.png */; };
 		CD8BA2C516306A9E00ED5C5E /* GoogleChrome-Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C116306A9E00ED5C5E /* GoogleChrome-Icon@2x~ipad.png */; };
 		CD8BA2C616306A9E00ED5C5E /* GoogleChrome-Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8BA2C216306A9E00ED5C5E /* GoogleChrome-Icon~ipad.png */; };
+		CD8BDDCC1BF4EE90008AF895 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8BDDCB1BF4EE90008AF895 /* Fabric.framework */; };
+		CD8BDDCD1BF4EE90008AF895 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8BDDCB1BF4EE90008AF895 /* Fabric.framework */; };
 		CDA01B1D1730AD5B00E24A28 /* Lock.16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */; };
 		CDA01B1E1730AD5B00E24A28 /* Lock.16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */; };
 		CDA01B211731A31D00E24A28 /* ReviewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */; };
@@ -790,6 +792,7 @@
 		CD8BA2C016306A9D00ED5C5E /* GoogleChrome-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GoogleChrome-Icon@2x.png"; path = "Assets/GoogleChrome-Icon@2x.png"; sourceTree = "<group>"; };
 		CD8BA2C116306A9E00ED5C5E /* GoogleChrome-Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GoogleChrome-Icon@2x~ipad.png"; path = "Assets/GoogleChrome-Icon@2x~ipad.png"; sourceTree = "<group>"; };
 		CD8BA2C216306A9E00ED5C5E /* GoogleChrome-Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GoogleChrome-Icon~ipad.png"; path = "Assets/GoogleChrome-Icon~ipad.png"; sourceTree = "<group>"; };
+		CD8BDDCB1BF4EE90008AF895 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		CDA01B1C1730AD5900E24A28 /* Lock.16@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Lock.16@2x.png"; path = "Assets/Lock.16@2x.png"; sourceTree = "<group>"; };
 		CDA01B1F1731A30D00E24A28 /* ReviewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewThreadViewController.h; sourceTree = "<group>"; };
 		CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewThreadViewController.m; sourceTree = "<group>"; };
@@ -976,6 +979,7 @@
 				5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				5907C5B710A69A190028D630 /* libz.dylib in Frameworks */,
+				CD8BDDCC1BF4EE90008AF895 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -994,6 +998,7 @@
 				CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */,
 				CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */,
 				CDA1182216C1DC6600CE1375 /* libz.dylib in Frameworks */,
+				CD8BDDCD1BF4EE90008AF895 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,6 +1093,7 @@
 				5907C5AC10A69A0A0028D630 /* CFNetwork.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				CD4370D4180372DA008D9DCF /* Crashlytics.framework */,
+				CD8BDDCB1BF4EE90008AF895 /* Fabric.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				CD235A4B173AFB920078423B /* MobileCoreServices.framework */,
 				CD235A51173B1F1A0078423B /* QuartzCore.framework */,
@@ -2262,7 +2268,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2288,7 +2297,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
@@ -2373,7 +2385,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2399,7 +2414,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
@@ -2423,7 +2441,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
@@ -2477,7 +2498,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;

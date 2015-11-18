@@ -28,6 +28,8 @@
 	SlideOutViewController *slideOutViewController;
 }
 
+@property (nonatomic, strong) UIApplicationShortcutItem *launchedShortcutItem;
+
 @property (nonatomic, strong) NSDateFormatter *formatter;
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
@@ -57,6 +59,7 @@
 - (BOOL)isPadDevice;
 - (BOOL)isCompactView;
 - (BOOL)isSplitView;
+- (BOOL)isForceTouchEnabled;
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 	
 @end

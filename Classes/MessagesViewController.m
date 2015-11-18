@@ -22,8 +22,36 @@
     return self;
 }
 
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self.navigationController showViewController:viewControllerToCommit sender:nil];
+}
+
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
+    if ([self.presentedViewController isKindOfClass:[MessageViewController class]]) {
+        return nil;
+    }
+    
+    CGPoint cellPostion = [self.tableView convertPoint:location fromView:self.view];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:cellPostion];
+    
+    if (indexPath) {
+        UITableViewCell *tableCell = [self.tableView cellForRowAtIndexPath:indexPath];
+        Message *message = [messages objectAtIndex:indexPath.row];
+        MessageViewController *previewController = [[MessageViewController alloc] initWithMesage:message];
+        previewingContext.sourceRect = [self.view convertRect:tableCell.frame fromView:self.tableView];
+        
+        return previewController;
+    }
+    
+    return nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if ([[LatestChatty2AppDelegate delegate] isForceTouchEnabled]) {
+        [self registerForPreviewingWithDelegate:(id)self sourceView:self.view];
+    }
     
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]

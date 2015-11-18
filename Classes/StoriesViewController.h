@@ -19,7 +19,7 @@
 #import "StoryViewController.h"
 #import "SettingsViewController.h"
 
-@interface StoriesViewController : ModelListViewController {
+@interface StoriesViewController : ModelListViewController <UIViewControllerPreviewingDelegate> {
     NSArray *stories;
 }
 

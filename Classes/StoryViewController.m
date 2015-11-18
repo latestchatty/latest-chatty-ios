@@ -26,8 +26,7 @@
     self = [self initWithNib];
     
     self.story = aStory;
-//    self.title = aStory.title;
-    self.title = @"Story";
+    self.title = aStory.title;
     
     return self;
 }
@@ -44,6 +43,8 @@
 }
 
 - (void)didFinishLoadingModel:(id)model otherData:(id)otherData {
+    [super didFinishLoadingModel:nil otherData:nil];
+    
     self.story = model;
     self.storyLoader = nil;
     
@@ -51,11 +52,17 @@
 }
 
 - (void)didFailToLoadModels {
+    [super didFailToLoadModels];
+    
     self.storyLoader = nil;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if ([[LatestChatty2AppDelegate delegate] isForceTouchEnabled]) {
+        [content setAllowsLinkPreview:YES];
+    }
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"Menu-Button-Thread.png"]
                                                                       style:UIBarButtonItemStylePlain
@@ -64,6 +71,7 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
     // Load story
+    [super refresh:nil];
     self.storyLoader = [Story findById:storyId delegate:self];
     
     NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%lu", (unsigned long)story.modelId];
@@ -109,7 +117,7 @@
 #pragma mark Actions
 
 - (void)displayStory {
-    self.title = @"Story";
+    self.title = story.title;
     
     // Load up web view content
     NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%lu", (unsigned long)story.modelId];

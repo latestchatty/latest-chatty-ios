@@ -68,7 +68,7 @@
 
 # pragma mark Actions
 
-- (IBAction)refresh:(id)sender {
+- (void)refresh:(id)sender {
     [loader cancel];
 
     if (![sender isKindOfClass:[UIRefreshControl class]]) {
