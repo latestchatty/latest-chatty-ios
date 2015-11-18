@@ -26,8 +26,7 @@
     self = [self initWithNib];
     
     self.story = aStory;
-//    self.title = aStory.title;
-    self.title = @"Story";
+    self.title = aStory.title;
     
     return self;
 }
@@ -118,7 +117,7 @@
 #pragma mark Actions
 
 - (void)displayStory {
-    self.title = @"Story";
+    self.title = story.title;
     
     // Load up web view content
     NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%lu", (unsigned long)story.modelId];
