@@ -5,6 +5,10 @@ Requires iOS 8!
 Supports iOS 9, iPhone 6s, iPhone 6s Plus!
 Now includes 3D Touch support!
 
+4.6.1
+====
+- Comment reply refresh bug fix
+
 4.6.0
 ====
 3D Touch Support (iPhone 6s & 6s Plus only)
