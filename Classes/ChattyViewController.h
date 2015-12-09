@@ -14,7 +14,7 @@
 
 @class ThreadViewController;
 
-@interface ChattyViewController : ModelListViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate> {
+@interface ChattyViewController : ModelListViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIViewControllerPreviewingDelegate> {
     ThreadViewController *threadController;
     
     NSUInteger storyId;

@@ -80,11 +80,39 @@
     [super setTitle:newTitle];
 }
 
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self.navigationController showViewController:viewControllerToCommit sender:nil];
+}
+
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
+    if ([self.presentedViewController isKindOfClass:[ThreadViewController class]]) {
+        return nil;
+    }
+    
+    CGPoint cellPostion = [self.tableView convertPoint:location fromView:self.view];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:cellPostion];
+    
+    if (indexPath) {
+        UITableViewCell *tableCell = [self.tableView cellForRowAtIndexPath:indexPath];
+        Post *thread = [threads objectAtIndex:indexPath.row];
+        ThreadViewController *previewController = [[ThreadViewController alloc] initWithThreadId:thread.modelId];
+        previewingContext.sourceRect = [self.view convertRect:tableCell.frame fromView:self.tableView];
+        
+        return previewController;
+    }
+    
+    return nil;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
     
     [LatestChatty2AppDelegate delegate].contentNavigationController.delegate = self;
-	
+
+    if ([[LatestChatty2AppDelegate delegate] isForceTouchEnabled]) {
+        [self registerForPreviewingWithDelegate:(id)self sourceView:self.view];
+    }
+    
 	if (threads == nil || [threads count] == 0) {
 		[self refresh:self.refreshControl];
 	} else {

@@ -39,6 +39,7 @@
     UISwitch    *nwsSwitch;
 
     IBOutlet UIBarButtonItem *saveButton;
+    IBOutlet UIBarButtonItem *cancelButton;
     
     NSArray *apiServerNames;
     NSArray *apiServerAddresses;
@@ -46,6 +47,7 @@
     NSMutableArray *browserTypesValues;
 }
 
+- (IBAction)cancel:(id)sender;
 - (IBAction)dismiss:(id)sender;
 
 - (UITextField *)generateTextFieldWithKey:(NSString *)key;

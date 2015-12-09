@@ -396,4 +396,9 @@
     return @{NSForegroundColorAttributeName:[UIColor lcBlueColorHighlight]};
 }
 
++ (NSDictionary *)cancelTextAttributesDictionary {
+    return @{NSForegroundColorAttributeName:[UIColor lcBlueColor],
+             NSFontAttributeName:[UIFont systemFontOfSize:17]};
+}
+
 @end

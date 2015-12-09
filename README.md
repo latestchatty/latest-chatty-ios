@@ -3,6 +3,25 @@ latest-chatty-2
 
 Requires iOS 8!
 Supports iOS 9, iPhone 6s, iPhone 6s Plus!
+Now includes 3D Touch support!
+
+4.6.1
+====
+- Comment reply refresh bug fix
+
+4.6.0
+====
+3D Touch Support (iPhone 6s & 6s Plus only)
+- Peek & pop chatty threads, messages, and stories
+- Peek & pop to Safari app on URLs in thread and story views
+- App icon shortcuts for "Replies to me", "My Messages", "Search", and "New Comment"
+
+Additional Changes
+- iPad Pro layout tweaks
+- Tweak UI of API & Browser Preference selectors in Settings
+- Cancel button added to Settings
+- Loading indication added to Story view
+- Story title added to navigation bar when viewing story
 
 4.5.1
 ====
