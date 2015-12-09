@@ -5,6 +5,11 @@ Requires iOS 8!
 Supports iOS 9, iPhone 6s, iPhone 6s Plus!
 Now includes 3D Touch support!
 
+4.6.2
+====
+- iPad Pro icon addition
+- Safari View can now be dismissed with edge swipe
+
 4.6.1
 ====
 - Comment reply refresh bug fix
