@@ -302,6 +302,8 @@
     if (threadId == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
