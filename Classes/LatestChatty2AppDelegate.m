@@ -11,6 +11,7 @@
 #import "Mod.h"
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
+#import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
 @implementation LatestChatty2AppDelegate
@@ -233,8 +234,8 @@
                                              selector:@selector(storeChanged:)
                                                  name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                object:store];
-    
-    [[Crashlytics sharedInstance] setUserName:[defaults stringForKey:@"username"]];
+    [Fabric with:@[[Crashlytics class]]];
+    [CrashlyticsKit setUserName:[defaults stringForKey:@"username"]];
     
     // clear the captured date of the last successful lol fetch
     [defaults removeObjectForKey:@"lolFetchDate"];

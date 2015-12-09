@@ -33,6 +33,20 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>4.6.2.0</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>7e5579f671abccb0156cc1a6de1201f981ef170c</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>youtube</string>
