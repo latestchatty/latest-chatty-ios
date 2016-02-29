@@ -144,21 +144,7 @@
     }
     
     if (viewController) {
-        if ([self isPadDevice]) {
-            // handle the view controller
-            [self.contentNavigationController pushViewController:viewController animated:YES];
-        } else {
-            // close view deck menu if it was opened
-            [[self.navigationController viewDeckController] closeLeftView];
-            
-            // dismiss any modally presented view controller
-            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-            
-            // handle the view controller
-            [self.navigationController pushViewController:viewController animated:YES];
-        }
-        
-        viewController = nil;
+        [self handleViewController:viewController];
     }
     
     return handled;
@@ -173,7 +159,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Crashlytics startWithAPIKey:@"7e5579f671abccb0156cc1a6de1201f981ef170c"];
-
+    
     [self customizeAppearance];
 
     self.formatter = [[NSDateFormatter alloc] init];
@@ -181,18 +167,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
 //    NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
-    
-//    // Register for Push
-//    if ([defaults boolForKey:@"push.messages"]) {
-//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert
-//                                                                                         | UIUserNotificationTypeBadge
-//                                                                                         | UIUserNotificationTypeSound) categories:nil];
-//    [application registerUserNotificationSettings:settings];
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge) categories:nil];
-    [application registerUserNotificationSettings:settings];
-//    }
-    
-    // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
+//    // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
 //    if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
         [defaults removeObjectForKey:@"savedState"];
 //    }
@@ -205,7 +180,7 @@
                                      [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
-                                     //[NSNumber numberWithBool:NO],  @"push.messages",
+                                     [NSNumber numberWithBool:NO],  @"push.messages",
                                      [NSNumber numberWithBool:YES], @"picsResize",
                                      [NSNumber numberWithFloat:0.7],@"picsQuality",
                                      [NSNumber numberWithInt:0],    @"browserPref",
@@ -257,6 +232,30 @@
     
     if ([self isForceTouchEnabled]) {
         launchedShortcutItem = [launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
+    }
+    
+    //handle notification tap while app isn't running
+    if (launchOptions != nil) {
+        NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (userInfo != nil) {
+            NSLog(@"Launched from push notification: %@", userInfo);
+            
+            threadId = [[userInfo objectForKey:@"postid"] integerValue];
+            UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:threadId];
+            
+            if ([self isPadDevice]) {
+                [self.contentNavigationController pushViewController:viewController animated:YES];
+            } else {
+                // close view deck menu if it was opened
+                [[self.navigationController viewDeckController] closeLeftView];
+                
+                // dismiss any modally presented view controllers
+                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                
+                // handle the view controller
+                [self.navigationController pushViewController:viewController animated:YES];
+            }
+        }
     }
     
     [window makeKeyAndVisible];
@@ -387,59 +386,6 @@
     }
 }
 
-//- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-//    UIApplicationState state = [application applicationState];
-//    if (state == UIApplicationStateActive) {
-//        NSLog(@"adding toast");
-//        [self.navigationController.visibleViewController.view makeToast:notification.alertBody];
-//    }
-//}
-
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//    if ([userInfo objectForKey:@"message_id"]) {
-//        [UIAlertView showWithTitle:@"Incoming Message"
-//                           message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
-//                          delegate:self
-//                 cancelButtonTitle:@"Dismiss"
-//                 otherButtonTitles:@"View", nil];
-//    }
-//}
-
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    if (buttonIndex == 1) {
-//        MessagesViewController *viewController = [[MessagesViewController alloc] init];
-//        [navigationController pushViewController:viewController animated:YES];
-//        [viewController release];
-//    }
-//}
-
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-//    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
-//    [request setURL:[NSURL URLWithString:[[Model class] urlStringWithPath:@"/devices"]]];
-//    
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSString *pushToken = [[deviceToken description] stringByReplacingOccurrencesOfRegex:@"<|>" withString:@""];
-//    NSString *usernameString = [[defaults stringForKey:@"username"] stringByEscapingURL];
-//    NSString *passwordString = [[defaults stringForKey:@"password"] stringByEscapingURL];
-//    NSString *requestBody = [NSString stringWithFormat:@"token=%@&username=%@&password=%@", pushToken, usernameString, passwordString];
-//    [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
-//    [request setHTTPMethod:@"POST"];
-//
-//    [NSURLConnection connectionWithRequest:request delegate:nil];
-//}
-//
-//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-//    NSLog(@"Error in registration. Error: %@", error);
-//}
-
-
-- (NSURLCredential *)userCredential {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
-    return [NSURLCredential credentialWithUser:[defaults objectForKey:@"username"]
-                                      password:[defaults objectForKey:@"password"]
-                                   persistence:NSURLCredentialPersistenceNone];
-}
-
 // Check a URL to see if it is for youtube.com
 - (BOOL)isYouTubeURL:(NSURL *)url {
     if ([[url host] containsString:@"youtube.com"] || [[url host] containsString:@"youtu.be"]) {
@@ -469,8 +415,6 @@
 - (id)viewControllerForURL:(NSURL *)url {
     NSString *uri = [url absoluteString];
     UIViewController *viewController = nil;
-    
-    https://www.shacknews.com/chatty/?id=32214978#item_32214978
     
     if ([uri isMatchedByRegex:@"shacknews\\.com/laryn\\.x\\?id=\\d+"]) {
         NSUInteger targetThreadId = [[uri stringByMatching:@"shacknews\\.com/laryn\\.x\\?id=(\\d+)" capture:1] intValue];
@@ -657,18 +601,7 @@
         return NO;
     }
     
-    if ([self isPadDevice]) {
-        [self.contentNavigationController pushViewController:viewController animated:YES];
-    } else {
-        // close view deck menu if it was opened
-        [[self.navigationController viewDeckController] closeLeftView];
-        
-        // dismiss any modally presented view controllers
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        
-        // handle the view controller
-        [self.navigationController pushViewController:viewController animated:YES];
-    }
+    [self handleViewController:viewController];
     
     return YES;
 }
@@ -685,6 +618,34 @@
     
     // display the indicator as long as our static counter is > 0.
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(numberOfCallsToSetVisible > 0)];
+}
+
+- (NSURLCredential *)userCredential {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [NSURLCredential credentialWithUser:[defaults objectForKey:@"username"]
+                                      password:[defaults objectForKey:@"password"]
+                                   persistence:NSURLCredentialPersistenceNone];
+}
+
+- (UIViewController *)makeThreadViewController {
+    return [[ThreadViewController alloc] initWithThreadId:threadId];
+}
+
+- (void)handleViewController:(UIViewController *)viewController {
+    if ([self isPadDevice]) {
+        [self.contentNavigationController pushViewController:viewController animated:YES];
+    } else {
+        // close view deck menu if it was opened
+        [[self.navigationController viewDeckController] closeLeftView];
+        
+        // dismiss any modally presented view controllers
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        
+        // handle the view controller
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+    
+    viewController = nil;
 }
 
 #pragma mark - Appearance customizations
@@ -708,7 +669,7 @@
     [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderMaximumColor]];
 }
 
-#pragma Rotation
+#pragma mark - Rotation
 
 + (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationPortrait;
@@ -748,6 +709,97 @@
         // allow landscape setting is off, allow rotation if the orientation isn't landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation))return NO;
         return YES;
+    }
+}
+
+#pragma mark - Notification Support
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+//#if !TARGET_IPHONE_SIMULATOR
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // Get Bundle Info for Remote Registration (handy if you have more than one app)
+    NSString *appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+    NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    
+    // Check what Notifications the user has turned on.
+    // We registered for all three, but they may have manually disabled some or all of them.
+    UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    UIUserNotificationType rntypes = settings.types;
+
+    // Set the defaults to disabled unless we find otherwise...
+    NSString *pushBadge = (rntypes & UIUserNotificationTypeBadge) ? @"enabled" : @"disabled";
+    NSString *pushAlert = (rntypes & UIUserNotificationTypeAlert) ? @"enabled" : @"disabled";
+    NSString *pushSound = (rntypes & UIUserNotificationTypeSound) ? @"enabled" : @"disabled";
+    
+    // Get the users Device Model, Display Name, Unique ID, Token & Version Number
+    NSString *deviceUuid = [defaults valueForKey:@"deviceUuid"];
+    if (!deviceUuid) {
+        deviceUuid = [UIDevice currentDevice].identifierForVendor.UUIDString;
+        [defaults setValue:deviceUuid forKey:@"deviceUuid"];
+    }
+    UIDevice *dev = [UIDevice currentDevice];
+    NSString *deviceName = dev.name;
+    NSString *deviceModel = dev.model;
+    NSString *deviceSystemVersion = dev.systemVersion;
+    
+    // SHACK USERNAME
+    NSString *shackUserName = [[defaults stringForKey:@"username"] stringByEscapingURL];
+    
+    // Prepare the Device Token for Registration (remove spaces and < >)
+    NSString *deviceToken = [[[[devToken description]
+                               stringByReplacingOccurrencesOfString:@"<" withString:@""]
+                              stringByReplacingOccurrencesOfString:@">" withString:@""]
+                             stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    // Build URL String for Registration
+    NSString *host = @"www.woggle.net";
+    NSString *urlString = [NSString stringWithFormat:@"/lcappnotification/apns.php?task=%@&appname=%@&appversion=%@&deviceuid=%@&devicetoken=%@&devicename=%@&devicemodel=%@&deviceversion=%@&pushbadge=%@&pushalert=%@&pushsound=%@&clientid=%@", @"register", appName, appVersion, deviceUuid, deviceToken, deviceName, deviceModel, deviceSystemVersion, pushBadge, pushAlert, pushSound, shackUserName];
+    
+    // Register the Device Data
+    NSURL *url = [[NSURL alloc] initWithScheme:@"http"
+                                          host:host
+                                          path:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *urlR, NSData *returnData, NSError *e) {
+                               NSLog(@"Return Data: %@", returnData);
+                           }];
+    
+    NSLog(@"Register URL: %@", url);
+//#endif
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+//#if !TARGET_IPHONE_SIMULATOR
+    NSLog(@"Error in registration. Error: %@", error);
+//#endif
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//#if !TARGET_IPHONE_SIMULATOR
+    NSLog(@"remote notification: %@",[userInfo description]);
+    
+    if (application.applicationState == UIApplicationStateActive) {
+        threadId = [[userInfo objectForKey:@"postid"] integerValue];
+        if (threadId) {
+            [UIAlertView showWithTitle:@"Notification Received"
+                               message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                              delegate:self
+                     cancelButtonTitle:@"Dismiss"
+                     otherButtonTitles:@"View", nil];
+        }
+    } else {
+        //if app is running, but in the background fire this notification
+        [self handleViewController:[self makeThreadViewController]];
+    }
+//#endif
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self handleViewController:[self makeThreadViewController]];
     }
 }
 

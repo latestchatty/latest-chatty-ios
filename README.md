@@ -4,6 +4,11 @@ latest-chatty-2
 Requires iOS 8!
 Supports iOS 9, iPhone 6s, iPhone 6s Plus!
 Now includes 3D Touch support!
+Now includes push notification support thanks to server-side support from bradsh!
+
+4.7.0
+====
+- Push Notifications, register for push within the in-app Settings section
 
 4.6.2
 ====

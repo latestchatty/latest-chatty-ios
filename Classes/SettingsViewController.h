@@ -10,6 +10,8 @@
 
 @interface SettingsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIGestureRecognizerDelegate> {
     IBOutlet UITableView *tableView;
+    IBOutlet UIBarButtonItem *saveButton;
+    IBOutlet UIBarButtonItem *cancelButton;
   
     UITextField  *usernameField;
     UITextField  *passwordField;
@@ -29,17 +31,14 @@
     UISwitch     *lolTagsSwitch;
     UISwitch     *youTubeSwitch;
     UIPickerView *browserPrefPicker;
-//    UISwitch    *pushMessagesSwitch;
+    UISwitch     *pushMessagesSwitch;
     UISwitch     *modToolsSwitch;
   
-    UISwitch    *interestingSwitch;
-    UISwitch    *offtopicSwitch;
-    UISwitch    *randomSwitch;
-    UISwitch    *politicsSwitch;
-    UISwitch    *nwsSwitch;
-
-    IBOutlet UIBarButtonItem *saveButton;
-    IBOutlet UIBarButtonItem *cancelButton;
+    UISwitch *interestingSwitch;
+    UISwitch *offtopicSwitch;
+    UISwitch *randomSwitch;
+    UISwitch *politicsSwitch;
+    UISwitch *nwsSwitch;
     
     NSArray *apiServerNames;
     NSArray *apiServerAddresses;

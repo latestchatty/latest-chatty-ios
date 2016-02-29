@@ -1578,6 +1578,9 @@
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = JA9LQCT6NB;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};

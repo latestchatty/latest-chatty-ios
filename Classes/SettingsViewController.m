@@ -55,7 +55,7 @@
         picsQualitySlider  = [self generateSliderWithKey:@"picsQuality"];
         youTubeSwitch      = [self generateSwitchWithKey:@"useYouTube"];
         browserPrefPicker  = [self generatePickerViewWithTag:1];
-//        pushMessagesSwitch = [[self generateSwitchWithKey:@"push.messages"] retain];
+        pushMessagesSwitch = [self generateSwitchWithKey:@"push.messages"];
         modToolsSwitch     = [self generateSwitchWithKey:@"modTools"];
         
         interestingSwitch  = [self generateSwitchWithKey:@"postCategory.informative"];
@@ -329,12 +329,14 @@
 	[defaults setBool:youTubeSwitch.on          forKey:@"useYouTube"];
     [defaults setInteger:[browserTypesValues[[browserPrefPicker selectedRowInComponent:0]] integerValue] forKey:@"browserPref"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
-//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
-//    if (pushMessagesSwitch.on) {
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-//    } else {
-//        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
-//    }
+	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
+    if (pushMessagesSwitch.on) {
+        // Add registration for remote notifications
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    }
     
 	NSString *serverApi = serverField.text;
 	serverApi = [serverApi stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
@@ -349,6 +351,7 @@
 	
 	[defaults synchronize];
     
+    // settings stored in iCloud should be mapped here
     NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
 	[store setObject:usernameField.text      forKey:@"username"];
 	[store setObject:passwordField.text      forKey:@"password"];
@@ -428,7 +431,7 @@
             break;
 			
 		case 2:
-            return 8;
+            return 9;
 			break;
 			
 		case 3:
@@ -604,24 +607,24 @@
 				break;
 
             case 5:
+                cell.accessoryView = pushMessagesSwitch;
+                cell.textLabel.text = @"Push Messages:";
+                break;
+                
+            case 6:
                 cell.accessoryView = orderByPostDateSwitch;
                 cell.textLabel.text = @"Scroll Replies By Date:";
                 break;
                 
-			case 6:
+			case 7:
 				cell.accessoryView = saveSearchesSwitch;
 				cell.textLabel.text = @"Save Searches:";
 				break;
                 
-            case 7:
+            case 8:
                 cell.accessoryView = youTubeSwitch;
                 cell.textLabel.text = @"Use YouTube:";
                 break;
-                
-//			case 8:
-//				cell.accessoryView = pushMessagesSwitch;
-//				cell.textLabel.text = @"Push Messages:";
-//				break;
 		}
 	}
 	
