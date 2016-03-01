@@ -240,20 +240,11 @@
         if (userInfo != nil) {
             NSLog(@"Launched from push notification: %@", userInfo);
             
-            threadId = [[userInfo objectForKey:@"postid"] integerValue];
-            UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:threadId];
+            NSUInteger *launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
+            UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
             
-            if ([self isPadDevice]) {
-                [self.contentNavigationController pushViewController:viewController animated:YES];
-            } else {
-                // close view deck menu if it was opened
-                [[self.navigationController viewDeckController] closeLeftView];
-                
-                // dismiss any modally presented view controllers
-                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-                
-                // handle the view controller
-                [self.navigationController pushViewController:viewController animated:YES];
+            if (viewController) {
+                [self handleViewController:viewController];
             }
         }
     }
@@ -781,15 +772,13 @@
 //#if !TARGET_IPHONE_SIMULATOR
     NSLog(@"remote notification: %@",[userInfo description]);
     
+    threadId = [[userInfo objectForKey:@"postid"] integerValue];
     if (application.applicationState == UIApplicationStateActive) {
-        threadId = [[userInfo objectForKey:@"postid"] integerValue];
-        if (threadId) {
-            [UIAlertView showWithTitle:@"Notification Received"
-                               message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
-                              delegate:self
-                     cancelButtonTitle:@"Dismiss"
-                     otherButtonTitles:@"View", nil];
-        }
+        [UIAlertView showWithTitle:@"Notification Received"
+                           message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                          delegate:self
+                 cancelButtonTitle:@"Dismiss"
+                 otherButtonTitles:@"View", nil];
     } else {
         //if app is running, but in the background fire this notification
         [self handleViewController:[self makeThreadViewController]];
