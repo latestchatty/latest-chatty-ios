@@ -40,12 +40,13 @@
 
 @property (strong, nonatomic) NSDictionary *lolCounts;
 
-- (IIViewDeckController*)generateControllerStack;
+- (IIViewDeckController*)generateControllerStack:(NSDictionary *)launchOptions;
 
 + (LatestChatty2AppDelegate*)delegate;
 + (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation;
 + (UIInterfaceOrientationMask)supportedInterfaceOrientations;
 + (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)pushRegistration;
 
 //- (BOOL)reloadSavedState;
 

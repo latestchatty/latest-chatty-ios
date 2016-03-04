@@ -28,14 +28,8 @@
 }
 
 - (void)setupInterfaceForPhoneWithOptions:(NSDictionary *)launchOptions {
-//    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
-//        // Tapped a messge push's view button
-//        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
-//        [navigationController pushViewController:viewController animated:NO];
-//    }
-    
     // Create and assign the left and center controllers
-    IIViewDeckController* deckController = [self generateControllerStack];
+    IIViewDeckController* deckController = [self generateControllerStack:launchOptions];
     self.leftController = deckController.leftController;
     self.centerController = deckController.centerController;
     
@@ -43,22 +37,33 @@
 }
 
 - (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions {
-    self.contentNavigationController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
+    UIViewController *rootContentController;
+    // if launched via push notification
+    if (launchOptions != nil) {
+        NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (userInfo != nil) {
+            NSLog(@"Launched from push notification: %@", userInfo);
+            
+            NSUInteger *launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
+            UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
+            
+            if (viewController) {
+                rootContentController = [UINavigationController controllerWithRootController:viewController];
+            }
+        }
+    } else {
+        rootContentController = [NoContentController controllerWithNib];
+    }
+    self.contentNavigationController = [UINavigationController controllerWithRootController:rootContentController];
     
 //    if (![self reloadSavedState]) {
     // Add the root view controller
     [navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
 //    }
     
-//    if ([[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"message_id"]) {
-//        // Tapped a messge push's view button
-//        MessagesViewController *viewController = [MessagesViewController controllerWithNib];
-//        [navigationController pushViewController:viewController animated:NO];
-//    }
-    
     self.slideOutViewController =  [SlideOutViewController controllerWithNib];
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
-//    [slideOutViewController.view setFrame:CGRectMake(0, 20, 768, 1004)];
+
     CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
     [slideOutViewController.view setFrame:windowBounds];
 
@@ -70,13 +75,29 @@
     self.window.rootViewController = slideOutViewController;
 }
 
-- (IIViewDeckController *)generateControllerStack {
+- (IIViewDeckController *)generateControllerStack:(NSDictionary *)launchOptions {
     // Left controller
     RootViewController* leftController = [[RootViewController alloc] init];
     
     // Center controller
-    ChattyViewController *centerController = [ChattyViewController chattyControllerWithLatest];
-    [centerController setTitle:@"Loading..."];
+    UIViewController *centerController;
+    // if launched via push notification
+    if (launchOptions != nil) {
+        NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (userInfo != nil) {
+            NSLog(@"Launched from push notification: %@", userInfo);
+            
+            NSUInteger *launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
+            UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
+            
+            if (viewController) {
+                centerController = viewController;
+            }
+        }
+    } else {
+        centerController = [ChattyViewController chattyControllerWithLatest];
+        [centerController setTitle:@"Loading..."];
+    }
     
     // Initialize the navigation controller with the center (chatty) controller
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:centerController];
@@ -169,7 +190,7 @@
 //    NSDate *lastSaveDate = [defaults objectForKey:@"savedStateDate"];
 //    // If forget history is on or it's been 8 hours since the last opening, then we don't care about the saved state.
 //    if ([defaults boolForKey:@"forgetHistory"] || [lastSaveDate timeIntervalSinceNow] < -8*60*60) {
-        [defaults removeObjectForKey:@"savedState"];
+//        [defaults removeObjectForKey:@"savedState"];
 //    }
 
     // Settings defaults
@@ -180,7 +201,8 @@
                                      [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
-                                     [NSNumber numberWithBool:NO],  @"push.messages",
+                                     [NSNumber numberWithBool:NO],  @"pushMessages",
+                                     [NSNumber numberWithBool:YES], @"pushMessagesFirstLaunch",
                                      [NSNumber numberWithBool:YES], @"picsResize",
                                      [NSNumber numberWithFloat:0.7],@"picsQuality",
                                      [NSNumber numberWithInt:0],    @"browserPref",
@@ -234,20 +256,7 @@
         launchedShortcutItem = [launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
     }
     
-    //handle notification tap while app isn't running
-    if (launchOptions != nil) {
-        NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-        if (userInfo != nil) {
-            NSLog(@"Launched from push notification: %@", userInfo);
-            
-            NSUInteger *launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
-            UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
-            
-            if (viewController) {
-                [self handleViewController:viewController];
-            }
-        }
-    }
+    [self pushRegistration];
     
     [window makeKeyAndVisible];
     
@@ -705,6 +714,23 @@
 
 #pragma mark - Notification Support
 
+- (void)pushRegistration {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([[defaults valueForKey:@"username"] length] != 0 && [defaults boolForKey:@"pushMessagesFirstLaunch"] == YES) {
+        // Add registration for remote notifications
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        
+        [defaults setBool:NO forKey:@"pushMessagesFirstLaunch"];
+    }
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    // register to receive notifications
+    [application registerForRemoteNotifications];
+}
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
 //#if !TARGET_IPHONE_SIMULATOR
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -716,12 +742,12 @@
     // Check what Notifications the user has turned on.
     // We registered for all three, but they may have manually disabled some or all of them.
     UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-    UIUserNotificationType rntypes = settings.types;
+    UIUserNotificationType notificationTypes = settings.types;
 
     // Set the defaults to disabled unless we find otherwise...
-    NSString *pushBadge = (rntypes & UIUserNotificationTypeBadge) ? @"enabled" : @"disabled";
-    NSString *pushAlert = (rntypes & UIUserNotificationTypeAlert) ? @"enabled" : @"disabled";
-    NSString *pushSound = (rntypes & UIUserNotificationTypeSound) ? @"enabled" : @"disabled";
+    NSString *pushBadge = (notificationTypes & UIUserNotificationTypeBadge) ? @"enabled" : @"disabled";
+    NSString *pushAlert = (notificationTypes & UIUserNotificationTypeAlert) ? @"enabled" : @"disabled";
+    NSString *pushSound = (notificationTypes & UIUserNotificationTypeSound) ? @"enabled" : @"disabled";
     
     // Get the users Device Model, Display Name, Unique ID, Token & Version Number
     NSString *deviceUuid = [defaults valueForKey:@"deviceUuid"];
@@ -754,8 +780,13 @@
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *urlR, NSData *returnData, NSError *e) {
+                           completionHandler:^(NSURLResponse *resp, NSData *returnData, NSError *err) {
                                NSLog(@"Return Data: %@", returnData);
+                               // TODO
+                               // handle first time launch with notifications
+                               // if pushMessages empty && have shackname
+                               // get vanity/reply settings
+                               // call adduser with settings
                            }];
     
     NSLog(@"Register URL: %@", url);
