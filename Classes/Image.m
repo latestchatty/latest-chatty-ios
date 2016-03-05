@@ -8,9 +8,7 @@
 
 #import "Image.h"
 
-#import "AFHTTPClient.h"
-#import "AFHTTPRequestOperation.h"
-#import "AFNetworkActivityIndicatorManager.h"
+static NSString *kChattyPicsBaseUrl = @"http://chattypics.com";
 
 @implementation Image
 
@@ -40,71 +38,78 @@
 }
 
 - (void)uploadAndReturnImageUrlWithDictionary:(NSDictionary*)args {
-    NSString *baseUrlString = @"http://chattypics.com";
-
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrlString]];
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *picsUsername = [[defaults stringForKey:@"picsUsername"] stringByEscapingURL];
     NSString *picsPassword = [[defaults stringForKey:@"picsPassword"] stringByEscapingURL];
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            picsUsername, @"user_name",
-                            picsPassword, @"user_password",
-                            nil];
+    NSDictionary *picsParams =
+        @{@"user_name": picsUsername,
+          @"user_password": picsPassword};
     
-    // Use the AFNetworking client to login
-    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    [httpClient postPath:@"/users.php?act=login_go"
-              parameters:params
-                 success:^(AFHTTPRequestOperation *loginOperation, id responseObject) {
-                     // Upon successful login (or failed login!), upload the image data
-                     
-                     //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                     //NSLog(@"Request Successful, response '%@'", responseStr);
-                     
-                     NSData *imageData = [self compressJpeg:[[args objectForKey:@"qualityAmount"] floatValue]];
-                     NSMutableURLRequest *uploadRequest = [httpClient multipartFormRequestWithMethod:@"POST" path:@"/upload.php" parameters:nil constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
+    // Use the AFNetworking to login and stream image data
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager POST:[NSString stringWithFormat:@"%@/users.php?act=login_go", kChattyPicsBaseUrl]
+      parameters:picsParams
+        progress:nil
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+             // Upon successful login (or failed login!), upload the image data
+             //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+             //NSLog(@"Request Successful, response '%@'", responseStr);
+             
+             NSData *imageData = [self compressJpeg:[[args objectForKey:@"qualityAmount"] floatValue]];
+             NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer]
+                multipartFormRequestWithMethod:@"POST"
+                                     URLString:[NSString stringWithFormat:@"%@/upload.php", kChattyPicsBaseUrl]
+                                    parameters:nil
+                     constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                          [formData appendPartWithFileData:imageData name:@"userfile[]" fileName:@"iPhoneUpload.jpg" mimeType:@"image/jpeg"];
-                     }];
-                     
-                     AFHTTPRequestOperation *uploadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:uploadRequest];
-                     // Async upload blocks
-                     // Progress block
-                     [uploadOperation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-                         //NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-                         
-                         CGFloat progress = (float)totalBytesWritten/(float)totalBytesExpectedToWrite;
-                         //NSLog(@"percent: %f", progress);
-                         
-                         UIProgressView *progressView = [args objectForKey:@"progressBar"];
-                         [progressView setProgress:progress animated:YES];
-                     }];
-                     // Success block
-                     [uploadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         // Process response
-                         // regex will fail if there's a second underscore anywhere in the URL, but that shouldn't happen...
-                         NSString *regEx = @"http://chattypics\\.com/files/iPhoneUpload_[^_]+\\.jpg";
-                         NSString *imageURL = [NSString stringWithFormat:@"%@ ", [operation.responseString stringByMatching:regEx]];
-                         
-                         // Pass imageURL back to selector as success
-                         [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:imageURL waitUntilDone:YES];
-                         
-                         // Failure block
-                     } failure:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         // Pass nil to selector so that it handles the error
-                         [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:nil waitUntilDone:YES];
-                     }];
-                     
-                     // Start the operation
-                     [httpClient enqueueHTTPRequestOperation:uploadOperation];
-                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                     // This just catches if we don't get a response from chattypics at all in general, not if they weren't successful in logging in.
-                     // We currently aren't telling the user if they couldn't log in successfully
-                     // Would need to parse the response for successful login indication in the login success block
-                     
-                     // Pass nil to selector so that it handles the error
-                     [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:nil waitUntilDone:YES];
-                 }];
+             } error:nil];
+             
+             NSURLSessionUploadTask *uploadTask;
+             uploadTask = [manager uploadTaskWithStreamedRequest:request
+                                                        progress:^(NSProgress *uploadProgress) {
+                               // This is not called back on the main queue.
+                               // You are responsible for dispatching to the main queue for UI updates
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   //Update the progress view
+                                   UIProgressView *progressView = [args objectForKey:@"progressBar"];
+                                   [progressView setProgress:uploadProgress.fractionCompleted animated:YES];
+                               });
+                           }
+                           completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                               if (error) {
+                                   // Pass nil to selector so that it handles the error
+                                   [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:nil waitUntilDone:YES];
+                                    //NSLog(@"Error %@ ",error);
+                               } else {
+                                   // Process response
+                                   // regex will fail if there's a second underscore anywhere in the URL, but that shouldn't happen...
+                                   NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                   NSString *regEx = @"http://chattypics\\.com/files/iPhoneUpload_[^_]+\\.jpg";
+                                   NSString *imageURL = [NSString stringWithFormat:@"%@ ", [responseStr stringByMatching:regEx]];
+                                   
+                                   // Pass imageURL back to selector as success
+                                   [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:imageURL waitUntilDone:YES];
+                               }
+                               
+
+                           }];
+             [uploadTask resume];
+             
+             imageData = nil;
+             request = nil;
+         }
+         failure:^(NSURLSessionDataTask *task, NSError *error) {
+             // This just catches if we don't get a response from chattypics at all in general, not if they weren't successful in logging in.
+             // We currently aren't telling the user if they couldn't log in successfully
+             // Would need to parse the response for successful login indication in the login success block
+             
+             // Pass nil to selector so that it handles the error
+             [self performSelectorOnMainThread:@selector(informDelegateOnMainThreadWithURL:) withObject:nil waitUntilDone:YES];
+             //NSLog(@"Error %@ ",error);
+         }];
 }
 
 #pragma mark Image Processor
