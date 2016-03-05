@@ -55,8 +55,10 @@
         picsQualitySlider  = [self generateSliderWithKey:@"picsQuality"];
         youTubeSwitch      = [self generateSwitchWithKey:@"useYouTube"];
         browserPrefPicker  = [self generatePickerViewWithTag:1];
-        pushMessagesSwitch = [self generateSwitchWithKey:@"push.messages"];
         modToolsSwitch     = [self generateSwitchWithKey:@"modTools"];
+        
+        pushMessagesSwitch = [self generateSwitchWithKey:@"pushMessages"];
+        [pushMessagesSwitch addTarget:self action:@selector(handleSwitchState:) forControlEvents:UIControlEventValueChanged];
         
         interestingSwitch  = [self generateSwitchWithKey:@"postCategory.informative"];
         offtopicSwitch     = [self generateSwitchWithKey:@"postCategory.offtopic"];
@@ -329,20 +331,14 @@
 	[defaults setBool:youTubeSwitch.on          forKey:@"useYouTube"];
     [defaults setInteger:[browserTypesValues[[browserPrefPicker selectedRowInComponent:0]] integerValue] forKey:@"browserPref"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
-	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
-    if (pushMessagesSwitch.on) {
-        // Add registration for remote notifications
-        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil]];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    } else {
-        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
-    }
     
 	NSString *serverApi = serverField.text;
 	serverApi = [serverApi stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
 	serverApi = [serverApi stringByReplacingOccurrencesOfRegex:@"/$" withString:@""];
 	[defaults setObject:serverApi forKey:@"serverApi"];
 	
+    [defaults setBool:pushMessagesSwitch.on     forKey:@"pushMessages"];
+    
 	[defaults setBool:interestingSwitch.on forKey:@"postCategory.informative"];
 	[defaults setBool:offtopicSwitch.on    forKey:@"postCategory.offtopic"];
 	[defaults setBool:randomSwitch.on      forKey:@"postCategory.stupid"];
@@ -418,7 +414,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 5;
+	return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -426,19 +422,24 @@
 		case 0:
 			return 4;
 			break;
+            
         case 1:
             return 4;
             break;
 			
 		case 2:
-            return 9;
+            return 8;
 			break;
 			
-		case 3:
+        case 3:
+            return 1;
+            break;
+            
+		case 4:
 			return 5;
 			break;
             
-        case 4:
+        case 5:
             return 2;
             break;
 			
@@ -461,12 +462,16 @@
 		case 2:
 			return @"PREFERENCES";
 			break;
-			
-		case 3:
+
+        case 3:
+            return @"NOTIFICATIONS";
+            break;
+            
+		case 4:
 			return @"POST CATEGORIES";
 			break;
         
-        case 4:
+        case 5:
             return @"ABOUT";
             break;
 			
@@ -605,31 +610,36 @@
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Enable Mod Tools:";
 				break;
-
-            case 5:
-                cell.accessoryView = pushMessagesSwitch;
-                cell.textLabel.text = @"Push Messages:";
-                break;
                 
-            case 6:
+            case 5:
                 cell.accessoryView = orderByPostDateSwitch;
                 cell.textLabel.text = @"Scroll Replies By Date:";
                 break;
                 
-			case 7:
+			case 6:
 				cell.accessoryView = saveSearchesSwitch;
 				cell.textLabel.text = @"Save Searches:";
 				break;
                 
-            case 8:
+            case 7:
                 cell.accessoryView = youTubeSwitch;
                 cell.textLabel.text = @"Use YouTube:";
                 break;
 		}
 	}
-	
+
+    // Push notification controls
+    if (indexPath.section == 3) {
+        switch (indexPath.row) {
+            case 0:
+                cell.accessoryView = pushMessagesSwitch;
+                cell.textLabel.text = @"Push Messages:";
+                break;
+        }
+    }
+    
 	// Post category toggles
-	if (indexPath.section == 3) {
+	if (indexPath.section == 4) {
         UIView *categoryColor = [[UIView alloc] initWithFrame:CGRectMake(18, 9, 4, 28)];
 		[cell addSubview:categoryColor];
 		
@@ -666,7 +676,7 @@
 		}
 	}
     
-    if (indexPath.section == 4) {
+    if (indexPath.section == 5) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
         switch (indexPath.row) {
@@ -777,6 +787,22 @@
         label.textAlignment = NSTextAlignmentCenter;
     }
     return label;
+}
+
+#pragma mark Notification Support 
+
+-(void)handleSwitchState:(UISwitch *)aSwitch {
+
+    if (aSwitch == pushMessagesSwitch) {
+        if (pushMessagesSwitch.on) {
+            // Add registration for remote notifications
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        } else {
+            // open Settings app to let user disable alerts, next launch will fully unregister device
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        }
+    }
+
 }
 
 #pragma mark Cleanup
