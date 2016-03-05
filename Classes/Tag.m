@@ -110,40 +110,27 @@ static NSString *kGetCountsUrl = @"http://lol.lmnopc.com/api.php?special=getcoun
     NSTimeInterval interval = [lastLolFetchDate timeIntervalSinceDate:[NSDate date]];
     
     if (interval == 0 || (interval * -1) > 60*5) {
+        // fetch lols
         NSLog(@"getting lol tags...");
         
-        // fetch lols synchronously with error handling support and timeout support, set to 5 seconds
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kGetCountsUrl]
-                                                 cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
-        NSError *requestError;
-        NSURLResponse *urlResponse = nil;
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-        if (!data) {
-            // error to get lols
-            if (requestError) {
-                // do we care about the specific error? or fail silently
-            }
-        }
-        else {
-            // Data was received.. continue processing
-            // parse getcounts JSON into a dictionary
-            [LatestChatty2AppDelegate delegate].lolCounts = [NSJSONSerialization JSONObjectWithData:data
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:nil];
-            NSLog(@"got %lu lol tags", (unsigned long)[LatestChatty2AppDelegate delegate].lolCounts.count);
-            
-            // stuff successful fetch date into user defaults
-            [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
-        }
-        
-        request = nil;
-        requestError = nil;
-        data = nil;
-        
-        NSLog(@"...done getting lol tags");
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        [manager GET:kGetCountsUrl
+          parameters:nil
+            progress:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 // save the fetched lol tags
+                 [LatestChatty2AppDelegate delegate].lolCounts = responseObject;
+                  NSLog(@"got %lu lol tags", (unsigned long)[[LatestChatty2AppDelegate delegate].lolCounts count]);
+                 // stuff successful fetch date into user defaults
+                 [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
+                 
+                 NSLog(@"...done getting lol tags");
+             }
+             failure:nil];
     }
     
-    defaults = nil;
     lastLolFetchDate = nil;
 }
 
