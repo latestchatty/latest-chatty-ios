@@ -14,6 +14,8 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
+static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
+
 @implementation LatestChatty2AppDelegate
 
 @synthesize window,
@@ -201,8 +203,11 @@
                                      [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
-                                     [NSNumber numberWithBool:NO],  @"pushMessages",
+                                     // first launch used for the one-time opt in after app launch post release that adds vanity/reply notifications
                                      [NSNumber numberWithBool:YES], @"pushMessagesFirstLaunch",
+                                     [NSNumber numberWithBool:NO],  @"pushMessages",
+                                     [NSNumber numberWithBool:YES], @"pushMessages.vanity",
+                                     [NSNumber numberWithBool:YES], @"pushMessages.replies",
                                      [NSNumber numberWithBool:YES], @"picsResize",
                                      [NSNumber numberWithFloat:0.7],@"picsQuality",
                                      [NSNumber numberWithInt:0],    @"browserPref",
@@ -732,7 +737,6 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
-//#if !TARGET_IPHONE_SIMULATOR
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // Get Bundle Info for Remote Registration (handy if you have more than one app)
@@ -756,7 +760,7 @@
         [defaults setValue:deviceUuid forKey:@"deviceUuid"];
     }
     UIDevice *dev = [UIDevice currentDevice];
-    NSString *deviceName = dev.name;
+    NSString *deviceName = [dev.name stringByEscapingURL];
     NSString *deviceModel = dev.model;
     NSString *deviceSystemVersion = dev.systemVersion;
     
@@ -769,39 +773,69 @@
                               stringByReplacingOccurrencesOfString:@">" withString:@""]
                              stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    // Build URL String for Registration
-    NSString *host = @"www.woggle.net";
-    NSString *urlString = [NSString stringWithFormat:@"/lcappnotification/apns.php?task=%@&appname=%@&appversion=%@&deviceuid=%@&devicetoken=%@&devicename=%@&devicemodel=%@&deviceversion=%@&pushbadge=%@&pushalert=%@&pushsound=%@&clientid=%@", @"register", appName, appVersion, deviceUuid, deviceToken, deviceName, deviceModel, deviceSystemVersion, pushBadge, pushAlert, pushSound, shackUserName];
+    // Build parameter dictionary for Registration
+    NSDictionary *registerParameters =
+        @{@"task": @"register",
+          @"appname": appName,
+          @"appversion": appVersion,
+          @"deviceuid": deviceUuid,
+          @"devicetoken": deviceToken,
+          @"devicename": deviceName,
+          @"devicemodel": deviceModel,
+          @"deviceversion": deviceSystemVersion,
+          @"pushbadge": pushBadge,
+          @"pushalert": pushAlert,
+          @"pushsound": pushSound,
+          @"clientid": shackUserName};
+    NSLog(@"Register parameters: %@", registerParameters);
     
-    // Register the Device Data
-    NSURL *url = [[NSURL alloc] initWithScheme:@"http"
-                                          host:host
-                                          path:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *resp, NSData *returnData, NSError *err) {
-                               NSLog(@"Return Data: %@", returnData);
-                               // TODO
-                               // handle first time launch with notifications
-                               // if pushMessages empty && have shackname
-                               // get vanity/reply settings
-                               // call adduser with settings
-                           }];
-    
-    NSLog(@"Register URL: %@", url);
-//#endif
+    // Register the device
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager GET:[NSString stringWithFormat:@"%@//apns.php", kWoggleBaseUrl]
+      parameters:registerParameters
+        progress:nil
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+             
+             // get their current prefs,
+             [manager GET:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]
+               parameters:@{@"user": shackUserName}
+                 progress:nil
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      BOOL vanity = YES;
+                      BOOL replies = YES;
+                      if ([responseObject objectForKey:@"get_vanity"]) {
+                          vanity = [responseObject boolForKey:@"get_vanity"];
+                      }
+                      if ([responseObject objectForKey:@"get_replies"]) {
+                          replies = [responseObject boolForKey:@"get_replies"];
+                      }
+                      
+                      NSDictionary *adduserParameters =
+                          @{@"action": @"add",
+                            @"type": @"user",
+                            @"user": shackUserName,
+                            @"getvanity": vanity ? @"1" : @"0",
+                            @"getreplies": replies ? @"1" : @"0"};
+                      NSLog(@"adduser parameters: %@", adduserParameters);
+                      [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
+                        parameters:adduserParameters
+                          progress:nil
+                           success:nil
+                           failure:nil];
+                  }
+                  failure:nil];
+         }
+         failure:nil];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-//#if !TARGET_IPHONE_SIMULATOR
     NSLog(@"Error in registration. Error: %@", error);
-//#endif
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//#if !TARGET_IPHONE_SIMULATOR
-    NSLog(@"remote notification: %@",[userInfo description]);
+    NSLog(@"Remote notification: %@",[userInfo description]);
     
     threadId = [[userInfo objectForKey:@"postid"] integerValue];
     if (application.applicationState == UIApplicationStateActive) {
@@ -811,10 +845,9 @@
                  cancelButtonTitle:@"Dismiss"
                  otherButtonTitles:@"View", nil];
     } else {
-        //if app is running, but in the background fire this notification
+        // if app is running in the background, fire this notification
         [self handleViewController:[self makeThreadViewController]];
     }
-//#endif
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
