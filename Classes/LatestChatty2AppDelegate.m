@@ -203,11 +203,11 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
-                                     // first launch used for the one-time opt in after app launch post release that adds vanity/reply notifications
-                                     [NSNumber numberWithBool:YES], @"pushMessagesFirstLaunch",
                                      [NSNumber numberWithBool:NO],  @"pushMessages",
+                                     [NSNumber numberWithBool:YES], @"pushMessages.firstLaunch",
                                      [NSNumber numberWithBool:YES], @"pushMessages.vanity",
                                      [NSNumber numberWithBool:YES], @"pushMessages.replies",
+                                     @"",                           @"pushMessages.deviceToken",
                                      [NSNumber numberWithBool:YES], @"picsResize",
                                      [NSNumber numberWithFloat:0.7],@"picsQuality",
                                      [NSNumber numberWithInt:0],    @"browserPref",
@@ -722,12 +722,41 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (void)pushRegistration {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if ([[defaults valueForKey:@"username"] length] != 0 && [defaults boolForKey:@"pushMessagesFirstLaunch"] == YES) {
+    if ([[defaults valueForKey:@"username"] length] != 0 && [defaults boolForKey:@"pushMessages.firstLaunch"] == YES) {
         // Add registration for remote notifications
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         
-        [defaults setBool:NO forKey:@"pushMessagesFirstLaunch"];
+        [defaults setBool:NO forKey:@"pushMessages.firstLaunch"];
+        
+    } else if ([defaults  boolForKey:@"pushMessages.firstLaunch"] == NO &&
+              [[defaults valueForKey:@"pushMessages.deviceToken"] length] != 0) {
+        UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        UIUserNotificationType notificationTypes = settings.types;
+        
+        BOOL *isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
+        if (!isPushAlertEnabled) {
+            // unregister to woggle
+            //change.php?action=remove&type=device&devicetoken=
+            NSString *deviceToken = [defaults valueForKey:@"pushMessages.deviceToken"];
+            NSDictionary *removedeviceParameters =
+            @{@"action": @"remove",
+              @"type": @"device",
+              @"devicetoken": deviceToken};
+            NSLog(@"calling removedevice w/ parameters: %@", removedeviceParameters);
+            
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            manager.requestSerializer = [AFJSONRequestSerializer serializer];
+            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+            [manager POST:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
+               parameters:removedeviceParameters
+                 progress:nil
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      [defaults setBool:NO forKey:@"pushMessages"];
+                      [defaults setValue:@"" forKey:@"pushMessages.deviceToken"];
+                  }
+                  failure:nil];
+        }
     }
 }
 
@@ -772,6 +801,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                stringByReplacingOccurrencesOfString:@"<" withString:@""]
                               stringByReplacingOccurrencesOfString:@">" withString:@""]
                              stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [defaults setValue:deviceToken forKey:@"pushMessages.deviceToken"];
     
     // Build parameter dictionary for Registration
     NSDictionary *registerParameters =
@@ -787,22 +817,24 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
           @"pushalert": pushAlert,
           @"pushsound": pushSound,
           @"clientid": shackUserName};
-    NSLog(@"Register parameters: %@", registerParameters);
+    NSLog(@"calling register w/ parameters: %@", registerParameters);
     
     // Register the device
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager GET:[NSString stringWithFormat:@"%@//apns.php", kWoggleBaseUrl]
+    [manager POST:[NSString stringWithFormat:@"%@//apns.php", kWoggleBaseUrl]
       parameters:registerParameters
         progress:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              
-             // get their current prefs,
-             [manager GET:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]
+             // get their current prefs
+             [manager POST:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]
                parameters:@{@"user": shackUserName}
                  progress:nil
                   success:^(NSURLSessionDataTask *task, id responseObject) {
+                      
+                      // adduser with their current prefs (defaulted to yes)
                       BOOL vanity = YES;
                       BOOL replies = YES;
                       if ([responseObject objectForKey:@"get_vanity"]) {
@@ -818,8 +850,8 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                             @"user": shackUserName,
                             @"getvanity": vanity ? @"1" : @"0",
                             @"getreplies": replies ? @"1" : @"0"};
-                      NSLog(@"adduser parameters: %@", adduserParameters);
-                      [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
+                      NSLog(@"calling adduser w/ parameters: %@", adduserParameters);
+                      [manager POST:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
                         parameters:adduserParameters
                           progress:nil
                            success:nil
