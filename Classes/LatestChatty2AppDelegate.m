@@ -829,6 +829,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
          success:^(NSURLSessionDataTask *task, id responseObject) {
              
              // get their current prefs
+             NSLog(@"calling getuser w/ parameters: %@", @{@"user": shackUserName});
              [manager POST:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]
                parameters:@{@"user": shackUserName}
                  progress:nil
