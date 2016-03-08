@@ -10,6 +10,8 @@
 #import <Crashlytics/Crashlytics.h>
 #import "LCBrowserType.h"
 
+static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
+
 @implementation SettingsViewController
 
 - (id)initWithNib {
@@ -58,7 +60,12 @@
         modToolsSwitch     = [self generateSwitchWithKey:@"modTools"];
         
         pushMessagesSwitch = [self generateSwitchWithKey:@"pushMessages"];
+        pushMessagesSwitch.enabled = [[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] length] > 0;
         [pushMessagesSwitch addTarget:self action:@selector(handleSwitchState:) forControlEvents:UIControlEventValueChanged];
+        vanityPrefSwitch  = [self generateSwitch];
+        vanityPrefSwitch.enabled = NO;
+        repliesPrefSwitch = [self generateSwitch];
+        repliesPrefSwitch.enabled = NO;
         
         interestingSwitch  = [self generateSwitchWithKey:@"postCategory.informative"];
         offtopicSwitch     = [self generateSwitchWithKey:@"postCategory.offtopic"];
@@ -83,6 +90,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // get their current prefs
+    if ([[defaults valueForKey:@"username"] length] > 0) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        [manager POST:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]
+           parameters:@{@"user": [defaults valueForKey:@"username"]}
+             progress:nil
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  
+                  // update switches with results of pref fetch
+                  BOOL vanity = YES;
+                  BOOL replies = YES;
+                  if ([responseObject objectForKey:@"get_vanity"]) {
+                      vanity = [responseObject boolForKey:@"get_vanity"];
+                  }
+                  if ([responseObject objectForKey:@"get_replies"]) {
+                      replies = [responseObject boolForKey:@"get_replies"];
+                  }
+
+                  vanityPrefSwitch.on = vanity;
+                  vanityPrefSwitch.enabled = YES;
+                  repliesPrefSwitch.on = replies;
+                  repliesPrefSwitch.enabled = YES;
+              }
+              failure:nil];
+    }
     
     [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
     [cancelButton setTitleTextAttributes:[NSDictionary cancelTextAttributesDictionary] forState:UIControlStateNormal];
@@ -187,6 +224,16 @@
 	return toggle;
 }
 
+- (UISwitch *)generateSwitch {
+    UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
+    
+    // moved appearance proxy settings from app delegate to directly on the controls
+    [toggle setOnTintColor:[UIColor lcSwitchOnColor]];
+    [toggle setTintColor:[UIColor lcSwitchOffColor]];
+    
+    return toggle;
+}
+
 - (UISlider *)generateSliderWithKey:(NSString *)key {
 	UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 155, 20)];
     slider.value = [[NSUserDefaults standardUserDefaults] floatForKey:key];
@@ -233,6 +280,8 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	if (textField == usernameField) {
 		[passwordField becomeFirstResponder];
+        
+        pushMessagesSwitch.enabled = [usernameField.text length] > 0;
 	} else if (textField == passwordField) {
 		[passwordField resignFirstResponder];
 	} else if (textField == serverField) {
@@ -432,7 +481,7 @@
 			break;
 			
         case 3:
-            return 1;
+            return 3;
             break;
             
 		case 4:
@@ -635,6 +684,16 @@
                 cell.accessoryView = pushMessagesSwitch;
                 cell.textLabel.text = @"Push Messages:";
                 break;
+                
+            case 1:
+                cell.accessoryView = vanityPrefSwitch;
+                cell.textLabel.text = @"Vanity:";
+                break;
+                
+            case 2:
+                cell.accessoryView = repliesPrefSwitch;
+                cell.textLabel.text = @"Replies:";
+                break;
         }
     }
     
@@ -799,7 +858,7 @@
             [[UIApplication sharedApplication] registerForRemoteNotifications];
         } else {
             // open Settings app to let user disable alerts, next launch will fully unregister device
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
         }
     }
 
