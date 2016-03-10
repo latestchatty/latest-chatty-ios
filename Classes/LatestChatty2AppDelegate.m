@@ -737,27 +737,34 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         BOOL *isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
         if (!isPushAlertEnabled) {
             // unregister to woggle
-            //change.php?action=remove&type=device&devicetoken=
-            NSString *deviceToken = [defaults valueForKey:@"pushMessages.deviceToken"];
-            NSDictionary *removedeviceParameters =
-            @{@"action": @"remove",
-              @"type": @"device",
-              @"devicetoken": deviceToken};
-            NSLog(@"calling removedevice w/ parameters: %@", removedeviceParameters);
-            
-            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-            manager.requestSerializer = [AFJSONRequestSerializer serializer];
-            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-            [manager POST:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
-               parameters:removedeviceParameters
-                 progress:nil
-                  success:^(NSURLSessionDataTask *task, id responseObject) {
-                      [defaults setBool:NO forKey:@"pushMessages"];
-                      [defaults setValue:@"" forKey:@"pushMessages.deviceToken"];
-                  }
-                  failure:nil];
+            [self pushUnregistration];
         }
     }
+}
+
+- (void)pushUnregistration {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSString *deviceToken = [defaults valueForKey:@"pushMessages.deviceToken"];
+    NSDictionary *removedeviceParameters =
+    @{@"action": @"remove",
+      @"type": @"device",
+      @"devicetoken": deviceToken};
+    NSLog(@"calling removedevice w/ parameters: %@", removedeviceParameters);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
+      parameters:removedeviceParameters
+        progress:nil
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+              [defaults setBool:NO forKey:@"pushMessages"];
+              [defaults setValue:@"" forKey:@"pushMessages.deviceToken"];
+         }
+         failure:^(NSURLSessionDataTask *task, NSError *error) {
+             NSLog( @"removedevice fail: %@", error );
+         }];
 }
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
@@ -781,6 +788,12 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     NSString *pushBadge = (notificationTypes & UIUserNotificationTypeBadge) ? @"enabled" : @"disabled";
     NSString *pushAlert = (notificationTypes & UIUserNotificationTypeAlert) ? @"enabled" : @"disabled";
     NSString *pushSound = (notificationTypes & UIUserNotificationTypeSound) ? @"enabled" : @"disabled";
+    
+    if (notificationTypes & UIUserNotificationTypeAlert) {
+        [defaults setBool:YES forKey:@"pushMessages"];
+    } else {
+        [defaults setBool:NO forKey:@"pushMessages"];
+    }
     
     // Get the users Device Model, Display Name, Unique ID, Token & Version Number
     NSString *deviceUuid = [defaults valueForKey:@"deviceUuid"];
@@ -823,19 +836,19 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[NSString stringWithFormat:@"%@//apns.php", kWoggleBaseUrl]
+    [manager GET:[NSString stringWithFormat:@"%@//apns.php", kWoggleBaseUrl]
       parameters:registerParameters
         progress:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              
-             // get their current prefs
+             // get their current woggle notification prefs
              NSLog(@"calling getuser w/ parameters: %@", @{@"user": shackUserName});
-             [manager POST:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]
+             [manager GET:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]
                parameters:@{@"user": shackUserName}
                  progress:nil
                   success:^(NSURLSessionDataTask *task, id responseObject) {
                       
-                      // adduser with their current prefs (defaulted to yes)
+                      // adduser with their current woggle notification prefs (defaulted to yes if not already set)
                       BOOL vanity = YES;
                       BOOL replies = YES;
                       if ([responseObject objectForKey:@"get_vanity"]) {
@@ -852,15 +865,21 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                             @"getvanity": vanity ? @"1" : @"0",
                             @"getreplies": replies ? @"1" : @"0"};
                       NSLog(@"calling adduser w/ parameters: %@", adduserParameters);
-                      [manager POST:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
+                      [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
                         parameters:adduserParameters
                           progress:nil
                            success:nil
-                           failure:nil];
+                           failure:^(NSURLSessionDataTask *task, NSError *error) {
+                               NSLog( @"adduser fail: %@", error );
+                           }];
                   }
-                  failure:nil];
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      NSLog( @"getuser fail: %@", error );
+                  }];
          }
-         failure:nil];
+         failure:^(NSURLSessionDataTask *task, NSError *error) {
+             NSLog( @"register fail: %@", error );
+         }];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

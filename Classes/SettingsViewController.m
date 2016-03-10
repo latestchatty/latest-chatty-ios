@@ -92,16 +92,18 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [super viewDidLoad];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *shackUserName = [defaults valueForKey:@"username"];
+    BOOL pushEnabled = [defaults boolForKey:@"pushMessages"];
     
-    // get their current prefs
-    if ([[defaults valueForKey:@"username"] length] > 0) {
+    // get their current woggle notification prefs
+    if ([shackUserName length] > 0 && pushEnabled) {
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-        [manager POST:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]
-           parameters:@{@"user": [defaults valueForKey:@"username"]}
-             progress:nil
-              success:^(NSURLSessionDataTask *task, id responseObject) {
+        [manager GET:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]
+          parameters:@{@"user": shackUserName}
+            progress:nil
+            success:^(NSURLSessionDataTask *task, id responseObject) {
                   
                   // update switches with results of pref fetch
                   BOOL vanity = YES;
@@ -117,8 +119,10 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                   vanityPrefSwitch.enabled = YES;
                   repliesPrefSwitch.on = replies;
                   repliesPrefSwitch.enabled = YES;
-              }
-              failure:nil];
+            }
+            failure:^(NSURLSessionDataTask *task, NSError *error) {
+                NSLog( @"getuser fail: %@", error );
+            }];
     }
     
     [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
@@ -226,6 +230,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
 - (UISwitch *)generateSwitch {
     UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
+    toggle.on = NO;
     
     // moved appearance proxy settings from app delegate to directly on the controls
     [toggle setOnTintColor:[UIColor lcSwitchOnColor]];
@@ -857,8 +862,13 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
             // Add registration for remote notifications
             [[UIApplication sharedApplication] registerForRemoteNotifications];
         } else {
-            // open Settings app to let user disable alerts, next launch will fully unregister device
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            // unregister, disable vanity/replies switches
+            [[LatestChatty2AppDelegate delegate] pushUnregistration];
+            
+            vanityPrefSwitch.on = NO;
+            vanityPrefSwitch.enabled = NO;
+            repliesPrefSwitch.on = NO;
+            repliesPrefSwitch.enabled = NO;
         }
     }
 

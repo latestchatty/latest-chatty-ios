@@ -47,6 +47,7 @@
 + (UIInterfaceOrientationMask)supportedInterfaceOrientations;
 + (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)pushRegistration;
+- (void)pushUnregistration;
 
 //- (BOOL)reloadSavedState;
 
