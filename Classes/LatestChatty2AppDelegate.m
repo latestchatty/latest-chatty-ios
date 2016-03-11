@@ -868,7 +868,11 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                       [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
                         parameters:adduserParameters
                           progress:nil
-                           success:nil
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
+                               [[NSNotificationCenter defaultCenter]
+                                    postNotificationName:@"UpdateWogglePrefs" object:@{@"vanity": [NSNumber numberWithBool:vanity],
+                                                                                       @"replies": [NSNumber numberWithBool:replies]}];
+                           }
                            failure:^(NSURLSessionDataTask *task, NSError *error) {
                                NSLog( @"adduser fail: %@", error );
                            }];

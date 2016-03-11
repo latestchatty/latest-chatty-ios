@@ -189,6 +189,8 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     if (browserPrefIndex == NSNotFound) browserPrefIndex = 0;
     [browserPrefPicker selectRow:browserPrefIndex inComponent:0 animated:NO];
     [browserPrefPicker reloadComponent:0];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWogglePrefs:) name:@"UpdateWogglePrefs" object:nil];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -367,6 +369,26 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
 -(void)saveSettings {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if (pushMessagesSwitch.on) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        NSDictionary *adduserParameters =
+        @{@"action": @"add",
+          @"type": @"user",
+          @"user": usernameField.text,
+          @"getvanity": vanityPrefSwitch.on ? @"1" : @"0",
+          @"getreplies": repliesPrefSwitch.on ? @"1" : @"0"};
+        NSLog(@"calling adduser w/ parameters: %@", adduserParameters);
+        [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
+          parameters:adduserParameters
+            progress:nil
+             success:nil
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 NSLog( @"adduser fail: %@", error );
+             }];
+    }
     
 	[defaults setObject:usernameField.text      forKey:@"username"];
 	[defaults setObject:passwordField.text      forKey:@"password"];
@@ -855,8 +877,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
 #pragma mark Notification Support 
 
--(void)handleSwitchState:(UISwitch *)aSwitch {
-
+- (void)handleSwitchState:(UISwitch *)aSwitch {
     if (aSwitch == pushMessagesSwitch) {
         if (pushMessagesSwitch.on) {
             // Add registration for remote notifications
@@ -871,7 +892,16 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
             repliesPrefSwitch.enabled = NO;
         }
     }
+}
 
+- (void)updateWogglePrefs:(NSNotification*)notification {
+    BOOL vanity = [notification.object boolForKey:@"vanity"];
+    BOOL replies = [notification.object boolForKey:@"replies"];
+    
+    vanityPrefSwitch.on = vanity;
+    vanityPrefSwitch.enabled = YES;
+    repliesPrefSwitch.on = replies;
+    repliesPrefSwitch.enabled = YES;
 }
 
 #pragma mark Cleanup
