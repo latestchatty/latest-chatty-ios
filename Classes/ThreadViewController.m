@@ -297,6 +297,7 @@
     
 //    self.toolbar.frame = self.navigationController.navigationBar.frame;
     [self.view setNeedsLayout];
+    [self resetLayout:NO];
 
     // if there is a saved scroll position, animate the scroll to it and reinitialize the ivar
     if (self.scrollPosition.y > 0) {
@@ -307,7 +308,7 @@
     // set the panning gesture delegate to this controller to monitor whether the panning should occur
     [self.viewDeckController setPanningGestureDelegate:self];
     
-    // pop back the the thread vc instantiated doesn't have a threadId
+    // pop back to the thread, vc instantiated doesn't have a threadId
     if (threadId == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -553,6 +554,9 @@
             NSUInteger browserPref = [[NSUserDefaults standardUserDefaults] integerForKey:@"browserPref"];
             NSLog(@"browserPref: %lu", (unsigned long)browserPref);
             
+            // save scroll position of web view before showing view controller
+            self.scrollPosition = aWebView.scrollView.contentOffset;
+            
             if (isYouTubeURL && useYouTube) {
                 // don't open with browser preference, open YouTube app
                 [[UIApplication sharedApplication] openURL:[request URL]];
@@ -588,8 +592,6 @@
 
             viewController = [[BrowserViewController alloc] initWithRequest:request];
         }
-        // save scroll position of web view before pushing view controller
-        self.scrollPosition = aWebView.scrollView.contentOffset;
         
         [self.navigationController pushViewController:viewController animated:YES];
         
