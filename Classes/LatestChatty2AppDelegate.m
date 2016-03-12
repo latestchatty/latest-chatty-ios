@@ -39,7 +39,8 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 }
 
 - (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions {
-    UIViewController *rootContentController;
+    // content (right) controller
+    UINavigationController *contentController;
     
     // if launched via push notification
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -50,18 +51,19 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
         
         if (viewController) {
-            rootContentController = [UINavigationController controllerWithRootController:viewController];
+            contentController = [UINavigationController controllerWithRootController:viewController];
         }
     } else {
-        rootContentController = [NoContentController controllerWithNib];
+        contentController = [UINavigationController controllerWithRootController:[NoContentController controllerWithNib]];
     }
-    self.contentNavigationController = [UINavigationController controllerWithRootController:rootContentController];
+    self.contentNavigationController = contentController;
     
 //    if (![self reloadSavedState]) {
-    // Add the root view controller
+    // Add the root view controller (left)
     [navigationController pushViewController:[RootViewController controllerWithNib] animated:NO];
 //    }
     
+    // combine left and right navigation controllers into the slideout controller
     self.slideOutViewController =  [SlideOutViewController controllerWithNib];
     [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
 
