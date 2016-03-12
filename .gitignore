@@ -1,9 +1,10 @@
 .DS_Store
-.idea
-build/*
-LatestChatty2.xcodeproj/*.pbxuser
-LatestChatty2.xcodeproj/*.perspectivev3
-ssl_certificates/*
+
+build/
+DerivedData/
+
+*.pbxuser
+*.perspectivev3
 
 LatestChatty2.xcodeproj/*.xcworkspace
-LatestChatty2.xcodeproj/xcuserdata/
+xcuserdata/
