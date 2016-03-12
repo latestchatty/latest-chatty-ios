@@ -40,18 +40,17 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
 - (void)setupInterfaceForPadWithOptions:(NSDictionary *)launchOptions {
     UIViewController *rootContentController;
+    
     // if launched via push notification
-    if (launchOptions != nil) {
-        NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-        if (userInfo != nil) {
-            NSLog(@"Launched from push notification: %@", userInfo);
-            
-            NSUInteger *launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
-            UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
-            
-            if (viewController) {
-                rootContentController = [UINavigationController controllerWithRootController:viewController];
-            }
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo != nil) {
+        NSLog(@"Launched from push notification: %@", userInfo);
+        
+        NSUInteger *launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
+        UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
+        
+        if (viewController) {
+            rootContentController = [UINavigationController controllerWithRootController:viewController];
         }
     } else {
         rootContentController = [NoContentController controllerWithNib];
