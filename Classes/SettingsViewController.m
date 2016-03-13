@@ -370,7 +370,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 -(void)saveSettings {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if (pushMessagesSwitch.on) {
+    if (pushMessagesSwitch.on && [usernameField.text length] > 0) {
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -879,6 +879,12 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
 - (void)handleSwitchState:(UISwitch *)aSwitch {
     if (aSwitch == pushMessagesSwitch) {
+        if ([usernameField.text length] <= 0) {
+            [UIAlertView showSimpleAlertWithTitle:@"Not Logged In"
+                                          message:@"Enter a username and password to enable push notifications."];
+            return;
+        }
+        
         if (pushMessagesSwitch.on) {
             // Add registration for remote notifications
             [[UIApplication sharedApplication] registerForRemoteNotifications];
