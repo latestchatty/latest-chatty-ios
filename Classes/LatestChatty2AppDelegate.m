@@ -789,12 +789,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     NSString *pushAlert = (notificationTypes & UIUserNotificationTypeAlert) ? @"enabled" : @"disabled";
     NSString *pushSound = (notificationTypes & UIUserNotificationTypeSound) ? @"enabled" : @"disabled";
     
-    if (notificationTypes & UIUserNotificationTypeAlert) {
-        [defaults setBool:YES forKey:@"pushMessages"];
-    } else {
-        [defaults setBool:NO forKey:@"pushMessages"];
-    }
-    
     // Get the users Device Model, Display Name, Unique ID, Token & Version Number
     NSString *deviceUuid = [defaults valueForKey:@"deviceUuid"];
     if (!deviceUuid) {
@@ -841,6 +835,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         progress:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              
+             [defaults setBool:YES forKey:@"pushMessages"];
              // get their current woggle notification prefs
              NSLog(@"calling getuser w/ parameters: %@", @{@"user": shackUserName});
              [manager GET:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]

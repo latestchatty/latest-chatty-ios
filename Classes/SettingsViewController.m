@@ -154,7 +154,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                            @"winchatty.com/chatty"];
     
     // get the user's saved api server address
-    NSString *userServer = [[NSUserDefaults standardUserDefaults] objectForKey:@"serverApi"];
+    NSString *userServer = [defaults objectForKey:@"serverApi"];
     NSUInteger serverIndex = [apiServerAddresses indexOfObject:userServer];
     // if manually entered API, default the picker to the zero slot (manual)
     // otherwise, set the picker to the server saved in the "serverApi" user default
@@ -183,7 +183,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     }
     
     // get the user's browser preference
-    NSNumber *browserPref = [NSNumber numberWithInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"browserPref"]];
+    NSNumber *browserPref = [NSNumber numberWithInteger:[defaults integerForKey:@"browserPref"]];
     NSUInteger browserPrefIndex = [browserTypesValues indexOfObject:browserPref];
     // if the user's browser preference is no longer available on device, default back to web view
     if (browserPrefIndex == NSNotFound) browserPrefIndex = 0;
