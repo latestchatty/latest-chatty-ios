@@ -808,7 +808,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                stringByReplacingOccurrencesOfString:@"<" withString:@""]
                               stringByReplacingOccurrencesOfString:@">" withString:@""]
                              stringByReplacingOccurrencesOfString:@" " withString:@""];
-    [defaults setValue:deviceToken forKey:@"pushMessages.deviceToken"];
     
     // Build parameter dictionary for Registration
     NSDictionary *registerParameters =
@@ -834,8 +833,9 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
       parameters:registerParameters
         progress:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
-             
              [defaults setBool:YES forKey:@"pushMessages"];
+             [defaults setValue:deviceToken forKey:@"pushMessages.deviceToken"];
+             
              // get their current woggle notification prefs
              NSLog(@"calling getuser w/ parameters: %@", @{@"user": shackUserName});
              [manager GET:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]

@@ -15,7 +15,7 @@ You must use the .xcworkspace when opening the project now, and not the .xcodepr
 - Push Notifications!
     Register for push within the new "Notifications" section in the in-app settings.
     Opt-in for notifications on replies and/or vanity mentions.
-    Keyword notification management coming soon!
+- Various other minor bug fixes
 
 4.6.2
 ====

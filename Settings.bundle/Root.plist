@@ -12,7 +12,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<string>4.7.0.7</string>
+			<string>4.7.0.8</string>
 			<key>Key</key>
 			<string>version_preference</string>
 			<key>Title</key>
