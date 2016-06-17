@@ -141,7 +141,7 @@
 }
 
 - (BOOL)centerControllerHasMenuButton:(UINavigationController *)navController {
-    NSArray *classesWithMenuButton = @[[BrowserViewController class], [ChattyViewController class], [MessagesViewController class], [SearchViewController class], [StoriesViewController class]];
+    NSArray *classesWithMenuButton = @[[BrowserViewController class], [ChattyViewController class], [MessagesViewController class], [SearchViewController class], [StoriesViewController class], [ThreadViewController class]];
     for (Class cls in classesWithMenuButton) {
         if ([navController.visibleViewController isKindOfClass:cls]) {
             return YES;

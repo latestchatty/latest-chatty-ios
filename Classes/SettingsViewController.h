@@ -9,7 +9,9 @@
 #import "Post.h"
 
 @interface SettingsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIGestureRecognizerDelegate> {
-    IBOutlet UITableView *tableView;
+    IBOutlet UITableView     *tableView;
+    IBOutlet UIBarButtonItem *saveButton;
+    IBOutlet UIBarButtonItem *cancelButton;
   
     UITextField  *usernameField;
     UITextField  *passwordField;
@@ -29,20 +31,21 @@
     UISwitch     *lolTagsSwitch;
     UISwitch     *youTubeSwitch;
     UIPickerView *browserPrefPicker;
-//    UISwitch    *pushMessagesSwitch;
     UISwitch     *modToolsSwitch;
-  
-    UISwitch    *interestingSwitch;
-    UISwitch    *offtopicSwitch;
-    UISwitch    *randomSwitch;
-    UISwitch    *politicsSwitch;
-    UISwitch    *nwsSwitch;
-
-    IBOutlet UIBarButtonItem *saveButton;
-    IBOutlet UIBarButtonItem *cancelButton;
+    
+    UISwitch *pushMessagesSwitch;
+    UISwitch *vanityPrefSwitch;
+    UISwitch *repliesPrefSwitch;
+    
+    UISwitch *interestingSwitch;
+    UISwitch *offtopicSwitch;
+    UISwitch *randomSwitch;
+    UISwitch *politicsSwitch;
+    UISwitch *nwsSwitch;
     
     NSArray *apiServerNames;
     NSArray *apiServerAddresses;
+    
     NSMutableArray *browserTypes;
     NSMutableArray *browserTypesValues;
 }

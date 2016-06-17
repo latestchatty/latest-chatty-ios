@@ -8,24 +8,32 @@
 
 #import "Tag.h"
 
-static NSString *kTagUrl = @"http://lmnopc.com/greasemonkey/shacklol/report.php";
-static NSString *kGetCountsUrl = @"http://lol.lmnopc.com/api.php?special=getcounts";
+static NSString *kLOLTaggingBaseUrl = @"http://lmnopc.com";
+static NSString *kLOLGetCountsBaseUrl = @"http://lol.lmnopc.com";
 
 @implementation Tag
 
-+ (void)tagPostId:(NSUInteger)postId tag:(NSString*)tag {
-    NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
-    NSString *requestBody = [[NSString stringWithFormat:@"who=%@&what=%lu&tag=%@&version=-1", username, (unsigned long)postId, tag] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
++ (void)tagPostId:(NSUInteger)postId tag:(NSString*)tag {    
+    NSDictionary *taggingParameters =
+    @{@"who": [[NSUserDefaults standardUserDefaults] valueForKey:@"username"],
+      @"what": [NSString stringWithFormat:@"%lu", (unsigned long)postId],
+      @"tag": tag,
+      @"version": @"-1"};
+    NSLog(@"calling loltag w/ parameters: %@", taggingParameters);
     
-    [request setURL:[NSURL URLWithString:kTagUrl]];
-    [request setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
-    [request setHTTPMethod:@"POST"];
-    [NSURLConnection connectionWithRequest:request delegate:nil];
-    
-    // Use for testing tagging above
-//    NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
-//    NSLog(@"%@", responseBody);
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager POST:[NSString stringWithFormat:@"%@/greasemonkey/shacklol/report.php", kLOLTaggingBaseUrl]
+       parameters:taggingParameters
+         progress:nil
+          success:^(NSURLSessionDataTask *task, id responseObject) {
+              NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+          }
+          failure:^(NSURLSessionDataTask *task, NSError *error) {
+              NSLog( @"lol tagging fail: %@", error );
+          }];
 }
 
 + (NSMutableString *)buildPostViewTag:(NSDictionary *)lolCounts {
@@ -110,40 +118,29 @@ static NSString *kGetCountsUrl = @"http://lol.lmnopc.com/api.php?special=getcoun
     NSTimeInterval interval = [lastLolFetchDate timeIntervalSinceDate:[NSDate date]];
     
     if (interval == 0 || (interval * -1) > 60*5) {
+        // fetch lols
         NSLog(@"getting lol tags...");
         
-        // fetch lols synchronously with error handling support and timeout support, set to 5 seconds
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kGetCountsUrl]
-                                                 cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
-        NSError *requestError;
-        NSURLResponse *urlResponse = nil;
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-        if (!data) {
-            // error to get lols
-            if (requestError) {
-                // do we care about the specific error? or fail silently
-            }
-        }
-        else {
-            // Data was received.. continue processing
-            // parse getcounts JSON into a dictionary
-            [LatestChatty2AppDelegate delegate].lolCounts = [NSJSONSerialization JSONObjectWithData:data
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:nil];
-            NSLog(@"got %lu lol tags", (unsigned long)[LatestChatty2AppDelegate delegate].lolCounts.count);
-            
-            // stuff successful fetch date into user defaults
-            [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
-        }
-        
-        request = nil;
-        requestError = nil;
-        data = nil;
-        
-        NSLog(@"...done getting lol tags");
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        [manager GET:[NSString stringWithFormat:@"%@/api.php", kLOLGetCountsBaseUrl]
+          parameters:@{@"special": @"getcounts"}
+            progress:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 // save the fetched lol tags
+                 [LatestChatty2AppDelegate delegate].lolCounts = responseObject;
+                  NSLog(@"got %lu lol tags", (unsigned long)[[LatestChatty2AppDelegate delegate].lolCounts count]);
+                 // stuff successful fetch date into user defaults
+                 [defaults setObject:[NSDate date] forKey:@"lolFetchDate"];
+                 
+                 NSLog(@"...done getting lol tags");
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 NSLog( @"get lol tags fail: %@", error );
+             }];
     }
     
-    defaults = nil;
     lastLolFetchDate = nil;
 }
 

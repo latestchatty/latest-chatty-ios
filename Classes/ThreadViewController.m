@@ -201,6 +201,15 @@
         [postView setAllowsLinkPreview:YES];
     }
     
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice] &&
+        self.navigationController.viewControllers.count == 1) {
+            UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self.viewDeckController
+                                                                          action:@selector(toggleLeftView)];
+            self.navigationItem.leftBarButtonItem = menuButton;
+    }
+    
     if (rootPost) {
         [self.tableView reloadData];
         NSIndexPath *indexPath = selectedIndexPath;
@@ -288,6 +297,7 @@
     
 //    self.toolbar.frame = self.navigationController.navigationBar.frame;
     [self.view setNeedsLayout];
+    [self resetLayout:NO];
 
     // if there is a saved scroll position, animate the scroll to it and reinitialize the ivar
     if (self.scrollPosition.y > 0) {
@@ -298,10 +308,12 @@
     // set the panning gesture delegate to this controller to monitor whether the panning should occur
     [self.viewDeckController setPanningGestureDelegate:self];
     
-    // pop back the the thread vc instantiated doesn't have a threadId
+    // pop back to the thread, vc instantiated doesn't have a threadId
     if (threadId == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -542,6 +554,9 @@
             NSUInteger browserPref = [[NSUserDefaults standardUserDefaults] integerForKey:@"browserPref"];
             NSLog(@"browserPref: %lu", (unsigned long)browserPref);
             
+            // save scroll position of web view before showing view controller
+            self.scrollPosition = aWebView.scrollView.contentOffset;
+            
             if (isYouTubeURL && useYouTube) {
                 // don't open with browser preference, open YouTube app
                 [[UIApplication sharedApplication] openURL:[request URL]];
@@ -577,8 +592,6 @@
 
             viewController = [[BrowserViewController alloc] initWithRequest:request];
         }
-        // save scroll position of web view before pushing view controller
-        self.scrollPosition = aWebView.scrollView.contentOffset;
         
         [self.navigationController pushViewController:viewController animated:YES];
         
