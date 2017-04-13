@@ -11,14 +11,15 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		1E7AD0A82A82519C1C27F939 /* libPods-LatestChatty2 beta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6B4AF6FF360C079740125F /* libPods-LatestChatty2 beta.a */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* StoriesViewController.m */; };
+		5762581B5A0792B65F691F27 /* libPods-LatestChatty2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDBD84B01B8C10C75D54DF6 /* libPods-LatestChatty2.a */; };
 		5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		59EC55B417EDF56600F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
 		59EC55B517EDF56700F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
-		9E8D88EE4CA0A408680D15F0 /* libPods-LatestChatty2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D97A98C866D9A2803F31BB /* libPods-LatestChatty2.a */; };
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
 		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
@@ -517,7 +518,6 @@
 		CDF1BDE1175EEDC200D6B1AE /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF1BDDB175EEDC200D6B1AE /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CDF4F8E2177FE83500143015 /* RecentSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F8E1177FE83500143015 /* RecentSearchButton.m */; };
 		CDF4F8E3177FE83500143015 /* RecentSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F8E1177FE83500143015 /* RecentSearchButton.m */; };
-		D7543473986EF486B2142B88 /* libPods-LatestChatty2 beta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F79BB56F87A34B43F6A4F44D /* libPods-LatestChatty2 beta.a */; };
 		FA04800D0F70BD0500F752A6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = FA04800C0F70BD0500F752A6 /* Post.m */; };
 		FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0481210F70D10300F752A6 /* ChattyViewController.m */; };
 		FA04878E11640DA800290D2D /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */; };
@@ -570,8 +570,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09810F45ADB6A804EC8441B6 /* Pods-LatestChatty2.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.distribution.xcconfig"; sourceTree = "<group>"; };
-		198524768148DE61E12978E7 /* Pods-LatestChatty2 beta.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2 beta.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta.distribution.xcconfig"; sourceTree = "<group>"; };
+		1C7E2D4D089CCCA67F07A0F1 /* Pods-LatestChatty2.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.distribution.xcconfig"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* LatestChatty2AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatestChatty2AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* LatestChatty2AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatestChatty2AppDelegate.m; sourceTree = "<group>"; };
@@ -583,6 +582,8 @@
 		28C286DF0D94DF7D0034E888 /* StoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoriesViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* StoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoriesViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2CDBD84B01B8C10C75D54DF6 /* libPods-LatestChatty2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LatestChatty2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30CA6EE4B8FC9DC3578B8F2E /* Pods-LatestChatty2 beta.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2 beta.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta.distribution.xcconfig"; sourceTree = "<group>"; };
 		5907C5AC10A69A0A0028D630 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		59EC55B017EDF29C00F513A9 /* NSString+Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Regex.h"; path = "Classes/NSString+Regex.h"; sourceTree = "<group>"; };
@@ -590,16 +591,14 @@
 		61BB54EC1151A42A00BFB041 /* SendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageViewController.h; sourceTree = "<group>"; };
 		61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageViewController.m; sourceTree = "<group>"; };
 		61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageViewController.xib; sourceTree = "<group>"; };
-		7E3AAC8BB351DCC91BE18C8C /* Pods-LatestChatty2 beta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2 beta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta.debug.xcconfig"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A254B841116FFE9A001534FF /* MenuBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuBorder.png; path = Assets/MenuBorder.png; sourceTree = "<group>"; };
 		A254B845116FFEB0001534FF /* SlideOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutViewController.h; sourceTree = "<group>"; };
 		A254B846116FFEB0001534FF /* SlideOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutViewController.m; sourceTree = "<group>"; };
 		A27EA7211171E60D0072EB59 /* SliderDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SliderDivider.png; path = Assets/SliderDivider.png; sourceTree = "<group>"; };
-		A5D97A98C866D9A2803F31BB /* libPods-LatestChatty2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LatestChatty2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD5D63A86F83B29BEC33A209 /* Pods-LatestChatty2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.debug.xcconfig"; sourceTree = "<group>"; };
-		C0063930CB5ECF049BE02C33 /* Pods-LatestChatty2 beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2 beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta.release.xcconfig"; sourceTree = "<group>"; };
-		C2506BCF4EC22EFA10AF931E /* Pods-LatestChatty2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.release.xcconfig"; sourceTree = "<group>"; };
+		A769C5C1D23876A6650DCF1A /* Pods-LatestChatty2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.release.xcconfig"; sourceTree = "<group>"; };
+		AC04D257AD6945963E88627B /* Pods-LatestChatty2 beta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2 beta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta.debug.xcconfig"; sourceTree = "<group>"; };
+		BF6B4AF6FF360C079740125F /* libPods-LatestChatty2 beta.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LatestChatty2 beta.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD1328D017DD7912009A5AE3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Classes/MBProgressHUD.h; sourceTree = "<group>"; };
 		CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Classes/MBProgressHUD.m; sourceTree = "<group>"; };
 		CD13747A17EA90A0002A2551 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -857,7 +856,7 @@
 		CDF1BDDB175EEDC200D6B1AE /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
 		CDF4F8E0177FE83500143015 /* RecentSearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentSearchButton.h; sourceTree = "<group>"; };
 		CDF4F8E1177FE83500143015 /* RecentSearchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentSearchButton.m; sourceTree = "<group>"; };
-		F79BB56F87A34B43F6A4F44D /* libPods-LatestChatty2 beta.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LatestChatty2 beta.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7C7CF51A0D68791537C6103 /* Pods-LatestChatty2 beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2 beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta.release.xcconfig"; sourceTree = "<group>"; };
 		FA04800B0F70BD0500F752A6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		FA04800C0F70BD0500F752A6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		FA0481200F70D10300F752A6 /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
@@ -934,6 +933,7 @@
 		FAD4EB500F96797900E74FED /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		FAD4EB530F96798800E74FED /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		FAE438C71173FAA5000263F7 /* MenuBorderOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuBorderOut.png; path = Assets/MenuBorderOut.png; sourceTree = "<group>"; };
+		FEF0B6768CEB1E777EFBBEA4 /* Pods-LatestChatty2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -952,7 +952,7 @@
 				5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				CD8BDDCC1BF4EE90008AF895 /* Fabric.framework in Frameworks */,
-				9E8D88EE4CA0A408680D15F0 /* libPods-LatestChatty2.a in Frameworks */,
+				5762581B5A0792B65F691F27 /* libPods-LatestChatty2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,7 +971,7 @@
 				CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */,
 				CDA1181E16C1DC6600CE1375 /* UIKit.framework in Frameworks */,
 				CD8BDDCD1BF4EE90008AF895 /* Fabric.framework in Frameworks */,
-				D7543473986EF486B2142B88 /* libPods-LatestChatty2 beta.a in Frameworks */,
+				1E7AD0A82A82519C1C27F939 /* libPods-LatestChatty2 beta.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,7 +1007,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				8BF426928579D6EA4F338A07 /* Pods */,
+				95820D6040F5726EAE10140F /* Pods */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1073,8 +1073,8 @@
 				CD235A51173B1F1A0078423B /* QuartzCore.framework */,
 				5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
-				A5D97A98C866D9A2803F31BB /* libPods-LatestChatty2.a */,
-				F79BB56F87A34B43F6A4F44D /* libPods-LatestChatty2 beta.a */,
+				2CDBD84B01B8C10C75D54DF6 /* libPods-LatestChatty2.a */,
+				BF6B4AF6FF360C079740125F /* libPods-LatestChatty2 beta.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1088,15 +1088,15 @@
 			name = Regex;
 			sourceTree = "<group>";
 		};
-		8BF426928579D6EA4F338A07 /* Pods */ = {
+		95820D6040F5726EAE10140F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AD5D63A86F83B29BEC33A209 /* Pods-LatestChatty2.debug.xcconfig */,
-				C2506BCF4EC22EFA10AF931E /* Pods-LatestChatty2.release.xcconfig */,
-				09810F45ADB6A804EC8441B6 /* Pods-LatestChatty2.distribution.xcconfig */,
-				7E3AAC8BB351DCC91BE18C8C /* Pods-LatestChatty2 beta.debug.xcconfig */,
-				C0063930CB5ECF049BE02C33 /* Pods-LatestChatty2 beta.release.xcconfig */,
-				198524768148DE61E12978E7 /* Pods-LatestChatty2 beta.distribution.xcconfig */,
+				FEF0B6768CEB1E777EFBBEA4 /* Pods-LatestChatty2.debug.xcconfig */,
+				A769C5C1D23876A6650DCF1A /* Pods-LatestChatty2.release.xcconfig */,
+				1C7E2D4D089CCCA67F07A0F1 /* Pods-LatestChatty2.distribution.xcconfig */,
+				AC04D257AD6945963E88627B /* Pods-LatestChatty2 beta.debug.xcconfig */,
+				E7C7CF51A0D68791537C6103 /* Pods-LatestChatty2 beta.release.xcconfig */,
+				30CA6EE4B8FC9DC3578B8F2E /* Pods-LatestChatty2 beta.distribution.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1494,14 +1494,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "LatestChatty2" */;
 			buildPhases = (
-				5D8E2944405AF3B0A2DFCE17 /* Check Pods Manifest.lock */,
+				7EC952AF841E2F8F92AEE472 /* [CP] Check Pods Manifest.lock */,
 				CDC8BC9417EF7681007B25C6 /* ShellScript */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				CDA1FA2218096F140036F7B6 /* ShellScript */,
-				27EC52EAFBDB31103B26E3CE /* Embed Pods Frameworks */,
-				A5938D21E345B3E7891604A1 /* Copy Pods Resources */,
+				8FB9107D4F1F5021C5566986 /* [CP] Embed Pods Frameworks */,
+				23E3AD58A0B004C0E0704B38 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1516,14 +1516,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDA1182416C1DC6600CE1375 /* Build configuration list for PBXNativeTarget "LatestChatty2 beta" */;
 			buildPhases = (
-				CC3E642EEFD815467E7B3DC6 /* Check Pods Manifest.lock */,
+				1B8EDE81719A367EADA049C6 /* [CP] Check Pods Manifest.lock */,
 				CD7ADD2417EF575700B4C886 /* ShellScript */,
 				CDA1174D16C1DC6600CE1375 /* Resources */,
 				CDA117CE16C1DC6600CE1375 /* Sources */,
 				CDA1181C16C1DC6600CE1375 /* Frameworks */,
 				CD4370D31803727B008D9DCF /* ShellScript */,
-				82DB5E297DB4FE93E406A82D /* Embed Pods Frameworks */,
-				6B2711F67604B802FB5515BE /* Copy Pods Resources */,
+				145F16AC6C8E26DF16D84383 /* [CP] Embed Pods Frameworks */,
+				2D0DE5BDA98B0721D337CE06 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1540,7 +1540,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0830;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = JA9LQCT6NB;
@@ -1575,6 +1575,7 @@
 				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -2006,59 +2007,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		27EC52EAFBDB31103B26E3CE /* Embed Pods Frameworks */ = {
+		145F16AC6C8E26DF16D84383 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5D8E2944405AF3B0A2DFCE17 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6B2711F67604B802FB5515BE /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		82DB5E297DB4FE93E406A82D /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2066,14 +2022,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A5938D21E345B3E7891604A1 /* Copy Pods Resources */ = {
+		1B8EDE81719A367EADA049C6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		23E3AD58A0B004C0E0704B38 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2081,19 +2052,49 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CC3E642EEFD815467E7B3DC6 /* Check Pods Manifest.lock */ = {
+		2D0DE5BDA98B0721D337CE06 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7EC952AF841E2F8F92AEE472 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8FB9107D4F1F5021C5566986 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CD4370D31803727B008D9DCF /* ShellScript */ = {
@@ -2302,7 +2303,7 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD5D63A86F83B29BEC33A209 /* Pods-LatestChatty2.debug.xcconfig */;
+			baseConfigurationReference = FEF0B6768CEB1E777EFBBEA4 /* Pods-LatestChatty2.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2337,7 +2338,7 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2506BCF4EC22EFA10AF931E /* Pods-LatestChatty2.release.xcconfig */;
+			baseConfigurationReference = A769C5C1D23876A6650DCF1A /* Pods-LatestChatty2.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2367,20 +2368,36 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2399,17 +2416,33 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
@@ -2428,7 +2461,7 @@
 		};
 		CDA1182516C1DC6600CE1375 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E3AAC8BB351DCC91BE18C8C /* Pods-LatestChatty2 beta.debug.xcconfig */;
+			baseConfigurationReference = AC04D257AD6945963E88627B /* Pods-LatestChatty2 beta.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2458,7 +2491,7 @@
 		};
 		CDA1182616C1DC6600CE1375 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C0063930CB5ECF049BE02C33 /* Pods-LatestChatty2 beta.release.xcconfig */;
+			baseConfigurationReference = E7C7CF51A0D68791537C6103 /* Pods-LatestChatty2 beta.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2486,7 +2519,7 @@
 		};
 		CDA1182716C1DC6600CE1375 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 198524768148DE61E12978E7 /* Pods-LatestChatty2 beta.distribution.xcconfig */;
+			baseConfigurationReference = 30CA6EE4B8FC9DC3578B8F2E /* Pods-LatestChatty2 beta.distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2515,17 +2548,33 @@
 		FADDB5410F81548500DF3650 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
@@ -2544,7 +2593,7 @@
 		};
 		FADDB5420F81548500DF3650 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09810F45ADB6A804EC8441B6 /* Pods-LatestChatty2.distribution.xcconfig */;
+			baseConfigurationReference = 1C7E2D4D089CCCA67F07A0F1 /* Pods-LatestChatty2.distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
