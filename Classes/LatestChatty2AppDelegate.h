@@ -22,7 +22,7 @@
     UINavigationController *navigationController;
     UINavigationController *contentNavigationController;
 	SlideOutViewController *slideOutViewController;
-    NSUInteger *threadId;
+    NSUInteger threadId;
 }
 
 @property (nonatomic, strong) UIApplicationShortcutItem *launchedShortcutItem;
