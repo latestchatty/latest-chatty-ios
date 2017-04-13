@@ -10,6 +10,8 @@
 #import <Crashlytics/Crashlytics.h>
 #import "LCBrowserType.h"
 
+static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
+
 @implementation SettingsViewController
 
 - (id)initWithNib {
@@ -55,8 +57,15 @@
         picsQualitySlider  = [self generateSliderWithKey:@"picsQuality"];
         youTubeSwitch      = [self generateSwitchWithKey:@"useYouTube"];
         browserPrefPicker  = [self generatePickerViewWithTag:1];
-//        pushMessagesSwitch = [[self generateSwitchWithKey:@"push.messages"] retain];
         modToolsSwitch     = [self generateSwitchWithKey:@"modTools"];
+        
+        pushMessagesSwitch = [self generateSwitchWithKey:@"pushMessages"];
+        pushMessagesSwitch.enabled = [[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] length] > 0;
+        [pushMessagesSwitch addTarget:self action:@selector(handleSwitchState:) forControlEvents:UIControlEventValueChanged];
+        vanityPrefSwitch  = [self generateSwitch];
+        vanityPrefSwitch.enabled = NO;
+        repliesPrefSwitch = [self generateSwitch];
+        repliesPrefSwitch.enabled = NO;
         
         interestingSwitch  = [self generateSwitchWithKey:@"postCategory.informative"];
         offtopicSwitch     = [self generateSwitchWithKey:@"postCategory.offtopic"];
@@ -81,6 +90,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *shackUserName = [defaults valueForKey:@"username"];
+    BOOL pushEnabled = [defaults boolForKey:@"pushMessages"];
+    
+    // get their current woggle notification prefs
+    if ([shackUserName length] > 0 && pushEnabled) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        [manager GET:[NSString stringWithFormat:@"%@/getuser.php", kWoggleBaseUrl]
+          parameters:@{@"user": shackUserName}
+            progress:nil
+            success:^(NSURLSessionDataTask *task, id responseObject) {
+                  
+                  // update switches with results of pref fetch
+                  BOOL vanity = YES;
+                  BOOL replies = YES;
+                  if ([responseObject objectForKey:@"get_vanity"]) {
+                      vanity = [responseObject boolForKey:@"get_vanity"];
+                  }
+                  if ([responseObject objectForKey:@"get_replies"]) {
+                      replies = [responseObject boolForKey:@"get_replies"];
+                  }
+
+                  vanityPrefSwitch.on = vanity;
+                  vanityPrefSwitch.enabled = YES;
+                  repliesPrefSwitch.on = replies;
+                  repliesPrefSwitch.enabled = YES;
+            }
+            failure:^(NSURLSessionDataTask *task, NSError *error) {
+                NSLog( @"getuser fail: %@", error );
+            }];
+    }
     
     [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
     [cancelButton setTitleTextAttributes:[NSDictionary cancelTextAttributesDictionary] forState:UIControlStateNormal];
@@ -111,7 +154,7 @@
                            @"winchatty.com/chatty"];
     
     // get the user's saved api server address
-    NSString *userServer = [[NSUserDefaults standardUserDefaults] objectForKey:@"serverApi"];
+    NSString *userServer = [defaults objectForKey:@"serverApi"];
     NSUInteger serverIndex = [apiServerAddresses indexOfObject:userServer];
     // if manually entered API, default the picker to the zero slot (manual)
     // otherwise, set the picker to the server saved in the "serverApi" user default
@@ -140,12 +183,14 @@
     }
     
     // get the user's browser preference
-    NSNumber *browserPref = [NSNumber numberWithInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"browserPref"]];
+    NSNumber *browserPref = [NSNumber numberWithInteger:[defaults integerForKey:@"browserPref"]];
     NSUInteger browserPrefIndex = [browserTypesValues indexOfObject:browserPref];
     // if the user's browser preference is no longer available on device, default back to web view
     if (browserPrefIndex == NSNotFound) browserPrefIndex = 0;
     [browserPrefPicker selectRow:browserPrefIndex inComponent:0 animated:NO];
     [browserPrefPicker reloadComponent:0];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWogglePrefs:) name:@"UpdateWogglePrefs" object:nil];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -183,6 +228,17 @@
     [toggle setTintColor:[UIColor lcSwitchOffColor]];
     
 	return toggle;
+}
+
+- (UISwitch *)generateSwitch {
+    UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
+    toggle.on = NO;
+    
+    // moved appearance proxy settings from app delegate to directly on the controls
+    [toggle setOnTintColor:[UIColor lcSwitchOnColor]];
+    [toggle setTintColor:[UIColor lcSwitchOffColor]];
+    
+    return toggle;
 }
 
 - (UISlider *)generateSliderWithKey:(NSString *)key {
@@ -231,6 +287,8 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	if (textField == usernameField) {
 		[passwordField becomeFirstResponder];
+        
+        pushMessagesSwitch.enabled = [usernameField.text length] > 0;
 	} else if (textField == passwordField) {
 		[passwordField resignFirstResponder];
 	} else if (textField == serverField) {
@@ -312,6 +370,26 @@
 -(void)saveSettings {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    if (pushMessagesSwitch.on && [usernameField.text length] > 0) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        NSDictionary *adduserParameters =
+        @{@"action": @"add",
+          @"type": @"user",
+          @"user": usernameField.text,
+          @"getvanity": vanityPrefSwitch.on ? @"1" : @"0",
+          @"getreplies": repliesPrefSwitch.on ? @"1" : @"0"};
+        NSLog(@"calling adduser w/ parameters: %@", adduserParameters);
+        [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
+          parameters:adduserParameters
+            progress:nil
+             success:nil
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 NSLog( @"adduser fail: %@", error );
+             }];
+    }
+    
 	[defaults setObject:usernameField.text      forKey:@"username"];
 	[defaults setObject:passwordField.text      forKey:@"password"];
     [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
@@ -329,18 +407,14 @@
 	[defaults setBool:youTubeSwitch.on          forKey:@"useYouTube"];
     [defaults setInteger:[browserTypesValues[[browserPrefPicker selectedRowInComponent:0]] integerValue] forKey:@"browserPref"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
-//	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
-//    if (pushMessagesSwitch.on) {
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-//    } else {
-//        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
-//    }
     
 	NSString *serverApi = serverField.text;
 	serverApi = [serverApi stringByReplacingOccurrencesOfRegex:@"^http://" withString:@""];
 	serverApi = [serverApi stringByReplacingOccurrencesOfRegex:@"/$" withString:@""];
 	[defaults setObject:serverApi forKey:@"serverApi"];
 	
+    [defaults setBool:pushMessagesSwitch.on     forKey:@"pushMessages"];
+    
 	[defaults setBool:interestingSwitch.on forKey:@"postCategory.informative"];
 	[defaults setBool:offtopicSwitch.on    forKey:@"postCategory.offtopic"];
 	[defaults setBool:randomSwitch.on      forKey:@"postCategory.stupid"];
@@ -349,6 +423,7 @@
 	
 	[defaults synchronize];
     
+    // settings stored in iCloud should be mapped here
     NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
 	[store setObject:usernameField.text      forKey:@"username"];
 	[store setObject:passwordField.text      forKey:@"password"];
@@ -415,7 +490,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 5;
+	return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -423,6 +498,7 @@
 		case 0:
 			return 4;
 			break;
+            
         case 1:
             return 4;
             break;
@@ -431,11 +507,15 @@
             return 8;
 			break;
 			
-		case 3:
+        case 3:
+            return 3;
+            break;
+            
+		case 4:
 			return 5;
 			break;
             
-        case 4:
+        case 5:
             return 2;
             break;
 			
@@ -458,12 +538,16 @@
 		case 2:
 			return @"PREFERENCES";
 			break;
-			
-		case 3:
+
+        case 3:
+            return @"NOTIFICATIONS";
+            break;
+            
+		case 4:
 			return @"POST CATEGORIES";
 			break;
         
-        case 4:
+        case 5:
             return @"ABOUT";
             break;
 			
@@ -602,7 +686,7 @@
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Enable Mod Tools:";
 				break;
-
+                
             case 5:
                 cell.accessoryView = orderByPostDateSwitch;
                 cell.textLabel.text = @"Scroll Replies By Date:";
@@ -617,16 +701,31 @@
                 cell.accessoryView = youTubeSwitch;
                 cell.textLabel.text = @"Use YouTube:";
                 break;
-                
-//			case 8:
-//				cell.accessoryView = pushMessagesSwitch;
-//				cell.textLabel.text = @"Push Messages:";
-//				break;
 		}
 	}
-	
+
+    // Push notification controls
+    if (indexPath.section == 3) {
+        switch (indexPath.row) {
+            case 0:
+                cell.accessoryView = pushMessagesSwitch;
+                cell.textLabel.text = @"Push Messages:";
+                break;
+                
+            case 1:
+                cell.accessoryView = vanityPrefSwitch;
+                cell.textLabel.text = @"Vanity:";
+                break;
+                
+            case 2:
+                cell.accessoryView = repliesPrefSwitch;
+                cell.textLabel.text = @"Replies:";
+                break;
+        }
+    }
+    
 	// Post category toggles
-	if (indexPath.section == 3) {
+	if (indexPath.section == 4) {
         UIView *categoryColor = [[UIView alloc] initWithFrame:CGRectMake(18, 9, 4, 28)];
 		[cell addSubview:categoryColor];
 		
@@ -663,7 +762,7 @@
 		}
 	}
     
-    if (indexPath.section == 4) {
+    if (indexPath.section == 5) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
         switch (indexPath.row) {
@@ -774,6 +873,41 @@
         label.textAlignment = NSTextAlignmentCenter;
     }
     return label;
+}
+
+#pragma mark Notification Support 
+
+- (void)handleSwitchState:(UISwitch *)aSwitch {
+    if (aSwitch == pushMessagesSwitch) {
+        if ([usernameField.text length] <= 0) {
+            [UIAlertView showSimpleAlertWithTitle:@"Not Logged In"
+                                          message:@"Enter a username and password to enable push notifications."];
+            return;
+        }
+        
+        if (pushMessagesSwitch.on) {
+            // Add registration for remote notifications
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        } else {
+            // unregister, disable vanity/replies switches
+            [[LatestChatty2AppDelegate delegate] pushUnregistration];
+            
+            vanityPrefSwitch.on = NO;
+            vanityPrefSwitch.enabled = NO;
+            repliesPrefSwitch.on = NO;
+            repliesPrefSwitch.enabled = NO;
+        }
+    }
+}
+
+- (void)updateWogglePrefs:(NSNotification*)notification {
+    BOOL vanity = [notification.object boolForKey:@"vanity"];
+    BOOL replies = [notification.object boolForKey:@"replies"];
+    
+    vanityPrefSwitch.on = vanity;
+    vanityPrefSwitch.enabled = YES;
+    repliesPrefSwitch.on = replies;
+    repliesPrefSwitch.enabled = YES;
 }
 
 #pragma mark Cleanup

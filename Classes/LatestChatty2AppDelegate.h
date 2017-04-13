@@ -20,12 +20,9 @@
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate> {
     UIWindow *window;
     UINavigationController *navigationController;
-//    NSUInteger networkActivityIndicatorCount;
-    
-    // iPad
     UINavigationController *contentNavigationController;
-
 	SlideOutViewController *slideOutViewController;
+    NSUInteger *threadId;
 }
 
 @property (nonatomic, strong) UIApplicationShortcutItem *launchedShortcutItem;
@@ -43,12 +40,14 @@
 
 @property (strong, nonatomic) NSDictionary *lolCounts;
 
-- (IIViewDeckController*)generateControllerStack;
+- (IIViewDeckController*)generateControllerStack:(NSDictionary *)launchOptions;
 
 + (LatestChatty2AppDelegate*)delegate;
 + (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation;
 + (UIInterfaceOrientationMask)supportedInterfaceOrientations;
 + (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)pushRegistration;
+- (void)pushUnregistration;
 
 //- (BOOL)reloadSavedState;
 

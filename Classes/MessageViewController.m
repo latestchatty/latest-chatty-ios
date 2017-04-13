@@ -72,6 +72,10 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
 - (void)reply {
     SendMessageViewController *sendMessageViewController = [[SendMessageViewController alloc] initWithMessage:message];
 	[self.navigationController pushViewController:sendMessageViewController animated:YES];

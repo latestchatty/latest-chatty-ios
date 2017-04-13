@@ -1,9 +1,26 @@
 latest-chatty-2
 ===============
 
-Requires iOS 8!
-Supports iOS 9, iPhone 6s, iPhone 6s Plus!
+Requires iOS 8 minimum!
+Supports iOS 9 & iPhone 6s, iPhone 6s Plus, iPad Pro!
 Now includes 3D Touch support!
+Now includes push notifications thanks to server-side support from bradsh!
+
+Xcode project now uses CocoaPods dependency management (just for AFNetworking at the moment).
+This requires CocoaPods 0.39 & ruby 2.2 (NOT ruby 2.3).
+You must use the .xcworkspace when opening the project now, and not the .xcodeproj.
+
+4.7.0
+====
+- Push Notifications!
+    Register for push within the new "Notifications" section in the in-app settings.
+    Opt-in for notifications on replies and/or vanity mentions.
+- Various other minor bug fixes
+
+4.6.2
+====
+- iPad Pro icon addition
+- Safari View can now be dismissed with edge swipe
 
 4.6.1
 ====
