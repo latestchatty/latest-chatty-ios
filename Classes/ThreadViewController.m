@@ -338,6 +338,7 @@
     [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     
     [loader cancel];
+    [self.buttonHandler stopHandler];
 }
 
 - (void)tappedDoneButton {
