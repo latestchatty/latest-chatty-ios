@@ -7,11 +7,11 @@ platform :ios, '8.0'
 target 'LatestChatty2' do
 
 pod 'AFNetworking', '~> 3.0'
-
+pod 'JPSVolumeButtonHandler'
 end
 
 target 'LatestChatty2 beta' do
 
 pod 'AFNetworking', '~> 3.0'
-
+pod 'JPSVolumeButtonHandler'
 end

@@ -14,11 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
+  - JPSVolumeButtonHandler (1.0.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - JPSVolumeButtonHandler
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  JPSVolumeButtonHandler: 2fc1b1f98b4e5e741688c0fcffc4808bdf81a424
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: a460a59013b0175c7cfec260f6dcf4b869ce6428
+
+COCOAPODS: 1.2.0

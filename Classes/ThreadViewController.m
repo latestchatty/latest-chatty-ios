@@ -10,6 +10,11 @@
 #import "SendMessageViewController.h"
 #import "MBProgressHUD.h"
 #import "LCBrowserType.h"
+#import "JPSVolumeButtonHandler.h"
+
+@interface ThreadViewController()
+@property (nonatomic, strong) JPSVolumeButtonHandler *buttonHandler;
+@end
 
 @implementation ThreadViewController
 
@@ -290,6 +295,7 @@
     }
     
     [self resetLayout:NO];
+    [self setupVolumeButtons];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -332,6 +338,7 @@
     [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     
     [loader cancel];
+    [self.buttonHandler stopHandler];
 }
 
 - (void)tappedDoneButton {
@@ -747,6 +754,15 @@
     return minTimeLevelPostIndex;
 }
 
+- (void)setupVolumeButtons {
+    self.buttonHandler = [JPSVolumeButtonHandler volumeButtonHandlerWithUpBlock:^{
+        [self previous];
+    } downBlock:^{
+        [self next];
+    }];
+    [self.buttonHandler startHandler:YES];
+}
+
 - (IBAction)previous {
     NSIndexPath *oldIndexPath = selectedIndexPath;
         
@@ -941,7 +957,7 @@
 
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
+    _buttonHandler = nil;
     tableView.delegate = nil;
 }
 
