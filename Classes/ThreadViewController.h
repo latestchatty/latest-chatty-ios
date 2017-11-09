@@ -16,6 +16,7 @@
 #import "ComposeViewController.h"
 #import "BrowserViewController.h"
 #import "ChattyViewController.h"
+#import "SloppySwiper.h"
 @import SafariServices;
 
 @interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, SFSafariViewControllerDelegate> {
@@ -43,6 +44,7 @@
 @property (nonatomic, copy) NSString *threadStarter;
 @property (strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, assign) CGPoint scrollPosition;
+@property (strong, nonatomic) SloppySwiper *swiper;
 
 - (id)initWithThreadId:(NSUInteger)aThreadId;
 

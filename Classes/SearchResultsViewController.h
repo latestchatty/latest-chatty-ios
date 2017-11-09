@@ -15,6 +15,8 @@
 
 #import "ThreadCell.h"
 
+#import "SloppySwiper.h"
+
 @interface SearchResultsViewController : ModelListViewController {
     NSArray *posts;
 
@@ -31,6 +33,7 @@
 
 @property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) SloppySwiper *swiper;
 
 - (id)initWithTerms:(NSString *)terms author:(NSString *)author parentAuthor:(NSString *)parentAuthor;
 

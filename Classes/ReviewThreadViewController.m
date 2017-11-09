@@ -38,6 +38,9 @@
     
     // scroll indicator coloring
     [postView.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
+    
+    self.swiper = [[SloppySwiper alloc] initWithNavigationController:self.navigationController];
+    self.navigationController.delegate = self.swiper;
 }
 
 - (IBAction)dismiss {

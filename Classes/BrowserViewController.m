@@ -92,6 +92,9 @@
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
     [topStroke setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:topStroke];
+    
+    self.swiper = [[SloppySwiper alloc] initWithNavigationController:self.navigationController];
+    self.navigationController.delegate = self.swiper;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

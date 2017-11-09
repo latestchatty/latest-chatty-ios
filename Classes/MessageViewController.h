@@ -9,6 +9,7 @@
 #import "Message.h"
 #import "StringTemplate.h"
 #import "BrowserViewController.h"
+#import "SloppySwiper.h"
 @import SafariServices;
 
 @interface MessageViewController : UIViewController <UIWebViewDelegate, SFSafariViewControllerDelegate> {
@@ -17,6 +18,7 @@
 }
 
 @property (strong) Message *message;
+@property (strong, nonatomic) SloppySwiper *swiper;
 
 - (id)initWithMesage:(Message *)aMessage;
 

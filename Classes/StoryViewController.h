@@ -10,6 +10,7 @@
 #import "ChattyViewController.h"
 #import "StringTemplate.h"
 #import "BrowserViewController.h"
+#import "SloppySwiper.h"
 @import SafariServices;
 
 @interface StoryViewController : ModelListViewController <ModelLoadingDelegate, UIWebViewDelegate, SFSafariViewControllerDelegate> {
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) ModelLoader *storyLoader;
 @property (nonatomic, strong) Story *story;
 @property (nonatomic, strong) IBOutlet UIWebView *content;
+@property (strong, nonatomic) SloppySwiper *swiper;
 
 - (id)initWithStoryId:(NSUInteger)aStoryId;
 - (id)initWithStory:(Story *)aStory;

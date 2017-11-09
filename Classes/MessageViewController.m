@@ -70,6 +70,9 @@
 //            NSLog(@"Message Count saved: %i", messageCount);            
         }
     }
+    
+    self.swiper = [[SloppySwiper alloc] initWithNavigationController:self.navigationController];
+    self.navigationController.delegate = self.swiper;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

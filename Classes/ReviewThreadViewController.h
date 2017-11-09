@@ -6,6 +6,7 @@
 //
 
 #import "Post.h"
+#import "SloppySwiper.h"
 
 @interface ReviewThreadViewController : UIViewController <UIWebViewDelegate> {
     Post *rootPost;
@@ -16,6 +17,7 @@
 }
 
 @property (strong) Post *rootPost;
+@property (strong, nonatomic) SloppySwiper *swiper;
 
 - (id)initWithPost:(Post *)aPost;
 

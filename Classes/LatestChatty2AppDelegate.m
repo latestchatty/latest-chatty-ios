@@ -34,6 +34,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     IIViewDeckController* deckController = [self generateControllerStack:launchOptions];
     self.leftController = deckController.leftController;
     self.centerController = deckController.centerController;
+    deckController.panningMode = IIViewDeckNavigationBarOrOpenCenterPanning;
     
     self.window.rootViewController = deckController;
 }
