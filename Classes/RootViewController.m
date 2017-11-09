@@ -367,14 +367,12 @@
             break;
             
         case 5:
-            modal = YES;
+//            modal = YES;
             viewController = [SettingsViewController controllerWithNib];
 
-            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-            
-            // use the saved index path to re-select the previous index since settings selection should not persist as a modal
-            if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                [self.tableView selectRowAtIndexPath:self.selectedIndex animated:YES scrollPosition:UITableViewScrollPositionNone];
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
+                viewController = nil;
             }
             
             break;
