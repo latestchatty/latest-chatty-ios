@@ -47,7 +47,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     if (userInfo != nil) {
         NSLog(@"Launched from push notification: %@", userInfo);
         
-        NSUInteger *launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
+        NSUInteger launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
         UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
         
         if (viewController) {
@@ -90,7 +90,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     if (userInfo != nil) {
         NSLog(@"Launched from push notification: %@", userInfo);
         
-        NSUInteger *launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
+        NSUInteger launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
         UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
         
         if (viewController) {
@@ -175,7 +175,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
 
-    BOOL *handledShortCutItem = [self handleShortcutItem: shortcutItem];
+    BOOL handledShortCutItem = [self handleShortcutItem: shortcutItem];
     completionHandler(handledShortCutItem);
 
 }
@@ -734,7 +734,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
         UIUserNotificationType notificationTypes = settings.types;
         
-        BOOL *isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
+        BOOL isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
         if (!isPushAlertEnabled) {
             // unregister to woggle
             [self pushUnregistration];
