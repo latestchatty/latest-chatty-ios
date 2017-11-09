@@ -201,7 +201,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      @"",                           @"password",
                                      @"winchatty.com/chatty",       @"serverApi",
                                      [NSNumber numberWithBool:NO],  @"collapse",
-                                     [NSNumber numberWithBool:YES], @"landscape",
+//                                     [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
                                      [NSNumber numberWithBool:NO],  @"pushMessages",
                                      [NSNumber numberWithBool:YES], @"pushMessages.firstLaunch",
@@ -681,23 +681,12 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 }
 
 + (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    // allow landscape setting on
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            // iPad can rotate to any interface
-            return UIInterfaceOrientationMaskAll;
-        } else {
-            // iPhone can rotate to any interface except portrait upside down
-            return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscapeLeft|UIInterfaceOrientationMaskLandscapeRight;
-        }
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        // iPad can rotate to any interface
+        return UIInterfaceOrientationMaskAll;
     } else {
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            // iPad can rotate to any portrait interface
-            return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskPortraitUpsideDown;
-        } else {
-            // iPhone can rotate to only regular portrait
-            return UIInterfaceOrientationMaskPortrait;
-        }
+        // iPhone can rotate to any interface except portrait upside down
+        return UIInterfaceOrientationMaskPortrait;
     }
 }
 
@@ -706,15 +695,24 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     if (![[LatestChatty2AppDelegate delegate] isPadDevice] && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         return NO;
     }
-    
-    // allow landscape setting is on, allow rotation
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
+
+    // iPad, allow rotation
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         return YES;
     } else {
-        // allow landscape setting is off, allow rotation if the orientation isn't landscape
+        // allow rotation if the orientation isn't landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation))return NO;
         return YES;
     }
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    if ( [[LatestChatty2AppDelegate delegate] isPadDevice] ||
+        [self.window.rootViewController.presentedViewController isKindOfClass:[SFSafariViewController class]] ) {
+        return UIInterfaceOrientationMaskAll;
+    }
+    
+    return UIInterfaceOrientationMaskAll;
 }
 
 #pragma mark - Notification Support

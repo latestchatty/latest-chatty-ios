@@ -27,7 +27,7 @@
     UISwitch     *orderByPostDateSwitch;
     UISwitch     *saveSearchesSwitch;
     UISwitch     *collapseSwitch;
-    UISwitch     *landscapeSwitch;
+//    UISwitch     *landscapeSwitch;
     UISwitch     *lolTagsSwitch;
     UISwitch     *youTubeSwitch;
     UIPickerView *browserPrefPicker;

@@ -375,7 +375,7 @@
     [grippyBar setBackgroundColorForThread:[UIColor lcCellPinnedColor]];
     
     //show pin HUD message
-    NSTimeInterval theTimeInterval = 0.5;
+    NSTimeInterval theTimeInterval = 0.75;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
     [hud setLabelText:@"Pinned!"];
@@ -395,7 +395,7 @@
     [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     
     //show unpin HUD message
-    NSTimeInterval theTimeInterval = 0.5;
+    NSTimeInterval theTimeInterval = 0.75;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
     [hud setLabelText:@"Unpinned!"];
@@ -837,7 +837,7 @@
         }
         
         //show mod HUD message
-        NSTimeInterval theTimeInterval = 0.5;
+        NSTimeInterval theTimeInterval = 0.75;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Modded!"];
@@ -848,7 +848,7 @@
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
         
         //show tag HUD message
-        NSTimeInterval theTimeInterval = 0.5;
+        NSTimeInterval theTimeInterval = 0.75;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Tagged!"];

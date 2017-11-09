@@ -52,7 +52,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         orderByPostDateSwitch = [self generateSwitchWithKey:@"orderByPostDate"];
         saveSearchesSwitch = [self generateSwitchWithKey:@"saveSearches"];
         collapseSwitch     = [self generateSwitchWithKey:@"collapse"];
-        landscapeSwitch    = [self generateSwitchWithKey:@"landscape"];
+//        landscapeSwitch    = [self generateSwitchWithKey:@"landscape"];
         lolTagsSwitch      = [self generateSwitchWithKey:@"lolTags"];
         picsResizeSwitch   = [self generateSwitchWithKey:@"picsResize"];
         picsQualitySlider  = [self generateSliderWithKey:@"picsQuality"];
@@ -415,7 +415,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 	[defaults setBool:orderByPostDateSwitch.on  forKey:@"orderByPostDate"];
     [defaults setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
 	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
-	[defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
+//    [defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
 	[defaults setBool:lolTagsSwitch.on          forKey:@"lolTags"];
     [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
     
@@ -468,13 +468,17 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         //show pin HUD message
-        NSTimeInterval theTimeInterval = 2.0;
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        NSTimeInterval theTimeInterval = 0.75;
+        MBProgressHUD *hud =
+            [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow]
+                                 animated:YES];
         [hud setMode:MBProgressHUDModeText];
-        [hud setLabelText:@"Settings Saved!"];
-        [hud setColor:[UIColor lcCellPinnedColor]];
+        [hud setLabelText:@"Saved!"];
+        [hud setColor:[UIColor lcGroupedCellColor]];
 //        [hud setYOffset:-33];
         [hud hide:YES afterDelay:theTimeInterval];
+        
+        [[self.navigationController viewDeckController] openLeftView];
     }
 }
 
@@ -533,7 +537,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
             break;
 			
 		case 2:
-            return 8;
+            return 7;
 			break;
 			
         case 3:
@@ -696,37 +700,37 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 				cell.textLabel.text = @"Allow Collapse:";
 				break;
                 
-            case 1:
-				cell.accessoryView = landscapeSwitch;
-				cell.textLabel.text = @"Allow Landscape:";
-				break;
+//            case 1:
+//                cell.accessoryView = landscapeSwitch;
+//                cell.textLabel.text = @"Allow Landscape:";
+//                break;
                 
-            case 2:
+            case 1:
                 cell.accessoryView = browserPrefPicker;
                 cell.textLabel.text = @"Browser Preference:";
                 break;
                 
-            case 3:
+            case 2:
 				cell.accessoryView = lolTagsSwitch;
 				cell.textLabel.text = @"Enable [lol] Tags:";
 				break;
                 
-			case 4:
+			case 3:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Enable Mod Tools:";
 				break;
                 
-            case 5:
+            case 4:
                 cell.accessoryView = orderByPostDateSwitch;
                 cell.textLabel.text = @"Scroll Replies By Date:";
                 break;
                 
-			case 6:
+			case 5:
 				cell.accessoryView = saveSearchesSwitch;
 				cell.textLabel.text = @"Save Searches:";
 				break;
                 
-            case 7:
+            case 6:
                 cell.accessoryView = youTubeSwitch;
                 cell.textLabel.text = @"Use YouTube:";
                 break;
