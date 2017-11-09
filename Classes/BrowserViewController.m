@@ -70,19 +70,19 @@
     
     [webView loadRequest:request];
     
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        // Add pan gesture to detect velocity of panning webview to hide/show bars
-        // only for iPhone
-        UIPanGestureRecognizer* panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-        [self.view addGestureRecognizer:panGesture];
-        panGesture.delegate = self;
-        panGesture.cancelsTouchesInView = NO;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showBars) name:@"ShowBrowserBars" object:nil];
-        
-        [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, self.bottomToolbar.frameHeight, 0)];
-        [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    }
+//    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        // Add pan gesture to detect velocity of panning webview to hide/show bars
+//        // only for iPhone
+//        UIPanGestureRecognizer* panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+//        [self.view addGestureRecognizer:panGesture];
+//        panGesture.delegate = self;
+//        panGesture.cancelsTouchesInView = NO;
+//
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showBars) name:@"ShowBrowserBars" object:nil];
+//
+//        [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, self.bottomToolbar.frameHeight, 0)];
+//        [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+//    }
     
     // iOS7
     self.navigationController.navigationBar.translucent = NO;
