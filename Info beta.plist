@@ -119,5 +119,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access is necessary to upload photos to ChattyPics.</string>
 </dict>
 </plist>

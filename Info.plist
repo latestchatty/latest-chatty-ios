@@ -121,5 +121,7 @@
 	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>Access is necessary to upload photos taken within the app to ChattyPics.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access is necessary to upload photos to ChattyPics.</string>
 </dict>
 </plist>
