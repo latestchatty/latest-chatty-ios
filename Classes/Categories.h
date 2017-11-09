@@ -83,7 +83,7 @@
 
 @end
 
-@interface NSDictionary(DictionaryAdditions)
+@interface NSDictionary (DictionaryAdditions)
 
 + (NSDictionary *)titleTextAttributesDictionary;
 + (NSDictionary *)whiteTextAttributesDictionary;
@@ -93,5 +93,11 @@
 + (NSDictionary *)cancelTextAttributesDictionary;
 
 + (NSDictionary *)blueHighlightTextAttributesDictionary;
+
+@end
+
+@interface NSURL (URLAdditions)
+
+- (NSURL *) YouTubeURLByReplacingScheme;
 
 @end

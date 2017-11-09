@@ -378,7 +378,7 @@
     NSTimeInterval theTimeInterval = 0.5;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
-    [hud setLabelText:@"Thread Pinned!"];
+    [hud setLabelText:@"Pinned!"];
     [hud setColor:[UIColor lcCellPinnedColor]];
 //        [hud setYOffset:-33];
     [hud hide:YES afterDelay:theTimeInterval];
@@ -398,7 +398,7 @@
     NSTimeInterval theTimeInterval = 0.5;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
-    [hud setLabelText:@"Thread Unpinned!"];
+    [hud setLabelText:@"Unpinned!"];
     [hud setColor:[UIColor lcBarTintColor]];
 //        [hud setYOffset:-33];
     [hud hide:YES afterDelay:theTimeInterval];
@@ -559,7 +559,7 @@
             
             if (isYouTubeURL && useYouTube) {
                 // don't open with browser preference, open YouTube app
-                [[UIApplication sharedApplication] openURL:[request URL]];
+                [[UIApplication sharedApplication] openURL:[[request URL] YouTubeURLByReplacingScheme]];
                 return NO;
             }
             // open current URL in Safari app

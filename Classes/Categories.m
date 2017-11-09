@@ -402,3 +402,17 @@
 }
 
 @end
+
+@implementation NSURL (URLAdditions)
+
+- (NSURL *) YouTubeURLByReplacingScheme {
+    NSString *youtubeUrlString =  [NSString stringWithFormat:@"youtube://%@%@", self.host, self.path];
+    
+    if (self.query) {
+        youtubeUrlString = [youtubeUrlString stringByAppendingFormat:@"?%@", self.query];
+    }
+    
+    return [NSURL URLWithString:youtubeUrlString];
+}
+
+@end
