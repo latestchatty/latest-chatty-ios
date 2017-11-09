@@ -8,6 +8,7 @@
 
 #import "UIViewController+HelperKit.h"
 #import "UIDevice+HelperKit.h"
+#import "UIDevice+Hardware.h"
 
 
 @implementation UIViewController (HelperKit)
@@ -32,8 +33,19 @@
 
 - (id)initWithNibName:(NSString *)name {
     NSString *deviceName = [UIDevice currentDevice].screenTypeString;
+    NSString *modelName = [UIDevice currentDevice].modelName;
+    
     if ([deviceName isEqualToString:@"iPad"]) {
         name = [NSString stringWithFormat:@"%@-%@", name, deviceName];
+    }
+    
+    if ([modelName isEqualToString:@"iPhone X"]) {
+        NSString *nib = [NSString stringWithFormat:@"%@-%@", name, modelName];
+        
+        // only override some nibs for iPhone X
+        if ([[NSBundle mainBundle] pathForResource:nib ofType:@"nib"] != nil) {
+            name = [NSString stringWithString:nib];
+        }
     }
     return [self initWithNibName:name bundle:nil];
 }

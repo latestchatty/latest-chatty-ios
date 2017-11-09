@@ -150,10 +150,10 @@
     static NSString *CellIdentifier = @"StoryCell";
     
     StoryCell *cell = (StoryCell *)[aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[StoryCell alloc] init];
+    if (cell == nil) {
+        cell = [[StoryCell alloc] init];
 //        [cell.chattyButton addTarget:self action:@selector(tappedChattyButton:) forControlEvents:UIControlEventTouchUpInside];
-//    }
+    }
     
     // Set the story
     cell.story = [stories objectAtIndex:indexPath.row];

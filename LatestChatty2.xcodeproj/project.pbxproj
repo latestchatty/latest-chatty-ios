@@ -35,12 +35,8 @@
 		CD235A53173B1F920078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
 		CD2F43301FB39AB9009EF72A /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2F432E1FB39AB9009EF72A /* UIDevice+Hardware.m */; };
 		CD2F43311FB39AB9009EF72A /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2F432E1FB39AB9009EF72A /* UIDevice+Hardware.m */; };
-		CD2F43341FB39C65009EF72A /* SettingsViewController-iPhone X.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2F43321FB39C64009EF72A /* SettingsViewController-iPhone X.xib */; };
-		CD2F43351FB39C65009EF72A /* SettingsViewController-iPhone X.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2F43321FB39C64009EF72A /* SettingsViewController-iPhone X.xib */; };
 		CD2F43361FB39C65009EF72A /* BrowserViewController-iPhone X.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2F43331FB39C65009EF72A /* BrowserViewController-iPhone X.xib */; };
 		CD2F43371FB39C65009EF72A /* BrowserViewController-iPhone X.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2F43331FB39C65009EF72A /* BrowserViewController-iPhone X.xib */; };
-		CD2F43391FB3B441009EF72A /* ReviewThreadViewController-iPhone X.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2F43381FB3B441009EF72A /* ReviewThreadViewController-iPhone X.xib */; };
-		CD2F433A1FB3B441009EF72A /* ReviewThreadViewController-iPhone X.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2F43381FB3B441009EF72A /* ReviewThreadViewController-iPhone X.xib */; };
 		CD33818F1C9395E5000651F9 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CD33818E1C9395E5000651F9 /* Podfile */; };
 		CD3381901C9395E5000651F9 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CD33818E1C9395E5000651F9 /* Podfile */; };
 		CD4370D5180372DB008D9DCF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4370D4180372DA008D9DCF /* Crashlytics.framework */; };
@@ -303,7 +299,6 @@
 		CDA1175916C1DC6600CE1375 /* ThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA849990F78C2B000026446 /* ThreadViewController.xib */; };
 		CDA1175A16C1DC6600CE1375 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
 		CDA1175D16C1DC6600CE1375 /* DropShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A600F796452006E14A2 /* DropShadow.png */; };
-		CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */; };
 		CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */; };
 		CDA1177016C1DC6600CE1375 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA2260520F8EE251002F77DD /* Settings.bundle */; };
 		CDA1177416C1DC6600CE1375 /* RootCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4122FD0F8FDDE9002E1978 /* RootCell.xib */; };
@@ -367,6 +362,8 @@
 		CDA1181F16C1DC6600CE1375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
+		CDA14F301FB40B2A000A8C0A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */; };
+		CDA14F311FB40B2A000A8C0A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */; };
 		CDA1FA181806498F0036F7B6 /* Menu-Button-Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */; };
 		CDA1FA191806498F0036F7B6 /* Menu-Button-Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */; };
 		CDA1FA1A1806498F0036F7B6 /* Menu-Button-Timer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */; };
@@ -556,7 +553,6 @@
 		FA828B8C0F90901100B59FF8 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA828B8B0F90901100B59FF8 /* MessageCell.xib */; };
 		FA828B900F90906500B59FF8 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA828B8F0F90906500B59FF8 /* MessageCell.m */; };
 		FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BD670F7AE96B0044898C /* SettingsViewController.m */; };
-		FA87BD6B0F7AE97F0044898C /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */; };
 		FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */; };
 		FA9C3ED00F9CEB1E0022A739 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */; };
 		FA9C3ED50F9CED010022A739 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C3ED40F9CED010022A739 /* SearchViewController.m */; };
@@ -621,9 +617,7 @@
 		CD235A51173B1F1A0078423B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CD2F432E1FB39AB9009EF72A /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		CD2F432F1FB39AB9009EF72A /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
-		CD2F43321FB39C64009EF72A /* SettingsViewController-iPhone X.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SettingsViewController-iPhone X.xib"; sourceTree = "<group>"; };
 		CD2F43331FB39C65009EF72A /* BrowserViewController-iPhone X.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BrowserViewController-iPhone X.xib"; sourceTree = "<group>"; };
-		CD2F43381FB3B441009EF72A /* ReviewThreadViewController-iPhone X.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReviewThreadViewController-iPhone X.xib"; sourceTree = "<group>"; };
 		CD33818E1C9395E5000651F9 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		CD4370D4180372DA008D9DCF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		CD4370D71803A4E0008D9DCF /* List-Lifespan-25-Participant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-25-Participant.png"; path = "Assets/List-Lifespan-25-Participant.png"; sourceTree = "<group>"; };
@@ -783,6 +777,7 @@
 		CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewThreadViewController.m; sourceTree = "<group>"; };
 		CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewThreadViewController.xib; sourceTree = "<group>"; };
 		CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChattyBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-Timer.png"; path = "Assets/Menu-Button-Timer.png"; sourceTree = "<group>"; };
 		CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-Timer@2x.png"; path = "Assets/Menu-Button-Timer@2x.png"; sourceTree = "<group>"; };
 		CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorder@2x.png"; path = "Assets/MenuBorder@2x.png"; sourceTree = "<group>"; };
@@ -918,7 +913,6 @@
 		FA828B8F0F90906500B59FF8 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		FA87BD660F7AE96B0044898C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FA87BD670F7AE96B0044898C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		FA87BE8C0F7B1B9D0044898C /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
@@ -1128,8 +1122,6 @@
 			isa = PBXGroup;
 			children = (
 				CD2F43331FB39C65009EF72A /* BrowserViewController-iPhone X.xib */,
-				CD2F43381FB3B441009EF72A /* ReviewThreadViewController-iPhone X.xib */,
-				CD2F43321FB39C64009EF72A /* SettingsViewController-iPhone X.xib */,
 			);
 			path = "iPhone X";
 			sourceTree = "<group>";
@@ -1276,7 +1268,7 @@
 				61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */,
 				FA87BD660F7AE96B0044898C /* SettingsViewController.h */,
 				FA87BD670F7AE96B0044898C /* SettingsViewController.m */,
-				FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */,
+				CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */,
 				A254B845116FFEB0001534FF /* SlideOutViewController.h */,
 				A254B846116FFEB0001534FF /* SlideOutViewController.m */,
 				28C286DF0D94DF7D0034E888 /* StoriesViewController.h */,
@@ -1641,7 +1633,6 @@
 				CD7ADD2017EF19F300B4C886 /* Images.xcassets in Resources */,
 				FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */,
 				FAD29A610F796452006E14A2 /* DropShadow.png in Resources */,
-				FA87BD6B0F7AE97F0044898C /* SettingsViewController.xib in Resources */,
 				CD48681317EB5B430071F3D7 /* Fart3.mp3 in Resources */,
 				CD7ADD1B17EF180E00B4C886 /* StoryCell-iPad.xib in Resources */,
 				CDC0E9C617F91AEF007D3738 /* Sidebar-bg.png in Resources */,
@@ -1662,7 +1653,6 @@
 				CD7F2EB517FA705300E7EAE3 /* Web-Refresh.png in Resources */,
 				FA4123080F8FE09E002E1978 /* RootViewController.xib in Resources */,
 				CDDAC2EF17F44E78000FEC8A /* Story-Comment-Count.png in Resources */,
-				CD2F43341FB39C65009EF72A /* SettingsViewController-iPhone X.xib in Resources */,
 				CD7F2F2917FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal.png in Resources */,
 				CDDAC2DF17F44E78000FEC8A /* Thread-Toolbar-Next@2x.png in Resources */,
 				CD7F2F5317FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png in Resources */,
@@ -1695,7 +1685,6 @@
 				CDDAC31317F44E78000FEC8A /* Shack[lol]-Active@2x.png in Resources */,
 				FAE438C81173FAA5000263F7 /* MenuBorderOut.png in Resources */,
 				CD48681D17EB5B430071F3D7 /* Fart8.mp3 in Resources */,
-				CD2F43391FB3B441009EF72A /* ReviewThreadViewController-iPhone X.xib in Resources */,
 				CDDAC2F517F44E78000FEC8A /* Stories-Active@2x.png in Resources */,
 				CDDAC2FF17F44E78000FEC8A /* Search-Inactive@2x.png in Resources */,
 				CD7F2EAF17FA705300E7EAE3 /* Web-Next@2x.png in Resources */,
@@ -1754,6 +1743,7 @@
 				CDDAC31B17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
 				CD7F2F4D17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
 				CDDD572418A730D8005E491A /* Post-Indicator-INF.png in Resources */,
+				CDA14F301FB40B2A000A8C0A /* SettingsViewController.xib in Resources */,
 				CD7F2EB917FA705300E7EAE3 /* Web-Share.png in Resources */,
 				CD7F2F2F17FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
 				CD7ADD0E17EF17FA00B4C886 /* ThreadViewController-iPad.xib in Resources */,
@@ -1855,7 +1845,6 @@
 				CDA1175A16C1DC6600CE1375 /* ReplyCell.xib in Resources */,
 				CDA1175D16C1DC6600CE1375 /* DropShadow.png in Resources */,
 				CD48681A17EB5B430071F3D7 /* Fart6.mp3 in Resources */,
-				CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */,
 				CDC0E9C717F91AEF007D3738 /* Sidebar-bg.png in Resources */,
 				CD7F2EB817FA705300E7EAE3 /* Web-Refresh@2x.png in Resources */,
 				CDDD573118A730D8005E491A /* Post-Indicator-UGH.png in Resources */,
@@ -1874,7 +1863,6 @@
 				CD7F2EB617FA705300E7EAE3 /* Web-Refresh.png in Resources */,
 				CDA1177016C1DC6600CE1375 /* Settings.bundle in Resources */,
 				CDDAC2F017F44E78000FEC8A /* Story-Comment-Count.png in Resources */,
-				CD2F43351FB39C65009EF72A /* SettingsViewController-iPhone X.xib in Resources */,
 				CD7F2F2A17FE85BE00E7EAE3 /* Keyboard-Color-Blue-Normal.png in Resources */,
 				CDDAC2E017F44E78000FEC8A /* Thread-Toolbar-Next@2x.png in Resources */,
 				CD7F2F5417FE85BE00E7EAE3 /* Keyboard-Normal-Strike@2x.png in Resources */,
@@ -1907,7 +1895,6 @@
 				CDDAC31417F44E78000FEC8A /* Shack[lol]-Active@2x.png in Resources */,
 				CDA117A416C1DC6600CE1375 /* MenuBorderOut.png in Resources */,
 				CDDAC2F617F44E78000FEC8A /* Stories-Active@2x.png in Resources */,
-				CD2F433A1FB3B441009EF72A /* ReviewThreadViewController-iPhone X.xib in Resources */,
 				CDDAC30017F44E78000FEC8A /* Search-Inactive@2x.png in Resources */,
 				CD7ADCFD17EF17FA00B4C886 /* ReviewThreadViewController-iPad.xib in Resources */,
 				CD7F2EB017FA705300E7EAE3 /* Web-Next@2x.png in Resources */,
@@ -1966,6 +1953,7 @@
 				CD7F2F3017FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
 				CDDAC2CE17F44E78000FEC8A /* Menu-Button-Compose.png in Resources */,
 				CDDD572518A730D8005E491A /* Post-Indicator-INF.png in Resources */,
+				CDA14F311FB40B2A000A8C0A /* SettingsViewController.xib in Resources */,
 				CD7ADD0717EF17FA00B4C886 /* SettingsViewController-iPad.xib in Resources */,
 				CD48681C17EB5B430071F3D7 /* Fart7.mp3 in Resources */,
 				CD7F2EAE17FA705300E7EAE3 /* Web-Next.png in Resources */,
@@ -2357,6 +2345,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2370,7 +2359,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
@@ -2392,6 +2381,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2399,7 +2389,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
@@ -2538,7 +2528,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChattyBeta;
@@ -2569,7 +2559,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChattyBeta;
@@ -2600,7 +2590,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = "Info beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChattyBeta;
@@ -2674,6 +2664,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2681,7 +2672,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
