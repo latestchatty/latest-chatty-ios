@@ -177,9 +177,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     // available browser types vary based on availability of apps & iOS version
     browserTypes = [[NSMutableArray alloc] init];
     browserTypesValues = [[NSMutableArray alloc] init];
-    // everyone gets web view
-    [browserTypes addObject:@"Web View"];
-    [browserTypesValues addObject:[NSNumber numberWithInteger:LCBrowserTypeWebView]];
     // only iOS 9+ can use safari view
     if ([self canOpenSafariView]) {
         [browserTypes addObject:@"Safari View"];

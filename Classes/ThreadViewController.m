@@ -567,17 +567,7 @@
                 [[UIApplication sharedApplication] openURL:[request URL]];
                 return NO;
             }
-            // open current URL in iOS 9 Safari modal view
-            if (browserPref == LCBrowserTypeSafariView) {
-                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-                
-                SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
-                [svc setDelegate:self];
-                
-                [[self showingViewController] presentViewController:svc animated:YES completion:nil];
-                
-                return NO;
-            }
+            
             // open current URL in Chrome app
             if (browserPref == LCBrowserTypeChromeApp) {
                 // replace http,https:// with googlechrome://
@@ -589,13 +579,15 @@
                     return NO;
                 }
             }
-
-            viewController = [[BrowserViewController alloc] initWithRequest:request];
+            
+            // open current URL in iOS 9 Safari modal view.
+            // Fall back to LCBrowserTypeSafariView as the default.
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+            SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
+            [svc setDelegate:self];
+            [[self showingViewController] presentViewController:svc animated:YES completion:nil];
+            return NO;
         }
-        
-        [self.navigationController pushViewController:viewController animated:YES];
-        
-        return NO;
     }
     
     return YES;
