@@ -91,6 +91,18 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self.viewDeckController
+                                                                      action:@selector(toggleLeftView)];
+        self.navigationItem.leftBarButtonItem = menuButton;
+    }
+    
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+    
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *shackUserName = [defaults valueForKey:@"username"];
     BOOL pushEnabled = [defaults boolForKey:@"pushMessages"];
@@ -165,9 +177,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     // available browser types vary based on availability of apps & iOS version
     browserTypes = [[NSMutableArray alloc] init];
     browserTypesValues = [[NSMutableArray alloc] init];
-    // everyone gets web view
-    [browserTypes addObject:@"Web View"];
-    [browserTypesValues addObject:[NSNumber numberWithInteger:LCBrowserTypeWebView]];
     // only iOS 9+ can use safari view
     if ([self canOpenSafariView]) {
         [browserTypes addObject:@"Safari View"];
@@ -456,7 +465,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (IBAction)dismiss:(id)sender {
     [self saveSettings];
 	
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.viewDeckController toggleLeftView];
 }
 
 - (void)openCredits {
