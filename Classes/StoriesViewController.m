@@ -1,5 +1,5 @@
 //
-//    RootViewController.m
+//    StoriesViewController.m
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/16/09.
