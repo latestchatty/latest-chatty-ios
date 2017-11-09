@@ -141,7 +141,7 @@
 }
 
 - (BOOL)centerControllerHasMenuButton:(UINavigationController *)navController {
-    NSArray *classesWithMenuButton = @[[BrowserViewController class], [ChattyViewController class], [MessagesViewController class], [SearchViewController class], [StoriesViewController class], [ThreadViewController class]];
+    NSArray *classesWithMenuButton = @[[BrowserViewController class], [ChattyViewController class], [MessagesViewController class], [SearchViewController class], [StoriesViewController class], [ThreadViewController class], [SettingsViewController class]];
     for (Class cls in classesWithMenuButton) {
         if ([navController.visibleViewController isKindOfClass:cls]) {
             return YES;
@@ -326,10 +326,10 @@
     NSString *urlString;
     LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
     
-    // save the index path selection if this isn't settings
-    if (indexPath.row != 5) {
-        [self setSelectedIndex:indexPath];
-    }
+//    // save the index path selection if this isn't settings
+//    if (indexPath.row != 5) {
+//        [self setSelectedIndex:indexPath];
+//    }
     
     switch (indexPath.row) {
         case 0:
@@ -370,11 +370,8 @@
             modal = YES;
             viewController = [SettingsViewController controllerWithNib];
 
-            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-            
-            // use the saved index path to re-select the previous index since settings selection should not persist as a modal
-            if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-                [self.tableView selectRowAtIndexPath:self.selectedIndex animated:YES scrollPosition:UITableViewScrollPositionNone];
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             }
             
             break;
@@ -385,14 +382,9 @@
     }
     
     if (viewController) {
-        if (modal) {
-			if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-				viewController.modalPresentationStyle = UIModalPresentationFormSheet;
-                [appDelegate.slideOutViewController presentViewController:viewController animated:YES completion:nil];
-			} else {
-                [self.viewDeckController toggleLeftView];
-                [self.viewDeckController presentViewController:viewController animated:YES completion:nil];
-            }
+        if (modal && [[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+            [appDelegate.slideOutViewController presentViewController:viewController animated:YES completion:nil];
         } else {
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 [self.navigationController pushViewController:viewController animated:YES];

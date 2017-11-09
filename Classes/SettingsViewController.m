@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import <Crashlytics/Crashlytics.h>
 #import "LCBrowserType.h"
+#import "MBProgressHUD.h"
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
@@ -90,6 +91,23 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self.viewDeckController
+                                                                      action:@selector(toggleLeftView)];
+        self.navigationItem.leftBarButtonItem = menuButton;
+        
+        UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                                       style:UIBarButtonItemStyleDone
+                                                                      target:self
+                                                                      action:@selector(saveSettings)];
+        [saveButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
+        [saveButton setTitleTextAttributes:[NSDictionary blueHighlightTextAttributesDictionary] forState:UIControlStateDisabled];
+        
+        self.navigationItem.rightBarButtonItem = saveButton;
+    }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *shackUserName = [defaults valueForKey:@"username"];
@@ -352,7 +370,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 }
 
 -(BOOL)canOpenSafariView {
-    return [SFSafariViewController class];
+    return NSClassFromString(@"SFSafariViewController") != nil;
 }
 
 -(void)handleYouTubeSwitch {
@@ -447,6 +465,17 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [store synchronize];
     
     [[Crashlytics sharedInstance] setUserName:[defaults stringForKey:@"username"]];
+    
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        //show pin HUD message
+        NSTimeInterval theTimeInterval = 2.0;
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:MBProgressHUDModeText];
+        [hud setLabelText:@"Settings Saved!"];
+        [hud setColor:[UIColor lcCellPinnedColor]];
+//        [hud setYOffset:-33];
+        [hud hide:YES afterDelay:theTimeInterval];
+    }
 }
 
 - (IBAction)cancel:(id)sender {
