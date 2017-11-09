@@ -378,9 +378,9 @@
     NSTimeInterval theTimeInterval = 0.5;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
-    [hud setLabelText:@"Pinned!"];
+    [hud setLabelText:@"Thread Pinned!"];
     [hud setColor:[UIColor lcCellPinnedColor]];
-    //        [hud setYOffset:-33];
+//        [hud setYOffset:-33];
     [hud hide:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadPinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
@@ -398,9 +398,9 @@
     NSTimeInterval theTimeInterval = 0.5;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
-    [hud setLabelText:@"Unpinned!"];
+    [hud setLabelText:@"Thread Unpinned!"];
     [hud setColor:[UIColor lcBarTintColor]];
-    //        [hud setYOffset:-33];
+//        [hud setYOffset:-33];
     [hud hide:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadUnpinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
