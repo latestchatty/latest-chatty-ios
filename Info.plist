@@ -32,7 +32,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4.8.0.0</string>
+	<string>4.8.0.1</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -61,8 +61,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Access is necessary to upload photos taken within the app to ChattyPics.</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access is necessary to upload photos to ChattyPics.</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
@@ -119,9 +123,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSCameraUsageDescription</key>
-	<string>Access is necessary to upload photos taken within the app to ChattyPics.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Access is necessary to upload photos to ChattyPics.</string>
 </dict>
 </plist>
