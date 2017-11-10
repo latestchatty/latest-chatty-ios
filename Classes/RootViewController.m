@@ -390,7 +390,10 @@
                 [self.navigationController pushViewController:viewController animated:YES];
                 [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:[NoContentController controllerWithNib]]];
             } else {
-                self.viewDeckController.centerController = [[UINavigationController alloc] initWithRootViewController:viewController];
+                UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+                self.swiper = [[SloppySwiper alloc] initWithNavigationController:navController];
+                navController.delegate = self.swiper;
+                self.viewDeckController.centerController = navController;
                 [LatestChatty2AppDelegate delegate].navigationController = (UINavigationController *)self.viewDeckController.centerController;
                 [self.viewDeckController toggleLeftView];
             }

@@ -22,6 +22,12 @@
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
 		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
+		CD025E601FB5C80900695C8A /* SSWAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5B1FB5C80900695C8A /* SSWAnimator.m */; };
+		CD025E611FB5C80900695C8A /* SSWAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5B1FB5C80900695C8A /* SSWAnimator.m */; };
+		CD025E621FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5C1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m */; };
+		CD025E631FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5C1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m */; };
+		CD025E641FB5C80900695C8A /* SloppySwiper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5D1FB5C80900695C8A /* SloppySwiper.m */; };
+		CD025E651FB5C80900695C8A /* SloppySwiper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5D1FB5C80900695C8A /* SloppySwiper.m */; };
 		CD1328D217DD7912009A5AE3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */; };
 		CD1328D317DD7912009A5AE3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */; };
 		CD13747B17EA90A0002A2551 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD13747A17EA90A0002A2551 /* AVFoundation.framework */; };
@@ -604,6 +610,12 @@
 		AD5D63A86F83B29BEC33A209 /* Pods-LatestChatty2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.debug.xcconfig"; sourceTree = "<group>"; };
 		C0063930CB5ECF049BE02C33 /* Pods-LatestChatty2 beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2 beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta.release.xcconfig"; sourceTree = "<group>"; };
 		C2506BCF4EC22EFA10AF931E /* Pods-LatestChatty2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.release.xcconfig"; sourceTree = "<group>"; };
+		CD025E5A1FB5C80900695C8A /* SloppySwiper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SloppySwiper.h; sourceTree = "<group>"; };
+		CD025E5B1FB5C80900695C8A /* SSWAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSWAnimator.m; sourceTree = "<group>"; };
+		CD025E5C1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSWDirectionalPanGestureRecognizer.m; sourceTree = "<group>"; };
+		CD025E5D1FB5C80900695C8A /* SloppySwiper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SloppySwiper.m; sourceTree = "<group>"; };
+		CD025E5E1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSWDirectionalPanGestureRecognizer.h; sourceTree = "<group>"; };
+		CD025E5F1FB5C80900695C8A /* SSWAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSWAnimator.h; sourceTree = "<group>"; };
 		CD1328D017DD7912009A5AE3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Classes/MBProgressHUD.h; sourceTree = "<group>"; };
 		CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Classes/MBProgressHUD.m; sourceTree = "<group>"; };
 		CD13747A17EA90A0002A2551 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1026,6 +1038,7 @@
 				CD7C24181754653900D90942 /* HKHelperKit */,
 				CD2770BC180995C300DD06E1 /* MBProgressHUD */,
 				59EC55AF17EDF27900F513A9 /* Regex */,
+				CD025E591FB5C80900695C8A /* SloppySwiper */,
 				CD2F432D1FB39AB9009EF72A /* UIDevice */,
 				CDBD37FE17521EC2000A9F58 /* ViewDeck */,
 				CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */,
@@ -1107,6 +1120,20 @@
 				198524768148DE61E12978E7 /* Pods-LatestChatty2 beta.distribution.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CD025E591FB5C80900695C8A /* SloppySwiper */ = {
+			isa = PBXGroup;
+			children = (
+				CD025E5F1FB5C80900695C8A /* SSWAnimator.h */,
+				CD025E5B1FB5C80900695C8A /* SSWAnimator.m */,
+				CD025E5A1FB5C80900695C8A /* SloppySwiper.h */,
+				CD025E5D1FB5C80900695C8A /* SloppySwiper.m */,
+				CD025E5E1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.h */,
+				CD025E5C1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m */,
+			);
+			name = SloppySwiper;
+			path = Classes/SloppySwiper;
 			sourceTree = "<group>";
 		};
 		CD2770BC180995C300DD06E1 /* MBProgressHUD */ = {
@@ -2189,6 +2216,7 @@
 				1D3623260D0F684500981E51 /* LatestChatty2AppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* StoriesViewController.m in Sources */,
 				FA5FCD160F6F61A600878F27 /* Model.m in Sources */,
+				CD025E641FB5C80900695C8A /* SloppySwiper.m in Sources */,
 				FA5FCDAC0F6F6FDF00878F27 /* Story.m in Sources */,
 				FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */,
 				FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */,
@@ -2201,8 +2229,10 @@
 				FA5DA7770F7284CB00F05ED9 /* ModelListViewController.m in Sources */,
 				FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */,
 				FAA849980F78C29900026446 /* ThreadViewController.m in Sources */,
+				CD025E601FB5C80900695C8A /* SSWAnimator.m in Sources */,
 				FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */,
 				FAB2F8700F7985FB000E4DC9 /* GrippyBar.m in Sources */,
+				CD025E621FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m in Sources */,
 				FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */,
 				FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */,
 				FAB765F60F7C9E5B00CE0E38 /* BrowserViewController.m in Sources */,
@@ -2263,6 +2293,7 @@
 				CDA117D016C1DC6600CE1375 /* LatestChatty2AppDelegate.m in Sources */,
 				CDA117D116C1DC6600CE1375 /* StoriesViewController.m in Sources */,
 				CDA117D216C1DC6600CE1375 /* Model.m in Sources */,
+				CD025E651FB5C80900695C8A /* SloppySwiper.m in Sources */,
 				CDA117D316C1DC6600CE1375 /* Story.m in Sources */,
 				CDA117D416C1DC6600CE1375 /* TableCellFromNib.m in Sources */,
 				CDA117D516C1DC6600CE1375 /* StoryCell.m in Sources */,
@@ -2275,8 +2306,10 @@
 				CDA117DD16C1DC6600CE1375 /* ModelListViewController.m in Sources */,
 				CDA117DE16C1DC6600CE1375 /* ModelLoader.m in Sources */,
 				CDA117DF16C1DC6600CE1375 /* ThreadViewController.m in Sources */,
+				CD025E611FB5C80900695C8A /* SSWAnimator.m in Sources */,
 				CDA117E016C1DC6600CE1375 /* ReplyCell.m in Sources */,
 				CDA117E216C1DC6600CE1375 /* GrippyBar.m in Sources */,
+				CD025E631FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m in Sources */,
 				CDA117E316C1DC6600CE1375 /* SettingsViewController.m in Sources */,
 				CDA117E416C1DC6600CE1375 /* ComposeViewController.m in Sources */,
 				CDA117E516C1DC6600CE1375 /* BrowserViewController.m in Sources */,

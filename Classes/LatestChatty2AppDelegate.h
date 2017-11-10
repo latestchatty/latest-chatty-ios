@@ -16,6 +16,7 @@
 #import "MessagesViewController.h"
 #import "SlideOutViewController.h"
 #import "IIViewDeckController.h"
+#import "SloppySwiper.h"
 
 @interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate> {
     UIWindow *window;
@@ -39,6 +40,8 @@
 @property (strong, nonatomic) UIViewController *leftController;
 
 @property (strong, nonatomic) NSDictionary *lolCounts;
+
+@property (strong, nonatomic) SloppySwiper *swiper;
 
 - (IIViewDeckController*)generateControllerStack:(NSDictionary *)launchOptions;
 

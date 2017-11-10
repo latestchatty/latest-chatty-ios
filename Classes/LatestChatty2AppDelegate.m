@@ -102,10 +102,13 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     }
     
     // Initialize the navigation controller with the center (chatty) controller
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:centerController];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:centerController];
+    self.swiper = [[SloppySwiper alloc] initWithNavigationController:navController];
+    navController.delegate = self.swiper;
+    self.navigationController = navController;
     
     // Create the deck controller with the left and center
-    IIViewDeckController* deckController =
+    IIViewDeckController *deckController =
         [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController
                                                 leftViewController:leftController];
     // Set navigation type, left size, no elasticity
