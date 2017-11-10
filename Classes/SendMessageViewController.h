@@ -7,7 +7,6 @@
 //
 
 #import "Message.h"
-#import "SloppySwiper.h"
 
 @interface SendMessageViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate> {
 	IBOutlet UITextField *recipient;
@@ -24,7 +23,6 @@
 @property (strong, nonatomic) UITextField *recipient;
 @property (strong, nonatomic) UITextField *subject;
 @property (strong, nonatomic) UITextView *body;
-@property (strong, nonatomic) SloppySwiper *swiper;
 
 - (void)showActivityIndicator;
 - (void)setupReply;

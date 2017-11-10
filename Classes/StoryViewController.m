@@ -96,9 +96,6 @@
     
     // scroll indicator coloring
     [content.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
-    
-    self.swiper = [[SloppySwiper alloc] initWithNavigationController:self.navigationController];
-    self.navigationController.delegate = self.swiper;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

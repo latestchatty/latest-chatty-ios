@@ -364,12 +364,6 @@
 		CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		CDA14F301FB40B2A000A8C0A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */; };
 		CDA14F311FB40B2A000A8C0A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */; };
-		CDA14F391FB4EE00000A8C0A /* SSWAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA14F341FB4EE00000A8C0A /* SSWAnimator.m */; };
-		CDA14F3A1FB4EE00000A8C0A /* SSWAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA14F341FB4EE00000A8C0A /* SSWAnimator.m */; };
-		CDA14F3B1FB4EE00000A8C0A /* SSWDirectionalPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA14F351FB4EE00000A8C0A /* SSWDirectionalPanGestureRecognizer.m */; };
-		CDA14F3C1FB4EE00000A8C0A /* SSWDirectionalPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA14F351FB4EE00000A8C0A /* SSWDirectionalPanGestureRecognizer.m */; };
-		CDA14F3D1FB4EE00000A8C0A /* SloppySwiper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA14F361FB4EE00000A8C0A /* SloppySwiper.m */; };
-		CDA14F3E1FB4EE00000A8C0A /* SloppySwiper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA14F361FB4EE00000A8C0A /* SloppySwiper.m */; };
 		CDA1FA181806498F0036F7B6 /* Menu-Button-Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */; };
 		CDA1FA191806498F0036F7B6 /* Menu-Button-Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */; };
 		CDA1FA1A1806498F0036F7B6 /* Menu-Button-Timer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */; };
@@ -784,12 +778,6 @@
 		CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewThreadViewController.xib; sourceTree = "<group>"; };
 		CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChattyBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		CDA14F331FB4EE00000A8C0A /* SloppySwiper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SloppySwiper.h; sourceTree = "<group>"; };
-		CDA14F341FB4EE00000A8C0A /* SSWAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSWAnimator.m; sourceTree = "<group>"; };
-		CDA14F351FB4EE00000A8C0A /* SSWDirectionalPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSWDirectionalPanGestureRecognizer.m; sourceTree = "<group>"; };
-		CDA14F361FB4EE00000A8C0A /* SloppySwiper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SloppySwiper.m; sourceTree = "<group>"; };
-		CDA14F371FB4EE00000A8C0A /* SSWDirectionalPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSWDirectionalPanGestureRecognizer.h; sourceTree = "<group>"; };
-		CDA14F381FB4EE00000A8C0A /* SSWAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSWAnimator.h; sourceTree = "<group>"; };
 		CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-Timer.png"; path = "Assets/Menu-Button-Timer.png"; sourceTree = "<group>"; };
 		CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-Timer@2x.png"; path = "Assets/Menu-Button-Timer@2x.png"; sourceTree = "<group>"; };
 		CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorder@2x.png"; path = "Assets/MenuBorder@2x.png"; sourceTree = "<group>"; };
@@ -1038,7 +1026,6 @@
 				CD7C24181754653900D90942 /* HKHelperKit */,
 				CD2770BC180995C300DD06E1 /* MBProgressHUD */,
 				59EC55AF17EDF27900F513A9 /* Regex */,
-				CDA14F321FB4EE00000A8C0A /* SloppySwiper */,
 				CD2F432D1FB39AB9009EF72A /* UIDevice */,
 				CDBD37FE17521EC2000A9F58 /* ViewDeck */,
 				CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */,
@@ -1190,20 +1177,6 @@
 			);
 			name = HKHelperKit;
 			path = Classes/HKHelperKit;
-			sourceTree = "<group>";
-		};
-		CDA14F321FB4EE00000A8C0A /* SloppySwiper */ = {
-			isa = PBXGroup;
-			children = (
-				CDA14F331FB4EE00000A8C0A /* SloppySwiper.h */,
-				CDA14F341FB4EE00000A8C0A /* SSWAnimator.m */,
-				CDA14F351FB4EE00000A8C0A /* SSWDirectionalPanGestureRecognizer.m */,
-				CDA14F361FB4EE00000A8C0A /* SloppySwiper.m */,
-				CDA14F371FB4EE00000A8C0A /* SSWDirectionalPanGestureRecognizer.h */,
-				CDA14F381FB4EE00000A8C0A /* SSWAnimator.h */,
-			);
-			name = SloppySwiper;
-			path = Classes/SloppySwiper;
 			sourceTree = "<group>";
 		};
 		CDBD37FE17521EC2000A9F58 /* ViewDeck */ = {
@@ -2216,7 +2189,6 @@
 				1D3623260D0F684500981E51 /* LatestChatty2AppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* StoriesViewController.m in Sources */,
 				FA5FCD160F6F61A600878F27 /* Model.m in Sources */,
-				CDA14F3D1FB4EE00000A8C0A /* SloppySwiper.m in Sources */,
 				FA5FCDAC0F6F6FDF00878F27 /* Story.m in Sources */,
 				FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */,
 				FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */,
@@ -2229,10 +2201,8 @@
 				FA5DA7770F7284CB00F05ED9 /* ModelListViewController.m in Sources */,
 				FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */,
 				FAA849980F78C29900026446 /* ThreadViewController.m in Sources */,
-				CDA14F391FB4EE00000A8C0A /* SSWAnimator.m in Sources */,
 				FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */,
 				FAB2F8700F7985FB000E4DC9 /* GrippyBar.m in Sources */,
-				CDA14F3B1FB4EE00000A8C0A /* SSWDirectionalPanGestureRecognizer.m in Sources */,
 				FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */,
 				FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */,
 				FAB765F60F7C9E5B00CE0E38 /* BrowserViewController.m in Sources */,
@@ -2293,7 +2263,6 @@
 				CDA117D016C1DC6600CE1375 /* LatestChatty2AppDelegate.m in Sources */,
 				CDA117D116C1DC6600CE1375 /* StoriesViewController.m in Sources */,
 				CDA117D216C1DC6600CE1375 /* Model.m in Sources */,
-				CDA14F3E1FB4EE00000A8C0A /* SloppySwiper.m in Sources */,
 				CDA117D316C1DC6600CE1375 /* Story.m in Sources */,
 				CDA117D416C1DC6600CE1375 /* TableCellFromNib.m in Sources */,
 				CDA117D516C1DC6600CE1375 /* StoryCell.m in Sources */,
@@ -2306,10 +2275,8 @@
 				CDA117DD16C1DC6600CE1375 /* ModelListViewController.m in Sources */,
 				CDA117DE16C1DC6600CE1375 /* ModelLoader.m in Sources */,
 				CDA117DF16C1DC6600CE1375 /* ThreadViewController.m in Sources */,
-				CDA14F3A1FB4EE00000A8C0A /* SSWAnimator.m in Sources */,
 				CDA117E016C1DC6600CE1375 /* ReplyCell.m in Sources */,
 				CDA117E216C1DC6600CE1375 /* GrippyBar.m in Sources */,
-				CDA14F3C1FB4EE00000A8C0A /* SSWDirectionalPanGestureRecognizer.m in Sources */,
 				CDA117E316C1DC6600CE1375 /* SettingsViewController.m in Sources */,
 				CDA117E416C1DC6600CE1375 /* ComposeViewController.m in Sources */,
 				CDA117E516C1DC6600CE1375 /* BrowserViewController.m in Sources */,

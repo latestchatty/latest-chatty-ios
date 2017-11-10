@@ -34,7 +34,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     IIViewDeckController* deckController = [self generateControllerStack:launchOptions];
     self.leftController = deckController.leftController;
     self.centerController = deckController.centerController;
-    deckController.panningMode = IIViewDeckNavigationBarOrOpenCenterPanning;
     
     self.window.rootViewController = deckController;
 }
@@ -106,12 +105,13 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:centerController];
     
     // Create the deck controller with the left and center
-    IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController
-                                                                                    leftViewController:leftController];
+    IIViewDeckController* deckController =
+        [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController
+                                                leftViewController:leftController];
     // Set navigation type, left size, no elasticity
     [deckController setNavigationControllerBehavior:IIViewDeckNavigationControllerIntegrated];
     [deckController setElastic:NO];
-    [deckController setPanningMode:IIViewDeckFullViewPanning];
+    [deckController setPanningMode:IIViewDeckNavigationBarOrOpenCenterPanning];
     [deckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose];
     [deckController setSizeMode:IIViewDeckViewSizeMode];
     [deckController setParallaxAmount:0.5f];
@@ -175,10 +175,8 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 }
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-
     BOOL handledShortCutItem = [self handleShortcutItem: shortcutItem];
     completionHandler(handledShortCutItem);
-
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -586,8 +584,11 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 //    NSLog(@"post active notification");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateViewsForMultitasking" object:self];
     
-    if (!launchedShortcutItem) { return; }
-    [self handleShortcutItem: launchedShortcutItem];
+    if (!launchedShortcutItem) {
+        return;
+    }
+    
+    [self handleShortcutItem:launchedShortcutItem];
     launchedShortcutItem = nil;
 }
 

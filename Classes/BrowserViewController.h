@@ -6,8 +6,6 @@
 //  Copyright 2009. All rights reserved.
 //
 
-#import "SloppySwiper.h"
-
 @interface BrowserViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate> {
     NSURLRequest *request;
 
@@ -33,7 +31,6 @@
 @property (nonatomic, assign) BOOL isShackLOL;
 @property (nonatomic, assign) BOOL isCredits;
 @property (nonatomic, assign) CGPoint scrollPosition;
-@property (strong, nonatomic) SloppySwiper *swiper;
 
 - (id)initWithRequest:(NSURLRequest *)request;
 - (id)initWithRequest:(NSURLRequest *)request

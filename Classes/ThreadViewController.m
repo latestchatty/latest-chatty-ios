@@ -270,9 +270,6 @@
     // tap status bar to scroll replies table to the top
     postView.scrollView.scrollsToTop = NO;
     tableView.scrollsToTop = YES;
-    
-    self.swiper = [[SloppySwiper alloc] initWithNavigationController:self.navigationController];
-    self.navigationController.delegate = self.swiper;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

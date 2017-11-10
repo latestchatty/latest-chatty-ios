@@ -10,7 +10,6 @@
 #import "Image.h"
 #import "ModelListViewController.h"
 #import "BrowserViewController.h"
-#import "SloppySwiper.h"
 
 @interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, ImageSendingDelegate, UITextViewDelegate> {
     NSInteger storyId;
@@ -37,7 +36,6 @@
 
 @property (assign) NSInteger storyId;
 @property (strong) Post *post;
-@property (strong, nonatomic) SloppySwiper *swiper;
 
 - (id)initWithStoryId:(NSInteger)aStoryId post:(Post *)aPost;
 - (void)makePost;
