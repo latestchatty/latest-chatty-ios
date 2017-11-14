@@ -114,7 +114,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     // Set navigation type, left size, no elasticity
     [deckController setNavigationControllerBehavior:IIViewDeckNavigationControllerIntegrated];
     [deckController setElastic:NO];
-    [deckController setPanningMode:IIViewDeckNavigationBarOrOpenCenterPanning];
+    [deckController setPanningMode:IIViewDeckFullViewPanning];
     [deckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose];
     [deckController setSizeMode:IIViewDeckViewSizeMode];
     [deckController setParallaxAmount:0.5f];
