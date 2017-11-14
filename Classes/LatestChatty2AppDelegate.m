@@ -171,15 +171,14 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     }
     
     if (viewController) {
-        [self handleViewController:viewController];
+        [self performSelector:@selector(handleViewController:) withObject:viewController afterDelay:1.0];
     }
     
     return handled;
 }
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-    BOOL handledShortCutItem = [self handleShortcutItem: shortcutItem];
-    completionHandler(handledShortCutItem);
+    completionHandler([self handleShortcutItem:shortcutItem]);
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -259,10 +258,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         [self setupInterfaceForPhoneWithOptions:launchOptions];
     }
     
-    if ([self isForceTouchEnabled]) {
-        launchedShortcutItem = [launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
-    }
-    
     [self pushRegistration];
     
     [window makeKeyAndVisible];
@@ -293,7 +288,14 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 //        }
     }
     
-    return YES;
+    BOOL shouldPerformAdditionalDelegateHandling = YES;
+    if ([self isForceTouchEnabled]) {
+        launchedShortcutItem = [launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
+        
+        shouldPerformAdditionalDelegateHandling = NO;
+    }
+    
+    return shouldPerformAdditionalDelegateHandling;
 }
 
 - (void)cleanUpPinnedThreads {
