@@ -326,10 +326,7 @@
     NSString *urlString;
     LatestChatty2AppDelegate *appDelegate = [LatestChatty2AppDelegate delegate];
     
-//    // save the index path selection if this isn't settings
-//    if (indexPath.row != 5) {
-//        [self setSelectedIndex:indexPath];
-//    }
+    [self setSelectedIndex:indexPath];
     
     switch (indexPath.row) {
         case 0:
