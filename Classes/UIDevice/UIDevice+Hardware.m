@@ -141,7 +141,7 @@
     if ([modelIdentifier hasSuffix:@"86"] || [modelIdentifier isEqual:@"x86_64"])
     {
         BOOL smallerScreen = ([[UIScreen mainScreen] bounds].size.width < 768.0);
-        return (smallerScreen ? @"iPhone X" : @"iPad Simulator");
+        return (smallerScreen ? @"iPhone Simulator" : @"iPad Simulator");
     }
     
     return modelIdentifier;
