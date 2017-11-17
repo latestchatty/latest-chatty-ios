@@ -9,7 +9,19 @@ You must use the .xcworkspace when opening the project now, and not the .xcodepr
 
 4.8.0
 ====
-- iOS 11 and iPhone X support
+iPhone X Support!
+-Minor changes to the Settings and Review Thread views to support the X
+
+Landscape orientation removed from iPhone
+-Can utilize landscape for external sites viewed through the Safari View browser preference
+
+Revised iPhone gestures
+-Swipe right anywhere on a child view to go back
+-Swipe right to open main menu when no more views to go back to are available
+
+Bug Fixes
+-YouTube links now correctly open the YouTube app when the "Use YouTube" preference is on
+-3D Touch shortcuts fixed
 
 4.7.0
 ====
