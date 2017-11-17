@@ -144,10 +144,14 @@
     if (self.post) {
         ReviewThreadViewController *reviewController = [[ReviewThreadViewController alloc] initWithPost:self.post];
         
-        reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
-
-        [[self showingViewController] presentViewController:reviewController animated:YES completion:nil];
+        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            reviewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            reviewController.modalPresentationStyle = UIModalPresentationFormSheet;
+            
+            [[self showingViewController] presentViewController:reviewController animated:YES completion:nil];
+        } else {
+            [self.navigationController pushViewController:reviewController animated:YES];
+        }
     }
 }
 

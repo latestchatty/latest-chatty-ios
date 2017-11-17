@@ -26,7 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+    if (![[LatestChatty2AppDelegate delegate] isPadDevice] &&
+        self.navigationController.viewControllers.count == 1) {
         UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
                                                                        style:UIBarButtonItemStylePlain
                                                                       target:self

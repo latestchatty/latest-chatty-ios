@@ -375,12 +375,12 @@
     [grippyBar setBackgroundColorForThread:[UIColor lcCellPinnedColor]];
     
     //show pin HUD message
-    NSTimeInterval theTimeInterval = 0.5;
+    NSTimeInterval theTimeInterval = 0.75;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
     [hud setLabelText:@"Pinned!"];
     [hud setColor:[UIColor lcCellPinnedColor]];
-    //        [hud setYOffset:-33];
+//        [hud setYOffset:-33];
     [hud hide:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadPinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
@@ -395,12 +395,12 @@
     [grippyBar setBackgroundColorForThread:[UIColor lcBarTintColor]];
     
     //show unpin HUD message
-    NSTimeInterval theTimeInterval = 0.5;
+    NSTimeInterval theTimeInterval = 0.75;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
     [hud setLabelText:@"Unpinned!"];
     [hud setColor:[UIColor lcBarTintColor]];
-    //        [hud setYOffset:-33];
+//        [hud setYOffset:-33];
     [hud hide:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadUnpinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
@@ -559,7 +559,7 @@
             
             if (isYouTubeURL && useYouTube) {
                 // don't open with browser preference, open YouTube app
-                [[UIApplication sharedApplication] openURL:[request URL]];
+                [[UIApplication sharedApplication] openURL:[[request URL] YouTubeURLByReplacingScheme]];
                 return NO;
             }
             // open current URL in Safari app
@@ -837,7 +837,7 @@
         }
         
         //show mod HUD message
-        NSTimeInterval theTimeInterval = 0.5;
+        NSTimeInterval theTimeInterval = 0.75;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Modded!"];
@@ -848,7 +848,7 @@
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
         
         //show tag HUD message
-        NSTimeInterval theTimeInterval = 0.5;
+        NSTimeInterval theTimeInterval = 0.75;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
         [hud setLabelText:@"Tagged!"];

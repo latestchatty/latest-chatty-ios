@@ -22,6 +22,12 @@
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
 		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
+		CD025E601FB5C80900695C8A /* SSWAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5B1FB5C80900695C8A /* SSWAnimator.m */; };
+		CD025E611FB5C80900695C8A /* SSWAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5B1FB5C80900695C8A /* SSWAnimator.m */; };
+		CD025E621FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5C1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m */; };
+		CD025E631FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5C1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m */; };
+		CD025E641FB5C80900695C8A /* SloppySwiper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5D1FB5C80900695C8A /* SloppySwiper.m */; };
+		CD025E651FB5C80900695C8A /* SloppySwiper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5D1FB5C80900695C8A /* SloppySwiper.m */; };
 		CD1328D217DD7912009A5AE3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */; };
 		CD1328D317DD7912009A5AE3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */; };
 		CD13747B17EA90A0002A2551 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD13747A17EA90A0002A2551 /* AVFoundation.framework */; };
@@ -33,6 +39,10 @@
 		CD235A4F173AFC000078423B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A4B173AFB920078423B /* MobileCoreServices.framework */; };
 		CD235A52173B1F830078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
 		CD235A53173B1F920078423B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD235A51173B1F1A0078423B /* QuartzCore.framework */; };
+		CD2F43301FB39AB9009EF72A /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2F432E1FB39AB9009EF72A /* UIDevice+Hardware.m */; };
+		CD2F43311FB39AB9009EF72A /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2F432E1FB39AB9009EF72A /* UIDevice+Hardware.m */; };
+		CD2F43361FB39C65009EF72A /* BrowserViewController-iPhone X.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2F43331FB39C65009EF72A /* BrowserViewController-iPhone X.xib */; };
+		CD2F43371FB39C65009EF72A /* BrowserViewController-iPhone X.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2F43331FB39C65009EF72A /* BrowserViewController-iPhone X.xib */; };
 		CD33818F1C9395E5000651F9 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CD33818E1C9395E5000651F9 /* Podfile */; };
 		CD3381901C9395E5000651F9 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CD33818E1C9395E5000651F9 /* Podfile */; };
 		CD4370D5180372DB008D9DCF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4370D4180372DA008D9DCF /* Crashlytics.framework */; };
@@ -295,7 +305,6 @@
 		CDA1175916C1DC6600CE1375 /* ThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA849990F78C2B000026446 /* ThreadViewController.xib */; };
 		CDA1175A16C1DC6600CE1375 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA84AF90F78DCB300026446 /* ReplyCell.xib */; };
 		CDA1175D16C1DC6600CE1375 /* DropShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD29A600F796452006E14A2 /* DropShadow.png */; };
-		CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */; };
 		CDA1176816C1DC6600CE1375 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB765E40F7C9D5800CE0E38 /* BrowserViewController.xib */; };
 		CDA1177016C1DC6600CE1375 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA2260520F8EE251002F77DD /* Settings.bundle */; };
 		CDA1177416C1DC6600CE1375 /* RootCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4122FD0F8FDDE9002E1978 /* RootCell.xib */; };
@@ -359,6 +368,8 @@
 		CDA1181F16C1DC6600CE1375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		CDA1182016C1DC6600CE1375 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		CDA1182116C1DC6600CE1375 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
+		CDA14F301FB40B2A000A8C0A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */; };
+		CDA14F311FB40B2A000A8C0A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */; };
 		CDA1FA181806498F0036F7B6 /* Menu-Button-Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */; };
 		CDA1FA191806498F0036F7B6 /* Menu-Button-Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */; };
 		CDA1FA1A1806498F0036F7B6 /* Menu-Button-Timer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */; };
@@ -548,7 +559,6 @@
 		FA828B8C0F90901100B59FF8 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA828B8B0F90901100B59FF8 /* MessageCell.xib */; };
 		FA828B900F90906500B59FF8 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA828B8F0F90906500B59FF8 /* MessageCell.m */; };
 		FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BD670F7AE96B0044898C /* SettingsViewController.m */; };
-		FA87BD6B0F7AE97F0044898C /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */; };
 		FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */; };
 		FA9C3ED00F9CEB1E0022A739 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */; };
 		FA9C3ED50F9CED010022A739 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C3ED40F9CED010022A739 /* SearchViewController.m */; };
@@ -600,6 +610,12 @@
 		AD5D63A86F83B29BEC33A209 /* Pods-LatestChatty2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.debug.xcconfig"; sourceTree = "<group>"; };
 		C0063930CB5ECF049BE02C33 /* Pods-LatestChatty2 beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2 beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta.release.xcconfig"; sourceTree = "<group>"; };
 		C2506BCF4EC22EFA10AF931E /* Pods-LatestChatty2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.release.xcconfig"; sourceTree = "<group>"; };
+		CD025E5A1FB5C80900695C8A /* SloppySwiper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SloppySwiper.h; sourceTree = "<group>"; };
+		CD025E5B1FB5C80900695C8A /* SSWAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSWAnimator.m; sourceTree = "<group>"; };
+		CD025E5C1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSWDirectionalPanGestureRecognizer.m; sourceTree = "<group>"; };
+		CD025E5D1FB5C80900695C8A /* SloppySwiper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SloppySwiper.m; sourceTree = "<group>"; };
+		CD025E5E1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSWDirectionalPanGestureRecognizer.h; sourceTree = "<group>"; };
+		CD025E5F1FB5C80900695C8A /* SSWAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSWAnimator.h; sourceTree = "<group>"; };
 		CD1328D017DD7912009A5AE3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Classes/MBProgressHUD.h; sourceTree = "<group>"; };
 		CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Classes/MBProgressHUD.m; sourceTree = "<group>"; };
 		CD13747A17EA90A0002A2551 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -611,6 +627,9 @@
 		CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleSafariActivity.m; path = Classes/AppleSafariActivity.m; sourceTree = "<group>"; };
 		CD235A4B173AFB920078423B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CD235A51173B1F1A0078423B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CD2F432E1FB39AB9009EF72A /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
+		CD2F432F1FB39AB9009EF72A /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
+		CD2F43331FB39C65009EF72A /* BrowserViewController-iPhone X.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BrowserViewController-iPhone X.xib"; sourceTree = "<group>"; };
 		CD33818E1C9395E5000651F9 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		CD4370D4180372DA008D9DCF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		CD4370D71803A4E0008D9DCF /* List-Lifespan-25-Participant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-25-Participant.png"; path = "Assets/List-Lifespan-25-Participant.png"; sourceTree = "<group>"; };
@@ -770,6 +789,7 @@
 		CDA01B201731A31C00E24A28 /* ReviewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewThreadViewController.m; sourceTree = "<group>"; };
 		CDA01B231731A3B900E24A28 /* ReviewThreadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewThreadViewController.xib; sourceTree = "<group>"; };
 		CDA1182816C1DC6600CE1375 /* LatestChattyBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatestChattyBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		CDA1FA161806498F0036F7B6 /* Menu-Button-Timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-Timer.png"; path = "Assets/Menu-Button-Timer.png"; sourceTree = "<group>"; };
 		CDA1FA171806498F0036F7B6 /* Menu-Button-Timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-Timer@2x.png"; path = "Assets/Menu-Button-Timer@2x.png"; sourceTree = "<group>"; };
 		CDA1FA1C1806C15E0036F7B6 /* MenuBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MenuBorder@2x.png"; path = "Assets/MenuBorder@2x.png"; sourceTree = "<group>"; };
@@ -905,7 +925,6 @@
 		FA828B8F0F90906500B59FF8 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		FA87BD660F7AE96B0044898C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FA87BD670F7AE96B0044898C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		FA87BE8C0F7B1B9D0044898C /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		FA87BE8D0F7B1B9D0044898C /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		FA9C3ECF0F9CEB1E0022A739 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
@@ -1019,6 +1038,8 @@
 				CD7C24181754653900D90942 /* HKHelperKit */,
 				CD2770BC180995C300DD06E1 /* MBProgressHUD */,
 				59EC55AF17EDF27900F513A9 /* Regex */,
+				CD025E591FB5C80900695C8A /* SloppySwiper */,
+				CD2F432D1FB39AB9009EF72A /* UIDevice */,
 				CDBD37FE17521EC2000A9F58 /* ViewDeck */,
 				CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */,
 				CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */,
@@ -1026,16 +1047,16 @@
 				CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */,
 				CD13D78B1754DB1A00539A23 /* Categories.h */,
 				CD13D78C1754DB1A00539A23 /* Categories.m */,
-				CDA284141BB5FAA50083D26F /* LCBrowserType.h */,
 				CDD056CE174FD042000E0477 /* CustomBadge.h */,
 				CDD056CF174FD043000E0477 /* CustomBadge.m */,
 				CD7C245E1754655900D90942 /* HTMLEscaper.h */,
 				CD7C245F1754655A00D90942 /* HTMLEscaper.m */,
-				FA5FCD1C0F6F63AC00878F27 /* ModelLoadingDelegate.h */,
+				CDA284141BB5FAA50083D26F /* LCBrowserType.h */,
 				FABA5DC00F718086008EEE3A /* StringTemplate.h */,
 				FABA5DC10F718086008EEE3A /* StringTemplate.m */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				28A0AAE50D9B0CCF005BE974 /* LatestChatty2_Prefix.pch */,
+				FA5FCD1C0F6F63AC00878F27 /* ModelLoadingDelegate.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1101,6 +1122,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CD025E591FB5C80900695C8A /* SloppySwiper */ = {
+			isa = PBXGroup;
+			children = (
+				CD025E5F1FB5C80900695C8A /* SSWAnimator.h */,
+				CD025E5B1FB5C80900695C8A /* SSWAnimator.m */,
+				CD025E5A1FB5C80900695C8A /* SloppySwiper.h */,
+				CD025E5D1FB5C80900695C8A /* SloppySwiper.m */,
+				CD025E5E1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.h */,
+				CD025E5C1FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m */,
+			);
+			name = SloppySwiper;
+			path = Classes/SloppySwiper;
+			sourceTree = "<group>";
+		};
 		CD2770BC180995C300DD06E1 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1108,6 +1143,24 @@
 				CD1328D117DD7912009A5AE3 /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		CD2F43271FB39929009EF72A /* iPhone X */ = {
+			isa = PBXGroup;
+			children = (
+				CD2F43331FB39C65009EF72A /* BrowserViewController-iPhone X.xib */,
+			);
+			path = "iPhone X";
+			sourceTree = "<group>";
+		};
+		CD2F432D1FB39AB9009EF72A /* UIDevice */ = {
+			isa = PBXGroup;
+			children = (
+				CD2F432E1FB39AB9009EF72A /* UIDevice+Hardware.m */,
+				CD2F432F1FB39AB9009EF72A /* UIDevice+Hardware.h */,
+			);
+			name = UIDevice;
+			path = Classes/UIDevice;
 			sourceTree = "<group>";
 		};
 		CD7C24181754653900D90942 /* HKHelperKit */ = {
@@ -1204,6 +1257,7 @@
 		FA5FCD110F6F607200878F27 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CD2F43271FB39929009EF72A /* iPhone X */,
 				CDD056C2174FCAC6000E0477 /* iPad */,
 				FAB765F40F7C9E5B00CE0E38 /* BrowserViewController.h */,
 				FAB765F50F7C9E5B00CE0E38 /* BrowserViewController.m */,
@@ -1241,7 +1295,7 @@
 				61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */,
 				FA87BD660F7AE96B0044898C /* SettingsViewController.h */,
 				FA87BD670F7AE96B0044898C /* SettingsViewController.m */,
-				FA87BD6A0F7AE97F0044898C /* SettingsViewController.xib */,
+				CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */,
 				A254B845116FFEB0001534FF /* SlideOutViewController.h */,
 				A254B846116FFEB0001534FF /* SlideOutViewController.m */,
 				28C286DF0D94DF7D0034E888 /* StoriesViewController.h */,
@@ -1540,7 +1594,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0910;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = JA9LQCT6NB;
@@ -1555,6 +1609,7 @@
 					};
 					CDA1174C16C1DC6600CE1375 = {
 						DevelopmentTeam = JA9LQCT6NB;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -1605,7 +1660,6 @@
 				CD7ADD2017EF19F300B4C886 /* Images.xcassets in Resources */,
 				FAA84AFA0F78DCB300026446 /* ReplyCell.xib in Resources */,
 				FAD29A610F796452006E14A2 /* DropShadow.png in Resources */,
-				FA87BD6B0F7AE97F0044898C /* SettingsViewController.xib in Resources */,
 				CD48681317EB5B430071F3D7 /* Fart3.mp3 in Resources */,
 				CD7ADD1B17EF180E00B4C886 /* StoryCell-iPad.xib in Resources */,
 				CDC0E9C617F91AEF007D3738 /* Sidebar-bg.png in Resources */,
@@ -1690,6 +1744,7 @@
 				CDDAC2BF17F44E78000FEC8A /* Menu-Button-Thread.png in Resources */,
 				CDDAC2C317F44E78000FEC8A /* Menu-Button-Reply@2x.png in Resources */,
 				CD7F2F3517FE85BE00E7EAE3 /* Keyboard-Color-Olive.png in Resources */,
+				CD2F43361FB39C65009EF72A /* BrowserViewController-iPhone X.xib in Resources */,
 				CDA01B241731A3B900E24A28 /* ReviewThreadViewController.xib in Resources */,
 				CDC0E9C217F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
 				CD7F2F3F17FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */,
@@ -1715,6 +1770,7 @@
 				CDDAC31B17F44E78000FEC8A /* Chatty-Active@2x.png in Resources */,
 				CD7F2F4D17FE85BE00E7EAE3 /* Keyboard-Normal-Spoiler.png in Resources */,
 				CDDD572418A730D8005E491A /* Post-Indicator-INF.png in Resources */,
+				CDA14F301FB40B2A000A8C0A /* SettingsViewController.xib in Resources */,
 				CD7F2EB917FA705300E7EAE3 /* Web-Share.png in Resources */,
 				CD7F2F2F17FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
 				CD7ADD0E17EF17FA00B4C886 /* ThreadViewController-iPad.xib in Resources */,
@@ -1816,7 +1872,6 @@
 				CDA1175A16C1DC6600CE1375 /* ReplyCell.xib in Resources */,
 				CDA1175D16C1DC6600CE1375 /* DropShadow.png in Resources */,
 				CD48681A17EB5B430071F3D7 /* Fart6.mp3 in Resources */,
-				CDA1175E16C1DC6600CE1375 /* SettingsViewController.xib in Resources */,
 				CDC0E9C717F91AEF007D3738 /* Sidebar-bg.png in Resources */,
 				CD7F2EB817FA705300E7EAE3 /* Web-Refresh@2x.png in Resources */,
 				CDDD573118A730D8005E491A /* Post-Indicator-UGH.png in Resources */,
@@ -1899,6 +1954,7 @@
 				CDDAC2C017F44E78000FEC8A /* Menu-Button-Thread.png in Resources */,
 				CDDAC2C417F44E78000FEC8A /* Menu-Button-Reply@2x.png in Resources */,
 				CD7F2F3617FE85BE00E7EAE3 /* Keyboard-Color-Olive.png in Resources */,
+				CD2F43371FB39C65009EF72A /* BrowserViewController-iPhone X.xib in Resources */,
 				CD7ADD2117EF19F300B4C886 /* Images.xcassets in Resources */,
 				CDC0E9C317F6886D007D3738 /* Post-Indicator-Reply@2x.png in Resources */,
 				CD7F2F4017FE85BE00E7EAE3 /* Keyboard-Color-Pink@2x.png in Resources */,
@@ -1924,6 +1980,7 @@
 				CD7F2F3017FE85BE00E7EAE3 /* Keyboard-Color-Green-Normal@2x.png in Resources */,
 				CDDAC2CE17F44E78000FEC8A /* Menu-Button-Compose.png in Resources */,
 				CDDD572518A730D8005E491A /* Post-Indicator-INF.png in Resources */,
+				CDA14F311FB40B2A000A8C0A /* SettingsViewController.xib in Resources */,
 				CD7ADD0717EF17FA00B4C886 /* SettingsViewController-iPad.xib in Resources */,
 				CD48681C17EB5B430071F3D7 /* Fart7.mp3 in Resources */,
 				CD7F2EAE17FA705300E7EAE3 /* Web-Next.png in Resources */,
@@ -2159,6 +2216,7 @@
 				1D3623260D0F684500981E51 /* LatestChatty2AppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* StoriesViewController.m in Sources */,
 				FA5FCD160F6F61A600878F27 /* Model.m in Sources */,
+				CD025E641FB5C80900695C8A /* SloppySwiper.m in Sources */,
 				FA5FCDAC0F6F6FDF00878F27 /* Story.m in Sources */,
 				FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */,
 				FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */,
@@ -2171,8 +2229,10 @@
 				FA5DA7770F7284CB00F05ED9 /* ModelListViewController.m in Sources */,
 				FA1E7D670F787FEF00BAA55B /* ModelLoader.m in Sources */,
 				FAA849980F78C29900026446 /* ThreadViewController.m in Sources */,
+				CD025E601FB5C80900695C8A /* SSWAnimator.m in Sources */,
 				FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */,
 				FAB2F8700F7985FB000E4DC9 /* GrippyBar.m in Sources */,
+				CD025E621FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m in Sources */,
 				FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */,
 				FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */,
 				FAB765F60F7C9E5B00CE0E38 /* BrowserViewController.m in Sources */,
@@ -2220,6 +2280,7 @@
 				CDF1BDDC175EEDC200D6B1AE /* IISideController.m in Sources */,
 				CDF1BDDE175EEDC200D6B1AE /* IIViewDeckController.m in Sources */,
 				CDF1BDE0175EEDC200D6B1AE /* IIWrapController.m in Sources */,
+				CD2F43301FB39AB9009EF72A /* UIDevice+Hardware.m in Sources */,
 				CDF4F8E2177FE83500143015 /* RecentSearchButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2232,6 +2293,7 @@
 				CDA117D016C1DC6600CE1375 /* LatestChatty2AppDelegate.m in Sources */,
 				CDA117D116C1DC6600CE1375 /* StoriesViewController.m in Sources */,
 				CDA117D216C1DC6600CE1375 /* Model.m in Sources */,
+				CD025E651FB5C80900695C8A /* SloppySwiper.m in Sources */,
 				CDA117D316C1DC6600CE1375 /* Story.m in Sources */,
 				CDA117D416C1DC6600CE1375 /* TableCellFromNib.m in Sources */,
 				CDA117D516C1DC6600CE1375 /* StoryCell.m in Sources */,
@@ -2244,8 +2306,10 @@
 				CDA117DD16C1DC6600CE1375 /* ModelListViewController.m in Sources */,
 				CDA117DE16C1DC6600CE1375 /* ModelLoader.m in Sources */,
 				CDA117DF16C1DC6600CE1375 /* ThreadViewController.m in Sources */,
+				CD025E611FB5C80900695C8A /* SSWAnimator.m in Sources */,
 				CDA117E016C1DC6600CE1375 /* ReplyCell.m in Sources */,
 				CDA117E216C1DC6600CE1375 /* GrippyBar.m in Sources */,
+				CD025E631FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m in Sources */,
 				CDA117E316C1DC6600CE1375 /* SettingsViewController.m in Sources */,
 				CDA117E416C1DC6600CE1375 /* ComposeViewController.m in Sources */,
 				CDA117E516C1DC6600CE1375 /* BrowserViewController.m in Sources */,
@@ -2293,6 +2357,7 @@
 				CDF1BDDD175EEDC200D6B1AE /* IISideController.m in Sources */,
 				CDF1BDDF175EEDC200D6B1AE /* IIViewDeckController.m in Sources */,
 				CDF1BDE1175EEDC200D6B1AE /* IIWrapController.m in Sources */,
+				CD2F43311FB39AB9009EF72A /* UIDevice+Hardware.m in Sources */,
 				CDF4F8E3177FE83500143015 /* RecentSearchButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2313,6 +2378,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2348,6 +2414,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2367,20 +2434,42 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2399,17 +2488,39 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
@@ -2438,7 +2549,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2453,6 +2566,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -2468,7 +2582,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2481,6 +2597,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -2496,7 +2613,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2509,23 +2628,46 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChattyBeta;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Distribution;
 		};
 		FADDB5410F81548500DF3650 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
@@ -2555,6 +2697,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

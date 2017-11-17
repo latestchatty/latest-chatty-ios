@@ -2,13 +2,26 @@ latest-chatty-2
 ===============
 
 Requires iOS 8 minimum!
-Supports iOS 9 & iPhone 6s, iPhone 6s Plus, iPad Pro!
-Now includes 3D Touch support!
-Now includes push notifications thanks to server-side support from bradsh!
 
 Xcode project now uses CocoaPods dependency management (just for AFNetworking at the moment).
 This requires CocoaPods 0.39 & ruby 2.2 (NOT ruby 2.3).
 You must use the .xcworkspace when opening the project now, and not the .xcodeproj.
+
+4.8.0
+====
+iPhone X Support!
+-Minor changes to the Settings and Review Thread views to support the X
+
+Landscape orientation removed from iPhone
+-Can utilize landscape for external sites viewed through the Safari View browser preference
+
+Revised iPhone gestures
+-Swipe right anywhere on a child view to go back
+-Swipe right to open main menu when no more views to go back to are available
+
+Bug Fixes
+-YouTube links now correctly open the YouTube app when the "Use YouTube" preference is on
+-3D Touch shortcuts fixed
 
 4.7.0
 ====

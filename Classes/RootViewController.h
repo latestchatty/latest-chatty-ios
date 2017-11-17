@@ -16,6 +16,7 @@
 #import "MessagesViewController.h"
 #import "SearchViewController.h"
 #import "IIViewDeckController.h"
+#import "SloppySwiper.h"
 
 @interface RootViewController : UITableViewController <ModelLoadingDelegate, IIViewDeckControllerDelegate> {
     ModelLoader *messageLoader;
@@ -24,5 +25,6 @@
 }
 
 @property (nonatomic, strong) NSIndexPath *selectedIndex;
+@property (strong, nonatomic) SloppySwiper *swiper;
 
 @end

@@ -47,7 +47,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     if (userInfo != nil) {
         NSLog(@"Launched from push notification: %@", userInfo);
         
-        NSUInteger *launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
+        NSUInteger launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
         UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
         
         if (viewController) {
@@ -90,7 +90,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     if (userInfo != nil) {
         NSLog(@"Launched from push notification: %@", userInfo);
         
-        NSUInteger *launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
+        NSUInteger launchThreadId = [[userInfo objectForKey:@"postid"] integerValue];
         UIViewController *viewController = [[ThreadViewController alloc] initWithThreadId:launchThreadId];
         
         if (viewController) {
@@ -102,11 +102,15 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     }
     
     // Initialize the navigation controller with the center (chatty) controller
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:centerController];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:centerController];
+    self.swiper = [[SloppySwiper alloc] initWithNavigationController:navController];
+    navController.delegate = self.swiper;
+    self.navigationController = navController;
     
     // Create the deck controller with the left and center
-    IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController
-                                                                                    leftViewController:leftController];
+    IIViewDeckController *deckController =
+        [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController
+                                                leftViewController:leftController];
     // Set navigation type, left size, no elasticity
     [deckController setNavigationControllerBehavior:IIViewDeckNavigationControllerIntegrated];
     [deckController setElastic:NO];
@@ -167,17 +171,14 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     }
     
     if (viewController) {
-        [self handleViewController:viewController];
+        [self performSelector:@selector(handleViewController:) withObject:viewController afterDelay:1.0];
     }
     
     return handled;
 }
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-
-    BOOL *handledShortCutItem = [self handleShortcutItem: shortcutItem];
-    completionHandler(handledShortCutItem);
-
+    completionHandler([self handleShortcutItem:shortcutItem]);
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -201,7 +202,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      @"",                           @"password",
                                      @"winchatty.com/chatty",       @"serverApi",
                                      [NSNumber numberWithBool:NO],  @"collapse",
-                                     [NSNumber numberWithBool:YES], @"landscape",
+//                                     [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
                                      [NSNumber numberWithBool:NO],  @"pushMessages",
                                      [NSNumber numberWithBool:YES], @"pushMessages.firstLaunch",
@@ -257,10 +258,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         [self setupInterfaceForPhoneWithOptions:launchOptions];
     }
     
-    if ([self isForceTouchEnabled]) {
-        launchedShortcutItem = [launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
-    }
-    
     [self pushRegistration];
     
     [window makeKeyAndVisible];
@@ -291,7 +288,14 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 //        }
     }
     
-    return YES;
+    BOOL shouldPerformAdditionalDelegateHandling = YES;
+    if ([self isForceTouchEnabled]) {
+        launchedShortcutItem = [launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
+        
+        shouldPerformAdditionalDelegateHandling = NO;
+    }
+    
+    return shouldPerformAdditionalDelegateHandling;
 }
 
 - (void)cleanUpPinnedThreads {
@@ -585,8 +589,11 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 //    NSLog(@"post active notification");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateViewsForMultitasking" object:self];
     
-    if (!launchedShortcutItem) { return; }
-    [self handleShortcutItem: launchedShortcutItem];
+    if (!launchedShortcutItem) {
+        return;
+    }
+    
+    [self handleShortcutItem:launchedShortcutItem];
     launchedShortcutItem = nil;
 }
 
@@ -681,23 +688,12 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 }
 
 + (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    // allow landscape setting on
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            // iPad can rotate to any interface
-            return UIInterfaceOrientationMaskAll;
-        } else {
-            // iPhone can rotate to any interface except portrait upside down
-            return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscapeLeft|UIInterfaceOrientationMaskLandscapeRight;
-        }
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        // iPad can rotate to any interface
+        return UIInterfaceOrientationMaskAll;
     } else {
-        if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            // iPad can rotate to any portrait interface
-            return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskPortraitUpsideDown;
-        } else {
-            // iPhone can rotate to only regular portrait
-            return UIInterfaceOrientationMaskPortrait;
-        }
+        // iPhone can rotate to any interface except portrait upside down
+        return UIInterfaceOrientationMaskPortrait;
     }
 }
 
@@ -706,15 +702,24 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     if (![[LatestChatty2AppDelegate delegate] isPadDevice] && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         return NO;
     }
-    
-    // allow landscape setting is on, allow rotation
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"landscape"]) {
+
+    // iPad, allow rotation
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         return YES;
     } else {
-        // allow landscape setting is off, allow rotation if the orientation isn't landscape
+        // allow rotation if the orientation isn't landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation))return NO;
         return YES;
     }
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    if ( [[LatestChatty2AppDelegate delegate] isPadDevice] ||
+        [self.window.rootViewController.presentedViewController isKindOfClass:[SFSafariViewController class]] ) {
+        return UIInterfaceOrientationMaskAll;
+    }
+    
+    return UIInterfaceOrientationMaskAll;
 }
 
 #pragma mark - Notification Support
@@ -734,7 +739,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
         UIUserNotificationType notificationTypes = settings.types;
         
-        BOOL *isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
+        BOOL isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
         if (!isPushAlertEnabled) {
             // unregister to woggle
             [self pushUnregistration];

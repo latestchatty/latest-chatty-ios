@@ -1,5 +1,5 @@
 //
-//    RootViewController.m
+//    StoriesViewController.m
 //    LatestChatty2
 //
 //    Created by Alex Wayne on 3/16/09.
@@ -152,7 +152,7 @@
     StoryCell *cell = (StoryCell *)[aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[StoryCell alloc] init];
-        [cell.chattyButton addTarget:self action:@selector(tappedChattyButton:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell.chattyButton addTarget:self action:@selector(tappedChattyButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     // Set the story

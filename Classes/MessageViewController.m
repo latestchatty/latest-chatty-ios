@@ -119,7 +119,7 @@
             
             if (isYouTubeURL && useYouTube) {
                 // don't open with browser preference, open YouTube app
-                [[UIApplication sharedApplication] openURL:[request URL]];
+                [[UIApplication sharedApplication] openURL:[[request URL] YouTubeURLByReplacingScheme]];
                 return NO;
             }
             // open current URL in Safari app
@@ -131,7 +131,7 @@
             if (browserPref == LCBrowserTypeSafariView) {
                 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
                 
-                SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
+                SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[[request URL] YouTubeURLByReplacingScheme]];
                 [svc setDelegate:self];
                 
                 [[self showingViewController] presentViewController:svc animated:YES completion:nil];

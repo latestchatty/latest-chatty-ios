@@ -182,7 +182,7 @@
             
             if (isYouTubeURL && useYouTube) {
                 // don't open with browser preference, open YouTube app
-                [[UIApplication sharedApplication] openURL:[request URL]];
+                [[UIApplication sharedApplication] openURL:[[request URL] YouTubeURLByReplacingScheme]];
                 return NO;
             }
             // open current URL in Safari app
