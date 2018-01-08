@@ -14,6 +14,7 @@
 #import "ReviewThreadViewController.h"
 #import "BrowserViewController.h"
 #import "MessagesViewController.h"
+#import "SendMessageViewController.h"
 #import "SlideOutViewController.h"
 #import "IIViewDeckController.h"
 #import "SloppySwiper.h"
