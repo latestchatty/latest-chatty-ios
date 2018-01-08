@@ -141,7 +141,9 @@
 {
     self.duringAnimation = NO;
     
-    if (navigationController.viewControllers.count <= 1) {
+    if (navigationController.viewControllers.count <= 1 ||
+        [viewController isKindOfClass:ComposeViewController.class] ||
+        [viewController isKindOfClass:SendMessageViewController.class]) {
         self.panRecognizer.enabled = NO;
     }
     else {
