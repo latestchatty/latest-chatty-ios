@@ -90,9 +90,6 @@
     
     [self.tableView addSubview:self.refreshControl];
     
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
-    
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         // top separation bar, iPhone only in this view
         UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];

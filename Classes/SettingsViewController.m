@@ -151,9 +151,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [tableView setBackgroundView:[[UIView alloc] init]];
     [tableView setBackgroundColor:[UIColor clearColor]];
     
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
-    
     // top separation bar
     UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frameY, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];

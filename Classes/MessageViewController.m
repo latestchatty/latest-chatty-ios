@@ -42,9 +42,6 @@
     
     [webView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:@"http://www.shacknews.com/messages"]];
     
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
-    
     // top separation bar
     UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
@@ -72,10 +69,6 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-}
-
 - (void)reply {
     SendMessageViewController *sendMessageViewController = [[SendMessageViewController alloc] initWithMessage:message];
 	[self.navigationController pushViewController:sendMessageViewController animated:YES];
@@ -98,10 +91,6 @@
 }
 
 #pragma mark WebView methods
-
-- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-}
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
@@ -129,10 +118,12 @@
             }
             // open current URL in iOS 9 Safari modal view
             if (browserPref == LCBrowserTypeSafariView) {
-                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-                
                 SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[[request URL] YouTubeURLByReplacingScheme]];
                 [svc setDelegate:self];
+                [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
+                [svc setPreferredControlTintColor:[UIColor whiteColor]];
+                [svc setModalPresentationCapturesStatusBarAppearance:YES];
+                svc.view.opaque = YES;
                 
                 [[self showingViewController] presentViewController:svc animated:YES completion:nil];
                 

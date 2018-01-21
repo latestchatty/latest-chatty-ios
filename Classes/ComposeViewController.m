@@ -93,9 +93,6 @@
                                                  name:@"UIKeyboardDidHideNotification"
                                                object:nil];
     
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
-    
     // top separation bar
     UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
@@ -221,7 +218,6 @@
 - (void)navigationController:(UINavigationController *)navigationController
       willShowViewController:(UIViewController *)viewController
                     animated:(BOOL)animated {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     [viewController setNeedsStatusBarAppearanceUpdate];
 }
 
@@ -297,7 +293,6 @@
 		imagePicker.delegate = self;
 		imagePicker.sourceType = sourceType;
         imagePicker.navigationBar.barTintColor = [UIColor lcBarTintColor];
-        imagePicker.navigationBar.translucent = NO;
         imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext;
         
         [[self showingViewController] presentViewController:imagePicker animated:YES completion:nil];

@@ -85,9 +85,6 @@
     
     [content loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:baseUrlString]];
     
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
-    
     // top separation bar
     UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
@@ -96,10 +93,6 @@
     
     // scroll indicator coloring
     [content.scrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (UIViewController *)showingViewController {
@@ -162,10 +155,6 @@
 
 #pragma mark WebView methods
 
-- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-}
-
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -191,11 +180,12 @@
                 return NO;
             }
             // open current URL in iOS 9 Safari modal view
-            if (browserPref == LCBrowserTypeSafariView) {
-                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-                
+            if (browserPref == LCBrowserTypeSafariView) {                
                 SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
                 [svc setDelegate:self];
+                [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
+                [svc setPreferredControlTintColor:[UIColor whiteColor]];
+                [svc setModalPresentationCapturesStatusBarAppearance:YES];
                 
                 [[self showingViewController] presentViewController:svc animated:YES completion:nil];
                 

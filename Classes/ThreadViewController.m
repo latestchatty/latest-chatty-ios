@@ -255,9 +255,6 @@
     
     [self resetLayout:NO];
     
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
-    
     // top separation bar
     UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, postViewContainer.frameY, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
@@ -312,8 +309,6 @@
     if (threadId == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -527,10 +522,6 @@
 
 #pragma mark WebView Methods
 
-- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-}
-
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         // author name tapped, show action sheet to search for posts or shackmessage
@@ -569,10 +560,11 @@
             }
             // open current URL in iOS 9 Safari modal view
             if (browserPref == LCBrowserTypeSafariView) {
-                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-                
                 SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
                 [svc setDelegate:self];
+                [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
+                [svc setPreferredControlTintColor:[UIColor whiteColor]];
+                [svc setModalPresentationCapturesStatusBarAppearance:YES];
                 
                 [[self showingViewController] presentViewController:svc animated:YES completion:nil];
                 
