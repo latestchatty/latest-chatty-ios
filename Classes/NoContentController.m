@@ -10,10 +10,7 @@
 
 @implementation NoContentController
 
-- (void)viewDidLoad {
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
-    
+- (void)viewDidLoad {    
     // top separation bar
     UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];

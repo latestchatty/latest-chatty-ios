@@ -27,9 +27,6 @@
     
     [doneButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
     
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
-    
     // top separation bar
     UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, postView.frameY, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];

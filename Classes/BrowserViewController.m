@@ -84,9 +84,6 @@
 //        [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 //    }
     
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
-    
     // top separation bar
      topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];
@@ -254,7 +251,6 @@
 - (void)navigationController:(UINavigationController *)navigationController
       willShowViewController:(UIViewController *)viewController
                     animated:(BOOL)animated {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     [viewController setNeedsStatusBarAppearanceUpdate];
 }
 

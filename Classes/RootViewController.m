@@ -102,9 +102,6 @@
     } else {
         [self setClearsSelectionOnViewWillAppear:YES];
     }
-    
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
 
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Sidebar-bg.png"]];
     self.tableView.backgroundView.contentMode = UIViewContentModeScaleToFill;

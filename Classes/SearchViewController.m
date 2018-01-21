@@ -57,9 +57,6 @@
     segmentedBar.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"searchSegmented"];
     [self modeChanged];
     
-    // iOS7
-    self.navigationController.navigationBar.translucent = NO;
-    
     // top separation bar
     UIView *topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
     [topStroke setBackgroundColor:[UIColor lcTopStrokeColor]];

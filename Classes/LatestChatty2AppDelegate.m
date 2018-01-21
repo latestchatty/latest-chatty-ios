@@ -676,6 +676,10 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [[UIToolbar appearanceWhenContainedIn:[BrowserViewController class], nil] setTintColor:[UIColor whiteColor]];
     [[UIToolbar appearance] setBarTintColor:[UIColor lcBarTintColor]];
     
+    // turn off translucency
+    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UIToolbar appearance] setTranslucent:NO];
+    
     // progress bar (uploading to chattypics)
     [[UIProgressView appearance] setProgressTintColor:[UIColor lcSwitchOnColor]];
     [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderMaximumColor]];
