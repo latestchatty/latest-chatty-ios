@@ -7,6 +7,10 @@ Xcode project now uses CocoaPods dependency management (just for AFNetworking at
 This requires CocoaPods 0.39 & ruby 2.2 (NOT ruby 2.3).
 You must use the .xcworkspace when opening the project now, and not the .xcodeproj.
 
+4.8.2
+====
+- Safari View bar coloring now consistent with rest of app
+
 4.8.1
 ====
 - Swipe to go back action disabled for New Post, Reply, and Message composition screens
