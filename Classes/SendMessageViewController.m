@@ -227,7 +227,7 @@
         
         // See [ComposeViewController makePost] for explanation, same GCD blocks used there
         dispatch_async(dispatch_get_main_queue(), ^{
-            BOOL success = [Message createWithTo:recipient.text subject:subject.text body:body.text];
+            BOOL success = [Message createWithTo:self->recipient.text subject:self->subject.text body:self->body.text];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (success) {
                     [self performSelectorOnMainThread:@selector(sendSuccess) withObject:nil waitUntilDone:NO];

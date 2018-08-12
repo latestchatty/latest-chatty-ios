@@ -264,10 +264,10 @@
 //            } else {
 //                loader = [Post findAllInLatestChattyWithDelegate:self];
 //            }
-            if (storyId > 0) {
-                loader = [PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self];
+            if (self->storyId > 0) {
+                self->loader = [PinnedThreadsLoader loadPinnedThreadsThenStoryId:self.storyId for:self];
             } else {
-                loader = [PinnedThreadsLoader loadPinnedThreadsThenLatestChattyFor:self];
+                self->loader = [PinnedThreadsLoader loadPinnedThreadsThenLatestChattyFor:self];
             }
         });
     });
