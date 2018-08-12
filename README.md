@@ -9,7 +9,7 @@ You must use the .xcworkspace when opening the project now, and not the .xcodepr
 
 4.8.3
 ====
-- App Store listing age rating update
+- Age rating updated on App Store listing
 - Message sending bug fix for unicode characters
 
 4.8.2
