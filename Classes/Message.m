@@ -69,7 +69,10 @@
     
     // Set request body and HTTP method
     NSString *requestBody = [NSString stringWithFormat:
-                             @"to=%@&subject=%@&body=%@", to, subject, body];
+                             @"to=%@&subject=%@&body=%@",
+                             to,
+                             [subject stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]],
+                             [body stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
     [request setHTTPBody:[requestBody data]];
     [request setHTTPMethod:@"POST"];
     
