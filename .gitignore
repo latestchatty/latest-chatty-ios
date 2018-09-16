@@ -6,4 +6,4 @@ DerivedData/
 *.perspectivev3
 LatestChatty2.xcodeproj/*.xcworkspace
 xcuserdata/
-Pods
+Pods/
