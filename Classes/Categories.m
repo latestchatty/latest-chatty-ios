@@ -275,31 +275,31 @@
 // Reply text colors
 + (UIColor *)lcReplyLevel1Color {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithWhite:255.0 alpha:0.95];
+    if (!color) color = [UIColor colorWithWhite:1.0 alpha:0.95];
     return color;
 }
 
 + (UIColor *)lcReplyLevel2Color {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithWhite:255.0 alpha:0.90];
+    if (!color) color = [UIColor colorWithWhite:1.0 alpha:0.90];
     return color;
 }
 
 + (UIColor *)lcReplyLevel3Color {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithWhite:255.0 alpha:0.85];
+    if (!color) color = [UIColor colorWithWhite:1.0 alpha:0.85];
     return color;
 }
 
 + (UIColor *)lcReplyLevel4Color {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithWhite:255.0 alpha:0.80];
+    if (!color) color = [UIColor colorWithWhite:1.0 alpha:0.80];
     return color;
 }
 
 + (UIColor *)lcReplyLevel5Color {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithWhite:255.0 alpha:0.75];
+    if (!color) color = [UIColor colorWithWhite:1.0 alpha:0.75];
     return color;
 }
 
