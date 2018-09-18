@@ -2,9 +2,8 @@
 
 build/
 DerivedData/
-
 *.pbxuser
 *.perspectivev3
-
 LatestChatty2.xcodeproj/*.xcworkspace
 xcuserdata/
+Pods/
