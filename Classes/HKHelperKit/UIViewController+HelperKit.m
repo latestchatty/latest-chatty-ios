@@ -39,7 +39,7 @@
         name = [NSString stringWithFormat:@"%@-%@", name, deviceName];
     }
     
-    if ([modelName isEqualToString:@"iPhone X"]) {
+    if ([modelName containsString:@"iPhone X"]) {
         NSString *nib = [NSString stringWithFormat:@"%@-%@", name, modelName];
         
         // only override some nibs for iPhone X
