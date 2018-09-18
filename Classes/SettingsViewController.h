@@ -8,7 +8,7 @@
 
 #import "Post.h"
 
-@interface SettingsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIGestureRecognizerDelegate> {
+@interface SettingsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIGestureRecognizerDelegate, SFSafariViewControllerDelegate> {
     IBOutlet UITableView     *tableView;
     IBOutlet UIBarButtonItem *saveButton;
     IBOutlet UIBarButtonItem *cancelButton;
