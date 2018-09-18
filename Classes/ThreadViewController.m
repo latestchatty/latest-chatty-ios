@@ -58,7 +58,7 @@
             [Tag getLolTags];
             dispatch_async(dispatch_get_main_queue(), ^{
                 // load the thread
-                loader = [Post findThreadWithId:threadId delegate:self];
+                self->loader = [Post findThreadWithId:self->threadId delegate:self];
             });
         });
         

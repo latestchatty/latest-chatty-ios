@@ -395,8 +395,8 @@
     tagView.alpha = 0.0;
     tagView.transform = CGAffineTransformMakeScale(1.1, 1.1);
     [UIView animateWithDuration:0.35 animations:^(void) {
-        tagView.alpha = 1.0;
-        tagView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        self->tagView.alpha = 1.0;
+        self->tagView.transform = CGAffineTransformMakeScale(1.0, 1.0);
     }];
     
 	[postContent resignFirstResponder];
@@ -431,11 +431,11 @@
     // Close tag view
     [UIView animateWithDuration:0.35
                      animations:^(void) {
-                         tagView.alpha = 0.0;
-                         tagView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+                         self->tagView.alpha = 0.0;
+                         self->tagView.transform = CGAffineTransformMakeScale(1.1, 1.1);
                      }
                      completion:^(BOOL finished) {
-                         tagView.hidden = YES;
+                         self->tagView.hidden = YES;
                      }];
     
     // Reactivate the text view with the text still selected.
@@ -480,7 +480,7 @@
         //this started happening in iOS 6
         //same change made to [SendMessageViewController makeMessage:]
         dispatch_async(dispatch_get_main_queue(), ^{
-            BOOL success = [Post createWithBody:postContent.text parentId:post.modelId storyId:storyId];
+            BOOL success = [Post createWithBody:self->postContent.text parentId:self->post.modelId storyId:self->storyId];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (success) {
                     [self performSelectorOnMainThread:@selector(postSuccess) withObject:nil waitUntilDone:NO];

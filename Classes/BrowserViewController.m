@@ -127,13 +127,13 @@
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 
     [UIView animateWithDuration:0.25 animations:^{
-        CGRect bottomToolbarFrame = bottomToolbar.frame;
-        bottomToolbarFrame.origin.y = self.view.frameHeight + bottomToolbar.frameHeight;
-        bottomToolbar.frame = bottomToolbarFrame;
+        CGRect bottomToolbarFrame = self->bottomToolbar.frame;
+        bottomToolbarFrame.origin.y = self.view.frameHeight + self->bottomToolbar.frameHeight;
+        self->bottomToolbar.frame = bottomToolbarFrame;
         
-        CGRect topStrokeFrame = topStroke.frame;
+        CGRect topStrokeFrame = self->topStroke.frame;
         topStrokeFrame.origin.y = -1;
-        topStroke.frame = topStrokeFrame;
+        self->topStroke.frame = topStrokeFrame;
     }];
     
     [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
@@ -149,13 +149,13 @@
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
     [UIView animateWithDuration:0.25 animations:^{
-        CGRect bottomToolbarFrame = bottomToolbar.frame;
-        bottomToolbarFrame.origin.y = self.view.frameHeight - bottomToolbar.frameHeight;
-        bottomToolbar.frame = bottomToolbarFrame;
+        CGRect bottomToolbarFrame = self->bottomToolbar.frame;
+        bottomToolbarFrame.origin.y = self.view.frameHeight - self->bottomToolbar.frameHeight;
+        self->bottomToolbar.frame = bottomToolbarFrame;
         
-        CGRect topStrokeFrame = topStroke.frame;
+        CGRect topStrokeFrame = self->topStroke.frame;
         topStrokeFrame.origin.y = 0;
-        topStroke.frame = topStrokeFrame;
+        self->topStroke.frame = topStrokeFrame;
     }];
     
     [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, self.bottomToolbar.frameHeight, 0)];

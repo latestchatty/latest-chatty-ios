@@ -133,10 +133,10 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                       replies = [responseObject boolForKey:@"get_replies"];
                   }
 
-                  vanityPrefSwitch.on = vanity;
-                  vanityPrefSwitch.enabled = YES;
-                  repliesPrefSwitch.on = replies;
-                  repliesPrefSwitch.enabled = YES;
+                self->vanityPrefSwitch.on = vanity;
+                self->vanityPrefSwitch.enabled = YES;
+                self->repliesPrefSwitch.on = replies;
+                self->repliesPrefSwitch.enabled = YES;
             }
             failure:^(NSURLSessionDataTask *task, NSError *error) {
                 NSLog( @"getuser fail: %@", error );
