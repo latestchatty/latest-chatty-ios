@@ -9,5 +9,6 @@ target 'LatestChatty2' do
 pod 'AFNetworking', '~> 3.0'
 pod 'UIDevice-Hardware', '~> 0.1'
 pod 'MBProgressHUD', '~> 1.1'
+pod 'CustomBadge', '~> 3.0'
 
 end
