@@ -52,7 +52,7 @@ UIViewAnimationOptions const SSWNavigationTransitionCurve = 7 << 16;
 
     // parallax effect; the offset matches the one used in the pop animation in iOS 7.1
     CGFloat toViewControllerXTranslation = - CGRectGetWidth([transitionContext containerView].bounds) * 0.3f;
-    // these two lines cause view layout issues on iPhone X
+    // these two lines cause view layout issues in LC.app
     //toViewController.view.bounds = [transitionContext containerView].bounds;
     //toViewController.view.center = [transitionContext containerView].center;
     toViewController.view.transform = CGAffineTransformMakeTranslation(toViewControllerXTranslation, 0);

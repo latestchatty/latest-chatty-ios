@@ -8,7 +8,7 @@
 
 #import "UIViewController+HelperKit.h"
 #import "UIDevice+HelperKit.h"
-#import "UIDevice+Hardware.h"
+#import "UIDevice-Hardware.h"
 
 
 @implementation UIViewController (HelperKit)
