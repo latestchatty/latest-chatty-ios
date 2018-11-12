@@ -31,6 +31,7 @@
 @property (nonatomic, strong) NSMutableArray *threads;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, assign) NSUInteger storyId;
+@property (nonatomic, assign) NSIndexPath *selectedRowPath;
 
 + (ChattyViewController*)chattyControllerWithLatest;
 + (ChattyViewController*)chattyControllerWithStoryId:(NSUInteger)aStoryId;
