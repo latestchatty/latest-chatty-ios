@@ -1,5 +1,5 @@
 //
-//  HTMLTemplate.m
+//  StringTemplate.m
 //  LatestChatty2
 //
 //  Created by Alex Wayne on 3/18/09.
