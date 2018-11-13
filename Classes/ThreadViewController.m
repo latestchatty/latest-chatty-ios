@@ -739,6 +739,51 @@
     return minTimeLevelPostIndex;
 }
 
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (NSArray<UIKeyCommand *>*)keyCommands {
+    return @[
+             [UIKeyCommand keyCommandWithInput:@"a" modifierFlags:0 action:@selector(prevTab:) discoverabilityTitle:@"Previous Subthread"],
+             [UIKeyCommand keyCommandWithInput:@"z" modifierFlags:0 action:@selector(nextTab:) discoverabilityTitle:@"Next Subthread"],
+             [UIKeyCommand keyCommandWithInput:UIKeyInputUpArrow modifierFlags:0 action:@selector(prevTabThreader:) discoverabilityTitle:@"Previous Thread"],
+             [UIKeyCommand keyCommandWithInput:UIKeyInputDownArrow modifierFlags:0 action:@selector(nextTabThreader:) discoverabilityTitle:@"Next Thread"],
+             [UIKeyCommand keyCommandWithInput:@"r" modifierFlags:UIKeyModifierCommand action:@selector(refreshTableview:) discoverabilityTitle:@"Refresh Threads"],
+             [UIKeyCommand keyCommandWithInput:@"p" modifierFlags:UIKeyModifierCommand action:@selector(threadPinnedKey:) discoverabilityTitle:@"Toggle Thread Pinned"],
+             [UIKeyCommand keyCommandWithInput:@"r" modifierFlags:0 action:@selector(replyToPost:) discoverabilityTitle:@"Reply to Post"]
+             ];
+}
+
+- (void)threadPinnedKey:(UIKeyCommand *)sender {
+    [self togglePinThread];
+}
+
+- (void)refreshTableview:(UIKeyCommand *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshView" object:self];
+}
+
+- (void)prevTabThreader:(UIKeyCommand *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PrevThread" object:self];
+}
+
+- (void)nextTabThreader:(UIKeyCommand *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NextThread" object:self];
+}
+
+- (void)prevTab:(UIKeyCommand *)sender {
+    [self previous];
+}
+
+- (void)nextTab:(UIKeyCommand *)sender {
+    [self next];
+}
+
+- (void)replyToPost:(UIKeyCommand *)sender {
+    [self tappedReplyButton];
+}
+
+
 - (IBAction)previous {
     NSIndexPath *oldIndexPath = selectedIndexPath;
         
