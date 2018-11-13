@@ -9,6 +9,7 @@ You must use the .xcworkspace when opening the project now, and not the .xcodepr
 
 4.8.6
 ====
+- iPad keyboard shortcuts added (thanks 0vrlrd)
 - Code cleanup
 
 4.8.5
@@ -19,7 +20,7 @@ You must use the .xcworkspace when opening the project now, and not the .xcodepr
 4.8.4
 ====
 - iOS 12 support
-- Bug fix for reply post text color
+- Bug fix for reply post text color (thanks Yanks)
 
 4.8.3
 ====
