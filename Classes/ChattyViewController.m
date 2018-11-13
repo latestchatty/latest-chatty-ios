@@ -20,7 +20,7 @@
 
 @implementation ChattyViewController
 
-@synthesize threadController, storyId, threads, refreshControl;
+@synthesize threadController, storyId, threads, refreshControl, selectedRowPath;
 
 + (ChattyViewController*)chattyControllerWithLatest {
     return [self chattyControllerWithStoryId:0];
@@ -159,6 +159,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadPinned:) name:@"ThreadPinned" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadUnpinned:) name:@"ThreadUnpinned" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewsForMultitasking:) name:@"UpdateViewsForMultitasking" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nextThreadBut:) name:@"NextThread" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prevThreadBut:) name:@"PrevThread" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableview:) name:@"RefreshView" object:nil];
 }
 
 - (void)updateViewsForMultitasking:(NSObject *) sender {
@@ -191,6 +197,8 @@
         [self.threads insertObject:object atIndex:0];
         [self.tableView reloadData];
     }
+    
+    selectedRowPath = nil;
 }
 
 - (void)threadUnpinned:(NSNotification *)notification {
@@ -213,6 +221,15 @@
         }
         count++;
     }
+    
+    NSIndexPath *oldIndexPath = selectedRowPath;
+    
+    if (oldIndexPath.row != 0 && oldIndexPath != nil) {
+        selectedRowPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
+    } else {
+        selectedRowPath = nil;
+    }
+
     
     if (index > -1) {
         object = [self.threads objectAtIndex:index];
@@ -250,6 +267,8 @@
 	[super refresh:sender];
     
 	currentPage = 1;
+    
+    selectedRowPath = nil;
 	
     // wrapped existing loader logic in a GCD block to wait until the synchronous lol fetch
     // completes on a global background thread before loading the chatty
@@ -532,8 +551,79 @@
 	return nil;
 }
 
-- (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row < [threads count]) {
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (NSArray<UIKeyCommand *>*)keyCommands {
+    return @[
+             [UIKeyCommand keyCommandWithInput:UIKeyInputUpArrow modifierFlags:0 action:@selector(prevThreadTab:) discoverabilityTitle:@"Previous Main Thread"],
+             [UIKeyCommand keyCommandWithInput:UIKeyInputDownArrow modifierFlags:0 action:@selector(nextThreadTab:) discoverabilityTitle:@"Next Main Thread"],
+             [UIKeyCommand keyCommandWithInput:@"r" modifierFlags:UIKeyModifierCommand action:@selector(refreshTableview:) discoverabilityTitle:@"Refresh Threads"]
+             ];
+}
+
+- (void)refreshTableview:(NSObject *) sender {
+    [self refresh:self.refreshControl];
+}
+
+- (void)nextThreadBut:(NSObject *) sender {
+    //    NSLog(@"NextThread");
+    [self nextThread];
+}
+
+- (void)prevThreadBut:(NSObject *) sender {
+    //    NSLog(@"PrevThread");
+    [self previousThread];
+}
+
+- (void)prevThreadTab:(UIKeyCommand *)sender {
+    [self previousThread];
+}
+
+- (void)nextThreadTab:(UIKeyCommand *)sender {
+    [self nextThread];
+}
+
+- (void)previousThread {
+    NSIndexPath *oldIndexPath = selectedRowPath;
+    
+    if (![self.refreshControl isRefreshing]) {
+        if (oldIndexPath.row != 0 && oldIndexPath != nil) {
+            selectedRowPath = [NSIndexPath indexPathForRow:oldIndexPath.row - 1 inSection:0];
+            
+            
+            //    [self selectThreadRowAtIndex:selectedRowPath];
+            
+            [tableView selectRowAtIndexPath:selectedRowPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+            [self tableView:tableView didSelectRowAtIndexPath:selectedRowPath];
+            
+        }
+    }
+}
+
+- (void)nextThread {
+    NSIndexPath *oldIndexPath = selectedRowPath;
+    
+    if (![self.refreshControl isRefreshing] && oldIndexPath.row + 1 != [threads count]) {
+        
+        selectedRowPath = [NSIndexPath indexPathForRow:oldIndexPath.row + 1 inSection:0];
+        
+        if (oldIndexPath == nil) {
+            selectedRowPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        }
+        
+        //    [self selectThreadRowAtIndex:selectedRowPath];
+        
+        [tableView selectRowAtIndexPath:selectedRowPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        [self tableView:tableView didSelectRowAtIndexPath:selectedRowPath];
+    }
+}
+
+
+-(void)selectThreadRowAtIndex:(NSIndexPath *)indexPath {
+    if (indexPath.row < [threads count]) {
         Post *thread = [threads objectAtIndex:indexPath.row];
         
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray array];
@@ -547,7 +637,12 @@
         
         thread.newReplies = 0;
         [[tableView cellForRowAtIndexPath:indexPath] setNeedsLayout];
+        selectedRowPath = indexPath;
     }
+}
+
+- (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self selectThreadRowAtIndex:indexPath];
 }
 
 -(void)tableView:(UITableView *)_tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
