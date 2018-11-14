@@ -490,21 +490,13 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 }
 
 - (void)openCredits {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForCredits" object:nil];
-    }];
+    NSString *urlString = @"http://mccrager.com/latestchatty/credits";
+    [self safariViewControllerForURL:[NSURL URLWithString:urlString]];
 }
 
 - (void)openLicenses {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForLicenses" object:nil];
-    }];
-}
-
-- (void)openDonate {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PushBrowserForDonate" object:nil];
-    }];
+    NSString *urlString = @"http://mccrager.com/latestchatty/licenses";
+    [self safariViewControllerForURL:[NSURL URLWithString:urlString]];
 }
 
 - (void)handlePasswordTap:(UITapGestureRecognizer *)recognizer {
@@ -515,6 +507,39 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (void)handlePicsPasswordTap:(UITapGestureRecognizer *)recognizer {
     BOOL current = [picsPasswordField isSecureTextEntry];
     [picsPasswordField setSecureTextEntry:!current];
+}
+
+#pragma mark Web View methods
+
+- (void)safariViewControllerForURL:(NSURL *)url {
+    SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:url];
+    [svc setDelegate:self];
+    [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
+    [svc setPreferredControlTintColor:[UIColor whiteColor]];
+    [svc setModalPresentationCapturesStatusBarAppearance:YES];
+    
+    [[self showingViewController] presentViewController:svc animated:YES completion:nil];
+}
+
+- (void)pushBrowserForCredits {
+    NSString *urlString = @"http://mccrager.com/latestchatty/credits";
+    UIViewController *viewController =
+    [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
+                                             title:@"Credits"
+                                     isForShackLOL:NO];
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
+    } else {
+        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
+    }
+}
+
+- (UIViewController *)showingViewController {
+    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+    } else {
+        return self;
+    }
 }
 
 #pragma mark Table view methods

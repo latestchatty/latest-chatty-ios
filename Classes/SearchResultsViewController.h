@@ -15,7 +15,7 @@
 
 #import "ThreadCell.h"
 
-@interface SearchResultsViewController : ModelListViewController {
+@interface SearchResultsViewController : ModelListViewController <UIViewControllerPreviewingDelegate> {
     NSArray *posts;
 
     NSString *terms;

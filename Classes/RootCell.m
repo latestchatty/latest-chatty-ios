@@ -24,14 +24,7 @@
     self.textLabel.shadowOffset = CGSizeMake(0, -1);
     
     // initial custom badge, add as subview to icon view
-    self.badge = [CustomBadge customBadgeWithString:nil
-                                    withStringColor:[UIColor whiteColor]
-                                     withInsetColor:[UIColor redColor]
-                                     withBadgeFrame:YES
-                                withBadgeFrameColor:[UIColor clearColor]
-                                          withScale:1.0
-                                        withShining:NO
-                                         withShadow:NO];
+    self.badge = [CustomBadge customBadgeWithString:nil];
     [self.iconImage addSubview:self.badge];
     [self.badge setHidden:YES];
   

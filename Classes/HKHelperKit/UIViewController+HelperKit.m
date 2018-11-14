@@ -8,7 +8,7 @@
 
 #import "UIViewController+HelperKit.h"
 #import "UIDevice+HelperKit.h"
-#import "UIDevice+Hardware.h"
+#import "UIDevice-Hardware.h"
 
 
 @implementation UIViewController (HelperKit)
@@ -39,7 +39,7 @@
         name = [NSString stringWithFormat:@"%@-%@", name, deviceName];
     }
     
-    if ([modelName isEqualToString:@"iPhone X"]) {
+    if ([modelName containsString:@"iPhone X"]) {
         NSString *nib = [NSString stringWithFormat:@"%@-%@", name, modelName];
         
         // only override some nibs for iPhone X
