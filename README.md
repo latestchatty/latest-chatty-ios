@@ -3,10 +3,6 @@ latest-chatty-2
 
 Requires iOS 8 minimum!
 
-Xcode project now uses CocoaPods dependency management (just for AFNetworking at the moment).
-This requires CocoaPods 0.39 & ruby 2.2 (NOT ruby 2.3).
-You must use the .xcworkspace when opening the project now, and not the .xcodeproj.
-
 4.8.6
 ====
 - iPad keyboard shortcuts added (thanks 0vrlrd)
