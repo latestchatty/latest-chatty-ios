@@ -3,6 +3,10 @@ latest-chatty-2
 
 Requires iOS 8 minimum!
 
+4.8.7
+====
+- Added setting to enable/disable Swipe To Go Back on iPhone
+
 4.8.6
 ====
 - iPad keyboard shortcuts added (thanks 0vrlrd)

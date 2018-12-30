@@ -26,6 +26,7 @@
 
     UISwitch     *orderByPostDateSwitch;
     UISwitch     *saveSearchesSwitch;
+    UISwitch     *swipeBackSwitch;
     UISwitch     *collapseSwitch;
 //    UISwitch     *landscapeSwitch;
     UISwitch     *lolTagsSwitch;
