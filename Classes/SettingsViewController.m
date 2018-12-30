@@ -51,6 +51,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
         orderByPostDateSwitch = [self generateSwitchWithKey:@"orderByPostDate"];
         saveSearchesSwitch = [self generateSwitchWithKey:@"saveSearches"];
+        swipeBackSwitch    = [self generateSwitchWithKey:@"swipeBack"];
         collapseSwitch     = [self generateSwitchWithKey:@"collapse"];
 //        landscapeSwitch    = [self generateSwitchWithKey:@"landscape"];
         lolTagsSwitch      = [self generateSwitchWithKey:@"lolTags"];
@@ -411,6 +412,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
 	[defaults setBool:orderByPostDateSwitch.on  forKey:@"orderByPostDate"];
     [defaults setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
+    [defaults setBool:swipeBackSwitch.on        forKey:@"swipeBack"];
 	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
 //    [defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
 	[defaults setBool:lolTagsSwitch.on          forKey:@"lolTags"];
@@ -446,6 +448,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [store setObject:picsPasswordField.text  forKey:@"picsPassword"];
 	[store setBool:orderByPostDateSwitch.on  forKey:@"orderByPostDate"];
     [store setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
+    [store setBool:swipeBackSwitch.on        forKey:@"swipeBack"];
 	[store setBool:collapseSwitch.on         forKey:@"collapse"];
 	[store setBool:lolTagsSwitch.on          forKey:@"lolTags"];
     [store setBool:picsResizeSwitch.on       forKey:@"picsResize"];
@@ -559,7 +562,11 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
             break;
 			
 		case 2:
-            return 7;
+            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                return 7;
+            } else {
+                return 8;
+            }
 			break;
 			
         case 3:
@@ -753,6 +760,16 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 				break;
                 
             case 6:
+                if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+                    cell.accessoryView = youTubeSwitch;
+                    cell.textLabel.text = @"Use YouTube:";
+                } else {
+                    cell.accessoryView = swipeBackSwitch;
+                    cell.textLabel.text = @"Swipe To Go Back:";
+                }
+                break;
+                
+            case 7:
                 cell.accessoryView = youTubeSwitch;
                 cell.textLabel.text = @"Use YouTube:";
                 break;

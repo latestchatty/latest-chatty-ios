@@ -211,7 +211,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      @"",                           @"pushMessages.deviceToken",
                                      [NSNumber numberWithBool:YES], @"picsResize",
                                      [NSNumber numberWithFloat:0.7],@"picsQuality",
-                                     [NSNumber numberWithInt:0],    @"browserPref",
+                                     [NSNumber numberWithInt:1],    @"browserPref",
                                      [NSNumber numberWithBool:NO],  @"useChrome",
                                      [NSNumber numberWithBool:YES], @"postCategory.informative",
                                      [NSNumber numberWithBool:YES], @"postCategory.offtopic",
@@ -220,14 +220,15 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      [NSNumber numberWithBool:NO],  @"postCategory.nws",
                                      [NSNumber numberWithInt:0],    @"lastRefresh",
                                      [NSNumber numberWithInt:1],    @"grippyBarPosition",
-                                     [NSNumber numberWithBool:NO],  @"orderByPostDate",
+                                     [NSNumber numberWithBool:YES], @"orderByPostDate",
                                      [NSNumber numberWithInt:0],    @"searchSegmented",
                                      [NSMutableArray array],        @"pinnedThreads",
                                      [NSMutableArray array],        @"collapsedThreads",
                                      [NSMutableArray array],        @"recentSearches",
                                      [NSNumber numberWithBool:NO],  @"superSecretFartMode",
                                      [NSNumber numberWithBool:YES], @"saveSearches",
-                                     [NSNumber numberWithBool:NO],  @"lolTags",
+                                     [NSNumber numberWithBool:YES], @"swipeBack",
+                                     [NSNumber numberWithBool:YES], @"lolTags",
                                      nil];
     [defaults registerDefaults:defaultSettings];
     

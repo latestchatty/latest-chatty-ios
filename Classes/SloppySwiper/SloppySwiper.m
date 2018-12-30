@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationController *navigationController;
 @property (strong, nonatomic) SSWAnimator *animator;
 @property (strong, nonatomic) UIPercentDrivenInteractiveTransition *interactionController;
-/// A Boolean value that indicates whether the navigation controller is currently animating a push/pop operation.
+// A Boolean value that indicates whether the navigation controller is currently animating a push/pop operation.
 @property (nonatomic) BOOL duringAnimation;
 @end
 
@@ -140,8 +140,10 @@
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     self.duringAnimation = NO;
+    BOOL userSwipeBackSetting = [[NSUserDefaults standardUserDefaults] boolForKey:@"swipeBack"];
     
-    if (navigationController.viewControllers.count <= 1 ||
+    if (!userSwipeBackSetting ||
+        navigationController.viewControllers.count <= 1 ||
         [viewController isKindOfClass:ComposeViewController.class] ||
         [viewController isKindOfClass:SendMessageViewController.class]) {
         self.panRecognizer.enabled = NO;
