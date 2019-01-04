@@ -1,0 +1,23 @@
+# How to build
+- Enroll in the [Apple Developer Program](https://developer.apple.com/programs/enroll/). This costs $99 per year. Wait for the order to go through; it may take up to 48 hours but in practice seems to take about 15 minutes.
+- Go to [the Apple Developer website](https://developer.apple.com/account/ios/device/create) and register your iOS device.
+- Install Xcode and run `sudo gem install cocoapods`. If running on Macincloud, these are already installed.
+- `git clone https://github.com/latestchatty/latest-chatty-2.git`
+- `cd latest-chatty-2`
+- `pod install`
+- Launch Xcode.
+- Xcode menu > Preferences > Accounts.
+- Click the "+" button.
+- Choose "Apple ID".
+- Enter your Apple account email and password.
+- Close the Preferences window.
+- Click the button to show the Project Navigator.
+- Click the "LatestChatty2" project in the Project Navigator.
+- In the main pane, under "Identity", change the "Bundle Identifier" to something else, for instance by replacing the domain prefix `com.beautifulpixel`.
+- In the main pane, under "Signing", change "Team" to "Your Name (Personal Team)".
+- Click the "Try Again" button next to "Status". There should not be any red (!) symbols.
+	- If it says "Your development team, Your Name, does not support the iCloud and Push Notifications capabilities," then your account's Developer Program enrollment has likely not gone through yet.
+- It should now say "Signing Certificate: iPhone Developer: Your Name"
+- Click "Generic iOS Device" in the upper left corner and change it to an iOS Simulator.
+- Product menu > Build.
+- Product menu > Run.
