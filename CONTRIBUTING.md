@@ -2,8 +2,8 @@
 - Enroll in the [Apple Developer Program](https://developer.apple.com/programs/enroll/). This costs $99 per year. Wait for the order to go through; it may take up to 48 hours but in practice seems to take about 15 minutes.
 - Go to [the Apple Developer website](https://developer.apple.com/account/ios/device/create) and register your iOS device.
 - Install Xcode and run `sudo gem install cocoapods`. If running on Macincloud, these are already installed.
-- `git clone https://github.com/latestchatty/latest-chatty-2.git`
-- `cd latest-chatty-2`
+- `git clone https://github.com/latestchatty/latest-chatty-ios.git`
+- `cd latest-chatty-ios`
 - `pod install`
 - Launch Xcode.
 - Xcode menu > Preferences > Accounts.
