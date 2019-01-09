@@ -1,0 +1,18 @@
+# How to build
+- Register an Apple account (free). It is not required to sign up for a paid Apple Developer Program.
+- Install Xcode and run `sudo gem install cocoapods`. If running on MacinCloud, these are already installed.
+- `git clone https://github.com/latestchatty/latest-chatty-ios.git`
+- `cd latest-chatty-ios`
+- `pod install`
+- Launch Xcode.
+- Xcode menu > Preferences > Accounts.
+- Click the "+" button.
+- Choose "Apple ID".
+- Enter your Apple account email and password.
+- Close the Preferences window.
+- Click the button to show the Project Navigator.
+- Click the "LatestChatty2" project in the Project Navigator.
+- Under "Capabilities", set "iCloud" and "Push Notifications" to OFF.
+- Click "Generic iOS Device" in the upper left corner and change it to an iOS Simulator.
+- Product menu > Build.
+- Product menu > Run.
