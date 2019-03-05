@@ -13,6 +13,7 @@
 #import "IIViewDeckController.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+@import Firebase;
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
@@ -182,7 +183,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Crashlytics startWithAPIKey:@"7e5579f671abccb0156cc1a6de1201f981ef170c"];
+    [FIRApp configure];
     
     [self customizeAppearance];
 
@@ -238,7 +239,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                              selector:@selector(storeChanged:)
                                                  name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                object:store];
-    [Fabric with:@[[Crashlytics class]]];
+
     [CrashlyticsKit setUserName:[defaults stringForKey:@"username"]];
     
     // clear the captured date of the last successful lol fetch
