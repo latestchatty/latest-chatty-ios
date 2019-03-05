@@ -168,10 +168,6 @@
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     // resize the scroll view on rotation
     [self sizeTagViewScrollView];
@@ -359,7 +355,6 @@
     float picsQuality = [[NSUserDefaults standardUserDefaults] floatForKey:@"picsQuality"];
     
     if (picsResize) {
-//        [image autoRotate:800 scale:YES];
         [image autoRotate:1600 scale:YES];
     } else {
         [image autoRotate:anImage.size.width scale:NO];

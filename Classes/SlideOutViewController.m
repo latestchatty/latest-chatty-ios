@@ -33,10 +33,6 @@
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
 - (void)searchLoaded:(NSObject*)sender {
     if(isCollapsed) return;
     [self tabTouched];
