@@ -7,9 +7,9 @@
 //
 
 #import "SettingsViewController.h"
-#import <Crashlytics/Crashlytics.h>
 #import "LCBrowserType.h"
 #import "MBProgressHUD.h"
+@import Crashlytics;
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
