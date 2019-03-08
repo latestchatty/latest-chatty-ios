@@ -341,7 +341,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [self resetLayout:YES];
 }
 
@@ -373,10 +374,9 @@
     NSTimeInterval theTimeInterval = 0.75;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
-    [hud setLabelText:@"Pinned!"];
-    [hud setColor:[UIColor lcCellPinnedColor]];
-//        [hud setYOffset:-33];
-    [hud hide:YES afterDelay:theTimeInterval];
+    hud.label.text = @"Pinned!";
+    hud.bezelView.color = [UIColor lcCellPinnedColor];
+    [hud hideAnimated:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadPinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
     
@@ -393,10 +393,9 @@
     NSTimeInterval theTimeInterval = 0.75;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
-    [hud setLabelText:@"Unpinned!"];
-    [hud setColor:[UIColor lcBarTintColor]];
-//        [hud setYOffset:-33];
-    [hud hide:YES afterDelay:theTimeInterval];
+    hud.label.text = @"Unpinned!";
+    hud.bezelView.color = [UIColor lcBarTintColor];
+    [hud hideAnimated:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadUnpinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
     
@@ -877,10 +876,9 @@
         NSTimeInterval theTimeInterval = 0.75;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
-        [hud setLabelText:@"Modded!"];
-        [hud setColor:[UIColor lcBarTintColor]];
-//        [hud setYOffset:-33];
-        [hud hide:YES afterDelay:theTimeInterval];
+        hud.label.text = @"Modded!";
+        hud.bezelView.color = [UIColor lcBarTintColor];
+        [hud hideAnimated:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Tag this Post"]) { //tagging
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
         
@@ -888,10 +886,9 @@
         NSTimeInterval theTimeInterval = 0.75;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
-        [hud setLabelText:@"Tagged!"];
-        [hud setColor:[UIColor lcBarTintColor]];
-//        [hud setYOffset:-33];
-        [hud hide:YES afterDelay:theTimeInterval];
+        hud.label.text = @"Tagged!";
+        hud.bezelView.color = [UIColor lcBarTintColor];
+        [hud hideAnimated:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Author Actions"]) { //author actions
         NSString *author = [post author];
         UIViewController *viewController;
@@ -968,10 +965,6 @@
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 #pragma mark Cleanup

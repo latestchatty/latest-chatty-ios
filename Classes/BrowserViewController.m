@@ -258,10 +258,6 @@
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
 #pragma mark UIActivityViewController & Action Sheet Delegate
 
 - (IBAction)action:(id)sender {

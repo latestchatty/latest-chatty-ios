@@ -7,9 +7,9 @@
 //
 
 #import "SettingsViewController.h"
-#import <Crashlytics/Crashlytics.h>
 #import "LCBrowserType.h"
 #import "MBProgressHUD.h"
+@import Crashlytics;
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
@@ -294,10 +294,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
 #pragma mark Text Field Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -473,10 +469,9 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
             [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow]
                                  animated:YES];
         [hud setMode:MBProgressHUDModeText];
-        [hud setLabelText:@"Saved!"];
-        [hud setColor:[UIColor lcGroupedCellColor]];
-//        [hud setYOffset:-33];
-        [hud hide:YES afterDelay:theTimeInterval];
+        hud.label.text = @"Saved!";
+        hud.bezelView.color = [UIColor lcGroupedCellColor];
+        [hud hideAnimated:YES afterDelay:theTimeInterval];
         
         [[self.navigationController viewDeckController] openLeftView];
     }
@@ -870,23 +865,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                 
                 cell.accessoryView = button;
                 cell.textLabel.text = @"Licenses:";
-                
-                break;
-			case 2:
-                [button setFrame:CGRectMake(0, 0, 50, 30)];
-                [button setTitle:@"View" forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
-                
-                [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
-                
-                button.layer.cornerRadius = 5;
-                button.layer.borderWidth = 1;
-                button.layer.borderColor = [UIColor lcBlueColor].CGColor;
-                
-                [button addTarget:self action:@selector(openDonate) forControlEvents:UIControlEventTouchUpInside];
-                
-                cell.accessoryView = button;
-                cell.textLabel.text = @"Donate:";
                 
                 break;
         }
