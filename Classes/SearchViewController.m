@@ -68,14 +68,14 @@
     [recentSearchScrollView setIndicatorStyle:UIScrollViewIndicatorStyleWhite];
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    // resize the scroll view on rotation
-    [self sizeRecentSearchScrollView];
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    // scroll the scroll view to the top on rotation
-    [recentSearchScrollView setContentOffset:CGPointZero animated:NO];
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        [self->recentSearchScrollView setContentOffset:CGPointZero animated:NO];
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        [self sizeRecentSearchScrollView];
+    }];
 }
 
 - (void)resignAndToggle {

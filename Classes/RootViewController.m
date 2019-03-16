@@ -38,17 +38,6 @@
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [self.viewDeckController closeLeftViewAnimated:YES];
-        if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-        } else {
-            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-        }
-    }
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     

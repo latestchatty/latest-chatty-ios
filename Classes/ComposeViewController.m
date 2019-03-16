@@ -168,9 +168,12 @@
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    // resize the scroll view on rotation
-    [self sizeTagViewScrollView];
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        [self sizeTagViewScrollView];
+    }];
 }
 
 - (void)sizeTagViewScrollView {

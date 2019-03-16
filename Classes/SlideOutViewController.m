@@ -88,15 +88,17 @@
     }
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self updateViewsForOrientation:toInterfaceOrientation];
-    [navigationController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [contentNavigationController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];    
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [navigationController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    [contentNavigationController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        UIInterfaceOrientation toInterfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+        [self updateViewsForOrientation:toInterfaceOrientation];
+        [self updateContentLayoutIfNecessary];
+    } completion:nil];
+    
+    [navigationController viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [contentNavigationController viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
 - (void)addNavigationController:(UINavigationController *)navigation contentNavigationController:(UINavigationController *)content {

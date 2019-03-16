@@ -203,7 +203,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      @"",                           @"password",
                                      @"winchatty.com/chatty",       @"serverApi",
                                      [NSNumber numberWithBool:NO],  @"collapse",
-//                                     [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
                                      [NSNumber numberWithBool:NO],  @"pushMessages",
                                      [NSNumber numberWithBool:YES], @"pushMessages.firstLaunch",
@@ -280,7 +279,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
         [NSURLConnection connectionWithRequest:request delegate:nil];
         
-// Use for testing login above and to output current cookies for www.shacknews.com
+//        Use for testing login above and to output current cookies for www.shacknews.com
 //        NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
 //        NSLog(@"%@", responseBody);
 //        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"https://www.shacknews.com"]];
@@ -539,7 +538,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (BOOL)isSplitView {
     BOOL result = [self isPadDevice] && [[UIApplication sharedApplication] keyWindow].bounds.size.width < 768.0f;
     
-    //    NSLog(@"is compact view? %@", (result ? @"YES" : @"NO"));
+//    NSLog(@"is split view? %@", (result ? @"YES" : @"NO"));
     
     return result;
 }
