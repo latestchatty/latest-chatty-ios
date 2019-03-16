@@ -703,22 +703,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     }
 }
 
-+ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // never allow portrait upside down for iPhone
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice] && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-        return NO;
-    }
-
-    // iPad, allow rotation
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        return YES;
-    } else {
-        // allow rotation if the orientation isn't landscape
-        if (UIInterfaceOrientationIsLandscape(interfaceOrientation))return NO;
-        return YES;
-    }
-}
-
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     if ( [[LatestChatty2AppDelegate delegate] isPadDevice] ||
         [self.window.rootViewController.presentedViewController isKindOfClass:[SFSafariViewController class]] ) {
