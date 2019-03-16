@@ -53,7 +53,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         saveSearchesSwitch = [self generateSwitchWithKey:@"saveSearches"];
         swipeBackSwitch    = [self generateSwitchWithKey:@"swipeBack"];
         collapseSwitch     = [self generateSwitchWithKey:@"collapse"];
-//        landscapeSwitch    = [self generateSwitchWithKey:@"landscape"];
         lolTagsSwitch      = [self generateSwitchWithKey:@"lolTags"];
         picsResizeSwitch   = [self generateSwitchWithKey:@"picsResize"];
         picsQualitySlider  = [self generateSliderWithKey:@"picsQuality"];
@@ -410,7 +409,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [defaults setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
     [defaults setBool:swipeBackSwitch.on        forKey:@"swipeBack"];
 	[defaults setBool:collapseSwitch.on         forKey:@"collapse"];
-//    [defaults setBool:landscapeSwitch.on        forKey:@"landscape"];
 	[defaults setBool:lolTagsSwitch.on          forKey:@"lolTags"];
     [defaults setBool:picsResizeSwitch.on       forKey:@"picsResize"];
     
@@ -497,6 +495,11 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [self safariViewControllerForURL:[NSURL URLWithString:urlString]];
 }
 
+- (void)openGuidelines {
+    NSString *urlString = @"https://www.shacknews.com/guidelines";
+    [self safariViewControllerForURL:[NSURL URLWithString:urlString]];
+}
+
 - (void)handlePasswordTap:(UITapGestureRecognizer *)recognizer {
     BOOL current = [passwordField isSecureTextEntry];
     [passwordField setSecureTextEntry:!current];
@@ -516,19 +519,12 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [svc setPreferredControlTintColor:[UIColor whiteColor]];
     [svc setModalPresentationCapturesStatusBarAppearance:YES];
     
-    [[self showingViewController] presentViewController:svc animated:YES completion:nil];
-}
-
-- (void)pushBrowserForCredits {
-    NSString *urlString = @"http://mccrager.com/latestchatty/credits";
-    UIViewController *viewController =
-    [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
-                                             title:@"Credits"
-                                     isForShackLOL:NO];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
+        [[self showingViewController] dismissViewControllerAnimated:NO completion:^{
+            [[self showingViewController] presentViewController:svc animated:YES completion:nil];
+        }];
     } else {
-        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
+        [[self showingViewController] presentViewController:svc animated:YES completion:nil];
     }
 }
 
@@ -573,7 +569,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 			break;
             
         case 5:
-            return 2;
+            return 3;
             break;
 			
 		default:
@@ -724,11 +720,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 				cell.textLabel.text = @"Allow Collapse:";
 				break;
                 
-//            case 1:
-//                cell.accessoryView = landscapeSwitch;
-//                cell.textLabel.text = @"Allow Landscape:";
-//                break;
-                
             case 1:
                 cell.accessoryView = browserPrefPicker;
                 cell.textLabel.text = @"Browser Preference:";
@@ -830,20 +821,10 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 	}
     
     if (indexPath.section == 5) {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        UIButton *button = [self buttonForAbout];
         
         switch (indexPath.row) {
 			case 0:
-                [button setFrame:CGRectMake(0, 0, 50, 30)];
-                [button setTitle:@"View" forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
-
-                [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
-
-                button.layer.cornerRadius = 5;
-                button.layer.borderWidth = 1;
-                button.layer.borderColor = [UIColor lcBlueColor].CGColor;
-                
                 [button addTarget:self action:@selector(openCredits) forControlEvents:UIControlEventTouchUpInside];
                 
                 cell.accessoryView = button;
@@ -851,26 +832,40 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                 
                 break;
 			case 1:
-                [button setFrame:CGRectMake(0, 0, 50, 30)];
-                [button setTitle:@"View" forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
-                
-                [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
-                
-                button.layer.cornerRadius = 5;
-                button.layer.borderWidth = 1;
-                button.layer.borderColor = [UIColor lcBlueColor].CGColor;
-                
                 [button addTarget:self action:@selector(openLicenses) forControlEvents:UIControlEventTouchUpInside];
                 
                 cell.accessoryView = button;
                 cell.textLabel.text = @"Licenses:";
                 
                 break;
+                
+            case 2:
+                [button addTarget:self action:@selector(openGuidelines) forControlEvents:UIControlEventTouchUpInside];
+                
+                cell.accessoryView = button;
+                cell.textLabel.text = @"Guidelines:";
+                
+                break;
         }
     }
 
 	return cell;
+}
+
+-(UIButton *)buttonForAbout {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [button setFrame:CGRectMake(0, 0, 50, 30)];
+    [button setTitle:@"View" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
+    
+    [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    
+    button.layer.cornerRadius = 5;
+    button.layer.borderWidth = 1;
+    button.layer.borderColor = [UIColor lcBlueColor].CGColor;
+    
+    return button;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -49,7 +49,6 @@
 + (LatestChatty2AppDelegate*)delegate;
 + (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation;
 + (UIInterfaceOrientationMask)supportedInterfaceOrientations;
-+ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)pushRegistration;
 - (void)pushUnregistration;
 

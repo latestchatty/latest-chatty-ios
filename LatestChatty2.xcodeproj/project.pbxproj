@@ -335,7 +335,7 @@
 		CD235A4B173AFB920078423B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CD235A51173B1F1A0078423B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CD2F43331FB39C65009EF72A /* BrowserViewController-iPhone X.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BrowserViewController-iPhone X.xib"; sourceTree = "<group>"; };
-		CD33818E1C9395E5000651F9 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		CD33818E1C9395E5000651F9 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CD4370D71803A4E0008D9DCF /* List-Lifespan-25-Participant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-25-Participant.png"; path = "Assets/List-Lifespan-25-Participant.png"; sourceTree = "<group>"; };
 		CD4370D81803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-25-Participant@2x.png"; path = "Assets/List-Lifespan-25-Participant@2x.png"; sourceTree = "<group>"; };
 		CD4370D91803A4E0008D9DCF /* List-Lifespan-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "List-Lifespan-25.png"; path = "Assets/List-Lifespan-25.png"; sourceTree = "<group>"; };

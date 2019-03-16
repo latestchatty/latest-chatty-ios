@@ -341,16 +341,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size
-       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-    [self resetLayout:YES];
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {        
-    // Reload the post to fit the new view sizes.
-    [self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
-}
-
 #pragma mark -
 #pragma mark Thread pinning
 - (void)togglePinThread {

@@ -203,7 +203,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      @"",                           @"password",
                                      @"winchatty.com/chatty",       @"serverApi",
                                      [NSNumber numberWithBool:NO],  @"collapse",
-//                                     [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
                                      [NSNumber numberWithBool:NO],  @"pushMessages",
                                      [NSNumber numberWithBool:YES], @"pushMessages.firstLaunch",
@@ -215,9 +214,9 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      [NSNumber numberWithInt:1],    @"browserPref",
                                      [NSNumber numberWithBool:NO],  @"useChrome",
                                      [NSNumber numberWithBool:YES], @"postCategory.informative",
-                                     [NSNumber numberWithBool:YES], @"postCategory.offtopic",
-                                     [NSNumber numberWithBool:YES], @"postCategory.stupid",
-                                     [NSNumber numberWithBool:YES], @"postCategory.political",
+                                     [NSNumber numberWithBool:NO],  @"postCategory.offtopic",
+                                     [NSNumber numberWithBool:NO],  @"postCategory.stupid",
+                                     [NSNumber numberWithBool:NO],  @"postCategory.political",
                                      [NSNumber numberWithBool:NO],  @"postCategory.nws",
                                      [NSNumber numberWithInt:0],    @"lastRefresh",
                                      [NSNumber numberWithInt:1],    @"grippyBarPosition",
@@ -280,7 +279,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
         [NSURLConnection connectionWithRequest:request delegate:nil];
         
-// Use for testing login above and to output current cookies for www.shacknews.com
+//        Use for testing login above and to output current cookies for www.shacknews.com
 //        NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
 //        NSLog(@"%@", responseBody);
 //        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"https://www.shacknews.com"]];
@@ -539,7 +538,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (BOOL)isSplitView {
     BOOL result = [self isPadDevice] && [[UIApplication sharedApplication] keyWindow].bounds.size.width < 768.0f;
     
-    //    NSLog(@"is compact view? %@", (result ? @"YES" : @"NO"));
+//    NSLog(@"is split view? %@", (result ? @"YES" : @"NO"));
     
     return result;
 }
@@ -700,22 +699,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     } else {
         // iPhone can rotate to any interface except portrait upside down
         return UIInterfaceOrientationMaskPortrait;
-    }
-}
-
-+ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // never allow portrait upside down for iPhone
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice] && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-        return NO;
-    }
-
-    // iPad, allow rotation
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        return YES;
-    } else {
-        // allow rotation if the orientation isn't landscape
-        if (UIInterfaceOrientationIsLandscape(interfaceOrientation))return NO;
-        return YES;
     }
 }
 
