@@ -12,7 +12,6 @@
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
 @import Firebase;
-@import Fabric;
 @import Crashlytics;
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
