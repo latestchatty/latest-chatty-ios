@@ -953,7 +953,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         [alertController addAction:okAction];
         
         [self presentViewController:alertController presentModally:NO];
-//        [defaults setBool:NO forKey:@"guidelines.firstLaunch"];
+        [defaults setBool:NO forKey:@"guidelines.firstLaunch"];
     }
 }
 
