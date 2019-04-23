@@ -514,6 +514,8 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
 - (void)safariViewControllerForURL:(NSURL *)url {
     SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:url];
+    [svc setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+    [svc setModalPresentationStyle:UIModalPresentationFormSheet];
     [svc setDelegate:self];
     [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
     [svc setPreferredControlTintColor:[UIColor whiteColor]];
