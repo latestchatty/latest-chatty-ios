@@ -685,7 +685,7 @@
                                                   delegate:self
                                          cancelButtonTitle:@"Cancel"
                                     destructiveButtonTitle:nil
-                                         otherButtonTitles:@"Search for Posts", @"Send a Message", nil];
+                                         otherButtonTitles:@"Search for Posts", @"Send a Message", @"Report", nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
@@ -893,6 +893,12 @@
         // start a shackmessage with this author as the recipient
         if (buttonIndex == 1) {
             viewController = [[SendMessageViewController alloc] initWithRecipient:author];
+        }
+        // start a shackmessage to duke nuked reporting this author/post
+        if (buttonIndex == 2) {
+            unsigned long pid = (unsigned long)postId;
+            NSString *body = [NSString stringWithFormat:@"I would like to report user \"%@\", author of post http://www.shacknews.com/chatty?id=%lu#item_%lu for not adhering to the Shacknews guidelines.", author, pid, pid];
+            viewController = [[SendMessageViewController alloc] initWithReportBody:body];
         }
         
         // push the resulting view controller

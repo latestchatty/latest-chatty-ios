@@ -23,6 +23,7 @@
 @property (strong, nonatomic) UITextField *recipient;
 @property (strong, nonatomic) UITextField *subject;
 @property (strong, nonatomic) UITextView *body;
+@property bool reportMessage;
 
 - (void)showActivityIndicator;
 - (void)setupReply;
@@ -31,5 +32,6 @@
 
 - (id)initWithRecipient:(NSString *)aRecipient;
 - (id)initWithMessage:(Message *)aMessage;
+- (id)initWithReportBody:(NSString *)aBody;
 
 @end
