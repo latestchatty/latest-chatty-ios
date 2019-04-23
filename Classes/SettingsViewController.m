@@ -521,21 +521,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [svc setPreferredControlTintColor:[UIColor whiteColor]];
     [svc setModalPresentationCapturesStatusBarAppearance:YES];
     
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [[self showingViewController] dismissViewControllerAnimated:NO completion:^{
-            [[self showingViewController] presentViewController:svc animated:YES completion:nil];
-        }];
-    } else {
-        [[self showingViewController] presentViewController:svc animated:YES completion:nil];
-    }
-}
-
-- (UIViewController *)showingViewController {
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        return [LatestChatty2AppDelegate delegate].slideOutViewController;
-    } else {
-        return self;
-    }
+    [self presentViewController:svc animated:YES completion:nil];
 }
 
 #pragma mark Table view methods
