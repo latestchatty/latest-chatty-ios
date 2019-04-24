@@ -5,8 +5,12 @@ Requires iOS 8 minimum!
 
 4.8.8
 ====
-- Conversion to Firebase
-- Clean up deprecations
+- Analytics migration
+- Code cleanup
+- Tweaked default viewable post category filters
+- User must accept Guidelines on first app launch
+- Guidelines accessible in Settings view
+- Tap author name in thread view to report user/post via Shack Message
 
 4.8.7
 ====
