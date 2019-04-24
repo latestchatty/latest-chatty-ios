@@ -12,7 +12,6 @@
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
 @import Firebase;
-@import Fabric;
 @import Crashlytics;
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
@@ -229,6 +228,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      [NSNumber numberWithBool:YES], @"saveSearches",
                                      [NSNumber numberWithBool:YES], @"swipeBack",
                                      [NSNumber numberWithBool:YES], @"lolTags",
+                                     [NSNumber numberWithBool:YES], @"guidelines.firstLaunch",
                                      nil];
     [defaults registerDefaults:defaultSettings];
     
@@ -249,7 +249,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
     [defaults synchronize];
     // fire synchronize on app load to sync settings from iCloud
-    // freshing install: will pull all existing iCloud user settings down and put into user defaults database
+    // fresh install: will pull all existing iCloud user settings down and put into user defaults database
     // existing install: will pull down any changes in the iCloud user settings and sync to the user defaults database
     [store synchronize];
     
@@ -260,6 +260,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     }
     
     [self pushRegistration];
+    [self promptGuidelines];
     
     [window makeKeyAndVisible];
     
@@ -661,6 +662,20 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     viewController = nil;
 }
 
+- (void)presentViewController:(UIViewController *)viewController presentModally:(BOOL)modal {
+    if ([self isPadDevice]) {
+        if (modal) {
+            [self.slideOutViewController presentViewController:viewController animated:YES completion:nil];
+        } else {
+            [self.contentNavigationController presentViewController:viewController animated:YES completion:nil];
+        }
+    } else {
+        [self.navigationController presentViewController:viewController animated:YES completion:nil];
+    }
+    
+    viewController = nil;
+}
+
 #pragma mark - Appearance customizations
 
 // Custom appearance settings for UIKit items
@@ -898,6 +913,47 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         [self handleViewController:[self makeThreadViewController]];
+    }
+}
+
+#pragma mark - Guidelines on first launch
+
+-(void)promptGuidelines {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults boolForKey:@"guidelines.firstLaunch"] == YES) {
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Guidelines"
+                                              message:@"By using LatestChatty, you agree to all Shacknews community posting guidelines."
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *viewAction = [UIAlertAction
+                                     actionWithTitle:@"View"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction *action)
+                                     {
+                                         // push guidelines webview
+                                         NSString *urlString = @"https://www.shacknews.com/guidelines";
+                                         SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:urlString]];
+                                         [svc setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+                                         [svc setModalPresentationStyle:UIModalPresentationFormSheet];
+                                         [svc setDelegate:self];
+                                         [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
+                                         [svc setPreferredControlTintColor:[UIColor whiteColor]];
+                                         [svc setModalPresentationCapturesStatusBarAppearance:YES];
+                                         [self presentViewController:svc presentModally:YES];
+                                     }];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
+                                   handler:nil];
+        
+        [alertController addAction:viewAction];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController presentModally:NO];
+        [defaults setBool:NO forKey:@"guidelines.firstLaunch"];
     }
 }
 
