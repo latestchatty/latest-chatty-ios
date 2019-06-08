@@ -3,6 +3,10 @@ latest-chatty-2
 
 Requires iOS 8 minimum!
 
+4.9.0
+====
+- Updates to [LOL] engine for the Shack's nu[LOL] 
+
 4.8.8
 ====
 - Analytics migration
