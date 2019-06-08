@@ -41,30 +41,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.isShackLOL) {
-        if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-            UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
-                                                                           style:UIBarButtonItemStylePlain
-                                                                          target:self.viewDeckController
-                                                                          action:@selector(toggleLeftView)];
-            self.navigationItem.leftBarButtonItem = menuButton;
-        }
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"LOLLoaded" object:self];
-        
-        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-                                                                          style:UIBarButtonItemStyleDone
-                                                                         target:self
-                                                                         action:@selector(lolMenu)];
-        [lolMenuButton setEnabled:NO];
-        [lolMenuButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
-                                     forState:UIControlStateNormal];
-        [lolMenuButton setTitleTextAttributes:[NSDictionary blueHighlightTextAttributesDictionary]
-                                     forState:UIControlStateDisabled];
-        
-        self.navigationItem.rightBarButtonItem = lolMenuButton;
-    }
-    
     // initialize scoll position property
     self.scrollPosition = CGPointMake(0, 0);
     
@@ -133,11 +109,6 @@
 
 - (IBAction)refreshWebView:(id)sender {
     [self.webView reload];
-}
-
-//Patch-E: displays the custom iPhone menu on the Shack[LOL] site. Menu button is disabled until the web view finishes loading.
-- (void)lolMenu {
-    [self.webView stringByEvaluatingJavaScriptFromString: @"lc_menu();"];
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType {
