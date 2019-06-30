@@ -41,6 +41,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.isShackLOL) {
+        if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self.viewDeckController
+                                                                          action:@selector(toggleLeftView)];
+            self.navigationItem.leftBarButtonItem = menuButton;
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LOLLoaded" object:self];
+    }
+    
     // initialize scoll position property
     self.scrollPosition = CGPointMake(0, 0);
     
@@ -71,8 +83,8 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     // force webview to stop scrolling if it is when viewWillDisappear is fired
-    for (id subview in webView.subviews){
-        if ([[subview class] isSubclassOfClass: [UIScrollView class]]){
+    for (id subview in webView.subviews) {
+        if ([[subview class] isSubclassOfClass: [UIScrollView class]]) {
             [subview setContentOffset:CGPointZero animated:NO];
         }
     }
