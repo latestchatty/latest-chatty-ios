@@ -1,7 +1,9 @@
 latest-chatty-2
 ===============
 
-Requires iOS 8 minimum!
+4.9.0
+====
+- Update to Shack[LOL] view for nu[LOL]
 
 4.8.8
 ====

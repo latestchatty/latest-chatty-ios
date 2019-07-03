@@ -51,18 +51,6 @@
         }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LOLLoaded" object:self];
-        
-        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-                                                                          style:UIBarButtonItemStyleDone
-                                                                         target:self
-                                                                         action:@selector(lolMenu)];
-        [lolMenuButton setEnabled:NO];
-        [lolMenuButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
-                                     forState:UIControlStateNormal];
-        [lolMenuButton setTitleTextAttributes:[NSDictionary blueHighlightTextAttributesDictionary]
-                                     forState:UIControlStateDisabled];
-        
-        self.navigationItem.rightBarButtonItem = lolMenuButton;
     }
     
     // initialize scoll position property
@@ -95,8 +83,8 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     // force webview to stop scrolling if it is when viewWillDisappear is fired
-    for (id subview in webView.subviews){
-        if ([[subview class] isSubclassOfClass: [UIScrollView class]]){
+    for (id subview in webView.subviews) {
+        if ([[subview class] isSubclassOfClass: [UIScrollView class]]) {
             [subview setContentOffset:CGPointZero animated:NO];
         }
     }
@@ -133,11 +121,6 @@
 
 - (IBAction)refreshWebView:(id)sender {
     [self.webView reload];
-}
-
-//Patch-E: displays the custom iPhone menu on the Shack[LOL] site. Menu button is disabled until the web view finishes loading.
-- (void)lolMenu {
-    [self.webView stringByEvaluatingJavaScriptFromString: @"lc_menu();"];
 }
 
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType {

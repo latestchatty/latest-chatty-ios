@@ -292,7 +292,7 @@
             
         case 4:
             // Pass user= on the URL for Shack[LOL] in Browser web view.
-            urlString = [[NSString stringWithFormat:@"http://lol.lmnopc.com?lc_webview=1&user=%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            urlString = [[NSString stringWithFormat:@"https://www.shacknews.com/tags-home?user=%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
             viewController = [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                                                        title:nil
                                                                isForShackLOL:YES];
