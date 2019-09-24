@@ -699,6 +699,10 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     // progress bar (uploading to chattypics)
     [[UIProgressView appearance] setProgressTintColor:[UIColor lcSwitchOnColor]];
     [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderMaximumColor]];
+    
+    // color segemented control text
+    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} forState:UIControlStateSelected];
+    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor lcLightGrayTextColor]} forState:UIControlStateNormal];
 }
 
 #pragma mark - Rotation

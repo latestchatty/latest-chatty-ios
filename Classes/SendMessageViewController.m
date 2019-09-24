@@ -63,6 +63,9 @@
     [sendButton setTitleTextAttributes:[NSDictionary blueHighlightTextAttributesDictionary] forState:UIControlStateDisabled];
 	self.navigationItem.rightBarButtonItem = sendButton;
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    self.recipient.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"To" attributes:@{NSForegroundColorAttributeName: [UIColor lcDarkGrayTextColor]}];
+    self.subject.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Subject" attributes:@{NSForegroundColorAttributeName: [UIColor lcDarkGrayTextColor]}];
 
     [self.recipient setText:self.recipientString];
     [self.subject setText:self.subjectString];
