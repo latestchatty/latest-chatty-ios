@@ -231,20 +231,11 @@
 }
 
 - (void)makeMessage {
-    @autoreleasepool {
-        //self.navigationController.view.userInteractionEnabled = NO;
-        
-        // See [ComposeViewController makePost] for explanation, same GCD blocks used there
-        dispatch_async(dispatch_get_main_queue(), ^{
-            BOOL success = [Message createWithTo:self->recipient.text subject:self->subject.text body:self->body.text];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (success) {
-                    [self performSelectorOnMainThread:@selector(sendSuccess) withObject:nil waitUntilDone:NO];
-                } else {
-                    [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
-                }
-            });
-        });
+    BOOL success = [Message createWithTo:self->recipient.text subject:self->subject.text body:self->body.text];
+    if (success) {
+        [self performSelectorOnMainThread:@selector(sendSuccess) withObject:nil waitUntilDone:NO];
+    } else {
+        [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
     }
 }
 
@@ -270,7 +261,7 @@
                                handler:^(UIAlertAction *action)
                                {
                                    [self showActivityIndicator];
-                                   [self performSelectorInBackground:@selector(makeMessage) withObject:nil];
+                                   [self performSelector:@selector(makeMessage) withObject:nil afterDelay:0.25];
                                }];
     
     [alertController addAction:cancelAction];

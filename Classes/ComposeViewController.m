@@ -123,20 +123,6 @@
     [self showTagButtons];
 }
 
-//- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-//	// Noob help alert
-//	if (buttonIndex == 1) {
-//		if ([alertView.title isEqualToString:@"Important!"]) {
-//            NSURLRequest *rulesPageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.shacknews.com/extras/guidelines.x"]];
-//			BrowserViewController *controller = [[BrowserViewController alloc] initWithRequest:rulesPageRequest];
-//			[[self navigationController] pushViewController:controller animated:YES];
-//		} else {
-//            [self showActivityIndicator:NO];
-//            [self performSelectorInBackground:@selector(makePost) withObject:nil];
-//		}
-//	}
-//}
-
 - (void)previewLabelTap:(UITapGestureRecognizer *)recognizer {
     if (self.post) {
         ReviewThreadViewController *reviewController = [[ReviewThreadViewController alloc] initWithPost:self.post];
@@ -373,36 +359,6 @@
     }
 }
 
-//- (void)imagePickerController:(UIImagePickerController *)picker
-//        didFinishPickingImage:(UIImage *)anImage
-//                  editingInfo:(NSDictionary *)editingInfo
-//{
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-//    [postContent resignFirstResponder];
-//    Image *image = [[Image alloc] initWithImage:anImage];
-//    image.delegate = self;
-//
-//    UIProgressView* progressBar = [self showActivityIndicator:YES];
-//    BOOL picsResize = [[NSUserDefaults standardUserDefaults] boolForKey:@"picsResize"];
-//    float picsQuality = [[NSUserDefaults standardUserDefaults] floatForKey:@"picsQuality"];
-//
-//    if (picsResize) {
-//        [image autoRotate:1600 scale:YES];
-//    } else {
-//        [image autoRotate:anImage.size.width scale:NO];
-//    }
-//
-//    NSDictionary *args = [NSDictionary dictionaryWithObjectsAndKeys:
-//                           progressBar, @"progressBar",
-//                           [NSNumber numberWithFloat:picsQuality], @"qualityAmount",
-//                           nil];
-//    [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithDictionary:) withObject:args];
-//
-//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        [[LatestChatty2AppDelegate delegate].slideOutViewController collapse];
-//    }
-//}
-
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
 	[picker dismissViewControllerAnimated:YES completion:nil];
     
@@ -498,25 +454,12 @@
 }
 
 - (void)makePost {
-    @autoreleasepool {
-		//self.navigationController.view.userInteractionEnabled = NO;
-    
-        //Patch-E: wrapped existing code in GCD blocks to avoid UIKit on background thread issues that were causing status/nav bar flashing and the console warning:
-        //"Obtaining the web lock from a thread other than the main thread or the web thread. UIKit should not be called from a secondary thread."
-        //[Post createWithBody:parentId:storyId:] was the culprit causing the UIKit on background thread issue
-        //this started happening in iOS 6
-        //same change made to [SendMessageViewController makeMessage:]
-        dispatch_async(dispatch_get_main_queue(), ^{
-            BOOL success = [Post createWithBody:self->postContent.text parentId:self->post.modelId storyId:self->storyId];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (success) {
-                    [self performSelectorOnMainThread:@selector(postSuccess) withObject:nil waitUntilDone:NO];
-                } else {
-                    [self performSelectorOnMainThread:@selector(postFailure) withObject:nil waitUntilDone:NO];
-                }
-            });
-        });
-	}
+    BOOL success = [Post createWithBody:self->postContent.text parentId:self->post.modelId storyId:self->storyId];
+    if (success) {
+        [self postSuccess];
+    } else {
+        [self postFailure];
+    }
 }
 
 - (void)sendPost {
@@ -541,7 +484,7 @@
                                handler:^(UIAlertAction *action)
                                {
                                    [self showActivityIndicator:NO];
-                                   [self performSelectorInBackground:@selector(makePost) withObject:nil];
+                                   [self performSelector:@selector(makePost) withObject:nil afterDelay:0.25];
                                }];
     
     [alertController addAction:cancelAction];
