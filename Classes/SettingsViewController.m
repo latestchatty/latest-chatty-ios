@@ -826,7 +826,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                 cell.textLabel.text = @"Licenses:";
                 
                 break;
-                
             case 2:
                 [button addTarget:self action:@selector(openGuidelines) forControlEvents:UIControlEventTouchUpInside];
                 

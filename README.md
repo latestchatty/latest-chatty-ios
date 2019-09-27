@@ -1,6 +1,11 @@
 latest-chatty-2
 ===============
 
+4.10.0
+====
+- Built with iOS 13 SDK
+- Bug fix for make post / send message progress indication on iOS 13
+
 4.9.0
 ====
 - Update to Shack[LOL] view for nu[LOL]
