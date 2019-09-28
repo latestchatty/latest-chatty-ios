@@ -79,7 +79,8 @@
 + (UIColor *)lcUNFColor;
 + (UIColor *)lcTAGColor;
 + (UIColor *)lcWTFColor;
-+ (UIColor *)lcUGHColor;
++ (UIColor *)lcWOWColor;
++ (UIColor *)lcAWWColor;
 
 @end
 

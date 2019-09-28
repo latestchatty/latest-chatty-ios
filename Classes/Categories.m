@@ -353,9 +353,15 @@
     return color;
 }
 
-+ (UIColor *)lcUGHColor {
++ (UIColor *)lcWOWColor {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithRed:1.0/255.0 green:155.0/255.0 blue:1.0/255.0 alpha:1.0];
+    if (!color) color = [UIColor colorWithRed:196.0/255.0 green:163.0/255.0 blue:179.0/255.0 alpha:1.0];
+    return color;
+}
+
++ (UIColor *)lcAWWColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:19.0/255.0 green:164.0/255.0 blue:167.0/255.0 alpha:1.0];
     return color;
 }
 

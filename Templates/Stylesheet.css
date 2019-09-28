@@ -70,12 +70,13 @@ div.tags.show {
 div.tags span {
   display: inline-block;
 }
-span.lol { color: rgba(255,126,0,1.0); }
-span.inf { color: rgba(0,149,223,1.0); }
-span.unf { color: rgba(255,0,0,1.0);   }
-span.tag { color: rgba(130,208,2,1.0); }
-span.wtf { color: rgba(210,0,208,1.0); }
-span.ugh { color: rgba(1,155,1,1.0);   }
+span.lol { color: rgba(255,126,0,1.0);   }
+span.inf { color: rgba(0,149,223,1.0);   }
+span.unf { color: rgba(255,0,0,1.0);     }
+span.tag { color: rgba(130,208,2,1.0);   }
+span.wtf { color: rgba(210,0,208,1.0);   }
+span.wow { color: rgba(196,163,179,1.0); }
+span.aww { color: rgba(19,164,167,1.0);  }
 
 /*
    Comment formatting styles

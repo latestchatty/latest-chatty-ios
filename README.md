@@ -1,6 +1,10 @@
 latest-chatty-2
 ===============
 
+4.10.1
+====
+- Shack LOL tags changed: removed [ugh], added [wow] and [aww]
+
 4.10.0
 ====
 - Built with iOS 13 SDK
