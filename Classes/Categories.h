@@ -12,6 +12,7 @@
 - (NSString *)stringByUnescapingHTML;
 + (NSString *)rgbaFromUIColor:(UIColor *)color;
 + (NSString *)hexFromUIColor:(UIColor *)color;
++ (NSString *)stringFromDeviceToken:(NSData *)deviceToken;
 
 @end
 

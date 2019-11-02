@@ -1,6 +1,10 @@
 latest-chatty-2
 ===============
 
+4.10.2
+====
+- Fix bug with notifications on iOS 13
+
 4.10.1
 ====
 - Shack LOL tags changed: removed [ugh], added [wow] and [aww]

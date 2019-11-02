@@ -1632,7 +1632,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4.10.1.0;
+				CURRENT_PROJECT_VERSION = 4.10.2.2;
 				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1650,7 +1650,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 4.10.1;
+				MARKETING_VERSION = 4.10.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChatty;
 				PROVISIONING_PROFILE = "";
@@ -1670,7 +1670,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 4.10.1.0;
+				CURRENT_PROJECT_VERSION = 4.10.2.2;
 				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1682,7 +1682,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 4.10.1;
+				MARKETING_VERSION = 4.10.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChatty;
 				PROVISIONING_PROFILE = "";
@@ -1866,7 +1866,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 4.10.1.0;
+				CURRENT_PROJECT_VERSION = 4.10.2.2;
 				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1878,7 +1878,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 4.10.1;
+				MARKETING_VERSION = 4.10.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChatty;
 				PROVISIONING_PROFILE = "";

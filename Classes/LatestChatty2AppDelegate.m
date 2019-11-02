@@ -204,10 +204,9 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
                                      [NSNumber numberWithBool:NO],  @"pushMessages",
-                                     [NSNumber numberWithBool:YES], @"pushMessages.firstLaunch",
                                      [NSNumber numberWithBool:YES], @"pushMessages.vanity",
                                      [NSNumber numberWithBool:YES], @"pushMessages.replies",
-                                     @"",                           @"pushMessages.deviceToken",
+                                     @"",                           @"pushMessages.deviceToken110219",
                                      [NSNumber numberWithBool:YES], @"picsResize",
                                      [NSNumber numberWithFloat:0.7],@"picsQuality",
                                      [NSNumber numberWithInt:1],    @"browserPref",
@@ -389,6 +388,11 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
             
             // all key names locally and in iCloud are the same, so we can loop over the changed keys and sync easily
             for (NSString *key in keys) {
+                // don't sync any pushMessages.* user defaults
+                if ( [key hasPrefix:(@"pushMessages")] ) {
+                    continue;
+                }
+                
                 id value = [store objectForKey:key];
                 [userDefaults setObject:value forKey:key];
                 NSLog(@"storeChanged updated value for %@",key);
@@ -735,15 +739,12 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (void)pushRegistration {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if ([[defaults valueForKey:@"username"] length] != 0 && [defaults boolForKey:@"pushMessages.firstLaunch"] == YES) {
+    if ( [[defaults valueForKey:@"pushMessages.deviceToken110219"] length] == 0 ) {
         // Add registration for remote notifications
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         
-        [defaults setBool:NO forKey:@"pushMessages.firstLaunch"];
-        
-    } else if ([defaults  boolForKey:@"pushMessages.firstLaunch"] == NO &&
-              [[defaults valueForKey:@"pushMessages.deviceToken"] length] != 0) {
+    } else {
         UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
         UIUserNotificationType notificationTypes = settings.types;
         
@@ -758,7 +759,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (void)pushUnregistration {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    NSString *deviceToken = [defaults valueForKey:@"pushMessages.deviceToken"];
+    NSString *deviceToken = [defaults valueForKey:@"pushMessages.deviceToken110219"];
     NSDictionary *removedeviceParameters =
     @{@"action": @"remove",
       @"type": @"device",
@@ -773,7 +774,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         progress:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
               [defaults setBool:NO forKey:@"pushMessages"];
-              [defaults setValue:@"" forKey:@"pushMessages.deviceToken"];
+              [defaults setValue:@"" forKey:@"pushMessages.deviceToken110219"];
          }
          failure:^(NSURLSessionDataTask *task, NSError *error) {
              NSLog( @"removedevice fail: %@", error );
@@ -817,10 +818,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     NSString *shackUserName = [[defaults stringForKey:@"username"] stringByEscapingURL];
     
     // Prepare the Device Token for Registration (remove spaces and < >)
-    NSString *deviceToken = [[[[devToken description]
-                               stringByReplacingOccurrencesOfString:@"<" withString:@""]
-                              stringByReplacingOccurrencesOfString:@">" withString:@""]
-                             stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *deviceToken = [NSString stringFromDeviceToken:devToken];
     
     // Build parameter dictionary for Registration
     NSDictionary *registerParameters =
@@ -847,7 +845,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         progress:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              [defaults setBool:YES forKey:@"pushMessages"];
-             [defaults setValue:deviceToken forKey:@"pushMessages.deviceToken"];
+             [defaults setValue:deviceToken forKey:@"pushMessages.deviceToken110219"];
              
              // get their current woggle notification prefs
              NSLog(@"calling getuser w/ parameters: %@", @{@"user": shackUserName});
