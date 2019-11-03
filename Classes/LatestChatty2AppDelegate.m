@@ -737,17 +737,17 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 #pragma mark - Notification Support
 
 - (void)pushRegistration {
-    UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-    UIUserNotificationType notificationTypes = settings.types;
+    // Add registration for remote notifications
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    
+    UIUserNotificationSettings *userSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    UIUserNotificationType notificationTypes = userSettings.types;
     
     BOOL isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
     if (!isPushAlertEnabled) {
         // unregister to woggle
         [self pushUnregistration];
-    } else {
-        // Add registration for remote notifications
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     }
 }
 
