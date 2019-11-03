@@ -1,6 +1,10 @@
 latest-chatty-2
 ===============
 
+4.10.3
+====
+- Fix bug with notification prompt
+
 4.10.2
 ====
 - Fix bug with notifications on iOS 13
