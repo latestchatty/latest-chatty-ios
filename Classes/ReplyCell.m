@@ -142,8 +142,11 @@
         } else if ([highestTag isEqualToString:@"wtf"]) {
             grayBullet.image = [UIImage imageNamed:@"Post-Indicator-WTF"];
             grayBullet.alpha = 0.75;
-        } else if ([highestTag isEqualToString:@"ugh"]) {
-            grayBullet.image = [UIImage imageNamed:@"Post-Indicator-UGH"];
+        } else if ([highestTag isEqualToString:@"wow"]) {
+            grayBullet.image = [UIImage imageNamed:@"Post-Indicator-WOW"];
+            grayBullet.alpha = 0.75;
+        } else if ([highestTag isEqualToString:@"aww"]) {
+            grayBullet.image = [UIImage imageNamed:@"Post-Indicator-AWW"];
             grayBullet.alpha = 0.75;
         } else {
             grayBullet.image = [UIImage imageNamed:@"Post-Indicator"];

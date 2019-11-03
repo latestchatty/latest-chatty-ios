@@ -671,7 +671,7 @@
                                                  delegate:self
                                         cancelButtonTitle:@"Cancel"
                                    destructiveButtonTitle:nil
-                                               otherButtonTitles:@"lol", @"inf", @"unf", @"tag", @"wtf", @"ugh", nil];
+                                               otherButtonTitles:@"lol", @"inf", @"unf", @"tag", @"wtf", @"wow", @"aww", nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];

@@ -46,6 +46,26 @@
             (int)(CGColorGetComponents(color.CGColor)[2]*255.0)];
 }
 
++ (NSString *)stringFromDeviceToken:(NSData *)deviceToken {
+    NSLog(@"deviceToken as NSData: %@", deviceToken);
+    
+    NSUInteger length = deviceToken.length;
+    
+    if (length == 0) {
+        return nil;
+    }
+    
+    const unsigned char *buffer = deviceToken.bytes;
+    NSMutableString *hexString  = [NSMutableString stringWithCapacity:(length * 2)];
+    
+    for (int i = 0; i < length; ++i) {
+        [hexString appendFormat:@"%02x", buffer[i]];
+    }
+    NSLog(@"deviceToken as hexString: %@", hexString);
+    
+    return [hexString copy];
+}
+
 @end
 
 @implementation UIColor (ColorAdditions)
@@ -353,9 +373,15 @@
     return color;
 }
 
-+ (UIColor *)lcUGHColor {
++ (UIColor *)lcWOWColor {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithRed:1.0/255.0 green:155.0/255.0 blue:1.0/255.0 alpha:1.0];
+    if (!color) color = [UIColor colorWithRed:196.0/255.0 green:163.0/255.0 blue:179.0/255.0 alpha:1.0];
+    return color;
+}
+
++ (UIColor *)lcAWWColor {
+    static UIColor *color = nil;
+    if (!color) color = [UIColor colorWithRed:19.0/255.0 green:164.0/255.0 blue:167.0/255.0 alpha:1.0];
     return color;
 }
 

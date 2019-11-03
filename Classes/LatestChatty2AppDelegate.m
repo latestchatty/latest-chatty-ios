@@ -204,7 +204,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      [NSNumber numberWithBool:NO],  @"collapse",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
                                      [NSNumber numberWithBool:NO],  @"pushMessages",
-                                     [NSNumber numberWithBool:YES], @"pushMessages.firstLaunch",
                                      [NSNumber numberWithBool:YES], @"pushMessages.vanity",
                                      [NSNumber numberWithBool:YES], @"pushMessages.replies",
                                      @"",                           @"pushMessages.deviceToken",
@@ -389,6 +388,11 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
             
             // all key names locally and in iCloud are the same, so we can loop over the changed keys and sync easily
             for (NSString *key in keys) {
+                // don't sync any pushMessages.* user defaults
+                if ( [key hasPrefix:(@"pushMessages")] ) {
+                    continue;
+                }
+                
                 id value = [store objectForKey:key];
                 [userDefaults setObject:value forKey:key];
                 NSLog(@"storeChanged updated value for %@",key);
@@ -733,25 +737,17 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 #pragma mark - Notification Support
 
 - (void)pushRegistration {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // Add registration for remote notifications
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     
-    if ([[defaults valueForKey:@"username"] length] != 0 && [defaults boolForKey:@"pushMessages.firstLaunch"] == YES) {
-        // Add registration for remote notifications
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        
-        [defaults setBool:NO forKey:@"pushMessages.firstLaunch"];
-        
-    } else if ([defaults  boolForKey:@"pushMessages.firstLaunch"] == NO &&
-              [[defaults valueForKey:@"pushMessages.deviceToken"] length] != 0) {
-        UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-        UIUserNotificationType notificationTypes = settings.types;
-        
-        BOOL isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
-        if (!isPushAlertEnabled) {
-            // unregister to woggle
-            [self pushUnregistration];
-        }
+    UIUserNotificationSettings *userSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    UIUserNotificationType notificationTypes = userSettings.types;
+    
+    BOOL isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
+    if (!isPushAlertEnabled) {
+        // unregister to woggle
+        [self pushUnregistration];
     }
 }
 
@@ -759,25 +755,27 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     NSString *deviceToken = [defaults valueForKey:@"pushMessages.deviceToken"];
-    NSDictionary *removedeviceParameters =
-    @{@"action": @"remove",
-      @"type": @"device",
-      @"devicetoken": deviceToken};
-    NSLog(@"calling removedevice w/ parameters: %@", removedeviceParameters);
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
-      parameters:removedeviceParameters
-        progress:nil
-         success:^(NSURLSessionDataTask *task, id responseObject) {
-              [defaults setBool:NO forKey:@"pushMessages"];
-              [defaults setValue:@"" forKey:@"pushMessages.deviceToken"];
-         }
-         failure:^(NSURLSessionDataTask *task, NSError *error) {
-             NSLog( @"removedevice fail: %@", error );
-         }];
+    if ( [deviceToken length] != 0 ) {
+        NSDictionary *removedeviceParameters =
+        @{@"action": @"remove",
+          @"type": @"device",
+          @"devicetoken": deviceToken};
+        NSLog(@"calling removedevice w/ parameters: %@", removedeviceParameters);
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
+          parameters:removedeviceParameters
+            progress:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                  [defaults setBool:NO forKey:@"pushMessages"];
+                  [defaults setValue:@"" forKey:@"pushMessages.deviceToken"];
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 NSLog( @"removedevice fail: %@", error );
+             }];
+    }
 }
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
@@ -817,10 +815,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     NSString *shackUserName = [[defaults stringForKey:@"username"] stringByEscapingURL];
     
     // Prepare the Device Token for Registration (remove spaces and < >)
-    NSString *deviceToken = [[[[devToken description]
-                               stringByReplacingOccurrencesOfString:@"<" withString:@""]
-                              stringByReplacingOccurrencesOfString:@">" withString:@""]
-                             stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *deviceToken = [NSString stringFromDeviceToken:devToken];
     
     // Build parameter dictionary for Registration
     NSDictionary *registerParameters =
