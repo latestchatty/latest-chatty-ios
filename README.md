@@ -1,6 +1,10 @@
 latest-chatty-2
 ===============
 
+4.10.4
+====
+- Built with Xcode 11.1 as workaround to current bug in developer tooling with text views
+
 4.10.3
 ====
 - Fix bug with notification prompt
