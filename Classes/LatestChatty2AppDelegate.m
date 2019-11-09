@@ -201,7 +201,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      @"",                           @"username",
                                      @"",                           @"password",
                                      @"winchatty.com/chatty",       @"serverApi",
-                                     [NSNumber numberWithBool:NO],  @"collapse",
+                                     [NSNumber numberWithBool:YES], @"collapse",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
                                      [NSNumber numberWithBool:NO],  @"pushMessages",
                                      [NSNumber numberWithBool:YES], @"pushMessages.vanity",
