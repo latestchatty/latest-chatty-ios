@@ -19,7 +19,7 @@
 #import "IIViewDeckController.h"
 #import "SloppySwiper.h"
 
-@interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate> {
+@interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate, SFSafariViewControllerDelegate> {
     UIWindow *window;
     UINavigationController *navigationController;
     UINavigationController *contentNavigationController;
@@ -49,7 +49,6 @@
 + (LatestChatty2AppDelegate*)delegate;
 + (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation;
 + (UIInterfaceOrientationMask)supportedInterfaceOrientations;
-+ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)pushRegistration;
 - (void)pushUnregistration;
 
@@ -64,5 +63,7 @@
 - (BOOL)isSplitView;
 - (BOOL)isForceTouchEnabled;
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
+- (void)handleViewController:(UIViewController *)viewController;
+- (void)presentViewController:(UIViewController *)viewController presentModally:(BOOL)modal;
 	
 @end

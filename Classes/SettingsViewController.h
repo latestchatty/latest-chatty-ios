@@ -26,7 +26,6 @@
     UISwitch     *saveSearchesSwitch;
     UISwitch     *swipeBackSwitch;
     UISwitch     *collapseSwitch;
-//    UISwitch     *landscapeSwitch;
     UISwitch     *lolTagsSwitch;
     UISwitch     *youTubeSwitch;
     UIPickerView *browserPrefPicker;

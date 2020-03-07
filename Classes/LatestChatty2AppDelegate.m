@@ -11,8 +11,8 @@
 #import "Mod.h"
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
+@import Firebase;
+@import Crashlytics;
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
@@ -182,7 +182,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Crashlytics startWithAPIKey:@"7e5579f671abccb0156cc1a6de1201f981ef170c"];
+    [FIRApp configure];
     
     [self customizeAppearance];
 
@@ -201,11 +201,9 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      @"",                           @"username",
                                      @"",                           @"password",
                                      @"winchatty.com/chatty",       @"serverApi",
-                                     [NSNumber numberWithBool:NO],  @"collapse",
-//                                     [NSNumber numberWithBool:YES], @"landscape",
+                                     [NSNumber numberWithBool:YES], @"collapse",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
                                      [NSNumber numberWithBool:NO],  @"pushMessages",
-                                     [NSNumber numberWithBool:YES], @"pushMessages.firstLaunch",
                                      [NSNumber numberWithBool:YES], @"pushMessages.vanity",
                                      [NSNumber numberWithBool:YES], @"pushMessages.replies",
                                      @"",                           @"pushMessages.deviceToken",
@@ -214,9 +212,9 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      [NSNumber numberWithInt:1],    @"browserPref",
                                      [NSNumber numberWithBool:NO],  @"useChrome",
                                      [NSNumber numberWithBool:YES], @"postCategory.informative",
-                                     [NSNumber numberWithBool:YES], @"postCategory.offtopic",
-                                     [NSNumber numberWithBool:YES], @"postCategory.stupid",
-                                     [NSNumber numberWithBool:YES], @"postCategory.political",
+                                     [NSNumber numberWithBool:NO],  @"postCategory.offtopic",
+                                     [NSNumber numberWithBool:NO],  @"postCategory.stupid",
+                                     [NSNumber numberWithBool:NO],  @"postCategory.political",
                                      [NSNumber numberWithBool:NO],  @"postCategory.nws",
                                      [NSNumber numberWithInt:0],    @"lastRefresh",
                                      [NSNumber numberWithInt:1],    @"grippyBarPosition",
@@ -229,6 +227,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      [NSNumber numberWithBool:YES], @"saveSearches",
                                      [NSNumber numberWithBool:YES], @"swipeBack",
                                      [NSNumber numberWithBool:YES], @"lolTags",
+                                     [NSNumber numberWithBool:YES], @"guidelines.firstLaunch",
                                      nil];
     [defaults registerDefaults:defaultSettings];
     
@@ -238,7 +237,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                              selector:@selector(storeChanged:)
                                                  name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                object:store];
-    [Fabric with:@[[Crashlytics class]]];
+
     [CrashlyticsKit setUserName:[defaults stringForKey:@"username"]];
     
     // clear the captured date of the last successful lol fetch
@@ -249,7 +248,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
     [defaults synchronize];
     // fire synchronize on app load to sync settings from iCloud
-    // freshing install: will pull all existing iCloud user settings down and put into user defaults database
+    // fresh install: will pull all existing iCloud user settings down and put into user defaults database
     // existing install: will pull down any changes in the iCloud user settings and sync to the user defaults database
     [store synchronize];
     
@@ -260,6 +259,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     }
     
     [self pushRegistration];
+    [self promptGuidelines];
     
     [window makeKeyAndVisible];
     
@@ -279,7 +279,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
         [NSURLConnection connectionWithRequest:request delegate:nil];
         
-// Use for testing login above and to output current cookies for www.shacknews.com
+//        Use for testing login above and to output current cookies for www.shacknews.com
 //        NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
 //        NSLog(@"%@", responseBody);
 //        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"https://www.shacknews.com"]];
@@ -388,6 +388,11 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
             
             // all key names locally and in iCloud are the same, so we can loop over the changed keys and sync easily
             for (NSString *key in keys) {
+                // don't sync any pushMessages.* user defaults
+                if ( [key hasPrefix:(@"pushMessages")] ) {
+                    continue;
+                }
+                
                 id value = [store objectForKey:key];
                 [userDefaults setObject:value forKey:key];
                 NSLog(@"storeChanged updated value for %@",key);
@@ -538,7 +543,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (BOOL)isSplitView {
     BOOL result = [self isPadDevice] && [[UIApplication sharedApplication] keyWindow].bounds.size.width < 768.0f;
     
-    //    NSLog(@"is compact view? %@", (result ? @"YES" : @"NO"));
+//    NSLog(@"is split view? %@", (result ? @"YES" : @"NO"));
     
     return result;
 }
@@ -661,6 +666,20 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     viewController = nil;
 }
 
+- (void)presentViewController:(UIViewController *)viewController presentModally:(BOOL)modal {
+    if ([self isPadDevice]) {
+        if (modal) {
+            [self.slideOutViewController presentViewController:viewController animated:YES completion:nil];
+        } else {
+            [self.contentNavigationController presentViewController:viewController animated:YES completion:nil];
+        }
+    } else {
+        [self.navigationController presentViewController:viewController animated:YES completion:nil];
+    }
+    
+    viewController = nil;
+}
+
 #pragma mark - Appearance customizations
 
 // Custom appearance settings for UIKit items
@@ -684,6 +703,10 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     // progress bar (uploading to chattypics)
     [[UIProgressView appearance] setProgressTintColor:[UIColor lcSwitchOnColor]];
     [[UIProgressView appearance] setTrackTintColor:[UIColor lcSliderMaximumColor]];
+    
+    // color segemented control text
+    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]} forState:UIControlStateSelected];
+    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor lcLightGrayTextColor]} forState:UIControlStateNormal];
 }
 
 #pragma mark - Rotation
@@ -702,22 +725,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     }
 }
 
-+ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // never allow portrait upside down for iPhone
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice] && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-        return NO;
-    }
-
-    // iPad, allow rotation
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        return YES;
-    } else {
-        // allow rotation if the orientation isn't landscape
-        if (UIInterfaceOrientationIsLandscape(interfaceOrientation))return NO;
-        return YES;
-    }
-}
-
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     if ( [[LatestChatty2AppDelegate delegate] isPadDevice] ||
         [self.window.rootViewController.presentedViewController isKindOfClass:[SFSafariViewController class]] ) {
@@ -730,25 +737,17 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 #pragma mark - Notification Support
 
 - (void)pushRegistration {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // Add registration for remote notifications
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     
-    if ([[defaults valueForKey:@"username"] length] != 0 && [defaults boolForKey:@"pushMessages.firstLaunch"] == YES) {
-        // Add registration for remote notifications
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        
-        [defaults setBool:NO forKey:@"pushMessages.firstLaunch"];
-        
-    } else if ([defaults  boolForKey:@"pushMessages.firstLaunch"] == NO &&
-              [[defaults valueForKey:@"pushMessages.deviceToken"] length] != 0) {
-        UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-        UIUserNotificationType notificationTypes = settings.types;
-        
-        BOOL isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
-        if (!isPushAlertEnabled) {
-            // unregister to woggle
-            [self pushUnregistration];
-        }
+    UIUserNotificationSettings *userSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    UIUserNotificationType notificationTypes = userSettings.types;
+    
+    BOOL isPushAlertEnabled = (notificationTypes & UIUserNotificationTypeAlert) ? YES : NO;
+    if (!isPushAlertEnabled) {
+        // unregister to woggle
+        [self pushUnregistration];
     }
 }
 
@@ -756,25 +755,27 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     NSString *deviceToken = [defaults valueForKey:@"pushMessages.deviceToken"];
-    NSDictionary *removedeviceParameters =
-    @{@"action": @"remove",
-      @"type": @"device",
-      @"devicetoken": deviceToken};
-    NSLog(@"calling removedevice w/ parameters: %@", removedeviceParameters);
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
-      parameters:removedeviceParameters
-        progress:nil
-         success:^(NSURLSessionDataTask *task, id responseObject) {
-              [defaults setBool:NO forKey:@"pushMessages"];
-              [defaults setValue:@"" forKey:@"pushMessages.deviceToken"];
-         }
-         failure:^(NSURLSessionDataTask *task, NSError *error) {
-             NSLog( @"removedevice fail: %@", error );
-         }];
+    if ( [deviceToken length] != 0 ) {
+        NSDictionary *removedeviceParameters =
+        @{@"action": @"remove",
+          @"type": @"device",
+          @"devicetoken": deviceToken};
+        NSLog(@"calling removedevice w/ parameters: %@", removedeviceParameters);
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        [manager GET:[NSString stringWithFormat:@"%@/change.php", kWoggleBaseUrl]
+          parameters:removedeviceParameters
+            progress:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                  [defaults setBool:NO forKey:@"pushMessages"];
+                  [defaults setValue:@"" forKey:@"pushMessages.deviceToken"];
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 NSLog( @"removedevice fail: %@", error );
+             }];
+    }
 }
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
@@ -814,10 +815,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     NSString *shackUserName = [[defaults stringForKey:@"username"] stringByEscapingURL];
     
     // Prepare the Device Token for Registration (remove spaces and < >)
-    NSString *deviceToken = [[[[devToken description]
-                               stringByReplacingOccurrencesOfString:@"<" withString:@""]
-                              stringByReplacingOccurrencesOfString:@">" withString:@""]
-                             stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *deviceToken = [NSString stringFromDeviceToken:devToken];
     
     // Build parameter dictionary for Registration
     NSDictionary *registerParameters =
@@ -914,6 +912,47 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         [self handleViewController:[self makeThreadViewController]];
+    }
+}
+
+#pragma mark - Guidelines on first launch
+
+-(void)promptGuidelines {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults boolForKey:@"guidelines.firstLaunch"] == YES) {
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Guidelines"
+                                              message:@"By using LatestChatty, you agree to all Shacknews community posting guidelines."
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *viewAction = [UIAlertAction
+                                     actionWithTitle:@"View"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction *action)
+                                     {
+                                         // push guidelines webview
+                                         NSString *urlString = @"https://www.shacknews.com/guidelines";
+                                         SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:urlString]];
+                                         [svc setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+                                         [svc setModalPresentationStyle:UIModalPresentationFormSheet];
+                                         [svc setDelegate:self];
+                                         [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
+                                         [svc setPreferredControlTintColor:[UIColor whiteColor]];
+                                         [svc setModalPresentationCapturesStatusBarAppearance:YES];
+                                         [self presentViewController:svc presentModally:YES];
+                                     }];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
+                                   handler:nil];
+        
+        [alertController addAction:viewAction];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController presentModally:NO];
+        [defaults setBool:NO forKey:@"guidelines.firstLaunch"];
     }
 }
 

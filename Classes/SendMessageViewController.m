@@ -40,6 +40,18 @@
     return self;
 }
 
+- (id)initWithReportBody:(NSString *)aBody {
+    self = [self initWithNib];
+    
+    self.title = @"Report";
+    self.recipientString = @"Duke Nuked";
+    self.subjectString = @"Reporting Author of Post";
+    self.bodyString = aBody;
+    self.reportMessage = YES;
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -51,12 +63,17 @@
     [sendButton setTitleTextAttributes:[NSDictionary blueHighlightTextAttributesDictionary] forState:UIControlStateDisabled];
 	self.navigationItem.rightBarButtonItem = sendButton;
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    self.recipient.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"To" attributes:@{NSForegroundColorAttributeName: [UIColor lcDarkGrayTextColor]}];
+    self.subject.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Subject" attributes:@{NSForegroundColorAttributeName: [UIColor lcDarkGrayTextColor]}];
 
     [self.recipient setText:self.recipientString];
     [self.subject setText:self.subjectString];
     [self.body setText:self.bodyString];
     if (self.bodyString) {
-        [self setupReply];
+        if (!self.reportMessage) {
+            [self setupReply];
+        }
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     
@@ -105,16 +122,8 @@
     }
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-//    scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
-}
-
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -222,20 +231,11 @@
 }
 
 - (void)makeMessage {
-    @autoreleasepool {
-        //self.navigationController.view.userInteractionEnabled = NO;
-        
-        // See [ComposeViewController makePost] for explanation, same GCD blocks used there
-        dispatch_async(dispatch_get_main_queue(), ^{
-            BOOL success = [Message createWithTo:self->recipient.text subject:self->subject.text body:self->body.text];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (success) {
-                    [self performSelectorOnMainThread:@selector(sendSuccess) withObject:nil waitUntilDone:NO];
-                } else {
-                    [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
-                }
-            });
-        });
+    BOOL success = [Message createWithTo:self->recipient.text subject:self->subject.text body:self->body.text];
+    if (success) {
+        [self performSelectorOnMainThread:@selector(sendSuccess) withObject:nil waitUntilDone:NO];
+    } else {
+        [self performSelectorOnMainThread:@selector(sendFailure) withObject:nil waitUntilDone:NO];
     }
 }
 
@@ -261,7 +261,7 @@
                                handler:^(UIAlertAction *action)
                                {
                                    [self showActivityIndicator];
-                                   [self performSelectorInBackground:@selector(makeMessage) withObject:nil];
+                                   [self performSelector:@selector(makeMessage) withObject:nil afterDelay:0.25];
                                }];
     
     [alertController addAction:cancelAction];

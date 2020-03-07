@@ -51,38 +51,12 @@
         }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LOLLoaded" object:self];
-        
-        UIBarButtonItem *lolMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-                                                                          style:UIBarButtonItemStyleDone
-                                                                         target:self
-                                                                         action:@selector(lolMenu)];
-        [lolMenuButton setEnabled:NO];
-        [lolMenuButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary]
-                                     forState:UIControlStateNormal];
-        [lolMenuButton setTitleTextAttributes:[NSDictionary blueHighlightTextAttributesDictionary]
-                                     forState:UIControlStateDisabled];
-        
-        self.navigationItem.rightBarButtonItem = lolMenuButton;
     }
     
     // initialize scoll position property
     self.scrollPosition = CGPointMake(0, 0);
     
     [webView loadRequest:request];
-    
-//    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-//        // Add pan gesture to detect velocity of panning webview to hide/show bars
-//        // only for iPhone
-//        UIPanGestureRecognizer* panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-//        [self.view addGestureRecognizer:panGesture];
-//        panGesture.delegate = self;
-//        panGesture.cancelsTouchesInView = NO;
-//
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showBars) name:@"ShowBrowserBars" object:nil];
-//
-//        [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, self.bottomToolbar.frameHeight, 0)];
-//        [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-//    }
     
     // top separation bar
      topStroke = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1)];
@@ -104,86 +78,16 @@
         if ([popoverController isPopoverVisible]) {
             [popoverController dismissPopoverAnimated:NO];
         }
-    } else {
-        [self showBars];
     }
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     // force webview to stop scrolling if it is when viewWillDisappear is fired
-    for (id subview in webView.subviews){
-        if ([[subview class] isSubclassOfClass: [UIScrollView class]]){
+    for (id subview in webView.subviews) {
+        if ([[subview class] isSubclassOfClass: [UIScrollView class]]) {
             [subview setContentOffset:CGPointZero animated:NO];
         }
     }
-}
-
-// Hide the status bar and navigation bar with the built-in animation method
-// Hiding the bottom bar with manual animation because setToolbarHidden:animated: on the navigation controller was acting strange
-- (void)hideBars {
-    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    }
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
-
-    [UIView animateWithDuration:0.25 animations:^{
-        CGRect bottomToolbarFrame = self->bottomToolbar.frame;
-        bottomToolbarFrame.origin.y = self.view.frameHeight + self->bottomToolbar.frameHeight;
-        self->bottomToolbar.frame = bottomToolbarFrame;
-        
-        CGRect topStrokeFrame = self->topStroke.frame;
-        topStrokeFrame.origin.y = -1;
-        self->topStroke.frame = topStrokeFrame;
-    }];
-    
-    [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-}
-
-// Show the status bar and navigation bar with the built-in animation method
-// Showing the bottom bar with manual animation because setToolbarHidden:animated: on the navigation controller was acting strange
-- (void)showBars {
-    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    }
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    
-    [UIView animateWithDuration:0.25 animations:^{
-        CGRect bottomToolbarFrame = self->bottomToolbar.frame;
-        bottomToolbarFrame.origin.y = self.view.frameHeight - self->bottomToolbar.frameHeight;
-        self->bottomToolbar.frame = bottomToolbarFrame;
-        
-        CGRect topStrokeFrame = self->topStroke.frame;
-        topStrokeFrame.origin.y = 0;
-        self->topStroke.frame = topStrokeFrame;
-    }];
-    
-    [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, self.bottomToolbar.frameHeight, 0)];
-    [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, self.bottomToolbar.frameHeight, 0)];
-}
-
-- (void)handlePan:(UIPanGestureRecognizer *)sender {
-    CGPoint velocity = [sender velocityInView:self.view];
-    
-    // only activate on first touch and a semi-flick velocity
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        CGPoint translatedPoint = [sender translationInView:self.view];
-        
-        if (ABS(velocity.y) > 400 && translatedPoint.y < 0 && !self.navigationController.navigationBarHidden) {
-            [self hideBars];
-        } else if (ABS(velocity.y) > 100 && translatedPoint.y > 0 && self.navigationController.navigationBarHidden) {
-            [self showBars];
-        }
-    }
-}
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    return YES;
-}
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    return YES;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
@@ -219,13 +123,6 @@
     [self.webView reload];
 }
 
-//Patch-E: displays the custom iPhone menu on the Shack[LOL] site. Menu button is disabled until the web view finishes loading.
-- (void)lolMenu {
-    //switching to a javascript function called on the page rather than a page transfer
-    //[self.webView loadURLString:@"http://lol.lmnopc.com/iphonemenu.php"];
-    [self.webView stringByEvaluatingJavaScriptFromString: @"lc_menu();"];
-}
-
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -256,10 +153,6 @@
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 #pragma mark UIActivityViewController & Action Sheet Delegate

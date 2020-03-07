@@ -71,18 +71,6 @@
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
-        [postView.scrollView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
-    } else {
-        [postView.scrollView setContentInset:UIEdgeInsetsMake(52.0, 0, 0, 0)];
-    }
-}
-
 #pragma mark Cleanup
 
 - (void)dealloc {

@@ -1,7 +1,39 @@
 latest-chatty-2
 ===============
 
-Requires iOS 8 minimum!
+4.10.4
+====
+- Built with Xcode 11.1 as workaround to current bug in developer tooling with text views
+
+4.10.3
+====
+- Fix bug with notification prompt
+
+4.10.2
+====
+- Fix bug with notifications on iOS 13
+
+4.10.1
+====
+- Shack LOL tags changed: removed [ugh], added [wow] and [aww]
+
+4.10.0
+====
+- Built with iOS 13 SDK
+- Bug fix for make post / send message progress indication on iOS 13
+
+4.9.0
+====
+- Update to Shack[LOL] view for nu[LOL]
+
+4.8.8
+====
+- Analytics migration
+- Code cleanup
+- Tweaked default viewable post category filters
+- User must accept Guidelines on first app launch
+- Guidelines accessible in Settings view
+- Tap author name in thread view to report user/post via Shack Message
 
 4.8.7
 ====

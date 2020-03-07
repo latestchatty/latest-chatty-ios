@@ -53,7 +53,8 @@ static NSString *kLOLGetCountsBaseUrl = @"http://lol.lmnopc.com";
             [key isEqualToString:@"unf"] ||
             [key isEqualToString:@"tag"] ||
             [key isEqualToString:@"wtf"] ||
-            [key isEqualToString:@"ugh"]) {
+            [key isEqualToString:@"wow"] ||
+            [key isEqualToString:@"aww"]) {
             tag = [NSString stringWithFormat:baseTag, key, key, value];
         } else {
             customTag = YES;
@@ -88,8 +89,10 @@ static NSString *kLOLGetCountsBaseUrl = @"http://lol.lmnopc.com";
             attributes = @{NSForegroundColorAttributeName:[UIColor lcTAGColor]};
         } else if ([key isEqualToString:@"wtf"]) {
             attributes = @{NSForegroundColorAttributeName:[UIColor lcWTFColor]};
-        } else if ([key isEqualToString:@"ugh"]) {
-            attributes = @{NSForegroundColorAttributeName:[UIColor lcUGHColor]};
+        } else if ([key isEqualToString:@"wow"]) {
+            attributes = @{NSForegroundColorAttributeName:[UIColor lcWOWColor]};
+        } else if ([key isEqualToString:@"aww"]) {
+            attributes = @{NSForegroundColorAttributeName:[UIColor lcAWWColor]};
         } else {
             customTag = YES;
         }
