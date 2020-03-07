@@ -7,11 +7,11 @@
 //
 
 #import "Post.h"
-#import "Image.h"
+#import "Imgur.h"
 #import "ModelListViewController.h"
 #import "BrowserViewController.h"
 
-@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, ImageSendingDelegate, UITextViewDelegate> {
+@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, ImgurSendingDelegate, UITextViewDelegate> {
     NSInteger storyId;
 	Post *post;
 	

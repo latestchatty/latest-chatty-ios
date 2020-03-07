@@ -332,16 +332,16 @@
     [[LatestChatty2AppDelegate delegate] setNetworkActivityIndicatorVisible:NO];
 }
 
-- (void)image:(Image*)image sendComplete:(NSString*)url {
+- (void)image:(Imgur*)image sendComplete:(NSString*)url {
 	postContent.text = [postContent.text stringByAppendingString:url];
 	[self hideActivityIndicator];
 	[postContent becomeFirstResponder];
     self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
-- (void)image:(Image*)image sendFailure:(NSString*)message {
+- (void)image:(Imgur*)image sendFailure:(NSString*)message {
     [UIAlertView showSimpleAlertWithTitle:@"Upload Failed"
-                                  message:@"There was an error uploading your photo. Be sure you have set a valid ChattyPics.com username and password in Settings."];
+                                  message:@"There was an error uploading your photo."];
 	[self hideActivityIndicator];
 }
 
@@ -351,7 +351,7 @@
 {
 	[picker dismissViewControllerAnimated:YES completion:nil];
 	[postContent resignFirstResponder];
-	Image *image = [[Image alloc] initWithImage:anImage];
+	Imgur *image = [[Imgur alloc] initWithImage:anImage];
 	image.delegate = self;
 	
 	UIProgressView* progressBar = [self showActivityIndicator:YES];

@@ -1,28 +1,27 @@
 //
-//  Image.h
+//  Imgur.h
 //  LatestChatty2
 //
-//  Created by Alex Wayne on 3/28/09.
-//  Copyright 2009. All rights reserved.
+//  Created by Boarder2 on 3/7/2020.
 //
 
 #import "Model.h"
 
 #import "NSStringAdditions.h"
 
-@class Image;
+@class Imgur;
 
-@protocol ImageSendingDelegate
-- (void)image:(Image*)image sendComplete:(NSString*)url;
-- (void)image:(Image*)image sendFailure:(NSString*)message;
+@protocol ImgurSendingDelegate
+- (void)image:(Imgur*)image sendComplete:(NSString*)url;
+- (void)image:(Imgur*)image sendFailure:(NSString*)message;
 @end
 
 
-@interface Image : NSObject {
+@interface Imgur : NSObject {
 	UIImage *image;
-	NSObject<ImageSendingDelegate>* __weak delegate;
+	NSObject<ImgurSendingDelegate>* __weak delegate;
 }
-@property (weak,nonatomic) NSObject<ImageSendingDelegate>* delegate;
+@property (weak,nonatomic) NSObject<ImgurSendingDelegate>* delegate;
 @property (strong) UIImage *image;
 
 - (id)initWithImage:(UIImage *)anImage;
