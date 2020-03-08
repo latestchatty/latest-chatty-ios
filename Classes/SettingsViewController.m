@@ -12,6 +12,10 @@
 @import Crashlytics;
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
+static NSString *kWoggleKeywordsUrl = @"https://www.woggle.net/notifications";
+static NSString *kCreditsUrl = @"http://mccrager.com/latestchatty/credits";
+static NSString *kLicensesUrl = @"http://mccrager.com/latestchatty/licenses";
+static NSString *kGuidelinesUrl = @"https://www.shacknews.com/guidelines";
 
 @implementation SettingsViewController
 
@@ -464,24 +468,33 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)openCredits {
-    NSString *urlString = @"http://mccrager.com/latestchatty/credits";
-    [self safariViewControllerForURL:[NSURL URLWithString:urlString]];
-}
-
-- (void)openLicenses {
-    NSString *urlString = @"http://mccrager.com/latestchatty/licenses";
-    [self safariViewControllerForURL:[NSURL URLWithString:urlString]];
-}
-
-- (void)openGuidelines {
-    NSString *urlString = @"https://www.shacknews.com/guidelines";
-    [self safariViewControllerForURL:[NSURL URLWithString:urlString]];
-}
-
 - (void)handlePasswordTap:(UITapGestureRecognizer *)recognizer {
     BOOL current = [passwordField isSecureTextEntry];
     [passwordField setSecureTextEntry:!current];
+}
+
+- (void)openCredits {
+    NSString *urlString = kCreditsUrl;
+    [self openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)openLicenses {
+    NSString *urlString = kLicensesUrl;
+    [self openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)openGuidelines {
+    NSString *urlString = kGuidelinesUrl;
+    [self openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)openKeywords {
+    NSString *urlString = kWoggleKeywordsUrl;
+    [self openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)openURL:(NSURL *)url {
+    [self safariViewControllerForURL:url];
 }
 
 #pragma mark Web View methods
@@ -507,14 +520,17 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
+            // account info section
 			return 4;
 			break;
             
         case 1:
+            // photo upload section
             return 2;
             break;
 			
 		case 2:
+            // preferences section
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 return 7;
             } else {
@@ -523,14 +539,17 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 			break;
 			
         case 3:
-            return 3;
+            // notifications section
+            return 4;
             break;
             
 		case 4:
+            // post categories section
 			return 5;
 			break;
             
         case 5:
+            // about section
             return 3;
             break;
 			
@@ -598,7 +617,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     UITapGestureRecognizer *passwordTap;
-    UITapGestureRecognizer *picsPasswordTap;
     
     [cell setBackgroundColor:[UIColor lcGroupedCellColor]];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -710,6 +728,8 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
     // Push notification controls
     if (indexPath.section == 3) {
+        UIButton *button = [self buttonForManage];
+        
         switch (indexPath.row) {
             case 0:
                 cell.accessoryView = pushMessagesSwitch;
@@ -724,6 +744,13 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
             case 2:
                 cell.accessoryView = repliesPrefSwitch;
                 cell.textLabel.text = @"Replies:";
+                break;
+                
+            case 3:
+                [button addTarget:self action:@selector(openKeywords) forControlEvents:UIControlEventTouchUpInside];
+                
+                cell.accessoryView = button;
+                cell.textLabel.text = @"Keywords:";
                 break;
         }
     }
@@ -767,7 +794,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 	}
     
     if (indexPath.section == 5) {
-        UIButton *button = [self buttonForAbout];
+        UIButton *button = [self buttonForView];
         
         switch (indexPath.row) {
 			case 0:
@@ -775,21 +802,20 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                 
                 cell.accessoryView = button;
                 cell.textLabel.text = @"Credits:";
-                
                 break;
+                
 			case 1:
                 [button addTarget:self action:@selector(openLicenses) forControlEvents:UIControlEventTouchUpInside];
                 
                 cell.accessoryView = button;
                 cell.textLabel.text = @"Licenses:";
-                
                 break;
+                
             case 2:
                 [button addTarget:self action:@selector(openGuidelines) forControlEvents:UIControlEventTouchUpInside];
                 
                 cell.accessoryView = button;
                 cell.textLabel.text = @"Guidelines:";
-                
                 break;
         }
     }
@@ -797,11 +823,19 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 	return cell;
 }
 
--(UIButton *)buttonForAbout {
+-(UIButton *)buttonForView {
+    return [self buttonForSettingsWithString:@"View"];
+}
+
+-(UIButton *)buttonForManage {
+    return [self buttonForSettingsWithString:@"Manage"];
+}
+
+-(UIButton *)buttonForSettingsWithString:(NSString *)string {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [button setFrame:CGRectMake(0, 0, 50, 30)];
-    [button setTitle:@"View" forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(0, 0, 80, 30)];
+    [button setTitle:string forState:UIControlStateNormal];
     [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
     
     [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
