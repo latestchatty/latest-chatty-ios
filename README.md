@@ -1,5 +1,13 @@
-latest-chatty-2
+latest-chatty-ios
 ===============
+
+See [CONTRIBUTING.md](console-games/) for instructions on how to build the app locally.
+
+4.11.0
+====
+- ChattyPics replaced with Imgur for image uploads. RIP ChattyPics.
+- ShackAPI option removed from Settings
+- Woggle keyword notification update page accessible via Settings
 
 4.10.4
 ====
