@@ -7,3 +7,4 @@ DerivedData/
 LatestChatty2.xcodeproj/*.xcworkspace
 xcuserdata/
 Pods/
+.idea/

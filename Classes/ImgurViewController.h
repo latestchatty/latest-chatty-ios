@@ -1,9 +1,8 @@
 //
-//  BrowserViewController.h
+//  ImgurViewController.h
 //  LatestChatty2
 //
-//  Created by Alex Wayne on 3/26/09.
-//  Copyright 2009. All rights reserved.
+//  Created by Boarder2 on 3/8/2020.
 //
 #import <WebKit/WebKit.h>
 
