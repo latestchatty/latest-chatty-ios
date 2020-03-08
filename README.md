@@ -1,7 +1,7 @@
 latest-chatty-ios
 ===============
 
-See [CONTRIBUTING.md](console-games/) for instructions on how to build the app locally.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to build the app locally.
 
 4.11.0
 ====
