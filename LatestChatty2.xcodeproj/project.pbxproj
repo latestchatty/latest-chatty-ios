@@ -22,7 +22,9 @@
 		5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		59EC55B417EDF56600F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
+		6C627775F531F9A1BCB43BDC /* ImgurViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C627ED9DA83996E76D58C59 /* ImgurViewController.xib */; };
 		6C627A0A6E4E92B96DF4BCA9 /* Imgur.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C627C28F07514793BDB4B4B /* Imgur.m */; };
+		6C627F6060CCD7A8EF036BEF /* ImgurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C627A81922E577F976B74DC /* ImgurViewController.m */; };
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
 		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
@@ -318,8 +320,11 @@
 		61BB54EC1151A42A00BFB041 /* SendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageViewController.h; sourceTree = "<group>"; };
 		61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageViewController.m; sourceTree = "<group>"; };
 		61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageViewController.xib; sourceTree = "<group>"; };
+		6C62716CE7AF38A1C3E6AF9C /* ImgurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgurViewController.h; sourceTree = "<group>"; };
 		6C627A5D723B12001B3EBEEA /* Imgur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imgur.h; sourceTree = "<group>"; };
+		6C627A81922E577F976B74DC /* ImgurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgurViewController.m; sourceTree = "<group>"; };
 		6C627C28F07514793BDB4B4B /* Imgur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Imgur.m; sourceTree = "<group>"; };
+		6C627ED9DA83996E76D58C59 /* ImgurViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImgurViewController.xib; sourceTree = "<group>"; };
 		796AE0C85AF0050D01E28E4A /* Pods-LatestChatty2.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.distribution.xcconfig"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		922E140961FA7B1591624775 /* Pods-LatestChatty2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -971,6 +976,9 @@
 				FAA849960F78C29900026446 /* ThreadViewController.h */,
 				FAA849970F78C29900026446 /* ThreadViewController.m */,
 				FAA849990F78C2B000026446 /* ThreadViewController.xib */,
+				6C62716CE7AF38A1C3E6AF9C /* ImgurViewController.h */,
+				6C627A81922E577F976B74DC /* ImgurViewController.m */,
+				6C627ED9DA83996E76D58C59 /* ImgurViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1481,6 +1489,7 @@
 				CD7ADD1717EF180E00B4C886 /* ReplyCell-iPad.xib in Resources */,
 				CD7ADD0217EF17FA00B4C886 /* SearchViewController-iPad.xib in Resources */,
 				CD7F2F4517FE85BE00E7EAE3 /* Keyboard-Color-Yellow.png in Resources */,
+				6C627775F531F9A1BCB43BDC /* ImgurViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1597,6 +1606,7 @@
 				CDF1BDE0175EEDC200D6B1AE /* IIWrapController.m in Sources */,
 				CDF4F8E2177FE83500143015 /* RecentSearchButton.m in Sources */,
 				6C627A0A6E4E92B96DF4BCA9 /* Imgur.m in Sources */,
+				6C627F6060CCD7A8EF036BEF /* ImgurViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

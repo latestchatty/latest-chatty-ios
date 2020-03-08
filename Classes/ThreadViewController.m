@@ -531,47 +531,54 @@
         if (viewController == nil) {
             BOOL isYouTubeURL = [appDelegate isYouTubeURL:[request URL]];
             BOOL useYouTube = [[NSUserDefaults standardUserDefaults] boolForKey:@"useYouTube"];
+            BOOL isImgur = [request.URL.absoluteString containsString:@"i.imgur.com"];
             NSUInteger browserPref = [[NSUserDefaults standardUserDefaults] integerForKey:@"browserPref"];
             NSLog(@"browserPref: %lu", (unsigned long)browserPref);
             
             // save scroll position of web view before showing view controller
             self.scrollPosition = aWebView.scrollView.contentOffset;
-            
-            if (isYouTubeURL && useYouTube) {
-                // don't open with browser preference, open YouTube app
-                [[UIApplication sharedApplication] openURL:[[request URL] YouTubeURLByReplacingScheme]];
-                return NO;
-            }
-            // open current URL in Safari app
-            if (browserPref == LCBrowserTypeSafariApp) {
-                [[UIApplication sharedApplication] openURL:[request URL]];
-                return NO;
-            }
-            // open current URL in iOS 9 Safari modal view
-            if (browserPref == LCBrowserTypeSafariView) {
-                SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
-                [svc setDelegate:self];
-                [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
-                [svc setPreferredControlTintColor:[UIColor whiteColor]];
-                [svc setModalPresentationCapturesStatusBarAppearance:YES];
-                
-                [[self showingViewController] presentViewController:svc animated:YES completion:nil];
-                
-                return NO;
-            }
-            // open current URL in Chrome app
-            if (browserPref == LCBrowserTypeChromeApp) {
-                // replace http,https:// with googlechrome://
-                NSURL *chromeURL = [appDelegate urlAsChromeScheme:[request URL]];
-                if (chromeURL != nil) {
-                    [[UIApplication sharedApplication] openURL:chromeURL];
-                    
-                    chromeURL = nil;
+
+            if (!isImgur) {
+                if (isYouTubeURL && useYouTube) {
+                    // don't open with browser preference, open YouTube app
+                    [[UIApplication sharedApplication] openURL:[[request URL] YouTubeURLByReplacingScheme]];
                     return NO;
+                }
+                // open current URL in Safari app
+                if (browserPref == LCBrowserTypeSafariApp) {
+                    [[UIApplication sharedApplication] openURL:[request URL]];
+                    return NO;
+                }
+                // open current URL in iOS 9 Safari modal view
+                if (browserPref == LCBrowserTypeSafariView) {
+                    SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
+                    [svc setDelegate:self];
+                    [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
+                    [svc setPreferredControlTintColor:[UIColor whiteColor]];
+                    [svc setModalPresentationCapturesStatusBarAppearance:YES];
+
+                    [[self showingViewController] presentViewController:svc animated:YES completion:nil];
+
+                    return NO;
+                }
+                // open current URL in Chrome app
+                if (browserPref == LCBrowserTypeChromeApp) {
+                    // replace http,https:// with googlechrome://
+                    NSURL *chromeURL = [appDelegate urlAsChromeScheme:[request URL]];
+                    if (chromeURL != nil) {
+                        [[UIApplication sharedApplication] openURL:chromeURL];
+
+                        chromeURL = nil;
+                        return NO;
+                    }
                 }
             }
 
-            viewController = [[BrowserViewController alloc] initWithRequest:request];
+            if(isImgur) {
+                viewController = [[ImgurViewController alloc] initWithRequest:request];
+            } else {
+                viewController = [[BrowserViewController alloc] initWithRequest:request];
+            }
         }
         
         [self.navigationController pushViewController:viewController animated:YES];

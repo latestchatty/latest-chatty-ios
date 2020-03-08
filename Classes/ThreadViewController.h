@@ -16,6 +16,7 @@
 #import "ComposeViewController.h"
 #import "BrowserViewController.h"
 #import "ChattyViewController.h"
+#import "ImgurViewController.h"
 @import SafariServices;
 
 @interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, SFSafariViewControllerDelegate> {
