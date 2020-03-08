@@ -16,11 +16,11 @@
 - (void)image:(Imgur*)image sendFailure:(NSString*)message;
 @end
 
-
 @interface Imgur : NSObject {
 	UIImage *image;
 	NSObject<ImgurSendingDelegate>* __weak delegate;
 }
+
 @property (weak,nonatomic) NSObject<ImgurSendingDelegate>* delegate;
 @property (strong) UIImage *image;
 

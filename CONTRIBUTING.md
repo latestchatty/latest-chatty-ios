@@ -13,6 +13,7 @@
 - Click the button to show the Project Navigator.
 - Click the "LatestChatty2" project in the Project Navigator.
 - Under "Capabilities", set "iCloud" and "Push Notifications" to OFF.
+- Add `IMGUR_CLIENT_ID = <client_id>` to all .xcconfig files under the "Pods" directory.
 - Click "Generic iOS Device" in the upper left corner and change it to an iOS Simulator.
 - Product menu > Build.
 - Product menu > Run.

@@ -43,7 +43,8 @@
 				 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 					 [formData appendPartWithFileData:imageData name:@"image" fileName:@"iPhoneUpload.jpg" mimeType:@"image/jpeg"];
 				 } error:nil];
-	[request addValue:@"Client-ID REPLACEME" forHTTPHeaderField:@"Authorization"];
+    NSString *clientId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Imgur Client ID"];
+	[request addValue:[@"Client-ID " stringByAppendingString:clientId] forHTTPHeaderField:@"Authorization"];
 
 	NSURLSessionUploadTask *uploadTask;
 	uploadTask = [manager uploadTaskWithStreamedRequest:request
@@ -191,6 +192,5 @@
 	
 	self.image = imageCopy;
 }
-
 
 @end
