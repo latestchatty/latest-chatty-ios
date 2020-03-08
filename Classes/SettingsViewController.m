@@ -12,6 +12,10 @@
 @import Crashlytics;
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
+static NSString *kWoggleKeywordsUrl = @"https://www.woggle.net/notifications";
+static NSString *kCreditsUrl = @"http://mccrager.com/latestchatty/credits";
+static NSString *kLicensesUrl = @"http://mccrager.com/latestchatty/licenses";
+static NSString *kGuidelinesUrl = @"https://www.shacknews.com/guidelines";
 
 @implementation SettingsViewController
 
@@ -37,17 +41,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         serverField.keyboardType = UIKeyboardTypeURL;
         
         serverPicker = [self generatePickerViewWithTag:0];
-        
-        picsUsernameField = [self generateTextFieldWithKey:@"picsUsername"];
-        picsUsernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Username" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
-        picsUsernameField.returnKeyType = UIReturnKeyNext;
-        picsUsernameField.keyboardType = UIKeyboardTypeEmailAddress;
-        picsUsernameField.textColor = [UIColor lcAuthorColor];
-        
-        picsPasswordField = [self generateTextFieldWithKey:@"picsPassword"];
-        picsPasswordField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Password" attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
-        picsPasswordField.secureTextEntry = YES;
-        picsPasswordField.returnKeyType = UIReturnKeyDone;
 
         orderByPostDateSwitch = [self generateSwitchWithKey:@"orderByPostDate"];
         saveSearchesSwitch = [self generateSwitchWithKey:@"saveSearches"];
@@ -162,10 +155,8 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     
     // two possible api servers are hardcoded into the app along with a manual entry possibility
     apiServerNames = @[@"Manual",
-                       @"ShackAPI",
                        @"WinChatty"];
     apiServerAddresses = @[@"",
-                           @"shackapi.stonedonkey.com",
                            @"winchatty.com/chatty"];
     
     // get the user's saved api server address
@@ -304,11 +295,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 		[passwordField resignFirstResponder];
 	} else if (textField == serverField) {
 		[serverField resignFirstResponder];
-	} else if (textField == picsUsernameField) {
-        [picsPasswordField becomeFirstResponder];
-    } else if (textField == picsPasswordField) {
-        [picsPasswordField resignFirstResponder];
-    }
+	}
 	return NO;
 }
 
@@ -403,8 +390,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     
 	[defaults setObject:usernameField.text      forKey:@"username"];
 	[defaults setObject:passwordField.text      forKey:@"password"];
-    [defaults setObject:picsUsernameField.text  forKey:@"picsUsername"];
-    [defaults setObject:picsPasswordField.text  forKey:@"picsPassword"];
 	[defaults setBool:orderByPostDateSwitch.on  forKey:@"orderByPostDate"];
     [defaults setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
     [defaults setBool:swipeBackSwitch.on        forKey:@"swipeBack"];
@@ -438,8 +423,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
 	[store setObject:usernameField.text      forKey:@"username"];
 	[store setObject:passwordField.text      forKey:@"password"];
-    [store setObject:picsUsernameField.text  forKey:@"picsUsername"];
-    [store setObject:picsPasswordField.text  forKey:@"picsPassword"];
 	[store setBool:orderByPostDateSwitch.on  forKey:@"orderByPostDate"];
     [store setBool:saveSearchesSwitch.on     forKey:@"saveSearches"];
     [store setBool:swipeBackSwitch.on        forKey:@"swipeBack"];
@@ -485,29 +468,33 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)openCredits {
-    NSString *urlString = @"http://mccrager.com/latestchatty/credits";
-    [self safariViewControllerForURL:[NSURL URLWithString:urlString]];
-}
-
-- (void)openLicenses {
-    NSString *urlString = @"http://mccrager.com/latestchatty/licenses";
-    [self safariViewControllerForURL:[NSURL URLWithString:urlString]];
-}
-
-- (void)openGuidelines {
-    NSString *urlString = @"https://www.shacknews.com/guidelines";
-    [self safariViewControllerForURL:[NSURL URLWithString:urlString]];
-}
-
 - (void)handlePasswordTap:(UITapGestureRecognizer *)recognizer {
     BOOL current = [passwordField isSecureTextEntry];
     [passwordField setSecureTextEntry:!current];
 }
 
-- (void)handlePicsPasswordTap:(UITapGestureRecognizer *)recognizer {
-    BOOL current = [picsPasswordField isSecureTextEntry];
-    [picsPasswordField setSecureTextEntry:!current];
+- (void)openCredits {
+    NSString *urlString = kCreditsUrl;
+    [self openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)openLicenses {
+    NSString *urlString = kLicensesUrl;
+    [self openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)openGuidelines {
+    NSString *urlString = kGuidelinesUrl;
+    [self openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)openKeywords {
+    NSString *urlString = kWoggleKeywordsUrl;
+    [self openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)openURL:(NSURL *)url {
+    [self safariViewControllerForURL:url];
 }
 
 #pragma mark Web View methods
@@ -533,14 +520,17 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
+            // account info section
 			return 4;
 			break;
             
         case 1:
-            return 4;
+            // photo upload section
+            return 2;
             break;
 			
 		case 2:
+            // preferences section
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 return 7;
             } else {
@@ -549,14 +539,17 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 			break;
 			
         case 3:
-            return 3;
+            // notifications section
+            return 4;
             break;
             
 		case 4:
+            // post categories section
 			return 5;
 			break;
             
         case 5:
+            // about section
             return 3;
             break;
 			
@@ -573,7 +566,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 			break;
         
         case 1:
-            return @"CHATTYPICS.COM ACCOUNT";
+            return @"IMGUR UPLOAD";
             break;
 			
 		case 2:
@@ -624,7 +617,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     UITapGestureRecognizer *passwordTap;
-    UITapGestureRecognizer *picsPasswordTap;
     
     [cell setBackgroundColor:[UIColor lcGroupedCellColor]];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -672,28 +664,12 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
-                cell.accessoryView = picsUsernameField;
-                cell.textLabel.text = @"Username:";
-                break;
-            
-            case 1:
-                cell.accessoryView = picsPasswordField;
-                cell.textLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Password:"
-                                                                                attributes:underlineAttribute];
-                
-                picsPasswordTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePicsPasswordTap:)];
-                picsPasswordTap.delegate = self;
-                [cell addGestureRecognizer:picsPasswordTap];
-                
-                break;
-                
-            case 2:
 				cell.accessoryView = picsQualitySlider;
 				cell.textLabel.text = [NSString stringWithFormat:@"Quality: %d%%", (int)(picsQualitySlider.value*100)];
                 picsQualityLabel = cell.textLabel;
 				break;
                 
-            case 3:
+            case 1:
 				cell.accessoryView = picsResizeSwitch;
 				cell.textLabel.text = @"Scale Uploads:";
 				break;
@@ -752,6 +728,8 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
     // Push notification controls
     if (indexPath.section == 3) {
+        UIButton *button = [self buttonForManage];
+        
         switch (indexPath.row) {
             case 0:
                 cell.accessoryView = pushMessagesSwitch;
@@ -766,6 +744,13 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
             case 2:
                 cell.accessoryView = repliesPrefSwitch;
                 cell.textLabel.text = @"Replies:";
+                break;
+                
+            case 3:
+                [button addTarget:self action:@selector(openKeywords) forControlEvents:UIControlEventTouchUpInside];
+                
+                cell.accessoryView = button;
+                cell.textLabel.text = @"Keywords:";
                 break;
         }
     }
@@ -809,7 +794,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 	}
     
     if (indexPath.section == 5) {
-        UIButton *button = [self buttonForAbout];
+        UIButton *button = [self buttonForView];
         
         switch (indexPath.row) {
 			case 0:
@@ -817,21 +802,20 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                 
                 cell.accessoryView = button;
                 cell.textLabel.text = @"Credits:";
-                
                 break;
+                
 			case 1:
                 [button addTarget:self action:@selector(openLicenses) forControlEvents:UIControlEventTouchUpInside];
                 
                 cell.accessoryView = button;
                 cell.textLabel.text = @"Licenses:";
-                
                 break;
+                
             case 2:
                 [button addTarget:self action:@selector(openGuidelines) forControlEvents:UIControlEventTouchUpInside];
                 
                 cell.accessoryView = button;
                 cell.textLabel.text = @"Guidelines:";
-                
                 break;
         }
     }
@@ -839,11 +823,19 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 	return cell;
 }
 
--(UIButton *)buttonForAbout {
+-(UIButton *)buttonForView {
+    return [self buttonForSettingsWithString:@"View"];
+}
+
+-(UIButton *)buttonForManage {
+    return [self buttonForSettingsWithString:@"Manage"];
+}
+
+-(UIButton *)buttonForSettingsWithString:(NSString *)string {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [button setFrame:CGRectMake(0, 0, 50, 30)];
-    [button setTitle:@"View" forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(0, 0, 80, 30)];
+    [button setTitle:string forState:UIControlStateNormal];
     [button setTitleColor:[UIColor lcBlueColor] forState:UIControlStateNormal];
     
     [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];

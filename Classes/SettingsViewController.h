@@ -17,9 +17,7 @@
     UITextField  *passwordField;
     UITextField  *serverField;
     UIPickerView *serverPicker;
-    
-    UITextField *picsUsernameField;
-    UITextField *picsPasswordField;
+
     UISwitch    *picsResizeSwitch;
     UISlider    *picsQualitySlider;
     UILabel     *picsQualityLabel;
