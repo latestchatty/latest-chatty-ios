@@ -197,6 +197,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    postView.opaque = NO;
+    postView.backgroundColor = [UIColor clearColor];
+    postView.navigationDelegate = self;
+
     if ([[LatestChatty2AppDelegate delegate] isForceTouchEnabled]) {
         [postView setAllowsLinkPreview:YES];
     }
@@ -511,45 +515,49 @@
 
 #pragma mark WebView Methods
 
-- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+        
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
         // author name tapped, show action sheet to search for posts or shackmessage
         // still using the oldschool shacknews profile URI pattern here
         // probably not a good idea but the shack is probably never bringing back profiles at this point so whatevs
-        if ([[[request URL] absoluteString] isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
-            // present action sheet 
+        if ([[[navigationAction.request URL] absoluteString] isMatchedByRegex:@"shacknews\\.com/profile/.*"]) {
+            // present action sheet
             [self showAuthorActions];
-            return NO;
+            decisionHandler(WKNavigationActionPolicyCancel);
+            return;
         }
 
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
-        UIViewController *viewController = [appDelegate viewControllerForURL:[request URL]];
+        UIViewController *viewController = [appDelegate viewControllerForURL:[navigationAction.request URL]];
         
         // No special controller, handle the URL.
         // Check URL for YouTube, open externally is necessary.
         // If not YouTube, open URL in browser of preference
         if (viewController == nil) {
-            BOOL isYouTubeURL = [appDelegate isYouTubeURL:[request URL]];
+            BOOL isYouTubeURL = [appDelegate isYouTubeURL:[navigationAction.request URL]];
             BOOL useYouTube = [[NSUserDefaults standardUserDefaults] boolForKey:@"useYouTube"];
             NSUInteger browserPref = [[NSUserDefaults standardUserDefaults] integerForKey:@"browserPref"];
             NSLog(@"browserPref: %lu", (unsigned long)browserPref);
             
             // save scroll position of web view before showing view controller
-            self.scrollPosition = aWebView.scrollView.contentOffset;
+            self.scrollPosition = webView.scrollView.contentOffset;
             
             if (isYouTubeURL && useYouTube) {
                 // don't open with browser preference, open YouTube app
-                [[UIApplication sharedApplication] openURL:[[request URL] YouTubeURLByReplacingScheme]];
-                return NO;
+                [[UIApplication sharedApplication] openURL:[[navigationAction.request URL] YouTubeURLByReplacingScheme]];
+                decisionHandler(WKNavigationActionPolicyCancel);
+                return;
             }
             // open current URL in Safari app
             if (browserPref == LCBrowserTypeSafariApp) {
-                [[UIApplication sharedApplication] openURL:[request URL]];
-                return NO;
+                [[UIApplication sharedApplication] openURL:[navigationAction.request URL]];
+                decisionHandler(WKNavigationActionPolicyCancel);
+                return;
             }
             // open current URL in iOS 9 Safari modal view
             if (browserPref == LCBrowserTypeSafariView) {
-                SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
+                SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[navigationAction.request URL]];
                 [svc setDelegate:self];
                 [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
                 [svc setPreferredControlTintColor:[UIColor whiteColor]];
@@ -557,29 +565,31 @@
                 
                 [[self showingViewController] presentViewController:svc animated:YES completion:nil];
                 
-                return NO;
+                decisionHandler(WKNavigationActionPolicyCancel);
+                return;
             }
             // open current URL in Chrome app
             if (browserPref == LCBrowserTypeChromeApp) {
                 // replace http,https:// with googlechrome://
-                NSURL *chromeURL = [appDelegate urlAsChromeScheme:[request URL]];
+                NSURL *chromeURL = [appDelegate urlAsChromeScheme:[navigationAction.request URL]];
                 if (chromeURL != nil) {
                     [[UIApplication sharedApplication] openURL:chromeURL];
                     
                     chromeURL = nil;
-                    return NO;
+                    decisionHandler(WKNavigationActionPolicyCancel);
+                    return;
                 }
             }
 
-            viewController = [[BrowserViewController alloc] initWithRequest:request];
+            viewController = [[BrowserViewController alloc] initWithRequest:navigationAction.request];
         }
         
+        decisionHandler(WKNavigationActionPolicyCancel);
         [self.navigationController pushViewController:viewController animated:YES];
-        
-        return NO;
+        return;
     }
     
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 #pragma mark Grippy Bar Methods

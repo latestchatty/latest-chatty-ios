@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BrowserViewController">
@@ -11,7 +14,7 @@
                 <outlet property="bottomToolbar" destination="26" id="47"/>
                 <outlet property="forwardButton" destination="30" id="37"/>
                 <outlet property="view" destination="23" id="34"/>
-                <outlet property="webView" destination="25" id="35"/>
+                <outlet property="webView" destination="sKe-pH-dvF" id="rM1-K4-Kag"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,16 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <webView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" id="25">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <dataDetectorType key="dataDetectorTypes"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="43"/>
-                    </connections>
-                </webView>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" id="26">
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26">
                     <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
@@ -38,17 +32,9 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="6Nc-CZ-LCC"/>
-                        <barButtonItem enabled="NO" image="Web-Previous.png" style="plain" id="31">
-                            <connections>
-                                <action selector="goBack" destination="25" id="33"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem enabled="NO" image="Web-Previous.png" style="plain" id="31"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="T4a-Hc-kBI"/>
-                        <barButtonItem enabled="NO" image="Web-Next.png" style="plain" id="30">
-                            <connections>
-                                <action selector="goForward" destination="25" id="32"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem enabled="NO" image="Web-Next.png" style="plain" id="30"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="28"/>
                         <barButtonItem enabled="NO" image="Web-Share.png" style="plain" id="29">
                             <connections>
@@ -56,10 +42,22 @@
                             </connections>
                         </barButtonItem>
                     </items>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </toolbar>
+                <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKe-pH-dvF">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
             </subviews>
-            <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139" y="106"/>
         </view>
     </objects>
     <resources>

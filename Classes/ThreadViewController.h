@@ -18,7 +18,7 @@
 #import "ChattyViewController.h"
 @import SafariServices;
 
-@interface ThreadViewController : ModelListViewController <UIWebViewDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, SFSafariViewControllerDelegate> {
+@interface ThreadViewController : ModelListViewController <WKNavigationDelegate, WKUIDelegate, GrippyBarDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, SFSafariViewControllerDelegate> {
 
     NSUInteger storyId;
     NSUInteger threadId;
@@ -28,7 +28,7 @@
     NSIndexPath *selectedIndexPath;
 
     IBOutlet UIView *postViewContainer;
-    IBOutlet UIWebView *postView;
+    IBOutlet WKWebView *postView;
     IBOutlet GrippyBar *grippyBar;
     IBOutlet UIButton *threadPinButton;
     IBOutlet UIBarButtonItem *tagButton;
@@ -55,7 +55,7 @@
 //- (NSString *)postBodyWithYoutubeWidgets:(NSString *)body;
 
 - (void)refreshWithThreadId:(NSUInteger)threadId;
-
+- (void)showAuthorActions;
 - (void)resetLayout:(BOOL)animated;
 
 @end

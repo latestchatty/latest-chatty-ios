@@ -11,9 +11,9 @@
 #import "BrowserViewController.h"
 @import SafariServices;
 
-@interface MessageViewController : UIViewController <UIWebViewDelegate, SFSafariViewControllerDelegate> {
+@interface MessageViewController : UIViewController <WKNavigationDelegate, WKUIDelegate, SFSafariViewControllerDelegate> {
     Message *message;
-    IBOutlet UIWebView *webView;
+    IBOutlet WKWebView *webView;
 }
 
 @property (strong) Message *message;

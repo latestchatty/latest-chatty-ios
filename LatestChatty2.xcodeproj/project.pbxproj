@@ -47,6 +47,9 @@
 		A1D5280F2442BD9A00F94DBE /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D527FE2442BD9A00F94DBE /* AFURLRequestSerialization.m */; };
 		A1D528102442BD9A00F94DBE /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D528002442BD9A00F94DBE /* AFNetworkReachabilityManager.m */; };
 		A1D528112442BD9A00F94DBE /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D528012442BD9A00F94DBE /* AFSecurityPolicy.m */; };
+		A1D528142442C29C00F94DBE /* WKWebView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D528122442C29B00F94DBE /* WKWebView+HelperKit.m */; };
+		A1D528162442C2F200F94DBE /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D528152442C2F200F94DBE /* WebKit.framework */; };
+		A1D5281B2442C36300F94DBE /* WKWebView+FLWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D5281A2442C36300F94DBE /* WKWebView+FLWKWebView.m */; };
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
 		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
@@ -131,7 +134,6 @@
 		CD7C24561754653B00D90942 /* UITableView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24351754653B00D90942 /* UITableView+HelperKit.m */; };
 		CD7C24581754653B00D90942 /* UIView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24371754653B00D90942 /* UIView+HelperKit.m */; };
 		CD7C245A1754653B00D90942 /* UIViewController+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24391754653B00D90942 /* UIViewController+HelperKit.m */; };
-		CD7C245C1754653B00D90942 /* UIWebView+HelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C243B1754653B00D90942 /* UIWebView+HelperKit.m */; };
 		CD7C24601754655B00D90942 /* HTMLEscaper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C245F1754655A00D90942 /* HTMLEscaper.m */; };
 		CD7C24661754661300D90942 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24631754661200D90942 /* NSDataAdditions.m */; };
 		CD7C24681754661300D90942 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7C24651754661300D90942 /* NSStringAdditions.m */; };
@@ -388,6 +390,12 @@
 		A1D528002442BD9A00F94DBE /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		A1D528012442BD9A00F94DBE /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
 		A1D528022442BD9A00F94DBE /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		A1D528122442C29B00F94DBE /* WKWebView+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+HelperKit.m"; sourceTree = "<group>"; };
+		A1D528132442C29C00F94DBE /* WKWebView+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+HelperKit.h"; sourceTree = "<group>"; };
+		A1D528152442C2F200F94DBE /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A1D528182442C36300F94DBE /* WKWebView+FLWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+FLWKWebView.h"; sourceTree = "<group>"; };
+		A1D528192442C36300F94DBE /* FLWebViewProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWebViewProvider.h; sourceTree = "<group>"; };
+		A1D5281A2442C36300F94DBE /* WKWebView+FLWKWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+FLWKWebView.m"; sourceTree = "<group>"; };
 		A254B841116FFE9A001534FF /* MenuBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuBorder.png; path = Assets/MenuBorder.png; sourceTree = "<group>"; };
 		A254B845116FFEB0001534FF /* SlideOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutViewController.h; sourceTree = "<group>"; };
 		A254B846116FFEB0001534FF /* SlideOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutViewController.m; sourceTree = "<group>"; };
@@ -500,8 +508,6 @@
 		CD7C24371754653B00D90942 /* UIView+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HelperKit.m"; sourceTree = "<group>"; };
 		CD7C24381754653B00D90942 /* UIViewController+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HelperKit.h"; sourceTree = "<group>"; };
 		CD7C24391754653B00D90942 /* UIViewController+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HelperKit.m"; sourceTree = "<group>"; };
-		CD7C243A1754653B00D90942 /* UIWebView+HelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+HelperKit.h"; sourceTree = "<group>"; };
-		CD7C243B1754653B00D90942 /* UIWebView+HelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+HelperKit.m"; sourceTree = "<group>"; };
 		CD7C245E1754655900D90942 /* HTMLEscaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLEscaper.h; sourceTree = "<group>"; };
 		CD7C245F1754655A00D90942 /* HTMLEscaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLEscaper.m; sourceTree = "<group>"; };
 		CD7C24621754661200D90942 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataAdditions.h; path = Classes/NSDataAdditions.h; sourceTree = "<group>"; };
@@ -725,6 +731,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D528162442C2F200F94DBE /* WebKit.framework in Frameworks */,
 				CDA26B6718234F6800239BA9 /* Security.framework in Frameworks */,
 				A1D527D72442B98400F94DBE /* FirebaseCore.framework in Frameworks */,
 				CD7ADD2217EF434200B4C886 /* AVFoundation.framework in Frameworks */,
@@ -798,13 +805,13 @@
 			isa = PBXGroup;
 			children = (
 				A1D527F52442BD9A00F94DBE /* AFNetworking */,
-				A1D527E02442BD9A00F94DBE /* UIKit+AFNetworking */,
 				CD1804CF162338F90094A3F1 /* AppleSafariActivity.h */,
 				CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */,
 				FA2B47500F7E1DA30074064A /* Base64Additions */,
 				CD13D78B1754DB1A00539A23 /* Categories.h */,
 				CD13D78C1754DB1A00539A23 /* Categories.m */,
 				A1D527B82442B56900F94DBE /* CustomBadge */,
+				A1D528172442C36300F94DBE /* FLWebViewProvider */,
 				CD1804C7162211810094A3F1 /* GoogleChromeActivity.h */,
 				CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */,
 				CD7C24181754653900D90942 /* HKHelperKit */,
@@ -818,6 +825,7 @@
 				CD025E591FB5C80900695C8A /* SloppySwiper */,
 				27D09EB5219924B500966C56 /* StringTemplate */,
 				A1D527C22442B71D00F94DBE /* UIDevice-Hardware */,
+				A1D527E02442BD9A00F94DBE /* UIKit+AFNetworking */,
 				CDBD37FE17521EC2000A9F58 /* ViewDeck */,
 			);
 			name = "Other Sources";
@@ -843,6 +851,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1D528152442C2F200F94DBE /* WebKit.framework */,
 				A1D527DA2442BA1500F94DBE /* Crashlytics.framework */,
 				A1D527D02442B98300F94DBE /* Fabric.framework */,
 				A1D527D22442B98300F94DBE /* FirebaseCore.framework */,
@@ -953,6 +962,17 @@
 			path = Classes/AFNetworking;
 			sourceTree = "<group>";
 		};
+		A1D528172442C36300F94DBE /* FLWebViewProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A1D528182442C36300F94DBE /* WKWebView+FLWKWebView.h */,
+				A1D528192442C36300F94DBE /* FLWebViewProvider.h */,
+				A1D5281A2442C36300F94DBE /* WKWebView+FLWKWebView.m */,
+			);
+			name = FLWebViewProvider;
+			path = Classes/FLWebViewProvider;
+			sourceTree = "<group>";
+		};
 		CD025E591FB5C80900695C8A /* SloppySwiper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1011,8 +1031,8 @@
 				CD7C24371754653B00D90942 /* UIView+HelperKit.m */,
 				CD7C24381754653B00D90942 /* UIViewController+HelperKit.h */,
 				CD7C24391754653B00D90942 /* UIViewController+HelperKit.m */,
-				CD7C243A1754653B00D90942 /* UIWebView+HelperKit.h */,
-				CD7C243B1754653B00D90942 /* UIWebView+HelperKit.m */,
+				A1D528132442C29C00F94DBE /* WKWebView+HelperKit.h */,
+				A1D528122442C29B00F94DBE /* WKWebView+HelperKit.m */,
 			);
 			name = HKHelperKit;
 			path = Classes/HKHelperKit;
@@ -1677,6 +1697,7 @@
 				FA4123060F8FE08B002E1978 /* RootViewController.m in Sources */,
 				FA4124580F8FF059002E1978 /* MessagesViewController.m in Sources */,
 				FA828B900F90906500B59FF8 /* MessageCell.m in Sources */,
+				A1D528142442C29C00F94DBE /* WKWebView+HelperKit.m in Sources */,
 				FAD4EB510F96797900E74FED /* MessageViewController.m in Sources */,
 				FA9C3ED50F9CED010022A739 /* SearchViewController.m in Sources */,
 				FACD9A7C0F9E2F33009D9A15 /* SearchResultsViewController.m in Sources */,
@@ -1712,7 +1733,6 @@
 				CD7C24581754653B00D90942 /* UIView+HelperKit.m in Sources */,
 				A1D527BD2442B56900F94DBE /* BadgeStyle.m in Sources */,
 				CD7C245A1754653B00D90942 /* UIViewController+HelperKit.m in Sources */,
-				CD7C245C1754653B00D90942 /* UIWebView+HelperKit.m in Sources */,
 				CD7C24601754655B00D90942 /* HTMLEscaper.m in Sources */,
 				CD7C24661754661300D90942 /* NSDataAdditions.m in Sources */,
 				CD7C24681754661300D90942 /* NSStringAdditions.m in Sources */,
@@ -1723,6 +1743,7 @@
 				A1D5280D2442BD9A00F94DBE /* AFHTTPSessionManager.m in Sources */,
 				CDF1BDDE175EEDC200D6B1AE /* IIViewDeckController.m in Sources */,
 				A1D527BE2442B56900F94DBE /* CustomBadge.m in Sources */,
+				A1D5281B2442C36300F94DBE /* WKWebView+FLWKWebView.m in Sources */,
 				A1D528052442BD9A00F94DBE /* AFNetworkActivityIndicatorManager.m in Sources */,
 				CDF1BDE0175EEDC200D6B1AE /* IIWrapController.m in Sources */,
 				CDF4F8E2177FE83500143015 /* RecentSearchButton.m in Sources */,
@@ -1761,7 +1782,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 4.11.0;
@@ -1793,7 +1814,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 4.11.0;
@@ -1989,7 +2010,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 4.11.0;

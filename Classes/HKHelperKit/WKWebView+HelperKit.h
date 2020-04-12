@@ -1,5 +1,5 @@
 //
-//  UIWebView+HelperKit.h
+//  WKWebView+HelperKit.h
 //  HelperKit
 //
 //  Created by Alex Wayne on 3/25/10.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface UIWebView (HelperKit)
+@interface WKWebView (HelperKit)
 
 - (void)loadURL:(NSURL*)url;
 - (void)loadURLString:(NSString*)urlString;

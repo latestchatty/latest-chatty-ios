@@ -41,6 +41,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    webView.opaque = NO;
+    webView.backgroundColor = [UIColor clearColor];
+    webView.navigationDelegate = self;
+
     if (self.isShackLOL) {
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
@@ -105,14 +109,15 @@
     
     [self.actionButton setEnabled:YES];
     
-    NSString *docTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    if (!initWithTitle) {
-        if (docTitle.length > 0) {
-            self.title = docTitle;
-        } else {
+    // disabling for now -tkidd
+    //NSString *docTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+//    if (!initWithTitle) {
+//        if (docTitle.length > 0) {
+//            self.title = docTitle;
+//        } else {
             self.title = @"Browser";
-        }
-    }
+//        }
+//    }
 }
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error {
@@ -123,15 +128,16 @@
     [self.webView reload];
 }
 
-- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        UIViewController *viewController = [appDelegate viewControllerForURL:[aRequest URL]];
+        UIViewController *viewController = [appDelegate viewControllerForURL:[navigationAction.request URL]];
         
         // No special controller, handle the URL.
         if (viewController == nil) {
-            return YES;
+            decisionHandler(WKNavigationActionPolicyAllow);
+            return;
         }
         
         // save scroll position of web view before pushing view controller
@@ -139,10 +145,11 @@
         
         [self.navigationController pushViewController:viewController animated:YES];
         
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
     
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 - (void)navigationController:(UINavigationController *)navigationController
@@ -162,7 +169,7 @@
     AppleSafariActivity *safariActivity = [[AppleSafariActivity alloc] init];
     GoogleChromeActivity *chromeActivity = [[GoogleChromeActivity alloc] init];
     
-    NSArray *activityItems = @[[webView.request URL]];
+    NSArray *activityItems = @[[webView URL]];
     
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
                                                         initWithActivityItems:activityItems
@@ -191,16 +198,16 @@
 }
 
 - (void)copyURL {
-    [[UIPasteboard generalPasteboard] setString:[[webView.request URL] absoluteString]];
+    [[UIPasteboard generalPasteboard] setString:[[webView URL] absoluteString]];
 }
 
 - (void)openInSafari {
-    [[UIApplication sharedApplication] openURL:[webView.request URL]];
+    [[UIApplication sharedApplication] openURL:[webView URL]];
 }
 
 - (void)openInChrome {
     LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSURL *chromeURL = [appDelegate urlAsChromeScheme:[webView.request URL]];
+    NSURL *chromeURL = [appDelegate urlAsChromeScheme:[webView URL]];
     [[UIApplication sharedApplication] openURL:chromeURL];
     chromeURL = nil;
 }
@@ -213,7 +220,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [webView loadHTMLString:@"" baseURL:nil];
-    [webView setDelegate:nil];
+    [webView setUIDelegate:nil];
+    [webView setNavigationDelegate:nil];
     [webView stopLoading];
 }
 
