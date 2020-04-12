@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,10 +28,10 @@
 		A1D527BE2442B56900F94DBE /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D527BB2442B56900F94DBE /* CustomBadge.m */; };
 		A1D527C72442B71D00F94DBE /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D527C42442B71D00F94DBE /* UIDevice-Hardware.m */; };
 		A1D527CD2442B77000F94DBE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D527C92442B76F00F94DBE /* MBProgressHUD.m */; };
-		A1D527D32442B98300F94DBE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D527D02442B98300F94DBE /* Fabric.framework */; };
-		A1D527D52442B98400F94DBE /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D527D12442B98300F94DBE /* GoogleUtilities.framework */; };
-		A1D527D72442B98400F94DBE /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D527D22442B98300F94DBE /* FirebaseCore.framework */; };
-		A1D527DB2442BA1500F94DBE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D527DA2442BA1500F94DBE /* Crashlytics.framework */; };
+		A1D527D32442B98300F94DBE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D527D02442B98300F94DBE /* Fabric.framework */; platformFilter = ios; };
+		A1D527D52442B98400F94DBE /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D527D12442B98300F94DBE /* GoogleUtilities.framework */; platformFilter = ios; };
+		A1D527D72442B98400F94DBE /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D527D22442B98300F94DBE /* FirebaseCore.framework */; platformFilter = ios; };
+		A1D527DB2442BA1500F94DBE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D527DA2442BA1500F94DBE /* Crashlytics.framework */; platformFilter = ios; };
 		A1D528032442BD9A00F94DBE /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D527E22442BD9A00F94DBE /* UIProgressView+AFNetworking.m */; };
 		A1D528042442BD9A00F94DBE /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D527E42442BD9A00F94DBE /* UIRefreshControl+AFNetworking.m */; };
 		A1D528052442BD9A00F94DBE /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D527E72442BD9A00F94DBE /* AFNetworkActivityIndicatorManager.m */; };
@@ -1783,12 +1783,16 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 4.11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.LatestChatty-tk";
 				PRODUCT_NAME = LatestChatty;
 				PROVISIONING_PROFILE = "";
+				SUPPORTS_MACCATALYST = YES;
 			};
 			name = Debug;
 		};
@@ -1815,12 +1819,16 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 4.11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChatty;
 				PROVISIONING_PROFILE = "";
+				SUPPORTS_MACCATALYST = YES;
 			};
 			name = Release;
 		};
@@ -2011,12 +2019,16 @@
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 4.11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beautifulpixel.iphone.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = LatestChatty;
 				PROVISIONING_PROFILE = "";
+				SUPPORTS_MACCATALYST = YES;
 			};
 			name = Distribution;
 		};
