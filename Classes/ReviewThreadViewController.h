@@ -7,11 +7,11 @@
 
 #import "Post.h"
 
-@interface ReviewThreadViewController : UIViewController <UIWebViewDelegate> {
+@interface ReviewThreadViewController : UIViewController <WKNavigationDelegate, WKUIDelegate> {
     Post *rootPost;
 
     IBOutlet UIView *postViewContainer;
-    IBOutlet UIWebView *postView;
+    IBOutlet WKWebView *postView;
     IBOutlet UIBarButtonItem *doneButton;
 }
 

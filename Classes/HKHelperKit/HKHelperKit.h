@@ -24,4 +24,4 @@
 #import "UITableView+HelperKit.h"
 #import "UIView+HelperKit.h"
 #import "UIViewController+HelperKit.h"
-#import "UIWebView+HelperKit.h"
+#import "WKWebView+HelperKit.h"

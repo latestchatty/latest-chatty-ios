@@ -6,11 +6,11 @@
 //  Copyright 2009. All rights reserved.
 //
 
-@interface BrowserViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate> {
+@interface BrowserViewController : UIViewController <WKNavigationDelegate, WKUIDelegate, UIGestureRecognizerDelegate> {
     NSURLRequest *request;
 
     UIView *topStroke;
-    UIWebView *webView;
+    WKWebView *webView;
     UIBarButtonItem *backButton;
     UIBarButtonItem *forwardButton;
 
@@ -23,7 +23,7 @@
 }
 
 @property (nonatomic, strong) NSURLRequest *request;
-@property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) IBOutlet WKWebView *webView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *backButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *forwardButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *actionButton;

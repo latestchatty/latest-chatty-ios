@@ -23,6 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    postView.opaque = NO;
+    postView.backgroundColor = [UIColor clearColor];
+    postView.navigationDelegate = self;
+
     [self placePostInWebView:self.rootPost];
     
     [doneButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
@@ -59,12 +63,13 @@
     [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%lu", (unsigned long)post.modelId]]];
 }
 
-- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        return NO;
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
     
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {

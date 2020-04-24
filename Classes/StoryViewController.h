@@ -12,16 +12,16 @@
 #import "BrowserViewController.h"
 @import SafariServices;
 
-@interface StoryViewController : ModelListViewController <ModelLoadingDelegate, UIWebViewDelegate, SFSafariViewControllerDelegate> {
+@interface StoryViewController : ModelListViewController <ModelLoadingDelegate, WKNavigationDelegate, WKUIDelegate, SFSafariViewControllerDelegate> {
     NSUInteger storyId;
     ModelLoader *storyLoader;
     Story *story;
-    UIWebView *content;
+    WKWebView *content;
 }
 
 @property (nonatomic, strong) ModelLoader *storyLoader;
 @property (nonatomic, strong) Story *story;
-@property (nonatomic, strong) IBOutlet UIWebView *content;
+@property (nonatomic, strong) IBOutlet WKWebView *content;
 
 - (id)initWithStoryId:(NSUInteger)aStoryId;
 - (id)initWithStory:(Story *)aStory;

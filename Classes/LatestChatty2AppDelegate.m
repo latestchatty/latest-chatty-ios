@@ -11,8 +11,10 @@
 #import "Mod.h"
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
-@import Firebase;
+#if !TARGET_OS_MACCATALYST
+@import FirebaseCore;
 @import Crashlytics;
+#endif
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
@@ -182,7 +184,9 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+#if !TARGET_OS_MACCATALYST
     [FIRApp configure];
+#endif
     
     [self customizeAppearance];
 
@@ -238,7 +242,9 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                                  name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                object:store];
 
+#if !TARGET_OS_MACCATALYST
     [CrashlyticsKit setUserName:[defaults stringForKey:@"username"]];
+#endif
     
     // clear the captured date of the last successful lol fetch
     [defaults removeObjectForKey:@"lolFetchDate"];

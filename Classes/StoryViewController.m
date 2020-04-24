@@ -60,6 +60,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    content.opaque = NO;
+    content.backgroundColor = [UIColor clearColor];
+    content.navigationDelegate = self;
+
     if ([[LatestChatty2AppDelegate delegate] isForceTouchEnabled]) {
         [content setAllowsLinkPreview:YES];
     }
@@ -151,33 +155,35 @@
 
 #pragma mark WebView methods
 
-- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        UIViewController *viewController = [appDelegate viewControllerForURL:[request URL]];
+        UIViewController *viewController = [appDelegate viewControllerForURL:[navigationAction.request URL]];
         
         // No special controller, handle the URL.
         // Check URL for YouTube, open externally is necessary.
         // If not YouTube, open URL in browser preference
         if (viewController == nil) {
-            BOOL isYouTubeURL = [appDelegate isYouTubeURL:[request URL]];
+            BOOL isYouTubeURL = [appDelegate isYouTubeURL:[navigationAction.request URL]];
             BOOL useYouTube = [[NSUserDefaults standardUserDefaults] boolForKey:@"useYouTube"];
             NSUInteger browserPref = [[NSUserDefaults standardUserDefaults] integerForKey:@"browserPref"];
             
             if (isYouTubeURL && useYouTube) {
                 // don't open with browser preference, open YouTube app
-                [[UIApplication sharedApplication] openURL:[[request URL] YouTubeURLByReplacingScheme]];
-                return NO;
+                [[UIApplication sharedApplication] openURL:[[navigationAction.request URL] YouTubeURLByReplacingScheme]];
+                decisionHandler(WKNavigationActionPolicyCancel);
+                return;
             }
             // open current URL in Safari app
             if (browserPref == LCBrowserTypeSafariApp) {
-                [[UIApplication sharedApplication] openURL:[request URL]];
-                return NO;
+                [[UIApplication sharedApplication] openURL:[navigationAction.request URL]];
+                decisionHandler(WKNavigationActionPolicyCancel);
+                return;
             }
             // open current URL in iOS 9 Safari modal view
             if (browserPref == LCBrowserTypeSafariView) {                
-                SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
+                SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[navigationAction.request URL]];
                 [svc setDelegate:self];
                 [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
                 [svc setPreferredControlTintColor:[UIColor whiteColor]];
@@ -185,29 +191,32 @@
                 
                 [[self showingViewController] presentViewController:svc animated:YES completion:nil];
                 
-                return NO;
+                decisionHandler(WKNavigationActionPolicyCancel);
+                return;
             }
             // open current URL in Chrome app
             if (browserPref == LCBrowserTypeChromeApp) {
                 // replace http,https:// with googlechrome://
-                NSURL *chromeURL = [appDelegate urlAsChromeScheme:[request URL]];
+                NSURL *chromeURL = [appDelegate urlAsChromeScheme:[navigationAction.request URL]];
                 if (chromeURL != nil) {
                     [[UIApplication sharedApplication] openURL:chromeURL];
                     
                     chromeURL = nil;
-                    return NO;
+                    decisionHandler(WKNavigationActionPolicyCancel);
+                    return;
                 }
             }
             
-            viewController = [[BrowserViewController alloc] initWithRequest:request];
+            viewController = [[BrowserViewController alloc] initWithRequest:navigationAction.request];
         }
         
         [self.navigationController pushViewController:viewController animated:YES];
         
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
     
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 #pragma mark Cleanup
@@ -216,7 +225,9 @@
     [storyLoader cancel];
     
     [content stopLoading];
-    content.delegate = nil;
+    
+    // find WK equivalent -tkidd
+//    content.delegate = nil;
 }
 
 @end
