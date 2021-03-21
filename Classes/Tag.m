@@ -8,24 +8,24 @@
 
 #import "Tag.h"
 
-static NSString *kLOLTaggingBaseUrl = @"http://lmnopc.com";
+static NSString *kLOLTaggingBaseUrl = @"https://winchatty.com";
 static NSString *kLOLGetCountsBaseUrl = @"http://lol.lmnopc.com";
 
 @implementation Tag
 
 + (void)tagPostId:(NSUInteger)postId tag:(NSString*)tag {    
     NSDictionary *taggingParameters =
-    @{@"who": [[NSUserDefaults standardUserDefaults] valueForKey:@"username"],
-      @"what": [NSString stringWithFormat:@"%lu", (unsigned long)postId],
+    @{@"what": [NSString stringWithFormat:@"%lu", (unsigned long)postId],
+      @"who": [[NSUserDefaults standardUserDefaults] valueForKey:@"username"],
       @"tag": tag,
-      @"version": @"-1"};
+      @"action": @"tag",
+      @"password": [[NSUserDefaults standardUserDefaults] valueForKey:@"password"]};
     NSLog(@"calling loltag w/ parameters: %@", taggingParameters);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[NSString stringWithFormat:@"%@/greasemonkey/shacklol/report.php", kLOLTaggingBaseUrl]
+    [manager POST:[NSString stringWithFormat:@"%@/v2/lol", kLOLTaggingBaseUrl]
        parameters:taggingParameters
          progress:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
