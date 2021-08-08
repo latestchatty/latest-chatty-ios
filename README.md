@@ -5,7 +5,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to build the app 
 
 4.11.2
 ====
-- Stopped ghost bottom bar on some screens from rendering 
+- Stopped line at bottom of some screens from rendering
 
 4.11.1
 ====

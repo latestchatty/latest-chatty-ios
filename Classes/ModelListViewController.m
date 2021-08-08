@@ -108,13 +108,13 @@
     return [[UITableViewCell alloc] initWithFrame:CGRectZero];
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    // animate cells into view slightly with opacity animation
-    cell.alpha = 0.25;
-    [UIView animateWithDuration:0.1 animations:^{
-        cell.alpha = 1.0;
-    }];
-}
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    // animate cells into view slightly with opacity animation
+//    cell.alpha = 0.25;
+//    [UIView animateWithDuration:0.1 animations:^{
+//        cell.alpha = 1.0;
+//    }];
+//}
 
 #pragma mark Fart Mode
 
