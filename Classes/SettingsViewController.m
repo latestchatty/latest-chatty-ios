@@ -9,7 +9,6 @@
 #import "SettingsViewController.h"
 #import "LCBrowserType.h"
 #import "MBProgressHUD.h"
-@import Crashlytics;
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 static NSString *kWoggleKeywordsUrl = @"https://www.woggle.net/notifications";
@@ -441,8 +440,6 @@ static NSString *kGuidelinesUrl = @"https://www.shacknews.com/guidelines";
     
     [store synchronize];
     
-    [[Crashlytics sharedInstance] setUserName:[defaults stringForKey:@"username"]];
-    
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         //show pin HUD message
         NSTimeInterval theTimeInterval = 0.75;
@@ -608,10 +605,6 @@ static NSString *kGuidelinesUrl = @"https://www.shacknews.com/guidelines";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 44;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

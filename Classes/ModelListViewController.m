@@ -108,12 +108,8 @@
     return [[UITableViewCell alloc] initWithFrame:CGRectZero];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01f;
-}
-
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    // animate cells into view slightly with opacity animation
+//    // animate cells into view slightly with opacity animation
 //    cell.alpha = 0.25;
 //    [UIView animateWithDuration:0.1 animations:^{
 //        cell.alpha = 1.0;
