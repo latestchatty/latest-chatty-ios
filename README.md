@@ -3,6 +3,10 @@ latest-chatty-ios
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to build the app locally.
 
+4.11.3
+====
+- Restore broken Imgur integration
+
 4.11.2
 ====
 - Stopped line at bottom of some screens from rendering
